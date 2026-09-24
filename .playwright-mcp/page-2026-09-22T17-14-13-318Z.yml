@@ -1,0 +1,125 @@
+- generic [active] [ref=f15e1]:
+  - banner [ref=f15e2]:
+    - generic [ref=f15e4]:
+      - link "Sipariş Takip" [ref=f15e5] [cursor=pointer]:
+        - /url: /search
+      - generic [ref=f15e6]: "|"
+      - link "Yardım" [ref=f15e7] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f15e8]: "|"
+      - link "İletişim" [ref=f15e9] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f15e10]: "|"
+      - generic [ref=f15e11]: TR
+    - generic [ref=f15e13]:
+      - link "Akinel Yedek Parça" [ref=f15e14] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f15e15]: Akinel
+        - generic [ref=f15e16]: Yedek Parça
+      - generic [ref=f15e18]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f15e19]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f15e20]:
+        - link "Garajım" [ref=f15e21] [cursor=pointer]:
+          - /url: /garage
+        - link "Giriş Yap" [ref=f15e26] [cursor=pointer]:
+          - /url: /login
+    - navigation [ref=f15e32]:
+      - link "Ana Sayfa" [ref=f15e33] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f15e34] [cursor=pointer]:
+        - /url: /products
+      - link "Aracımı Seç" [ref=f15e35] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f15e36] [cursor=pointer]:
+        - /url: /vin
+      - link "Garajım" [ref=f15e37] [cursor=pointer]:
+        - /url: /garage
+  - main [ref=f15e38]:
+    - generic [ref=f15e40]:
+      - generic [ref=f15e41]:
+        - generic [ref=f15e42]: Akinel
+        - generic [ref=f15e43]: Giriş Yap
+      - generic [ref=f15e44]:
+        - generic [ref=f15e45]:
+          - generic [ref=f15e46]:
+            - generic [ref=f15e47]: E-posta
+            - textbox "E-posta" [ref=f15e48]:
+              - /placeholder: ornek@email.com
+          - generic [ref=f15e49]:
+            - generic [ref=f15e50]: Şifre
+            - generic [ref=f15e51]:
+              - textbox "Şifre" [ref=f15e52]:
+                - /placeholder: ••••••••
+              - button "Şifreyi göster" [ref=f15e53]
+          - generic [ref=f15e57]:
+            - generic [ref=f15e58] [cursor=pointer]:
+              - checkbox "Beni Hatırla" [ref=f15e59]
+              - text: Beni Hatırla
+            - link "Şifremi Unuttum" [ref=f15e60] [cursor=pointer]:
+              - /url: "#"
+          - button "Giriş Yap" [ref=f15e61]
+        - paragraph [ref=f15e62]:
+          - text: Hesabınız yok mu?
+          - link "Kayıt Olun" [ref=f15e63] [cursor=pointer]:
+            - /url: /register
+  - contentinfo [ref=f15e64]:
+    - generic [ref=f15e65]:
+      - generic [ref=f15e66]:
+        - generic [ref=f15e67]:
+          - generic [ref=f15e68]:
+            - generic [ref=f15e69]: Akinel
+            - generic [ref=f15e70]: Yedek Parça
+          - paragraph [ref=f15e71]: Aracınız için doğru parçayı bulun. OEM numarası veya araç seçimi ile hızlı arama.
+        - generic [ref=f15e72]:
+          - heading "Alışveriş" [level=3] [ref=f15e73]
+          - list [ref=f15e74]:
+            - listitem [ref=f15e75]:
+              - link "Tüm Ürünler" [ref=f15e76] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f15e77]:
+              - link "Araçla Bul" [ref=f15e78] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f15e79]:
+              - link "VIN Sorgula" [ref=f15e80] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f15e81]:
+              - link "Periyodik Bakım" [ref=f15e82] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f15e83]:
+          - heading "Hesap" [level=3] [ref=f15e84]
+          - list [ref=f15e85]:
+            - listitem [ref=f15e86]:
+              - link "Giriş Yap" [ref=f15e87] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f15e88]:
+              - link "Kayıt Ol" [ref=f15e89] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f15e90]:
+              - link "Hesabım" [ref=f15e91] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f15e92]:
+              - link "Garajım" [ref=f15e93] [cursor=pointer]:
+                - /url: /garage
+        - generic [ref=f15e94]:
+          - heading "Destek" [level=3] [ref=f15e95]
+          - list [ref=f15e96]:
+            - listitem [ref=f15e97]:
+              - link "Yardım Merkezi" [ref=f15e98] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f15e99]:
+              - link "İletişim" [ref=f15e100] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f15e101]:
+              - link "Sipariş Takibi" [ref=f15e102] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=f15e103]:
+        - generic [ref=f15e104]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f15e105]:
+          - link "Gizlilik Politikası" [ref=f15e106] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f15e107] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f15e113] [cursor=pointer]

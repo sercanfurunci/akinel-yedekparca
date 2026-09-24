@@ -1,0 +1,433 @@
+- generic [active] [ref=f9e1]:
+  - banner [ref=f9e2]:
+    - generic [ref=f9e4]:
+      - link "+90 533 140 56 49" [ref=f9e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f9e8]:
+        - link "Sipariş Takip" [ref=f9e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f9e10]: "|"
+        - link "Yardım" [ref=f9e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f9e12]: "|"
+        - link "İletişim" [ref=f9e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f9e14]: "|"
+        - generic [ref=f9e15]: TR
+    - generic [ref=f9e17]:
+      - link "Akinel Yedek Parça" [ref=f9e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f9e19]: Akinel
+        - generic [ref=f9e20]: Yedek Parça
+      - generic [ref=f9e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f9e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f9e24]:
+        - link "Garajım" [ref=f9e25] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f9e157] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f9e158] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f9e36]:
+      - link "Ana Sayfa" [ref=f9e37] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f9e38] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f9e39] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f9e40] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f9e41] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f9e42] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f9e43] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f9e44] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=f9e45]:
+    - generic [ref=f9e46]:
+      - navigation "Breadcrumb" [ref=f9e47]:
+        - link "Ana Sayfa" [ref=f9e49] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f9e50]: Aracımı Seç
+      - generic [ref=f9e54]:
+        - heading "Aracınızı Seçin" [level=1] [ref=f9e55]
+        - paragraph [ref=f9e56]: 4 adımda aracınızı seçin ve uyumlu parçaları keşfedin.
+        - generic [ref=f9e58]:
+          - generic [ref=f9e59]:
+            - generic [ref=f9e61]:
+              - generic [ref=f9e62]: ✓
+              - generic [ref=f9e63]: Marka
+            - generic [ref=f9e66]:
+              - generic [ref=f9e67]: "2"
+              - generic [ref=f9e68]: Model
+            - generic [ref=f9e71]:
+              - generic [ref=f9e72]: "3"
+              - generic [ref=f9e73]: Kasa / Nesil
+            - generic [ref=f9e76]:
+              - generic [ref=f9e77]: "4"
+              - generic [ref=f9e78]: Motor
+          - generic [ref=f9e79]:
+            - generic [ref=f9e80]:
+              - generic [ref=f9e81]: Marka
+              - combobox [ref=f9e82]:
+                - option "Marka seçin"
+                - option "ALFA ROMEO"
+                - option "AUDI"
+                - option "BMW"
+                - option "CITROEN"
+                - option "CUPRA"
+                - option "DACIA"
+                - option "DS"
+                - option "FIAT"
+                - option "FORD"
+                - option "HONDA"
+                - option "HYUNDAI"
+                - option "INFINITI"
+                - option "JAGUAR"
+                - option "KIA"
+                - option "LANCIA"
+                - option "LAND ROVER"
+                - option "LEXUS"
+                - option "MAZDA"
+                - option "MERCEDES-BENZ"
+                - option "MINI"
+                - option "MITSUBISHI"
+                - option "NISSAN"
+                - option "OPEL"
+                - option "PEUGEOT"
+                - option "PORSCHE"
+                - option "RENAULT"
+                - option "SAAB"
+                - option "SEAT"
+                - option "SKODA"
+                - option "SMART"
+                - option "SUBARU"
+                - option "SUZUKI"
+                - option "TOYOTA" [selected]
+                - option "VOLKSWAGEN"
+                - option "VOLVO"
+            - generic [ref=f9e83]:
+              - generic [ref=f9e84]: Model
+              - combobox [ref=f9e85]:
+                - option "Model seçin" [selected]
+                - option "AMAROK"
+                - option "AMAROK AVENTURA 4X4"
+                - option "AMAROK CANYON 4X4"
+                - option "AMAROK COMFORTLINE"
+                - option "AMAROK HIGHLINE 4X4"
+                - option "AMAROK V6"
+                - option "ARTEON"
+                - option "BEETLE"
+                - option "C. VOLT"
+                - option "C.VOLT"
+                - option "CADDY"
+                - option "CADDY ALLTRACK"
+                - option "CADDY COMBI"
+                - option "CADDY COMBI TRENDLINE"
+                - option "CADDY LIFE"
+                - option "CADDY LIFE PLUS"
+                - option "CADDY MAXI"
+                - option "CARAVELLE"
+                - option "CARAVELLE C.LINE SCR BMT"
+                - option "CARAVELLE C.LINE SCRBMT"
+                - option "CARAVELLE COMF.LINE"
+                - option "CARAVELLE COMF.TLINE"
+                - option "CARAVELLE COMFORTLINE"
+                - option "CARAVELLE COMFORTLINE BMT"
+                - option "CARAVELLE HIGHLINE"
+                - option "CARAVELLE TEAM"
+                - option "CARAVELLE TRENDLINE"
+                - option "CARAVELLE TRENDLINE BMT"
+                - option "CARAVELLE TRENDLINE SCRBMT"
+                - option "CC"
+                - option "CRAFT.V.2.5 TDI LWB 14+1 SERV.MIDLINE109"
+                - option "CRAFT.V.2.5 TDI MWB"
+                - option "CRAFTER"
+                - option "CRAFTER HAT 13+1 ELWB 163 MIDLINE CT"
+                - option "CRAFTER HAT 13+1 ELWB 163 MIDLINE STT"
+                - option "CRAFTER HAT 13+1 LWB 163 MIDLINE"
+                - option "CRAFTER HAT 13+1 LWB 163 MIDLINE STT"
+                - option "CRAFTER HAT 14+1 ELWB 163 MIDLINE CT"
+                - option "CRAFTER HAT 14+1 ELWB 163 MIDLINE STT"
+                - option "CRAFTER HAT 16+1 ELWB 163 MIDLINE CT"
+                - option "CRAFTER HAT 16+1 ELWB 163 MIDLINE STT"
+                - option "CRAFTER OKUL 16+1 ELWB HR 177 COMFORTLINE"
+                - option "CRAFTER OKUL 16+1 ELWB HR 177 HIGHLINE"
+                - option "CRAFTER OKUL 16+1 LWB 163"
+                - option "CRAFTER OKUL 16+1 LWB 163 MIDLINE"
+                - option "CRAFTER OKUL 16+1 LWB HR 140 COMFORTLINE"
+                - option "CRAFTER OKUL 16+1 LWB HR 177"
+                - option "CRAFTER OKUL 16+1 LWB SCR 163 MIDLINE E6"
+                - option "CRAFTER OKUL 18+1 ELWB 163"
+                - option "CRAFTER OKUL 18+1 ELWB 163 MIDLINE"
+                - option "CRAFTER OKUL 18+1 ELWB SCR 163 MIDLINE E6"
+                - option "CRAFTER OKUL 19+1 ELWB 163 MIDLINE"
+                - option "CRAFTER OKUL 19+1 ELWB 163 STT"
+                - option "CRAFTER OKUL 19+1 ELWB HR 177 COMFORTLINE"
+                - option "CRAFTER OKUL 19+1 ELWB HR 177 HIGHLINE"
+                - option "CRAFTER OKUL 22+1 ELWB 163 MIDLINE STT"
+                - option "CRAFTER OKUL 22+1 ELWB 163 STT"
+                - option "CRAFTER OKUL 22+1 ELWB SCR 163 MIDLINE STT E6"
+                - option "CRAFTER OKUL19+1 ELWB SCR 163 MIDLINE STT E6"
+                - option "CRAFTER PANELVAN2+1ELWB HR 177 5T COMFORTLINE"
+                - option "CRAFTER PICK UP"
+                - option "CRAFTER PREMIUM 10+1 BAGAJLI LWB"
+                - option "CRAFTER PREMIUM 10+1 BAGAJLI LWB SCR 163 E6"
+                - option "CRAFTER PREMIUM 10+1 MASALI LWB"
+                - option "CRAFTER PREMIUM 10+1 MASALI LWB SCR 163 E6"
+                - option "CRAFTER PREMIUM 9+1 BAGAJLI LWB"
+                - option "CRAFTER PREMIUM 9+1 BAGAJLI LWB SCR 163 E6"
+                - option "CRAFTER PREMIUM 9+1 MASALI LWB"
+                - option "CRAFTER PREMIUM 9+1 MASALI LWB SCR 163 E6"
+                - option "CRAFTER SERVIS 13+1 163 MIDLINE"
+                - option "CRAFTER SERVIS 13+1 LWB 163"
+                - option "CRAFTER SERVIS 13+1 LWB SCR MIDLINE E6"
+                - option "CRAFTER SERVIS 14+1 LWB 163"
+                - option "CRAFTER SERVIS 14+1 LWB 163 MIDLINE"
+                - option "CRAFTER SERVIS 15+1 LWB 163"
+                - option "CRAFTER SERVIS 15+1 LWB 163 MIDLINE"
+                - option "CRAFTER SERVIS 15+1 LWB HR 140 COMFORTLINE"
+                - option "CRAFTER SERVIS 15+1 LWB SCR 163 MIDLINE E6"
+                - option "CRAFTER SERVIS 16+1 ELWB 163 MIDLINE"
+                - option "CRAFTER SERVIS 16+1 ELWB 163 MIDLINE STT"
+                - option "CRAFTER SERVIS 16+1 ELWB 163 STT"
+                - option "CRAFTER SERVIS 16+1 ELWB HR 177 COMFORTLINE"
+                - option "CRAFTER SERVIS 16+1 ELWB HR 177 HIGHLINE"
+                - option "CRAFTER SERVIS 16+1 LWB 163 MIDLINE"
+                - option "CRAFTER SERVIS 19+1 ELWB 163 MIDLINE"
+                - option "CRAFTER SERVIS 19+1 ELWB 163 MIDLINE CT"
+                - option "CRAFTER SERVIS 19+1 ELWB 163 MIDLINE STT"
+                - option "CRAFTER SERVIS 19+1 ELWB 163 STT"
+                - option "CRAFTER SERVIS 19+1 ELWB HR 177 COMFORTLINE"
+                - option "CRAFTER SERVIS 19+1 ELWB HR 177 HIGHLINE"
+                - option "CRAFTER SERVIS 22+1 ELWB 163 MIDLINE CT"
+                - option "CRAFTER SERVIS14+1 LWB SCR 163 MIDLINE E6"
+                - option "CRAFTER SERVIS16+1 ELWB SCR 163 MIDLINE CT E6"
+                - option "CRAFTER SERVIS16+1 ELWB SCR163 MIDLINE STT E6"
+                - option "CRAFTER SERVIS19+1 ELWB SCR 163 MIDLINE CT E6"
+                - option "CRAFTER SERVIS19+1 ELWBSCR163 MIDLINE STT E6"
+                - option "CRAFTER SERVIS22+1 ELWB SCR 163 MIDLINE CT E6"
+                - option "CRAFTER TURIZM 13+1 LWB 163 MIDLINE"
+                - option "CRAFTER TURIZM 13+1 LWB SCR 163 MIDLINE E6"
+                - option "CRAFTER TURIZM 16+1 ELWB 163 MIDLINE"
+                - option "CRAFTER TURIZM16+1 ELWBSCR163 MIDLINE STT E6"
+                - option "CRAFTER V."
+                - option "CRAFTER V. 2.5 TDI LWB"
+                - option "CRAFTER V. 2.5 TDI MWB"
+                - option "CRAFTER V. SERVIS (13+1) LWB 109 MIDLINE"
+                - option "CRAFTER V. TURIZM 16+1 ELWB 163 MIDLINE"
+                - option "CRAFTER V.2 .5 TDI LWB 14+1 TURIZM MIDLI"
+                - option "CRAFTER V.2.5 TDI (163) ELWB KONFOR 17+1"
+                - option "CRAFTER V.2.5 TDI ELWB 17+1 MIDLINE 109"
+                - option "CRAFTER V.2.5 TDI ELWB 17+1SERVISMIDLINE"
+                - option "CRAFTER V.2.5 TDI ELWB 20+1 OKUL MIDLINE"
+                - option "CRAFTER V.2.5 TDI LWB 14+1 HAT MIDLINE"
+                - option "CRAFTER V.2.5 TDI LWB 17+1 OKUL MIDLINE"
+                - option "CRAFTER V.2.5 TDI LWB 17+1 SERVIS MID163"
+                - option "CRAFTER V.2.5 TDI LWB 17+1 SERVISMIDLINE"
+                - option "CRAFTER V.2.5 TDI LWB 20+1 KONFOR OKUL"
+                - option "CRAFTER V.OKUL 16+1 LWB 109 MIDLINE"
+                - option "CRAFTER V.OKUL 16+1 LWB 163 MIDLINE"
+                - option "CRAFTER V.SERVIS 13+1 ELWB 163 MIDLINE"
+                - option "CRAFTER V.SERVIS 16+1 ELWB 163 MIDLINE"
+                - option "CRAFTER V.SERVIS 16+1 LWB 109 MIDLINE"
+                - option "CRAFTER V.SERVIS 16+1 LWB 163 MIDLINE"
+                - option "CRAFTER VOLT"
+                - option "CRAFTER VOLT HAT 13+1 LWB 109 MIDLINE"
+                - option "CRAFTER VOLT HAT 13+1 LWB 163 MIDLINE"
+                - option "CRAFTER VOLT OKUL19+1 ELWB 163 MIDLINE"
+                - option "CRAFTER VOLT TURIZM 13+1 LWB 163 MIDLINE"
+                - option "CRAFTERPANELVAN 2+1 LWB HR 177"
+                - option "CROSS CADDY"
+                - option "CROSS POLO"
+                - option "EOS"
+                - option "GOLF"
+                - option "GOLF GT"
+                - option "GOLF GTI PERFORMANCE"
+                - option "GOLF GTI VI"
+                - option "GOLF GTI VII"
+                - option "GOLF PLUS"
+                - option "GOLF R"
+                - option "GOLF R32"
+                - option "GOLF VI"
+                - option "GOLF VII"
+                - option "Golf"
+                - option "ID.3 PRO (150KW)"
+                - option "JETTA"
+                - option "JETTA R-LINE"
+                - option "LT VOLT"
+                - option "LT VOLT CAMLIVAN"
+                - option "MULTIVAN"
+                - option "MULTIVAN STARTLINE"
+                - option "N. BEETLE CAB."
+                - option "NEW BEETLE"
+                - option "NEW BEETLE CAB."
+                - option "PASSAT"
+                - option "PASSAT ALLTRACK"
+                - option "PASSAT CC"
+                - option "PASSAT VAR"
+                - option "PASSAT VAR."
+                - option "PASSAT VAR.1.8 TSI COMFORTLINE TIPTR.160"
+                - option "PASSAT VARIANT"
+                - option "PHAETON"
+                - option "POLO"
+                - option "POLO GTI"
+                - option "RABBIT"
+                - option "SCIROCCO"
+                - option "SCIROCCO GTS"
+                - option "SCIROCCO R"
+                - option "T-ROC"
+                - option "T.PORTER"
+                - option "T.PORTER C.LIVAN"
+                - option "T.PORTER CAMLIVAN"
+                - option "T.PORTER CAMLIVAN 4+1"
+                - option "T.PORTER CAMLIVAN 4+1 LWB"
+                - option "T.PORTER CITY"
+                - option "T.PORTER CITYVAN"
+                - option "T.PORTER CITYVAN 5+1"
+                - option "T.PORTER CITYVAN 5+1 LWB"
+                - option "T.PORTER CITYVAN GP"
+                - option "T.PORTER P."
+                - option "T.PORTER PICK UP"
+                - option "T.PORTER SPORTLINE CAMLIVAN 102 LWB 4+1"
+                - option "T.PORTER SPORTLINE CAMLIVAN 130 LWB 4+1"
+                - option "T.PORTER SPORTLINE CAMLIVAN 174 LWB 4+1"
+                - option "T.PORTER SPORTLINE CITYVAN 102 LWB 5+1"
+                - option "T.PORTER SPORTLINE CITYVAN 174 LWB 5+1"
+                - option "T.PORTER SPORTLINE CITYVAN LWB 174 5+1"
+                - option "THE BEETLE"
+                - option "TIGUAN"
+                - option "TIGUAN ALLSPACE"
+                - option "TIGUANALLSPACE"
+                - option "TOUAREG"
+                - option "TOUAREG V6"
+                - option "TOUAREG V6 TSI HYBRID TIPTRONIC"
+                - option "TOURAEG PREMIUM V6"
+                - option "TOURAN"
+                - option "TPORTER PICKUP1.9 TDI 102 LWB2+1CIFTKABI"
+                - option "TRANSPORTER"
+                - option "TRANSPORTER 2.0 TDI 150"
+                - option "TRANSPORTER CAMLI"
+                - option "TRANSPORTER CAMLIVAN"
+                - option "TRANSPORTER CAMLIVAN (4+1) 180 DSG"
+                - option "TRANSPORTER CAMLIVAN (4+1) LWB 180 DSG"
+                - option "TRANSPORTER CAMLIVAN 4+1"
+                - option "TRANSPORTER CAMLIVAN 4+1 114 COMFORTLINE E6"
+                - option "TRANSPORTER CAMLIVAN 4+1 114 E6"
+                - option "TRANSPORTER CAMLIVAN 4+1 150 COMFORTLINE E6"
+                - option "TRANSPORTER CAMLIVAN 4+1 150 DSG E6"
+                - option "TRANSPORTER CAMLIVAN 4+1 150 E6"
+                - option "TRANSPORTER CAMLIVAN 4+1 204 DSG E6"
+                - option "TRANSPORTER CAMLIVAN 4+1 LWB 114 E6"
+                - option "TRANSPORTER CAMLIVAN 4+1 LWB 140 DSG COMFORT."
+                - option "TRANSPORTER CAMLIVAN 4+1 LWB 150 COMF.LINE E6"
+                - option "TRANSPORTER CAMLIVAN 4+1 LWB 150 DSG"
+                - option "TRANSPORTER CAMLIVAN 4+1 LWB 150 E6"
+                - option "TRANSPORTER CAMLIVAN 4+1 LWB 204 DSG E6"
+                - option "TRANSPORTER CITY"
+                - option "TRANSPORTER CITYVAN"
+                - option "TRANSPORTER CITYVAN (5+1) LWB 180 DSG"
+                - option "TRANSPORTER CITYVAN 4+1 114 COMFORTLINE E6"
+                - option "TRANSPORTER CITYVAN 5+1 114 COMFORTLINE E6"
+                - option "TRANSPORTER CITYVAN 5+1 114 E6"
+                - option "TRANSPORTER CITYVAN 5+1 150 COMFORTLINE E6"
+                - option "TRANSPORTER CITYVAN 5+1 150 DSG E6"
+                - option "TRANSPORTER CITYVAN 5+1 150 E6"
+                - option "TRANSPORTER CITYVAN 5+1 204 DSG E6"
+                - option "TRANSPORTER CITYVAN 5+1 LWB 114 E6"
+                - option "TRANSPORTER CITYVAN 5+1 LWB 140 DSG COM.LINE"
+                - option "TRANSPORTER CITYVAN 5+1 LWB 150 E6"
+                - option "TRANSPORTER CITYVAN 5+1 LWB 204 DSG E6"
+                - option "TRANSPORTER CITYVAN 5+1LWB 150 COMFORTLINE E6"
+                - option "TRANSPORTER K.NET CIFT KABIN"
+                - option "TRANSPORTER MULTIVAN TDI"
+                - option "TRANSPORTER P."
+                - option "TRANSPORTER PICK UP"
+                - option "TRANSPORTER SPORTLINE CAMLIVAN 102 4+1"
+                - option "TRANSPORTER SPORTLINE CAMLIVAN 130 4+1"
+                - option "TRANSPORTER SPORTLINE CAMLIVAN 174 4+1"
+                - option "TRANSPORTER SPORTLINE CITY"
+                - option "TRANSPORTER SPORTLINE CITYVAN (5+1"
+                - option "TRANSPORTER SPORTLINE CITYVAN 130 5+1"
+                - option "TRANSPORTERCAMLIVAN 4+1 LWB 114 COMF.LINE E6"
+                - option "UP"
+            - generic [ref=f9e86]:
+              - generic [ref=f9e87]: Kasa / Nesil
+              - combobox [disabled] [ref=f9e88]:
+                - option "Nesil seçin" [selected]
+            - generic [ref=f9e89]:
+              - generic [ref=f9e90]: Motor
+              - combobox [disabled] [ref=f9e91]:
+                - option "Motor seçin" [selected]
+          - generic [ref=f9e92]:
+            - button "Parçaları Göster" [disabled]
+  - contentinfo [ref=f9e93]:
+    - generic [ref=f9e94]:
+      - generic [ref=f9e95]:
+        - generic [ref=f9e96]:
+          - generic [ref=f9e97]:
+            - generic [ref=f9e98]: Akinel
+            - generic [ref=f9e99]: Yedek Parça
+          - paragraph [ref=f9e100]: Test açıklaması güncel
+        - generic [ref=f9e101]:
+          - heading "Hızlı Linkler" [level=3] [ref=f9e102]
+          - list [ref=f9e103]:
+            - listitem [ref=f9e104]:
+              - link "Ana Sayfa" [ref=f9e105] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f9e106]:
+              - link "Ürünler" [ref=f9e107] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f9e108]:
+              - link "Aracımı Seç" [ref=f9e109] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f9e110]:
+              - link "OEM Ara" [ref=f9e111] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f9e112]:
+              - link "Garajım" [ref=f9e113] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f9e114]:
+              - link "Hakkımızda" [ref=f9e115] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f9e116]:
+          - heading "Müşteri" [level=3] [ref=f9e117]
+          - list [ref=f9e118]:
+            - listitem [ref=f9e119]:
+              - link "Giriş Yap" [ref=f9e120] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f9e121]:
+              - link "Kayıt Ol" [ref=f9e122] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f9e123]:
+              - link "Garajım" [ref=f9e124] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f9e125]:
+              - link "Hesabım" [ref=f9e126] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f9e127]:
+              - link "Periyodik Bakım" [ref=f9e128] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f9e129]:
+          - heading "İletişim" [level=3] [ref=f9e130]
+          - generic [ref=f9e131]:
+            - paragraph [ref=f9e132]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f9e133] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f9e140]:
+              - paragraph [ref=f9e141]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f9e142]: "Pazar: Kapalı"
+      - generic [ref=f9e143]:
+        - generic [ref=f9e144]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f9e145]:
+          - link "Gizlilik Politikası" [ref=f9e146] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f9e147] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f9e153] [cursor=pointer]
+  - alert [ref=f9e159]

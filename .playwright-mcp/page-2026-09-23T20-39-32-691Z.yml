@@ -1,0 +1,330 @@
+- generic [ref=f53e1]:
+  - banner [aria-hidden] [ref=f53e2]:
+    - generic [ref=f53e4]:
+      - link [ref=f53e428] [cursor=pointer]:
+        - /url: tel:+905331405649
+        - text: +90 533 140 56 49
+      - generic [ref=f53e8]:
+        - link [ref=f53e429] [cursor=pointer]:
+          - /url: /search
+          - text: Sipariş Takip
+        - generic [ref=f53e10]: "|"
+        - link [ref=f53e430] [cursor=pointer]:
+          - /url: /contact
+          - text: Yardım
+        - generic [ref=f53e12]: "|"
+        - link [ref=f53e431] [cursor=pointer]:
+          - /url: /contact
+          - text: İletişim
+        - generic [ref=f53e14]: "|"
+        - generic [ref=f53e15]: TR
+    - generic [ref=f53e17]:
+      - link [ref=f53e432] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f53e19]: Akinel
+        - generic [ref=f53e20]: Yedek Parça
+      - generic [ref=f53e22]:
+        - searchbox [ref=f53e433]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f53e24]:
+        - button [ref=f53e434]:
+          - generic [ref=f53e435]: "1"
+        - link [ref=f53e436] [cursor=pointer]:
+          - /url: /garage
+        - link [ref=f53e437] [cursor=pointer]:
+          - /url: /account
+          - text: Admin
+        - link [ref=f53e438] [cursor=pointer]:
+          - /url: /admin
+          - text: Admin
+    - navigation [ref=f53e42]:
+      - link [ref=f53e439] [cursor=pointer]:
+        - /url: /
+        - text: Ana Sayfa
+      - link [ref=f53e440] [cursor=pointer]:
+        - /url: /products
+        - text: Ürünler
+      - link [ref=f53e441] [cursor=pointer]:
+        - /url: /brands
+        - text: Markalar
+      - link [ref=f53e442] [cursor=pointer]:
+        - /url: /vehicle
+        - text: Aracımı Seç
+      - link [ref=f53e443] [cursor=pointer]:
+        - /url: /search
+        - text: OEM Ara
+      - link [ref=f53e444] [cursor=pointer]:
+        - /url: /garage
+        - text: Garajım
+      - link [ref=f53e445] [cursor=pointer]:
+        - /url: /about
+        - text: Hakkımızda
+      - link [ref=f53e446] [cursor=pointer]:
+        - /url: /contact
+        - text: İletişim
+    - generic [ref=f53e279]:
+      - generic [ref=f53e284]: "Seçili Araç:"
+      - generic [ref=f53e285]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link [ref=f53e447] [cursor=pointer]:
+        - /url: /vehicle
+        - text: Değiştir
+      - button [ref=f53e448]
+  - main [aria-hidden] [ref=f53e51]:
+    - generic [ref=f53e52]:
+      - generic [ref=f53e55]:
+        - paragraph [ref=f53e56]: Akinel Otomotiv Yedek Parça
+        - heading [level=1] [ref=f53e449]: Aracınız için doğru parçayı bulun
+        - paragraph [ref=f53e58]: OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın.
+        - generic [ref=f53e60]:
+          - searchbox [ref=f53e450]
+          - generic:
+            - generic: ⌘
+            - generic: K
+        - generic [ref=f53e62]:
+          - link [ref=f53e451] [cursor=pointer]:
+            - /url: /vehicle
+            - text: Aracımı Seç
+          - link [ref=f53e452] [cursor=pointer]:
+            - /url: /search
+            - text: OEM ile Ara
+          - generic [ref=f53e453]: VIN ile Ara (Yakında)
+      - generic [ref=f53e68]:
+        - generic [ref=f53e69]: /
+        - generic [ref=f53e73]: ·
+        - link [ref=f53e454] [cursor=pointer]:
+          - /url: tel:+905331405649
+          - text: +90 533 140 56 49
+        - generic [ref=f53e77]: ·
+        - link [ref=f53e291] [cursor=pointer]:
+          - /url: "mailto:"
+        - generic [ref=f53e82]: ·
+        - generic [ref=f53e83]: "Pzt – Cmt: 09:00 – 19:00"
+        - generic [ref=f53e87]: ·
+        - link [ref=f53e455] [cursor=pointer]:
+          - /url: ""
+          - text: Yol Tarifi
+      - generic [ref=f53e95]:
+        - generic [ref=f53e96]:
+          - heading [level=2] [ref=f53e456]: Akinel Otomotiv Yedek Parça
+          - paragraph [ref=f53e98]: Otomobil ve ticari araçlar için geniş yedek parça seçenekleri. OEM numarasıyla arama, araç bazlı uyumlu parça bulma ve anlık stok bilgisi. AKN MOTORS Car Service güvencesiyle.
+        - generic [ref=f53e99]:
+          - generic [ref=f53e100]: OEM uyumlu ürünler
+          - generic [ref=f53e103]: Geniş marka ve model desteği
+          - generic [ref=f53e106]: Araç bazlı parça bulma
+          - generic [ref=f53e109]: Gerçek zamanlı stok takibi
+      - generic [ref=f53e293]:
+        - generic [ref=f53e294]:
+          - heading [level=2] [ref=f53e457]: Popüler Markalar
+          - link [ref=f53e458] [cursor=pointer]:
+            - /url: /products
+            - text: Tümü
+        - generic [ref=f53e299]:
+          - link [ref=f53e459] [cursor=pointer]:
+            - /url: /products?brandId=28708376-7fe6-44e0-be7e-12884668f3f9
+            - text: Bosch
+          - link [ref=f53e460] [cursor=pointer]:
+            - /url: /products?brandId=dcf3c186-a8f0-44fe-aa1c-b5d8f611d8c0
+            - text: Delphi
+          - link [ref=f53e461] [cursor=pointer]:
+            - /url: /products?brandId=ff32e7f0-6e35-4bf1-b341-5303b729b9d0
+            - text: SKF
+          - link [ref=f53e462] [cursor=pointer]:
+            - /url: /products?brandId=31dd5f27-62ed-4e84-b093-658540623502
+            - text: TRW
+          - link [ref=f53e463] [cursor=pointer]:
+            - /url: /products?brandId=9ba3e4be-e63b-4034-ae8e-6bbc0098ea68
+            - text: Valeo
+      - generic [ref=f53e113]:
+        - generic [ref=f53e114]:
+          - heading [level=2] [ref=f53e464]: Aracınıza Göre Parça Bulun
+          - paragraph [ref=f53e116]: Aracınızı seçin, uyumlu parçaları görüntüleyin.
+        - generic [ref=f53e305]:
+          - generic [ref=f53e311]:
+            - paragraph [ref=f53e312]: Seçili Araç
+            - paragraph [ref=f53e313]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+          - generic [ref=f53e314]:
+            - link [ref=f53e465] [cursor=pointer]:
+              - /url: /products?vehicleEngineId=6efa2295-d15e-41e7-b67f-cf563f1bd8f9
+              - text: Parçaları Gör
+            - link [ref=f53e466] [cursor=pointer]:
+              - /url: /vehicle
+              - text: Aracı Değiştir
+      - generic [ref=f53e318]:
+        - generic [ref=f53e319]:
+          - heading [level=2] [ref=f53e467]: Yedek Parça Kategorileri
+          - link [ref=f53e468] [cursor=pointer]:
+            - /url: /products
+            - text: Tümü
+        - generic [ref=f53e324]:
+          - link [ref=f53e469] [cursor=pointer]:
+            - /url: /category/abs-sensorleri
+            - generic [ref=f53e331]: ABS Sensörleri
+          - link [ref=f53e470] [cursor=pointer]:
+            - /url: /category/debriyaj
+            - generic [ref=f53e338]: Debriyaj
+          - link [ref=f53e471] [cursor=pointer]:
+            - /url: /category/elektrik
+            - generic [ref=f53e343]: Elektrik
+          - link [ref=f53e472] [cursor=pointer]:
+            - /url: /category/filtreler
+            - generic [ref=f53e348]: Filtreler
+          - link [ref=f53e473] [cursor=pointer]:
+            - /url: /category/frenler
+            - generic [ref=f53e355]: Frenler
+          - link [ref=f53e474] [cursor=pointer]:
+            - /url: /category/sogutma-sistemi
+            - generic [ref=f53e362]: Soğutma Sistemi
+          - link [ref=f53e475] [cursor=pointer]:
+            - /url: /category/suspansiyon
+            - generic [ref=f53e369]: Süspansiyon
+      - generic [ref=f53e152]:
+        - generic [ref=f53e153]:
+          - heading [level=2] [ref=f53e476]: Öne Çıkan Ürünler
+          - link [ref=f53e477] [cursor=pointer]:
+            - /url: /products
+            - text: Tümünü Gör
+        - generic [ref=f53e156]:
+          - generic [ref=f53e370]:
+            - link [ref=f53e478] [cursor=pointer]:
+              - /url: /products/arka-fren-balata-seti
+              - generic [ref=f53e374]:
+                - paragraph [ref=f53e376]: Bosch
+                - heading [level=3] [ref=f53e480]: Arka Fren Balata Seti
+                - paragraph [ref=f53e378]: Fren Balatası
+                - generic [ref=f53e379]:
+                  - generic [ref=f53e380]: ₺850,00
+                  - generic [ref=f53e381]: Stokta
+            - button [ref=f53e481]: Eklendi!
+          - generic [ref=f53e389]:
+            - link [ref=f53e484] [cursor=pointer]:
+              - /url: /products/on-fren-diski
+              - generic [ref=f53e393]:
+                - paragraph [ref=f53e395]: TRW
+                - heading [level=3] [ref=f53e486]: Ön Fren Diski
+                - paragraph [ref=f53e397]: Fren Diskleri
+                - generic [ref=f53e398]:
+                  - generic [ref=f53e399]: ₺1.200,00
+                  - generic [ref=f53e400]: Stokta
+            - button [ref=f53e487]: Sepete Ekle
+          - generic [ref=f53e408]:
+            - link [ref=f53e488] [cursor=pointer]:
+              - /url: /products/yag-filtresi
+              - generic [ref=f53e412]:
+                - paragraph [ref=f53e414]: Bosch
+                - heading [level=3] [ref=f53e490]: Yağ Filtresi
+                - paragraph [ref=f53e416]: Yağ Filtreleri
+                - generic [ref=f53e417]:
+                  - generic [ref=f53e418]: ₺120,00
+                  - generic [ref=f53e419]: Stokta
+            - button [ref=f53e491]: Sepete Ekle
+  - contentinfo [aria-hidden] [ref=f53e211]:
+    - generic [ref=f53e212]:
+      - generic [ref=f53e213]:
+        - generic [ref=f53e214]:
+          - generic [ref=f53e215]:
+            - generic [ref=f53e216]: Akinel
+            - generic [ref=f53e217]: Yedek Parça
+          - paragraph [ref=f53e218]: Test açıklaması güncel
+        - generic [ref=f53e219]:
+          - heading [level=3] [ref=f53e492]: Hızlı Linkler
+          - list [ref=f53e221]:
+            - listitem [ref=f53e222]:
+              - link [ref=f53e493] [cursor=pointer]:
+                - /url: /
+                - text: Ana Sayfa
+            - listitem [ref=f53e224]:
+              - link [ref=f53e494] [cursor=pointer]:
+                - /url: /products
+                - text: Ürünler
+            - listitem [ref=f53e226]:
+              - link [ref=f53e495] [cursor=pointer]:
+                - /url: /vehicle
+                - text: Aracımı Seç
+            - listitem [ref=f53e228]:
+              - link [ref=f53e496] [cursor=pointer]:
+                - /url: /vin
+                - text: OEM Ara
+            - listitem [ref=f53e230]:
+              - link [ref=f53e497] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f53e232]:
+              - link [ref=f53e498] [cursor=pointer]:
+                - /url: /about
+                - text: Hakkımızda
+        - generic [ref=f53e234]:
+          - heading [level=3] [ref=f53e499]: Müşteri
+          - list [ref=f53e236]:
+            - listitem [ref=f53e237]:
+              - link [ref=f53e500] [cursor=pointer]:
+                - /url: /login
+                - text: Giriş Yap
+            - listitem [ref=f53e239]:
+              - link [ref=f53e501] [cursor=pointer]:
+                - /url: /register
+                - text: Kayıt Ol
+            - listitem [ref=f53e241]:
+              - link [ref=f53e502] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f53e243]:
+              - link [ref=f53e503] [cursor=pointer]:
+                - /url: /account
+                - text: Hesabım
+            - listitem [ref=f53e245]:
+              - link [ref=f53e504] [cursor=pointer]:
+                - /url: /maintenance
+                - text: Periyodik Bakım
+        - generic [ref=f53e247]:
+          - heading [level=3] [ref=f53e505]: İletişim
+          - generic [ref=f53e249]:
+            - paragraph [ref=f53e250]: AKN MOTORS Car Service
+            - link [ref=f53e506] [cursor=pointer]:
+              - /url: tel:+905331405649
+              - text: +90 533 140 56 49
+            - generic [ref=f53e258]:
+              - paragraph [ref=f53e259]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f53e260]: "Pazar: Kapalı"
+      - generic [ref=f53e261]:
+        - generic [ref=f53e262]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f53e263]:
+          - link [ref=f53e507] [cursor=pointer]:
+            - /url: "#"
+            - text: Gizlilik Politikası
+          - link [ref=f53e508] [cursor=pointer]:
+            - /url: "#"
+            - text: Kullanım Koşulları
+  - button "Open Next.js Dev Tools" [ref=f53e271] [cursor=pointer]
+  - alert [ref=f53e427]
+  - dialog [ref=f53e512]:
+    - heading "Sepetim 1" [level=2] [ref=f53e514]:
+      - text: Sepetim
+      - generic [ref=f53e520]: "1"
+    - list [ref=f53e522]:
+      - listitem [ref=f53e523]:
+        - link [active] [ref=f53e524] [cursor=pointer]:
+          - /url: /products/arka-fren-balata-seti
+        - generic [ref=f53e530]:
+          - paragraph [ref=f53e531]: Bosch
+          - link [ref=f53e532] [cursor=pointer]:
+            - /url: /products/arka-fren-balata-seti
+            - paragraph [ref=f53e533]: Arka Fren Balata Seti
+          - paragraph [ref=f53e534]: ₺850,00
+          - generic [ref=f53e535]:
+            - button "Azalt" [disabled] [ref=f53e536]
+            - generic [ref=f53e538]: "1"
+            - button "Artır" [ref=f53e539]
+            - generic [ref=f53e541]: = ₺850,00
+            - button "Kaldır" [ref=f53e542]
+    - generic [ref=f53e546]:
+      - separator [ref=f53e547]
+      - generic [ref=f53e548]:
+        - generic [ref=f53e549]: Ara Toplam
+        - generic [ref=f53e550]: ₺850,00
+      - link [ref=f53e551] [cursor=pointer]:
+        - /url: /checkout
+        - button "Ödemeye Geç" [ref=f53e552]
+      - button "Alışverişe Devam Et" [ref=f53e553]
+    - button "Close" [ref=f53e554]

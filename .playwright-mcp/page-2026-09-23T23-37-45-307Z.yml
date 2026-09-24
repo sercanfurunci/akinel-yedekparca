@@ -1,0 +1,92 @@
+- generic [active] [ref=f109e1]:
+  - banner [ref=f109e2]:
+    - generic [ref=f109e4]:
+      - button "Menüyü aç" [ref=f109e5]
+      - link "Akinel" [ref=f109e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f109e9]:
+        - link "Ara" [ref=f109e10] [cursor=pointer]:
+          - /url: /search
+        - button "Sepet" [ref=f109e14]
+        - link "Garajım" [ref=f109e20] [cursor=pointer]:
+          - /url: /garage
+    - generic [ref=f109e27]:
+      - generic [ref=f109e32]: "Seçili Araç:"
+      - generic [ref=f109e33]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link "Değiştir" [ref=f109e34] [cursor=pointer]:
+        - /url: /vehicle
+      - button "Araç seçimini temizle" [ref=f109e35]
+  - main [ref=f109e39]:
+    - generic [ref=f109e40]:
+      - heading "Ödeme" [level=1] [ref=f109e41]
+      - generic [ref=f109e42]:
+        - paragraph [ref=f109e48]: Sepetiniz boş
+        - paragraph [ref=f109e49]: Ödeme yapabilmek için önce ürün ekleyin.
+        - link [ref=f109e50] [cursor=pointer]:
+          - /url: /products
+          - button "Alışverişe Başla" [ref=f109e51]
+  - contentinfo [ref=f109e52]:
+    - generic [ref=f109e53]:
+      - generic [ref=f109e54]:
+        - generic [ref=f109e55]:
+          - generic [ref=f109e56]:
+            - generic [ref=f109e57]: Akinel
+            - generic [ref=f109e58]: Yedek Parça
+          - paragraph [ref=f109e59]: Test açıklaması güncel
+        - generic [ref=f109e60]:
+          - heading "Hızlı Linkler" [level=3] [ref=f109e61]
+          - list [ref=f109e62]:
+            - listitem [ref=f109e63]:
+              - link "Ana Sayfa" [ref=f109e64] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f109e65]:
+              - link "Ürünler" [ref=f109e66] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f109e67]:
+              - link "Aracımı Seç" [ref=f109e68] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f109e69]:
+              - link "OEM Ara" [ref=f109e70] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f109e71]:
+              - link "Garajım" [ref=f109e72] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f109e73]:
+              - link "Hakkımızda" [ref=f109e74] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f109e75]:
+          - heading "Müşteri" [level=3] [ref=f109e76]
+          - list [ref=f109e77]:
+            - listitem [ref=f109e78]:
+              - link "Giriş Yap" [ref=f109e79] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f109e80]:
+              - link "Kayıt Ol" [ref=f109e81] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f109e82]:
+              - link "Garajım" [ref=f109e83] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f109e84]:
+              - link "Hesabım" [ref=f109e85] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f109e86]:
+              - link "Periyodik Bakım" [ref=f109e87] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f109e88]:
+          - heading "İletişim" [level=3] [ref=f109e89]
+          - generic [ref=f109e90]:
+            - paragraph [ref=f109e91]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f109e92] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f109e99]:
+              - paragraph [ref=f109e100]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f109e101]: "Pazar: Kapalı"
+      - generic [ref=f109e102]:
+        - generic [ref=f109e103]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f109e104]:
+          - link "Gizlilik Politikası" [ref=f109e105] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f109e106] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f109e112] [cursor=pointer]
+  - alert [ref=f109e116]

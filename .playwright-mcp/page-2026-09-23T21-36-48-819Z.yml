@@ -1,0 +1,168 @@
+- generic [ref=f80e1]:
+  - banner [aria-hidden] [ref=f80e2]:
+    - generic [ref=f80e4]:
+      - button [ref=f80e173]
+      - link [ref=f80e174] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f80e8]: Akinel
+      - generic [ref=f80e9]:
+        - link [ref=f80e175] [cursor=pointer]:
+          - /url: /search
+        - button [ref=f80e176]:
+          - generic [ref=f80e177]: "1"
+        - link [ref=f80e178] [cursor=pointer]:
+          - /url: /garage
+    - generic [ref=f80e98]:
+      - generic [ref=f80e103]: "Seçili Araç:"
+      - generic [ref=f80e104]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link [ref=f80e179] [cursor=pointer]:
+        - /url: /vehicle
+        - text: Değiştir
+      - button [ref=f80e180]
+  - main [aria-hidden] [ref=f80e29]:
+    - generic [ref=f80e110]:
+      - navigation [ref=f80e181]:
+        - link [ref=f80e182] [cursor=pointer]:
+          - /url: /
+          - text: Ana Sayfa
+        - link [ref=f80e183] [cursor=pointer]:
+          - /url: /products
+          - text: Ürünler
+        - generic [ref=f80e118]: Bosch Fren Balata Seti - Test Ürünü
+      - generic [ref=f80e128]:
+        - generic [ref=f80e129]: Bosch
+        - heading [level=1] [ref=f80e184]: Bosch Fren Balata Seti - Test Ürünü
+        - paragraph [ref=f80e131]: Fren Balatası
+        - generic [ref=f80e132]:
+          - generic [ref=f80e133]: "1605869"
+          - generic [ref=f80e134]: "0986424706"
+        - generic [ref=f80e135]:
+          - generic [ref=f80e136]: ₺400,00
+          - generic [ref=f80e137]: Stokta
+        - paragraph [ref=f80e138]: 9 adet mevcut
+        - generic [ref=f80e139]:
+          - generic [ref=f80e140]:
+            - button [ref=f80e185]
+            - generic [ref=f80e143]: "15"
+            - button [ref=f80e186]
+          - button [ref=f80e187]: Eklendi!
+        - generic [ref=f80e158]:
+          - paragraph [ref=f80e159]: Seçili Aracınız
+          - paragraph [ref=f80e160]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+          - paragraph [ref=f80e161]: Bu ürün aracınızla uyumludur.
+      - generic [ref=f80e162]:
+        - generic [ref=f80e164]:
+          - button [ref=f80e190]: Ürün Bilgileri
+          - button [ref=f80e191]: OEM Numaraları
+          - button [ref=f80e192]: Uyumlu Araçlar
+          - button [ref=f80e193]: Stok Bilgisi
+        - paragraph [ref=f80e171]: Test ürünü - Bosch orijinal fren balata seti
+  - contentinfo [aria-hidden] [ref=f80e32]:
+    - generic [ref=f80e33]:
+      - generic [ref=f80e34]:
+        - generic [ref=f80e35]:
+          - generic [ref=f80e36]:
+            - generic [ref=f80e37]: Akinel
+            - generic [ref=f80e38]: Yedek Parça
+          - paragraph [ref=f80e39]: Test açıklaması güncel
+        - generic [ref=f80e40]:
+          - heading [level=3] [ref=f80e194]: Hızlı Linkler
+          - list [ref=f80e42]:
+            - listitem [ref=f80e43]:
+              - link [ref=f80e195] [cursor=pointer]:
+                - /url: /
+                - text: Ana Sayfa
+            - listitem [ref=f80e45]:
+              - link [ref=f80e196] [cursor=pointer]:
+                - /url: /products
+                - text: Ürünler
+            - listitem [ref=f80e47]:
+              - link [ref=f80e197] [cursor=pointer]:
+                - /url: /vehicle
+                - text: Aracımı Seç
+            - listitem [ref=f80e49]:
+              - link [ref=f80e198] [cursor=pointer]:
+                - /url: /vin
+                - text: OEM Ara
+            - listitem [ref=f80e51]:
+              - link [ref=f80e199] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f80e53]:
+              - link [ref=f80e200] [cursor=pointer]:
+                - /url: /about
+                - text: Hakkımızda
+        - generic [ref=f80e55]:
+          - heading [level=3] [ref=f80e201]: Müşteri
+          - list [ref=f80e57]:
+            - listitem [ref=f80e58]:
+              - link [ref=f80e202] [cursor=pointer]:
+                - /url: /login
+                - text: Giriş Yap
+            - listitem [ref=f80e60]:
+              - link [ref=f80e203] [cursor=pointer]:
+                - /url: /register
+                - text: Kayıt Ol
+            - listitem [ref=f80e62]:
+              - link [ref=f80e204] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f80e64]:
+              - link [ref=f80e205] [cursor=pointer]:
+                - /url: /account
+                - text: Hesabım
+            - listitem [ref=f80e66]:
+              - link [ref=f80e206] [cursor=pointer]:
+                - /url: /maintenance
+                - text: Periyodik Bakım
+        - generic [ref=f80e68]:
+          - heading [level=3] [ref=f80e207]: İletişim
+          - generic [ref=f80e70]:
+            - paragraph [ref=f80e71]: AKN MOTORS Car Service
+            - link [ref=f80e208] [cursor=pointer]:
+              - /url: tel:+905331405649
+              - text: +90 533 140 56 49
+            - generic [ref=f80e79]:
+              - paragraph [ref=f80e80]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f80e81]: "Pazar: Kapalı"
+      - generic [ref=f80e82]:
+        - generic [ref=f80e83]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f80e84]:
+          - link [ref=f80e209] [cursor=pointer]:
+            - /url: "#"
+            - text: Gizlilik Politikası
+          - link [ref=f80e210] [cursor=pointer]:
+            - /url: "#"
+            - text: Kullanım Koşulları
+  - button "Open Next.js Dev Tools" [ref=f80e92] [cursor=pointer]
+  - alert [ref=f80e172]
+  - dialog [ref=f80e214]:
+    - heading "Sepetim 1" [level=2] [ref=f80e216]:
+      - text: Sepetim
+      - generic [ref=f80e222]: "1"
+    - list [ref=f80e224]:
+      - listitem [ref=f80e225]:
+        - link [active] [ref=f80e226] [cursor=pointer]:
+          - /url: /products/bosch-fren-balata-seti-test-urunu
+        - generic [ref=f80e232]:
+          - paragraph [ref=f80e233]: Bosch
+          - link [ref=f80e234] [cursor=pointer]:
+            - /url: /products/bosch-fren-balata-seti-test-urunu
+            - paragraph [ref=f80e235]: Bosch Fren Balata Seti - Test Ürünü
+          - paragraph [ref=f80e236]: ₺400,00
+          - generic [ref=f80e237]:
+            - button "Azalt" [disabled] [ref=f80e238]
+            - generic [ref=f80e240]: "1"
+            - button "Artır" [ref=f80e241]
+            - generic [ref=f80e243]: = ₺400,00
+            - button "Kaldır" [ref=f80e244]
+    - generic [ref=f80e248]:
+      - separator [ref=f80e249]
+      - generic [ref=f80e250]:
+        - generic [ref=f80e251]: Ara Toplam
+        - generic [ref=f80e252]: ₺400,00
+      - link [ref=f80e253] [cursor=pointer]:
+        - /url: /checkout
+        - button "Ödemeye Geç" [ref=f80e254]
+      - button "Alışverişe Devam Et" [ref=f80e255]
+    - button "Close" [ref=f80e256]

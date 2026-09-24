@@ -1,0 +1,96 @@
+- generic [active] [ref=f85e1]:
+  - banner [ref=f85e2]:
+    - generic [ref=f85e4]:
+      - button "Menüyü aç" [ref=f85e5]
+      - link "Akinel" [ref=f85e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f85e9]:
+        - link "Ara" [ref=f85e10] [cursor=pointer]:
+          - /url: /search
+        - button "Sepet" [ref=f85e14]
+        - link "Garajım" [ref=f85e20] [cursor=pointer]:
+          - /url: /garage
+        - link "Giriş Yap" [ref=f85e25] [cursor=pointer]:
+          - /url: /login
+  - main [ref=f85e29]:
+    - generic [ref=f85e32]:
+      - generic [ref=f85e33]: ...
+      - generic [ref=f85e34]:
+        - button "Filtrele" [ref=f85e35]
+        - combobox [ref=f85e36]:
+          - option "Varsayılan" [selected]
+          - option "En Yeni"
+          - 'option "Fiyat: Düşükten Yükseğe"'
+          - 'option "Fiyat: Yüksekten Düşüğe"'
+          - 'option "İsim: A-Z"'
+          - 'option "İsim: Z-A"'
+    - generic [ref=f85e37]:
+      - navigation "Breadcrumb" [ref=f85e38]:
+        - link "Ana Sayfa" [ref=f85e40] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f85e41]: Ürünler
+      - heading "Tüm Ürünler" [level=1] [ref=f85e47]
+  - contentinfo [ref=f85e231]:
+    - generic [ref=f85e232]:
+      - generic [ref=f85e233]:
+        - generic [ref=f85e234]:
+          - generic [ref=f85e235]:
+            - generic [ref=f85e236]: Akinel
+            - generic [ref=f85e237]: Yedek Parça
+          - paragraph [ref=f85e238]: Test açıklaması güncel
+        - generic [ref=f85e239]:
+          - heading "Hızlı Linkler" [level=3] [ref=f85e240]
+          - list [ref=f85e241]:
+            - listitem [ref=f85e242]:
+              - link "Ana Sayfa" [ref=f85e243] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f85e244]:
+              - link "Ürünler" [ref=f85e245] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f85e246]:
+              - link "Aracımı Seç" [ref=f85e247] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f85e248]:
+              - link "OEM Ara" [ref=f85e249] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f85e250]:
+              - link "Garajım" [ref=f85e251] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f85e252]:
+              - link "Hakkımızda" [ref=f85e253] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f85e254]:
+          - heading "Müşteri" [level=3] [ref=f85e255]
+          - list [ref=f85e256]:
+            - listitem [ref=f85e257]:
+              - link "Giriş Yap" [ref=f85e258] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f85e259]:
+              - link "Kayıt Ol" [ref=f85e260] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f85e261]:
+              - link "Garajım" [ref=f85e262] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f85e263]:
+              - link "Hesabım" [ref=f85e264] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f85e265]:
+              - link "Periyodik Bakım" [ref=f85e266] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f85e267]:
+          - heading "İletişim" [level=3] [ref=f85e268]
+          - generic [ref=f85e269]:
+            - paragraph [ref=f85e270]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f85e271] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f85e278]:
+              - paragraph [ref=f85e279]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f85e280]: "Pazar: Kapalı"
+      - generic [ref=f85e281]:
+        - generic [ref=f85e282]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f85e283]:
+          - link "Gizlilik Politikası" [ref=f85e284] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f85e285] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f85e291] [cursor=pointer]

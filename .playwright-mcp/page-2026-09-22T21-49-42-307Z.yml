@@ -1,0 +1,583 @@
+- generic [active] [ref=f30e1]:
+  - banner [ref=f30e2]:
+    - generic [ref=f30e5]:
+      - generic [ref=f30e6]:
+        - generic [ref=f30e7]:
+          - generic [ref=f30e8]: 
+          - generic [ref=f30e9]: Stoktan aynı gün kargo.
+        - generic [ref=f30e10]:
+          - generic [ref=f30e11]: 
+          - link "0542 505 80 80" [ref=f30e12] [cursor=pointer]:
+            - /url: tel:05425058080
+      - generic [ref=f30e13]:
+        - link "Giriş Yap" [ref=f30e14] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/giris.php
+        - link "Üye Ol" [ref=f30e15] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/kayit.php
+        - link "Sipariş Takibi" [ref=f30e16] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/siparis-takip.php
+        - link " Servis Randevusu Al" [ref=f30e17] [cursor=pointer]:
+          - /url: https://qube.tr/panel/webgaraj/public_appointment.php?t=webgaraj_87_1772646902
+          - generic [ref=f30e18]: 
+          - text: Servis Randevusu Al
+    - generic [ref=f30e21]:
+      - link [ref=f30e22] [cursor=pointer]:
+        - /url: https://doradorukmotor.com
+        - img "Dora Doruk Motor" [ref=f30e23]
+      - text: 
+      - generic [ref=f30e25]:
+        - 'textbox "Ürün, marka veya model ara... (örn: RKS Azure 50 yağ filtresi)" [ref=f30e26]'
+        - button "Ara" [ref=f30e27] [cursor=pointer]:
+          - generic [ref=f30e28]: 
+      - generic [ref=f30e29]:
+        - link "" [ref=f30e30] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/favorilerim.php
+        - link "" [ref=f30e32] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/hesabim.php
+        - link " 0 0,00₺" [ref=f30e34] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/sepet.php
+          - generic [ref=f30e35]: 
+          - generic [ref=f30e36]: "0"
+          - generic [ref=f30e37]: 0,00₺
+    - navigation [ref=f30e38]:
+      - list [ref=f30e40]:
+        - listitem [ref=f30e41]:
+          - link " Ana Sayfa" [ref=f30e42] [cursor=pointer]:
+            - /url: https://doradorukmotor.com
+            - generic [ref=f30e43]: 
+            - text: Ana Sayfa
+        - listitem [ref=f30e44]:
+          - link " Kategoriler " [ref=f30e45] [cursor=pointer]:
+            - /url: javascript:void(0)
+            - generic [ref=f30e46]: 
+            - text: Kategoriler
+            - generic [ref=f30e47]: 
+        - listitem [ref=f30e48]:
+          - link " Ürünler" [ref=f30e49] [cursor=pointer]:
+            - /url: https://doradorukmotor.com/urunler.php
+            - generic [ref=f30e50]: 
+            - text: Ürünler
+        - listitem [ref=f30e51]:
+          - link " Markalar" [ref=f30e52] [cursor=pointer]:
+            - /url: https://doradorukmotor.com/markalar.php
+            - generic [ref=f30e53]: 
+            - text: Markalar
+        - listitem [ref=f30e54]:
+          - link "% Kampanyalar" [ref=f30e55] [cursor=pointer]:
+            - /url: https://doradorukmotor.com/kampanyalar.php
+            - generic [ref=f30e56]: "%"
+            - text: Kampanyalar
+        - listitem [ref=f30e57]:
+          - link " Yeni Ürünler" [ref=f30e58] [cursor=pointer]:
+            - /url: https://doradorukmotor.com/yeni-urunler.php
+            - generic [ref=f30e59]: 
+            - text: Yeni Ürünler
+        - listitem [ref=f30e60]:
+          - link " Blog" [ref=f30e61] [cursor=pointer]:
+            - /url: https://doradorukmotor.com/blog.php
+            - generic [ref=f30e62]: 
+            - text: Blog
+  - text:                                                                                                     
+  - main [ref=f30e63]:
+    - region "Ana Banner" [ref=f30e64]:
+      - generic [ref=f30e68]:
+        - generic [ref=f30e69]:
+          - heading "Motorsikletiniz İçin Orjinal Yedek Parçalar" [level=1] [ref=f30e70]
+          - paragraph [ref=f30e71]: RKS, Kuba, Benelli, Zontes, Ape Ryder, Skyjet ve Segway Marka Motorsikletiniz için Binlerce ürün, güvenilir markalar ve hızlı teslimat ile motorsikletinizin ihtiyacı olan her şey burada.
+          - generic [ref=f30e72]:
+            - link " Marka / Model Seç - Alışverişe Başla" [ref=f30e73] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/markalar.php
+              - generic [ref=f30e74]: 
+              - text: Marka / Model Seç - Alışverişe Başla
+            - link " Kategoriler" [ref=f30e75] [cursor=pointer]:
+              - /url: javascript:void(0)
+              - generic [ref=f30e76]: 
+              - text: Kategoriler
+            - link " Servis Randevusu Al" [ref=f30e77] [cursor=pointer]:
+              - /url: https://qube.tr/panel/webgaraj/public_appointment.php?t=webgaraj_87_1772646902
+              - generic [ref=f30e78]: 
+              - text: Servis Randevusu Al
+          - generic [ref=f30e79]:
+            - generic [ref=f30e80]:
+              - generic [ref=f30e81]: 5000+
+              - generic [ref=f30e82]: Ürün Çeşidi
+            - generic [ref=f30e83]:
+              - generic [ref=f30e84]: 50+
+              - generic [ref=f30e85]: Marka
+            - generic [ref=f30e86]:
+              - generic [ref=f30e87]: 10K+
+              - generic [ref=f30e88]: Ziyaret
+        - generic [ref=f30e89]:
+          - generic [ref=f30e90]:
+            - generic [ref=f30e91]:
+              - img "RKS" [ref=f30e92]
+              - generic [ref=f30e93]: Orjinal RKS Yedek Parçaları
+            - generic:
+              - img "KUBA"
+              - generic: Orjinal KUBA Yedek Parçaları
+            - generic:
+              - img "SEGWAY"
+              - generic: Orjinal SEGWAY Yedek Parçaları
+            - generic:
+              - img "SKYJET"
+              - generic: Orjinal SKYJET Yedek Parçaları
+            - generic:
+              - img "RKS"
+              - generic: Orjinal RKS Yedek Parçaları
+            - generic:
+              - img "ZONTES"
+              - generic: Orjinal ZONTES Yedek Parçaları
+            - generic:
+              - img "ZONTES"
+              - generic: Orjinal ZONTES Yedek Parçaları
+            - generic:
+              - img "RKS"
+              - generic: Orjinal RKS Yedek Parçaları
+            - generic:
+              - img "ZONTES"
+              - generic: Orjinal ZONTES Yedek Parçaları
+            - generic:
+              - img "RKS"
+              - generic: Orjinal RKS Yedek Parçaları
+          - generic [ref=f30e94]:
+            - link [ref=f30e95] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/marka/kuba
+              - img "Kuba" [ref=f30e96]
+            - link [ref=f30e97] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/marka/kuba-elektrikli-motor
+              - img "Kuba Elektrikli Motor" [ref=f30e98]
+            - link [ref=f30e99] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/marka/rks-elektirikli-e-car
+              - img "RKS ELEKTİRİKLİ E-CAR" [ref=f30e100]
+            - link [ref=f30e101] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/marka/rks
+              - img "RKS" [ref=f30e102]
+            - link [ref=f30e103] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/marka/benelli
+              - img "Benelli" [ref=f30e104]
+            - link [ref=f30e105] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/marka/zontes
+              - img "Zontes" [ref=f30e106]
+            - link [ref=f30e107] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/marka/ape-ryder
+              - img "Ape Ryder" [ref=f30e108]
+            - link [ref=f30e109] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/marka/skyjet
+              - img "Skyjet" [ref=f30e110]
+            - link [ref=f30e111] [cursor=pointer]:
+              - /url: https://doradorukmotor.com/marka/segway
+              - img "Segway" [ref=f30e112]
+    - region "Özellikler" [ref=f30e113]:
+      - generic [ref=f30e114]:
+        - generic [ref=f30e115]:
+          - article [ref=f30e116]:
+            - generic [ref=f30e117]: 
+            - generic [ref=f30e119]:
+              - heading "Orjinal Ürün" [level=3] [ref=f30e120]
+              - paragraph [ref=f30e121]: "%100 Yetkili bayi garantisi"
+          - article [ref=f30e122]:
+            - generic [ref=f30e123]: 
+            - generic [ref=f30e125]:
+              - heading "Güvenli Ödeme" [level=3] [ref=f30e126]
+              - paragraph [ref=f30e127]: 256-bit SSL güvenliği
+          - article [ref=f30e128]:
+            - generic [ref=f30e129]: 
+            - generic [ref=f30e131]:
+              - heading "Hızlı Kargo" [level=3] [ref=f30e132]
+              - paragraph [ref=f30e133]: Aynı gün kargoya teslim
+          - article [ref=f30e134]:
+            - generic [ref=f30e135]: 
+            - generic [ref=f30e137]:
+              - heading "Müşteri Desteği" [level=3] [ref=f30e138]
+              - paragraph [ref=f30e139]: Her zaman yanınızdayız
+        - generic [ref=f30e140] [cursor=pointer]:
+          - generic [ref=f30e141]:
+            - img "Dora Doruk Motor Hızlı Alışveriş" [ref=f30e143]
+            - generic [ref=f30e144]:
+              - heading "Hızlı Alışverişe Başla" [level=2] [ref=f30e145]
+              - paragraph [ref=f30e146]: Motosikletinizin marka ve modelini seçerek, tam uyumlu %100 orijinal yedek parçaları anında bulun.
+          - generic [ref=f30e147]:
+            - generic [ref=f30e148]: Marka / Model Seç
+            - generic [ref=f30e149]: 
+    - region [ref=f30e152]:
+      - generic [ref=f30e153]:
+        - generic [ref=f30e154]:
+          - generic [ref=f30e155]:
+            - heading "Öne Çıkan Ürünler" [level=2] [ref=f30e156]
+            - paragraph [ref=f30e157]: En popüler ve çok satan ürünlerimiz
+          - tablist [ref=f30e158]:
+            - tab "Öne Çıkanlar" [selected] [ref=f30e159] [cursor=pointer]
+            - tab "Yeni Ürünler" [ref=f30e160] [cursor=pointer]
+            - tab "Çok Satanlar" [ref=f30e161] [cursor=pointer]
+        - tabpanel [ref=f30e162]:
+          - article [ref=f30e163]:
+            - generic [ref=f30e164]:
+              - link [ref=f30e165] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/urun/hava-filtresi-ici-uyumlu-rz250-s
+                - img "HAVA FİLTRESİ İÇİ UYUMLU (RZ250-S)" [ref=f30e166]
+              - generic [ref=f30e167]:
+                - generic [ref=f30e168]: "%19 İndirim"
+                - generic [ref=f30e169]: Yeni
+                - generic [ref=f30e170]: Çok Satan
+            - generic [ref=f30e171]:
+              - text: GÖVDE AKSAMI
+              - heading [level=3] [ref=f30e172]:
+                - link "HAVA FİLTRESİ İÇİ UYUMLU (RZ250-S)" [ref=f30e173] [cursor=pointer]:
+                  - /url: https://doradorukmotor.com/urun/hava-filtresi-ici-uyumlu-rz250-s
+              - generic [ref=f30e174]:
+                - generic [ref=f30e175]:
+                  - generic [ref=f30e176]: 
+                  - generic [ref=f30e177]: 
+                  - generic [ref=f30e178]: 
+                  - generic [ref=f30e179]: 
+                  - generic [ref=f30e180]: 
+                - generic [ref=f30e181]: (Henüz yorum yok)
+              - generic [ref=f30e182]:
+                - generic [ref=f30e183]:
+                  - generic [ref=f30e184]: 650,00₺
+                  - generic [ref=f30e185]: 800,00₺
+                - button "HAVA FİLTRESİ İÇİ UYUMLU (RZ250-S) ürününü sepete ekle" [ref=f30e186] [cursor=pointer]: Sepete Ekle
+          - article [ref=f30e187]:
+            - generic [ref=f30e188]:
+              - link [ref=f30e189] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/urun/on-far-reale125atr125-atr125-reale125-x
+                - img "ÖN FAR (REALE125)ATR125 - ATR125 - REALE125-X" [ref=f30e190]
+              - generic [ref=f30e191]: "%10 İndirim"
+            - generic [ref=f30e193]:
+              - text: ELEKTRİK VE ELEKTRONİK
+              - heading [level=3] [ref=f30e194]:
+                - link "ÖN FAR (REALE125)ATR125 - ATR125 - REALE125-X" [ref=f30e195] [cursor=pointer]:
+                  - /url: https://doradorukmotor.com/urun/on-far-reale125atr125-atr125-reale125-x
+              - generic [ref=f30e196]:
+                - generic [ref=f30e197]:
+                  - generic [ref=f30e198]: 
+                  - generic [ref=f30e199]: 
+                  - generic [ref=f30e200]: 
+                  - generic [ref=f30e201]: 
+                  - generic [ref=f30e202]: 
+                - generic [ref=f30e203]: (Henüz yorum yok)
+              - generic [ref=f30e204]:
+                - generic [ref=f30e205]:
+                  - generic [ref=f30e206]: 15.831,00₺
+                  - generic [ref=f30e207]: 17.590,00₺
+                - button "ÖN FAR (REALE125)ATR125 - ATR125 - REALE125-X ürününü sepete ekle" [ref=f30e208] [cursor=pointer]: Sepete Ekle
+          - article [ref=f30e209]:
+            - generic [ref=f30e210]:
+              - link [ref=f30e211] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/urun/motor-hava-giris-varyator-filtresi-rz250-s
+                - img "MOTOR HAVA GİRİŞ VARYATÖR FİLTRESİ RZ250-S" [ref=f30e212]
+              - generic [ref=f30e213]: "%17 İndirim"
+            - generic [ref=f30e215]:
+              - text: Filtreler &amp; Sıvılar
+              - heading [level=3] [ref=f30e216]:
+                - link "MOTOR HAVA GİRİŞ VARYATÖR FİLTRESİ RZ250-S" [ref=f30e217] [cursor=pointer]:
+                  - /url: https://doradorukmotor.com/urun/motor-hava-giris-varyator-filtresi-rz250-s
+              - generic [ref=f30e218]:
+                - img "5.0 üzerinden 5 yıldız" [ref=f30e219]:
+                  - generic [ref=f30e220]: 
+                  - generic [ref=f30e221]: 
+                  - generic [ref=f30e222]: 
+                  - generic [ref=f30e223]: 
+                  - generic [ref=f30e224]: 
+                - generic [ref=f30e225]: (1 Yorum)
+              - generic [ref=f30e226]:
+                - generic [ref=f30e227]:
+                  - generic [ref=f30e228]: 500,00₺
+                  - generic [ref=f30e229]: 600,00₺
+                - button "MOTOR HAVA GİRİŞ VARYATÖR FİLTRESİ RZ250-S ürününü sepete ekle" [ref=f30e230] [cursor=pointer]: Sepete Ekle
+          - article [ref=f30e231]:
+            - generic [ref=f30e232]:
+              - link [ref=f30e233] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/urun/tahrik-seti-blade250
+                - img "TAHRİK SETİ (BLADE250)" [ref=f30e234]
+              - generic [ref=f30e235]: "%15 İndirim"
+            - generic [ref=f30e237]:
+              - text: MOTOR AKSAMI
+              - heading [level=3] [ref=f30e238]:
+                - link "TAHRİK SETİ (BLADE250)" [ref=f30e239] [cursor=pointer]:
+                  - /url: https://doradorukmotor.com/urun/tahrik-seti-blade250
+              - generic [ref=f30e240]:
+                - generic [ref=f30e241]:
+                  - generic [ref=f30e242]: 
+                  - generic [ref=f30e243]: 
+                  - generic [ref=f30e244]: 
+                  - generic [ref=f30e245]: 
+                  - generic [ref=f30e246]: 
+                - generic [ref=f30e247]: (Henüz yorum yok)
+              - generic [ref=f30e248]:
+                - generic [ref=f30e249]:
+                  - generic [ref=f30e250]: 5.613,40₺
+                  - generic [ref=f30e251]: 6.604,00₺
+                - button "TAHRİK SETİ (BLADE250) ürününü sepete ekle" [ref=f30e252] [cursor=pointer]: Sepete Ekle
+          - article [ref=f30e253]:
+            - generic [ref=f30e254]:
+              - link [ref=f30e255] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/urun/ayna-sag-rz250-s
+                - img "AYNA SAĞ (RZ250-S)" [ref=f30e256]
+              - generic [ref=f30e257]: "%15 İndirim"
+            - generic [ref=f30e259]:
+              - text: DIŞ AKSAM KAPORTA
+              - heading [level=3] [ref=f30e260]:
+                - link "AYNA SAĞ (RZ250-S)" [ref=f30e261] [cursor=pointer]:
+                  - /url: https://doradorukmotor.com/urun/ayna-sag-rz250-s
+              - generic [ref=f30e262]:
+                - generic [ref=f30e263]:
+                  - generic [ref=f30e264]: 
+                  - generic [ref=f30e265]: 
+                  - generic [ref=f30e266]: 
+                  - generic [ref=f30e267]: 
+                  - generic [ref=f30e268]: 
+                - generic [ref=f30e269]: (Henüz yorum yok)
+              - generic [ref=f30e270]:
+                - generic [ref=f30e271]:
+                  - generic [ref=f30e272]: 3.024,00₺
+                  - generic [ref=f30e273]: 3.544,00₺
+                - button "AYNA SAĞ (RZ250-S) ürününü sepete ekle" [ref=f30e274] [cursor=pointer]: Sepete Ekle
+          - article [ref=f30e275]:
+            - generic [ref=f30e276]:
+              - link [ref=f30e277] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/urun/ayna-sol-blade350
+                - img "AYNA SOL BLADE350" [ref=f30e278]
+              - generic [ref=f30e279]: "%5 İndirim"
+            - generic [ref=f30e281]:
+              - text: DIŞ AKSAM KAPORTA
+              - heading [level=3] [ref=f30e282]:
+                - link "AYNA SOL BLADE350" [ref=f30e283] [cursor=pointer]:
+                  - /url: https://doradorukmotor.com/urun/ayna-sol-blade350
+              - generic [ref=f30e284]:
+                - generic [ref=f30e285]:
+                  - generic [ref=f30e286]: 
+                  - generic [ref=f30e287]: 
+                  - generic [ref=f30e288]: 
+                  - generic [ref=f30e289]: 
+                  - generic [ref=f30e290]: 
+                - generic [ref=f30e291]: (Henüz yorum yok)
+              - generic [ref=f30e292]:
+                - generic [ref=f30e293]:
+                  - generic [ref=f30e294]: 763,00₺
+                  - generic [ref=f30e295]: 800,00₺
+                - button "AYNA SOL BLADE350 ürününü sepete ekle" [ref=f30e296] [cursor=pointer]: Sepete Ekle
+          - article [ref=f30e297]:
+            - generic [ref=f30e298]:
+              - link [ref=f30e299] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/urun/hava-filtresi-ici-zt250t-e
+                - img "HAVA FİLTRESİ İÇİ (ZT250T-E)" [ref=f30e300]
+              - generic [ref=f30e301]: "%15 İndirim"
+            - generic [ref=f30e303]:
+              - text: GÖVDE AKSAMI
+              - heading [level=3] [ref=f30e304]:
+                - link "HAVA FİLTRESİ İÇİ (ZT250T-E)" [ref=f30e305] [cursor=pointer]:
+                  - /url: https://doradorukmotor.com/urun/hava-filtresi-ici-zt250t-e
+              - generic [ref=f30e306]:
+                - img "4.7 üzerinden 5 yıldız" [ref=f30e307]:
+                  - generic [ref=f30e308]: 
+                  - generic [ref=f30e309]: 
+                  - generic [ref=f30e310]: 
+                  - generic [ref=f30e311]: 
+                  - generic [ref=f30e312]: 
+                - generic [ref=f30e313]: (3 Yorum)
+              - generic [ref=f30e314]:
+                - generic [ref=f30e315]:
+                  - generic [ref=f30e316]: 1.086,30₺
+                  - generic [ref=f30e317]: 1.278,00₺
+                - button "HAVA FİLTRESİ İÇİ (ZT250T-E) ürününü sepete ekle" [ref=f30e318] [cursor=pointer]: Sepete Ekle
+          - article [ref=f30e319]:
+            - generic [ref=f30e320]:
+              - link [ref=f30e321] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/urun/beyin-zt250t-e
+                - img "BEYİN (ZT250T-E)" [ref=f30e322]
+              - generic [ref=f30e323]: "%15 İndirim"
+            - generic [ref=f30e325]:
+              - text: ELEKTRİK VE ELEKTRONİK
+              - heading [level=3] [ref=f30e326]:
+                - link "BEYİN (ZT250T-E)" [ref=f30e327] [cursor=pointer]:
+                  - /url: https://doradorukmotor.com/urun/beyin-zt250t-e
+              - generic [ref=f30e328]:
+                - generic [ref=f30e329]:
+                  - generic [ref=f30e330]: 
+                  - generic [ref=f30e331]: 
+                  - generic [ref=f30e332]: 
+                  - generic [ref=f30e333]: 
+                  - generic [ref=f30e334]: 
+                - generic [ref=f30e335]: (Henüz yorum yok)
+              - generic [ref=f30e336]:
+                - generic [ref=f30e337]:
+                  - generic [ref=f30e338]: 16.456,00₺
+                  - generic [ref=f30e339]: 19.360,00₺
+                - button "BEYİN (ZT250T-E) ürününü sepete ekle" [ref=f30e340] [cursor=pointer]: Sepete Ekle
+        - text:                                                                                
+        - link "Tüm Ürünleri Gör " [ref=f30e342] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/urunler.php
+          - text: Tüm Ürünleri Gör
+          - generic [ref=f30e343]: 
+    - region [ref=f30e344]:
+      - generic [ref=f30e346]:
+        - heading "Markalarımız" [level=2] [ref=f30e347]
+        - paragraph [ref=f30e348]: Güvenilir markalarla çalışıyoruz
+      - generic [ref=f30e350]:
+        - link [ref=f30e351] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/kuba
+          - img "Kuba" [ref=f30e352]
+        - link [ref=f30e353] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/rks-elektirikli-e-car
+          - img "RKS ELEKTİRİKLİ E-CAR" [ref=f30e354]
+        - link [ref=f30e355] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/kuba-elektrikli-motor
+          - img "Kuba Elektrikli Motor" [ref=f30e356]
+        - link [ref=f30e357] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/rks
+          - img "RKS" [ref=f30e358]
+        - link [ref=f30e359] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/benelli
+          - img "Benelli" [ref=f30e360]
+        - link [ref=f30e361] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/zontes
+          - img "Zontes" [ref=f30e362]
+        - link [ref=f30e363] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/ape-ryder
+          - img "Ape Ryder" [ref=f30e364]
+        - link [ref=f30e365] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/skyjet
+          - img "Skyjet" [ref=f30e366]
+        - link [ref=f30e367] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/segway
+          - img "Segway" [ref=f30e368]
+        - link [ref=f30e369] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/kuba
+          - img "Kuba" [ref=f30e370]
+        - link [ref=f30e371] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/rks-elektirikli-e-car
+          - img "RKS ELEKTİRİKLİ E-CAR" [ref=f30e372]
+        - link [ref=f30e373] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/kuba-elektrikli-motor
+          - img "Kuba Elektrikli Motor" [ref=f30e374]
+        - link [ref=f30e375] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/rks
+          - img "RKS" [ref=f30e376]
+        - link [ref=f30e377] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/benelli
+          - img "Benelli" [ref=f30e378]
+        - link [ref=f30e379] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/zontes
+          - img "Zontes" [ref=f30e380]
+        - link [ref=f30e381] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/ape-ryder
+          - img "Ape Ryder" [ref=f30e382]
+        - link [ref=f30e383] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/skyjet
+          - img "Skyjet" [ref=f30e384]
+        - link [ref=f30e385] [cursor=pointer]:
+          - /url: https://doradorukmotor.com/marka/segway
+          - img "Segway" [ref=f30e386]
+    - region [ref=f30e387]:
+      - generic [ref=f30e389]:
+        - generic [ref=f30e390]: 
+        - heading "Kampanyalardan Haberdar Olun" [level=2] [ref=f30e392]
+        - paragraph [ref=f30e393]: E-posta listemize abone olun, özel indirimler ve yeni ürünlerden ilk siz haberdar olun.
+        - generic [ref=f30e394]:
+          - textbox "E-posta adresi" [ref=f30e395]:
+            - /placeholder: E-posta adresinizi girin
+          - button " Abone Ol" [ref=f30e396] [cursor=pointer]:
+            - generic [ref=f30e397]: 
+            - text: Abone Ol
+  - contentinfo [ref=f30e398]:
+    - generic [ref=f30e399]:
+      - generic [ref=f30e400]:
+        - generic [ref=f30e401]:
+          - link [ref=f30e402] [cursor=pointer]:
+            - /url: https://doradorukmotor.com
+            - img "Dora Doruk Motor" [ref=f30e403]
+          - paragraph [ref=f30e404]: Motorsiklet yedek parça sektöründe güvenilir adresiniz. Kaliteli ürünler, uygun fiyatlar ve hızlı teslimat garantisi ile hizmetinizdeyiz.
+          - generic [ref=f30e405]:
+            - link "" [ref=f30e406] [cursor=pointer]:
+              - /url: https://wa.me/902122300165
+            - link "" [ref=f30e408] [cursor=pointer]:
+              - /url: https://www.instagram.com/doradorukmotor/
+        - generic [ref=f30e410]:
+          - heading "Kurumsal " [level=4] [ref=f30e411]:
+            - text: Kurumsal
+            - generic [ref=f30e412]: 
+          - list [ref=f30e414]:
+            - listitem [ref=f30e415]:
+              - link "Hakkımızda" [ref=f30e416] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/hakkimizda.php
+            - listitem [ref=f30e417]:
+              - link "İletişim" [ref=f30e418] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/iletisim.php
+            - listitem [ref=f30e419]:
+              - link "Banka Hesaplarımız" [ref=f30e420] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/sayfa/banka-hesaplarimiz
+            - listitem [ref=f30e421]:
+              - link "Blog" [ref=f30e422] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/blog.php
+        - generic [ref=f30e423]:
+          - heading "Müşteri Hizmetleri " [level=4] [ref=f30e424]:
+            - text: Müşteri Hizmetleri
+            - generic [ref=f30e425]: 
+          - list [ref=f30e427]:
+            - listitem [ref=f30e428]:
+              - link "Sipariş Takibi" [ref=f30e429] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/siparis-takip.php
+            - listitem [ref=f30e430]:
+              - link "İade ve Değişim" [ref=f30e431] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/sayfa/iade-ve-degisim
+            - listitem [ref=f30e432]:
+              - link "Teslimat Bilgileri" [ref=f30e433] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/sayfa/teslimat-bilgileri
+            - listitem [ref=f30e434]:
+              - link "Sıkça Sorulan Sorular" [ref=f30e435] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/sss.php
+        - generic [ref=f30e436]:
+          - heading "Hesabım " [level=4] [ref=f30e437]:
+            - text: Hesabım
+            - generic [ref=f30e438]: 
+          - list [ref=f30e440]:
+            - listitem [ref=f30e441]:
+              - link "Giriş Yap" [ref=f30e442] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/giris.php
+            - listitem [ref=f30e443]:
+              - link "Üye Ol" [ref=f30e444] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/kayit.php
+            - listitem [ref=f30e445]:
+              - link "Hesabım" [ref=f30e446] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/hesabim
+            - listitem [ref=f30e447]:
+              - link "Siparişlerim" [ref=f30e448] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/siparislerim.php
+            - listitem [ref=f30e449]:
+              - link "Favorilerim" [ref=f30e450] [cursor=pointer]:
+                - /url: https://doradorukmotor.com/favorilerim.php
+        - generic [ref=f30e451]:
+          - heading "İletişim " [level=4] [ref=f30e452]:
+            - text: İletişim
+            - generic [ref=f30e453]: 
+          - generic [ref=f30e455]:
+            - generic [ref=f30e456]:
+              - generic [ref=f30e457]: 
+              - generic [ref=f30e458]: Hürriyet, Fidan Sk. No:28, 34403 Kağıthane/İstanbul
+            - generic [ref=f30e459]:
+              - generic [ref=f30e460]: 
+              - link "0542 505 80 80" [ref=f30e461] [cursor=pointer]:
+                - /url: tel:05425058080
+            - generic [ref=f30e462]:
+              - generic [ref=f30e463]: 
+              - generic [ref=f30e464]: bilgi@doradorukmotor.com
+      - generic [ref=f30e466]:
+        - paragraph [ref=f30e467]:
+          - text: © 2026 Dora Doruk Motor. Tüm hakları saklıdır. |
+          - link "Webtela.tr WebSepet" [ref=f30e468] [cursor=pointer]:
+            - /url: https://webtela.tr
+        - generic [ref=f30e469]:
+          - link "Gizlilik Sözleşmesi" [ref=f30e470] [cursor=pointer]:
+            - /url: https://doradorukmotor.com/sayfa/gizlilik-politikasi
+          - link "Kullanım Koşulları" [ref=f30e471] [cursor=pointer]:
+            - /url: https://doradorukmotor.com/sayfa/kullanim-kosullari
+          - link "Mesafeli Satış Sözleşmesi" [ref=f30e472] [cursor=pointer]:
+            - /url: https://doradorukmotor.com/sayfa/mesafeli-satis-sozlesmesi
+          - link "Teslimat ve İade Şartları" [ref=f30e473] [cursor=pointer]:
+            - /url: https://doradorukmotor.com/sayfa/iade-ve-degisim
+        - generic [ref=f30e474]:
+          - generic [ref=f30e475]:
+            - generic [ref=f30e476]: 
+            - generic [ref=f30e477]: 256-bit SSL
+          - img "Visa MasterCard iyzico ile Güvenli Ödeme" [ref=f30e478]

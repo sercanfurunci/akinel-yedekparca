@@ -1,0 +1,324 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e8]:
+    - generic [ref=f5e9]:
+      - generic [ref=f5e12]:
+        - generic [ref=f5e14]:
+          - generic [ref=f5e15]:
+            - generic [ref=f5e16]: 
+            - text: 0850 532 1935
+          - link " info@yedekparca.com.tr" [ref=f5e17] [cursor=pointer]:
+            - /url: mailto:info@yedekparca.com.tr
+            - generic [ref=f5e18]: 
+            - generic [ref=f5e19]: info@yedekparca.com.tr
+        - generic [ref=f5e21]:
+          - generic [ref=f5e22]: Türkçe
+          - generic [ref=f5e25]: TRY - Türk Lirası
+          - link "Sipariş Takip" [ref=f5e27] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+          - link "Yardım" [ref=f5e28] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/yardim
+          - link "İletişim" [ref=f5e29] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/iletisim-sID0
+      - generic [ref=f5e33]:
+        - link [ref=f5e36] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+        - generic [ref=f5e38]:
+          - generic [ref=f5e39]:
+            - generic [ref=f5e42]:
+              - generic [ref=f5e43]: 
+              - textbox "Parça adı, oem numara veya parça referansı ara" [ref=f5e46]
+              - button "Ürün Ara" [ref=f5e47] [cursor=pointer]
+            - list [ref=f5e50]:
+              - listitem [ref=f5e51]:
+                - button "Fren" [ref=f5e52] [cursor=pointer]
+              - listitem [ref=f5e53]:
+                - button "Debriyaj" [ref=f5e54] [cursor=pointer]
+              - listitem [ref=f5e55]:
+                - button "Yakıt" [ref=f5e56] [cursor=pointer]
+              - listitem [ref=f5e57]:
+                - button "Süspansiyon" [ref=f5e58] [cursor=pointer]
+              - listitem [ref=f5e59]:
+                - button "Direksiyon" [ref=f5e60] [cursor=pointer]
+              - listitem [ref=f5e61]:
+                - button "Elektrik" [ref=f5e62] [cursor=pointer]
+              - listitem [ref=f5e63]:
+                - button "Soğutma" [ref=f5e64] [cursor=pointer]
+          - generic [ref=f5e67]:
+            - link "" [ref=f5e69] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hesabim/garajim
+            - link "" [ref=f5e72] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hesabim/favori-listem
+            - link " 0" [ref=f5e75] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/sepet
+              - generic [ref=f5e76]:
+                - generic [ref=f5e77]: 
+                - generic [ref=f5e78]: "0"
+            - generic [ref=f5e79]:
+              - generic [ref=f5e80]: 
+              - strong [ref=f5e83]: Hesabım
+    - text:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+  - navigation "breadcrumb" [ref=f5e93]:
+    - list [ref=f5e94]:
+      - listitem [ref=f5e95]:
+        - link "" [ref=f5e96] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+      - listitem [ref=f5e99]:
+        - text: ">"
+        - link "Fren" [ref=f5e100] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/fren
+      - listitem [ref=f5e101]:
+        - text: ">"
+        - link "Balata" [ref=f5e102] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/balata
+  - generic [ref=f5e109]:
+    - generic [ref=f5e113]:
+      - generic [ref=f5e115]:
+        - link [ref=f5e119] [cursor=pointer]:
+          - /url: https://cdnaws.com.tr/d4/29uj23/yedekparcacomtr/ZW3D2Lqi2qQQvGYHnFzROLPsSdwHVUkzYQ1Dr/hazirlaniyor/img-89d3d177_95050-3o0bwd6x.webp
+          - img "Bmw F20 Kasa 116d Arka Fren Balatası" [ref=f5e120]
+        - list [ref=f5e121]:
+          - listitem [ref=f5e122] [cursor=pointer]:
+            - img "Bmw F20 Kasa 116d Arka Fren Balatası" [ref=f5e123]
+      - generic [ref=f5e124]:
+        - heading "Bmw F20 Kasa 116d Arka Fren Balatası" [level=1] [ref=f5e125]
+        - list [ref=f5e126]:
+          - listitem [ref=f5e127]:
+            - generic [ref=f5e129]:
+              - generic [ref=f5e130]: 
+              - generic [ref=f5e132]: 
+              - generic [ref=f5e134]: 
+              - generic [ref=f5e136]: 
+              - generic [ref=f5e138]: 
+          - listitem [ref=f5e140]:
+            - generic [ref=f5e141]:
+              - generic [ref=f5e142]: 2.061,00 TL
+              - generic [ref=f5e144]:
+                - generic [ref=f5e145]: 
+                - text: 171,75 TL TL x 12 ay'dan başlayan taksitlerle!
+          - listitem [ref=f5e146]:
+            - generic [ref=f5e147] [cursor=pointer]:
+              - text: Marka
+              - link "TRW" [ref=f5e148]:
+                - /url: https://www.yedekparca.com.tr/trw
+            - generic [ref=f5e150] [cursor=pointer]:
+              - text: Kategori
+              - link "Balata" [ref=f5e151]:
+                - /url: https://www.yedekparca.com.tr/balata
+            - generic [ref=f5e153] [cursor=pointer]:
+              - text: Stok
+              - generic [ref=f5e154]: Stokta yok
+        - generic [ref=f5e155]: Çok yakında stoklarımızda olacaktır.
+      - generic [ref=f5e156]:
+        - generic "TRW" [ref=f5e159]:
+          - link [ref=f5e160] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/trw
+            - img "TRW" [ref=f5e161]
+        - generic [ref=f5e162]:
+          - generic [ref=f5e163]: Garajım
+          - generic [ref=f5e165]:
+            - strong [ref=f5e166]: Aracımla Uyumlu mu?
+            - paragraph [ref=f5e167]: Aracını Garajım'a ekle, özelliklerine göre uyumlu parçaları kolayca bul.
+            - link " Garajım'a Araç Ekle" [ref=f5e168] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hesabim/garajim
+              - generic [ref=f5e169]: 
+              - text: Garajım'a Araç Ekle
+    - generic [ref=f5e172]:
+      - generic [ref=f5e173]:
+        - link " Favorilerime Ekle" [ref=f5e174] [cursor=pointer]:
+          - /url: javascript:;
+          - generic [ref=f5e175]: 
+          - text: Favorilerime Ekle
+        - text: 
+      - link " Tavsiye Et" [ref=f5e177] [cursor=pointer]:
+        - /url: javascript:;
+        - generic [ref=f5e178]: 
+        - generic [ref=f5e179]: Tavsiye Et
+      - link " Değerlendirme Yaz" [ref=f5e181] [cursor=pointer]:
+        - /url: javascript:;
+        - generic [ref=f5e182]: 
+        - generic [ref=f5e183]: Değerlendirme Yaz
+      - link " Karşılaştır" [ref=f5e185] [cursor=pointer]:
+        - /url: javascript:;
+        - generic [ref=f5e186]: 
+        - generic [ref=f5e187]: Karşılaştır
+      - generic [ref=f5e188]:
+        - text: 
+        - link " Gelince Haber Ver" [ref=f5e189] [cursor=pointer]:
+          - /url: javascript:;
+          - generic [ref=f5e190]: 
+          - generic [ref=f5e191]: Gelince Haber Ver
+      - link " Telefonla Sipariş" [ref=f5e193] [cursor=pointer]:
+        - /url: javascript:;
+        - generic [ref=f5e194]: 
+        - generic [ref=f5e195]: Telefonla Sipariş
+      - link " Ürün Önerileri" [ref=f5e197] [cursor=pointer]:
+        - /url: javascript:;
+        - generic [ref=f5e198]: 
+        - generic [ref=f5e199]: Ürün Önerileri
+  - generic [ref=f5e203]:
+    - tablist [ref=f5e205]:
+      - listitem [ref=f5e206]:
+        - tab "Ürün Açıklaması" [selected] [ref=f5e207] [cursor=pointer]
+      - listitem [ref=f5e209]:
+        - tab "Uyumlu Araçlar" [selected] [ref=f5e210] [cursor=pointer]
+      - listitem [ref=f5e212]:
+        - tab "Taksit Seçenekleri" [selected] [ref=f5e213] [cursor=pointer]
+      - listitem [ref=f5e215]:
+        - tab "Yorumlar" [selected] [ref=f5e216] [cursor=pointer]
+      - listitem [ref=f5e218]:
+        - tab "Garanti ve Teslimat" [selected] [ref=f5e219] [cursor=pointer]
+      - listitem [ref=f5e221]:
+        - tab "Soru-Cevap" [selected] [ref=f5e222] [cursor=pointer]
+    - tabpanel "Ürün Açıklaması" [ref=f5e225]:
+      - generic [ref=f5e230]:
+        - generic [ref=f5e231]:
+          - generic [ref=f5e232]:
+            - strong [ref=f5e233]: "AÇIKLAMA:"
+            - generic [ref=f5e234]: Bmw F20 Kasa 116d Arka Fren Balatası
+          - generic [ref=f5e235]:
+            - strong [ref=f5e236]: "MARKA:"
+            - generic [ref=f5e237]: TRW
+          - strong [ref=f5e239]: "OEM NO:"
+          - strong [ref=f5e241]: "YILLAR:"
+        - paragraph [ref=f5e242]:
+          - strong [ref=f5e243]: "GARANTİ:"
+          - text: Ürünlerimiz, yetkili distribütörlerden tedarik edilmiş olup, üreticilerin belirlediği süreler dahilinde GARANTİ kapsamındadır.
+        - paragraph [ref=f5e244]: Aradığınız oto yedek parça ürünlerini rahatça bulabileceğiniz yedek parça mağazamıza hoş geldiniz. Mağazamızdan 7 gün 24 saat alışveriş yapabilirsiniz. Yedek parça mağazamız, OTOFAST OTOMOTİV SAN. TİC. LTD. ŞTİ. iştiraki olup, yedek parça ürün grubunda piyasanın %95'inin ihtiyacını karşılayacak düzeyde zengin ürün portföyüne sahiptir. Her kategoride binlerce ürün bulabileceğiniz firmamız sizlere en hızlı şekilde dönüş yapıp ihtiyacınızı gidermek için çalışmalarını sürdürmektedir.
+        - paragraph [ref=f5e245]:
+          - strong [ref=f5e246]: Bmw F20 Kasa 116d Arka Fren Balatası
+          - text: ile ilgili daha fazla bilgi almak için lütfen bizimle iletişime geçiniz.
+        - paragraph [ref=f5e247]:
+          - strong [ref=f5e249]: Değerli müşterilerimiz lütfen ürünü satın almadan önce 17 haneli şase numarası ile sorgulama yaptırınız.
+        - paragraph [ref=f5e250]
+  - generic [ref=f5e251]:                      
+  - generic [ref=f5e262]:
+    - generic [ref=f5e265]:
+      - generic [ref=f5e266]:
+        - strong [ref=f5e268]: KREDİ KARTI İLE ALIŞVERİŞ
+        - paragraph [ref=f5e269]: Tüm Kredi Kartları ile Güvenli Alışveriş Yapabilirsiniz.
+      - generic [ref=f5e270]:
+        - strong [ref=f5e272]: HIZLI TESLİMAT
+        - paragraph [ref=f5e273]: Siparişiniz En Hızlı Şekilde Teslim Edilir.
+      - generic [ref=f5e274]:
+        - strong [ref=f5e276]: GÜVENLİ ALIŞVERİŞ
+        - paragraph [ref=f5e277]: 256bit SSL Sertifikası ile Güvenli Satın Alma
+      - generic [ref=f5e278]:
+        - strong [ref=f5e280]: MÜŞTERİ HİZMETLERİ
+        - paragraph [ref=f5e281]: 0850 532 1935 ulaşabilirsiniz
+    - generic [ref=f5e282]:
+      - generic [ref=f5e284]:
+        - generic [ref=f5e285]:
+          - generic [ref=f5e288]:
+            - generic [ref=f5e289]:
+              - generic [ref=f5e290]: Kurumsal
+              - list [ref=f5e292]:
+                - listitem [ref=f5e293]:
+                  - link "Periyodik Bakım Robotu" [ref=f5e294] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/periyodik-bakim-robotu-yp
+                - listitem [ref=f5e295]:
+                  - link "Hakkımızda" [ref=f5e296] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/hakkimizda
+                - listitem [ref=f5e297]:
+                  - link "İletişim" [ref=f5e298] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/iletisim
+                - listitem [ref=f5e299]:
+                  - link "Gizlilik Sözleşmesi" [ref=f5e300] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/gizlilik-sozlesmesi
+                - listitem [ref=f5e301]:
+                  - link "Kullanıcı Sözleşmesi" [ref=f5e302] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/kullanici-sozlesmesi
+                - listitem [ref=f5e303]:
+                  - link "İade/İptal Koşulları" [ref=f5e304] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/iade-iptal
+                - listitem [ref=f5e305]:
+                  - link "Sıkça Sorulan Sorular" [ref=f5e306] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sss-sID0
+                - listitem [ref=f5e307]:
+                  - link "Sipariş Takip" [ref=f5e308] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+                - listitem [ref=f5e309]:
+                  - link "Havale Bildirimleri" [ref=f5e310] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+                - listitem [ref=f5e311]:
+                  - link "Puan Sistemi" [ref=f5e312] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/puan-sistemi-sID0
+            - generic [ref=f5e313]:
+              - generic [ref=f5e314]: Kategoriler
+              - list [ref=f5e316]:
+                - listitem [ref=f5e317]:
+                  - link "Fren" [ref=f5e318] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/fren
+                - listitem [ref=f5e319]:
+                  - link "Debriyaj" [ref=f5e320] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/debriyaj
+                - listitem [ref=f5e321]:
+                  - link "Yakıt" [ref=f5e322] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/yakit
+                - listitem [ref=f5e323]:
+                  - link "Süspansiyon" [ref=f5e324] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/suspansiyon
+                - listitem [ref=f5e325]:
+                  - link "Direksiyon" [ref=f5e326] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/direksiyon
+                - listitem [ref=f5e327]:
+                  - link "Elektrik" [ref=f5e328] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/elektrik
+                - listitem [ref=f5e329]:
+                  - link "Soğutma" [ref=f5e330] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sogutma
+                - listitem [ref=f5e331]:
+                  - link "Filtreler" [ref=f5e332] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/filtreler
+                - listitem [ref=f5e333]:
+                  - link "Motor" [ref=f5e334] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/motor
+                - listitem [ref=f5e335]:
+                  - link "Diger" [ref=f5e336] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/diger
+            - generic [ref=f5e337]:
+              - generic [ref=f5e338]: Alışveriş
+              - list [ref=f5e340]:
+                - listitem [ref=f5e341]:
+                  - link "Sıkça Sorulan Sorular" [ref=f5e342] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sss-sID0
+                - listitem [ref=f5e343]:
+                  - link "Sipariş Takip" [ref=f5e344] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+                - listitem [ref=f5e345]:
+                  - link "Havale Bildirimleri" [ref=f5e346] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+          - generic [ref=f5e347]:
+            - generic [ref=f5e348]:
+              - generic [ref=f5e349]:
+                - generic [ref=f5e350]: 
+                - generic [ref=f5e352]:
+                  - generic [ref=f5e353]: Müşteri Hizmetleri
+                  - link "0850 532 1935" [ref=f5e354] [cursor=pointer]:
+                    - /url: tel:+90850 532 1935
+              - generic [ref=f5e355]:
+                - generic [ref=f5e356]: "Uygulamalarımız:"
+                - list [ref=f5e357]:
+                  - listitem [ref=f5e358]:
+                    - link [ref=f5e359] [cursor=pointer]:
+                      - /url: ""
+                  - listitem [ref=f5e361]:
+                    - link [ref=f5e362] [cursor=pointer]:
+                      - /url: ""
+            - generic [ref=f5e364]:
+              - generic [ref=f5e365]: Bloga Göz At
+              - link "Blog" [ref=f5e366] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/blog
+        - generic [ref=f5e370]:
+          - link [ref=f5e374] [cursor=pointer]:
+            - /url: https://etbis.eticaret.gov.tr/sitedogrulama/7834168730156187
+          - link "" [ref=f5e376] [cursor=pointer]:
+            - /url: https://www.facebook.com/yamanyedekparca
+          - link "" [ref=f5e378] [cursor=pointer]:
+            - /url: ""
+          - link "" [ref=f5e380] [cursor=pointer]:
+            - /url: https://www.instagram.com/yedekparcacomtr
+          - link "" [ref=f5e382] [cursor=pointer]:
+            - /url: ""
+      - paragraph [ref=f5e389]: Tüm bilgileriniz 256bit SSL Sertifikası ile korunmaktadır. © 2026 Tüm Hakları Saklıdır
+  - link [ref=f5e393] [cursor=pointer]:
+    - /url: https://api.whatsapp.com/send?phone=9005305701935&text=Ürünleriniz hakkında detaylı bilgi almak istiyorum

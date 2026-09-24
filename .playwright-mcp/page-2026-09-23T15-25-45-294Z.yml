@@ -1,0 +1,119 @@
+- generic [active] [ref=f13e1]:
+  - banner [ref=f13e2]:
+    - generic [ref=f13e4]:
+      - button "Menüyü aç" [ref=f13e5]
+      - link "Akinel" [ref=f13e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f13e9]:
+        - link "Ara" [ref=f13e10] [cursor=pointer]:
+          - /url: /search
+        - link "Garajım" [ref=f13e14] [cursor=pointer]:
+          - /url: /garage
+        - link "Giriş Yap" [ref=f13e19] [cursor=pointer]:
+          - /url: /login
+  - main [ref=f13e23]:
+    - generic [ref=f13e24]:
+      - navigation "Breadcrumb" [ref=f13e25]:
+        - link "Ana Sayfa" [ref=f13e27] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f13e28]: Aracımı Seç
+      - generic [ref=f13e32]:
+        - heading "Aracınızı Seçin" [level=1] [ref=f13e33]
+        - paragraph [ref=f13e34]: 4 adımda aracınızı seçin ve uyumlu parçaları keşfedin.
+        - generic [ref=f13e36]:
+          - generic [ref=f13e37]:
+            - generic [ref=f13e39]:
+              - generic [ref=f13e40]: "1"
+              - generic [ref=f13e41]: Marka
+            - generic [ref=f13e44]:
+              - generic [ref=f13e45]: "2"
+              - generic [ref=f13e46]: Model
+            - generic [ref=f13e49]:
+              - generic [ref=f13e50]: "3"
+              - generic [ref=f13e51]: Kasa / Nesil
+            - generic [ref=f13e54]:
+              - generic [ref=f13e55]: "4"
+              - generic [ref=f13e56]: Motor
+          - generic [ref=f13e57]:
+            - generic [ref=f13e58]:
+              - generic [ref=f13e59]: Marka
+              - combobox [ref=f13e60]:
+                - option "Marka seçin" [selected]
+            - generic [ref=f13e61]:
+              - generic [ref=f13e62]: Model
+              - combobox [disabled] [ref=f13e63]:
+                - option "Model seçin" [selected]
+            - generic [ref=f13e64]:
+              - generic [ref=f13e65]: Kasa / Nesil
+              - combobox [disabled] [ref=f13e66]:
+                - option "Nesil seçin" [selected]
+            - generic [ref=f13e67]:
+              - generic [ref=f13e68]: Motor
+              - combobox [disabled] [ref=f13e69]:
+                - option "Motor seçin" [selected]
+          - generic [ref=f13e70]:
+            - button "Parçaları Göster" [disabled]
+  - contentinfo [ref=f13e71]:
+    - generic [ref=f13e72]:
+      - generic [ref=f13e73]:
+        - generic [ref=f13e74]:
+          - generic [ref=f13e75]:
+            - generic [ref=f13e76]: Akinel
+            - generic [ref=f13e77]: Yedek Parça
+          - paragraph [ref=f13e78]: Test açıklaması güncel
+        - generic [ref=f13e79]:
+          - heading "Hızlı Linkler" [level=3] [ref=f13e80]
+          - list [ref=f13e81]:
+            - listitem [ref=f13e82]:
+              - link "Ana Sayfa" [ref=f13e83] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f13e84]:
+              - link "Ürünler" [ref=f13e85] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f13e86]:
+              - link "Aracımı Seç" [ref=f13e87] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f13e88]:
+              - link "OEM Ara" [ref=f13e89] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f13e90]:
+              - link "Garajım" [ref=f13e91] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f13e92]:
+              - link "Hakkımızda" [ref=f13e93] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f13e94]:
+          - heading "Müşteri" [level=3] [ref=f13e95]
+          - list [ref=f13e96]:
+            - listitem [ref=f13e97]:
+              - link "Giriş Yap" [ref=f13e98] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f13e99]:
+              - link "Kayıt Ol" [ref=f13e100] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f13e101]:
+              - link "Garajım" [ref=f13e102] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f13e103]:
+              - link "Hesabım" [ref=f13e104] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f13e105]:
+              - link "Periyodik Bakım" [ref=f13e106] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f13e107]:
+          - heading "İletişim" [level=3] [ref=f13e108]
+          - generic [ref=f13e109]:
+            - paragraph [ref=f13e110]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f13e111] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f13e118]:
+              - paragraph [ref=f13e119]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f13e120]: "Pazar: Kapalı"
+      - generic [ref=f13e121]:
+        - generic [ref=f13e122]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f13e123]:
+          - link "Gizlilik Politikası" [ref=f13e124] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f13e125] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f13e131] [cursor=pointer]

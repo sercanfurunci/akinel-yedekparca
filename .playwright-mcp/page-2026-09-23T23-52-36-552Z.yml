@@ -1,0 +1,176 @@
+- generic [active] [ref=f116e1]:
+  - banner [ref=f116e2]:
+    - generic [ref=f116e4]:
+      - link "+90 533 140 56 49" [ref=f116e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f116e8]:
+        - link "Sipariş Takip" [ref=f116e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f116e10]: "|"
+        - link "Yardım" [ref=f116e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f116e12]: "|"
+        - link "İletişim" [ref=f116e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f116e14]: "|"
+        - generic [ref=f116e15]: TR
+    - generic [ref=f116e17]:
+      - link "Akinel Yedek Parça" [ref=f116e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f116e19]: Akinel
+        - generic [ref=f116e20]: Yedek Parça
+      - generic [ref=f116e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f116e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f116e24]:
+        - button "Sepet" [ref=f116e25]:
+          - generic [ref=f116e116]: "1"
+        - link "Garajım" [ref=f116e31] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f116e117] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f116e118] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f116e42]:
+      - link "Ana Sayfa" [ref=f116e43] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f116e44] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f116e45] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f116e46] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f116e47] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f116e48] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f116e49] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f116e50] [cursor=pointer]:
+        - /url: /contact
+    - generic [ref=f116e121]:
+      - generic [ref=f116e126]: "Seçili Araç:"
+      - generic [ref=f116e127]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link "Değiştir" [ref=f116e128] [cursor=pointer]:
+        - /url: /vehicle
+      - button "Araç seçimini temizle" [ref=f116e129]
+  - main [ref=f116e51]:
+    - generic [ref=f116e133]:
+      - complementary [ref=f116e134]:
+        - link "Akinel Admin" [ref=f116e136] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f116e137]:
+          - link "Gösterge Paneli" [ref=f116e138] [cursor=pointer]:
+            - /url: /admin
+          - link "Ürünler" [ref=f116e145] [cursor=pointer]:
+            - /url: /admin/products
+          - link "Kategoriler" [ref=f116e151] [cursor=pointer]:
+            - /url: /admin/categories
+          - link "Markalar" [ref=f116e155] [cursor=pointer]:
+            - /url: /admin/brands
+          - link "Araçlar" [ref=f116e160] [cursor=pointer]:
+            - /url: /admin/vehicles
+          - link "Stok" [ref=f116e166] [cursor=pointer]:
+            - /url: /admin/stock
+          - link "Müşteriler" [ref=f116e171] [cursor=pointer]:
+            - /url: /admin/customers
+          - link "Siparişler" [ref=f116e178] [cursor=pointer]:
+            - /url: /admin/orders
+          - link "İşletme" [ref=f116e183] [cursor=pointer]:
+            - /url: /admin/business
+      - main [ref=f116e189]:
+        - generic [ref=f116e190]:
+          - generic [ref=f116e191]:
+            - heading "Araç Kataloğu" [level=1] [ref=f116e192]
+            - textbox "Marka, model veya motor ara..." [ref=f116e194]
+          - button "Markalar" [ref=f116e197]
+          - generic [ref=f116e198]:
+            - generic [ref=f116e199]:
+              - generic [ref=f116e200]:
+                - generic [ref=f116e201]: Araç Markaları
+                - generic [ref=f116e202]: (1 marka)
+              - generic [ref=f116e203]:
+                - textbox "Ara..." [ref=f116e205]: FIAT
+                - button "Marka Ekle" [ref=f116e206]
+            - table [ref=f116e822]:
+              - rowgroup [ref=f116e823]:
+                - row [ref=f116e824]:
+                  - columnheader "Marka" [ref=f116e825]
+                  - columnheader "Model Sayısı" [ref=f116e826]
+                  - columnheader "İşlem" [ref=f116e827]
+              - rowgroup [ref=f116e828]:
+                - row [ref=f116e829]:
+                  - cell [ref=f116e830]:
+                    - button "FIAT" [ref=f116e831]
+                  - cell "44" [ref=f116e834]
+                  - cell [ref=f116e835]:
+                    - generic [ref=f116e836]:
+                      - button "Düzenle" [ref=f116e837]
+                      - button "Sil" [ref=f116e841]
+  - contentinfo [ref=f116e52]:
+    - generic [ref=f116e53]:
+      - generic [ref=f116e54]:
+        - generic [ref=f116e55]:
+          - generic [ref=f116e56]:
+            - generic [ref=f116e57]: Akinel
+            - generic [ref=f116e58]: Yedek Parça
+          - paragraph [ref=f116e59]: Test açıklaması güncel
+        - generic [ref=f116e60]:
+          - heading "Hızlı Linkler" [level=3] [ref=f116e61]
+          - list [ref=f116e62]:
+            - listitem [ref=f116e63]:
+              - link "Ana Sayfa" [ref=f116e64] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f116e65]:
+              - link "Ürünler" [ref=f116e66] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f116e67]:
+              - link "Aracımı Seç" [ref=f116e68] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f116e69]:
+              - link "OEM Ara" [ref=f116e70] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f116e71]:
+              - link "Garajım" [ref=f116e72] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f116e73]:
+              - link "Hakkımızda" [ref=f116e74] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f116e75]:
+          - heading "Müşteri" [level=3] [ref=f116e76]
+          - list [ref=f116e77]:
+            - listitem [ref=f116e78]:
+              - link "Giriş Yap" [ref=f116e79] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f116e80]:
+              - link "Kayıt Ol" [ref=f116e81] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f116e82]:
+              - link "Garajım" [ref=f116e83] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f116e84]:
+              - link "Hesabım" [ref=f116e85] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f116e86]:
+              - link "Periyodik Bakım" [ref=f116e87] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f116e88]:
+          - heading "İletişim" [level=3] [ref=f116e89]
+          - generic [ref=f116e90]:
+            - paragraph [ref=f116e91]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f116e92] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f116e99]:
+              - paragraph [ref=f116e100]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f116e101]: "Pazar: Kapalı"
+      - generic [ref=f116e102]:
+        - generic [ref=f116e103]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f116e104]:
+          - link "Gizlilik Politikası" [ref=f116e105] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f116e106] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f116e112] [cursor=pointer]
+  - alert [ref=f116e700]

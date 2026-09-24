@@ -1,0 +1,165 @@
+- generic [ref=f45e1]:
+  - banner [ref=f45e2]:
+    - generic [ref=f45e4]:
+      - link "+90 533 140 56 49" [ref=f45e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f45e8]:
+        - link "Sipariş Takip" [ref=f45e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f45e10]: "|"
+        - link "Yardım" [ref=f45e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f45e12]: "|"
+        - link "İletişim" [ref=f45e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f45e14]: "|"
+        - generic [ref=f45e15]: TR
+    - generic [ref=f45e17]:
+      - link "Akinel Yedek Parça" [ref=f45e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f45e19]: Akinel
+        - generic [ref=f45e20]: Yedek Parça
+      - generic [ref=f45e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f45e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f45e24]:
+        - button "Sepet" [ref=f45e25]
+        - link "Garajım" [ref=f45e31] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f45e118] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f45e119] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f45e42]:
+      - link "Ana Sayfa" [ref=f45e43] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f45e44] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f45e45] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f45e46] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f45e47] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f45e48] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f45e49] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f45e50] [cursor=pointer]:
+        - /url: /contact
+    - generic [ref=f45e122]:
+      - generic [ref=f45e127]: "Seçili Araç:"
+      - generic [ref=f45e128]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link "Değiştir" [ref=f45e129] [cursor=pointer]:
+        - /url: /vehicle
+      - button "Araç seçimini temizle" [ref=f45e130]
+  - main [ref=f45e51]:
+    - generic [ref=f45e134]:
+      - navigation "Breadcrumb" [ref=f45e135]:
+        - link "Ana Sayfa" [ref=f45e137] [cursor=pointer]:
+          - /url: /
+        - link "Ürünler" [ref=f45e141] [cursor=pointer]:
+          - /url: /products
+        - generic [ref=f45e142]: Arka Fren Balata Seti
+      - generic [ref=f45e152]:
+        - generic [ref=f45e153]: Bosch
+        - heading "Arka Fren Balata Seti" [level=1] [ref=f45e154]
+        - paragraph [ref=f45e155]: Fren Balatası
+        - generic [ref=f45e156]:
+          - generic [ref=f45e157]: "12345"
+          - generic [ref=f45e158]: "0986424706"
+        - paragraph [ref=f45e159]: "Parça No: 0986424706"
+        - generic [ref=f45e160]:
+          - generic [ref=f45e161]: ₺850,00
+          - generic [ref=f45e162]: Stokta
+        - paragraph [ref=f45e163]: 50 adet mevcut
+        - generic [ref=f45e164]:
+          - generic [ref=f45e165]:
+            - button "Azalt" [ref=f45e166]
+            - generic [ref=f45e168]: "1"
+            - button "Artır" [ref=f45e169]
+          - button "Sepete Ekle" [ref=f45e172]
+        - generic [ref=f45e183]:
+          - paragraph [ref=f45e184]: Seçili Aracınız
+          - paragraph [ref=f45e185]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+          - paragraph [ref=f45e186]: Bu ürün aracınızla uyumludur.
+      - generic [ref=f45e187]:
+        - generic [ref=f45e189]:
+          - button "Ürün Bilgileri" [ref=f45e190]
+          - button "OEM Numaraları" [ref=f45e191]
+          - button "Uyumlu Araçlar" [active] [ref=f45e192]
+          - button "Stok Bilgisi" [ref=f45e193]
+        - list [ref=f45e205]:
+          - listitem [ref=f45e206]:
+            - generic [ref=f45e211]: VOLKSWAGEN Golf Mk7 2.0 TDI 110kW
+          - listitem [ref=f45e212]:
+            - generic [ref=f45e217]: BMW 1 Series F20 116d 1.5d 85kW
+          - listitem [ref=f45e218]:
+            - generic [ref=f45e223]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+  - contentinfo [ref=f45e54]:
+    - generic [ref=f45e55]:
+      - generic [ref=f45e56]:
+        - generic [ref=f45e57]:
+          - generic [ref=f45e58]:
+            - generic [ref=f45e59]: Akinel
+            - generic [ref=f45e60]: Yedek Parça
+          - paragraph [ref=f45e61]: Test açıklaması güncel
+        - generic [ref=f45e62]:
+          - heading "Hızlı Linkler" [level=3] [ref=f45e63]
+          - list [ref=f45e64]:
+            - listitem [ref=f45e65]:
+              - link "Ana Sayfa" [ref=f45e66] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f45e67]:
+              - link "Ürünler" [ref=f45e68] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f45e69]:
+              - link "Aracımı Seç" [ref=f45e70] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f45e71]:
+              - link "OEM Ara" [ref=f45e72] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f45e73]:
+              - link "Garajım" [ref=f45e74] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f45e75]:
+              - link "Hakkımızda" [ref=f45e76] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f45e77]:
+          - heading "Müşteri" [level=3] [ref=f45e78]
+          - list [ref=f45e79]:
+            - listitem [ref=f45e80]:
+              - link "Giriş Yap" [ref=f45e81] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f45e82]:
+              - link "Kayıt Ol" [ref=f45e83] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f45e84]:
+              - link "Garajım" [ref=f45e85] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f45e86]:
+              - link "Hesabım" [ref=f45e87] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f45e88]:
+              - link "Periyodik Bakım" [ref=f45e89] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f45e90]:
+          - heading "İletişim" [level=3] [ref=f45e91]
+          - generic [ref=f45e92]:
+            - paragraph [ref=f45e93]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f45e94] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f45e101]:
+              - paragraph [ref=f45e102]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f45e103]: "Pazar: Kapalı"
+      - generic [ref=f45e104]:
+        - generic [ref=f45e105]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f45e106]:
+          - link "Gizlilik Politikası" [ref=f45e107] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f45e108] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f45e114] [cursor=pointer]
+  - alert [ref=f45e197]

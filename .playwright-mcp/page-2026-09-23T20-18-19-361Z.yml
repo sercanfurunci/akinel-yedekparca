@@ -1,0 +1,80 @@
+- generic [active] [ref=f49e1]:
+  - banner [ref=f49e2]:
+    - generic [ref=f49e4]:
+      - button "Menüyü aç" [ref=f49e5]
+      - link "Akinel" [ref=f49e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f49e9]:
+        - link "Ara" [ref=f49e10] [cursor=pointer]:
+          - /url: /search
+        - button "Sepet" [ref=f49e14]
+        - link "Garajım" [ref=f49e20] [cursor=pointer]:
+          - /url: /garage
+        - link "Giriş Yap" [ref=f49e25] [cursor=pointer]:
+          - /url: /login
+  - main [ref=f49e29]:
+    - status "Yükleniyor..." [ref=f49e31]
+  - contentinfo [ref=f49e32]:
+    - generic [ref=f49e33]:
+      - generic [ref=f49e34]:
+        - generic [ref=f49e35]:
+          - generic [ref=f49e36]:
+            - generic [ref=f49e37]: Akinel
+            - generic [ref=f49e38]: Yedek Parça
+          - paragraph [ref=f49e39]: Test açıklaması güncel
+        - generic [ref=f49e40]:
+          - heading "Hızlı Linkler" [level=3] [ref=f49e41]
+          - list [ref=f49e42]:
+            - listitem [ref=f49e43]:
+              - link "Ana Sayfa" [ref=f49e44] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f49e45]:
+              - link "Ürünler" [ref=f49e46] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f49e47]:
+              - link "Aracımı Seç" [ref=f49e48] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f49e49]:
+              - link "OEM Ara" [ref=f49e50] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f49e51]:
+              - link "Garajım" [ref=f49e52] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f49e53]:
+              - link "Hakkımızda" [ref=f49e54] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f49e55]:
+          - heading "Müşteri" [level=3] [ref=f49e56]
+          - list [ref=f49e57]:
+            - listitem [ref=f49e58]:
+              - link "Giriş Yap" [ref=f49e59] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f49e60]:
+              - link "Kayıt Ol" [ref=f49e61] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f49e62]:
+              - link "Garajım" [ref=f49e63] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f49e64]:
+              - link "Hesabım" [ref=f49e65] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f49e66]:
+              - link "Periyodik Bakım" [ref=f49e67] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f49e68]:
+          - heading "İletişim" [level=3] [ref=f49e69]
+          - generic [ref=f49e70]:
+            - paragraph [ref=f49e71]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f49e72] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f49e79]:
+              - paragraph [ref=f49e80]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f49e81]: "Pazar: Kapalı"
+      - generic [ref=f49e82]:
+        - generic [ref=f49e83]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f49e84]:
+          - link "Gizlilik Politikası" [ref=f49e85] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f49e86] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f49e92] [cursor=pointer]

@@ -1,0 +1,356 @@
+- generic [active] [ref=f12e1]:
+  - banner [ref=f12e2]:
+    - generic [ref=f12e4]:
+      - button "Menüyü aç" [ref=f12e5]
+      - link "Akinel" [ref=f12e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f12e9]:
+        - link "Ara" [ref=f12e10] [cursor=pointer]:
+          - /url: /search
+        - link "Garajım" [ref=f12e14] [cursor=pointer]:
+          - /url: /garage
+  - main [ref=f12e23]:
+    - generic [ref=f12e24]:
+      - navigation "Breadcrumb" [ref=f12e25]:
+        - link "Ana Sayfa" [ref=f12e27] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f12e28]: Aracımı Seç
+      - generic [ref=f12e32]:
+        - heading "Aracınızı Seçin" [level=1] [ref=f12e33]
+        - paragraph [ref=f12e34]: 4 adımda aracınızı seçin ve uyumlu parçaları keşfedin.
+        - generic [ref=f12e36]:
+          - generic [ref=f12e37]:
+            - generic [ref=f12e39]:
+              - generic [ref=f12e40]: ✓
+              - generic [ref=f12e41]: Marka
+            - generic [ref=f12e44]:
+              - generic [ref=f12e45]: "2"
+              - generic [ref=f12e46]: Model
+            - generic [ref=f12e49]:
+              - generic [ref=f12e50]: "3"
+              - generic [ref=f12e51]: Kasa / Nesil
+            - generic [ref=f12e54]:
+              - generic [ref=f12e55]: "4"
+              - generic [ref=f12e56]: Motor
+          - generic [ref=f12e57]:
+            - generic [ref=f12e58]:
+              - generic [ref=f12e59]: Marka
+              - combobox [ref=f12e60]:
+                - option "Marka seçin"
+                - option "ALFA ROMEO"
+                - option "AUDI"
+                - option "BMW"
+                - option "CITROEN"
+                - option "CUPRA"
+                - option "DACIA"
+                - option "DS"
+                - option "FIAT"
+                - option "FORD"
+                - option "HONDA"
+                - option "HYUNDAI"
+                - option "INFINITI"
+                - option "JAGUAR"
+                - option "KIA"
+                - option "LANCIA"
+                - option "LAND ROVER"
+                - option "LEXUS"
+                - option "MAZDA"
+                - option "MERCEDES-BENZ"
+                - option "MINI"
+                - option "MITSUBISHI"
+                - option "NISSAN"
+                - option "OPEL"
+                - option "PEUGEOT"
+                - option "PORSCHE"
+                - option "RENAULT"
+                - option "SAAB"
+                - option "SEAT"
+                - option "SKODA"
+                - option "SMART"
+                - option "SUBARU"
+                - option "SUZUKI"
+                - option "TOYOTA"
+                - option "VOLKSWAGEN" [selected]
+                - option "VOLVO"
+            - generic [ref=f12e61]:
+              - generic [ref=f12e62]: Model
+              - combobox [ref=f12e63]:
+                - option "Model seçin" [selected]
+                - option "B-MAX"
+                - option "BRONCO"
+                - option "C MAX"
+                - option "C-MAX"
+                - option "CEKICI"
+                - option "CROWN VICTORIA"
+                - option "ECOSPORT"
+                - option "EDGE"
+                - option "EDGE MCA"
+                - option "ESCAPE"
+                - option "EXPEDITION"
+                - option "EXPLORER"
+                - option "EXPLORER 4WD"
+                - option "F"
+                - option "F150 4X4"
+                - option "F150 4X4 SUPERCAB LARIAT"
+                - option "F150 RAPTOR 4X4"
+                - option "FIESTA"
+                - option "FIESTA COLLECTION"
+                - option "FIESTA COOL"
+                - option "FIESTA GHIA"
+                - option "FIESTA II"
+                - option "FIESTA ST"
+                - option "FIESTA ST LINE1.0 ECOBOOST"
+                - option "FLEX"
+                - option "FOCUS"
+                - option "FOCUS C-MAX"
+                - option "FOCUS CC"
+                - option "FOCUS COLLECTION"
+                - option "FOCUS COLLECTION 4K"
+                - option "FOCUS III"
+                - option "FOCUS III MCA"
+                - option "FOCUS III TITANIUM1.6I ECOBOOST"
+                - option "FOCUS RS"
+                - option "FOCUS ST"
+                - option "FOCUS WRC"
+                - option "FUSION"
+                - option "FUSION COLLECTION"
+                - option "Focus"
+                - option "GALAXY"
+                - option "GALAXY GHIA"
+                - option "GRAND"
+                - option "GT"
+                - option "KA"
+                - option "KAMYON"
+                - option "KUGA"
+                - option "KUGA SELECTIVE"
+                - option "KUGA TITANUM"
+                - option "LINCOLN TOWN CAR CARTIER"
+                - option "MONDEO"
+                - option "MONDEO SELECTIVE"
+                - option "MUSTANG"
+                - option "MUSTANG FASTBACK"
+                - option "MUSTANG GT"
+                - option "MUSTANG MACH-E AWD"
+                - option "MUSTANG MCA FASTBACK"
+                - option "PUMA"
+                - option "RANGER"
+                - option "RANGER C.KABIN K.NET XLT 4X2 HI-RIDER"
+                - option "RANGER RAPTOR 4X4"
+                - option "RANGER STORMTRAK 4X4"
+                - option "RANGER THUNDER"
+                - option "RANGER THUNDER C.KABIN K.NET 4X4"
+                - option "RANGER WILDTRAK"
+                - option "RANGER WILDTRAK 4X4"
+                - option "RANGER WILDTRAK4X4"
+                - option "RANGER WOLFTRAK 4X4"
+                - option "RANGER XL"
+                - option "RANGER XL 4X4"
+                - option "RANGER XLT"
+                - option "RANGER XLT 4X2"
+                - option "RANGER XLT 4X4"
+                - option "S-MAX"
+                - option "T."
+                - option "T.CONNECT"
+                - option "T.CONNECT K210S"
+                - option "T.CUSTOMKOMBI"
+                - option "T.CUSTOMKOMBIVAN"
+                - option "TOURNEO"
+                - option "TOURNEO CONNECTJOURNEY"
+                - option "TOURNEO COURIER"
+                - option "TOURNEO COURIER J.1.5TDCI"
+                - option "TOURNEO COURIER JOURNEY"
+                - option "TOURNEO COURIER K"
+                - option "TOURNEO CUSTOM"
+                - option "TOURNEO CUSTOM 320L ECOBLUE"
+                - option "TOURNEO CUSTOM 320L HIBRIT E6.2"
+                - option "TOURNEO CUSTOM 320L UPGRADE"
+                - option "TOURNEO CUSTOM 320LUPGRADE185TITANIUMPLUS 6AT"
+                - option "TOURNEO CUSTOM 320S ECOBLUE"
+                - option "TOURNEO CUSTOM 320S UPGRADE"
+                - option "TOURNEO CUSTOM 320SUPGADE185TITANIUMPLUS 6AT"
+                - option "TOURNEO CUSTOM 8+1"
+                - option "TOURNEO CUSTOM ECOBLUE"
+                - option "TOURNEOCONNECT"
+                - option "TOURNEOCONNECTKOMBI"
+                - option "TOURNEOCONNECTKOMBIACTIVE MCA KISA"
+                - option "TOURNEOCONNECTKOMBITITANIUMMCAKISA"
+                - option "TOURNEOCOURIER"
+                - option "TOURNEOCOURIER JOURNEY"
+                - option "TOURNEOCOURIERJOURNEY"
+                - option "TOURNEOCOURIERJOURNEY1.5TDCI100 E6.2 TIT.PLUS"
+                - option "TOURNEOCOURIERKOMBI"
+                - option "TOURNEOCOURIERKOMBI1.5TDCI100 E6.2 TIT.PLUS"
+                - option "TOURNEOCUSTOM 320L UPGRADE E6.2"
+                - option "TOURNEOCUSTOM 320S EB HIBRIT"
+                - option "TOURNEOCUSTOM ECOBLUE170320S"
+                - option "TOURNEOCUSTOM320LECOBLUE"
+                - option "TOURNEOCUSTOM320LECOBLUE170TIT.PLUS"
+                - option "TOURNEOCUSTOM320LECOBLUE170TITANIUMPLUS E6.2"
+                - option "TOURNEOCUSTOM320S ECOBLUE"
+                - option "TOURNEOCUSTOMECOBLUE170 320L"
+                - option "TR. TEK K.KAMYONET ECOBLUE 350M"
+                - option "TR.CIFT K."
+                - option "TR.CIFTKABINKAMYONETECOBLUE 350M"
+                - option "TR.TEKKABINKAMYONET ECOBLUE350L"
+                - option "TRANSIT"
+                - option "TRANSIT 300S"
+                - option "TRANSIT 300SF"
+                - option "TRANSIT 310S JOURNEY"
+                - option "TRANSIT 330M"
+                - option "TRANSIT 330MF"
+                - option "TRANSIT 330S"
+                - option "TRANSIT 330S TEK"
+                - option "TRANSIT 350E"
+                - option "TRANSIT 350ED"
+                - option "TRANSIT 350ED BOX"
+                - option "TRANSIT 350ED LUTON BOX"
+                - option "TRANSIT 350ED TEK"
+                - option "TRANSIT 350L"
+                - option "TRANSIT 350L 11M3 ECOBLUE"
+                - option "TRANSIT 350L C.K.K.NET"
+                - option "TRANSIT 350L CENAZEARACI CIFTKABIN"
+                - option "TRANSIT 350LF"
+                - option "TRANSIT 350LFCENAZEARACICIFTKABIN170TREND 6AT"
+                - option "TRANSIT 350M"
+                - option "TRANSIT 350M TEK"
+                - option "TRANSIT 410L"
+                - option "TRANSIT 410LVAN AMBULANS"
+                - option "TRANSIT 430ED"
+                - option "TRANSIT 440E CAMLI"
+                - option "TRANSIT 440E OKUL OTOBUSU 19+1"
+                - option "TRANSIT 460ED"
+                - option "TRANSIT 460ED OKULMINIBUSU 16+1"
+                - option "TRANSIT 460ED TEK"
+                - option "TRANSIT CAMLI"
+                - option "TRANSIT CIFTKABIN"
+                - option "TRANSIT CIFTKABINKAMYONET ECOBLUE 350E"
+                - option "TRANSIT CIFTKABINKAMYONET ECOBLUE 350ED"
+                - option "TRANSIT COURIER"
+                - option "TRANSIT CUSTOM"
+                - option "TRANSIT CUSTOM 320L 9+1 ECOBLUE"
+                - option "TRANSIT CUSTOM CAMLI"
+                - option "TRANSIT K.NET"
+                - option "TRANSIT TEK"
+                - option "TRANSIT TEK K.KAMYONET ECOBLUE 330S"
+                - option "TRANSIT TEK K.KAMYONET ECOBLUE 350E"
+                - option "TRANSIT TEK K.KAMYONET ECOBLUE 350L"
+                - option "TRANSIT TEK K.KAMYONET ECOBLUE 350M"
+                - option "TRANSIT TEK KA.KAMYONET ECOBLUE"
+                - option "TRANSIT350 ED"
+                - option "TRANSITCIFTKABINKAMYONET ECOBLUE 470ELD"
+                - option "TRANSITCONNECTVANTRENDMCA KISA"
+                - option "TRANSITCONNECTVANTRENDMCA UZUN"
+                - option "TRANSITCOURIERKOMBIVAN1.5TDCI"
+                - option "TRANSITCUSTOM"
+                - option "TRANSITCUSTOMKOMBI 320S"
+                - option "TRANSITCUSTOMKOMBI 320S170 E6.2"
+                - option "TRANSITCUSTOMKOMBIVAN 320L"
+                - option "TRANSITCUSTOMKOMBIVAN 320S"
+                - option "TRANSITCUSTOMKOMBIVAN ECOBLUE"
+                - option "TRANSITCUSTOMKOMBIVAN320L"
+                - option "TRANSITCUSTOMKOMBIVANECOBLUE170 320L"
+                - option "TRANSITCUSTOMKOMBIVANECOBLUE170 320L DELUX"
+                - option "TRANSITCUSTOMKOMBIVANECOBLUE170 320S"
+                - option "TRANSITCUSTOMVAN 320S"
+                - option "TRANSITCUSTOMVAN 340L"
+                - option "TRANSITCUSTOMVAN 340L HIBRIT"
+                - option "TRANSITCUSTOMVAN ECOBLUE"
+                - option "TRANSITCUSTOMVAN ECOBLUE170 340S"
+                - option "TRANSITCUSTOMVAN340L"
+                - option "TRANSITCUSTOMVAN340S"
+                - option "TRANSITK.NET 350L ECOBLUEUPGRADE170TREND10AT"
+                - option "TRANSITKAMYONET"
+                - option "TRANSITKAMYONET 330S"
+                - option "TRANSITKAMYONET 350LF UPGRADE170"
+                - option "TRANSITKAMYONET 350MF UPGRADE170"
+                - option "TRANSITKAMYONET350LECOBLUEUPGRADE170TREND10AT"
+                - option "TRANSITKAMYONETCIFTK.470ELD170TRENDKASALIE6.1"
+                - option "TRANSITMINIBUS 410L 10+1 ECOBLUE170DELUXEE6.1"
+                - option "TRANSITMINIBUS 440E 16+1 OKUL"
+                - option "TRANSITMINIBUS410L 16+1UPGRADE170 DELUXE 10AT"
+                - option "TRANSITMINIBUS460ED16+1UPGRADE"
+                - option "TRANSITVAN 350E"
+                - option "TRANSITVAN 350ED"
+                - option "TRANSITVAN 350LF"
+                - option "TRANSITVAN 350LF 13M3 ECOBLUE"
+                - option "TRANSITVAN 350M"
+                - option "TRANSITVAN 350MF 10M3 ECOBLUE"
+                - option "TRANSITVAN 470ED"
+                - option "TRANSITVAN350LF"
+                - option "TRANSITVAN350LF 13M3 ECOBLUE170"
+                - option "TRANSITVAN350MF 10M3 ECOBLUE170"
+            - generic [ref=f12e64]:
+              - generic [ref=f12e65]: Kasa / Nesil
+              - combobox [disabled] [ref=f12e66]:
+                - option "Nesil seçin" [selected]
+            - generic [ref=f12e67]:
+              - generic [ref=f12e68]: Motor
+              - combobox [disabled] [ref=f12e69]:
+                - option "Motor seçin" [selected]
+          - generic [ref=f12e70]:
+            - button "Parçaları Göster" [disabled]
+  - contentinfo [ref=f12e71]:
+    - generic [ref=f12e72]:
+      - generic [ref=f12e73]:
+        - generic [ref=f12e74]:
+          - generic [ref=f12e75]:
+            - generic [ref=f12e76]: Akinel
+            - generic [ref=f12e77]: Yedek Parça
+          - paragraph [ref=f12e78]: Test açıklaması güncel
+        - generic [ref=f12e79]:
+          - heading "Hızlı Linkler" [level=3] [ref=f12e80]
+          - list [ref=f12e81]:
+            - listitem [ref=f12e82]:
+              - link "Ana Sayfa" [ref=f12e83] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f12e84]:
+              - link "Ürünler" [ref=f12e85] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f12e86]:
+              - link "Aracımı Seç" [ref=f12e87] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f12e88]:
+              - link "OEM Ara" [ref=f12e89] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f12e90]:
+              - link "Garajım" [ref=f12e91] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f12e92]:
+              - link "Hakkımızda" [ref=f12e93] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f12e94]:
+          - heading "Müşteri" [level=3] [ref=f12e95]
+          - list [ref=f12e96]:
+            - listitem [ref=f12e97]:
+              - link "Giriş Yap" [ref=f12e98] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f12e99]:
+              - link "Kayıt Ol" [ref=f12e100] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f12e101]:
+              - link "Garajım" [ref=f12e102] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f12e103]:
+              - link "Hesabım" [ref=f12e104] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f12e105]:
+              - link "Periyodik Bakım" [ref=f12e106] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f12e107]:
+          - heading "İletişim" [level=3] [ref=f12e108]
+          - generic [ref=f12e109]:
+            - paragraph [ref=f12e110]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f12e111] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f12e118]:
+              - paragraph [ref=f12e119]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f12e120]: "Pazar: Kapalı"
+      - generic [ref=f12e121]:
+        - generic [ref=f12e122]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f12e123]:
+          - link "Gizlilik Politikası" [ref=f12e124] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f12e125] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f12e131] [cursor=pointer]
+  - alert [ref=f12e135]

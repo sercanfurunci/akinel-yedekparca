@@ -1,0 +1,434 @@
+- generic [active] [ref=f7e1]:
+  - banner [ref=f7e2]:
+    - generic [ref=f7e4]:
+      - link "+90 533 140 56 49" [ref=f7e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f7e8]:
+        - link "Sipariş Takip" [ref=f7e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f7e10]: "|"
+        - link "Yardım" [ref=f7e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f7e12]: "|"
+        - link "İletişim" [ref=f7e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f7e14]: "|"
+        - generic [ref=f7e15]: TR
+    - generic [ref=f7e17]:
+      - link "Akinel Yedek Parça" [ref=f7e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f7e19]: Akinel
+        - generic [ref=f7e20]: Yedek Parça
+      - generic [ref=f7e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f7e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f7e24]:
+        - link "Garajım" [ref=f7e25] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f7e157] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f7e158] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f7e36]:
+      - link "Ana Sayfa" [ref=f7e37] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f7e38] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f7e39] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f7e40] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f7e41] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f7e42] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f7e43] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f7e44] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=f7e45]:
+    - generic [ref=f7e46]:
+      - navigation "Breadcrumb" [ref=f7e47]:
+        - link "Ana Sayfa" [ref=f7e49] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f7e50]: Aracımı Seç
+      - generic [ref=f7e54]:
+        - heading "Aracınızı Seçin" [level=1] [ref=f7e55]
+        - paragraph [ref=f7e56]: 4 adımda aracınızı seçin ve uyumlu parçaları keşfedin.
+        - generic [ref=f7e58]:
+          - generic [ref=f7e59]:
+            - generic [ref=f7e61]:
+              - generic [ref=f7e62]: ✓
+              - generic [ref=f7e63]: Marka
+            - generic [ref=f7e66]:
+              - generic [ref=f7e67]: "2"
+              - generic [ref=f7e68]: Model
+            - generic [ref=f7e71]:
+              - generic [ref=f7e72]: "3"
+              - generic [ref=f7e73]: Kasa / Nesil
+            - generic [ref=f7e76]:
+              - generic [ref=f7e77]: "4"
+              - generic [ref=f7e78]: Motor
+          - generic [ref=f7e79]:
+            - generic [ref=f7e80]:
+              - generic [ref=f7e81]: Marka
+              - combobox [ref=f7e82]:
+                - option "Marka seçin"
+                - option "Ac"
+                - option "Acura"
+                - option "Alfa Romeo"
+                - option "Alpine"
+                - option "Ariel"
+                - option "Aro"
+                - option "Artega"
+                - option "Aston Martin"
+                - option "Audi"
+                - option "Aurus"
+                - option "BMW"
+                - option "Bentley"
+                - option "Bristol"
+                - option "Bufori"
+                - option "Bugatti"
+                - option "Buick"
+                - option "Cadillac"
+                - option "Caterham"
+                - option "Chevrolet"
+                - option "Chrysler"
+                - option "Citroen"
+                - option "Cupra"
+                - option "Dacia"
+                - option "Daewoo"
+                - option "Daihatsu"
+                - option "Datsun"
+                - option "Delorean"
+                - option "Dodge"
+                - option "Donkervoort"
+                - option "Dr Motor"
+                - option "Ds Automobiles"
+                - option "Eagle"
+                - option "FIAT" [selected]
+                - option "Ferrari"
+                - option "Fisker"
+                - option "Ford"
+                - option "Fso"
+                - option "GMC"
+                - option "Geely"
+                - option "Genesis"
+                - option "Gordon Murray Automotive"
+                - option "Gta Motor"
+                - option "Hindustan"
+                - option "Holden"
+                - option "Honda"
+                - option "Hummer"
+                - option "Hyundai"
+                - option "Ineos"
+                - option "Infiniti"
+                - option "Isuzu"
+                - option "Jaguar"
+                - option "Jeep"
+                - option "Karma"
+                - option "Kia"
+                - option "Koenigsegg"
+                - option "Ktm"
+                - option "Lada"
+                - option "Lamborghini"
+                - option "Lancia"
+                - option "Land Rover"
+                - option "Lexus"
+                - option "Lightyear"
+                - option "Lincoln"
+                - option "Lotus"
+                - option "Lucid Motors"
+                - option "MG"
+                - option "Mahindra"
+                - option "Marussia"
+                - option "Maruti Suzuki"
+                - option "Maserati"
+                - option "Maybach"
+                - option "Mazda"
+                - option "Mclaren"
+                - option "Mercedes Benz"
+                - option "Mercedes-AMG"
+                - option "Mercury"
+                - option "Mini"
+                - option "Mitsubishi"
+                - option "Morgan"
+                - option "Nio"
+                - option "Nissan"
+                - option "Oldsmobile"
+                - option "Opel"
+                - option "Pagani"
+                - option "Panoz"
+                - option "Perodua"
+                - option "Peugeot"
+                - option "Pininfarina"
+                - option "Plymouth"
+                - option "Polestar"
+                - option "Pontiac"
+                - option "Porsche"
+                - option "Proton"
+                - option "Qoros"
+                - option "RAM Trucks"
+                - option "Renault"
+                - option "Rimac"
+                - option "Rivian"
+                - option "Rolls-Royce"
+                - option "SEAT"
+                - option "Saab"
+                - option "Saleen"
+                - option "Samsung"
+                - option "Santana"
+                - option "Saturn"
+                - option "Scion"
+                - option "Smart"
+                - option "Spyker"
+                - option "Ssangyong"
+                - option "Subaru"
+                - option "Suzuki"
+                - option "Tata Motors"
+                - option "Tesla"
+                - option "Toyota"
+                - option "Tvr"
+                - option "Vauxhall"
+                - option "Vinfast"
+                - option "Volkswagen"
+                - option "Volvo"
+                - option "Wiesmann"
+                - option "Xpeng"
+                - option "Zender"
+                - option "Zenvo"
+                - option "Škoda"
+            - generic [ref=f7e83]:
+              - generic [ref=f7e84]: Model
+              - combobox [ref=f7e85]:
+                - option "Model seçin" [selected]
+                - option "1100 D"
+                - option "1100 E"
+                - option "1100 S"
+                - option "1100 TV Spider"
+                - option "12 HP"
+                - option "12-15 HP/Zero"
+                - option "1200"
+                - option "1200 Spider"
+                - option "124 Familiare"
+                - option "124 GT Abarth"
+                - option "124 Saloon"
+                - option "124 Special T"
+                - option "124 Spider"
+                - option "124 Sport AC"
+                - option "124 Sport BC"
+                - option "124 Sport CC"
+                - option "124 Sport Spider"
+                - option "125"
+                - option "125 Special"
+                - option "126"
+                - option "127"
+                - option "127 Panorama"
+                - option "128 Rally"
+                - option "128 Saloon"
+                - option "130 2800/3200 Limousine"
+                - option "130 3200"
+                - option "131 Mirafiori"
+                - option "131 Supermirafiori"
+                - option "132"
+                - option "1400"
+                - option "1400 let"
+                - option "15-25 HP Brevetti Tipo 2"
+                - option "1500"
+                - option "1500 A / 1500 B"
+                - option "1500 C"
+                - option "1500 L"
+                - option "16-20 HP"
+                - option "1800 / 2100"
+                - option "1800 / 2100 Familiare"
+                - option "2300"
+                - option "2300 S"
+                - option "2300 Saloon"
+                - option "2800 Berlina"
+                - option "3 1/2 HP"
+                - option "500"
+                - option "500 3+1"
+                - option "500 Abarth"
+                - option "500 Abarth 695 Biposto"
+                - option "500 Abarth 695 Tributo Ferrari"
+                - option "500 C"
+                - option "500 D"
+                - option "500 F/Berlina"
+                - option "500 K/Giardiniera"
+                - option "500 L/Lusso"
+                - option "500 Nouva"
+                - option "500 R/Rinnovata"
+                - option "500 Topolino"
+                - option "500 X"
+                - option "500C Abarth"
+                - option "500C Abarth esseesse"
+                - option "500L"
+                - option "500L Trekking"
+                - option "500X"
+                - option "500e"
+                - option "501"
+                - option "501 S Torpedo Sport"
+                - option "502"
+                - option "503 Torpedo"
+                - option "505"
+                - option "507"
+                - option "507 Touring"
+                - option "509 A"
+                - option "509 S"
+                - option "514"
+                - option "514 S"
+                - option "519"
+                - option "519 Berlina"
+                - option "519 S"
+                - option "520 Superfiat"
+                - option "521"
+                - option "522 C"
+                - option "524 C"
+                - option "525"
+                - option "527"
+                - option "595 Abarth"
+                - option "595C Abarth"
+                - option "600"
+                - option "600 D"
+                - option "600 Multipla"
+                - option "600e"
+                - option "850"
+                - option "850 1964"
+                - option "850 Spider"
+                - option "850 Sport"
+                - option "850 Sport Spider 1968"
+                - option "8V"
+                - option "Abarth 124 Spider"
+                - option "Abarth 500 esseesse"
+                - option "Albea"
+                - option "Albea/Siena"
+                - option "Argenta"
+                - option "Argo 2017"
+                - option "Barchetta"
+                - option "Brava"
+                - option "Bravo"
+                - option "Brevetti"
+                - option "Campagnola"
+                - option "Campagnola A"
+                - option "Cinquecento"
+                - option "Coupe"
+                - option "Croma"
+                - option "Dino"
+                - option "Dino Spider"
+                - option "Doblo"
+                - option "F595 Abarth"
+                - option "Freemont"
+                - option "Fullback"
+                - option "Fullback Double Cab"
+                - option "Fullback Extended Cab"
+                - option "Grande Punto"
+                - option "Grande Punto Abarth"
+                - option "Idea"
+                - option "Linea"
+                - option "Marea"
+                - option "Marea Weekend"
+                - option "Mille"
+                - option "Multipla"
+                - option "Palio"
+                - option "Palio Weekend"
+                - option "Panda"
+                - option "Panda 100HP"
+                - option "Panda 4x4"
+                - option "Panda City"
+                - option "Punto"
+                - option "Punto Evo"
+                - option "Qubo"
+                - option "Regata"
+                - option "Regata Weekend"
+                - option "Ritmo"
+                - option "Sedici"
+                - option "Seicento"
+                - option "Stilo"
+                - option "Stilo Abarth"
+                - option "Stilo Multi"
+                - option "Tempra"
+                - option "Tempra SW"
+                - option "Tipo"
+                - option "Tipo / Egea"
+                - option "Topolino"
+                - option "Ulysse"
+                - option "Uno"
+                - option "Viaggio"
+                - option "X1/9"
+            - generic [ref=f7e86]:
+              - generic [ref=f7e87]: Kasa / Nesil
+              - combobox [disabled] [ref=f7e88]:
+                - option "Nesil seçin" [selected]
+            - generic [ref=f7e89]:
+              - generic [ref=f7e90]: Motor
+              - combobox [disabled] [ref=f7e91]:
+                - option "Motor seçin" [selected]
+          - generic [ref=f7e92]:
+            - button "Parçaları Göster" [disabled]
+  - contentinfo [ref=f7e93]:
+    - generic [ref=f7e94]:
+      - generic [ref=f7e95]:
+        - generic [ref=f7e96]:
+          - generic [ref=f7e97]:
+            - generic [ref=f7e98]: Akinel
+            - generic [ref=f7e99]: Yedek Parça
+          - paragraph [ref=f7e100]: Test açıklaması güncel
+        - generic [ref=f7e101]:
+          - heading "Hızlı Linkler" [level=3] [ref=f7e102]
+          - list [ref=f7e103]:
+            - listitem [ref=f7e104]:
+              - link "Ana Sayfa" [ref=f7e105] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f7e106]:
+              - link "Ürünler" [ref=f7e107] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f7e108]:
+              - link "Aracımı Seç" [ref=f7e109] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f7e110]:
+              - link "OEM Ara" [ref=f7e111] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f7e112]:
+              - link "Garajım" [ref=f7e113] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f7e114]:
+              - link "Hakkımızda" [ref=f7e115] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f7e116]:
+          - heading "Müşteri" [level=3] [ref=f7e117]
+          - list [ref=f7e118]:
+            - listitem [ref=f7e119]:
+              - link "Giriş Yap" [ref=f7e120] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f7e121]:
+              - link "Kayıt Ol" [ref=f7e122] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f7e123]:
+              - link "Garajım" [ref=f7e124] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f7e125]:
+              - link "Hesabım" [ref=f7e126] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f7e127]:
+              - link "Periyodik Bakım" [ref=f7e128] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f7e129]:
+          - heading "İletişim" [level=3] [ref=f7e130]
+          - generic [ref=f7e131]:
+            - paragraph [ref=f7e132]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f7e133] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f7e140]:
+              - paragraph [ref=f7e141]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f7e142]: "Pazar: Kapalı"
+      - generic [ref=f7e143]:
+        - generic [ref=f7e144]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f7e145]:
+          - link "Gizlilik Politikası" [ref=f7e146] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f7e147] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f7e153] [cursor=pointer]
+  - alert [ref=f7e159]

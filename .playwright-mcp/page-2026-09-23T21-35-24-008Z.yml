@@ -1,0 +1,163 @@
+- generic [active] [ref=f78e1]:
+  - banner [ref=f78e2]:
+    - generic [ref=f78e4]:
+      - button "Menüyü aç" [ref=f78e5]
+      - link "Akinel" [ref=f78e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f78e9]:
+        - link "Ara" [ref=f78e10] [cursor=pointer]:
+          - /url: /search
+        - button "Sepet" [ref=f78e14]
+        - link "Garajım" [ref=f78e20] [cursor=pointer]:
+          - /url: /garage
+    - generic [ref=f78e95]:
+      - generic [ref=f78e100]: "Seçili Araç:"
+      - generic [ref=f78e101]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link "Değiştir" [ref=f78e102] [cursor=pointer]:
+        - /url: /vehicle
+      - button "Araç seçimini temizle" [ref=f78e103]
+  - main [ref=f78e107]:
+    - generic [ref=f78e108]:
+      - complementary [ref=f78e109]:
+        - link "A" [ref=f78e111] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f78e112]:
+          - link "Gösterge Paneli" [ref=f78e113] [cursor=pointer]:
+            - /url: /admin
+          - link "Ürünler" [ref=f78e119] [cursor=pointer]:
+            - /url: /admin/products
+          - link "Kategoriler" [ref=f78e124] [cursor=pointer]:
+            - /url: /admin/categories
+          - link "Markalar" [ref=f78e127] [cursor=pointer]:
+            - /url: /admin/brands
+          - link "Araçlar" [ref=f78e131] [cursor=pointer]:
+            - /url: /admin/vehicles
+          - link "Stok" [ref=f78e136] [cursor=pointer]:
+            - /url: /admin/stock
+          - link "Müşteriler" [ref=f78e140] [cursor=pointer]:
+            - /url: /admin/customers
+          - link "Siparişler" [ref=f78e146] [cursor=pointer]:
+            - /url: /admin/orders
+          - link "İşletme" [ref=f78e150] [cursor=pointer]:
+            - /url: /admin/business
+      - main [ref=f78e155]:
+        - generic [ref=f78e156]:
+          - generic [ref=f78e157]:
+            - link [ref=f78e158] [cursor=pointer]:
+              - /url: /admin/orders
+            - generic [ref=f78e161]:
+              - heading "AKN-20260923-0004" [level=1] [ref=f78e162]
+              - paragraph [ref=f78e163]: 24 Eylül 2026 00:34
+            - generic [ref=f78e164]: Onaylandı
+          - generic [ref=f78e166]:
+            - generic [ref=f78e167]:
+              - heading "Durum Güncelle" [level=2] [ref=f78e168]
+              - generic [ref=f78e169]:
+                - combobox [ref=f78e170]:
+                  - option "Bekliyor"
+                  - option "Onaylandı" [selected]
+                  - option "Hazırlanıyor"
+                  - option "Kargoya Verildi"
+                  - option "Teslim Edildi"
+                  - option "İptal"
+                - button "Güncelle" [ref=f78e171]
+                - generic [ref=f78e172]: Güncellendi.
+            - generic [ref=f78e173]:
+              - heading "Ürünler (1)" [level=2] [ref=f78e174]
+              - generic [ref=f78e175]:
+                - generic [ref=f78e181]:
+                  - paragraph [ref=f78e182]: Bosch Fren Balata Seti - Test Ürünü
+                  - paragraph [ref=f78e183]: Bosch
+                  - paragraph [ref=f78e184]: 1 × ₺400,00
+                - generic [ref=f78e185]: ₺400,00
+              - generic [ref=f78e186]:
+                - generic [ref=f78e187]:
+                  - generic [ref=f78e188]: Ara Toplam
+                  - generic [ref=f78e189]: ₺400,00
+                - generic [ref=f78e190]:
+                  - generic [ref=f78e191]: Kargo
+                  - generic [ref=f78e192]: Ücretsiz
+                - generic [ref=f78e193]:
+                  - generic [ref=f78e194]: Toplam
+                  - generic [ref=f78e195]: ₺400,00
+            - generic [ref=f78e196]:
+              - generic [ref=f78e197]:
+                - heading "Müşteri Bilgileri" [level=2] [ref=f78e198]
+                - generic [ref=f78e199]:
+                  - paragraph [ref=f78e200]: Admin User
+                  - paragraph [ref=f78e201]: admin@akinel.com
+              - generic [ref=f78e202]:
+                - heading "Teslimat Adresi" [level=2] [ref=f78e203]
+                - generic [ref=f78e204]:
+                  - paragraph [ref=f78e205]: Atatürk Caddesi No:42 Daire 5
+                  - paragraph [ref=f78e206]: Kadıköy, İstanbul 34710
+              - generic [ref=f78e207]:
+                - heading "Ödeme" [level=2] [ref=f78e208]
+                - generic [ref=f78e209]:
+                  - paragraph [ref=f78e210]: Kapıda Ödeme
+                  - paragraph [ref=f78e211]: Henüz ödenmedi
+  - contentinfo [ref=f78e29]:
+    - generic [ref=f78e30]:
+      - generic [ref=f78e31]:
+        - generic [ref=f78e32]:
+          - generic [ref=f78e33]:
+            - generic [ref=f78e34]: Akinel
+            - generic [ref=f78e35]: Yedek Parça
+          - paragraph [ref=f78e36]: Test açıklaması güncel
+        - generic [ref=f78e37]:
+          - heading "Hızlı Linkler" [level=3] [ref=f78e38]
+          - list [ref=f78e39]:
+            - listitem [ref=f78e40]:
+              - link "Ana Sayfa" [ref=f78e41] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f78e42]:
+              - link "Ürünler" [ref=f78e43] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f78e44]:
+              - link "Aracımı Seç" [ref=f78e45] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f78e46]:
+              - link "OEM Ara" [ref=f78e47] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f78e48]:
+              - link "Garajım" [ref=f78e49] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f78e50]:
+              - link "Hakkımızda" [ref=f78e51] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f78e52]:
+          - heading "Müşteri" [level=3] [ref=f78e53]
+          - list [ref=f78e54]:
+            - listitem [ref=f78e55]:
+              - link "Giriş Yap" [ref=f78e56] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f78e57]:
+              - link "Kayıt Ol" [ref=f78e58] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f78e59]:
+              - link "Garajım" [ref=f78e60] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f78e61]:
+              - link "Hesabım" [ref=f78e62] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f78e63]:
+              - link "Periyodik Bakım" [ref=f78e64] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f78e65]:
+          - heading "İletişim" [level=3] [ref=f78e66]
+          - generic [ref=f78e67]:
+            - paragraph [ref=f78e68]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f78e69] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f78e76]:
+              - paragraph [ref=f78e77]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f78e78]: "Pazar: Kapalı"
+      - generic [ref=f78e79]:
+        - generic [ref=f78e80]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f78e81]:
+          - link "Gizlilik Politikası" [ref=f78e82] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f78e83] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f78e89] [cursor=pointer]
+  - alert [ref=f78e212]

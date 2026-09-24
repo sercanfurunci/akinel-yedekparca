@@ -1,0 +1,148 @@
+- generic [active] [ref=f40e1]:
+  - banner [ref=f40e2]:
+    - generic [ref=f40e4]:
+      - link "+90 533 140 56 49" [ref=f40e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f40e8]:
+        - link "Sipariş Takip" [ref=f40e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f40e10]: "|"
+        - link "Yardım" [ref=f40e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f40e12]: "|"
+        - link "İletişim" [ref=f40e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f40e14]: "|"
+        - generic [ref=f40e15]: TR
+    - generic [ref=f40e17]:
+      - link "Akinel Yedek Parça" [ref=f40e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f40e19]: Akinel
+        - generic [ref=f40e20]: Yedek Parça
+      - generic [ref=f40e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f40e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f40e24]:
+        - link "Garajım" [ref=f40e25] [cursor=pointer]:
+          - /url: /garage
+        - link "Giriş Yap" [ref=f40e30] [cursor=pointer]:
+          - /url: /login
+        - link "Admin" [ref=f40e34] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f40e37]:
+      - link "Ana Sayfa" [ref=f40e38] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f40e39] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f40e40] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f40e41] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f40e42] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f40e43] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f40e44] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f40e45] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=f40e46]:
+    - generic [ref=f40e48]:
+      - generic [ref=f40e49]:
+        - generic [ref=f40e50]: Akinel
+        - generic [ref=f40e51]: Giriş Yap
+      - generic [ref=f40e52]:
+        - generic [ref=f40e53]:
+          - generic [ref=f40e54]:
+            - generic [ref=f40e55]: E-posta
+            - textbox "E-posta" [ref=f40e56]:
+              - /placeholder: ornek@email.com
+          - generic [ref=f40e57]:
+            - generic [ref=f40e58]: Şifre
+            - generic [ref=f40e59]:
+              - textbox "Şifre" [ref=f40e60]:
+                - /placeholder: ••••••••
+              - button "Şifreyi göster" [ref=f40e61]
+          - generic [ref=f40e65]:
+            - generic [ref=f40e66] [cursor=pointer]:
+              - checkbox "Beni Hatırla" [ref=f40e67]
+              - text: Beni Hatırla
+            - link "Şifremi Unuttum" [ref=f40e68] [cursor=pointer]:
+              - /url: "#"
+          - button "Giriş Yap" [ref=f40e69]
+        - paragraph [ref=f40e70]:
+          - text: Hesabınız yok mu?
+          - link "Kayıt Olun" [ref=f40e71] [cursor=pointer]:
+            - /url: /register
+  - contentinfo [ref=f40e72]:
+    - generic [ref=f40e73]:
+      - generic [ref=f40e74]:
+        - generic [ref=f40e75]:
+          - generic [ref=f40e76]:
+            - generic [ref=f40e77]: Akinel
+            - generic [ref=f40e78]: Yedek Parça
+          - paragraph [ref=f40e79]: Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.
+        - generic [ref=f40e80]:
+          - heading "Hızlı Linkler" [level=3] [ref=f40e81]
+          - list [ref=f40e82]:
+            - listitem [ref=f40e83]:
+              - link "Ana Sayfa" [ref=f40e84] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f40e85]:
+              - link "Ürünler" [ref=f40e86] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f40e87]:
+              - link "Aracımı Seç" [ref=f40e88] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f40e89]:
+              - link "OEM Ara" [ref=f40e90] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f40e91]:
+              - link "Garajım" [ref=f40e92] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f40e93]:
+              - link "Hakkımızda" [ref=f40e94] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f40e95]:
+          - heading "Müşteri" [level=3] [ref=f40e96]
+          - list [ref=f40e97]:
+            - listitem [ref=f40e98]:
+              - link "Giriş Yap" [ref=f40e99] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f40e100]:
+              - link "Kayıt Ol" [ref=f40e101] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f40e102]:
+              - link "Garajım" [ref=f40e103] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f40e104]:
+              - link "Hesabım" [ref=f40e105] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f40e106]:
+              - link "Periyodik Bakım" [ref=f40e107] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f40e108]:
+          - heading "İletişim" [level=3] [ref=f40e109]
+          - generic [ref=f40e110]:
+            - paragraph [ref=f40e111]: AKN MOTORS Car Service
+            - generic [ref=f40e112]: Nenehatun, Fatih Cd. No:81, 41700 Darıca/Kocaeli
+            - link "+90 533 140 56 49" [ref=f40e117] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - link "info@aknmotors.com.tr" [ref=f40e120] [cursor=pointer]:
+              - /url: mailto:info@aknmotors.com.tr
+            - generic [ref=f40e128]:
+              - paragraph [ref=f40e129]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f40e130]: "Pazar: Kapalı"
+            - link "Yol Tarifi Al" [ref=f40e131] [cursor=pointer]:
+              - /url: https://maps.google.com/?q=Nenehatun+Fatih+Caddesi+No+81+41700+Darica+Kocaeli+Turkiye
+      - generic [ref=f40e136]:
+        - generic [ref=f40e137]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f40e138]:
+          - link "Gizlilik Politikası" [ref=f40e139] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f40e140] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f40e146] [cursor=pointer]
+  - alert [ref=f40e150]

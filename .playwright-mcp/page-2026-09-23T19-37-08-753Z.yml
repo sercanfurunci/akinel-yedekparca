@@ -1,0 +1,714 @@
+- generic [active] [ref=f17e1]:
+  - generic [ref=f17e8]:
+    - text:       
+    - generic [ref=f17e9]:
+      - generic [ref=f17e10]:
+        - link [ref=f17e12] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+        - generic [ref=f17e13]:
+          - textbox "Parça Ara.." [ref=f17e15]
+          - button "" [ref=f17e16] [cursor=pointer]
+      - generic [ref=f17e18]:
+        - link " 0" [ref=f17e19] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/sepet
+          - generic [ref=f17e20]: 
+          - generic [ref=f17e21]: "0"
+        - link "" [ref=f17e22] [cursor=pointer]:
+          - /url: javascript:;
+      - navigation [ref=f17e24]:
+        - generic [ref=f17e25]:
+          - link " Anasayfa" [ref=f17e27] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr
+            - generic [ref=f17e28]: 
+            - text: Anasayfa
+          - link " Sepetim 0 Ürün" [ref=f17e30] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/sepet
+            - generic [ref=f17e31]: 
+            - text: Sepetim
+            - generic [ref=f17e32]: 0 Ürün
+          - generic [ref=f17e33]:
+            - button " Kategoriler" [ref=f17e34] [cursor=pointer]:
+              - generic [ref=f17e35]: 
+              - text: Kategoriler
+            - text:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+          - generic [ref=f17e36]:
+            - generic [ref=f17e37]:
+              - generic [ref=f17e38]: 
+              - text: Hesabım
+            - paragraph [ref=f17e40]: Tüm işlemlerinizi görmek ve alışveriş yapmak için lütfen üye girişi yapın
+            - generic [ref=f17e41]:
+              - link "Giriş Yap" [ref=f17e42] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/uye-giris
+              - link "Üye Ol" [ref=f17e43] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/uye-ol
+              - link "Şifremi Unuttum" [ref=f17e44] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/uye-giris?sayfa=sifre
+          - generic [ref=f17e45]:
+            - generic [ref=f17e46]: Müşteri Hizmetleri
+            - list [ref=f17e48]:
+              - listitem [ref=f17e49]:
+                - link " 0850 532 1935" [ref=f17e50] [cursor=pointer]:
+                  - /url: javascript:;
+                  - generic [ref=f17e51]: 
+                  - text: 0850 532 1935
+              - listitem [ref=f17e52]:
+                - link " info@yedekparca.com.tr" [ref=f17e53] [cursor=pointer]:
+                  - /url: mailto:info@yedekparca.com.tr
+                  - generic [ref=f17e54]: 
+                  - generic [ref=f17e55]: info@yedekparca.com.tr
+            - generic [ref=f17e56]: Diğer
+            - list [ref=f17e58]:
+              - listitem [ref=f17e59]:
+                - link "Periyodik Bakım Robotu" [ref=f17e60] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/periyodik-bakim-robotu-yp
+              - listitem [ref=f17e61]:
+                - link "Hakkımızda" [ref=f17e62] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/hakkimizda
+              - listitem [ref=f17e63]:
+                - link "İletişim" [ref=f17e64] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/iletisim
+              - listitem [ref=f17e65]:
+                - link "Gizlilik Sözleşmesi" [ref=f17e66] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/gizlilik-sozlesmesi
+              - listitem [ref=f17e67]:
+                - link "Kullanıcı Sözleşmesi" [ref=f17e68] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/kullanici-sozlesmesi
+              - listitem [ref=f17e69]:
+                - link "İade/İptal Koşulları" [ref=f17e70] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/iade-iptal
+              - listitem [ref=f17e71]:
+                - link "Sıkça Sorulan Sorular" [ref=f17e72] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/sss-sID0
+              - listitem [ref=f17e73]:
+                - link "Sipariş Takip" [ref=f17e74] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+              - listitem [ref=f17e75]:
+                - link "Havale Bildirimleri" [ref=f17e76] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+              - listitem [ref=f17e77]:
+                - link "Puan Sistemi" [ref=f17e78] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/puan-sistemi-sID0
+    - generic [ref=f17e79]:
+      - generic [ref=f17e80]:
+        - generic [ref=f17e81]: 
+        - link "0850 532 1935" [ref=f17e82] [cursor=pointer]:
+          - /url: tel:+90850 532 1935
+      - generic [ref=f17e83]:
+        - generic [ref=f17e84]: 
+        - link "0530 570 1935" [ref=f17e85] [cursor=pointer]:
+          - /url: https://api.whatsapp.com/send?phone=9005305701935&text=Ürünleriniz hakkında detaylı bilgi almak istiyorum
+  - generic [ref=f17e90]:
+    - generic [ref=f17e97]:
+      - generic [ref=f17e98]:
+        - generic [ref=f17e99]: Aracınızın Parçalarını Arayın
+        - paragraph [ref=f17e100]:
+          - text: Şimdi, aşağıdaki
+          - strong [ref=f17e101]: periyoduk bakım robotunu kullanarak
+          - text: araç modelinizi seçimini gerçekleştirerek
+          - strong [ref=f17e102]: "300.000"
+          - text: "ürün arasında parçalara basit bir şekilde göz atabilirsiniz:"
+      - generic [ref=f17e103]:
+        - generic [ref=f17e104]:
+          - generic [ref=f17e105]:
+            - generic [ref=f17e106]: "1"
+            - text: Marka
+          - combobox [ref=f17e107]:
+            - option "Seçin" [selected]
+            - option "Alfa Romeo"
+            - option "Aston Martin"
+            - option "Audi"
+            - option "Bentley"
+            - option "Bmw"
+            - option "Chery"
+            - option "Chevrolet"
+            - option "Chrysler"
+            - option "Citroen"
+            - option "Cupra"
+            - option "Dacia"
+            - option "Daewoo"
+            - option "Daihatsu"
+            - option "Dodge"
+            - option "Ds"
+            - option "Ferrari"
+            - option "Fiat"
+            - option "Ford"
+            - option "Geely"
+            - option "Honda"
+            - option "Hyundai"
+            - option "Infiniti"
+            - option "Isuzu"
+            - option "Iveco"
+            - option "Jaguar"
+            - option "Jeep"
+            - option "Kia"
+            - option "Lada"
+            - option "Lamborghini"
+            - option "Land Rover"
+            - option "Lexus"
+            - option "Maserati"
+            - option "Mazda"
+            - option "Mercedes"
+            - option "Mg"
+            - option "Mini"
+            - option "Mitsubishi"
+            - option "Nissan"
+            - option "Opel"
+            - option "Peugeot"
+            - option "Porsche"
+            - option "Proton"
+            - option "Renault"
+            - option "Rover"
+            - option "Saab"
+            - option "Seat"
+            - option "Skoda"
+            - option "Smart"
+            - option "Ssangyong"
+            - option "Subaru"
+            - option "Suzuki"
+            - option "Tata"
+            - option "Tofas"
+            - option "Toyota"
+            - option "Volkswagen"
+            - option "Volvo"
+        - generic [ref=f17e108]:
+          - generic [ref=f17e109]:
+            - generic [ref=f17e110]: "2"
+            - text: Model
+          - combobox [ref=f17e111]
+        - generic [ref=f17e112]:
+          - generic [ref=f17e113]:
+            - generic [ref=f17e114]: "3"
+            - text: Kasa
+          - combobox [ref=f17e115]
+        - generic [ref=f17e116]:
+          - generic [ref=f17e117]:
+            - generic [ref=f17e118]: "4"
+            - text: Yıl
+          - combobox [ref=f17e119]
+        - generic [ref=f17e120]:
+          - generic [ref=f17e121]:
+            - generic [ref=f17e122]: "5"
+            - text: Motor
+          - combobox [ref=f17e123]
+        - generic [ref=f17e124]:
+          - generic [ref=f17e125]:
+            - generic [ref=f17e126]: "6"
+            - text: Güç
+          - combobox [ref=f17e127]
+        - button "Parça Ara " [ref=f17e129] [cursor=pointer]:
+          - text: Parça Ara
+          - generic [ref=f17e130]: 
+    - generic [ref=f17e137]:
+      - link [ref=f17e140] [cursor=pointer]:
+        - /url: https://api.whatsapp.com/send?phone=905305701935
+      - button "" [ref=f17e141] [cursor=pointer]
+      - button "" [ref=f17e143] [cursor=pointer]
+  - generic [ref=f17e146]:
+    - generic [ref=f17e148]:
+      - generic [ref=f17e149]: Popüler Kategoriler
+      - generic [ref=f17e150]: En Popüler Kategorilerimizi Keşfetin
+    - generic [ref=f17e159]:
+      - generic [ref=f17e161]:
+        - link [ref=f17e163] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/balata
+          - img "Balata" [ref=f17e164]
+        - link "Balata" [ref=f17e165] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/balata
+      - generic [ref=f17e167]:
+        - link [ref=f17e169] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/fren-diski
+          - img "Fren Diski" [ref=f17e170]
+        - link "Fren Diski" [ref=f17e171] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/fren-diski
+      - generic [ref=f17e173]:
+        - link [ref=f17e175] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/debriyaj-seti
+          - img "Debriyaj Seti" [ref=f17e176]
+        - link "Debriyaj Seti" [ref=f17e177] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/debriyaj-seti
+      - generic [ref=f17e179]:
+        - link [ref=f17e181] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/triger-seti
+          - img "Triger Seti" [ref=f17e182]
+        - link "Triger Seti" [ref=f17e183] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/triger-seti
+      - generic [ref=f17e185]:
+        - link [ref=f17e187] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/salincak
+          - img "Salıncak" [ref=f17e188]
+        - link "Salıncak" [ref=f17e189] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/salincak
+      - generic [ref=f17e191]:
+        - link [ref=f17e193] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/stop-lambasi
+          - img "Stop Lambası" [ref=f17e194]
+        - link "Stop Lambası" [ref=f17e195] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/stop-lambasi
+  - generic [ref=f17e205]:
+    - generic [ref=f17e208]:
+      - link "Fren Diski Fren Diski" [ref=f17e211] [cursor=pointer]:
+        - /url: /fren-diski
+        - generic [ref=f17e212]: Fren Diski
+        - img "Fren Diski" [ref=f17e214]
+      - link "Balata Balata" [ref=f17e217] [cursor=pointer]:
+        - /url: /balata
+        - generic [ref=f17e218]: Balata
+        - img "Balata" [ref=f17e220]
+      - link "Debriyaj Seti Debriyaj Seti" [ref=f17e223] [cursor=pointer]:
+        - /url: /debriyaj-seti
+        - generic [ref=f17e224]: Debriyaj Seti
+        - img "Debriyaj Seti" [ref=f17e226]
+      - link "Salıncak Salıncak" [ref=f17e229] [cursor=pointer]:
+        - /url: /salincak
+        - generic [ref=f17e230]: Salıncak
+        - img "Salıncak" [ref=f17e232]
+      - link "Far Far" [ref=f17e235] [cursor=pointer]:
+        - /url: /far
+        - generic [ref=f17e236]: Far
+        - img "Far" [ref=f17e238]
+      - link "Stop Lambası Stop Lambası" [ref=f17e241] [cursor=pointer]:
+        - /url: /stop-lambasi
+        - generic [ref=f17e242]: Stop Lambası
+        - img "Stop Lambası" [ref=f17e244]
+    - text: 
+    - button "" [ref=f17e246] [cursor=pointer]
+  - generic [ref=f17e257]:
+    - generic [ref=f17e260]:
+      - link [ref=f17e263] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/volkswagen-yedek-parca
+        - generic [ref=f17e264]:
+          - strong [ref=f17e265]: VW
+          - text: Yedek Parça
+        - img "<strong>VW</strong> Yedek Parça" [ref=f17e267]
+      - link [ref=f17e270] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/bmw-yedek-parca
+        - generic [ref=f17e271]:
+          - strong [ref=f17e272]: BMW
+          - text: Yedek Parça
+        - img "<strong>BMW</strong> Yedek Parça" [ref=f17e274]
+      - link [ref=f17e277] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/opel-yedek-parca
+        - generic [ref=f17e278]:
+          - strong [ref=f17e279]: Opel
+          - text: Yedek Parça
+        - img "<strong>Opel</strong> Yedek Parça" [ref=f17e281]
+      - link [ref=f17e284] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/mercedes-yedek-parca
+        - generic [ref=f17e285]:
+          - strong [ref=f17e286]: Mercedes
+          - text: Yedek Parça
+        - img "<strong>Mercedes</strong> Yedek Parça" [ref=f17e288]
+      - link [ref=f17e291] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/peugeot-yedek-parca
+        - generic [ref=f17e292]:
+          - strong [ref=f17e293]: Peugeot
+          - text: Yedek Parça
+        - img "<strong>Peugeot</strong> Yedek Parça" [ref=f17e295]
+      - link [ref=f17e298] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/ford-yedek-parca
+        - generic [ref=f17e299]:
+          - strong [ref=f17e300]: Ford
+          - text: Yedek Parça
+        - img "<strong>Ford</strong> Yedek Parça" [ref=f17e302]
+    - text: 
+    - button "" [ref=f17e304] [cursor=pointer]
+  - generic [ref=f17e315]:
+    - generic [ref=f17e318]:
+      - link [ref=f17e321] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/citroen-yedek-parca
+        - generic [ref=f17e322]:
+          - strong [ref=f17e323]: Citroen
+          - text: Yedek Parça
+        - img "<strong>Citroen</strong> Yedek Parça" [ref=f17e325]
+      - link [ref=f17e328] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/honda-yedek-parca
+        - generic [ref=f17e329]:
+          - strong [ref=f17e330]: Honda
+          - text: Yedek Parça
+        - img "<strong>Honda</strong> Yedek Parça" [ref=f17e332]
+      - link [ref=f17e335] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/hyundai-yedek-parca
+        - generic [ref=f17e336]:
+          - strong [ref=f17e337]: Hyundai
+          - text: Yedek Parça
+        - img "<strong>Hyundai</strong> Yedek Parça" [ref=f17e339]
+      - link [ref=f17e342] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/renault-yedek-parca
+        - generic [ref=f17e343]:
+          - strong [ref=f17e344]: Renault
+          - text: Yedek Parça
+        - img "<strong>Renault</strong> Yedek Parça" [ref=f17e346]
+      - link [ref=f17e349] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/skoda-yedek-parca
+        - generic [ref=f17e350]:
+          - strong [ref=f17e351]: Skoda
+          - text: Yedek Parça
+        - img "<strong>Skoda</strong> Yedek Parça" [ref=f17e353]
+      - link [ref=f17e356] [cursor=pointer]:
+        - /url: https://www.yedekparca.com.tr/toyota-yedek-parca
+        - generic [ref=f17e357]:
+          - strong [ref=f17e358]: Toyota
+          - text: Yedek Parça
+        - img "<strong>Toyota</strong> Yedek Parça" [ref=f17e360]
+    - text: 
+    - button "" [ref=f17e362] [cursor=pointer]
+  - generic [ref=f17e373]:
+    - generic [ref=f17e376]:
+      - link [ref=f17e379] [cursor=pointer]:
+        - /url: /fren
+        - img "Fren Kategorisi" [ref=f17e381]
+      - link [ref=f17e384] [cursor=pointer]:
+        - /url: /suspansiyon
+        - img "Süspansiyon Kategorisi" [ref=f17e386]
+      - link [ref=f17e389] [cursor=pointer]:
+        - /url: /debriyaj
+        - img "Debriyaj Kategorisi" [ref=f17e391]
+      - link [ref=f17e394] [cursor=pointer]:
+        - /url: /sogutma
+        - img "Soğutma Kategorisi" [ref=f17e396]
+      - link [ref=f17e399] [cursor=pointer]:
+        - /url: /elektrik
+        - img "Elektrik Kategorisi" [ref=f17e401]
+      - link [ref=f17e404] [cursor=pointer]:
+        - /url: /yakit
+        - img "Yakıt Kategorisi" [ref=f17e406]
+    - text: 
+    - button "" [ref=f17e408] [cursor=pointer]
+  - link [ref=f17e422] [cursor=pointer]:
+    - /url: https://www.yedekparca.com.tr/periyodik-bakim-robotu-yp
+  - generic [ref=f17e433]:
+    - generic [ref=f17e436]:
+      - generic [ref=f17e439]:
+        - link [ref=f17e441] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/aisin
+          - img "Aisin" [ref=f17e442]
+        - link "Aisin" [ref=f17e443] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/aisin
+      - generic [ref=f17e446]:
+        - link [ref=f17e448] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/art
+          - img "ART" [ref=f17e449]
+        - link "ART" [ref=f17e450] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/art
+      - generic [ref=f17e453]:
+        - link [ref=f17e455] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/behr
+          - img "Behr" [ref=f17e456]
+        - link "Behr" [ref=f17e457] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/behr
+      - generic [ref=f17e460]:
+        - link [ref=f17e462] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/blueprint
+          - img "Blueprint" [ref=f17e463]
+        - link "Blueprint" [ref=f17e464] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/blueprint
+      - generic [ref=f17e467]:
+        - link [ref=f17e469] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/bosch
+          - img "Bosch" [ref=f17e470]
+        - link "Bosch" [ref=f17e471] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/bosch
+      - generic [ref=f17e474]:
+        - link [ref=f17e476] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/braxis
+          - img "Braxis" [ref=f17e477]
+        - link "Braxis" [ref=f17e478] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/braxis
+      - generic [ref=f17e481]:
+        - link [ref=f17e483] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/bsg
+          - img "BSG" [ref=f17e484]
+        - link "BSG" [ref=f17e485] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/bsg
+      - generic [ref=f17e488]:
+        - link [ref=f17e490] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/dayco
+          - img "Dayco" [ref=f17e491]
+        - link "Dayco" [ref=f17e492] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/dayco
+      - generic [ref=f17e495]:
+        - link [ref=f17e497] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/delphi
+          - img "Delphi" [ref=f17e498]
+        - link "Delphi" [ref=f17e499] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/delphi
+      - generic [ref=f17e502]:
+        - link [ref=f17e504] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/denso
+          - img "Denso" [ref=f17e505]
+        - link "Denso" [ref=f17e506] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/denso
+      - generic [ref=f17e509]:
+        - link [ref=f17e511] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/depo
+          - img "Depo" [ref=f17e512]
+        - link "Depo" [ref=f17e513] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/depo
+      - generic [ref=f17e516]:
+        - link [ref=f17e518] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/elring
+          - img "Elring" [ref=f17e519]
+        - link "Elring" [ref=f17e520] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/elring
+      - generic [ref=f17e523]:
+        - link [ref=f17e525] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/febi-bilstein
+          - img "Febi Bilstein" [ref=f17e526]
+        - link "Febi Bilstein" [ref=f17e527] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/febi-bilstein
+      - generic [ref=f17e530]:
+        - link [ref=f17e532] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/ferodo
+          - img "Ferodo" [ref=f17e533]
+        - link "Ferodo" [ref=f17e534] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/ferodo
+      - generic [ref=f17e537]:
+        - link [ref=f17e539] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/gates
+          - img "Gates" [ref=f17e540]
+        - link "Gates" [ref=f17e541] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/gates
+      - generic [ref=f17e544]:
+        - link [ref=f17e546] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/gsp
+          - img "GSP" [ref=f17e547]
+        - link "GSP" [ref=f17e548] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/gsp
+      - generic [ref=f17e551]:
+        - link [ref=f17e553] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/hengst
+          - img "Hengst" [ref=f17e554]
+        - link "Hengst" [ref=f17e555] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/hengst
+      - generic [ref=f17e558]:
+        - link [ref=f17e560] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/lemforder
+          - img "Lemförder" [ref=f17e561]
+        - link "Lemförder" [ref=f17e562] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/lemforder
+      - generic [ref=f17e565]:
+        - link [ref=f17e567] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/luk
+          - img "LUK" [ref=f17e568]
+        - link "LUK" [ref=f17e569] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/luk
+      - generic [ref=f17e572]:
+        - link [ref=f17e574] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/mann-filter
+          - img "Mann Filter" [ref=f17e575]
+        - link "Mann Filter" [ref=f17e576] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/mann-filter
+      - generic [ref=f17e579]:
+        - link [ref=f17e581] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/monroe
+          - img "Monroe" [ref=f17e582]
+        - link "Monroe" [ref=f17e583] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/monroe
+      - generic [ref=f17e586]:
+        - link [ref=f17e588] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/pierburg
+          - img "Pierburg" [ref=f17e589]
+        - link "Pierburg" [ref=f17e590] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/pierburg
+      - generic [ref=f17e593]:
+        - link [ref=f17e595] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/sachs
+          - img "Sachs" [ref=f17e596]
+        - link "Sachs" [ref=f17e597] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/sachs
+      - generic [ref=f17e600]:
+        - link [ref=f17e602] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/swag
+          - img "Swag" [ref=f17e603]
+        - link "Swag" [ref=f17e604] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/swag
+      - generic [ref=f17e607]:
+        - link [ref=f17e609] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/teknorot
+          - img "Teknorot" [ref=f17e610]
+        - link "Teknorot" [ref=f17e611] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/teknorot
+      - generic [ref=f17e614]:
+        - link [ref=f17e616] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/textar
+          - img "Textar" [ref=f17e617]
+        - link "Textar" [ref=f17e618] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/textar
+      - generic [ref=f17e621]:
+        - link [ref=f17e623] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/trw
+          - img "TRW" [ref=f17e624]
+        - link "TRW" [ref=f17e625] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/trw
+      - generic [ref=f17e628]:
+        - link [ref=f17e630] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/valeo
+          - img "Valeo" [ref=f17e631]
+        - link "Valeo" [ref=f17e632] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/valeo
+      - generic [ref=f17e635]:
+        - link [ref=f17e637] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/vdo
+          - img "VDO" [ref=f17e638]
+        - link "VDO" [ref=f17e639] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/vdo
+      - generic [ref=f17e642]:
+        - link [ref=f17e644] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/victor-reinz
+          - img "Victor Reinz" [ref=f17e645]
+        - link "Victor Reinz" [ref=f17e646] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/victor-reinz
+    - text: 
+    - button "" [ref=f17e648] [cursor=pointer]
+  - generic [ref=f17e653]:
+    - generic [ref=f17e654]: Oto Yedek Parça
+    - generic [ref=f17e655]: En Popüler Oto Yedek Parça Gruplarını Keşfetin
+  - generic [ref=f17e664]:
+    - heading "Yedek Parça" [level=1] [ref=f17e665]
+    - paragraph [ref=f17e666]: Yedek parça, araçların üretimi yapıldıktan sonra ihtiyaç duyulan malzemelerdir. Otomotiv satış sonrası ürünleri diye tabir edilen oto yedek parça, bir aracı oluşturan parçaların bütünüdür. Her arabada on binlerce yedek parça bulunmaktadır. Hal böyle olunca aracınızda meydana gelen arızalarda yada bakım ihtiyaçlarında bu malzemelere ihtiyaç duymaktayız. Yedekparca.com.tr olarak bu ihtiyaçlarınızı gidermek için internet üzerinden oto yedek parça satışı yapıyoruz. OTOFAST OTOMOTİV SAN. TİC. LTD. ŞTİ. iştiraki olan web sitemiz ile otomotiv yedek parça pazarının %95'ine hitap ediyoruz. Bu sayede siz değerli müşterilerimizin ihtiyaçlarını büyük ölçüde karşılamaktayız. 250 binin üzerinde araç parçası internet sitemizde bulunmaktadır.
+    - paragraph [ref=f17e667]:
+      - text: E-ticaret pazarında güven temelli olarak yürütülen ve hızlı bir şekilde ihtiyacı karşılamaya dönük çalışmalarımız her gün devam etmektedir. İnternet sitemizden 7 gün 24 saat esasına dayalı olarak alışveriş yapabilirsiniz. Hafta sonları kargo firmalarının çalışma sistemine göre gönderim yapmaktayız. Genel itibariyle ihtiyacınız olan doğru parçaya şase sorgulaması yaparak ulaşıyoruz. İster bakım ihtiyaçlarınız için isterseniz arıza durumları için oto yedek parça satın alımı yapabilirsiniz. Firmamızın yedekparca.com.tr sitemize eklediği başlıca
+      - strong [ref=f17e668]: yedek parça
+      - text: kategorileri şu şekildedir.
+    - list [ref=f17e669]:
+      - listitem [ref=f17e670]: Fren ve Debriyaj
+      - listitem [ref=f17e671]: Motor ve Yakıt
+      - listitem [ref=f17e672]: Süspansiyon ve Direksiyon
+      - listitem [ref=f17e673]: Elektrik ve Aydınlatma
+      - listitem [ref=f17e674]: Kaporta grubu
+      - listitem [ref=f17e675]: Şanzıman ve Diferansiyel
+      - listitem [ref=f17e676]: Soğutma ve Filtreler
+      - listitem [ref=f17e677]: Oto bakım ürünleri
+      - listitem [ref=f17e678]: Madeni Yağlar
+    - heading "Oto Yedek Parça" [level=2] [ref=f17e679]
+    - paragraph [ref=f17e680]:
+      - strong [ref=f17e681]: Oto yedek parça
+      - text: sektörünün lideri Yedekparca.com.tr olarak siz değerli müşterilerimizin her türlü yedek parça ihtiyacınızı karşılamak için çalışıyoruz. Sektörümüzde öncü firmalardan birisi olmaktan dolayı bu başarımızı sürdürmek için hizmetlerimiz devam ediyor. Yüz binlerce yedek parçayı bünyemizde barındırıyoruz. Piyasada bulunan araçların büyük çoğunluğuna hitap eden stoklarımız sayesinde hızlı bir şekilde kargo gönderimi yapıyoruz.
+    - paragraph [ref=f17e682]: Satışını yaptığımız ürünler için aşağıda yer alan araç markalarına ait ürünler stoklarımızda bulunuyor. Bu araba markaları şunlardır.
+    - list [ref=f17e683]:
+      - listitem [ref=f17e684]: Alfa Romeo
+      - listitem [ref=f17e685]: Audi
+      - listitem [ref=f17e686]: BMW
+      - listitem [ref=f17e687]: Chevrolet
+      - listitem [ref=f17e688]: Chrysler
+      - listitem [ref=f17e689]: Citroen
+      - listitem [ref=f17e690]: Dacia
+      - listitem [ref=f17e691]: Dodge
+      - listitem [ref=f17e692]: Fiat
+      - listitem [ref=f17e693]: Ford
+      - listitem [ref=f17e694]: Honda
+      - listitem [ref=f17e695]: Hyundai
+      - listitem [ref=f17e696]: Isuzu
+      - listitem [ref=f17e697]: Jaguar
+      - listitem [ref=f17e698]: Jeep
+      - listitem [ref=f17e699]: Kia
+      - listitem [ref=f17e700]: Land Rover
+      - listitem [ref=f17e701]: Mazda
+      - listitem [ref=f17e702]: Mercedes
+      - listitem [ref=f17e703]: Mini
+      - listitem [ref=f17e704]: Mitsubishi
+      - listitem [ref=f17e705]: Nissan
+      - listitem [ref=f17e706]: Opel
+      - listitem [ref=f17e707]: Peugeot
+      - listitem [ref=f17e708]: Porsche
+      - listitem [ref=f17e709]: Range Rover
+      - listitem [ref=f17e710]: Renault
+      - listitem [ref=f17e711]: Seat
+      - listitem [ref=f17e712]: Skoda
+      - listitem [ref=f17e713]: Smart
+      - listitem [ref=f17e714]: Ssangyong
+      - listitem [ref=f17e715]: Subaru
+      - listitem [ref=f17e716]: Suzuki
+      - listitem [ref=f17e717]: Toyota
+      - listitem [ref=f17e718]: Volkswagen
+      - listitem [ref=f17e719]: Volvo
+    - paragraph [ref=f17e720]: Geniş bir ürün skalası bulunan e-ticaret sitemizden hızlı bir şekilde alışveriş yapabilirsiniz. Farklı kategorilerde olan ihtiyaçlarınız için bizimle iletişime geçebilirsiniz.
+    - heading "Oto Yedek Parça Fiyatları" [level=3] [ref=f17e721]
+    - paragraph [ref=f17e722]: Ürünlerimizin stok ve fiyatları günlük olarak güncellenmektedir. Bundan dolayı her zaman güncel stok ve fiyat bilgisine ulaşmış oluyorsunuz. Oto yedek parça fiyatları, istediğiniz ürünün markasına göre değişkenlik göstermektedir. Burada fiyatı etkileyen tek etken marka değildir. Yedek parça için binlerce seçenek vardır. Bunlar içerisinde almak istediğiniz ürünler de farklılık gösterebilir. Her kategorideki ürünün fiyatı farklı olduğu için her markada da farklılıklar vardır.
+    - heading "Araba Yedek Parça" [level=3] [ref=f17e723]
+    - paragraph [ref=f17e724]: Bir arabada ortalama yirmi bin civarı araba yedek parça bulunmaktadır. Montaj esnasında bu kadar farklı ürünün bir araya getirilmesi ile birlikte aracınız yürür vaziyete gelir. Her parçanın bir ömrü olduğu için zamanla bu parçalar aşınmaktadır. Yaşlanmaya bağlı olarak işlevsiz duruma gelebilir. Kullanıma bağlı olarak etkilendiği için her araçta bu ömür farkıdır. Zamanında yapılan bakımlar, arabanın ömrünü uzatır. Araba yedek parça ihtiyaçlarınız için doğru adrestesiniz.
+    - heading "Orijinal Yedek Parça" [level=3] [ref=f17e725]
+    - paragraph [ref=f17e726]: Arabalar üretildiklerinde montaj işlemlerine tabi tutulurlar. İlk montaj esnasında aracın fabrika çıkışında mevcutta üzerinde takılı olarak satışa çıkan her parça orijinal yedek parça olarak tanımlanır. Araba üreticileri, piyasaya araba verirken araçtaki yüzlerce kategoriyi teşkil eden parçalar için yedek parça üreticileri ile anlaşma yaparlar. Bu anlaşmalar sonucunda hangi firma ile anlaşma yaptılarsa o markanın ürünü aracın orijinal ürünü olarak piyasaya çıkar. Sıfır arabalar da otomobilde takılı parçalara bakarak hangi ürünü hangi marka üretmiş buna ulaşabilirsiniz.
+    - heading "Şase No İle Parça Sorgulama" [level=3] [ref=f17e727]
+    - paragraph [ref=f17e728]: Şase no ile parça sorgulama, aracınıza %100 uyumlu yedek parçayı bulmak için yapılan işlemdir. Aracınızdaki binlerce parçayı, şase programları aracılığıyla görebiliyoruz. Aracınıza ait ruhsatta yer alan ve yeni nesil araçlarda 17 haneli olan bu sayı ve harf dizilimi sayesinde aracınızın bir nevi kimliği ortaya çıkar. Benzersiz olan bu dizilime şase numarası adı verilir. Şaseden parça sorgulama, hata ihtimalini ortadan kaldırmak içindir. Araç üreticileri şase numaraları ile bu araca ait olan otomobil yedek parça ürünlerini listeler. Açılan ekranlarda aracınızdaki parçaların listesi gözükmektedir. OEM kodu denilen orijinal parça numarası ile sorgulama yaptığınız arabaya ait parçalara ulaşılmaktadır. OEM kodları ile stok kontrolü yapılarak ürünlerin stok ve fiyat sorgulaması yapılır. Şase numaraları gizli değildir, birçok arabanın ön camında görünür halde bulunur. En hızlı ve doğru parça bulma yöntemi olduğu için tercih edilmektedir. Ekibimiz, müşterilerimiz için bu yöntem ile parça kontrolü yapmaktadır.
+    - heading "Yedek Parça Bulucu" [level=4] [ref=f17e729]
+    - paragraph [ref=f17e730]: "Yedek parça bulmak teknik bilgi isteyen bir işlemdir. Firmamız, müşterilerimiz için bu bilgiyi sitemiz üzerinden ücretsiz olarak sizlere sunmaktadır. Arabanıza ait teknik özellikleri sitemizden arama yaparak istediğiniz parçaya ulaşabilirsiniz. 6 aşamalı olan uygulamamız şunları kapsamaktadır:"
+    - list [ref=f17e731]:
+      - listitem [ref=f17e732]: Marka
+      - listitem [ref=f17e733]: Model
+      - listitem [ref=f17e734]: Kasa
+      - listitem [ref=f17e735]: Yıl
+      - listitem [ref=f17e736]: Motor
+      - listitem [ref=f17e737]: Kw
+    - list [ref=f17e738]:
+      - listitem [ref=f17e739]: "Marka: Arabanızın markasıdır. Bu bölüme hangi araç markasına sahipseniz onu seçin."
+      - listitem [ref=f17e740]: "Model: Arabanıza ait markanın modelidir. Model seçerek devam edin."
+      - listitem [ref=f17e741]: "Kasa: Arabanızın kasa durumudur. Örneğin: sedan, hatchback, cabrio, coupe, station wagon"
+      - listitem [ref=f17e742]: "Yıl: Arabanıza ait olan üretim yılıdır."
+      - listitem [ref=f17e743]: "Motor: Araç kaç motor ise bu bilgiyi girin. Bilmiyorsanız arabanın arka bölümünde yazar."
+      - listitem [ref=f17e744]: "Kw: Ruhsatta sağ altta yazan KW değeridir. 1 KW = 1.341 HP yani 1 KW 1.341 beygire eşittir."
+    - paragraph [ref=f17e745]: Bu işlemleri yaptıktan sonra arabanız sistemimizde gözükür olmaktadır. Bundan sonraki aşamada satın almak istediğiniz ürün için uygun kategoriyi seçerek devam edin.
+    - heading "Pratik Bakım Robotu" [level=4] [ref=f17e746]
+    - paragraph [ref=f17e747]: "10 bin bakımı için geliştirdiğimiz bu sistem sayesinde hızlı bir şekilde arabanıza uyumlu bakım parçalarına ulaşabilirsiniz. 10 bin bakımı için şu parçalar listelenmektedir:"
+    - list [ref=f17e748]:
+      - listitem [ref=f17e749]: Hava filtresi
+      - listitem [ref=f17e750]: Yağ filtresi
+      - listitem [ref=f17e751]: Polen filtresi
+      - listitem [ref=f17e752]: Yakıt filtresi
+    - paragraph [ref=f17e753]: Bunun haricinde ön ve arka balata da listelenmektedir. Yedek parça fiyatları ve modelleri için lütfen bizimle iletişime geçin.
+    - paragraph [ref=f17e754]
+    - paragraph
+  - generic [ref=f17e762]:
+    - generic [ref=f17e765]:
+      - generic [ref=f17e766]:
+        - strong [ref=f17e768]: KREDİ KARTI İLE ALIŞVERİŞ
+        - paragraph [ref=f17e769]: Tüm Kredi Kartları ile Güvenli Alışveriş Yapabilirsiniz.
+      - generic [ref=f17e770]:
+        - strong [ref=f17e772]: HIZLI TESLİMAT
+        - paragraph [ref=f17e773]: Siparişiniz En Hızlı Şekilde Teslim Edilir.
+      - generic [ref=f17e774]:
+        - strong [ref=f17e776]: GÜVENLİ ALIŞVERİŞ
+        - paragraph [ref=f17e777]: 256bit SSL Sertifikası ile Güvenli Satın Alma
+      - generic [ref=f17e778]:
+        - strong [ref=f17e780]: MÜŞTERİ HİZMETLERİ
+        - paragraph [ref=f17e781]: 0850 532 1935 ulaşabilirsiniz
+    - generic [ref=f17e782]:
+      - generic [ref=f17e784]:
+        - generic [ref=f17e785]:
+          - generic [ref=f17e788]:
+            - generic [ref=f17e789]: Kurumsal +
+            - generic [ref=f17e791]: Kategoriler +
+            - generic [ref=f17e793]: Alışveriş +
+          - generic [ref=f17e795]:
+            - generic [ref=f17e796]:
+              - generic [ref=f17e797]:
+                - generic [ref=f17e798]: 
+                - generic [ref=f17e800]:
+                  - generic [ref=f17e801]: Müşteri Hizmetleri
+                  - link "0850 532 1935" [ref=f17e802] [cursor=pointer]:
+                    - /url: tel:+90850 532 1935
+              - generic [ref=f17e803]:
+                - generic [ref=f17e804]: "Uygulamalarımız:"
+                - list [ref=f17e805]:
+                  - listitem [ref=f17e806]:
+                    - link [ref=f17e807] [cursor=pointer]:
+                      - /url: ""
+                  - listitem [ref=f17e809]:
+                    - link [ref=f17e810] [cursor=pointer]:
+                      - /url: ""
+            - generic [ref=f17e812]:
+              - generic [ref=f17e813]: Bloga Göz At
+              - link "Blog" [ref=f17e814] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/blog
+        - generic [ref=f17e818]:
+          - link [ref=f17e822] [cursor=pointer]:
+            - /url: https://etbis.eticaret.gov.tr/sitedogrulama/7834168730156187
+          - link "" [ref=f17e824] [cursor=pointer]:
+            - /url: https://www.facebook.com/yamanyedekparca
+          - link "" [ref=f17e826] [cursor=pointer]:
+            - /url: ""
+          - link "" [ref=f17e828] [cursor=pointer]:
+            - /url: https://www.instagram.com/yedekparcacomtr
+          - link "" [ref=f17e830] [cursor=pointer]:
+            - /url: ""
+      - paragraph [ref=f17e837]: Tüm bilgileriniz 256bit SSL Sertifikası ile korunmaktadır. © 2026 Tüm Hakları Saklıdır

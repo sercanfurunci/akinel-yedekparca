@@ -1,0 +1,231 @@
+- generic [active] [ref=f16e1]:
+  - banner [ref=f16e2]:
+    - generic [ref=f16e4]:
+      - button "Menüyü aç" [ref=f16e5]
+      - link "Akinel" [ref=f16e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f16e9]:
+        - link "Ara" [ref=f16e10] [cursor=pointer]:
+          - /url: /search
+        - link "Garajım" [ref=f16e14] [cursor=pointer]:
+          - /url: /garage
+  - main [ref=f16e23]:
+    - generic [ref=f16e24]:
+      - navigation "Breadcrumb" [ref=f16e25]:
+        - link "Ana Sayfa" [ref=f16e27] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f16e28]: Aracımı Seç
+      - generic [ref=f16e32]:
+        - heading "Aracınızı Seçin" [level=1] [ref=f16e33]
+        - paragraph [ref=f16e34]: 4 adımda aracınızı seçin ve uyumlu parçaları keşfedin.
+        - generic [ref=f16e36]:
+          - generic [ref=f16e37]:
+            - generic [ref=f16e39]:
+              - generic [ref=f16e40]: ✓
+              - generic [ref=f16e41]: Marka
+            - generic [ref=f16e44]:
+              - generic [ref=f16e45]: "2"
+              - generic [ref=f16e46]: Model
+            - generic [ref=f16e49]:
+              - generic [ref=f16e50]: "3"
+              - generic [ref=f16e51]: Kasa / Nesil
+            - generic [ref=f16e54]:
+              - generic [ref=f16e55]: "4"
+              - generic [ref=f16e56]: Motor
+          - generic [ref=f16e57]:
+            - generic [ref=f16e58]:
+              - generic [ref=f16e59]: Marka
+              - combobox [ref=f16e60]:
+                - option "Marka seçin"
+                - option "ALFA ROMEO"
+                - option "AUDI"
+                - option "BMW"
+                - option "CITROEN"
+                - option "CUPRA"
+                - option "DACIA"
+                - option "DS"
+                - option "FIAT"
+                - option "FORD" [selected]
+                - option "HONDA"
+                - option "HYUNDAI"
+                - option "INFINITI"
+                - option "JAGUAR"
+                - option "KIA"
+                - option "LANCIA"
+                - option "LAND ROVER"
+                - option "LEXUS"
+                - option "MAZDA"
+                - option "MERCEDES-BENZ"
+                - option "MINI"
+                - option "MITSUBISHI"
+                - option "NISSAN"
+                - option "OPEL"
+                - option "PEUGEOT"
+                - option "PORSCHE"
+                - option "RENAULT"
+                - option "SAAB"
+                - option "SEAT"
+                - option "SKODA"
+                - option "SMART"
+                - option "SUBARU"
+                - option "SUZUKI"
+                - option "TOYOTA"
+                - option "VOLKSWAGEN"
+                - option "VOLVO"
+            - generic [ref=f16e61]:
+              - generic [ref=f16e62]: Model
+              - combobox [ref=f16e63]:
+                - option "Model seçin" [selected]
+                - option "ALPINE A110 S"
+                - option "C. SYMBOL II"
+                - option "CAPTUR"
+                - option "CAPTUR OUTDOOR"
+                - option "CAPTUR RS"
+                - option "CLIO"
+                - option "CLIO G.TOUR"
+                - option "CLIO GT"
+                - option "CLIO III"
+                - option "CLIO III RS"
+                - option "CLIO RS"
+                - option "CLIO SYMBOL"
+                - option "CLIO SYMBOL II"
+                - option "CLIO SYMBOL II AUTHENTQUE"
+                - option "CLIO TOUCHROME"
+                - option "ESPACE"
+                - option "ESPACE FAMILY"
+                - option "ESPACE INITIAL PARIS"
+                - option "ESPACE LONG"
+                - option "EXPRESS"
+                - option "FLUENCE"
+                - option "FLUENCE BOLD"
+                - option "FLUENCE BOLD EDITON"
+                - option "FLUENCE ZE"
+                - option "GRAND SCENIC"
+                - option "KADJAR"
+                - option "KANGOO"
+                - option "KANGOOEXPRESSFRIGOMAXI"
+                - option "KOLEOS"
+                - option "KOLEOS INITIALEPARIS2.0BLUEDCI185X-TRONIC 4WD"
+                - option "LAGUNA"
+                - option "LATITUDE"
+                - option "LATITUTE"
+                - option "MASCOTT"
+                - option "MASTER"
+                - option "MASTER 16+1 TURIZM"
+                - option "MASTER ARGEN 16+1 OKUL OTOBUSU"
+                - option "MASTER ARGEN 17+1 OKUL OTOBUSU"
+                - option "MASTER L3 TEK"
+                - option "MASTER OKUL OTOBUSU (17+1)"
+                - option "MASTER OKUL OTOBUSU (18+1)"
+                - option "MASTER TEK"
+                - option "MEGANE"
+                - option "MEGANE CC"
+                - option "MEGANE II"
+                - option "MEGANE II S."
+                - option "MEGANE III"
+                - option "MEGANE RS"
+                - option "MEGANE S.TOURER"
+                - option "MEGANE S.TOURER GT-LINE ENERGY"
+                - option "MEGANE S.TOURER PRIVIL. ENERGY"
+                - option "MEGANE SPORTTOURER GT-LINE"
+                - option "MODUS"
+                - option "Megane"
+                - option "SCENIC"
+                - option "SCENIC CONQUEST"
+                - option "SCENIC EXCEPTION"
+                - option "SCENIC II"
+                - option "SCENIC II PRIVELEGE"
+                - option "SCENIC SPORTWAY"
+                - option "SYMBOL"
+                - option "SYMBOL COLLECTION"
+                - option "SYMBOL COLLECTOIN"
+                - option "TALIANT"
+                - option "TALISMAN"
+                - option "TRAFIC"
+                - option "TRAFIC 5+1"
+                - option "TRAFIC DOLMUS 7+1 5M3"
+                - option "TRAFIC PASSENGER 8+1"
+                - option "TRAFIC PASSENGER 8+1 DOLMUS"
+                - option "TRAFIC PASSENGER 8+1 GRANDCONFORT"
+                - option "TRAFIC PASSENGER 9+1 GRANDCONFORT"
+                - option "TRAFICMULTIX 5+1 GRANDCONFORT2.0ENERGYDCI"
+                - option "TRAFICPANELVANGRANDCONFORT 6M3"
+                - option "VEL SATIS"
+                - option "ZOE"
+                - option "ZOE ZEN"
+                - option "ZOE ZEN MB"
+            - generic [ref=f16e64]:
+              - generic [ref=f16e65]: Kasa / Nesil
+              - combobox [disabled] [ref=f16e66]:
+                - option "Nesil seçin" [selected]
+            - generic [ref=f16e67]:
+              - generic [ref=f16e68]: Motor
+              - combobox [disabled] [ref=f16e69]:
+                - option "Motor seçin" [selected]
+          - generic [ref=f16e70]:
+            - button "Parçaları Göster" [disabled]
+  - contentinfo [ref=f16e71]:
+    - generic [ref=f16e72]:
+      - generic [ref=f16e73]:
+        - generic [ref=f16e74]:
+          - generic [ref=f16e75]:
+            - generic [ref=f16e76]: Akinel
+            - generic [ref=f16e77]: Yedek Parça
+          - paragraph [ref=f16e78]: Test açıklaması güncel
+        - generic [ref=f16e79]:
+          - heading "Hızlı Linkler" [level=3] [ref=f16e80]
+          - list [ref=f16e81]:
+            - listitem [ref=f16e82]:
+              - link "Ana Sayfa" [ref=f16e83] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f16e84]:
+              - link "Ürünler" [ref=f16e85] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f16e86]:
+              - link "Aracımı Seç" [ref=f16e87] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f16e88]:
+              - link "OEM Ara" [ref=f16e89] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f16e90]:
+              - link "Garajım" [ref=f16e91] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f16e92]:
+              - link "Hakkımızda" [ref=f16e93] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f16e94]:
+          - heading "Müşteri" [level=3] [ref=f16e95]
+          - list [ref=f16e96]:
+            - listitem [ref=f16e97]:
+              - link "Giriş Yap" [ref=f16e98] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f16e99]:
+              - link "Kayıt Ol" [ref=f16e100] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f16e101]:
+              - link "Garajım" [ref=f16e102] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f16e103]:
+              - link "Hesabım" [ref=f16e104] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f16e105]:
+              - link "Periyodik Bakım" [ref=f16e106] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f16e107]:
+          - heading "İletişim" [level=3] [ref=f16e108]
+          - generic [ref=f16e109]:
+            - paragraph [ref=f16e110]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f16e111] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f16e118]:
+              - paragraph [ref=f16e119]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f16e120]: "Pazar: Kapalı"
+      - generic [ref=f16e121]:
+        - generic [ref=f16e122]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f16e123]:
+          - link "Gizlilik Politikası" [ref=f16e124] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f16e125] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f16e131] [cursor=pointer]
+  - alert [ref=f16e135]

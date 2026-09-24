@@ -1,0 +1,6 @@
+@Akinel.Api_HostAddress = http://localhost:5118
+
+GET {{Akinel.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

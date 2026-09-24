@@ -1,0 +1,520 @@
+- generic [active] [ref=f116e1]:
+  - banner [ref=f116e2]:
+    - generic [ref=f116e4]:
+      - link "+90 533 140 56 49" [ref=f116e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f116e8]:
+        - link "Sipariş Takip" [ref=f116e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f116e10]: "|"
+        - link "Yardım" [ref=f116e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f116e12]: "|"
+        - link "İletişim" [ref=f116e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f116e14]: "|"
+        - generic [ref=f116e15]: TR
+    - generic [ref=f116e17]:
+      - link "Akinel Yedek Parça" [ref=f116e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f116e19]: Akinel
+        - generic [ref=f116e20]: Yedek Parça
+      - generic [ref=f116e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f116e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f116e24]:
+        - button "Sepet" [ref=f116e25]:
+          - generic [ref=f116e116]: "1"
+        - link "Garajım" [ref=f116e31] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f116e117] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f116e118] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f116e42]:
+      - link "Ana Sayfa" [ref=f116e43] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f116e44] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f116e45] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f116e46] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f116e47] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f116e48] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f116e49] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f116e50] [cursor=pointer]:
+        - /url: /contact
+    - generic [ref=f116e121]:
+      - generic [ref=f116e126]: "Seçili Araç:"
+      - generic [ref=f116e127]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link "Değiştir" [ref=f116e128] [cursor=pointer]:
+        - /url: /vehicle
+      - button "Araç seçimini temizle" [ref=f116e129]
+  - main [ref=f116e51]:
+    - generic [ref=f116e133]:
+      - complementary [ref=f116e134]:
+        - link "Akinel Admin" [ref=f116e136] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f116e137]:
+          - link "Gösterge Paneli" [ref=f116e138] [cursor=pointer]:
+            - /url: /admin
+          - link "Ürünler" [ref=f116e145] [cursor=pointer]:
+            - /url: /admin/products
+          - link "Kategoriler" [ref=f116e151] [cursor=pointer]:
+            - /url: /admin/categories
+          - link "Markalar" [ref=f116e155] [cursor=pointer]:
+            - /url: /admin/brands
+          - link "Araçlar" [ref=f116e160] [cursor=pointer]:
+            - /url: /admin/vehicles
+          - link "Stok" [ref=f116e166] [cursor=pointer]:
+            - /url: /admin/stock
+          - link "Müşteriler" [ref=f116e171] [cursor=pointer]:
+            - /url: /admin/customers
+          - link "Siparişler" [ref=f116e178] [cursor=pointer]:
+            - /url: /admin/orders
+          - link "İşletme" [ref=f116e183] [cursor=pointer]:
+            - /url: /admin/business
+      - main [ref=f116e189]:
+        - generic [ref=f116e190]:
+          - generic [ref=f116e191]:
+            - heading "Araç Kataloğu" [level=1] [ref=f116e192]
+            - textbox "Marka, model veya motor ara..." [ref=f116e194]
+          - generic [ref=f116e195]:
+            - button "Markalar" [ref=f116e197]
+            - button "FIAT" [ref=f116e929]
+          - generic [ref=f116e198]:
+            - generic [ref=f116e199]:
+              - generic [ref=f116e200]:
+                - button "Geri" [ref=f116e930]
+                - generic [ref=f116e201]: FIAT — Modeller
+              - button "Model Ekle" [ref=f116e934]
+            - table [ref=f116e936]:
+              - rowgroup [ref=f116e937]:
+                - row [ref=f116e938]:
+                  - columnheader "Model" [ref=f116e939]
+                  - columnheader "Nesil Sayısı" [ref=f116e940]
+                  - columnheader "İşlem" [ref=f116e941]
+              - rowgroup [ref=f116e942]:
+                - row [ref=f116e943]:
+                  - cell [ref=f116e944]:
+                    - button "124" [ref=f116e945]
+                  - cell "1" [ref=f116e948]
+                  - cell [ref=f116e949]:
+                    - generic [ref=f116e950]:
+                      - button "Düzenle" [ref=f116e951]
+                      - button "Sil" [ref=f116e955]
+                - row [ref=f116e959]:
+                  - cell [ref=f116e960]:
+                    - button "500" [ref=f116e961]
+                  - cell "3" [ref=f116e964]
+                  - cell [ref=f116e965]:
+                    - generic [ref=f116e966]:
+                      - button "Düzenle" [ref=f116e967]
+                      - button "Sil" [ref=f116e971]
+                - row [ref=f116e975]:
+                  - cell [ref=f116e976]:
+                    - button "500C" [ref=f116e977]
+                  - cell "2" [ref=f116e980]
+                  - cell [ref=f116e981]:
+                    - generic [ref=f116e982]:
+                      - button "Düzenle" [ref=f116e983]
+                      - button "Sil" [ref=f116e987]
+                - row [ref=f116e991]:
+                  - cell [ref=f116e992]:
+                    - button "500L" [ref=f116e993]
+                  - cell "4" [ref=f116e996]
+                  - cell [ref=f116e997]:
+                    - generic [ref=f116e998]:
+                      - button "Düzenle" [ref=f116e999]
+                      - button "Sil" [ref=f116e1003]
+                - row [ref=f116e1007]:
+                  - cell [ref=f116e1008]:
+                    - button "500L S5" [ref=f116e1009]
+                  - cell "2" [ref=f116e1012]
+                  - cell [ref=f116e1013]:
+                    - generic [ref=f116e1014]:
+                      - button "Düzenle" [ref=f116e1015]
+                      - button "Sil" [ref=f116e1019]
+                - row [ref=f116e1023]:
+                  - cell [ref=f116e1024]:
+                    - button "500X" [ref=f116e1025]
+                  - cell "2" [ref=f116e1028]
+                  - cell [ref=f116e1029]:
+                    - generic [ref=f116e1030]:
+                      - button "Düzenle" [ref=f116e1031]
+                      - button "Sil" [ref=f116e1035]
+                - row [ref=f116e1039]:
+                  - cell [ref=f116e1040]:
+                    - button "500X CITY" [ref=f116e1041]
+                  - cell "1" [ref=f116e1044]
+                  - cell [ref=f116e1045]:
+                    - generic [ref=f116e1046]:
+                      - button "Düzenle" [ref=f116e1047]
+                      - button "Sil" [ref=f116e1051]
+                - row [ref=f116e1055]:
+                  - cell [ref=f116e1056]:
+                    - button "ABART" [ref=f116e1057]
+                  - cell "1" [ref=f116e1060]
+                  - cell [ref=f116e1061]:
+                    - generic [ref=f116e1062]:
+                      - button "Düzenle" [ref=f116e1063]
+                      - button "Sil" [ref=f116e1067]
+                - row [ref=f116e1071]:
+                  - cell [ref=f116e1072]:
+                    - button "ABARTH 595C" [ref=f116e1073]
+                  - cell "1" [ref=f116e1076]
+                  - cell [ref=f116e1077]:
+                    - generic [ref=f116e1078]:
+                      - button "Düzenle" [ref=f116e1079]
+                      - button "Sil" [ref=f116e1083]
+                - row [ref=f116e1087]:
+                  - cell [ref=f116e1088]:
+                    - button "ALBEA" [ref=f116e1089]
+                  - cell "1" [ref=f116e1092]
+                  - cell [ref=f116e1093]:
+                    - generic [ref=f116e1094]:
+                      - button "Düzenle" [ref=f116e1095]
+                      - button "Sil" [ref=f116e1099]
+                - row [ref=f116e1103]:
+                  - cell [ref=f116e1104]:
+                    - button "BRAVO" [ref=f116e1105]
+                  - cell "2" [ref=f116e1108]
+                  - cell [ref=f116e1109]:
+                    - generic [ref=f116e1110]:
+                      - button "Düzenle" [ref=f116e1111]
+                      - button "Sil" [ref=f116e1115]
+                - row [ref=f116e1119]:
+                  - cell [ref=f116e1120]:
+                    - button "DOBLO" [ref=f116e1121]
+                  - cell "5" [ref=f116e1124]
+                  - cell [ref=f116e1125]:
+                    - generic [ref=f116e1126]:
+                      - button "Düzenle" [ref=f116e1127]
+                      - button "Sil" [ref=f116e1131]
+                - row [ref=f116e1135]:
+                  - cell [ref=f116e1136]:
+                    - button "DUCATO" [ref=f116e1137]
+                  - cell "4" [ref=f116e1140]
+                  - cell [ref=f116e1141]:
+                    - generic [ref=f116e1142]:
+                      - button "Düzenle" [ref=f116e1143]
+                      - button "Sil" [ref=f116e1147]
+                - row [ref=f116e1151]:
+                  - cell [ref=f116e1152]:
+                    - button "DUCATO CAMLIVAN" [ref=f116e1153]
+                  - cell "1" [ref=f116e1156]
+                  - cell [ref=f116e1157]:
+                    - generic [ref=f116e1158]:
+                      - button "Düzenle" [ref=f116e1159]
+                      - button "Sil" [ref=f116e1163]
+                - row [ref=f116e1167]:
+                  - cell [ref=f116e1168]:
+                    - button "DUCATO MINI.MAXI L4H2" [ref=f116e1169]
+                  - cell "1" [ref=f116e1172]
+                  - cell [ref=f116e1173]:
+                    - generic [ref=f116e1174]:
+                      - button "Düzenle" [ref=f116e1175]
+                      - button "Sil" [ref=f116e1179]
+                - row [ref=f116e1183]:
+                  - cell [ref=f116e1184]:
+                    - button "DUCATO O." [ref=f116e1185]
+                  - cell "1" [ref=f116e1188]
+                  - cell [ref=f116e1189]:
+                    - generic [ref=f116e1190]:
+                      - button "Düzenle" [ref=f116e1191]
+                      - button "Sil" [ref=f116e1195]
+                - row [ref=f116e1199]:
+                  - cell [ref=f116e1200]:
+                    - button "DUCATO OTO.MAXI L4H2" [ref=f116e1201]
+                  - cell "1" [ref=f116e1204]
+                  - cell [ref=f116e1205]:
+                    - generic [ref=f116e1206]:
+                      - button "Düzenle" [ref=f116e1207]
+                      - button "Sil" [ref=f116e1211]
+                - row [ref=f116e1215]:
+                  - cell [ref=f116e1216]:
+                    - button "DUCATO OTOB.MAXI L3H2" [ref=f116e1217]
+                  - cell "1" [ref=f116e1220]
+                  - cell [ref=f116e1221]:
+                    - generic [ref=f116e1222]:
+                      - button "Düzenle" [ref=f116e1223]
+                      - button "Sil" [ref=f116e1227]
+                - row [ref=f116e1231]:
+                  - cell [ref=f116e1232]:
+                    - button "DUCATO OTOB.MAXI L4H2" [ref=f116e1233]
+                  - cell "1" [ref=f116e1236]
+                  - cell [ref=f116e1237]:
+                    - generic [ref=f116e1238]:
+                      - button "Düzenle" [ref=f116e1239]
+                      - button "Sil" [ref=f116e1243]
+                - row [ref=f116e1247]:
+                  - cell [ref=f116e1248]:
+                    - button "DUCATO TEK" [ref=f116e1249]
+                  - cell "1" [ref=f116e1252]
+                  - cell [ref=f116e1253]:
+                    - generic [ref=f116e1254]:
+                      - button "Düzenle" [ref=f116e1255]
+                      - button "Sil" [ref=f116e1259]
+                - row [ref=f116e1263]:
+                  - cell [ref=f116e1264]:
+                    - button "EGEA" [ref=f116e1265]
+                  - cell "5" [ref=f116e1268]
+                  - cell [ref=f116e1269]:
+                    - generic [ref=f116e1270]:
+                      - button "Düzenle" [ref=f116e1271]
+                      - button "Sil" [ref=f116e1275]
+                - row [ref=f116e1279]:
+                  - cell [ref=f116e1280]:
+                    - button "FIORINO" [ref=f116e1281]
+                  - cell "4" [ref=f116e1284]
+                  - cell [ref=f116e1285]:
+                    - generic [ref=f116e1286]:
+                      - button "Düzenle" [ref=f116e1287]
+                      - button "Sil" [ref=f116e1291]
+                - row [ref=f116e1295]:
+                  - cell [ref=f116e1296]:
+                    - button "FREEMONT" [ref=f116e1297]
+                  - cell "2" [ref=f116e1300]
+                  - cell [ref=f116e1301]:
+                    - generic [ref=f116e1302]:
+                      - button "Düzenle" [ref=f116e1303]
+                      - button "Sil" [ref=f116e1307]
+                - row [ref=f116e1311]:
+                  - cell [ref=f116e1312]:
+                    - button "FULLBACK FULLROCK 4X4 A/T" [ref=f116e1313]
+                  - cell "2" [ref=f116e1316]
+                  - cell [ref=f116e1317]:
+                    - generic [ref=f116e1318]:
+                      - button "Düzenle" [ref=f116e1319]
+                      - button "Sil" [ref=f116e1323]
+                - row [ref=f116e1327]:
+                  - cell [ref=f116e1328]:
+                    - button "FULLBACK HARDROCK 4X4 A/T" [ref=f116e1329]
+                  - cell "2" [ref=f116e1332]
+                  - cell [ref=f116e1333]:
+                    - generic [ref=f116e1334]:
+                      - button "Düzenle" [ref=f116e1335]
+                      - button "Sil" [ref=f116e1339]
+                - row [ref=f116e1343]:
+                  - cell [ref=f116e1344]:
+                    - button "FULLBACK HARDROCK 4X4 M/T" [ref=f116e1345]
+                  - cell "2" [ref=f116e1348]
+                  - cell [ref=f116e1349]:
+                    - generic [ref=f116e1350]:
+                      - button "Düzenle" [ref=f116e1351]
+                      - button "Sil" [ref=f116e1355]
+                - row [ref=f116e1359]:
+                  - cell [ref=f116e1360]:
+                    - button "FULLBACK ROCK 4X2 M/T" [ref=f116e1361]
+                  - cell "2" [ref=f116e1364]
+                  - cell [ref=f116e1365]:
+                    - generic [ref=f116e1366]:
+                      - button "Düzenle" [ref=f116e1367]
+                      - button "Sil" [ref=f116e1371]
+                - row [ref=f116e1375]:
+                  - cell [ref=f116e1376]:
+                    - button "FULLBACK ROCK 4X4 M/T" [ref=f116e1377]
+                  - cell "2" [ref=f116e1380]
+                  - cell [ref=f116e1381]:
+                    - generic [ref=f116e1382]:
+                      - button "Düzenle" [ref=f116e1383]
+                      - button "Sil" [ref=f116e1387]
+                - row [ref=f116e1391]:
+                  - cell [ref=f116e1392]:
+                    - button "GRANDE PUNTO" [ref=f116e1393]
+                  - cell "3" [ref=f116e1396]
+                  - cell [ref=f116e1397]:
+                    - generic [ref=f116e1398]:
+                      - button "Düzenle" [ref=f116e1399]
+                      - button "Sil" [ref=f116e1403]
+                - row [ref=f116e1407]:
+                  - cell [ref=f116e1408]:
+                    - button "GRANDE PUNTO S5" [ref=f116e1409]
+                  - cell "1" [ref=f116e1412]
+                  - cell [ref=f116e1413]:
+                    - generic [ref=f116e1414]:
+                      - button "Düzenle" [ref=f116e1415]
+                      - button "Sil" [ref=f116e1419]
+                - row [ref=f116e1423]:
+                  - cell [ref=f116e1424]:
+                    - button "IDEA" [ref=f116e1425]
+                  - cell "1" [ref=f116e1428]
+                  - cell [ref=f116e1429]:
+                    - generic [ref=f116e1430]:
+                      - button "Düzenle" [ref=f116e1431]
+                      - button "Sil" [ref=f116e1435]
+                - row [ref=f116e1439]:
+                  - cell [ref=f116e1440]:
+                    - button "LINEA" [ref=f116e1441]
+                  - cell "1" [ref=f116e1444]
+                  - cell [ref=f116e1445]:
+                    - generic [ref=f116e1446]:
+                      - button "Düzenle" [ref=f116e1447]
+                      - button "Sil" [ref=f116e1451]
+                - row [ref=f116e1455]:
+                  - cell [ref=f116e1456]:
+                    - button "PALIO" [ref=f116e1457]
+                  - cell "3" [ref=f116e1460]
+                  - cell [ref=f116e1461]:
+                    - generic [ref=f116e1462]:
+                      - button "Düzenle" [ref=f116e1463]
+                      - button "Sil" [ref=f116e1467]
+                - row [ref=f116e1471]:
+                  - cell [ref=f116e1472]:
+                    - button "PANDA" [ref=f116e1473]
+                  - cell "2" [ref=f116e1476]
+                  - cell [ref=f116e1477]:
+                    - generic [ref=f116e1478]:
+                      - button "Düzenle" [ref=f116e1479]
+                      - button "Sil" [ref=f116e1483]
+                - row [ref=f116e1487]:
+                  - cell [ref=f116e1488]:
+                    - button "PANDA 4X4" [ref=f116e1489]
+                  - cell "1" [ref=f116e1492]
+                  - cell [ref=f116e1493]:
+                    - generic [ref=f116e1494]:
+                      - button "Düzenle" [ref=f116e1495]
+                      - button "Sil" [ref=f116e1499]
+                - row [ref=f116e1503]:
+                  - cell [ref=f116e1504]:
+                    - button "PANDA CITY" [ref=f116e1505]
+                  - cell "1" [ref=f116e1508]
+                  - cell [ref=f116e1509]:
+                    - generic [ref=f116e1510]:
+                      - button "Düzenle" [ref=f116e1511]
+                      - button "Sil" [ref=f116e1515]
+                - row [ref=f116e1519]:
+                  - cell [ref=f116e1520]:
+                    - button "PRATICO" [ref=f116e1521]
+                  - cell "2" [ref=f116e1524]
+                  - cell [ref=f116e1525]:
+                    - generic [ref=f116e1526]:
+                      - button "Düzenle" [ref=f116e1527]
+                      - button "Sil" [ref=f116e1531]
+                - row [ref=f116e1535]:
+                  - cell [ref=f116e1536]:
+                    - button "PRATICOPLUS KASALIKAMYONET" [ref=f116e1537]
+                  - cell "1" [ref=f116e1540]
+                  - cell [ref=f116e1541]:
+                    - generic [ref=f116e1542]:
+                      - button "Düzenle" [ref=f116e1543]
+                      - button "Sil" [ref=f116e1547]
+                - row [ref=f116e1551]:
+                  - cell [ref=f116e1552]:
+                    - button "PUNTO" [ref=f116e1553]
+                  - cell "1" [ref=f116e1556]
+                  - cell [ref=f116e1557]:
+                    - generic [ref=f116e1558]:
+                      - button "Düzenle" [ref=f116e1559]
+                      - button "Sil" [ref=f116e1563]
+                - row [ref=f116e1567]:
+                  - cell [ref=f116e1568]:
+                    - button "PUNTO EVO" [ref=f116e1569]
+                  - cell "2" [ref=f116e1572]
+                  - cell [ref=f116e1573]:
+                    - generic [ref=f116e1574]:
+                      - button "Düzenle" [ref=f116e1575]
+                      - button "Sil" [ref=f116e1579]
+                - row [ref=f116e1583]:
+                  - cell [ref=f116e1584]:
+                    - button "SCUDO" [ref=f116e1585]
+                  - cell "3" [ref=f116e1588]
+                  - cell [ref=f116e1589]:
+                    - generic [ref=f116e1590]:
+                      - button "Düzenle" [ref=f116e1591]
+                      - button "Sil" [ref=f116e1595]
+                - row [ref=f116e1599]:
+                  - cell [ref=f116e1600]:
+                    - button "SEDICI" [ref=f116e1601]
+                  - cell "1" [ref=f116e1604]
+                  - cell [ref=f116e1605]:
+                    - generic [ref=f116e1606]:
+                      - button "Düzenle" [ref=f116e1607]
+                      - button "Sil" [ref=f116e1611]
+                - row [ref=f116e1615]:
+                  - cell [ref=f116e1616]:
+                    - button "STRADA PICK UP" [ref=f116e1617]
+                  - cell "1" [ref=f116e1620]
+                  - cell [ref=f116e1621]:
+                    - generic [ref=f116e1622]:
+                      - button "Düzenle" [ref=f116e1623]
+                      - button "Sil" [ref=f116e1627]
+                - row [ref=f116e1631]:
+                  - cell [ref=f116e1632]:
+                    - button "STRADA PICK UP UZUN" [ref=f116e1633]
+                  - cell "1" [ref=f116e1636]
+                  - cell [ref=f116e1637]:
+                    - generic [ref=f116e1638]:
+                      - button "Düzenle" [ref=f116e1639]
+                      - button "Sil" [ref=f116e1643]
+  - contentinfo [ref=f116e52]:
+    - generic [ref=f116e53]:
+      - generic [ref=f116e54]:
+        - generic [ref=f116e55]:
+          - generic [ref=f116e56]:
+            - generic [ref=f116e57]: Akinel
+            - generic [ref=f116e58]: Yedek Parça
+          - paragraph [ref=f116e59]: Test açıklaması güncel
+        - generic [ref=f116e60]:
+          - heading "Hızlı Linkler" [level=3] [ref=f116e61]
+          - list [ref=f116e62]:
+            - listitem [ref=f116e63]:
+              - link "Ana Sayfa" [ref=f116e64] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f116e65]:
+              - link "Ürünler" [ref=f116e66] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f116e67]:
+              - link "Aracımı Seç" [ref=f116e68] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f116e69]:
+              - link "OEM Ara" [ref=f116e70] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f116e71]:
+              - link "Garajım" [ref=f116e72] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f116e73]:
+              - link "Hakkımızda" [ref=f116e74] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f116e75]:
+          - heading "Müşteri" [level=3] [ref=f116e76]
+          - list [ref=f116e77]:
+            - listitem [ref=f116e78]:
+              - link "Giriş Yap" [ref=f116e79] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f116e80]:
+              - link "Kayıt Ol" [ref=f116e81] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f116e82]:
+              - link "Garajım" [ref=f116e83] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f116e84]:
+              - link "Hesabım" [ref=f116e85] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f116e86]:
+              - link "Periyodik Bakım" [ref=f116e87] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f116e88]:
+          - heading "İletişim" [level=3] [ref=f116e89]
+          - generic [ref=f116e90]:
+            - paragraph [ref=f116e91]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f116e92] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f116e99]:
+              - paragraph [ref=f116e100]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f116e101]: "Pazar: Kapalı"
+      - generic [ref=f116e102]:
+        - generic [ref=f116e103]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f116e104]:
+          - link "Gizlilik Politikası" [ref=f116e105] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f116e106] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f116e112] [cursor=pointer]
+  - alert [ref=f116e700]

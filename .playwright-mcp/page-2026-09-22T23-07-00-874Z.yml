@@ -1,0 +1,159 @@
+- generic [active] [ref=f56e1]:
+  - banner [ref=f56e2]:
+    - generic [ref=f56e4]:
+      - button "Menüyü aç" [ref=f56e5]
+      - link "Akinel" [ref=f56e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f56e9]:
+        - link "Ara" [ref=f56e10] [cursor=pointer]:
+          - /url: /search
+        - link "Garajım" [ref=f56e14] [cursor=pointer]:
+          - /url: /garage
+  - main [ref=f56e101]:
+    - generic [ref=f56e102]:
+      - complementary [ref=f56e103]:
+        - link "Akinel Admin" [ref=f56e105] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f56e106]:
+          - link "Gösterge Paneli" [ref=f56e107] [cursor=pointer]:
+            - /url: /admin
+          - link "Ürünler" [ref=f56e113] [cursor=pointer]:
+            - /url: /admin/products
+          - link "Kategoriler" [ref=f56e118] [cursor=pointer]:
+            - /url: /admin/categories
+          - link "Markalar" [ref=f56e121] [cursor=pointer]:
+            - /url: /admin/brands
+          - link "Araçlar" [ref=f56e125] [cursor=pointer]:
+            - /url: /admin/vehicles
+          - link "Stok" [ref=f56e130] [cursor=pointer]:
+            - /url: /admin/stock
+          - link "Müşteriler" [ref=f56e134] [cursor=pointer]:
+            - /url: /admin/customers
+          - link "Siparişler" [ref=f56e140] [cursor=pointer]:
+            - /url: /admin/orders
+          - link "İşletme" [ref=f56e144] [cursor=pointer]:
+            - /url: /admin/business
+      - main [ref=f56e149]:
+        - generic [ref=f56e150]:
+          - generic [ref=f56e151]:
+            - heading "Markalar" [level=1] [ref=f56e152]
+            - button "Marka Ekle" [ref=f56e153]
+          - table [ref=f56e247]:
+            - rowgroup [ref=f56e248]:
+              - row [ref=f56e249]:
+                - columnheader "Marka Adı" [ref=f56e250]
+                - columnheader "Durum" [ref=f56e251]
+                - columnheader "İşlem" [ref=f56e252]
+            - rowgroup [ref=f56e253]:
+              - row [ref=f56e254]:
+                - cell "Bosch" [ref=f56e255]
+                - cell "Aktif" [ref=f56e256]
+                - cell [ref=f56e257]:
+                  - generic [ref=f56e258]:
+                    - button "Düzenle" [ref=f56e259]
+                    - button "Deaktif Et" [ref=f56e263]
+              - row [ref=f56e267]:
+                - cell "Delphi" [ref=f56e268]
+                - cell "Aktif" [ref=f56e269]
+                - cell [ref=f56e270]:
+                  - generic [ref=f56e271]:
+                    - button "Düzenle" [ref=f56e272]
+                    - button "Deaktif Et" [ref=f56e276]
+              - row [ref=f56e280]:
+                - cell "SKF" [ref=f56e281]
+                - cell "Aktif" [ref=f56e282]
+                - cell [ref=f56e283]:
+                  - generic [ref=f56e284]:
+                    - button "Düzenle" [ref=f56e285]
+                    - button "Deaktif Et" [ref=f56e289]
+              - row [ref=f56e293]:
+                - cell "TRW" [ref=f56e294]
+                - cell "Aktif" [ref=f56e295]
+                - cell [ref=f56e296]:
+                  - generic [ref=f56e297]:
+                    - button "Düzenle" [ref=f56e298]
+                    - button "Deaktif Et" [ref=f56e302]
+              - row [ref=f56e306]:
+                - cell "Test Marka" [ref=f56e307]
+                - cell "Aktif" [ref=f56e308]
+                - cell [ref=f56e309]:
+                  - generic [ref=f56e310]:
+                    - button "Düzenle" [ref=f56e311]
+                    - button "Deaktif Et" [ref=f56e315]
+              - row [ref=f56e319]:
+                - cell "Valeo" [ref=f56e320]
+                - cell "Aktif" [ref=f56e321]
+                - cell [ref=f56e322]:
+                  - generic [ref=f56e323]:
+                    - button "Düzenle" [ref=f56e324]
+                    - button "Deaktif Et" [ref=f56e328]
+  - contentinfo [ref=f56e23]:
+    - generic [ref=f56e24]:
+      - generic [ref=f56e25]:
+        - generic [ref=f56e26]:
+          - generic [ref=f56e27]:
+            - generic [ref=f56e28]: Akinel
+            - generic [ref=f56e29]: Yedek Parça
+          - paragraph [ref=f56e30]: Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.
+        - generic [ref=f56e31]:
+          - heading "Hızlı Linkler" [level=3] [ref=f56e32]
+          - list [ref=f56e33]:
+            - listitem [ref=f56e34]:
+              - link "Ana Sayfa" [ref=f56e35] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f56e36]:
+              - link "Ürünler" [ref=f56e37] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f56e38]:
+              - link "Aracımı Seç" [ref=f56e39] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f56e40]:
+              - link "OEM Ara" [ref=f56e41] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f56e42]:
+              - link "Garajım" [ref=f56e43] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f56e44]:
+              - link "Hakkımızda" [ref=f56e45] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f56e46]:
+          - heading "Müşteri" [level=3] [ref=f56e47]
+          - list [ref=f56e48]:
+            - listitem [ref=f56e49]:
+              - link "Giriş Yap" [ref=f56e50] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f56e51]:
+              - link "Kayıt Ol" [ref=f56e52] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f56e53]:
+              - link "Garajım" [ref=f56e54] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f56e55]:
+              - link "Hesabım" [ref=f56e56] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f56e57]:
+              - link "Periyodik Bakım" [ref=f56e58] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f56e59]:
+          - heading "İletişim" [level=3] [ref=f56e60]
+          - generic [ref=f56e61]:
+            - paragraph [ref=f56e62]: AKN MOTORS Car Service
+            - generic [ref=f56e63]: Nenehatun, Fatih Cd. No:81, 41700 Darıca/Kocaeli
+            - link "+90 533 140 56 49" [ref=f56e68] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - link "info@aknmotors.com.tr" [ref=f56e71] [cursor=pointer]:
+              - /url: mailto:info@aknmotors.com.tr
+            - generic [ref=f56e79]:
+              - paragraph [ref=f56e80]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f56e81]: "Pazar: Kapalı"
+            - link "Yol Tarifi Al" [ref=f56e82] [cursor=pointer]:
+              - /url: https://maps.google.com/?q=Nenehatun+Fatih+Caddesi+No+81+41700+Darica+Kocaeli+Turkiye
+      - generic [ref=f56e87]:
+        - generic [ref=f56e88]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f56e89]:
+          - link "Gizlilik Politikası" [ref=f56e90] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f56e91] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f56e97] [cursor=pointer]
+  - alert [ref=f56e246]

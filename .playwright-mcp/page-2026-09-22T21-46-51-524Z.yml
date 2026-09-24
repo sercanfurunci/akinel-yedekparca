@@ -1,0 +1,228 @@
+- generic [active] [ref=f28e1]:
+  - banner [ref=f28e2]:
+    - generic [ref=f28e4]:
+      - link "+90 533 140 56 49" [ref=f28e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f28e8]:
+        - link "Sipariş Takip" [ref=f28e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f28e10]: "|"
+        - link "Yardım" [ref=f28e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f28e12]: "|"
+        - link "İletişim" [ref=f28e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f28e14]: "|"
+        - generic [ref=f28e15]: TR
+    - generic [ref=f28e17]:
+      - link "Akinel Yedek Parça" [ref=f28e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f28e19]: Akinel
+        - generic [ref=f28e20]: Yedek Parça
+      - generic [ref=f28e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f28e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f28e24]:
+        - link "Garajım" [ref=f28e25] [cursor=pointer]:
+          - /url: /garage
+        - link "Giriş Yap" [ref=f28e30] [cursor=pointer]:
+          - /url: /login
+    - navigation [ref=f28e36]:
+      - link "Ana Sayfa" [ref=f28e37] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f28e38] [cursor=pointer]:
+        - /url: /products
+      - link "Aracımı Seç" [ref=f28e39] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f28e40] [cursor=pointer]:
+        - /url: /vin
+      - link "Garajım" [ref=f28e41] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f28e42] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f28e43] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=f28e44]:
+    - generic [ref=f28e45]:
+      - generic [ref=f28e48]:
+        - heading "Aracınız için doğru parçayı bulun" [level=1] [ref=f28e49]
+        - paragraph [ref=f28e50]: OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın.
+        - generic [ref=f28e52]:
+          - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f28e53]
+          - generic:
+            - generic: ⌘
+            - generic: K
+        - generic [ref=f28e54]:
+          - link "Aracımı Seç" [ref=f28e55] [cursor=pointer]:
+            - /url: /vehicle
+          - link "OEM ile Ara" [ref=f28e56] [cursor=pointer]:
+            - /url: /search
+          - generic "Yakında" [ref=f28e57]: VIN ile Ara (Yakında)
+      - generic [ref=f28e60]:
+        - generic [ref=f28e61]: Darıca / Kocaeli
+        - generic [ref=f28e65]: ·
+        - link "+90 533 140 56 49" [ref=f28e66] [cursor=pointer]:
+          - /url: tel:+905331405649
+        - generic [ref=f28e69]: ·
+        - link "info@aknmotors.com.tr" [ref=f28e70] [cursor=pointer]:
+          - /url: mailto:info@aknmotors.com.tr
+        - generic [ref=f28e74]: ·
+        - generic [ref=f28e75]: "Pzt – Cmt: 09:00 – 19:00"
+        - generic [ref=f28e79]: ·
+        - link "Yol Tarifi" [ref=f28e80] [cursor=pointer]:
+          - /url: https://maps.google.com/?q=Nenehatun+Fatih+Caddesi+No+81+41700+Darica+Kocaeli
+      - generic [ref=f28e86]:
+        - heading "Aracınızı Seçin" [level=2] [ref=f28e87]
+        - paragraph [ref=f28e88]: 4 adımda aracınızı seçin ve uyumlu parçaları keşfedin.
+        - generic [ref=f28e89]:
+          - generic [ref=f28e90]:
+            - generic [ref=f28e92]:
+              - generic [ref=f28e93]: "1"
+              - generic [ref=f28e94]: Marka
+            - generic [ref=f28e97]:
+              - generic [ref=f28e98]: "2"
+              - generic [ref=f28e99]: Model
+            - generic [ref=f28e102]:
+              - generic [ref=f28e103]: "3"
+              - generic [ref=f28e104]: Kasa / Nesil
+            - generic [ref=f28e107]:
+              - generic [ref=f28e108]: "4"
+              - generic [ref=f28e109]: Motor
+          - generic [ref=f28e110]:
+            - generic [ref=f28e111]:
+              - generic [ref=f28e112]: Marka
+              - combobox [ref=f28e113]:
+                - option "Marka seçin" [selected]
+            - generic [ref=f28e114]:
+              - generic [ref=f28e115]: Model
+              - combobox [disabled] [ref=f28e116]:
+                - option "Model seçin" [selected]
+            - generic [ref=f28e117]:
+              - generic [ref=f28e118]: Kasa / Nesil
+              - combobox [disabled] [ref=f28e119]:
+                - option "Nesil seçin" [selected]
+            - generic [ref=f28e120]:
+              - generic [ref=f28e121]: Motor
+              - combobox [disabled] [ref=f28e122]:
+                - option "Motor seçin" [selected]
+          - generic [ref=f28e123]:
+            - button "Parçaları Göster" [disabled]
+      - generic [ref=f28e124]:
+        - heading "Popüler Kategoriler" [level=2] [ref=f28e125]
+        - generic [ref=f28e126]:
+          - link "Fren Sistemi" [ref=f28e127] [cursor=pointer]:
+            - /url: /category/fren-sistemi
+          - link "Motor" [ref=f28e133] [cursor=pointer]:
+            - /url: /category/motor
+          - link "Filtreler" [ref=f28e147] [cursor=pointer]:
+            - /url: /category/filtreler
+          - link "Süspansiyon" [ref=f28e152] [cursor=pointer]:
+            - /url: /category/suspansiyon
+          - link "Elektrik" [ref=f28e159] [cursor=pointer]:
+            - /url: /category/elektrik
+          - link "Debriyaj" [ref=f28e164] [cursor=pointer]:
+            - /url: /category/debriyaj
+          - link "Direksiyon" [ref=f28e171] [cursor=pointer]:
+            - /url: /category/direksiyon
+          - link "Soğutma" [ref=f28e177] [cursor=pointer]:
+            - /url: /category/sogutma
+          - link "Klima" [ref=f28e182] [cursor=pointer]:
+            - /url: /category/klima
+          - link "Aydınlatma" [ref=f28e189] [cursor=pointer]:
+            - /url: /category/aydinlatma
+      - generic [ref=f28e195]:
+        - heading "Mevcut Ürünler" [level=2] [ref=f28e196]
+        - link "Tüm Ürünleri Gör" [ref=f28e197] [cursor=pointer]:
+          - /url: /products
+      - generic [ref=f28e272]:
+        - heading "Neden Akinel?" [level=2] [ref=f28e273]
+        - paragraph [ref=f28e274]: Otomotiv yedek parça aramanızı kolaylaştıran özellikler.
+        - generic [ref=f28e275]:
+          - generic [ref=f28e276]:
+            - heading "OEM Arama" [level=3] [ref=f28e281]
+            - paragraph [ref=f28e282]: Orijinal ekipman numarasıyla doğrudan parça bulun.
+          - generic [ref=f28e283]:
+            - heading "Araç Uyumluluğu" [level=3] [ref=f28e289]
+            - paragraph [ref=f28e290]: Aracınızı seçin, sadece uyumlu parçaları görün.
+          - generic [ref=f28e291]:
+            - heading "Stok Takibi" [level=3] [ref=f28e296]
+            - paragraph [ref=f28e297]: Gerçek zamanlı stok durumu ile güvenli alışveriş.
+          - generic [ref=f28e298]:
+            - heading "Garajım" [level=3] [ref=f28e303]
+            - paragraph [ref=f28e304]: Birden fazla aracınızı kaydedin, hızlı erişin.
+      - generic [ref=f28e305]:
+        - heading "Aracınızı seçin ve uygun parçaları keşfedin." [level=2] [ref=f28e306]
+        - paragraph [ref=f28e307]: Binlerce yedek parça, araç uyumluluğu ile.
+        - link "Hemen Başla" [ref=f28e308] [cursor=pointer]:
+          - /url: /vehicle
+  - contentinfo [ref=f28e309]:
+    - generic [ref=f28e310]:
+      - generic [ref=f28e311]:
+        - generic [ref=f28e312]:
+          - generic [ref=f28e313]:
+            - generic [ref=f28e314]: Akinel
+            - generic [ref=f28e315]: Yedek Parça
+          - paragraph [ref=f28e316]: Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.
+        - generic [ref=f28e317]:
+          - heading "Hızlı Linkler" [level=3] [ref=f28e318]
+          - list [ref=f28e319]:
+            - listitem [ref=f28e320]:
+              - link "Ana Sayfa" [ref=f28e321] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f28e322]:
+              - link "Ürünler" [ref=f28e323] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f28e324]:
+              - link "Aracımı Seç" [ref=f28e325] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f28e326]:
+              - link "OEM Ara" [ref=f28e327] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f28e328]:
+              - link "Garajım" [ref=f28e329] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f28e330]:
+              - link "Hakkımızda" [ref=f28e331] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f28e332]:
+          - heading "Müşteri" [level=3] [ref=f28e333]
+          - list [ref=f28e334]:
+            - listitem [ref=f28e335]:
+              - link "Giriş Yap" [ref=f28e336] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f28e337]:
+              - link "Kayıt Ol" [ref=f28e338] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f28e339]:
+              - link "Garajım" [ref=f28e340] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f28e341]:
+              - link "Hesabım" [ref=f28e342] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f28e343]:
+              - link "Periyodik Bakım" [ref=f28e344] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f28e345]:
+          - heading "İletişim" [level=3] [ref=f28e346]
+          - generic [ref=f28e347]:
+            - paragraph [ref=f28e348]: AKN MOTORS Car Service
+            - generic [ref=f28e349]: Nenehatun, Fatih Cd. No:81, 41700 Darıca/Kocaeli
+            - link "+90 533 140 56 49" [ref=f28e354] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - link "info@aknmotors.com.tr" [ref=f28e357] [cursor=pointer]:
+              - /url: mailto:info@aknmotors.com.tr
+            - generic [ref=f28e365]:
+              - paragraph [ref=f28e366]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f28e367]: "Pazar: Kapalı"
+            - link "Yol Tarifi Al" [ref=f28e368] [cursor=pointer]:
+              - /url: https://maps.google.com/?q=Nenehatun+Fatih+Caddesi+No+81+41700+Darica+Kocaeli+Turkiye
+      - generic [ref=f28e373]:
+        - generic [ref=f28e374]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f28e375]:
+          - link "Gizlilik Politikası" [ref=f28e376] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f28e377] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f28e383] [cursor=pointer]

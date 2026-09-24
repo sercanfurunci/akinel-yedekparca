@@ -1,0 +1,98 @@
+- generic [active] [ref=f17e1]:
+  - banner [ref=f17e2]:
+    - generic [ref=f17e4]:
+      - link "Sipariş Takip" [ref=f17e5] [cursor=pointer]:
+        - /url: /search
+      - generic [ref=f17e6]: "|"
+      - link "Yardım" [ref=f17e7] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f17e8]: "|"
+      - link "İletişim" [ref=f17e9] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f17e10]: "|"
+      - generic [ref=f17e11]: TR
+    - generic [ref=f17e13]:
+      - link "Akinel Yedek Parça" [ref=f17e14] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f17e15]: Akinel
+        - generic [ref=f17e16]: Yedek Parça
+      - generic [ref=f17e18]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f17e19]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f17e20]:
+        - link "Garajım" [ref=f17e21] [cursor=pointer]:
+          - /url: /garage
+        - link "Giriş Yap" [ref=f17e26] [cursor=pointer]:
+          - /url: /login
+    - navigation [ref=f17e32]:
+      - link "Ana Sayfa" [ref=f17e33] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f17e34] [cursor=pointer]:
+        - /url: /products
+      - link "Aracımı Seç" [ref=f17e35] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f17e36] [cursor=pointer]:
+        - /url: /vin
+      - link "Garajım" [ref=f17e37] [cursor=pointer]:
+        - /url: /garage
+  - main [ref=f17e38]
+  - contentinfo [ref=f17e39]:
+    - generic [ref=f17e40]:
+      - generic [ref=f17e41]:
+        - generic [ref=f17e42]:
+          - generic [ref=f17e43]:
+            - generic [ref=f17e44]: Akinel
+            - generic [ref=f17e45]: Yedek Parça
+          - paragraph [ref=f17e46]: Aracınız için doğru parçayı bulun. OEM numarası veya araç seçimi ile hızlı arama.
+        - generic [ref=f17e47]:
+          - heading "Alışveriş" [level=3] [ref=f17e48]
+          - list [ref=f17e49]:
+            - listitem [ref=f17e50]:
+              - link "Tüm Ürünler" [ref=f17e51] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f17e52]:
+              - link "Araçla Bul" [ref=f17e53] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f17e54]:
+              - link "VIN Sorgula" [ref=f17e55] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f17e56]:
+              - link "Periyodik Bakım" [ref=f17e57] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f17e58]:
+          - heading "Hesap" [level=3] [ref=f17e59]
+          - list [ref=f17e60]:
+            - listitem [ref=f17e61]:
+              - link "Giriş Yap" [ref=f17e62] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f17e63]:
+              - link "Kayıt Ol" [ref=f17e64] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f17e65]:
+              - link "Hesabım" [ref=f17e66] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f17e67]:
+              - link "Garajım" [ref=f17e68] [cursor=pointer]:
+                - /url: /garage
+        - generic [ref=f17e69]:
+          - heading "Destek" [level=3] [ref=f17e70]
+          - list [ref=f17e71]:
+            - listitem [ref=f17e72]:
+              - link "Yardım Merkezi" [ref=f17e73] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f17e74]:
+              - link "İletişim" [ref=f17e75] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f17e76]:
+              - link "Sipariş Takibi" [ref=f17e77] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=f17e78]:
+        - generic [ref=f17e79]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f17e80]:
+          - link "Gizlilik Politikası" [ref=f17e81] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f17e82] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f17e88] [cursor=pointer]

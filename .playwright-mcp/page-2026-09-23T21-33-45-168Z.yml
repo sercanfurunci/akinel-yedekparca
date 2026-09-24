@@ -1,0 +1,108 @@
+- generic [active] [ref=f75e1]:
+  - banner [ref=f75e2]:
+    - generic [ref=f75e4]:
+      - button "Menüyü aç" [ref=f75e5]
+      - link "Akinel" [ref=f75e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f75e9]:
+        - link "Ara" [ref=f75e10] [cursor=pointer]:
+          - /url: /search
+        - button "Sepet" [ref=f75e14]
+        - link "Garajım" [ref=f75e20] [cursor=pointer]:
+          - /url: /garage
+    - generic [ref=f75e27]:
+      - generic [ref=f75e32]: "Seçili Araç:"
+      - generic [ref=f75e33]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link "Değiştir" [ref=f75e34] [cursor=pointer]:
+        - /url: /vehicle
+      - button "Araç seçimini temizle" [ref=f75e35]
+  - main [ref=f75e39]:
+    - generic [ref=f75e40]:
+      - complementary [ref=f75e41]:
+        - link "A" [ref=f75e43] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f75e44]:
+          - link "Gösterge Paneli" [ref=f75e45] [cursor=pointer]:
+            - /url: /admin
+          - link "Ürünler" [ref=f75e51] [cursor=pointer]:
+            - /url: /admin/products
+          - link "Kategoriler" [ref=f75e56] [cursor=pointer]:
+            - /url: /admin/categories
+          - link "Markalar" [ref=f75e59] [cursor=pointer]:
+            - /url: /admin/brands
+          - link "Araçlar" [ref=f75e63] [cursor=pointer]:
+            - /url: /admin/vehicles
+          - link "Stok" [ref=f75e68] [cursor=pointer]:
+            - /url: /admin/stock
+          - link "Müşteriler" [ref=f75e72] [cursor=pointer]:
+            - /url: /admin/customers
+          - link "Siparişler" [ref=f75e78] [cursor=pointer]:
+            - /url: /admin/orders
+          - link "İşletme" [ref=f75e82] [cursor=pointer]:
+            - /url: /admin/business
+      - main [ref=f75e87]
+  - contentinfo [ref=f75e91]:
+    - generic [ref=f75e92]:
+      - generic [ref=f75e93]:
+        - generic [ref=f75e94]:
+          - generic [ref=f75e95]:
+            - generic [ref=f75e96]: Akinel
+            - generic [ref=f75e97]: Yedek Parça
+          - paragraph [ref=f75e98]: Test açıklaması güncel
+        - generic [ref=f75e99]:
+          - heading "Hızlı Linkler" [level=3] [ref=f75e100]
+          - list [ref=f75e101]:
+            - listitem [ref=f75e102]:
+              - link "Ana Sayfa" [ref=f75e103] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f75e104]:
+              - link "Ürünler" [ref=f75e105] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f75e106]:
+              - link "Aracımı Seç" [ref=f75e107] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f75e108]:
+              - link "OEM Ara" [ref=f75e109] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f75e110]:
+              - link "Garajım" [ref=f75e111] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f75e112]:
+              - link "Hakkımızda" [ref=f75e113] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f75e114]:
+          - heading "Müşteri" [level=3] [ref=f75e115]
+          - list [ref=f75e116]:
+            - listitem [ref=f75e117]:
+              - link "Giriş Yap" [ref=f75e118] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f75e119]:
+              - link "Kayıt Ol" [ref=f75e120] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f75e121]:
+              - link "Garajım" [ref=f75e122] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f75e123]:
+              - link "Hesabım" [ref=f75e124] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f75e125]:
+              - link "Periyodik Bakım" [ref=f75e126] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f75e127]:
+          - heading "İletişim" [level=3] [ref=f75e128]
+          - generic [ref=f75e129]:
+            - paragraph [ref=f75e130]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f75e131] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f75e138]:
+              - paragraph [ref=f75e139]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f75e140]: "Pazar: Kapalı"
+      - generic [ref=f75e141]:
+        - generic [ref=f75e142]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f75e143]:
+          - link "Gizlilik Politikası" [ref=f75e144] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f75e145] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f75e151] [cursor=pointer]
+  - alert [ref=f75e155]

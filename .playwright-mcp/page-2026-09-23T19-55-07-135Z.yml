@@ -1,0 +1,244 @@
+- generic [ref=f35e1]:
+  - banner [aria-hidden] [ref=f35e2]:
+    - generic [ref=f35e4]:
+      - link [ref=f35e117] [cursor=pointer]:
+        - /url: tel:+905331405649
+        - text: +90 533 140 56 49
+      - generic [ref=f35e8]:
+        - link [ref=f35e118] [cursor=pointer]:
+          - /url: /search
+          - text: Sipariş Takip
+        - generic [ref=f35e10]: "|"
+        - link [ref=f35e119] [cursor=pointer]:
+          - /url: /contact
+          - text: Yardım
+        - generic [ref=f35e12]: "|"
+        - link [ref=f35e120] [cursor=pointer]:
+          - /url: /contact
+          - text: İletişim
+        - generic [ref=f35e14]: "|"
+        - generic [ref=f35e15]: TR
+    - generic [ref=f35e17]:
+      - link [ref=f35e121] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f35e19]: Akinel
+        - generic [ref=f35e20]: Yedek Parça
+      - generic [ref=f35e22]:
+        - searchbox [ref=f35e122]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f35e24]:
+        - button [ref=f35e123]:
+          - generic [ref=f35e124]: "1"
+        - link [ref=f35e125] [cursor=pointer]:
+          - /url: /garage
+        - link [ref=f35e126] [cursor=pointer]:
+          - /url: /account
+          - text: Admin
+        - link [ref=f35e127] [cursor=pointer]:
+          - /url: /admin
+          - text: Admin
+    - navigation [ref=f35e42]:
+      - link [ref=f35e128] [cursor=pointer]:
+        - /url: /
+        - text: Ana Sayfa
+      - link [ref=f35e129] [cursor=pointer]:
+        - /url: /products
+        - text: Ürünler
+      - link [ref=f35e130] [cursor=pointer]:
+        - /url: /brands
+        - text: Markalar
+      - link [ref=f35e131] [cursor=pointer]:
+        - /url: /vehicle
+        - text: Aracımı Seç
+      - link [ref=f35e132] [cursor=pointer]:
+        - /url: /search
+        - text: OEM Ara
+      - link [ref=f35e133] [cursor=pointer]:
+        - /url: /garage
+        - text: Garajım
+      - link [ref=f35e134] [cursor=pointer]:
+        - /url: /about
+        - text: Hakkımızda
+      - link [ref=f35e135] [cursor=pointer]:
+        - /url: /contact
+        - text: İletişim
+  - main [aria-hidden] [ref=f35e51]:
+    - generic [ref=f35e136]:
+      - navigation [ref=f35e137]:
+        - link [ref=f35e139] [cursor=pointer]:
+          - /url: /
+          - text: Ana Sayfa
+        - generic [ref=f35e140]: Ürünler
+      - generic [ref=f35e145]:
+        - heading [level=1] [ref=f35e146]: Tüm Ürünler
+        - paragraph [ref=f35e147]: 3 ürün bulundu
+      - generic [ref=f35e148]:
+        - complementary [ref=f35e149]:
+          - generic [ref=f35e150]:
+            - generic [ref=f35e151]: Filtreler
+            - generic [ref=f35e153]:
+              - generic [ref=f35e154]:
+                - paragraph [ref=f35e155]: Marka
+                - combobox [ref=f35e156]
+              - generic [ref=f35e157]:
+                - paragraph [ref=f35e158]: Kategori
+                - combobox [ref=f35e159]
+              - generic [ref=f35e161] [cursor=pointer]:
+                - checkbox [ref=f35e162]
+                - text: Sadece stokta olanlar
+              - generic [ref=f35e163]:
+                - paragraph [ref=f35e164]: Fiyat Aralığı (₺)
+                - generic [ref=f35e165]:
+                  - spinbutton [ref=f35e166]
+                  - spinbutton [ref=f35e167]
+              - generic [ref=f35e168]:
+                - paragraph [ref=f35e169]: Sıralama
+                - combobox [ref=f35e170]
+            - button [ref=f35e171]: Filtrele
+        - generic [ref=f35e172]:
+          - generic [ref=f35e173]:
+            - paragraph [ref=f35e174]: 3 ürün
+            - combobox [ref=f35e178]
+          - generic [ref=f35e179]:
+            - generic [ref=f35e180]:
+              - link [ref=f35e181] [cursor=pointer]:
+                - /url: /products/arka-fren-balata-seti
+                - generic [ref=f35e188]:
+                  - paragraph [ref=f35e189]: Bosch
+                  - heading [level=3] [ref=f35e190]: Arka Fren Balata Seti
+                  - paragraph [ref=f35e191]: Fren Balatası
+                  - generic [ref=f35e192]:
+                    - generic [ref=f35e193]: ₺850,00
+                    - generic [ref=f35e194]: Stokta
+              - button [ref=f35e196]: Eklendi!
+            - generic [ref=f35e199]:
+              - link [ref=f35e200] [cursor=pointer]:
+                - /url: /products/on-fren-diski
+                - generic [ref=f35e207]:
+                  - paragraph [ref=f35e208]: TRW
+                  - heading [level=3] [ref=f35e209]: Ön Fren Diski
+                  - paragraph [ref=f35e210]: Fren Diskleri
+                  - generic [ref=f35e211]:
+                    - generic [ref=f35e212]: ₺1.200,00
+                    - generic [ref=f35e213]: Stokta
+              - button [ref=f35e215]: Sepete Ekle
+            - generic [ref=f35e221]:
+              - link [ref=f35e222] [cursor=pointer]:
+                - /url: /products/yag-filtresi
+                - generic [ref=f35e229]:
+                  - paragraph [ref=f35e230]: Bosch
+                  - heading [level=3] [ref=f35e231]: Yağ Filtresi
+                  - paragraph [ref=f35e232]: Yağ Filtreleri
+                  - generic [ref=f35e233]:
+                    - generic [ref=f35e234]: ₺120,00
+                    - generic [ref=f35e235]: Stokta
+              - button [ref=f35e237]: Sepete Ekle
+  - contentinfo [aria-hidden] [ref=f35e53]:
+    - generic [ref=f35e54]:
+      - generic [ref=f35e55]:
+        - generic [ref=f35e56]:
+          - generic [ref=f35e57]:
+            - generic [ref=f35e58]: Akinel
+            - generic [ref=f35e59]: Yedek Parça
+          - paragraph [ref=f35e60]: Test açıklaması güncel
+        - generic [ref=f35e61]:
+          - heading [level=3] [ref=f35e243]: Hızlı Linkler
+          - list [ref=f35e63]:
+            - listitem [ref=f35e64]:
+              - link [ref=f35e244] [cursor=pointer]:
+                - /url: /
+                - text: Ana Sayfa
+            - listitem [ref=f35e66]:
+              - link [ref=f35e245] [cursor=pointer]:
+                - /url: /products
+                - text: Ürünler
+            - listitem [ref=f35e68]:
+              - link [ref=f35e246] [cursor=pointer]:
+                - /url: /vehicle
+                - text: Aracımı Seç
+            - listitem [ref=f35e70]:
+              - link [ref=f35e247] [cursor=pointer]:
+                - /url: /vin
+                - text: OEM Ara
+            - listitem [ref=f35e72]:
+              - link [ref=f35e248] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f35e74]:
+              - link [ref=f35e249] [cursor=pointer]:
+                - /url: /about
+                - text: Hakkımızda
+        - generic [ref=f35e76]:
+          - heading [level=3] [ref=f35e250]: Müşteri
+          - list [ref=f35e78]:
+            - listitem [ref=f35e79]:
+              - link [ref=f35e251] [cursor=pointer]:
+                - /url: /login
+                - text: Giriş Yap
+            - listitem [ref=f35e81]:
+              - link [ref=f35e252] [cursor=pointer]:
+                - /url: /register
+                - text: Kayıt Ol
+            - listitem [ref=f35e83]:
+              - link [ref=f35e253] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f35e85]:
+              - link [ref=f35e254] [cursor=pointer]:
+                - /url: /account
+                - text: Hesabım
+            - listitem [ref=f35e87]:
+              - link [ref=f35e255] [cursor=pointer]:
+                - /url: /maintenance
+                - text: Periyodik Bakım
+        - generic [ref=f35e89]:
+          - heading [level=3] [ref=f35e256]: İletişim
+          - generic [ref=f35e91]:
+            - paragraph [ref=f35e92]: AKN MOTORS Car Service
+            - link [ref=f35e257] [cursor=pointer]:
+              - /url: tel:+905331405649
+              - text: +90 533 140 56 49
+            - generic [ref=f35e100]:
+              - paragraph [ref=f35e101]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f35e102]: "Pazar: Kapalı"
+      - generic [ref=f35e103]:
+        - generic [ref=f35e104]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f35e105]:
+          - link [ref=f35e258] [cursor=pointer]:
+            - /url: "#"
+            - text: Gizlilik Politikası
+          - link [ref=f35e259] [cursor=pointer]:
+            - /url: "#"
+            - text: Kullanım Koşulları
+  - button "Open Next.js Dev Tools" [ref=f35e113] [cursor=pointer]
+  - alert [ref=f35e260]
+  - dialog [ref=f35e264]:
+    - heading "Sepetim 1" [level=2] [ref=f35e266]:
+      - text: Sepetim
+      - generic [ref=f35e272]: "1"
+    - list [ref=f35e274]:
+      - listitem [ref=f35e275]:
+        - link [active] [ref=f35e276] [cursor=pointer]:
+          - /url: /products/arka-fren-balata-seti
+        - generic [ref=f35e282]:
+          - paragraph [ref=f35e283]: Bosch
+          - link [ref=f35e284] [cursor=pointer]:
+            - /url: /products/arka-fren-balata-seti
+            - paragraph [ref=f35e285]: Arka Fren Balata Seti
+          - paragraph [ref=f35e286]: ₺850,00
+          - generic [ref=f35e287]:
+            - button "Azalt" [disabled] [ref=f35e288]
+            - generic [ref=f35e290]: "1"
+            - button "Artır" [ref=f35e291]
+            - generic [ref=f35e293]: = ₺850,00
+            - button "Kaldır" [ref=f35e294]
+    - generic [ref=f35e298]:
+      - separator [ref=f35e299]
+      - generic [ref=f35e300]:
+        - generic [ref=f35e301]: Ara Toplam
+        - generic [ref=f35e302]: ₺850,00
+      - button "Ödemeye Geç" [ref=f35e303]
+      - button "Alışverişe Devam Et" [ref=f35e304]
+    - button "Close" [ref=f35e305]

@@ -1,0 +1,1396 @@
+- generic [active] [ref=f8e1]:
+  - generic [ref=f8e8]:
+    - generic [ref=f8e9]:
+      - generic [ref=f8e12]:
+        - generic [ref=f8e14]:
+          - generic [ref=f8e15]:
+            - generic [ref=f8e16]: 
+            - text: 0850 532 1935
+          - link " info@yedekparca.com.tr" [ref=f8e17] [cursor=pointer]:
+            - /url: mailto:info@yedekparca.com.tr
+            - generic [ref=f8e18]: 
+            - generic [ref=f8e19]: info@yedekparca.com.tr
+        - generic [ref=f8e21]:
+          - generic [ref=f8e22]: Türkçe
+          - generic [ref=f8e25]: TRY - Türk Lirası
+          - link "Sipariş Takip" [ref=f8e27] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+          - link "Yardım" [ref=f8e28] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/yardim
+          - link "İletişim" [ref=f8e29] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/iletisim-sID0
+      - generic [ref=f8e33]:
+        - link [ref=f8e36] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+        - generic [ref=f8e38]:
+          - generic [ref=f8e39]:
+            - generic [ref=f8e42]:
+              - generic [ref=f8e43]: 
+              - textbox "Parça adı, oem numara veya parça referansı ara" [ref=f8e46]
+              - button "Ürün Ara" [ref=f8e47] [cursor=pointer]
+            - list [ref=f8e50]:
+              - listitem [ref=f8e51]:
+                - button "Fren" [ref=f8e52] [cursor=pointer]
+              - listitem [ref=f8e53]:
+                - button "Debriyaj" [ref=f8e54] [cursor=pointer]
+              - listitem [ref=f8e55]:
+                - button "Yakıt" [ref=f8e56] [cursor=pointer]
+              - listitem [ref=f8e57]:
+                - button "Süspansiyon" [ref=f8e58] [cursor=pointer]
+              - listitem [ref=f8e59]:
+                - button "Direksiyon" [ref=f8e60] [cursor=pointer]
+              - listitem [ref=f8e61]:
+                - button "Elektrik" [ref=f8e62] [cursor=pointer]
+              - listitem [ref=f8e63]:
+                - button "Soğutma" [ref=f8e64] [cursor=pointer]
+          - generic [ref=f8e67]:
+            - link "" [ref=f8e69] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hesabim/garajim
+            - link "" [ref=f8e72] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hesabim/favori-listem
+            - link " 0" [ref=f8e75] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/sepet
+              - generic [ref=f8e76]:
+                - generic [ref=f8e77]: 
+                - generic [ref=f8e78]: "0"
+            - generic [ref=f8e79]:
+              - generic [ref=f8e80]: 
+              - strong [ref=f8e83]: Hesabım
+    - text:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+  - generic:   
+  - navigation "breadcrumb" [ref=f8e93]:
+    - list [ref=f8e94]:
+      - listitem [ref=f8e95]:
+        - link "" [ref=f8e96] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+      - listitem [ref=f8e99]:
+        - text: ">"
+        - link "Araç Markaları" [ref=f8e100] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/arac-markalari
+      - listitem [ref=f8e101]:
+        - text: ">"
+        - link "Volkswagen Yedek Parça" [ref=f8e102] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/volkswagen-yedek-parca
+  - generic [ref=f8e106]:
+    - generic [ref=f8e109]:
+      - status [ref=f8e113]:
+        - generic [ref=f8e114]: Yükleniyor...
+      - list [ref=f8e118]:
+        - listitem [ref=f8e119]:
+          - link "YEDEK PARÇALAR" [ref=f8e120] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/tumu-c-0
+        - listitem [ref=f8e121]:
+          - link "Fren " [ref=f8e122] [cursor=pointer]:
+            - /url: javascript:;
+        - listitem [ref=f8e123]:
+          - link "Debriyaj " [ref=f8e124] [cursor=pointer]:
+            - /url: javascript:;
+          - text: 
+        - listitem [ref=f8e125]:
+          - link "Yakıt " [ref=f8e126] [cursor=pointer]:
+            - /url: javascript:;
+          - text: 
+        - listitem [ref=f8e127]:
+          - link "Süspansiyon " [ref=f8e128] [cursor=pointer]:
+            - /url: javascript:;
+        - listitem [ref=f8e129]:
+          - link "Direksiyon " [ref=f8e130] [cursor=pointer]:
+            - /url: javascript:;
+        - listitem [ref=f8e131]:
+          - link "Elektrik " [ref=f8e132] [cursor=pointer]:
+            - /url: javascript:;
+          - text: 
+        - listitem [ref=f8e133]:
+          - link "Soğutma " [ref=f8e134] [cursor=pointer]:
+            - /url: javascript:;
+          - text: 
+        - listitem [ref=f8e135]:
+          - link "Filtreler " [ref=f8e136] [cursor=pointer]:
+            - /url: javascript:;
+        - listitem [ref=f8e137]:
+          - link "Motor " [ref=f8e138] [cursor=pointer]:
+            - /url: javascript:;
+          - text:   
+        - listitem [ref=f8e139]:
+          - link "Diger" [ref=f8e140] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/diger
+        - listitem [ref=f8e141]:
+          - link "Araç Markaları " [ref=f8e142] [cursor=pointer]:
+            - /url: javascript:;
+          - list [ref=f8e143]:
+            - listitem [ref=f8e144]:
+              - link "Araç Markaları (Tümü)" [ref=f8e145] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/arac-markalari
+            - listitem [ref=f8e146]:
+              - link "Alfa Romeo Yedek Parça " [ref=f8e147] [cursor=pointer]:
+                - /url: javascript:;
+              - text:     
+            - listitem [ref=f8e148]:
+              - link "Audi Yedek Parça " [ref=f8e149] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                                            
+            - listitem [ref=f8e150]:
+              - link "BMW Yedek Parça " [ref=f8e151] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                                                            
+            - listitem [ref=f8e152]:
+              - link "Chevrolet Yedek Parça " [ref=f8e153] [cursor=pointer]:
+                - /url: javascript:;
+              - text:          
+            - listitem [ref=f8e154]:
+              - link "Chrysler Yedek Parça " [ref=f8e155] [cursor=pointer]:
+                - /url: javascript:;
+            - listitem [ref=f8e156]:
+              - link "Citroen Yedek Parça " [ref=f8e157] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                                                    
+            - listitem [ref=f8e158]:
+              - link "Dacia Yedek Parça " [ref=f8e159] [cursor=pointer]:
+                - /url: javascript:;
+              - text:           
+            - listitem [ref=f8e160]:
+              - link "Dodge Yedek Parça " [ref=f8e161] [cursor=pointer]:
+                - /url: javascript:;
+              - text: 
+            - listitem [ref=f8e162]:
+              - link "Fiat Yedek Parça " [ref=f8e163] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                         
+            - listitem [ref=f8e164]:
+              - link "Ford Yedek Parça " [ref=f8e165] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                                                            
+            - listitem [ref=f8e166]:
+              - link "Honda Yedek Parça " [ref=f8e167] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                      
+            - listitem [ref=f8e168]:
+              - link "Hyundai Yedek Parça " [ref=f8e169] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                                
+            - listitem [ref=f8e170]:
+              - link "Infiniti Yedek Parça " [ref=f8e171] [cursor=pointer]:
+                - /url: javascript:;
+              - text:   
+            - listitem [ref=f8e172]:
+              - link "Jaguar Yedek Parça " [ref=f8e173] [cursor=pointer]:
+                - /url: javascript:;
+              - text:      
+            - listitem [ref=f8e174]:
+              - link "Jeep Yedek Parça " [ref=f8e175] [cursor=pointer]:
+                - /url: javascript:;
+              - text:        
+            - listitem [ref=f8e176]:
+              - link "Kia Yedek Parça " [ref=f8e177] [cursor=pointer]:
+                - /url: javascript:;
+              - text:           
+            - listitem [ref=f8e178]:
+              - link "Lancia Yedek Parça " [ref=f8e179] [cursor=pointer]:
+                - /url: javascript:;
+              - text: 
+            - listitem [ref=f8e180]:
+              - link "Land Rover Yedek Parça " [ref=f8e181] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                 
+            - listitem [ref=f8e182]:
+              - link "Mazda Yedek Parça " [ref=f8e183] [cursor=pointer]:
+                - /url: javascript:;
+              - text:    
+            - listitem [ref=f8e184]:
+              - link "Mercedes Yedek Parça " [ref=f8e185] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                                                                                         
+            - listitem [ref=f8e186]:
+              - link "Mini Yedek Parça " [ref=f8e187] [cursor=pointer]:
+                - /url: javascript:;
+              - text:              
+            - listitem [ref=f8e188]:
+              - link "Mitsubishi Yedek Parça " [ref=f8e189] [cursor=pointer]:
+                - /url: javascript:;
+              - text:       
+            - listitem [ref=f8e190]:
+              - link "Nissan Yedek Parça " [ref=f8e191] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                       
+            - listitem [ref=f8e192]:
+              - link "Opel Yedek Parça " [ref=f8e193] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                                             
+            - listitem [ref=f8e194]:
+              - link "Peugeot Yedek Parça " [ref=f8e195] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                                                 
+            - listitem [ref=f8e196]:
+              - link "Porsche Yedek Parça " [ref=f8e197] [cursor=pointer]:
+                - /url: javascript:;
+              - text:         
+            - listitem [ref=f8e198]:
+              - link "Renault Yedek Parça " [ref=f8e199] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                              
+            - listitem [ref=f8e200]:
+              - link "Rolls Royce Yedek Parça" [ref=f8e201] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/rolls-royce-yedek-parca
+            - listitem [ref=f8e202]:
+              - link "Seat Yedek Parça " [ref=f8e203] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                       
+            - listitem [ref=f8e204]:
+              - link "Skoda Yedek Parça " [ref=f8e205] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                  
+            - listitem [ref=f8e206]:
+              - link "Smart Yedek Parça " [ref=f8e207] [cursor=pointer]:
+                - /url: javascript:;
+              - text:    
+            - listitem [ref=f8e208]:
+              - link "Subaru Yedek Parça " [ref=f8e209] [cursor=pointer]:
+                - /url: javascript:;
+              - text:      
+            - listitem [ref=f8e210]:
+              - link "Suzuki Yedek Parça " [ref=f8e211] [cursor=pointer]:
+                - /url: javascript:;
+              - text:      
+            - listitem [ref=f8e212]:
+              - link "Toyota Yedek Parça " [ref=f8e213] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                        
+            - listitem [ref=f8e214]:
+              - link "Volkswagen Yedek Parça " [ref=f8e215] [cursor=pointer]:
+                - /url: javascript:;
+              - list [ref=f8e216]:
+                - listitem [ref=f8e217]:
+                  - link "Volkswagen Yedek Parça (Tümü)" [ref=f8e218] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/volkswagen-yedek-parca
+                - listitem [ref=f8e219]:
+                  - link "Volkswagen Amarok Yedek Parça " [ref=f8e220] [cursor=pointer]:
+                    - /url: javascript:;
+                - listitem [ref=f8e221]:
+                  - link "Volkswagen Arteon Yedek Parça " [ref=f8e222] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text: 
+                - listitem [ref=f8e223]:
+                  - link "Volkswagen Beetle Yedek Parça " [ref=f8e224] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:   
+                - listitem [ref=f8e225]:
+                  - link "Volkswagen Bora Yedek Parça " [ref=f8e226] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text: 
+                - listitem [ref=f8e227]:
+                  - link "Volkswagen Caddy Yedek Parça " [ref=f8e228] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:     
+                - listitem [ref=f8e229]:
+                  - link "Volkswagen EOS Yedek Parça" [ref=f8e230] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/volkswagen-eos-yedek-parca
+                - listitem [ref=f8e231]:
+                  - link "Volkswagen Golf Yedek Parça " [ref=f8e232] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:     
+                - listitem [ref=f8e233]:
+                  - link "Volkswagen Jetta Yedek Parça " [ref=f8e234] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:  
+                - listitem [ref=f8e235]:
+                  - link "Volkswagen Lupo Yedek Parça" [ref=f8e236] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/volkswagen-lupo-yedek-parca
+                - listitem [ref=f8e237]:
+                  - link "Volkswagen Passat Yedek Parça " [ref=f8e238] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:         
+                - listitem [ref=f8e239]:
+                  - link "Volkswagen Polo Yedek Parça " [ref=f8e240] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:      
+                - listitem [ref=f8e241]:
+                  - link "Volkswagen Scirocco Yedek Parça " [ref=f8e242] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text: 
+                - listitem [ref=f8e243]:
+                  - link "Volkswagen T-Roc Yedek Parça " [ref=f8e244] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text: 
+                - listitem [ref=f8e245]:
+                  - link "Volkswagen Tiguan Yedek Parça " [ref=f8e246] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:  
+                - listitem [ref=f8e247]:
+                  - link "Volkswagen Touareg Yedek Parça " [ref=f8e248] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:  
+                - listitem [ref=f8e249]:
+                  - link "Volkswagen Touran Yedek Parça " [ref=f8e250] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text: 
+                - listitem [ref=f8e251]:
+                  - link "Volkswagen Crafter Yedek Parça " [ref=f8e252] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:  
+                - listitem [ref=f8e253]:
+                  - link "Volkswagen Transporter Yedek Parça " [ref=f8e254] [cursor=pointer]:
+                    - /url: javascript:;
+                  - text:    
+                - listitem [ref=f8e255]:
+                  - link "Volkswagen Taigo (2021 Sonrası) Yedek Parça " [ref=f8e256] [cursor=pointer]:
+                    - /url: javascript:;
+                - listitem [ref=f8e257]:
+                  - link "Volkswagen T-Cross (2019 Sonrası) Yedek Parça " [ref=f8e258] [cursor=pointer]:
+                    - /url: javascript:;
+            - listitem [ref=f8e259]:
+              - link "Volvo Yedek Parça " [ref=f8e260] [cursor=pointer]:
+                - /url: javascript:;
+              - text:                  
+      - generic [ref=f8e261]: Markalar
+    - generic [ref=f8e269]:
+      - heading "Volkswagen Yedek Parça" [level=1] [ref=f8e272]
+      - generic [ref=f8e273]:
+        - list [ref=f8e277]:
+          - listitem [ref=f8e278]:
+            - generic [ref=f8e279]: En yeniler
+          - listitem [ref=f8e281]:
+            - generic [ref=f8e282]: En çok satanlar
+          - listitem [ref=f8e284]:
+            - generic [ref=f8e285]: Ürün adı A'dan-Z'ye
+          - listitem [ref=f8e287]:
+            - generic [ref=f8e288]: Ürün adı Z'den-A'ya
+          - listitem [ref=f8e290]:
+            - generic [ref=f8e291]: Fiyata göre artan
+          - listitem [ref=f8e293]:
+            - generic [ref=f8e294]: Fiyata göre azalan
+          - listitem [ref=f8e296]:
+            - generic [ref=f8e297]: En çok oylananlar
+        - generic [ref=f8e299]:
+          - generic [ref=f8e301]:
+            - link [ref=f8e302] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-passat-1-4-tsi-2008-2015-arasi-termostat-kutugu-komple-febi-marka
+              - img "Volkswagen Passat 1.4 TSI 2008-2015 Arası Termostat Kütüğü Komple Febi Marka" [ref=f8e305]
+            - generic [ref=f8e306]:
+              - generic [ref=f8e307]: Volkswagen Passat 1.4 TSI 2008-2015 Arası Termostat Kütüğü Komple Febi Marka
+              - generic [ref=f8e309]:
+                - generic [ref=f8e310]: 
+                - generic [ref=f8e312]: 
+                - generic [ref=f8e314]: 
+                - generic [ref=f8e316]: 
+                - generic [ref=f8e318]: 
+              - list [ref=f8e321]:
+                - listitem [ref=f8e322]:
+                  - link "Kategori Termostat" [ref=f8e323] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/termostat
+                    - text: Kategori
+                    - generic [ref=f8e324]: Termostat
+                - listitem [ref=f8e325]:
+                  - link "Marka Febi" [ref=f8e326] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/febi
+                    - text: Marka
+                    - generic [ref=f8e327]: Febi
+            - generic [ref=f8e328]:
+              - generic [ref=f8e329]: 3.638,96 TL
+              - generic [ref=f8e330]: 2.911,17 TL
+            - generic [ref=f8e331]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e333]:
+            - link [ref=f8e334] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-transporter-t6-2-0-dizel-150-bg-on-sag-sol-amortisor-monreo-marka-adet-fiyati
+              - img "Volkswagen Transporter T6 2.0 Dizel 150 BG Ön Sağ-Sol Amortisör Monreo Marka (Adet Fiyatı)" [ref=f8e337]
+            - generic [ref=f8e338]:
+              - generic [ref=f8e339]: Volkswagen Transporter T6 2.0 Dizel 150 BG Ön Sağ-Sol Amortisör Monreo Marka (Adet Fiyatı)
+              - generic [ref=f8e341]:
+                - generic [ref=f8e342]: 
+                - generic [ref=f8e344]: 
+                - generic [ref=f8e346]: 
+                - generic [ref=f8e348]: 
+                - generic [ref=f8e350]: 
+              - list [ref=f8e353]:
+                - listitem [ref=f8e354]:
+                  - link "Kategori Amortisör" [ref=f8e355] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/amortisor
+                    - text: Kategori
+                    - generic [ref=f8e356]: Amortisör
+                - listitem [ref=f8e357]:
+                  - link "Marka Monroe" [ref=f8e358] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/monroe
+                    - text: Marka
+                    - generic [ref=f8e359]: Monroe
+            - generic [ref=f8e360]:
+              - generic [ref=f8e361]: 5.068,67 TL
+              - generic [ref=f8e362]: 4.054,93 TL
+            - link "Sepete Ekle " [ref=f8e364] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e365]: 
+          - generic [ref=f8e367]:
+            - link [ref=f8e368] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-jetta-1-2-tsi-2014-2018-arasi-yag-pompasi-kraftvoll-marka
+              - img "Volkswagen Jetta 1.2 TSi 2014-2018 Arası Yağ Pompası Kraftvoll Marka" [ref=f8e371]
+            - generic [ref=f8e372]:
+              - generic [ref=f8e373]: Volkswagen Jetta 1.2 TSi 2014-2018 Arası Yağ Pompası Kraftvoll Marka
+              - generic [ref=f8e375]:
+                - generic [ref=f8e376]: 
+                - generic [ref=f8e378]: 
+                - generic [ref=f8e380]: 
+                - generic [ref=f8e382]: 
+                - generic [ref=f8e384]: 
+              - list [ref=f8e387]:
+                - listitem [ref=f8e388]:
+                  - link "Kategori Yağ Pompası" [ref=f8e389] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/yag-pompasi
+                    - text: Kategori
+                    - generic [ref=f8e390]: Yağ Pompası
+                - listitem [ref=f8e391]:
+                  - link "Marka Kraftvoll" [ref=f8e392] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/kraftvoll
+                    - text: Marka
+                    - generic [ref=f8e393]: Kraftvoll
+            - generic [ref=f8e394]:
+              - generic [ref=f8e395]: 3.395,00 TL
+              - generic [ref=f8e396]: 2.716,00 TL
+            - link "Sepete Ekle " [ref=f8e398] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e399]: 
+          - generic [ref=f8e401]:
+            - link [ref=f8e402] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-touareg-2-5-tdi-2003-2010-arasi-kulbutor-kapak-contasi-gva-marka
+              - img "Volkswagen Touareg 2.5 TDi 2003-2010 Arası Külbütör Kapak Contası GVA Marka" [ref=f8e405]
+            - generic [ref=f8e406]:
+              - generic [ref=f8e407]: Volkswagen Touareg 2.5 TDi 2003-2010 Arası Külbütör Kapak Contası GVA Marka
+              - generic [ref=f8e409]:
+                - generic [ref=f8e410]: 
+                - generic [ref=f8e412]: 
+                - generic [ref=f8e414]: 
+                - generic [ref=f8e416]: 
+                - generic [ref=f8e418]: 
+              - list [ref=f8e421]:
+                - listitem [ref=f8e422]:
+                  - link "Kategori Külbütör" [ref=f8e423] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/kulbutor
+                    - text: Kategori
+                    - generic [ref=f8e424]: Külbütör
+                - listitem [ref=f8e425]:
+                  - link "Marka" [ref=f8e426] [cursor=pointer]:
+                    - /url: ""
+            - generic [ref=f8e427]:
+              - generic [ref=f8e428]: 1.875,00 TL
+              - generic [ref=f8e429]: 1.500,00 TL
+            - generic [ref=f8e430]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e432]:
+            - link [ref=f8e433] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-golf-7-1-6-2013-2020-arasi-on-sol-salincak-rotilsiz-lemforder-marka
+              - img "Volkswagen Golf 7 1.6 2013-2020 Arası Ön Sol Salıncak Rotilsiz Lemförder Marka" [ref=f8e436]
+            - generic [ref=f8e437]:
+              - generic [ref=f8e438]: Volkswagen Golf 7 1.6 2013-2020 Arası Ön Sol Salıncak Rotilsiz Lemförder Marka
+              - generic [ref=f8e440]:
+                - generic [ref=f8e441]: 
+                - generic [ref=f8e443]: 
+                - generic [ref=f8e445]: 
+                - generic [ref=f8e447]: 
+                - generic [ref=f8e449]: 
+              - list [ref=f8e452]:
+                - listitem [ref=f8e453]:
+                  - link "Kategori Salıncak" [ref=f8e454] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/salincak
+                    - text: Kategori
+                    - generic [ref=f8e455]: Salıncak
+                - listitem [ref=f8e456]:
+                  - link "Marka Lemförder" [ref=f8e457] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/lemforder
+                    - text: Marka
+                    - generic [ref=f8e458]: Lemförder
+            - generic [ref=f8e459]:
+              - generic [ref=f8e460]: 3.725,00 TL
+              - generic [ref=f8e461]: 2.980,00 TL
+            - generic [ref=f8e462]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e464]:
+            - link [ref=f8e465] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-golf-7-1-6-2013-2020-arasi-on-sag-salincak-rotilsiz-lemforder-marka
+              - img "Volkswagen Golf 7 1.6 2013-2020 Arası Ön Sağ Salıncak Rotilsiz Lemförder Marka" [ref=f8e468]
+            - generic [ref=f8e469]:
+              - generic [ref=f8e470]: Volkswagen Golf 7 1.6 2013-2020 Arası Ön Sağ Salıncak Rotilsiz Lemförder Marka
+              - generic [ref=f8e472]:
+                - generic [ref=f8e473]: 
+                - generic [ref=f8e475]: 
+                - generic [ref=f8e477]: 
+                - generic [ref=f8e479]: 
+                - generic [ref=f8e481]: 
+              - list [ref=f8e484]:
+                - listitem [ref=f8e485]:
+                  - link "Kategori Salıncak" [ref=f8e486] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/salincak
+                    - text: Kategori
+                    - generic [ref=f8e487]: Salıncak
+                - listitem [ref=f8e488]:
+                  - link "Marka Lemförder" [ref=f8e489] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/lemforder
+                    - text: Marka
+                    - generic [ref=f8e490]: Lemförder
+            - generic [ref=f8e491]:
+              - generic [ref=f8e492]: 3.725,00 TL
+              - generic [ref=f8e493]: 2.980,00 TL
+            - generic [ref=f8e494]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e496]:
+            - link [ref=f8e497] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-transporter-t6-2-0tdi-klima-radyatoru-mga-marka
+              - img "Volkswagen Transporter T6 2.0TDI Klima Radyatörü Mga Marka" [ref=f8e500]
+            - generic [ref=f8e501]:
+              - generic [ref=f8e502]: Volkswagen Transporter T6 2.0TDI Klima Radyatörü Mga Marka
+              - generic [ref=f8e504]:
+                - generic [ref=f8e505]: 
+                - generic [ref=f8e507]: 
+                - generic [ref=f8e509]: 
+                - generic [ref=f8e511]: 
+                - generic [ref=f8e513]: 
+              - list [ref=f8e516]:
+                - listitem [ref=f8e517]:
+                  - link "Kategori Klima Radyatörü" [ref=f8e518] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/klima-radyatoru
+                    - text: Kategori
+                    - generic [ref=f8e519]: Klima Radyatörü
+                - listitem [ref=f8e520]:
+                  - link "Marka MGA" [ref=f8e521] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/mga
+                    - text: Marka
+                    - generic [ref=f8e522]: MGA
+            - generic [ref=f8e523]:
+              - generic [ref=f8e524]: 3.440,00 TL
+              - generic [ref=f8e525]: 2.750,00 TL
+            - generic [ref=f8e526]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e528]:
+            - link [ref=f8e529] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-transporter-far-sinyal-kolu-1996-2004-arasi-mga-marka
+              - img "Volkswagen Transporter Far Sinyal Kolu 1996-2004 Arası Mga Marka" [ref=f8e532]
+            - generic [ref=f8e533]:
+              - generic [ref=f8e534]: Volkswagen Transporter Far Sinyal Kolu 1996-2004 Arası Mga Marka
+              - generic [ref=f8e536]:
+                - generic [ref=f8e537]: 
+                - generic [ref=f8e539]: 
+                - generic [ref=f8e541]: 
+                - generic [ref=f8e543]: 
+                - generic [ref=f8e545]: 
+              - list [ref=f8e548]:
+                - listitem [ref=f8e549]:
+                  - link "Kategori Far Kumanda Kolu" [ref=f8e550] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/far-kumanda-kolu
+                    - text: Kategori
+                    - generic [ref=f8e551]: Far Kumanda Kolu
+                - listitem [ref=f8e552]:
+                  - link "Marka MGA" [ref=f8e553] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/mga
+                    - text: Marka
+                    - generic [ref=f8e554]: MGA
+            - generic [ref=f8e555]:
+              - generic [ref=f8e556]: 1.060,00 TL
+              - generic [ref=f8e557]: 850,00 TL
+            - generic [ref=f8e558]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e560]:
+            - link [ref=f8e561] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-passat-b6-2-0-fsi-2006-2011-arasi-sanziman-yag-filtresi-purflux-marka
+              - img "Volkswagen Passat B6 2.0 FSI 2006-2011 Arası Şanzıman Yağ Filtresi Purflux Marka" [ref=f8e564]
+            - generic [ref=f8e565]:
+              - generic [ref=f8e566]: Volkswagen Passat B6 2.0 FSI 2006-2011 Arası Şanzıman Yağ Filtresi Purflux Marka
+              - generic [ref=f8e568]:
+                - generic [ref=f8e569]: 
+                - generic [ref=f8e571]: 
+                - generic [ref=f8e573]: 
+                - generic [ref=f8e575]: 
+                - generic [ref=f8e577]: 
+              - list [ref=f8e580]:
+                - listitem [ref=f8e581]:
+                  - link "Kategori Şanzıman Yağ Filtresi" [ref=f8e582] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sanziman-yag-filtresi
+                    - text: Kategori
+                    - generic [ref=f8e583]: Şanzıman Yağ Filtresi
+                - listitem [ref=f8e584]:
+                  - link "Marka Purflux" [ref=f8e585] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/purflux
+                    - text: Marka
+                    - generic [ref=f8e586]: Purflux
+            - generic [ref=f8e587]:
+              - generic [ref=f8e588]: 836,84 TL
+              - generic [ref=f8e589]: 669,47 TL
+            - link "Sepete Ekle " [ref=f8e591] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e592]: 
+          - generic [ref=f8e594]:
+            - link [ref=f8e595] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/arka-teker-poryasi-polo-12dti-/-12tsi-/-14fsi-/-14-/-16-/-19tdi-/-18gti-/-fabia-absli-5-bijon-432
+              - img "ARKA TEKER PORYASI POLO 1,2DTI / 1,2TSI / 1,4FSI / 1,4 / 1,6 / 1,9TDI / 1,8GTI / FABIA ABSLI 5 BIJON" [ref=f8e598]
+            - generic [ref=f8e599]:
+              - generic [ref=f8e600]: ARKA TEKER PORYASI POLO 1,2DTI / 1,2TSI / 1,4FSI / 1,4 / 1,6 / 1,9TDI / 1,8GTI / FABIA ABSLI 5 BIJON
+              - generic [ref=f8e602]:
+                - generic [ref=f8e603]: 
+                - generic [ref=f8e605]: 
+                - generic [ref=f8e607]: 
+                - generic [ref=f8e609]: 
+                - generic [ref=f8e611]: 
+              - list [ref=f8e614]:
+                - listitem [ref=f8e615]:
+                  - link "Kategori Porya" [ref=f8e616] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/porya
+                    - text: Kategori
+                    - generic [ref=f8e617]: Porya
+                - listitem [ref=f8e618]:
+                  - link "Marka Valeo" [ref=f8e619] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/valeo
+                    - text: Marka
+                    - generic [ref=f8e620]: Valeo
+            - generic [ref=f8e621]:
+              - generic [ref=f8e622]: 2.838,68 TL
+              - generic [ref=f8e623]: 2.270,95 TL
+            - link "Sepete Ekle " [ref=f8e625] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e626]: 
+          - generic [ref=f8e628]:
+            - link [ref=f8e629] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-golf-5-yakit-filtresi-1-9-tdi-105-beygir-2004-2009-bosch
+              - img "Volkswagen Golf 5 Yakıt Filtresi 1.9 TDI 105 Beygir 2004-2009 BOSCH" [ref=f8e632]
+            - generic [ref=f8e633]:
+              - generic [ref=f8e634]: Volkswagen Golf 5 Yakıt Filtresi 1.9 TDI 105 Beygir 2004-2009 BOSCH
+              - generic [ref=f8e636]:
+                - generic [ref=f8e637]: 
+                - generic [ref=f8e639]: 
+                - generic [ref=f8e641]: 
+                - generic [ref=f8e643]: 
+                - generic [ref=f8e645]: 
+              - list [ref=f8e648]:
+                - listitem [ref=f8e649]:
+                  - link "Kategori Yakıt Filtresi" [ref=f8e650] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/yakit-filtresi
+                    - text: Kategori
+                    - generic [ref=f8e651]: Yakıt Filtresi
+                - listitem [ref=f8e652]:
+                  - link "Marka Bosch" [ref=f8e653] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f8e654]: Bosch
+            - generic [ref=f8e655]:
+              - generic [ref=f8e656]: 585,59 TL
+              - generic [ref=f8e657]: 468,47 TL
+            - link "Sepete Ekle " [ref=f8e659] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e660]: 
+          - generic [ref=f8e662]:
+            - link [ref=f8e663] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-tiguan-1-4-benzinli-2008-2015-arasi-klima-radyatoru-bosch-marka
+              - img "Volkswagen Tiguan 1.4 Benzinli 2008-2015 Arası Klima Radyatörü Bosch Marka" [ref=f8e666]
+            - generic [ref=f8e667]:
+              - generic [ref=f8e668]: Volkswagen Tiguan 1.4 Benzinli 2008-2015 Arası Klima Radyatörü Bosch Marka
+              - generic [ref=f8e670]:
+                - generic [ref=f8e671]: 
+                - generic [ref=f8e673]: 
+                - generic [ref=f8e675]: 
+                - generic [ref=f8e677]: 
+                - generic [ref=f8e679]: 
+              - list [ref=f8e682]:
+                - listitem [ref=f8e683]:
+                  - link "Kategori Klima Radyatörü" [ref=f8e684] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/klima-radyatoru
+                    - text: Kategori
+                    - generic [ref=f8e685]: Klima Radyatörü
+                - listitem [ref=f8e686]:
+                  - link "Marka Bosch" [ref=f8e687] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f8e688]: Bosch
+            - generic [ref=f8e689]:
+              - generic [ref=f8e690]: 5.214,17 TL
+              - generic [ref=f8e691]: 4.171,33 TL
+            - link "Sepete Ekle " [ref=f8e693] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e694]: 
+          - generic [ref=f8e696]:
+            - link "Kargo Bedava TURBOSARJ AUDI/VW TRANSPORTER T5/MULTIVAN V 1.9LD" [ref=f8e697] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/turbosarj-audi/vw-transporter-t5/multivan-v-1.9ld
+              - generic [ref=f8e698]: Kargo Bedava
+              - img "TURBOSARJ AUDI/VW TRANSPORTER T5/MULTIVAN V 1.9LD" [ref=f8e701]
+            - generic [ref=f8e702]:
+              - generic [ref=f8e703]: TURBOSARJ AUDI/VW TRANSPORTER T5/MULTIVAN V 1.9LD
+              - generic [ref=f8e705]:
+                - generic [ref=f8e706]: 
+                - generic [ref=f8e708]: 
+                - generic [ref=f8e710]: 
+                - generic [ref=f8e712]: 
+                - generic [ref=f8e714]: 
+              - list [ref=f8e717]:
+                - listitem [ref=f8e718]:
+                  - link "Kategori Turbo Şarj" [ref=f8e719] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/turbo-sarj
+                    - text: Kategori
+                    - generic [ref=f8e720]: Turbo Şarj
+                - listitem [ref=f8e721]:
+                  - link "Marka Jrone" [ref=f8e722] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/jrone
+                    - text: Marka
+                    - generic [ref=f8e723]: Jrone
+            - generic [ref=f8e724]:
+              - generic [ref=f8e725]: 28.200,29 TL
+              - generic [ref=f8e726]: 22.560,23 TL
+            - link "Sepete Ekle " [ref=f8e728] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e729]: 
+          - generic [ref=f8e731]:
+            - link [ref=f8e732] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-touareg-2-5d-2003-2010-arasi-on-amortisor-korugu-febi-marka
+              - img "Volkswagen Touareg 2.5d 2003-2010 Arası Ön Amortisör Körüğü Febi Marka" [ref=f8e735]
+            - generic [ref=f8e736]:
+              - generic [ref=f8e737]: Volkswagen Touareg 2.5d 2003-2010 Arası Ön Amortisör Körüğü Febi Marka
+              - generic [ref=f8e739]:
+                - generic [ref=f8e740]: 
+                - generic [ref=f8e742]: 
+                - generic [ref=f8e744]: 
+                - generic [ref=f8e746]: 
+                - generic [ref=f8e748]: 
+              - list [ref=f8e751]:
+                - listitem [ref=f8e752]:
+                  - link "Kategori Amortisör Körüğü" [ref=f8e753] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/amortisor-korugu
+                    - text: Kategori
+                    - generic [ref=f8e754]: Amortisör Körüğü
+                - listitem [ref=f8e755]:
+                  - link "Marka Febi Bilstein" [ref=f8e756] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/febi-bilstein
+                    - text: Marka
+                    - generic [ref=f8e757]: Febi Bilstein
+            - generic [ref=f8e758]:
+              - generic [ref=f8e759]: 2.127,00 TL
+              - generic [ref=f8e760]: 1.701,60 TL
+            - generic [ref=f8e761]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e763]:
+            - link "Kargo Bedava Volkswagen Transporter T6 2.0TDI Klima Radyatörü Kraftvoll Marka" [ref=f8e764] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-transporter-t6-2-0tdi-klima-radyatoru-kraftvoll-marka
+              - generic [ref=f8e765]: Kargo Bedava
+              - img "Volkswagen Transporter T6 2.0TDI Klima Radyatörü Kraftvoll Marka" [ref=f8e768]
+            - generic [ref=f8e769]:
+              - generic [ref=f8e770]: Volkswagen Transporter T6 2.0TDI Klima Radyatörü Kraftvoll Marka
+              - generic [ref=f8e772]:
+                - generic [ref=f8e773]: 
+                - generic [ref=f8e775]: 
+                - generic [ref=f8e777]: 
+                - generic [ref=f8e779]: 
+                - generic [ref=f8e781]: 
+              - list [ref=f8e784]:
+                - listitem [ref=f8e785]:
+                  - link "Kategori Klima Kompresörü" [ref=f8e786] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/klima-kompresoru
+                    - text: Kategori
+                    - generic [ref=f8e787]: Klima Kompresörü
+                - listitem [ref=f8e788]:
+                  - link "Marka Kraftvoll" [ref=f8e789] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/kraftvoll
+                    - text: Marka
+                    - generic [ref=f8e790]: Kraftvoll
+            - generic [ref=f8e791]:
+              - generic [ref=f8e792]: 12.367,31 TL
+              - generic [ref=f8e793]: 9.893,85 TL
+            - link "Sepete Ekle " [ref=f8e795] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e796]: 
+          - generic [ref=f8e798]:
+            - link "Kargo Bedava Volkswagen Carevelle 2.5 TDI AXD Motor 2004-2010 Arası Turboşarj Yan Sanayi BSG Marka" [ref=f8e799] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-carevelle-2-5-tdi-axd-motor-2004-2010-arasi-turbosarj-yan-sanayi-bsg-marka
+              - generic [ref=f8e800]: Kargo Bedava
+              - img "Volkswagen Carevelle 2.5 TDI AXD Motor 2004-2010 Arası Turboşarj Yan Sanayi BSG Marka" [ref=f8e803]
+            - generic [ref=f8e804]:
+              - generic [ref=f8e805]: Volkswagen Carevelle 2.5 TDI AXD Motor 2004-2010 Arası Turboşarj Yan Sanayi BSG Marka
+              - generic [ref=f8e807]:
+                - generic [ref=f8e808]: 
+                - generic [ref=f8e810]: 
+                - generic [ref=f8e812]: 
+                - generic [ref=f8e814]: 
+                - generic [ref=f8e816]: 
+              - list [ref=f8e819]:
+                - listitem [ref=f8e820]:
+                  - link "Kategori Turbo Şarj" [ref=f8e821] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/turbo-sarj
+                    - text: Kategori
+                    - generic [ref=f8e822]: Turbo Şarj
+                - listitem [ref=f8e823]:
+                  - link "Marka BSG" [ref=f8e824] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bsg
+                    - text: Marka
+                    - generic [ref=f8e825]: BSG
+            - generic [ref=f8e826]:
+              - generic [ref=f8e827]: 15.278,05 TL
+              - generic [ref=f8e828]: 12.222,44 TL
+            - link "Sepete Ekle " [ref=f8e830] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e831]: 
+          - generic [ref=f8e833]:
+            - link [ref=f8e834] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-transporter-t6-2010-2015-arasi-sag-on-aks-snr-marka
+              - img "Volkswagen Transporter T6 2010 - 2015 Arası Sağ Ön Aks Snr Marka" [ref=f8e837]
+            - generic [ref=f8e838]:
+              - generic [ref=f8e839]: Volkswagen Transporter T6 2010 - 2015 Arası Sağ Ön Aks Snr Marka
+              - generic [ref=f8e841]:
+                - generic [ref=f8e842]: 
+                - generic [ref=f8e844]: 
+                - generic [ref=f8e846]: 
+                - generic [ref=f8e848]: 
+                - generic [ref=f8e850]: 
+              - list [ref=f8e853]:
+                - listitem [ref=f8e854]:
+                  - link "Kategori Aks Komple" [ref=f8e855] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/aks-komple
+                    - text: Kategori
+                    - generic [ref=f8e856]: Aks Komple
+                - listitem [ref=f8e857]:
+                  - link "Marka SNR" [ref=f8e858] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/snr
+                    - text: Marka
+                    - generic [ref=f8e859]: SNR
+            - generic [ref=f8e860]:
+              - generic [ref=f8e861]: 10.905,24 TL
+              - generic [ref=f8e862]: 8.724,19 TL
+            - generic [ref=f8e863]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e865]:
+            - link [ref=f8e866] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-transporter-t5-2004-2008-arasi-1-9-axc-motor-egzoz-turbosarj-bsg-marka
+              - img "Volkswagen Transporter T5 2004-2008 Arası 1.9 AXC Motor Egzoz Turboşarj Bsg Marka" [ref=f8e869]
+            - generic [ref=f8e870]:
+              - generic [ref=f8e871]: Volkswagen Transporter T5 2004-2008 Arası 1.9 AXC Motor Egzoz Turboşarj Bsg Marka
+              - generic [ref=f8e873]:
+                - generic [ref=f8e874]: 
+                - generic [ref=f8e876]: 
+                - generic [ref=f8e878]: 
+                - generic [ref=f8e880]: 
+                - generic [ref=f8e882]: 
+              - list [ref=f8e885]:
+                - listitem [ref=f8e886]:
+                  - link "Kategori Turbo Şarj" [ref=f8e887] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/turbo-sarj
+                    - text: Kategori
+                    - generic [ref=f8e888]: Turbo Şarj
+                - listitem [ref=f8e889]:
+                  - link "Marka BSG" [ref=f8e890] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bsg
+                    - text: Marka
+                    - generic [ref=f8e891]: BSG
+            - generic [ref=f8e892]:
+              - generic [ref=f8e893]: 17.084,18 TL
+              - generic [ref=f8e894]: 13.667,34 TL
+            - generic [ref=f8e895]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e897]:
+            - link [ref=f8e898] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-touareg-3-2-2003-2010-arasi-atesleme-bobini-ngk-marka
+              - img "Volkswagen Touareg 3.2 2003-2010 Arası Ateşleme Bobini Ngk Marka" [ref=f8e901]
+            - generic [ref=f8e902]:
+              - generic [ref=f8e903]: Volkswagen Touareg 3.2 2003-2010 Arası Ateşleme Bobini Ngk Marka
+              - generic [ref=f8e905]:
+                - generic [ref=f8e906]: 
+                - generic [ref=f8e908]: 
+                - generic [ref=f8e910]: 
+                - generic [ref=f8e912]: 
+                - generic [ref=f8e914]: 
+              - list [ref=f8e917]:
+                - listitem [ref=f8e918]:
+                  - link "Kategori Ateşleme Bobini" [ref=f8e919] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/atesleme-bobini
+                    - text: Kategori
+                    - generic [ref=f8e920]: Ateşleme Bobini
+                - listitem [ref=f8e921]:
+                  - link "Marka NGK" [ref=f8e922] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/ngk
+                    - text: Marka
+                    - generic [ref=f8e923]: NGK
+            - generic [ref=f8e924]:
+              - generic [ref=f8e925]: 2.364,38 TL
+              - generic [ref=f8e926]: 1.891,50 TL
+            - link "Sepete Ekle " [ref=f8e928] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e929]: 
+          - generic [ref=f8e931]:
+            - link [ref=f8e932] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-t-roc-2021-sonrasi-arka-fren-balatasi-textar-marka
+              - img "Volkswagen T-Roc 2021 Sonrası Arka Fren Balatası Textar Marka" [ref=f8e935]
+            - generic [ref=f8e936]:
+              - generic [ref=f8e937]: Volkswagen T-Roc 2021 Sonrası Arka Fren Balatası Textar Marka
+              - generic [ref=f8e939]:
+                - generic [ref=f8e940]: 
+                - generic [ref=f8e942]: 
+                - generic [ref=f8e944]: 
+                - generic [ref=f8e946]: 
+                - generic [ref=f8e948]: 
+              - list [ref=f8e951]:
+                - listitem [ref=f8e952]:
+                  - link "Kategori Balata" [ref=f8e953] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f8e954]: Balata
+                - listitem [ref=f8e955]:
+                  - link "Marka Textar" [ref=f8e956] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/textar
+                    - text: Marka
+                    - generic [ref=f8e957]: Textar
+            - generic [ref=f8e958]:
+              - generic [ref=f8e959]: 2.685,00 TL
+              - generic [ref=f8e960]: 2.150,00 TL
+            - generic [ref=f8e961]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e963]:
+            - link [ref=f8e964] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-polo-1-4-tdi-2016-2020-arasi-enjektor-contasi-corteco-marka
+              - img "Volkswagen Polo 1.4 TDI 2016-2020 Arası Enjektör Contası Corteco Marka" [ref=f8e967]
+            - generic [ref=f8e968]:
+              - generic [ref=f8e969]: Volkswagen Polo 1.4 TDI 2016-2020 Arası Enjektör Contası Corteco Marka
+              - generic [ref=f8e971]:
+                - generic [ref=f8e972]: 
+                - generic [ref=f8e974]: 
+                - generic [ref=f8e976]: 
+                - generic [ref=f8e978]: 
+                - generic [ref=f8e980]: 
+              - list [ref=f8e983]:
+                - listitem [ref=f8e984]:
+                  - link "Kategori Enjektör Diğer" [ref=f8e985] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/enjektor-diger
+                    - text: Kategori
+                    - generic [ref=f8e986]: Enjektör Diğer
+                - listitem [ref=f8e987]:
+                  - link "Marka Corteco" [ref=f8e988] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/corteco
+                    - text: Marka
+                    - generic [ref=f8e989]: Corteco
+            - generic [ref=f8e990]:
+              - generic [ref=f8e991]: 415,99 TL
+              - generic [ref=f8e992]: 332,79 TL
+            - link "Sepete Ekle " [ref=f8e994] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e995]: 
+          - generic [ref=f8e997]:
+            - link [ref=f8e998] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-golf-1.4-2004-2009-arasi-yagli-kavrama-borgwarner-marka
+              - img "Volkswagen Golf 1.4 2004-2009 Arası Yağlı Kavrama Borgwarner Marka" [ref=f8e1001]
+            - generic [ref=f8e1002]:
+              - generic [ref=f8e1003]: Volkswagen Golf 1.4 2004-2009 Arası Yağlı Kavrama Borgwarner Marka
+              - generic [ref=f8e1005]:
+                - generic [ref=f8e1006]: 
+                - generic [ref=f8e1008]: 
+                - generic [ref=f8e1010]: 
+                - generic [ref=f8e1012]: 
+                - generic [ref=f8e1014]: 
+              - list [ref=f8e1017]:
+                - listitem [ref=f8e1018]:
+                  - link "Kategori Debriyaj Seti" [ref=f8e1019] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/debriyaj-seti
+                    - text: Kategori
+                    - generic [ref=f8e1020]: Debriyaj Seti
+                - listitem [ref=f8e1021]:
+                  - link "Marka" [ref=f8e1022] [cursor=pointer]:
+                    - /url: ""
+            - generic [ref=f8e1023]:
+              - generic [ref=f8e1024]: 34.307,04 TL
+              - generic [ref=f8e1025]: 27.445,63 TL
+            - generic [ref=f8e1026]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f8e1028]:
+            - link "Kargo Bedava Volkswagen Passat CC 2.0 TDI 2008-2012 Arası Çiftli Islak Kavrama" [ref=f8e1029] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-passat-cc-2.0-tdi-2008-2012-arasi-ciftli-islak-kavrama
+              - generic [ref=f8e1030]: Kargo Bedava
+              - img "Volkswagen Passat CC 2.0 TDI 2008-2012 Arası Çiftli Islak Kavrama" [ref=f8e1033]
+            - generic [ref=f8e1034]:
+              - generic [ref=f8e1035]: Volkswagen Passat CC 2.0 TDI 2008-2012 Arası Çiftli Islak Kavrama
+              - generic [ref=f8e1037]:
+                - generic [ref=f8e1038]: 
+                - generic [ref=f8e1040]: 
+                - generic [ref=f8e1042]: 
+                - generic [ref=f8e1044]: 
+                - generic [ref=f8e1046]: 
+              - list [ref=f8e1049]:
+                - listitem [ref=f8e1050]:
+                  - link "Kategori Debriyaj Seti" [ref=f8e1051] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/debriyaj-seti
+                    - text: Kategori
+                    - generic [ref=f8e1052]: Debriyaj Seti
+                - listitem [ref=f8e1053]:
+                  - link "Marka" [ref=f8e1054] [cursor=pointer]:
+                    - /url: ""
+            - generic [ref=f8e1055]:
+              - generic [ref=f8e1056]: 35.837,25 TL
+              - generic [ref=f8e1057]: 28.669,80 TL
+            - link "Sepete Ekle " [ref=f8e1059] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f8e1060]: 
+          - generic [ref=f8e1062]:
+            - link [ref=f8e1063] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-bora-1999-2006-arasi-on-amortisor-korugu-ytt-marka
+              - img "Volkswagen Bora 1999-2006 Arası Ön Amortisör Körüğü Ytt Marka" [ref=f8e1066]
+            - generic [ref=f8e1067]:
+              - generic [ref=f8e1068]: Volkswagen Bora 1999-2006 Arası Ön Amortisör Körüğü Ytt Marka
+              - generic [ref=f8e1070]:
+                - generic [ref=f8e1071]: 
+                - generic [ref=f8e1073]: 
+                - generic [ref=f8e1075]: 
+                - generic [ref=f8e1077]: 
+                - generic [ref=f8e1079]: 
+              - list [ref=f8e1082]:
+                - listitem [ref=f8e1083]:
+                  - link "Kategori Amortisör Körüğü" [ref=f8e1084] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/amortisor-korugu
+                    - text: Kategori
+                    - generic [ref=f8e1085]: Amortisör Körüğü
+                - listitem [ref=f8e1086]:
+                  - link "Marka YTT" [ref=f8e1087] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/ytt
+                    - text: Marka
+                    - generic [ref=f8e1088]: YTT
+            - generic [ref=f8e1089]:
+              - generic [ref=f8e1090]: 286,90 TL
+              - generic [ref=f8e1091]: 229,52 TL
+            - generic [ref=f8e1092]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+        - navigation [ref=f8e1094]:
+          - list [ref=f8e1095]:
+            - listitem [ref=f8e1096]:
+              - link "1" [ref=f8e1097] [cursor=pointer]:
+                - /url: javascript:;
+            - listitem [ref=f8e1098]:
+              - link "2" [ref=f8e1099] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/volkswagen-yedek-parca?fiyat=hepsi&siralama=en-yeniler&pageing=1&list=0&k=&pageing=2
+            - listitem [ref=f8e1100]:
+              - link "3" [ref=f8e1101] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/volkswagen-yedek-parca?fiyat=hepsi&siralama=en-yeniler&pageing=1&list=0&k=&pageing=3
+            - listitem [ref=f8e1102]:
+              - link "..." [ref=f8e1103] [cursor=pointer]:
+                - /url: javascript:;
+            - listitem [ref=f8e1104]:
+              - link "698" [ref=f8e1105] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/volkswagen-yedek-parca?fiyat=hepsi&siralama=en-yeniler&pageing=1&list=0&k=&pageing=698
+        - generic [ref=f8e1106]:
+          - paragraph [ref=f8e1107]:
+            - text: Volkswagen yedek parça fiyatları hakkında bilgi almak için en doğru tercihe hoş geldiniz. Günümüzde oto yedek parça fiyatları müşterilerin merak ettiği ürünlerdir. Araçlarda satış sonrası ürün grubunu temsil eden bu malzemeler; orijinal parça ve muadil parça olarak satışı yapılmaktadır. Volkswagen markası ülkemizde birçok kullanıcısı olan araba markalarından birisidir. Haliyle bu araç markası için müşterilerin yedek parça ihtiyacı olmaktadır.
+            - strong [ref=f8e1108]: Volkswagen yedek parça
+            - text: ", sitemiz üzerinden satışı yapılan parçalardır. OEM parça ve muadil ya da yan sanayi olarak nitelendirilen ürün grupları ile sizlerin ihtiyaçları hızlı bir şekilde çözülmektedir. Stoklarda yer alan ürünler sayesinde müşterilerimiz satın aldıkları ürünlere hızlı bir şekilde ulaşıyor ve araçlarındaki bakım ya da tamir işlemlerini yaptırabiliyorlar. Arabalar üretildikten sonra yedek parçalara ihtiyaç duyarlar. Bunun için orijinal üreticilerin yanı sıra diğer parça üreticileri de bu konuda ihtiyaçların hızlıca çözülmesi için imalat yapmaktadır. Üretilen bu parçalarda OEM kodları sayesinde, ürünlerin hangi araçlara uyumlu olduğu tespit edilmekte ve araçlara %100 uyumlu parçalar müşterilere ulaştırılmaktadır. Volkswagen oto yedek parça, bu ihtiyaçların karşılanması için satışa sunulmuş parçaların yer aldığı kategoridir."
+          - heading "Volkswagen Yedek Parça Fiyatları" [level=2] [ref=f8e1109]
+          - paragraph [ref=f8e1110]: Volkswagen dünyada önemli bir yere sahip olan büyük bir firmadır. Haliyle ihtiyaçların giderilmesi için de onlarca parça üreticisi bu marka için üretim yapmaktadır. Onlarca farklı parça üreticisi yüzlerce kategoride Volkswagen için parça üretimi yapmaktadır. Hal böyleyken Volkswagen yedek parça fiyatları güncel haliyle sitemizde satışa sunulmuştur.
+          - heading "Volkswagen Oto Yedek Parça" [level=3] [ref=f8e1111]
+          - paragraph [ref=f8e1112]: Volkswagen aracınız için sitemizdeki kategorilerden araştırma yapabilirsiniz. Farklı markalar altında satışı yapılan ürünlere bu bölümden ulaşabilirsiniz. Satılık olan ürünlerin fiyatları yada stokta olup olmadığı ürün sayfalarında yer almaktadır.
+          - list [ref=f8e1113]:
+            - listitem [ref=f8e1114]: Abs Sensörü
+            - listitem [ref=f8e1115]: Balata
+            - listitem [ref=f8e1116]: Fren Pabuçlu Balata
+            - listitem [ref=f8e1117]: Fren Diski
+            - listitem [ref=f8e1118]: Fren Ana Merkez
+            - listitem [ref=f8e1119]: Fren Hortumu
+            - listitem [ref=f8e1120]: Fren Kaliperi
+            - listitem [ref=f8e1121]: Kampana
+            - listitem [ref=f8e1122]: Fren Limitörü
+            - listitem [ref=f8e1123]: El Fren Teli
+            - listitem [ref=f8e1124]: Vakum Pompa
+            - listitem [ref=f8e1125]: Westinghouse
+            - listitem [ref=f8e1126]: Fren Silindiri
+            - listitem [ref=f8e1127]: El Fren Balatası
+            - listitem [ref=f8e1128]: Debriyaj Rulmanı
+            - listitem [ref=f8e1129]: Debriyaj Çatalı
+            - listitem [ref=f8e1130]: Debriyaj Merkezi
+            - listitem [ref=f8e1131]: Debriyaj Seti
+            - listitem [ref=f8e1132]: Debriyaj Teli
+            - listitem [ref=f8e1133]: Volan
+            - listitem [ref=f8e1134]: Debriyaj Baskı
+            - listitem [ref=f8e1135]: Debriyaj Balatası
+            - listitem [ref=f8e1136]: Motor Takozu
+            - listitem [ref=f8e1137]: Eksantrik Mili
+            - listitem [ref=f8e1138]: Triger Kayış Seti
+            - listitem [ref=f8e1139]: Silindir Kapak Contası
+            - listitem [ref=f8e1140]: MAP Sensörü
+            - listitem [ref=f8e1141]: Eksantrik Devir Sensörü
+            - listitem [ref=f8e1142]: Krank
+            - listitem [ref=f8e1143]: Krank Kasnak
+            - listitem [ref=f8e1144]: Piston Kolu
+            - listitem [ref=f8e1145]: Krank Sensörü
+            - listitem [ref=f8e1146]: Silindir Kapağı
+            - listitem [ref=f8e1147]: Supap Tuşu
+            - listitem [ref=f8e1148]: Turbo Şarj
+            - listitem [ref=f8e1149]: Yağ Müşürü
+            - listitem [ref=f8e1150]: Motor Yağ Karteri
+            - listitem [ref=f8e1151]: Yağ Pompası
+            - listitem [ref=f8e1152]: Triger Kayışı
+            - listitem [ref=f8e1153]: Triger Zincir Seti
+            - listitem [ref=f8e1154]: Triger Zinciri
+            - listitem [ref=f8e1155]: Yağ Pompa Zinciri
+            - listitem [ref=f8e1156]: Yağ Pompa Zincir Seti
+            - listitem [ref=f8e1157]: Motor Yağ Soğutucu
+            - listitem [ref=f8e1158]: Gaz Teli
+            - listitem [ref=f8e1159]: Depo Şamandırası
+            - listitem [ref=f8e1160]: Egr Valfi
+            - listitem [ref=f8e1161]: Mazot Pompası
+            - listitem [ref=f8e1162]: Oksijen (Lambda) Sensörü
+            - listitem [ref=f8e1163]: Depo Şamandırası İç Pompa
+            - listitem [ref=f8e1164]: Hava Debimetresi
+            - listitem [ref=f8e1165]: Gaz Kelebeği
+            - listitem [ref=f8e1166]: Enjektör
+            - listitem [ref=f8e1167]: Aks Komple
+            - listitem [ref=f8e1168]: Aks Kafası
+            - listitem [ref=f8e1169]: Aks Körüğü
+            - listitem [ref=f8e1170]: Aks Taşıyıcı
+            - listitem [ref=f8e1171]: Salıncak
+            - listitem [ref=f8e1172]: Amortisör
+            - listitem [ref=f8e1173]: Bijon Saplaması
+            - listitem [ref=f8e1174]: Bijon Somunu
+            - listitem [ref=f8e1175]: Helezon Yayı
+            - listitem [ref=f8e1176]: Amortisör Takozu
+            - listitem [ref=f8e1177]: Porya
+            - listitem [ref=f8e1178]: Rot Başı
+            - listitem [ref=f8e1179]: Rot Mili
+            - listitem [ref=f8e1180]: Rotil ve Rotilli Kol
+            - listitem [ref=f8e1181]: Porya Rulmanı
+            - listitem [ref=f8e1182]: Viraj Demir Askı Rotu
+            - listitem [ref=f8e1183]: Amortisör Rulmanı
+            - listitem [ref=f8e1184]: Amortisör Tabla Takozu
+            - listitem [ref=f8e1185]: Direksiyon Kutusu
+            - listitem [ref=f8e1186]: Direksiyon Pompası
+            - listitem [ref=f8e1187]: Kontak Termik
+            - listitem [ref=f8e1188]: Kontak Gövdesi
+            - listitem [ref=f8e1189]: Kontak Anahtarı
+            - listitem [ref=f8e1190]: Alternatör
+            - listitem [ref=f8e1191]: Ateşleme Bobini
+            - listitem [ref=f8e1192]: Cam Su Motoru
+            - listitem [ref=f8e1193]: Cam Açma Düğmesi
+            - listitem [ref=f8e1194]: Dörtlü Flaşör Düğmesi
+            - listitem [ref=f8e1195]: Marş Dinamosu
+            - listitem [ref=f8e1196]: Kalorifer Rezistansı
+            - listitem [ref=f8e1197]: Far Anahtarı
+            - listitem [ref=f8e1198]: Far Kumanda Kolu
+            - listitem [ref=f8e1199]: Ateşleme Bujisi
+            - listitem [ref=f8e1200]: Buji Kablosu
+            - listitem [ref=f8e1201]: Isıtma Bujisi
+            - listitem [ref=f8e1202]: Ayna Kumanda Düğmesi
+            - listitem [ref=f8e1203]: Alternatör Kasnağı
+            - listitem [ref=f8e1204]: Distribütör Kapağı
+            - listitem [ref=f8e1205]: Akü
+            - listitem [ref=f8e1206]: Sinyal Kumanda Kolu
+            - listitem [ref=f8e1207]: Silecek Kumanda Kolu
+            - listitem [ref=f8e1208]: Çamurluk Sinyali
+            - listitem [ref=f8e1209]: Dikiz Ayna Sinyali
+            - listitem [ref=f8e1210]: Far
+            - listitem [ref=f8e1211]: Gündüz Farı
+            - listitem [ref=f8e1212]: Sinyal Lambası
+            - listitem [ref=f8e1213]: Sis Farı
+            - listitem [ref=f8e1214]: Stop Lambası
+            - listitem [ref=f8e1215]: Tampon Reflektörü
+            - listitem [ref=f8e1216]: Ayna Camı
+            - listitem [ref=f8e1217]: Ayna Kapağı
+            - listitem [ref=f8e1218]: Dikiz Aynası
+            - listitem [ref=f8e1219]: Cam Krikosu
+            - listitem [ref=f8e1220]: Silecek Süpürgesi
+            - listitem [ref=f8e1221]: Bagaj Amortisörü
+            - listitem [ref=f8e1222]: Patinaj Zinciri
+            - listitem [ref=f8e1223]: Tavan Anteni
+            - listitem [ref=f8e1224]: Kilometre Hız Sensörü
+            - listitem [ref=f8e1225]: Şanzıman Takozu
+            - listitem [ref=f8e1226]: Şanzıman Yağ Karteri
+            - listitem [ref=f8e1227]: Vites Değiştirme Teli
+            - listitem [ref=f8e1228]: Şanzıman Yağ Soğutucu
+            - listitem [ref=f8e1229]: Şaft Askısı Takozu
+            - listitem [ref=f8e1230]: Şaft Kaplini
+            - listitem [ref=f8e1231]: Devirdaim Su Pompası
+            - listitem [ref=f8e1232]: Kalorifer Motoru
+            - listitem [ref=f8e1233]: Klima Kompresörü
+            - listitem [ref=f8e1234]: Klima Tüpü
+            - listitem [ref=f8e1235]: Hararet Müşürü
+            - listitem [ref=f8e1236]: Radyatör Fan ve Motoru
+            - listitem [ref=f8e1237]: Su Radyatörü
+            - listitem [ref=f8e1238]: Soğutma Fanı (Fan Termik)
+            - listitem [ref=f8e1239]: Termostat
+            - listitem [ref=f8e1240]: Vantilatör Pervanesi
+            - listitem [ref=f8e1241]: Radyatör Yedek Su Deposu
+            - listitem [ref=f8e1242]: Radyatör Kapağı
+            - listitem [ref=f8e1243]: Vantilatör Kayışı
+            - listitem [ref=f8e1244]: Klima Radyatörü
+            - listitem [ref=f8e1245]: Turbo Radyatörü
+            - listitem [ref=f8e1246]: Radyatör Yedek Su Depo Kapağı
+            - listitem [ref=f8e1247]: Kalorifer Radyatörü
+            - listitem [ref=f8e1248]: Egzoz Sıcaklık Sensörü
+            - listitem [ref=f8e1249]: Şanzıman Yağ Filtresi
+            - listitem [ref=f8e1250]: Hava Filtresi
+            - listitem [ref=f8e1251]: Polen Filtresi
+            - listitem [ref=f8e1252]: Yağ Filtresi
+            - listitem [ref=f8e1253]: Yakıt Filtresi
+            - listitem [ref=f8e1254]: Antifriz
+            - listitem [ref=f8e1255]: Cam Temizlik
+            - listitem [ref=f8e1256]: Servis Ürünleri
+            - listitem [ref=f8e1257]: Soğutma Sistemi Ürünleri
+          - paragraph [ref=f8e1258]: YAMAN YEDEK PARÇA VE OTOMOTİV A.Ş. iştiraki olan yedekparca.com.tr e-ticaret sitesinde yüzbinlerce farklı parçanın satışı yapılmaktadır. Siz değerli müşterilerimiz için özenle paketleme ve kargo işlemleri yapıyoruz. Volkswagen aracınızın sorununun hızlı bir şekilde çözülmesi için elimizden gelen her şeyi yaptığımızdan emin olmanızı istiyoruz. Volkswagen yedek parça, tüm ürünleriyle birlikte bu sayfamızda ilanda yer almaktadır. Detaylı bilgi almak için bizimle 0850 532 1935 numaralı müşteri hizmetleri ve 0530 570 1935 numaralı WhatsApp hattımız aracılığıyla iletişime geçebilirsiniz.
+  - generic [ref=f8e1265]:
+    - generic [ref=f8e1268]:
+      - generic [ref=f8e1269]:
+        - strong [ref=f8e1271]: KREDİ KARTI İLE ALIŞVERİŞ
+        - paragraph [ref=f8e1272]: Tüm Kredi Kartları ile Güvenli Alışveriş Yapabilirsiniz.
+      - generic [ref=f8e1273]:
+        - strong [ref=f8e1275]: HIZLI TESLİMAT
+        - paragraph [ref=f8e1276]: Siparişiniz En Hızlı Şekilde Teslim Edilir.
+      - generic [ref=f8e1277]:
+        - strong [ref=f8e1279]: GÜVENLİ ALIŞVERİŞ
+        - paragraph [ref=f8e1280]: 256bit SSL Sertifikası ile Güvenli Satın Alma
+      - generic [ref=f8e1281]:
+        - strong [ref=f8e1283]: MÜŞTERİ HİZMETLERİ
+        - paragraph [ref=f8e1284]: 0850 532 1935 ulaşabilirsiniz
+    - generic [ref=f8e1285]:
+      - generic [ref=f8e1287]:
+        - generic [ref=f8e1288]:
+          - generic [ref=f8e1291]:
+            - generic [ref=f8e1292]:
+              - generic [ref=f8e1293]: Kurumsal
+              - list [ref=f8e1295]:
+                - listitem [ref=f8e1296]:
+                  - link "Periyodik Bakım Robotu" [ref=f8e1297] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/periyodik-bakim-robotu-yp
+                - listitem [ref=f8e1298]:
+                  - link "Hakkımızda" [ref=f8e1299] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/hakkimizda
+                - listitem [ref=f8e1300]:
+                  - link "İletişim" [ref=f8e1301] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/iletisim
+                - listitem [ref=f8e1302]:
+                  - link "Gizlilik Sözleşmesi" [ref=f8e1303] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/gizlilik-sozlesmesi
+                - listitem [ref=f8e1304]:
+                  - link "Kullanıcı Sözleşmesi" [ref=f8e1305] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/kullanici-sozlesmesi
+                - listitem [ref=f8e1306]:
+                  - link "İade/İptal Koşulları" [ref=f8e1307] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/iade-iptal
+                - listitem [ref=f8e1308]:
+                  - link "Sıkça Sorulan Sorular" [ref=f8e1309] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sss-sID0
+                - listitem [ref=f8e1310]:
+                  - link "Sipariş Takip" [ref=f8e1311] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+                - listitem [ref=f8e1312]:
+                  - link "Havale Bildirimleri" [ref=f8e1313] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+                - listitem [ref=f8e1314]:
+                  - link "Puan Sistemi" [ref=f8e1315] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/puan-sistemi-sID0
+            - generic [ref=f8e1316]:
+              - generic [ref=f8e1317]: Kategoriler
+              - list [ref=f8e1319]:
+                - listitem [ref=f8e1320]:
+                  - link "Fren" [ref=f8e1321] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/fren
+                - listitem [ref=f8e1322]:
+                  - link "Debriyaj" [ref=f8e1323] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/debriyaj
+                - listitem [ref=f8e1324]:
+                  - link "Yakıt" [ref=f8e1325] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/yakit
+                - listitem [ref=f8e1326]:
+                  - link "Süspansiyon" [ref=f8e1327] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/suspansiyon
+                - listitem [ref=f8e1328]:
+                  - link "Direksiyon" [ref=f8e1329] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/direksiyon
+                - listitem [ref=f8e1330]:
+                  - link "Elektrik" [ref=f8e1331] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/elektrik
+                - listitem [ref=f8e1332]:
+                  - link "Soğutma" [ref=f8e1333] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sogutma
+                - listitem [ref=f8e1334]:
+                  - link "Filtreler" [ref=f8e1335] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/filtreler
+                - listitem [ref=f8e1336]:
+                  - link "Motor" [ref=f8e1337] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/motor
+                - listitem [ref=f8e1338]:
+                  - link "Diger" [ref=f8e1339] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/diger
+            - generic [ref=f8e1340]:
+              - generic [ref=f8e1341]: Alışveriş
+              - list [ref=f8e1343]:
+                - listitem [ref=f8e1344]:
+                  - link "Sıkça Sorulan Sorular" [ref=f8e1345] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sss-sID0
+                - listitem [ref=f8e1346]:
+                  - link "Sipariş Takip" [ref=f8e1347] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+                - listitem [ref=f8e1348]:
+                  - link "Havale Bildirimleri" [ref=f8e1349] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+          - generic [ref=f8e1350]:
+            - generic [ref=f8e1351]:
+              - generic [ref=f8e1352]:
+                - generic [ref=f8e1353]: 
+                - generic [ref=f8e1355]:
+                  - generic [ref=f8e1356]: Müşteri Hizmetleri
+                  - link "0850 532 1935" [ref=f8e1357] [cursor=pointer]:
+                    - /url: tel:+90850 532 1935
+              - generic [ref=f8e1358]:
+                - generic [ref=f8e1359]: "Uygulamalarımız:"
+                - list [ref=f8e1360]:
+                  - listitem [ref=f8e1361]:
+                    - link [ref=f8e1362] [cursor=pointer]:
+                      - /url: ""
+                  - listitem [ref=f8e1364]:
+                    - link [ref=f8e1365] [cursor=pointer]:
+                      - /url: ""
+            - generic [ref=f8e1367]:
+              - generic [ref=f8e1368]: Bloga Göz At
+              - link "Blog" [ref=f8e1369] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/blog
+        - generic [ref=f8e1373]:
+          - link [ref=f8e1377] [cursor=pointer]:
+            - /url: https://etbis.eticaret.gov.tr/sitedogrulama/7834168730156187
+          - link "" [ref=f8e1379] [cursor=pointer]:
+            - /url: https://www.facebook.com/yamanyedekparca
+          - link "" [ref=f8e1381] [cursor=pointer]:
+            - /url: ""
+          - link "" [ref=f8e1383] [cursor=pointer]:
+            - /url: https://www.instagram.com/yedekparcacomtr
+          - link "" [ref=f8e1385] [cursor=pointer]:
+            - /url: ""
+      - paragraph [ref=f8e1392]: Tüm bilgileriniz 256bit SSL Sertifikası ile korunmaktadır. © 2026 Tüm Hakları Saklıdır
+  - link [ref=f8e1396] [cursor=pointer]:
+    - /url: https://api.whatsapp.com/send?phone=9005305701935&text=Ürünleriniz hakkında detaylı bilgi almak istiyorum

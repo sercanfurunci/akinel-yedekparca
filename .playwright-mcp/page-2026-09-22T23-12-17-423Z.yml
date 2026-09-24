@@ -1,0 +1,234 @@
+- generic [active] [ref=f59e1]:
+  - banner [ref=f59e2]:
+    - generic [ref=f59e4]:
+      - button "Menüyü aç" [ref=f59e5]
+      - link "Akinel" [ref=f59e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f59e9]:
+        - link "Ara" [ref=f59e10] [cursor=pointer]:
+          - /url: /search
+        - link "Garajım" [ref=f59e14] [cursor=pointer]:
+          - /url: /garage
+  - main [ref=f59e19]:
+    - generic [ref=f59e20]:
+      - complementary [ref=f59e21]:
+        - link "Akinel Admin" [ref=f59e23] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f59e24]:
+          - link "Gösterge Paneli" [ref=f59e25] [cursor=pointer]:
+            - /url: /admin
+          - link "Ürünler" [ref=f59e31] [cursor=pointer]:
+            - /url: /admin/products
+          - link "Kategoriler" [ref=f59e36] [cursor=pointer]:
+            - /url: /admin/categories
+          - link "Markalar" [ref=f59e39] [cursor=pointer]:
+            - /url: /admin/brands
+          - link "Araçlar" [ref=f59e43] [cursor=pointer]:
+            - /url: /admin/vehicles
+          - link "Stok" [ref=f59e48] [cursor=pointer]:
+            - /url: /admin/stock
+          - link "Müşteriler" [ref=f59e52] [cursor=pointer]:
+            - /url: /admin/customers
+          - link "Siparişler" [ref=f59e58] [cursor=pointer]:
+            - /url: /admin/orders
+          - link "İşletme" [ref=f59e62] [cursor=pointer]:
+            - /url: /admin/business
+      - main [ref=f59e67]:
+        - generic [ref=f59e68]:
+          - generic [ref=f59e70]:
+            - heading "İşletme Ayarları" [level=1] [ref=f59e71]
+            - paragraph [ref=f59e72]: İletişim ve çalışma saati bilgileri
+          - generic [ref=f59e73]:
+            - generic [ref=f59e74]:
+              - heading "Genel Bilgiler" [level=2] [ref=f59e75]
+              - generic [ref=f59e76]:
+                - generic [ref=f59e77]:
+                  - generic [ref=f59e78]: Şirket / Görünen Ad
+                  - textbox [ref=f59e79]: Akinel Yedek Parça
+                - generic [ref=f59e80]:
+                  - generic [ref=f59e81]: Website URL
+                  - textbox "https://" [ref=f59e82]: https://aknmotors.com.tr
+              - generic [ref=f59e83]:
+                - generic [ref=f59e84]: Kısa Açıklama
+                - textbox [ref=f59e85]: Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.
+              - generic [ref=f59e86]:
+                - generic [ref=f59e87]: Logo URL
+                - textbox "https://" [ref=f59e88]
+            - generic [ref=f59e89]:
+              - heading "İletişim" [level=2] [ref=f59e90]
+              - generic [ref=f59e91]:
+                - generic [ref=f59e92]:
+                  - generic [ref=f59e93]: Telefon
+                  - textbox "+90 5xx xxx xx xx" [ref=f59e94]: +90 533 140 56 49
+                - generic [ref=f59e95]:
+                  - generic [ref=f59e96]: WhatsApp (numara, boşluksuz)
+                  - textbox "905xxxxxxxxx" [ref=f59e97]: "905331405649"
+                - generic [ref=f59e98]:
+                  - generic [ref=f59e99]: E-posta
+                  - textbox [ref=f59e100]: info@aknmotors.com.tr
+            - generic [ref=f59e101]:
+              - heading "Adres" [level=2] [ref=f59e102]
+              - generic [ref=f59e103]:
+                - generic [ref=f59e104]: Sokak / Cadde
+                - textbox [ref=f59e105]: Nenehatun, Fatih Cd. No:81
+              - generic [ref=f59e106]:
+                - generic [ref=f59e107]:
+                  - generic [ref=f59e108]: İlçe
+                  - textbox [ref=f59e109]: Darıca
+                - generic [ref=f59e110]:
+                  - generic [ref=f59e111]: Şehir
+                  - textbox [ref=f59e112]: Kocaeli
+                - generic [ref=f59e113]:
+                  - generic [ref=f59e114]: Posta Kodu
+                  - textbox [ref=f59e115]: "41700"
+              - generic [ref=f59e116]:
+                - generic [ref=f59e117]: Ülke
+                - textbox [ref=f59e118]: Türkiye
+              - generic [ref=f59e119]:
+                - generic [ref=f59e120]: Google Maps URL
+                - textbox "https://maps.google.com/?q=..." [ref=f59e121]: https://maps.google.com/?q=Nenehatun+Fatih+Caddesi+No+81+41700+Darica+Kocaeli+Turkiye
+              - generic [ref=f59e122]:
+                - generic [ref=f59e123]: Google Maps Embed URL
+                - textbox "https://maps.google.com/maps?q=...&output=embed" [ref=f59e124]: https://maps.google.com/maps?q=Nenehatun+Fatih+Caddesi+No+81+41700+Darica+Kocaeli&output=embed&hl=tr
+            - generic [ref=f59e125]:
+              - heading "Sosyal Medya" [level=2] [ref=f59e126]
+              - generic [ref=f59e127]:
+                - generic [ref=f59e128]:
+                  - generic [ref=f59e129]: Instagram
+                  - textbox "https://instagram.com/..." [ref=f59e130]
+                - generic [ref=f59e131]:
+                  - generic [ref=f59e132]: Facebook
+                  - textbox "https://facebook.com/..." [ref=f59e133]
+                - generic [ref=f59e134]:
+                  - generic [ref=f59e135]: LinkedIn
+                  - textbox "https://linkedin.com/..." [ref=f59e136]
+            - generic [ref=f59e137]:
+              - heading "Çalışma Saatleri" [level=2] [ref=f59e138]
+              - generic [ref=f59e139]:
+                - generic [ref=f59e140]:
+                  - generic [ref=f59e141]: Pazar
+                  - generic [ref=f59e142] [cursor=pointer]:
+                    - checkbox "Açık" [ref=f59e143]
+                    - generic [ref=f59e144]: Açık
+                  - textbox "09:00" [ref=f59e145]
+                  - generic [ref=f59e146]: –
+                  - textbox "19:00" [ref=f59e147]
+                - generic [ref=f59e148]:
+                  - generic [ref=f59e149]: Pazartesi
+                  - generic [ref=f59e150] [cursor=pointer]:
+                    - checkbox "Açık" [checked] [ref=f59e151]
+                    - generic [ref=f59e152]: Açık
+                  - textbox "09:00" [ref=f59e153]
+                  - generic [ref=f59e154]: –
+                  - textbox "19:00" [ref=f59e155]
+                - generic [ref=f59e156]:
+                  - generic [ref=f59e157]: Salı
+                  - generic [ref=f59e158] [cursor=pointer]:
+                    - checkbox "Açık" [checked] [ref=f59e159]
+                    - generic [ref=f59e160]: Açık
+                  - textbox "09:00" [ref=f59e161]
+                  - generic [ref=f59e162]: –
+                  - textbox "19:00" [ref=f59e163]
+                - generic [ref=f59e164]:
+                  - generic [ref=f59e165]: Çarşamba
+                  - generic [ref=f59e166] [cursor=pointer]:
+                    - checkbox "Açık" [checked] [ref=f59e167]
+                    - generic [ref=f59e168]: Açık
+                  - textbox "09:00" [ref=f59e169]
+                  - generic [ref=f59e170]: –
+                  - textbox "19:00" [ref=f59e171]
+                - generic [ref=f59e172]:
+                  - generic [ref=f59e173]: Perşembe
+                  - generic [ref=f59e174] [cursor=pointer]:
+                    - checkbox "Açık" [checked] [ref=f59e175]
+                    - generic [ref=f59e176]: Açık
+                  - textbox "09:00" [ref=f59e177]
+                  - generic [ref=f59e178]: –
+                  - textbox "19:00" [ref=f59e179]
+                - generic [ref=f59e180]:
+                  - generic [ref=f59e181]: Cuma
+                  - generic [ref=f59e182] [cursor=pointer]:
+                    - checkbox "Açık" [checked] [ref=f59e183]
+                    - generic [ref=f59e184]: Açık
+                  - textbox "09:00" [ref=f59e185]
+                  - generic [ref=f59e186]: –
+                  - textbox "19:00" [ref=f59e187]
+                - generic [ref=f59e188]:
+                  - generic [ref=f59e189]: Cumartesi
+                  - generic [ref=f59e190] [cursor=pointer]:
+                    - checkbox "Açık" [checked] [ref=f59e191]
+                    - generic [ref=f59e192]: Açık
+                  - textbox "09:00" [ref=f59e193]
+                  - generic [ref=f59e194]: –
+                  - textbox "19:00" [ref=f59e195]
+            - button "Kaydet" [ref=f59e196]
+  - contentinfo [ref=f59e197]:
+    - generic [ref=f59e198]:
+      - generic [ref=f59e199]:
+        - generic [ref=f59e200]:
+          - generic [ref=f59e201]:
+            - generic [ref=f59e202]: Akinel
+            - generic [ref=f59e203]: Yedek Parça
+          - paragraph [ref=f59e204]: Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.
+        - generic [ref=f59e205]:
+          - heading "Hızlı Linkler" [level=3] [ref=f59e206]
+          - list [ref=f59e207]:
+            - listitem [ref=f59e208]:
+              - link "Ana Sayfa" [ref=f59e209] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f59e210]:
+              - link "Ürünler" [ref=f59e211] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f59e212]:
+              - link "Aracımı Seç" [ref=f59e213] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f59e214]:
+              - link "OEM Ara" [ref=f59e215] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f59e216]:
+              - link "Garajım" [ref=f59e217] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f59e218]:
+              - link "Hakkımızda" [ref=f59e219] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f59e220]:
+          - heading "Müşteri" [level=3] [ref=f59e221]
+          - list [ref=f59e222]:
+            - listitem [ref=f59e223]:
+              - link "Giriş Yap" [ref=f59e224] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f59e225]:
+              - link "Kayıt Ol" [ref=f59e226] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f59e227]:
+              - link "Garajım" [ref=f59e228] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f59e229]:
+              - link "Hesabım" [ref=f59e230] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f59e231]:
+              - link "Periyodik Bakım" [ref=f59e232] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f59e233]:
+          - heading "İletişim" [level=3] [ref=f59e234]
+          - generic [ref=f59e235]:
+            - paragraph [ref=f59e236]: AKN MOTORS Car Service
+            - generic [ref=f59e237]: Nenehatun, Fatih Cd. No:81, 41700 Darıca/Kocaeli
+            - link "+90 533 140 56 49" [ref=f59e242] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - link "info@aknmotors.com.tr" [ref=f59e245] [cursor=pointer]:
+              - /url: mailto:info@aknmotors.com.tr
+            - generic [ref=f59e253]:
+              - paragraph [ref=f59e254]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f59e255]: "Pazar: Kapalı"
+            - link "Yol Tarifi Al" [ref=f59e256] [cursor=pointer]:
+              - /url: https://maps.google.com/?q=Nenehatun+Fatih+Caddesi+No+81+41700+Darica+Kocaeli+Turkiye
+      - generic [ref=f59e261]:
+        - generic [ref=f59e262]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f59e263]:
+          - link "Gizlilik Politikası" [ref=f59e264] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f59e265] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f59e271] [cursor=pointer]
+  - alert [ref=f59e275]

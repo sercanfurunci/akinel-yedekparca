@@ -1,0 +1,39 @@
+# .NET
+**/bin/
+**/obj/
+**/.vs/
+*.user
+*.suo
+
+# Node
+**/node_modules/
+**/.next/
+**/dist/
+**/.env.local
+**/.env.*.local
+
+# Secrets
+.env
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/settings.json
+
+# Build
+**/publish/
+
+# Logs / tools
+.playwright-mcp/
+**/logs/
+*.log
+
+# Uploads (user content — not committed)
+apps/api/Akinel.Api/wwwroot/uploads/products/*.jpg
+apps/api/Akinel.Api/wwwroot/uploads/products/*.jpeg
+apps/api/Akinel.Api/wwwroot/uploads/products/*.png
+apps/api/Akinel.Api/wwwroot/uploads/products/*.webp

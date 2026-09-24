@@ -1,0 +1,444 @@
+- generic [active] [ref=f7e1]:
+  - banner [ref=f7e2]:
+    - generic [ref=f7e4]:
+      - link "+90 533 140 56 49" [ref=f7e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f7e8]:
+        - link "Sipariş Takip" [ref=f7e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f7e10]: "|"
+        - link "Yardım" [ref=f7e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f7e12]: "|"
+        - link "İletişim" [ref=f7e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f7e14]: "|"
+        - generic [ref=f7e15]: TR
+    - generic [ref=f7e17]:
+      - link "Akinel Yedek Parça" [ref=f7e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f7e19]: Akinel
+        - generic [ref=f7e20]: Yedek Parça
+      - generic [ref=f7e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f7e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f7e24]:
+        - link "Garajım" [ref=f7e25] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f7e157] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f7e158] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f7e36]:
+      - link "Ana Sayfa" [ref=f7e37] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f7e38] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f7e39] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f7e40] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f7e41] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f7e42] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f7e43] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f7e44] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=f7e45]:
+    - generic [ref=f7e46]:
+      - navigation "Breadcrumb" [ref=f7e47]:
+        - link "Ana Sayfa" [ref=f7e49] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f7e50]: Aracımı Seç
+      - generic [ref=f7e54]:
+        - heading "Aracınızı Seçin" [level=1] [ref=f7e55]
+        - paragraph [ref=f7e56]: 4 adımda aracınızı seçin ve uyumlu parçaları keşfedin.
+        - generic [ref=f7e58]:
+          - generic [ref=f7e59]:
+            - generic [ref=f7e61]:
+              - generic [ref=f7e62]: ✓
+              - generic [ref=f7e63]: Marka
+            - generic [ref=f7e66]:
+              - generic [ref=f7e67]: ✓
+              - generic [ref=f7e68]: Model
+            - generic [ref=f7e71]:
+              - generic [ref=f7e72]: ✓
+              - generic [ref=f7e73]: Kasa / Nesil
+            - generic [ref=f7e76]:
+              - generic [ref=f7e77]: "4"
+              - generic [ref=f7e78]: Motor
+          - generic [ref=f7e79]:
+            - generic [ref=f7e80]:
+              - generic [ref=f7e81]: Marka
+              - combobox [ref=f7e82]:
+                - option "Marka seçin"
+                - option "Ac"
+                - option "Acura"
+                - option "Alfa Romeo"
+                - option "Alpine"
+                - option "Ariel"
+                - option "Aro"
+                - option "Artega"
+                - option "Aston Martin"
+                - option "Audi"
+                - option "Aurus"
+                - option "BMW"
+                - option "Bentley"
+                - option "Bristol"
+                - option "Bufori"
+                - option "Bugatti"
+                - option "Buick"
+                - option "Cadillac"
+                - option "Caterham"
+                - option "Chevrolet"
+                - option "Chrysler"
+                - option "Citroen"
+                - option "Cupra"
+                - option "Dacia"
+                - option "Daewoo"
+                - option "Daihatsu"
+                - option "Datsun"
+                - option "Delorean"
+                - option "Dodge"
+                - option "Donkervoort"
+                - option "Dr Motor"
+                - option "Ds Automobiles"
+                - option "Eagle"
+                - option "FIAT"
+                - option "Ferrari"
+                - option "Fisker"
+                - option "Ford" [selected]
+                - option "Fso"
+                - option "GMC"
+                - option "Geely"
+                - option "Genesis"
+                - option "Gordon Murray Automotive"
+                - option "Gta Motor"
+                - option "Hindustan"
+                - option "Holden"
+                - option "Honda"
+                - option "Hummer"
+                - option "Hyundai"
+                - option "Ineos"
+                - option "Infiniti"
+                - option "Isuzu"
+                - option "Jaguar"
+                - option "Jeep"
+                - option "Karma"
+                - option "Kia"
+                - option "Koenigsegg"
+                - option "Ktm"
+                - option "Lada"
+                - option "Lamborghini"
+                - option "Lancia"
+                - option "Land Rover"
+                - option "Lexus"
+                - option "Lightyear"
+                - option "Lincoln"
+                - option "Lotus"
+                - option "Lucid Motors"
+                - option "MG"
+                - option "Mahindra"
+                - option "Marussia"
+                - option "Maruti Suzuki"
+                - option "Maserati"
+                - option "Maybach"
+                - option "Mazda"
+                - option "Mclaren"
+                - option "Mercedes Benz"
+                - option "Mercedes-AMG"
+                - option "Mercury"
+                - option "Mini"
+                - option "Mitsubishi"
+                - option "Morgan"
+                - option "Nio"
+                - option "Nissan"
+                - option "Oldsmobile"
+                - option "Opel"
+                - option "Pagani"
+                - option "Panoz"
+                - option "Perodua"
+                - option "Peugeot"
+                - option "Pininfarina"
+                - option "Plymouth"
+                - option "Polestar"
+                - option "Pontiac"
+                - option "Porsche"
+                - option "Proton"
+                - option "Qoros"
+                - option "RAM Trucks"
+                - option "Renault"
+                - option "Rimac"
+                - option "Rivian"
+                - option "Rolls-Royce"
+                - option "SEAT"
+                - option "Saab"
+                - option "Saleen"
+                - option "Samsung"
+                - option "Santana"
+                - option "Saturn"
+                - option "Scion"
+                - option "Smart"
+                - option "Spyker"
+                - option "Ssangyong"
+                - option "Subaru"
+                - option "Suzuki"
+                - option "Tata Motors"
+                - option "Tesla"
+                - option "Toyota"
+                - option "Tvr"
+                - option "Vauxhall"
+                - option "Vinfast"
+                - option "Volkswagen"
+                - option "Volvo"
+                - option "Wiesmann"
+                - option "Xpeng"
+                - option "Zender"
+                - option "Zenvo"
+                - option "Škoda"
+            - generic [ref=f7e83]:
+              - generic [ref=f7e84]: Model
+              - combobox [ref=f7e85]:
+                - option "Model seçin"
+                - option "2010Ford Taurus"
+                - option "Anglia 100E"
+                - option "Anglia 105E"
+                - option "B-Max"
+                - option "Bronco"
+                - option "Bronco 2-door"
+                - option "Bronco 4-door"
+                - option "Bronco Raptor"
+                - option "Bronco Sport"
+                - option "Bullitt"
+                - option "C-Max"
+                - option "Capri"
+                - option "Consul"
+                - option "Corsair 2000E"
+                - option "Cortina"
+                - option "Cougar"
+                - option "Crestline Skyliner"
+                - option "Crestliner"
+                - option "Crown Victoria"
+                - option "Deluxe"
+                - option "E-Tourneo Courier"
+                - option "EDGE"
+                - option "EcoSport"
+                - option "Econo"
+                - option "Edge ST"
+                - option "Escape"
+                - option "Escort"
+                - option "Escort Clipper"
+                - option "Everest"
+                - option "Excursion"
+                - option "Expedition"
+                - option "Expedition Max"
+                - option "Explorer"
+                - option "Explorer Sport"
+                - option "Explorer Sport Trac"
+                - option "F-150"
+                - option "F-150 Lightning"
+                - option "F-150 Raptor"
+                - option "F-150 Raptor SVT"
+                - option "F-150 Regular Cab"
+                - option "F-150 Super Cab"
+                - option "F-150 Super Crew"
+                - option "F-150 SuperCab"
+                - option "F-150 Tremor"
+                - option "Fiesta"
+                - option "Fiesta Active"
+                - option "Fiesta ST"
+                - option "Fiesta ST200"
+                - option "Figo"
+                - option "Five Hundred"
+                - option "Flex"
+                - option "Focus" [selected]
+                - option "Focus Active"
+                - option "Focus C-Max"
+                - option "Focus CC"
+                - option "Focus RS"
+                - option "Focus ST"
+                - option "Freestar"
+                - option "Freestyle"
+                - option "Fusion"
+                - option "Fusion Energi"
+                - option "Fusion European"
+                - option "Fusion Hybrid"
+                - option "Fusion North American"
+                - option "GT"
+                - option "Galaxy"
+                - option "Grand C-Max"
+                - option "Ka"
+                - option "Ka+"
+                - option "Ka+ Active"
+                - option "Kuga"
+                - option "Maverick"
+                - option "Model A"
+                - option "Model T"
+                - option "Mondeo"
+                - option "Mustang"
+                - option "Mustang 1966"
+                - option "Mustang 1968"
+                - option "Mustang 1970"
+                - option "Mustang 1971"
+                - option "Mustang 1979"
+                - option "Mustang 1981"
+                - option "Mustang Dark Horse"
+                - option "Mustang GT"
+                - option "Mustang GT 1996"
+                - option "Mustang GT 350 Shelby"
+                - option "Mustang GTD"
+                - option "Mustang Mach-E"
+                - option "Mustang Mach-E GT"
+                - option "Mustang Mach1"
+                - option "Mustang Shelby GT350"
+                - option "Mustang Shelby GT350R"
+                - option "Mustang Shelby GT500"
+                - option "Orion"
+                - option "Pinto"
+                - option "Probe"
+                - option "Puma"
+                - option "Puma ST"
+                - option "Ranger"
+                - option "Ranger Double Cab"
+                - option "Ranger Raptor"
+                - option "Ranger Regular Cab"
+                - option "Ranger Super Cab"
+                - option "Ranger Wildtrak"
+                - option "Ranger Wildtrak X"
+                - option "Raptor Ranger"
+                - option "S-Max"
+                - option "Scorpio"
+                - option "Sierra"
+                - option "SportKa"
+                - option "StreetKa"
+                - option "Super Duty Lariat Tremor"
+                - option "TRANSIT/TOURNEO CONNECT (7-SEATS)"
+                - option "Taunus 12M"
+                - option "Taurus"
+                - option "Taurus SHO"
+                - option "Taurus X"
+                - option "Territory (China)"
+                - option "Thunderbird"
+                - option "Thunderbird 1956"
+                - option "Thunderbird 1957"
+                - option "Thunderbird 1958"
+                - option "Thunderbird 1959"
+                - option "Thunderbird 1960"
+                - option "Thunderbird 1961"
+                - option "Thunderbird 1964"
+                - option "Thunderbird 1965"
+                - option "Thunderbird 1966"
+                - option "Thunderbird MKVIII"
+                - option "Tourneo Connect"
+                - option "Transit Connect - North American version"
+                - option "Transit Custom"
+                - option "Turneo Custom"
+                - option "Windstar"
+                - option "Zodiac"
+            - generic [ref=f7e86]:
+              - generic [ref=f7e87]: Kasa / Nesil
+              - combobox [ref=f7e88]:
+                - option "Nesil seçin"
+                - option "Focus 5 Doors (1998-2001)"
+                - option "Focus 3 Doors (1998-2001)"
+                - option "Focus 4 Doors (1999-2001)"
+                - option "Focus Wagon (1999-2001)"
+                - option "Focus 3 Doors (2001-2005)"
+                - option "Focus Wagon (2001-2005)"
+                - option "Focus 4 Doors (2001-2005)"
+                - option "Focus 5 Doors (2001-2005)"
+                - option "Focus 5 Doors (2004-2008)"
+                - option "Focus 3 Doors (2004-2007)"
+                - option "Focus 4 Doors (2005-2007)"
+                - option "Focus Wagon (2005-2008)"
+                - option "Focus Sedan (2007-2010)"
+                - option "Focus Coupe (2007-2010)"
+                - option "Focus 3 Doors (2008-2011)"
+                - option "Focus Wagon (2008-2010)"
+                - option "Focus 4 Doors (2008-2010)"
+                - option "Focus 5 Doors (2008-2010)"
+                - option "Mk3"
+                - option "Focus 5 Doors (2011-2014)"
+                - option "Focus Wagon (2011-2014)"
+                - option "Focus 4 Doors (2011-2014)"
+                - option "Focus Sedan (2014-2018)"
+                - option "Focus Estate (2014-2018)"
+                - option "Focus 5 Doors (2014-2018)" [selected]
+                - option "Focus Estate (2018-2021)"
+                - option "Focus 5 Doors (2018-2021)"
+                - option "Focus (2021-Present)"
+            - generic [ref=f7e89]:
+              - generic [ref=f7e90]: Motor
+              - combobox [ref=f7e91]:
+                - option "Motor seçin" [selected]
+          - generic [ref=f7e92]:
+            - button "Parçaları Göster" [disabled]
+  - contentinfo [ref=f7e93]:
+    - generic [ref=f7e94]:
+      - generic [ref=f7e95]:
+        - generic [ref=f7e96]:
+          - generic [ref=f7e97]:
+            - generic [ref=f7e98]: Akinel
+            - generic [ref=f7e99]: Yedek Parça
+          - paragraph [ref=f7e100]: Test açıklaması güncel
+        - generic [ref=f7e101]:
+          - heading "Hızlı Linkler" [level=3] [ref=f7e102]
+          - list [ref=f7e103]:
+            - listitem [ref=f7e104]:
+              - link "Ana Sayfa" [ref=f7e105] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f7e106]:
+              - link "Ürünler" [ref=f7e107] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f7e108]:
+              - link "Aracımı Seç" [ref=f7e109] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f7e110]:
+              - link "OEM Ara" [ref=f7e111] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f7e112]:
+              - link "Garajım" [ref=f7e113] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f7e114]:
+              - link "Hakkımızda" [ref=f7e115] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f7e116]:
+          - heading "Müşteri" [level=3] [ref=f7e117]
+          - list [ref=f7e118]:
+            - listitem [ref=f7e119]:
+              - link "Giriş Yap" [ref=f7e120] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f7e121]:
+              - link "Kayıt Ol" [ref=f7e122] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f7e123]:
+              - link "Garajım" [ref=f7e124] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f7e125]:
+              - link "Hesabım" [ref=f7e126] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f7e127]:
+              - link "Periyodik Bakım" [ref=f7e128] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f7e129]:
+          - heading "İletişim" [level=3] [ref=f7e130]
+          - generic [ref=f7e131]:
+            - paragraph [ref=f7e132]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f7e133] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f7e140]:
+              - paragraph [ref=f7e141]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f7e142]: "Pazar: Kapalı"
+      - generic [ref=f7e143]:
+        - generic [ref=f7e144]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f7e145]:
+          - link "Gizlilik Politikası" [ref=f7e146] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f7e147] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f7e153] [cursor=pointer]
+  - alert [ref=f7e159]

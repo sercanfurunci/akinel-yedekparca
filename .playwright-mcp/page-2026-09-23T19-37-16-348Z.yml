@@ -1,0 +1,668 @@
+- generic [active] [ref=f21e1]:
+  - generic [ref=f21e8]:
+    - text:       
+    - generic [ref=f21e9]:
+      - generic [ref=f21e10]:
+        - link [ref=f21e12] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+        - generic [ref=f21e13]:
+          - textbox "Parça Ara.." [ref=f21e15]
+          - button "" [ref=f21e16] [cursor=pointer]
+      - generic [ref=f21e18]:
+        - link " 0" [ref=f21e19] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/sepet
+          - generic [ref=f21e20]: 
+          - generic [ref=f21e21]: "0"
+        - link "" [ref=f21e22] [cursor=pointer]:
+          - /url: javascript:;
+      - navigation [ref=f21e24]:
+        - generic [ref=f21e25]:
+          - link " Anasayfa" [ref=f21e27] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr
+            - generic [ref=f21e28]: 
+            - text: Anasayfa
+          - link " Sepetim 0 Ürün" [ref=f21e30] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/sepet
+            - generic [ref=f21e31]: 
+            - text: Sepetim
+            - generic [ref=f21e32]: 0 Ürün
+          - generic [ref=f21e33]:
+            - button " Kategoriler" [ref=f21e34] [cursor=pointer]:
+              - generic [ref=f21e35]: 
+              - text: Kategoriler
+            - text:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+          - generic [ref=f21e36]:
+            - generic [ref=f21e37]:
+              - generic [ref=f21e38]: 
+              - text: Hesabım
+            - paragraph [ref=f21e40]: Tüm işlemlerinizi görmek ve alışveriş yapmak için lütfen üye girişi yapın
+            - generic [ref=f21e41]:
+              - link "Giriş Yap" [ref=f21e42] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/uye-giris
+              - link "Üye Ol" [ref=f21e43] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/uye-ol
+              - link "Şifremi Unuttum" [ref=f21e44] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/uye-giris?sayfa=sifre
+          - generic [ref=f21e45]:
+            - generic [ref=f21e46]: Müşteri Hizmetleri
+            - list [ref=f21e48]:
+              - listitem [ref=f21e49]:
+                - link " 0850 532 1935" [ref=f21e50] [cursor=pointer]:
+                  - /url: javascript:;
+                  - generic [ref=f21e51]: 
+                  - text: 0850 532 1935
+              - listitem [ref=f21e52]:
+                - link " info@yedekparca.com.tr" [ref=f21e53] [cursor=pointer]:
+                  - /url: mailto:info@yedekparca.com.tr
+                  - generic [ref=f21e54]: 
+                  - generic [ref=f21e55]: info@yedekparca.com.tr
+            - generic [ref=f21e56]: Diğer
+            - list [ref=f21e58]:
+              - listitem [ref=f21e59]:
+                - link "Periyodik Bakım Robotu" [ref=f21e60] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/periyodik-bakim-robotu-yp
+              - listitem [ref=f21e61]:
+                - link "Hakkımızda" [ref=f21e62] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/hakkimizda
+              - listitem [ref=f21e63]:
+                - link "İletişim" [ref=f21e64] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/iletisim
+              - listitem [ref=f21e65]:
+                - link "Gizlilik Sözleşmesi" [ref=f21e66] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/gizlilik-sozlesmesi
+              - listitem [ref=f21e67]:
+                - link "Kullanıcı Sözleşmesi" [ref=f21e68] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/kullanici-sozlesmesi
+              - listitem [ref=f21e69]:
+                - link "İade/İptal Koşulları" [ref=f21e70] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/iade-iptal
+              - listitem [ref=f21e71]:
+                - link "Sıkça Sorulan Sorular" [ref=f21e72] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/sss-sID0
+              - listitem [ref=f21e73]:
+                - link "Sipariş Takip" [ref=f21e74] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+              - listitem [ref=f21e75]:
+                - link "Havale Bildirimleri" [ref=f21e76] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+              - listitem [ref=f21e77]:
+                - link "Puan Sistemi" [ref=f21e78] [cursor=pointer]:
+                  - /url: https://www.yedekparca.com.tr/puan-sistemi-sID0
+    - generic [ref=f21e79]:
+      - generic [ref=f21e80]:
+        - generic [ref=f21e81]: 
+        - link "0850 532 1935" [ref=f21e82] [cursor=pointer]:
+          - /url: tel:+90850 532 1935
+      - generic [ref=f21e83]:
+        - generic [ref=f21e84]: 
+        - link "0530 570 1935" [ref=f21e85] [cursor=pointer]:
+          - /url: https://api.whatsapp.com/send?phone=9005305701935&text=Ürünleriniz hakkında detaylı bilgi almak istiyorum
+  - generic [ref=f21e96]:
+    - button " Filtrele" [ref=f21e97] [cursor=pointer]:
+      - generic [ref=f21e98]: 
+      - text: Filtrele
+    - button " Sıralama" [ref=f21e99] [cursor=pointer]:
+      - generic [ref=f21e100]: 
+      - text: Sıralama
+    - button " Araç Seç" [ref=f21e101] [cursor=pointer]:
+      - generic [ref=f21e102]: 
+      - text: Araç Seç
+  - navigation "breadcrumb" [ref=f21e112]:
+    - list [ref=f21e113]:
+      - listitem [ref=f21e114]:
+        - link "" [ref=f21e115] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+      - listitem [ref=f21e118]:
+        - text: ">"
+        - link "Fren" [ref=f21e119] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/fren
+  - generic [ref=f21e123]:
+    - text:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+    - generic [ref=f21e127]:
+      - heading "Fren" [level=1] [ref=f21e130]
+      - generic [ref=f21e131]:
+        - generic [ref=f21e132]:
+          - generic [ref=f21e134]:
+            - link [ref=f21e135] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-ana-merkezi-vw-jetta-passat
+              - img "FREN ANA MERKEZİ VW JETTA PASSAT" [ref=f21e138]
+            - generic [ref=f21e139]:
+              - generic [ref=f21e140]: FREN ANA MERKEZİ VW JETTA PASSAT
+              - generic [ref=f21e142]:
+                - generic [ref=f21e143]: 
+                - generic [ref=f21e145]: 
+                - generic [ref=f21e147]: 
+                - generic [ref=f21e149]: 
+                - generic [ref=f21e151]: 
+            - generic [ref=f21e153]:
+              - generic [ref=f21e154]: 6.965,00 TL
+              - generic [ref=f21e155]: 5.172,00 TL
+            - generic [ref=f21e156]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e158]:
+            - link [ref=f21e159] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-balatasi-arka-golf3-golf4-golf5-jetta-passat-a3-toledo-octavia-97
+              - img "FREN BALATASI ARKA GOLF3-GOLF4-GOLF5-JETTA-PASSAT-A3-TOLEDO-OCTAVIA 97-" [ref=f21e162]
+            - generic [ref=f21e163]:
+              - generic [ref=f21e164]: FREN BALATASI ARKA GOLF3-GOLF4-GOLF5-JETTA-PASSAT-A3-TOLEDO-OCTAVIA 97-
+              - generic [ref=f21e166]:
+                - generic [ref=f21e167]: 
+                - generic [ref=f21e169]: 
+                - generic [ref=f21e171]: 
+                - generic [ref=f21e173]: 
+                - generic [ref=f21e175]: 
+            - generic [ref=f21e177]:
+              - generic [ref=f21e178]: 943,95 TL
+              - generic [ref=f21e179]: 755,16 TL
+            - generic [ref=f21e180]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e182]:
+            - link [ref=f21e183] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-balatasi-on-citroen-berlingo-iii-c5-iii-x-ds-ds-4-ii-ds-7-fiat-doblo-23-opel-astra-l-combo-e-grandland-grandland-x-peugeot-308-iii-508-iii-partner-rifter-2018
+              - img "FREN BALATASI ON CITROEN BERLINGO III - C5 III X / DS DS 4 II- DS 7 / FIAT DOBLO 23>/ OPEL ASTRA L - COMBO E - GRANDLAND - GRANDLAND X / PEUGEOT 308 III-508 III-PARTNER -RIFTER 2018-" [ref=f21e186]
+            - generic [ref=f21e187]:
+              - generic [ref=f21e188]: FREN BALATASI ON CITROEN BERLINGO III - C5 III X / DS DS 4 II- DS 7 / FIAT DOBLO 23>/ OPEL ASTRA L - COMBO E - GRANDLAND - GRANDLAND X / PEUGEOT 308 III-508 III-PARTNER -RIFTER 2018-
+              - generic [ref=f21e190]:
+                - generic [ref=f21e191]: 
+                - generic [ref=f21e193]: 
+                - generic [ref=f21e195]: 
+                - generic [ref=f21e197]: 
+                - generic [ref=f21e199]: 
+            - generic [ref=f21e201]:
+              - generic [ref=f21e202]: 3.077,95 TL
+              - generic [ref=f21e203]: 2.462,36 TL
+            - link "Sepete Ekle " [ref=f21e205] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f21e206]: 
+          - generic [ref=f21e208]:
+            - link [ref=f21e209] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/honda-accord-2-4-2002-2008-arasi-sol-arka-fren-kaliperi-hella-marka
+              - img "Honda Accord 2.4 2002-2008 Arası Sol Arka Fren Kaliperi Hella Marka" [ref=f21e212]
+            - generic [ref=f21e213]:
+              - generic [ref=f21e214]: Honda Accord 2.4 2002-2008 Arası Sol Arka Fren Kaliperi Hella Marka
+              - generic [ref=f21e216]:
+                - generic [ref=f21e217]: 
+                - generic [ref=f21e219]: 
+                - generic [ref=f21e221]: 
+                - generic [ref=f21e223]: 
+                - generic [ref=f21e225]: 
+            - generic [ref=f21e227]:
+              - generic [ref=f21e228]: 4.967,20 TL
+              - generic [ref=f21e229]: 3.973,76 TL
+            - link "Sepete Ekle " [ref=f21e231] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f21e232]: 
+          - generic [ref=f21e234]:
+            - link [ref=f21e235] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-diski-on-havali-kaplamali-q7-06-16-touareg-02-13-cayenne-10
+              - img "FREN DISKI ÖN HAVALI KAPLAMALI Q7 06-16 TOUAREG 02-13 CAYENNE 10>" [ref=f21e238]
+            - generic [ref=f21e239]:
+              - generic [ref=f21e240]: FREN DISKI ÖN HAVALI KAPLAMALI Q7 06-16 TOUAREG 02-13 CAYENNE 10>
+              - generic [ref=f21e242]:
+                - generic [ref=f21e243]: 
+                - generic [ref=f21e245]: 
+                - generic [ref=f21e247]: 
+                - generic [ref=f21e249]: 
+                - generic [ref=f21e251]: 
+            - generic [ref=f21e253]:
+              - generic [ref=f21e254]: 13.505,00 TL
+              - generic [ref=f21e255]: 11.642,00 TL
+            - generic [ref=f21e256]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e258]:
+            - link [ref=f21e259] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/on-fren-balatasi-17mm-vw-porsche
+              - img "ON FREN BALATASI-17MM VW PORSCHE" [ref=f21e262]
+            - generic [ref=f21e263]:
+              - generic [ref=f21e264]: ON FREN BALATASI-17MM VW PORSCHE
+              - generic [ref=f21e266]:
+                - generic [ref=f21e267]: 
+                - generic [ref=f21e269]: 
+                - generic [ref=f21e271]: 
+                - generic [ref=f21e273]: 
+                - generic [ref=f21e275]: 
+            - generic [ref=f21e277]:
+              - generic [ref=f21e278]: 11.074,00 TL
+              - generic [ref=f21e279]: 8.652,00 TL
+            - generic [ref=f21e280]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e282]:
+            - link [ref=f21e283] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/balata-fren-on-hyundai-starex-97-02-wva-23536-h100
+              - img "BALATA FREN ON-(HYUNDAI STAREX 97-02 ) WVA 23536 - H100" [ref=f21e286]
+            - generic [ref=f21e287]:
+              - generic [ref=f21e288]: BALATA FREN ON-(HYUNDAI STAREX 97-02 ) WVA 23536 - H100
+              - generic [ref=f21e290]:
+                - generic [ref=f21e291]: 
+                - generic [ref=f21e293]: 
+                - generic [ref=f21e295]: 
+                - generic [ref=f21e297]: 
+                - generic [ref=f21e299]: 
+            - generic [ref=f21e301]:
+              - generic [ref=f21e302]: 2.560,00 TL
+              - generic [ref=f21e303]: 1.950,00 TL
+            - generic [ref=f21e304]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e306]:
+            - link [ref=f21e307] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-kampanasi-arka-mitsubishi-carisma-1-6-1-9-td-96-06
+              - img "FREN KAMPANASI ARKA MITSUBISHI CARISMA 1.6 1.9 TD 96-06" [ref=f21e310]
+            - generic [ref=f21e311]:
+              - generic [ref=f21e312]: FREN KAMPANASI ARKA MITSUBISHI CARISMA 1.6 1.9 TD 96-06
+              - generic [ref=f21e314]:
+                - generic [ref=f21e315]: 
+                - generic [ref=f21e317]: 
+                - generic [ref=f21e319]: 
+                - generic [ref=f21e321]: 
+                - generic [ref=f21e323]: 
+            - generic [ref=f21e325]:
+              - generic [ref=f21e326]: 2.200,00 TL
+              - generic [ref=f21e327]: 1.250,10 TL
+            - generic [ref=f21e328]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e330]:
+            - link [ref=f21e331] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/peugeot-2008-gti-1-5-dizel-2018-2024-arasi-arka-fren-balata-takimi-delphi-marka
+              - img "Peugeot 2008 Gti 1.5 Dizel 2018-2024 Arası Arka Fren Balata Takımı Delphi Marka" [ref=f21e334]
+            - generic [ref=f21e335]:
+              - generic [ref=f21e336]: Peugeot 2008 Gti 1.5 Dizel 2018-2024 Arası Arka Fren Balata Takımı Delphi Marka
+              - generic [ref=f21e338]:
+                - generic [ref=f21e339]: 
+                - generic [ref=f21e341]: 
+                - generic [ref=f21e343]: 
+                - generic [ref=f21e345]: 
+                - generic [ref=f21e347]: 
+            - generic [ref=f21e349]:
+              - generic [ref=f21e350]: 2.850,00 TL
+              - generic [ref=f21e351]: 2.280,00 TL
+            - generic [ref=f21e352]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e354]:
+            - link [ref=f21e355] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/on-fren-disk-ayna-kuga-iii-19-1.5-ecoblue-focus-iv-2.0-st-ecoblue-17-krf
+              - img "ON FREN DISK AYNA KUGA III 19> 1.5 ECOBLUE FOCUS IV 2.0 ST ECOBLUE 17>" [ref=f21e358]
+            - generic [ref=f21e359]:
+              - generic [ref=f21e360]: ON FREN DISK AYNA KUGA III 19> 1.5 ECOBLUE FOCUS IV 2.0 ST ECOBLUE 17>
+              - generic [ref=f21e362]:
+                - generic [ref=f21e363]: 
+                - generic [ref=f21e365]: 
+                - generic [ref=f21e367]: 
+                - generic [ref=f21e369]: 
+                - generic [ref=f21e371]: 
+            - generic [ref=f21e373]:
+              - generic [ref=f21e374]: 4.584,05 TL
+              - generic [ref=f21e375]: 3.667,24 TL
+            - generic [ref=f21e376]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e378]:
+            - link [ref=f21e379] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/arka-fren-disk-ayna-yeni-focus18-yeni-kuga-20-krf
+              - img "ARKA FREN DISK AYNA YENI FOCUS18> YENI KUGA 20> 2 ADET" [ref=f21e382]
+            - generic [ref=f21e383]:
+              - generic [ref=f21e384]: ARKA FREN DISK AYNA YENI FOCUS18> YENI KUGA 20> 2 ADET
+              - generic [ref=f21e386]:
+                - generic [ref=f21e387]: 
+                - generic [ref=f21e389]: 
+                - generic [ref=f21e391]: 
+                - generic [ref=f21e393]: 
+                - generic [ref=f21e395]: 
+            - generic [ref=f21e397]:
+              - generic [ref=f21e398]: 3.298,14 TL
+              - generic [ref=f21e399]: 2.638,51 TL
+            - link "Sepete Ekle " [ref=f21e401] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f21e402]: 
+          - generic [ref=f21e404]:
+            - link [ref=f21e405] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-diski-on-mini-r60-r61-kaplamali-294-mm
+              - img "FREN DISKI ON MINI R60 R61 KAPLAMALI 294 MM" [ref=f21e408]
+            - generic [ref=f21e409]:
+              - generic [ref=f21e410]: FREN DISKI ON MINI R60 R61 KAPLAMALI 294 MM
+              - generic [ref=f21e412]:
+                - generic [ref=f21e413]: 
+                - generic [ref=f21e415]: 
+                - generic [ref=f21e417]: 
+                - generic [ref=f21e419]: 
+                - generic [ref=f21e421]: 
+            - generic [ref=f21e423]:
+              - generic [ref=f21e424]: 5.322,18 TL
+              - generic [ref=f21e425]: 4.257,75 TL
+            - generic [ref=f21e426]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e428]:
+            - link [ref=f21e429] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-diski-arka-mini-r60-r61-kaplamali-280-mm
+              - img "FREN DISKI ARKA MINI R60 R61 KAPLAMALI 280 MM" [ref=f21e432]
+            - generic [ref=f21e433]:
+              - generic [ref=f21e434]: FREN DISKI ARKA MINI R60 R61 KAPLAMALI 280 MM
+              - generic [ref=f21e436]:
+                - generic [ref=f21e437]: 
+                - generic [ref=f21e439]: 
+                - generic [ref=f21e441]: 
+                - generic [ref=f21e443]: 
+                - generic [ref=f21e445]: 
+            - generic [ref=f21e447]:
+              - generic [ref=f21e448]: 5.147,67 TL
+              - generic [ref=f21e449]: 4.118,14 TL
+            - link "Sepete Ekle " [ref=f21e451] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f21e452]: 
+          - generic [ref=f21e454]:
+            - link [ref=f21e455] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-kaliperi-on-sol-07-mini-cooper-a-g
+              - img "FREN KALIPERI ON SOL 07> MINI COOPER [A.G]" [ref=f21e458]
+            - generic [ref=f21e459]:
+              - generic [ref=f21e460]: FREN KALIPERI ON SOL 07> MINI COOPER [A.G]
+              - generic [ref=f21e462]:
+                - generic [ref=f21e463]: 
+                - generic [ref=f21e465]: 
+                - generic [ref=f21e467]: 
+                - generic [ref=f21e469]: 
+                - generic [ref=f21e471]: 
+            - generic [ref=f21e473]:
+              - generic [ref=f21e474]: 4.564,00 TL
+              - generic [ref=f21e475]: 3.751,00 TL
+            - generic [ref=f21e476]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e478]:
+            - link [ref=f21e479] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/abs-hiz-sensoru-on-sag-mercedes-w163-9805
+              - img "ABS HIZ SENSORU ON SAG MERCEDES W163 98>05" [ref=f21e482]
+            - generic [ref=f21e483]:
+              - generic [ref=f21e484]: ABS HIZ SENSORU ON SAG MERCEDES W163 98>05
+              - generic [ref=f21e486]:
+                - generic [ref=f21e487]: 
+                - generic [ref=f21e489]: 
+                - generic [ref=f21e491]: 
+                - generic [ref=f21e493]: 
+                - generic [ref=f21e495]: 
+            - generic [ref=f21e497]:
+              - generic [ref=f21e498]: 724,00 TL
+              - generic [ref=f21e499]: 548,00 TL
+            - generic [ref=f21e500]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e502]:
+            - link [ref=f21e503] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/bmw-f20-kasa-116d-arka-fren-balatasi
+              - img "Bmw F20 Kasa 116d Arka Fren Balatası" [ref=f21e506]
+            - generic [ref=f21e507]:
+              - generic [ref=f21e508]: Bmw F20 Kasa 116d Arka Fren Balatası
+              - generic [ref=f21e510]:
+                - generic [ref=f21e511]: 
+                - generic [ref=f21e513]: 
+                - generic [ref=f21e515]: 
+                - generic [ref=f21e517]: 
+                - generic [ref=f21e519]: 
+            - generic [ref=f21e521]: 2.061,00 TL
+            - generic [ref=f21e523]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e525]:
+            - link [ref=f21e526] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/corolla-dizel-2007-2009-auris-2007-2009-dizel-fren-kaliperi-on-sol
+              - img "COROLLA DIZEL 2007-2009/AURIS 2007-2009 DİZEL FREN KALİPERİ ÖN SOL" [ref=f21e529]
+            - generic [ref=f21e530]:
+              - generic [ref=f21e531]: COROLLA DIZEL 2007-2009/AURIS 2007-2009 DİZEL FREN KALİPERİ ÖN SOL
+              - generic [ref=f21e533]:
+                - generic [ref=f21e534]: 
+                - generic [ref=f21e536]: 
+                - generic [ref=f21e538]: 
+                - generic [ref=f21e540]: 
+                - generic [ref=f21e542]: 
+            - generic [ref=f21e544]:
+              - generic [ref=f21e545]: 4.315,00 TL
+              - generic [ref=f21e546]: 2.950,10 TL
+            - generic [ref=f21e547]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e549]:
+            - link [ref=f21e550] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/abs-sensoru-on-sag-hyundai-accent-era-06-09-kia-rio-05-09
+              - img "ABS SENSORU ON SAG (HYUNDAI ACCENT ERA 06/09 / KIA RIO 05/09)" [ref=f21e553]
+            - generic [ref=f21e554]:
+              - generic [ref=f21e555]: ABS SENSORU ON SAG (HYUNDAI ACCENT ERA 06/09 / KIA RIO 05/09)
+              - generic [ref=f21e557]:
+                - generic [ref=f21e558]: 
+                - generic [ref=f21e560]: 
+                - generic [ref=f21e562]: 
+                - generic [ref=f21e564]: 
+                - generic [ref=f21e566]: 
+            - generic [ref=f21e568]:
+              - generic [ref=f21e569]: 984,00 TL
+              - generic [ref=f21e570]: 712,00 TL
+            - generic [ref=f21e571]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e573]:
+            - link [ref=f21e574] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/pabuclu-balata-200x32-mm-suzuki-swift-ii-belano-liana-daihatsu-applause-i-1.6-89
+              - img "PABUCLU BALATA 200x32 mm SUZUKI SWIFT II BELANO LIANA DAIHATSU APPLAUSE I 1.6 89-" [ref=f21e577]
+            - generic [ref=f21e578]:
+              - generic [ref=f21e579]: PABUCLU BALATA 200x32 mm SUZUKI SWIFT II BELANO LIANA DAIHATSU APPLAUSE I 1.6 89-
+              - generic [ref=f21e581]:
+                - generic [ref=f21e582]: 
+                - generic [ref=f21e584]: 
+                - generic [ref=f21e586]: 
+                - generic [ref=f21e588]: 
+                - generic [ref=f21e590]: 
+            - generic [ref=f21e592]:
+              - generic [ref=f21e593]: 1.875,00 TL
+              - generic [ref=f21e594]: 1.189,00 TL
+            - generic [ref=f21e595]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e597]:
+            - link [ref=f21e598] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/abs-sensoru-landrover-jaguar-xe-xf-on
+              - img "ABS SENSORU LANDROVER JAGUAR XE XF ON" [ref=f21e601]
+            - generic [ref=f21e602]:
+              - generic [ref=f21e603]: ABS SENSORU LANDROVER JAGUAR XE XF ON
+              - generic [ref=f21e605]:
+                - generic [ref=f21e606]: 
+                - generic [ref=f21e608]: 
+                - generic [ref=f21e610]: 
+                - generic [ref=f21e612]: 
+                - generic [ref=f21e614]: 
+            - generic [ref=f21e616]:
+              - generic [ref=f21e617]: 1.989,00 TL
+              - generic [ref=f21e618]: 1.218,00 TL
+            - generic [ref=f21e619]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e621]:
+            - link [ref=f21e622] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/mazda-mpv-i-ii-on-balata
+              - img "Mazda MPV I, II Ön Balata" [ref=f21e625]
+            - generic [ref=f21e626]:
+              - generic [ref=f21e627]: Mazda MPV I, II Ön Balata
+              - generic [ref=f21e629]:
+                - generic [ref=f21e630]: 
+                - generic [ref=f21e632]: 
+                - generic [ref=f21e634]: 
+                - generic [ref=f21e636]: 
+                - generic [ref=f21e638]: 
+            - generic [ref=f21e640]:
+              - generic [ref=f21e641]: 1.780,00 TL
+              - generic [ref=f21e642]: 1.225,00 TL
+            - generic [ref=f21e643]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e645]:
+            - link [ref=f21e646] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-balatasi-on-bmw-f10-f11-11
+              - img "FREN BALATASI ON BMW F10 F11 11>" [ref=f21e649]
+            - generic [ref=f21e650]:
+              - generic [ref=f21e651]: FREN BALATASI ON BMW F10 F11 11>
+              - generic [ref=f21e653]:
+                - generic [ref=f21e654]: 
+                - generic [ref=f21e656]: 
+                - generic [ref=f21e658]: 
+                - generic [ref=f21e660]: 
+                - generic [ref=f21e662]: 
+            - generic [ref=f21e664]:
+              - generic [ref=f21e665]: 2.782,94 TL
+              - generic [ref=f21e666]: 2.226,35 TL
+            - link "Sepete Ekle " [ref=f21e668] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f21e669]: 
+          - generic [ref=f21e671]:
+            - link [ref=f21e672] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/abs-sensoru-on-sag-hyundai-sonata-99-05
+              - img "ABS SENSORU ON SAG (HYUNDAI SONATA 99/05)" [ref=f21e675]
+            - generic [ref=f21e676]:
+              - generic [ref=f21e677]: ABS SENSORU ON SAG (HYUNDAI SONATA 99/05)
+              - generic [ref=f21e679]:
+                - generic [ref=f21e680]: 
+                - generic [ref=f21e682]: 
+                - generic [ref=f21e684]: 
+                - generic [ref=f21e686]: 
+                - generic [ref=f21e688]: 
+            - generic [ref=f21e690]:
+              - generic [ref=f21e691]: 739,71 TL
+              - generic [ref=f21e692]: 521,77 TL
+            - generic [ref=f21e693]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f21e695]:
+            - link [ref=f21e696] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/abs-sensoru-on-sol-hyundai-sonata-99-05
+              - img "ABS SENSORU ON SOL (HYUNDAI SONATA 99/05)" [ref=f21e699]
+            - generic [ref=f21e700]:
+              - generic [ref=f21e701]: ABS SENSORU ON SOL (HYUNDAI SONATA 99/05)
+              - generic [ref=f21e703]:
+                - generic [ref=f21e704]: 
+                - generic [ref=f21e706]: 
+                - generic [ref=f21e708]: 
+                - generic [ref=f21e710]: 
+                - generic [ref=f21e712]: 
+            - generic [ref=f21e714]:
+              - generic [ref=f21e715]: 739,71 TL
+              - generic [ref=f21e716]: 521,77 TL
+            - generic [ref=f21e717]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+        - navigation [ref=f21e719]:
+          - list [ref=f21e720]:
+            - listitem [ref=f21e721]:
+              - link "1" [ref=f21e722] [cursor=pointer]:
+                - /url: javascript:;
+            - listitem [ref=f21e723]:
+              - link "2" [ref=f21e724] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren?fiyat=hepsi&siralama=en-yeniler&pageing=1&list=0&k=&pageing=2
+            - listitem [ref=f21e725]:
+              - link "3" [ref=f21e726] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren?fiyat=hepsi&siralama=en-yeniler&pageing=1&list=0&k=&pageing=3
+            - listitem [ref=f21e727]:
+              - link "..." [ref=f21e728] [cursor=pointer]:
+                - /url: javascript:;
+            - listitem [ref=f21e729]:
+              - link "1130" [ref=f21e730] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren?fiyat=hepsi&siralama=en-yeniler&pageing=1&list=0&k=&pageing=1130
+  - generic [ref=f21e737]:
+    - generic [ref=f21e740]:
+      - generic [ref=f21e741]:
+        - strong [ref=f21e743]: KREDİ KARTI İLE ALIŞVERİŞ
+        - paragraph [ref=f21e744]: Tüm Kredi Kartları ile Güvenli Alışveriş Yapabilirsiniz.
+      - generic [ref=f21e745]:
+        - strong [ref=f21e747]: HIZLI TESLİMAT
+        - paragraph [ref=f21e748]: Siparişiniz En Hızlı Şekilde Teslim Edilir.
+      - generic [ref=f21e749]:
+        - strong [ref=f21e751]: GÜVENLİ ALIŞVERİŞ
+        - paragraph [ref=f21e752]: 256bit SSL Sertifikası ile Güvenli Satın Alma
+      - generic [ref=f21e753]:
+        - strong [ref=f21e755]: MÜŞTERİ HİZMETLERİ
+        - paragraph [ref=f21e756]: 0850 532 1935 ulaşabilirsiniz
+    - generic [ref=f21e757]:
+      - generic [ref=f21e759]:
+        - generic [ref=f21e760]:
+          - generic [ref=f21e763]:
+            - generic [ref=f21e764]: Kurumsal +
+            - generic [ref=f21e766]: Kategoriler +
+            - generic [ref=f21e768]: Alışveriş +
+          - generic [ref=f21e770]:
+            - generic [ref=f21e771]:
+              - generic [ref=f21e772]:
+                - generic [ref=f21e773]: 
+                - generic [ref=f21e775]:
+                  - generic [ref=f21e776]: Müşteri Hizmetleri
+                  - link "0850 532 1935" [ref=f21e777] [cursor=pointer]:
+                    - /url: tel:+90850 532 1935
+              - generic [ref=f21e778]:
+                - generic [ref=f21e779]: "Uygulamalarımız:"
+                - list [ref=f21e780]:
+                  - listitem [ref=f21e781]:
+                    - link [ref=f21e782] [cursor=pointer]:
+                      - /url: ""
+                  - listitem [ref=f21e784]:
+                    - link [ref=f21e785] [cursor=pointer]:
+                      - /url: ""
+            - generic [ref=f21e787]:
+              - generic [ref=f21e788]: Bloga Göz At
+              - link "Blog" [ref=f21e789] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/blog
+        - generic [ref=f21e793]:
+          - link [ref=f21e797] [cursor=pointer]:
+            - /url: https://etbis.eticaret.gov.tr/sitedogrulama/7834168730156187
+          - link "" [ref=f21e799] [cursor=pointer]:
+            - /url: https://www.facebook.com/yamanyedekparca
+          - link "" [ref=f21e801] [cursor=pointer]:
+            - /url: ""
+          - link "" [ref=f21e803] [cursor=pointer]:
+            - /url: https://www.instagram.com/yedekparcacomtr
+          - link "" [ref=f21e805] [cursor=pointer]:
+            - /url: ""
+      - paragraph [ref=f21e812]: Tüm bilgileriniz 256bit SSL Sertifikası ile korunmaktadır. © 2026 Tüm Hakları Saklıdır

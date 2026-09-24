@@ -1,0 +1,96 @@
+- generic [active] [ref=f21e1]:
+  - banner [ref=f21e2]:
+    - generic [ref=f21e4]:
+      - button "Menüyü aç" [ref=f21e5]
+      - link "Akinel" [ref=f21e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f21e9]:
+        - link "Ara" [ref=f21e10] [cursor=pointer]:
+          - /url: /search
+        - link "Garajım" [ref=f21e14] [cursor=pointer]:
+          - /url: /garage
+  - main [ref=f21e19]:
+    - generic [ref=f21e20]:
+      - navigation "Breadcrumb" [ref=f21e21]:
+        - link "Ana Sayfa" [ref=f21e23] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f21e24]: Ürünler
+      - heading "Tüm Ürünler" [level=1] [ref=f21e30]
+      - complementary [ref=f21e32]:
+        - generic [ref=f21e33]:
+          - generic [ref=f21e34]: Filtreler
+          - generic [ref=f21e37] [cursor=pointer]:
+            - checkbox "Sadece stokta olanlar" [ref=f21e38]
+            - text: Sadece stokta olanlar
+          - generic [ref=f21e39]:
+            - paragraph [ref=f21e40]: Fiyat Aralığı
+            - generic [ref=f21e41]:
+              - spinbutton "Min" [ref=f21e42]
+              - spinbutton "Maks" [ref=f21e43]
+          - generic [ref=f21e44]:
+            - paragraph [ref=f21e45]: Sıralama
+            - combobox [ref=f21e46]:
+              - option "Varsayılan" [selected]
+              - option "En Yeni"
+              - 'option "Fiyat: Düşükten Yükseğe"'
+              - 'option "Fiyat: Yüksekten Düşüğe"'
+          - button "Filtrele" [ref=f21e47]
+  - contentinfo [ref=f21e230]:
+    - generic [ref=f21e231]:
+      - generic [ref=f21e232]:
+        - generic [ref=f21e233]:
+          - generic [ref=f21e234]:
+            - generic [ref=f21e235]: Akinel
+            - generic [ref=f21e236]: Yedek Parça
+          - paragraph [ref=f21e237]: Aracınız için doğru parçayı bulun. OEM numarası veya araç seçimi ile hızlı arama.
+        - generic [ref=f21e238]:
+          - heading "Alışveriş" [level=3] [ref=f21e239]
+          - list [ref=f21e240]:
+            - listitem [ref=f21e241]:
+              - link "Tüm Ürünler" [ref=f21e242] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f21e243]:
+              - link "Araçla Bul" [ref=f21e244] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f21e245]:
+              - link "VIN Sorgula" [ref=f21e246] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f21e247]:
+              - link "Periyodik Bakım" [ref=f21e248] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f21e249]:
+          - heading "Hesap" [level=3] [ref=f21e250]
+          - list [ref=f21e251]:
+            - listitem [ref=f21e252]:
+              - link "Giriş Yap" [ref=f21e253] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f21e254]:
+              - link "Kayıt Ol" [ref=f21e255] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f21e256]:
+              - link "Hesabım" [ref=f21e257] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f21e258]:
+              - link "Garajım" [ref=f21e259] [cursor=pointer]:
+                - /url: /garage
+        - generic [ref=f21e260]:
+          - heading "Destek" [level=3] [ref=f21e261]
+          - list [ref=f21e262]:
+            - listitem [ref=f21e263]:
+              - link "Yardım Merkezi" [ref=f21e264] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f21e265]:
+              - link "İletişim" [ref=f21e266] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f21e267]:
+              - link "Sipariş Takibi" [ref=f21e268] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=f21e269]:
+        - generic [ref=f21e270]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f21e271]:
+          - link "Gizlilik Politikası" [ref=f21e272] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f21e273] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f21e279] [cursor=pointer]
+  - alert [ref=f21e283]

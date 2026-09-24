@@ -1,0 +1,642 @@
+- generic [active] [ref=f9e1]:
+  - banner [ref=f9e2]:
+    - generic [ref=f9e4]:
+      - link "+90 533 140 56 49" [ref=f9e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f9e8]:
+        - link "Sipariş Takip" [ref=f9e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f9e10]: "|"
+        - link "Yardım" [ref=f9e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f9e12]: "|"
+        - link "İletişim" [ref=f9e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f9e14]: "|"
+        - generic [ref=f9e15]: TR
+    - generic [ref=f9e17]:
+      - link "Akinel Yedek Parça" [ref=f9e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f9e19]: Akinel
+        - generic [ref=f9e20]: Yedek Parça
+      - generic [ref=f9e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f9e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f9e24]:
+        - link "Garajım" [ref=f9e25] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f9e157] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f9e158] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f9e36]:
+      - link "Ana Sayfa" [ref=f9e37] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f9e38] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f9e39] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f9e40] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f9e41] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f9e42] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f9e43] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f9e44] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=f9e45]:
+    - generic [ref=f9e46]:
+      - navigation "Breadcrumb" [ref=f9e47]:
+        - link "Ana Sayfa" [ref=f9e49] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f9e50]: Aracımı Seç
+      - generic [ref=f9e54]:
+        - heading "Aracınızı Seçin" [level=1] [ref=f9e55]
+        - paragraph [ref=f9e56]: 4 adımda aracınızı seçin ve uyumlu parçaları keşfedin.
+        - generic [ref=f9e58]:
+          - generic [ref=f9e59]:
+            - generic [ref=f9e61]:
+              - generic [ref=f9e62]: ✓
+              - generic [ref=f9e63]: Marka
+            - generic [ref=f9e66]:
+              - generic [ref=f9e67]: "2"
+              - generic [ref=f9e68]: Model
+            - generic [ref=f9e71]:
+              - generic [ref=f9e72]: "3"
+              - generic [ref=f9e73]: Kasa / Nesil
+            - generic [ref=f9e76]:
+              - generic [ref=f9e77]: "4"
+              - generic [ref=f9e78]: Motor
+          - generic [ref=f9e79]:
+            - generic [ref=f9e80]:
+              - generic [ref=f9e81]: Marka
+              - combobox [ref=f9e82]:
+                - option "Marka seçin"
+                - option "ALFA ROMEO"
+                - option "AUDI"
+                - option "BMW"
+                - option "CITROEN"
+                - option "CUPRA"
+                - option "DACIA"
+                - option "DS"
+                - option "FIAT"
+                - option "FORD"
+                - option "HONDA"
+                - option "HYUNDAI"
+                - option "INFINITI"
+                - option "JAGUAR"
+                - option "KIA"
+                - option "LANCIA"
+                - option "LAND ROVER"
+                - option "LEXUS"
+                - option "MAZDA"
+                - option "MERCEDES-BENZ"
+                - option "MINI"
+                - option "MITSUBISHI"
+                - option "NISSAN"
+                - option "OPEL"
+                - option "PEUGEOT"
+                - option "PORSCHE"
+                - option "RENAULT"
+                - option "SAAB"
+                - option "SEAT"
+                - option "SKODA"
+                - option "SMART"
+                - option "SUBARU"
+                - option "SUZUKI"
+                - option "TOYOTA"
+                - option "VOLKSWAGEN" [selected]
+                - option "VOLVO"
+            - generic [ref=f9e83]:
+              - generic [ref=f9e84]: Model
+              - combobox [ref=f9e85]:
+                - option "Model seçin" [selected]
+                - option "B-MAX"
+                - option "B-MAX BLACK ICA"
+                - option "B-MAX RED ICA"
+                - option "B-MAX TITANIUM"
+                - option "B-MAX TITANIUM ICA"
+                - option "B-MAX TITANIUM X"
+                - option "B-MAX TREND"
+                - option "B-MAX TREND ICA"
+                - option "B-MAX TREND X ICA"
+                - option "BRONCO SPORT"
+                - option "C MAX TITANIUM"
+                - option "C MAX TREND"
+                - option "C-MAX TITANIUM"
+                - option "C-MAX TITANIUM X"
+                - option "C-MAX TREND"
+                - option "CEKICI"
+                - option "CROWN VICTORIA"
+                - option "ECOSPORT"
+                - option "EDGE MCA TITANIUM"
+                - option "EDGE TITANIUM"
+                - option "ESCAPE"
+                - option "EXPEDITION"
+                - option "EXPLORER"
+                - option "EXPLORER 4WD"
+                - option "F 550 4X4 CREW CHAS CAB D 6.7"
+                - option "F150 4X4 5.0"
+                - option "F150 4X4 SUPERCAB LARIAT 2.7"
+                - option "F150 RAPTOR 4X4"
+                - option "FIESTA"
+                - option "FIESTA 1.4 TDCI COMFORT"
+                - option "FIESTA BLACK"
+                - option "FIESTA COLLECTION"
+                - option "FIESTA COOL"
+                - option "FIESTA GHIA 5 KAPI"
+                - option "FIESTA ICA ST 3 KAPI"
+                - option "FIESTA ICA ST 5 KAPI"
+                - option "FIESTA MY FIESTA"
+                - option "FIESTA RED"
+                - option "FIESTA SPORT"
+                - option "FIESTA SPORT 3 KAPI"
+                - option "FIESTA ST"
+                - option "FIESTA ST 3 KAPI"
+                - option "FIESTA ST 5 KAPI"
+                - option "FIESTA ST LINE"
+                - option "FIESTA ST LINE1.0 ECOBOOST 100 POWERSHIFT"
+                - option "FIESTA STYLE"
+                - option "FIESTA TITANIUM"
+                - option "FIESTA TITANIUM ICA"
+                - option "FIESTA TITANIUM X"
+                - option "FIESTA TITANIUM X ICA"
+                - option "FIESTA TREND"
+                - option "FIESTA TREND ICA"
+                - option "FIESTA TREND X"
+                - option "FIESTA TREND X ICA"
+                - option "FLEX"
+                - option "FOCUS"
+                - option "FOCUS 1.5 TDCI 120"
+                - option "FOCUS 1.6 TDCI (90) TREND"
+                - option "FOCUS 1.6 TDCI COLLECTION"
+                - option "FOCUS 1.6 TDCI GHIA"
+                - option "FOCUS 1.6 TDCI TREND"
+                - option "FOCUS 1.6I"
+                - option "FOCUS 1.6I COLLECTION"
+                - option "FOCUS 1.6I TDCI"
+                - option "FOCUS C-MAX"
+                - option "FOCUS CC TITANIUM"
+                - option "FOCUS COLLECTION"
+                - option "FOCUS COLLECTION 4K"
+                - option "FOCUS COMFORT"
+                - option "FOCUS COMFORT 4K"
+                - option "FOCUS III 2.0 ST 250"
+                - option "FOCUS III COMFORT"
+                - option "FOCUS III COMFORT 1.6 TDCI (95)"
+                - option "FOCUS III COMFORT 1.6I (105)"
+                - option "FOCUS III MCA STYLE"
+                - option "FOCUS III MCA STYLE 1.5 TDCI 120"
+                - option "FOCUS III MCA STYLE 1.6 125"
+                - option "FOCUS III MCA STYLE 1.6 TDCI 115"
+                - option "FOCUS III MCA TITANIUM"
+                - option "FOCUS III MCA TITANIUM 1.0 ECOBOOST 125"
+                - option "FOCUS III MCA TITANIUM 1.5 TDCI 120"
+                - option "FOCUS III MCA TITANIUM 1.6 125"
+                - option "FOCUS III MCA TITANIUM 1.6 TDCI 115"
+                - option "FOCUS III MCA TITANIUM X"
+                - option "FOCUS III MCA TITANIUM X 1.6 TDCI 115"
+                - option "FOCUS III MCA TREND X"
+                - option "FOCUS III MCA TREND X 1.5 TDCI 120"
+                - option "FOCUS III MCA TREND X 1.5TDCI 120"
+                - option "FOCUS III MCA TREND X 1.6 125"
+                - option "FOCUS III MCA TREND X 1.6 TDCI 95"
+                - option "FOCUS III STYLE"
+                - option "FOCUS III STYLE 1.0 ECOBOOST 125"
+                - option "FOCUS III STYLE 1.6 TDCI (115)"
+                - option "FOCUS III STYLE 1.6I (125)"
+                - option "FOCUS III STYLE 1.6I 125"
+                - option "FOCUS III TITANIUM"
+                - option "FOCUS III TITANIUM 1.0I ECOBOOST (125)"
+                - option "FOCUS III TITANIUM 1.6 TDCI (115)"
+                - option "FOCUS III TITANIUM 1.6I (125)"
+                - option "FOCUS III TITANIUM 1.6I 125"
+                - option "FOCUS III TITANIUM 1.6I ECOBOOST (180)"
+                - option "FOCUS III TITANIUM 1.6I ECOBOOST 180"
+                - option "FOCUS III TITANIUM1.6I ECOBOOST (180) 4K"
+                - option "FOCUS III TREND"
+                - option "FOCUS III TREND 1.6 TDCI (95)"
+                - option "FOCUS III TREND 1.6I (125)"
+                - option "FOCUS III TREND 1.6I 125"
+                - option "FOCUS III TREND X"
+                - option "FOCUS III TREND X 1.0 ECOBOOST 125"
+                - option "FOCUS III TREND X 1.6 TDCI 95"
+                - option "FOCUS III TREND X 1.6I 125"
+                - option "FOCUS RS"
+                - option "FOCUS SPORT"
+                - option "FOCUS ST"
+                - option "FOCUS ST LINE 1.0 125 ECOBOOST"
+                - option "FOCUS ST LINE 1.5 TDCI 120"
+                - option "FOCUS ST LINE 1.6 125"
+                - option "FOCUS ST-LINE"
+                - option "FOCUS TITANIUM"
+                - option "FOCUS TITANIUM 4K"
+                - option "FOCUS TREND"
+                - option "FOCUS TREND 4K"
+                - option "FOCUS TREND X"
+                - option "FOCUS TREND X 4K"
+                - option "FOCUS WRC"
+                - option "FUSION"
+                - option "FUSION COLLECTION"
+                - option "Focus"
+                - option "GALAXY"
+                - option "GALAXY GHIA"
+                - option "GALAXY STYLE"
+                - option "GALAXY TITANIUM"
+                - option "GALAXY VIGNALE"
+                - option "GRAND C-MAX TITANIUM"
+                - option "GRAND C-MAX TITANIUM X"
+                - option "GT"
+                - option "KA TITANIUM"
+                - option "KAMYON"
+                - option "KUGA ICA SELECTIVE"
+                - option "KUGA ICA TITANIUM"
+                - option "KUGA ICA TREND X"
+                - option "KUGA SELECTIVE"
+                - option "KUGA ST-LINE"
+                - option "KUGA ST-LINE 5D"
+                - option "KUGA STYLE"
+                - option "KUGA STYLE 5D"
+                - option "KUGA TITANIUM"
+                - option "KUGA TITANIUM 5D"
+                - option "KUGA TITANIUM X"
+                - option "KUGA TITANUM"
+                - option "KUGA TREND X"
+                - option "KUGA VIGNALE"
+                - option "LINCOLN TOWN CAR CARTIER"
+                - option "MONDEO"
+                - option "MONDEO 2.0I GHIA"
+                - option "MONDEO 2.0I GHIA X"
+                - option "MONDEO 2.0I TDCI GHIA"
+                - option "MONDEO 2.0I TDCI TREND"
+                - option "MONDEO SELECTIVE"
+                - option "MONDEO SELECTIVE 1.6 (125)"
+                - option "MONDEO SELECTIVE 1.6 TDCI (115)"
+                - option "MONDEO SELECTIVE 1.6I ECOBOOST 160"
+                - option "MONDEO SELECTIVE 2.0 TDCI (140)"
+                - option "MONDEO SELECTIVE 2.0 TDCI 140 OV"
+                - option "MONDEO SELECTIVE 2.0 TDCI 163 POWERSHIFT"
+                - option "MONDEO SELECTIVE 2.0I ECOBO. 240 POW."
+                - option "MONDEO SELECTIVE 2.0TDCI 163 POWERSHIFT"
+                - option "MONDEO STYLE"
+                - option "MONDEO STYLE 1.5 ECOBOOST 160"
+                - option "MONDEO STYLE 1.5 TDCI 120"
+                - option "MONDEO STYLE 1.6 TDCI 115"
+                - option "MONDEO STYLE 2.0 TDCI"
+                - option "MONDEO STYLE 2.0 TDCI 180"
+                - option "MONDEO TITANIUM"
+                - option "MONDEO TITANIUM 1.5 ECOBOOST 160"
+                - option "MONDEO TITANIUM 1.5 TDCI 120"
+                - option "MONDEO TITANIUM 1.6 TDCI (115)"
+                - option "MONDEO TITANIUM 1.6I"
+                - option "MONDEO TITANIUM 2.0 TDCI"
+                - option "MONDEO TITANIUM 2.0 TDCI 140 OV"
+                - option "MONDEO TITANIUM 2.0 TDCI 163 POWERSHIFT"
+                - option "MONDEO TITANIUM 2.0 TDCI 180"
+                - option "MONDEO TITANIUM 2.0 TDCI 180 POWERSIFT"
+                - option "MONDEO TREND"
+                - option "MONDEO TREND 1.6 TDCI (115)"
+                - option "MONDEO TREND 1.6I"
+                - option "MONDEO TREND 1.6I (120)"
+                - option "MONDEO TREND 1.6I ECOBOOST"
+                - option "MONDEO TREND 2.0 TDCI"
+                - option "MONDEO TREND 2.0 TDCI (140)"
+                - option "MONDEO TREND 2.0 TDCI 163 POWERSHIFT"
+                - option "MONDEO VIGNALE"
+                - option "MUSTANG"
+                - option "MUSTANG FASTBACK"
+                - option "MUSTANG GT"
+                - option "MUSTANG GT 500 SHELBY"
+                - option "MUSTANG MACH-E AWD PREMIUM EXTENDED RANGE"
+                - option "MUSTANG MCA FASTBACK"
+                - option "MY FIESTA II"
+                - option "PUMA ST-LINE"
+                - option "PUMA STYLE"
+                - option "RANGER C.KABIN K.NET XLT 4X2 HI-RIDER OV"
+                - option "RANGER CIFT K."
+                - option "RANGER CIFT K. K.NET XLT 4X4 WILDTRAK OV"
+                - option "RANGER CIFT KABIN"
+                - option "RANGER CIFT KABIN 4X2 HI-RIDER"
+                - option "RANGER CIFT KABIN 4X2 XLT"
+                - option "RANGER CIFT KABIN 4X4 XLT"
+                - option "RANGER CIFT KABIN K.NET 4X4 WILDTRAK"
+                - option "RANGER CIFT KABIN K.NET XLT 4X2 HI-RIDER"
+                - option "RANGER ICA WILDTRAK"
+                - option "RANGER ICA XLT"
+                - option "RANGER RAPTOR 4X4"
+                - option "RANGER STORMTRAK 4X4"
+                - option "RANGER THUNDER C.KABIN K.NET 4X4"
+                - option "RANGER THUNDER CIFT KABIN"
+                - option "RANGER THUNDER PLUS C. KABIN K.NET 4X4"
+                - option "RANGER WILDTRAK"
+                - option "RANGER WILDTRAK 4X4"
+                - option "RANGER WILDTRAK4X4"
+                - option "RANGER WOLFTRAK 4X4"
+                - option "RANGER XL 2.2 TDCI 150 CIFT KABIN"
+                - option "RANGER XL 4X4"
+                - option "RANGER XLT"
+                - option "RANGER XLT 2.2 TDCI 150 CIFT KABIN"
+                - option "RANGER XLT 2.2 TDCI 150 OV CIFTKABIN"
+                - option "RANGER XLT 4X2"
+                - option "RANGER XLT 4X4"
+                - option "S-MAX"
+                - option "S-MAX STYLE"
+                - option "S-MAX TITANIUM"
+                - option "S-MAX TREND"
+                - option "T. CONNECT"
+                - option "T.CONNECT"
+                - option "T.CONNECT COMBI K210S"
+                - option "T.CONNECT K210S"
+                - option "T.CUSTOMKOMBI"
+                - option "T.CUSTOMKOMBIVAN"
+                - option "TOURNEO CONNECT"
+                - option "TOURNEO CONNECT JOURNEY"
+                - option "TOURNEO CONNECTJOURNEY"
+                - option "TOURNEO COURIER"
+                - option "TOURNEO COURIER J.1.5TDCI 95 E6 TITIANIUM PL."
+                - option "TOURNEO COURIER JOURNEY"
+                - option "TOURNEO COURIER K"
+                - option "TOURNEO CUSTOM"
+                - option "TOURNEO CUSTOM 320L ECOBLUE 130 TREND"
+                - option "TOURNEO CUSTOM 320L ECOBLUE 130 TREND E6.2"
+                - option "TOURNEO CUSTOM 320L ECOBLUE 170 TITANIUM E6.2"
+                - option "TOURNEO CUSTOM 320L ECOBLUE 185 AT"
+                - option "TOURNEO CUSTOM 320L ECOBLUE 185 TITANIUM"
+                - option "TOURNEO CUSTOM 320L ECOBLUE 185 TITANIUM AT"
+                - option "TOURNEO CUSTOM 320L HIBRIT E6.2 185 TIT.PLUS"
+                - option "TOURNEO CUSTOM 320L UPGRADE 130 TREND 6AT"
+                - option "TOURNEO CUSTOM 320L UPGRADE 185 TITANIUM"
+                - option "TOURNEO CUSTOM 320L UPGRADE 185 TITANIUM 6AT"
+                - option "TOURNEO CUSTOM 320L UPGRADE TREND 130"
+                - option "TOURNEO CUSTOM 320LUPGRADE185TITANIUMPLUS 6AT"
+                - option "TOURNEO CUSTOM 320S ECOBLUE 130 TREND E6.2"
+                - option "TOURNEO CUSTOM 320S ECOBLUE 170 TREND AT"
+                - option "TOURNEO CUSTOM 320S UPGRADE 130 TREND"
+                - option "TOURNEO CUSTOM 320S UPGRADE 130 TREND 6AT"
+                - option "TOURNEO CUSTOM 320SUPGADE185TITANIUMPLUS 6AT"
+                - option "TOURNEO CUSTOM 8+1 300 L 125 TREND"
+                - option "TOURNEO CUSTOM 8+1 300 L 155 TITANIUM"
+                - option "TOURNEO CUSTOM 8+1 300 L 155 TITANIUM PLUS"
+                - option "TOURNEO CUSTOM 8+1 300 S 125 TREND"
+                - option "TOURNEO CUSTOM 8+1 300 S 155 TITANIUM"
+                - option "TOURNEO CUSTOM 8+1 300 S 155 TITANIUM PLUS"
+                - option "TOURNEO CUSTOM ECOBLUE 130 320S TREND"
+                - option "TOURNEO CUSTOM ECOBLUE 170 320L OV TITANIUM"
+                - option "TOURNEO CUSTOM ECOBLUE 170 320L TITANIUM"
+                - option "TOURNEO CUSTOM ECOBLUE 170 320L TITANIUM PLUS"
+                - option "TOURNEO CUSTOM ECOBLUE 170 320L TREND"
+                - option "TOURNEOCONNECT"
+                - option "TOURNEOCONNECTKOMBI TITANIUM MCA KISA"
+                - option "TOURNEOCONNECTKOMBIACTIVE MCA KISA"
+                - option "TOURNEOCONNECTKOMBITITANIUMMCAKISA"
+                - option "TOURNEOCOURIER"
+                - option "TOURNEOCOURIER COMBI"
+                - option "TOURNEOCOURIER JOURNEY"
+                - option "TOURNEOCOURIERJOURNEY"
+                - option "TOURNEOCOURIERJOURNEY1.5TDCI100 E6.2 TIT.PLUS"
+                - option "TOURNEOCOURIERKOMBI"
+                - option "TOURNEOCOURIERKOMBI1.5TDCI100 E6.2 TIT.PLUS"
+                - option "TOURNEOCUSTOM 320L UPGRADE E6.2 185 T.PLUS AT"
+                - option "TOURNEOCUSTOM 320S EB HIBRIT 126 TITANIUMPLUS"
+                - option "TOURNEOCUSTOM ECOBLUE170320S OV TITANIUM PLUS"
+                - option "TOURNEOCUSTOM320LECOBLUE 170 TITANIUM OV E6.2"
+                - option "TOURNEOCUSTOM320LECOBLUE170TIT.PLUS OV E6.2"
+                - option "TOURNEOCUSTOM320LECOBLUE170TITANIUMPLUS E6.2"
+                - option "TOURNEOCUSTOM320S ECOBLUE 170 TITANIUMPLUS OV"
+                - option "TOURNEOCUSTOMECOBLUE170 320L OV TITANIUM PLU"
+                - option "TOURNEOCUSTOMECOBLUE170 320L OV TITANIUM PLUS"
+                - option "TR. TEK K."
+                - option "TR.CIFT K."
+                - option "TR.CIFTKABINKAMYONETECOBLUE 350M TREND KASALI"
+                - option "TR.TEKKABINKAMYONET ECOBLUE350L TREND KASALI"
+                - option "TRANSIT"
+                - option "TRANSIT 300 S"
+                - option "TRANSIT 300 SF"
+                - option "TRANSIT 300 SF JOURNEY"
+                - option "TRANSIT 300 SF JOURNEY DELUX"
+                - option "TRANSIT 300S"
+                - option "TRANSIT 300SF"
+                - option "TRANSIT 310S JOURNEY"
+                - option "TRANSIT 330 M"
+                - option "TRANSIT 330 MF"
+                - option "TRANSIT 330 MF 8+1"
+                - option "TRANSIT 330 S"
+                - option "TRANSIT 330 S TEK KABIN"
+                - option "TRANSIT 330 S TEK KABIN KAMYONET125"
+                - option "TRANSIT 330 SF"
+                - option "TRANSIT 330M"
+                - option "TRANSIT 330MF"
+                - option "TRANSIT 330S"
+                - option "TRANSIT 330S TEK KABIN"
+                - option "TRANSIT 330S TEK KABIN K.NET 125 E4 GP"
+                - option "TRANSIT 350 E"
+                - option "TRANSIT 350 E CAMLI"
+                - option "TRANSIT 350 E CIFT K."
+                - option "TRANSIT 350 E CIFT KABIN"
+                - option "TRANSIT 350 E TEK KABIN"
+                - option "TRANSIT 350 ED"
+                - option "TRANSIT 350 ED CAMLI"
+                - option "TRANSIT 350 ED CIFT KABIN K.NET KASASIZ 155"
+                - option "TRANSIT 350 ED TEK KABIN"
+                - option "TRANSIT 350 ED TEK KABIN K.NET (155) PS E4 GP"
+                - option "TRANSIT 350 L"
+                - option "TRANSIT 350 L CIFT KABIN"
+                - option "TRANSIT 350 L CIFT KABIN 155 CENAZE ARACI"
+                - option "TRANSIT 350 L TEK KABIN"
+                - option "TRANSIT 350 LF"
+                - option "TRANSIT 350 M"
+                - option "TRANSIT 350 M CIFT K."
+                - option "TRANSIT 350 M CIFT KABIN K.NET KASASIZ 155"
+                - option "TRANSIT 350 M TEK KABIN"
+                - option "TRANSIT 350 MF"
+                - option "TRANSIT 350E"
+                - option "TRANSIT 350ED"
+                - option "TRANSIT 350ED BOX"
+                - option "TRANSIT 350ED CIFT KABIN"
+                - option "TRANSIT 350ED CIFT KABIN K.NET (155) E4 GP"
+                - option "TRANSIT 350ED LUTON BOX"
+                - option "TRANSIT 350ED TEK KABIN"
+                - option "TRANSIT 350L"
+                - option "TRANSIT 350L 11M3 ECOBLUE 170 TREND E6.1"
+                - option "TRANSIT 350L C.K.K.NET 170 E6.2 AWD TREND"
+                - option "TRANSIT 350L CENAZEARACI CIFTKABIN 170 TREND"
+                - option "TRANSIT 350LF"
+                - option "TRANSIT 350LFCENAZEARACICIFTKABIN170TREND 6AT"
+                - option "TRANSIT 350M CIFT KABIN"
+                - option "TRANSIT 350M CIFT KABIN AWD 125 E5"
+                - option "TRANSIT 350M CIFT KABIN K.NET (155) E4 GP"
+                - option "TRANSIT 350M TEK KABIN"
+                - option "TRANSIT 350M TEK KABIN AWD 125 E5"
+                - option "TRANSIT 350M TEK KABIN K.NET 155 E4 GP"
+                - option "TRANSIT 410 E CAMLIVAN 155"
+                - option "TRANSIT 410 L"
+                - option "TRANSIT 410 L 125 AWD AMBULANS"
+                - option "TRANSIT 410 L TURIZM MINIBUSU 10+1 155 DELUX"
+                - option "TRANSIT 410L"
+                - option "TRANSIT 410LVAN AMBULANS"
+                - option "TRANSIT 430 ED"
+                - option "TRANSIT 430 ED CAMLI"
+                - option "TRANSIT 430ED"
+                - option "TRANSIT 440 E MINIBUS14+1 155 E6 DELUXE"
+                - option "TRANSIT 440 E OKULMINIBUSU 16+1 155 E6 DELUXE"
+                - option "TRANSIT 440 E OTOBUS17+1 155 E6 TREND"
+                - option "TRANSIT 440E CAMLI"
+                - option "TRANSIT 440E OKUL OTOBUSU 19+1 155 E6 DELUXE"
+                - option "TRANSIT 460 ED"
+                - option "TRANSIT 460ED"
+                - option "TRANSIT 460ED OKULMINIBUSU 16+1 155 E6 DELUXE"
+                - option "TRANSIT 460ED TEK KABIN"
+                - option "TRANSIT 460ED TEK KABIN K.NET 155 E4 GP"
+                - option "TRANSIT 470 ED"
+                - option "TRANSIT 470 ED TEK KABIN"
+                - option "TRANSIT 470 ELD CIFT KABIN"
+                - option "TRANSIT 470 ELD TEK KABIN"
+                - option "TRANSIT CAMLI"
+                - option "TRANSIT CIFTKABIN"
+                - option "TRANSIT CIFTKABINKAMYONET ECOBLUE 350E TREND"
+                - option "TRANSIT CIFTKABINKAMYONET ECOBLUE 350ED TREND"
+                - option "TRANSIT CONNECT"
+                - option "TRANSIT CONNECT K210S"
+                - option "TRANSIT COURIER"
+                - option "TRANSIT CUSTOM"
+                - option "TRANSIT CUSTOM 320L 9+1 ECOBLUE 170 E6.2"
+                - option "TRANSIT CUSTOM CAMLI"
+                - option "TRANSIT CUSTOM KOMBIVANECOBLUE 130 320L TREND"
+                - option "TRANSIT K.NET CIFT K.350L 170 TRENDKASALIE6.1"
+                - option "TRANSIT K.NET CIFT K.350L170TRENDKASALI E6.2"
+                - option "TRANSIT K.NET CIFT K.350M 170 TRENDKASALIE6.1"
+                - option "TRANSIT K.NET CIFT K.350M 170 TRENDKASALIE6.2"
+                - option "TRANSIT TEK K."
+                - option "TRANSIT TEK KA."
+                - option "TRANSIT TEK KABIN"
+                - option "TRANSIT350 ED"
+                - option "TRANSITCIFTKABINKAMYONET ECOBLUE 470ELD TREND"
+                - option "TRANSITCONNECTVANTRENDMCA KISA"
+                - option "TRANSITCONNECTVANTRENDMCA UZUN"
+                - option "TRANSITCOURIERKOMBIVAN1.5TDCI 100 TREND E6.2"
+                - option "TRANSITCUSTOM"
+                - option "TRANSITCUSTOMKOMBI 320S 130 E6.2 TREND"
+                - option "TRANSITCUSTOMKOMBI 320S 170 E6.2 DELUXE"
+                - option "TRANSITCUSTOMKOMBI 320S170 E6.2 OV DELUXE"
+                - option "TRANSITCUSTOMKOMBIVAN 320L 130 E6.2 TREND"
+                - option "TRANSITCUSTOMKOMBIVAN 320L 170 E6.2 OV DELUXE"
+                - option "TRANSITCUSTOMKOMBIVAN 320L 170 E6.2 TREND"
+                - option "TRANSITCUSTOMKOMBIVAN 320S 130 E6.2 TREND"
+                - option "TRANSITCUSTOMKOMBIVAN 320S 170 DELUXE"
+                - option "TRANSITCUSTOMKOMBIVAN 320S 170 OV DELUXE"
+                - option "TRANSITCUSTOMKOMBIVAN ECOBLUE 170 320S DELUXE"
+                - option "TRANSITCUSTOMKOMBIVAN320L 170 E6.2 DELUXE"
+                - option "TRANSITCUSTOMKOMBIVANECOBLUE170 320L DELUX"
+                - option "TRANSITCUSTOMKOMBIVANECOBLUE170 320L OV DELUX"
+                - option "TRANSITCUSTOMKOMBIVANECOBLUE170 320S OV DELUX"
+                - option "TRANSITCUSTOMVAN 320S"
+                - option "TRANSITCUSTOMVAN 340L 130 E6.2 TREND"
+                - option "TRANSITCUSTOMVAN 340L HIBRIT 170 E6.2 TREND"
+                - option "TRANSITCUSTOMVAN ECOBLUE 130 340L ORTATAVAN T"
+                - option "TRANSITCUSTOMVAN ECOBLUE170 340S OV"
+                - option "TRANSITCUSTOMVAN340L 130 E6.2 TREND ORTATAVAN"
+                - option "TRANSITCUSTOMVAN340S 130 E6.2 TREND ORTATAVAN"
+                - option "TRANSITK.NET 350L ECOBLUEUPGRADE170TREND10AT"
+                - option "TRANSITKAMYONET 330S 170 TREND KASALI E6.1"
+                - option "TRANSITKAMYONET 350LF UPGRADE170 TREND KASALI"
+                - option "TRANSITKAMYONET 350MF UPGRADE170 TREND KASALI"
+                - option "TRANSITKAMYONET CIFT K. 470ELD 170 TREND E6.2"
+                - option "TRANSITKAMYONET CIFT K.500 ELD 170 TREND E6.2"
+                - option "TRANSITKAMYONET350LECOBLUEUPGRADE170TREND10AT"
+                - option "TRANSITKAMYONETCIFTK.470ELD170TRENDKASALIE6.1"
+                - option "TRANSITMINIBUS 410L 10+1 ECOBLUE170DELUXEE6.1"
+                - option "TRANSITMINIBUS 440E 16+1 OKUL 170 DELUXE E6.1"
+                - option "TRANSITMINIBUS410L 16+1UPGRADE170 DELUXE 10AT"
+                - option "TRANSITMINIBUS460ED16+1UPGRADE 170 DELUX 10AT"
+                - option "TRANSITVAN 350E"
+                - option "TRANSITVAN 350ED"
+                - option "TRANSITVAN 350LF"
+                - option "TRANSITVAN 350LF 13M3 ECOBLUE 170 TREND E6.2"
+                - option "TRANSITVAN 350M"
+                - option "TRANSITVAN 350MF 10M3 ECOBLUE 130 TREND E6.1"
+                - option "TRANSITVAN 350MF 10M3 ECOBLUE 130 TREND E6.2"
+                - option "TRANSITVAN 470ED"
+                - option "TRANSITVAN350LF"
+                - option "TRANSITVAN350LF 13 ECOBLUE 170 TREND AT E6.2"
+                - option "TRANSITVAN350LF 13M3 ECOBLUE170 TREND AT E6.1"
+                - option "TRANSITVAN350MF 10M3 ECOBLUE170 TREND AT E6.1"
+                - option "TRANSITVAN350MF 10M3 ECOBLUE170 TREND AT E6.2"
+            - generic [ref=f9e86]:
+              - generic [ref=f9e87]: Kasa / Nesil
+              - combobox [disabled] [ref=f9e88]:
+                - option "Nesil seçin" [selected]
+            - generic [ref=f9e89]:
+              - generic [ref=f9e90]: Motor
+              - combobox [disabled] [ref=f9e91]:
+                - option "Motor seçin" [selected]
+          - generic [ref=f9e92]:
+            - button "Parçaları Göster" [disabled]
+  - contentinfo [ref=f9e93]:
+    - generic [ref=f9e94]:
+      - generic [ref=f9e95]:
+        - generic [ref=f9e96]:
+          - generic [ref=f9e97]:
+            - generic [ref=f9e98]: Akinel
+            - generic [ref=f9e99]: Yedek Parça
+          - paragraph [ref=f9e100]: Test açıklaması güncel
+        - generic [ref=f9e101]:
+          - heading "Hızlı Linkler" [level=3] [ref=f9e102]
+          - list [ref=f9e103]:
+            - listitem [ref=f9e104]:
+              - link "Ana Sayfa" [ref=f9e105] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f9e106]:
+              - link "Ürünler" [ref=f9e107] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f9e108]:
+              - link "Aracımı Seç" [ref=f9e109] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f9e110]:
+              - link "OEM Ara" [ref=f9e111] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f9e112]:
+              - link "Garajım" [ref=f9e113] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f9e114]:
+              - link "Hakkımızda" [ref=f9e115] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f9e116]:
+          - heading "Müşteri" [level=3] [ref=f9e117]
+          - list [ref=f9e118]:
+            - listitem [ref=f9e119]:
+              - link "Giriş Yap" [ref=f9e120] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f9e121]:
+              - link "Kayıt Ol" [ref=f9e122] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f9e123]:
+              - link "Garajım" [ref=f9e124] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f9e125]:
+              - link "Hesabım" [ref=f9e126] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f9e127]:
+              - link "Periyodik Bakım" [ref=f9e128] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f9e129]:
+          - heading "İletişim" [level=3] [ref=f9e130]
+          - generic [ref=f9e131]:
+            - paragraph [ref=f9e132]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f9e133] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f9e140]:
+              - paragraph [ref=f9e141]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f9e142]: "Pazar: Kapalı"
+      - generic [ref=f9e143]:
+        - generic [ref=f9e144]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f9e145]:
+          - link "Gizlilik Politikası" [ref=f9e146] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f9e147] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f9e153] [cursor=pointer]
+  - alert [ref=f9e159]

@@ -1,0 +1,266 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "+90 533 140 56 49" [ref=e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=e8]:
+        - link "Sipariş Takip" [ref=e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=e10]: "|"
+        - link "Yardım" [ref=e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=e12]: "|"
+        - link "İletişim" [ref=e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=e14]: "|"
+        - generic [ref=e15]: TR
+    - generic [ref=e17]:
+      - link "Akinel Yedek Parça" [ref=e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e19]: Akinel
+        - generic [ref=e20]: Yedek Parça
+      - generic [ref=e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=e24]:
+        - link "Garajım" [ref=e25] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=e269] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=e270] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=e36]:
+      - link "Ana Sayfa" [ref=e37] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=e38] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=e39] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=e40] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=e41] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=e42] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=e43] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=e44] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=e45]:
+    - generic [ref=e46]:
+      - generic [ref=e49]:
+        - paragraph [ref=e50]: Akinel Otomotiv Yedek Parça
+        - heading "Aracınız için doğru parçayı bulun" [level=1] [ref=e51]
+        - paragraph [ref=e52]: OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın.
+        - generic [ref=e54]:
+          - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=e55]
+          - generic:
+            - generic: ⌘
+            - generic: K
+        - generic [ref=e56]:
+          - link "Aracımı Seç" [ref=e57] [cursor=pointer]:
+            - /url: /vehicle
+          - link "OEM ile Ara" [ref=e58] [cursor=pointer]:
+            - /url: /search
+          - generic "Yakında" [ref=e59]: VIN ile Ara (Yakında)
+      - generic [ref=e62]:
+        - generic [ref=e63]: /
+        - generic [ref=e67]: ·
+        - link "+90 533 140 56 49" [ref=e68] [cursor=pointer]:
+          - /url: tel:+905331405649
+        - generic [ref=e71]: ·
+        - link [ref=e271] [cursor=pointer]:
+          - /url: "mailto:"
+        - generic [ref=e76]: ·
+        - generic [ref=e77]: "Pzt – Cmt: 09:00 – 19:00"
+        - generic [ref=e81]: ·
+        - link "Yol Tarifi" [ref=e82] [cursor=pointer]:
+          - /url: ""
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - heading "Akinel Otomotiv Yedek Parça" [level=2] [ref=e91]
+          - paragraph [ref=e92]: Otomobil ve ticari araçlar için geniş yedek parça seçenekleri. OEM numarasıyla arama, araç bazlı uyumlu parça bulma ve anlık stok bilgisi. AKN MOTORS Car Service güvencesiyle.
+        - generic [ref=e93]:
+          - generic [ref=e94]: OEM uyumlu ürünler
+          - generic [ref=e97]: Geniş marka ve model desteği
+          - generic [ref=e100]: Araç bazlı parça bulma
+          - generic [ref=e103]: Gerçek zamanlı stok takibi
+      - generic [ref=e273]:
+        - generic [ref=e274]:
+          - heading "Popüler Markalar" [level=2] [ref=e275]
+          - link "Tümü" [ref=e276] [cursor=pointer]:
+            - /url: /products
+        - generic [ref=e279]:
+          - link "Bosch" [ref=e280] [cursor=pointer]:
+            - /url: /products?brandId=28708376-7fe6-44e0-be7e-12884668f3f9
+          - link "Delphi" [ref=e281] [cursor=pointer]:
+            - /url: /products?brandId=dcf3c186-a8f0-44fe-aa1c-b5d8f611d8c0
+          - link "SKF" [ref=e282] [cursor=pointer]:
+            - /url: /products?brandId=ff32e7f0-6e35-4bf1-b341-5303b729b9d0
+          - link "TRW" [ref=e283] [cursor=pointer]:
+            - /url: /products?brandId=31dd5f27-62ed-4e84-b093-658540623502
+          - link "Valeo" [ref=e284] [cursor=pointer]:
+            - /url: /products?brandId=9ba3e4be-e63b-4034-ae8e-6bbc0098ea68
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - heading "Aracınıza Göre Parça Bulun" [level=2] [ref=e109]
+          - paragraph [ref=e110]: Aracınızı seçin, uyumlu parçaları görüntüleyin.
+        - generic [ref=e111]:
+          - generic [ref=e112]:
+            - generic [ref=e114]:
+              - generic [ref=e115]: ✓
+              - generic [ref=e116]: Marka
+            - generic [ref=e119]:
+              - generic [ref=e120]: ✓
+              - generic [ref=e121]: Model
+            - generic [ref=e124]:
+              - generic [ref=e125]: ✓
+              - generic [ref=e126]: Kasa / Nesil
+            - generic [ref=e129]:
+              - generic [ref=e130]: "4"
+              - generic [ref=e131]: Motor
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e134]: Marka
+              - combobox [ref=e135]:
+                - option "Marka seçin"
+                - option "BMW" [selected]
+                - option "Ford"
+                - option "Renault"
+                - option "Volkswagen"
+            - generic [ref=e136]:
+              - generic [ref=e137]: Model
+              - combobox [ref=e138]:
+                - option "Model seçin"
+                - option "1 Series" [selected]
+            - generic [ref=e139]:
+              - generic [ref=e140]: Kasa / Nesil
+              - combobox [active] [ref=e141]:
+                - option "Nesil seçin"
+                - option "F20" [selected]
+            - generic [ref=e142]:
+              - generic [ref=e143]: Motor
+              - combobox [ref=e144]:
+                - option "Motor seçin" [selected]
+          - generic [ref=e145]:
+            - button "Parçaları Göster" [disabled]
+      - generic [ref=e286]:
+        - generic [ref=e287]:
+          - heading "Yedek Parça Kategorileri" [level=2] [ref=e288]
+          - link "Tümü" [ref=e289] [cursor=pointer]:
+            - /url: /products
+        - generic [ref=e292]:
+          - link "ABS Sensörleri" [ref=e293] [cursor=pointer]:
+            - /url: /category/abs-sensorleri
+          - link "Debriyaj" [ref=e300] [cursor=pointer]:
+            - /url: /category/debriyaj
+          - link "Elektrik" [ref=e307] [cursor=pointer]:
+            - /url: /category/elektrik
+          - link "Filtreler" [ref=e312] [cursor=pointer]:
+            - /url: /category/filtreler
+          - link "Frenler" [ref=e317] [cursor=pointer]:
+            - /url: /category/frenler
+          - link "Soğutma Sistemi" [ref=e324] [cursor=pointer]:
+            - /url: /category/sogutma-sistemi
+          - link "Süspansiyon" [ref=e331] [cursor=pointer]:
+            - /url: /category/suspansiyon
+      - generic [ref=e146]:
+        - generic [ref=e147]:
+          - heading "Öne Çıkan Ürünler" [level=2] [ref=e148]
+          - link "Tümünü Gör" [ref=e149] [cursor=pointer]:
+            - /url: /products
+        - generic [ref=e150]:
+          - link "Bosch Arka Fren Balata Seti Fren Balatası ₺850,00 Stokta" [ref=e339] [cursor=pointer]:
+            - /url: /products/arka-fren-balata-seti
+            - generic [ref=e346]:
+              - paragraph [ref=e347]: Bosch
+              - heading "Arka Fren Balata Seti" [level=3] [ref=e348]
+              - paragraph [ref=e349]: Fren Balatası
+              - generic [ref=e350]:
+                - generic [ref=e351]: ₺850,00
+                - generic [ref=e352]: Stokta
+          - link "TRW Ön Fren Diski Fren Diskleri ₺1.200,00 Stokta" [ref=e354] [cursor=pointer]:
+            - /url: /products/on-fren-diski
+            - generic [ref=e361]:
+              - paragraph [ref=e362]: TRW
+              - heading "Ön Fren Diski" [level=3] [ref=e363]
+              - paragraph [ref=e364]: Fren Diskleri
+              - generic [ref=e365]:
+                - generic [ref=e366]: ₺1.200,00
+                - generic [ref=e367]: Stokta
+          - link "Bosch Yağ Filtresi Yağ Filtreleri ₺120,00 Stokta" [ref=e369] [cursor=pointer]:
+            - /url: /products/yag-filtresi
+            - generic [ref=e376]:
+              - paragraph [ref=e377]: Bosch
+              - heading "Yağ Filtresi" [level=3] [ref=e378]
+              - paragraph [ref=e379]: Yağ Filtreleri
+              - generic [ref=e380]:
+                - generic [ref=e381]: ₺120,00
+                - generic [ref=e382]: Stokta
+  - contentinfo [ref=e205]:
+    - generic [ref=e206]:
+      - generic [ref=e207]:
+        - generic [ref=e208]:
+          - generic [ref=e209]:
+            - generic [ref=e210]: Akinel
+            - generic [ref=e211]: Yedek Parça
+          - paragraph [ref=e212]: Test açıklaması güncel
+        - generic [ref=e213]:
+          - heading "Hızlı Linkler" [level=3] [ref=e214]
+          - list [ref=e215]:
+            - listitem [ref=e216]:
+              - link "Ana Sayfa" [ref=e217] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e218]:
+              - link "Ürünler" [ref=e219] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=e220]:
+              - link "Aracımı Seç" [ref=e221] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=e222]:
+              - link "OEM Ara" [ref=e223] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=e224]:
+              - link "Garajım" [ref=e225] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=e226]:
+              - link "Hakkımızda" [ref=e227] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=e228]:
+          - heading "Müşteri" [level=3] [ref=e229]
+          - list [ref=e230]:
+            - listitem [ref=e231]:
+              - link "Giriş Yap" [ref=e232] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=e233]:
+              - link "Kayıt Ol" [ref=e234] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=e235]:
+              - link "Garajım" [ref=e236] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=e237]:
+              - link "Hesabım" [ref=e238] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=e239]:
+              - link "Periyodik Bakım" [ref=e240] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=e241]:
+          - heading "İletişim" [level=3] [ref=e242]
+          - generic [ref=e243]:
+            - paragraph [ref=e244]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=e245] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=e252]:
+              - paragraph [ref=e253]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=e254]: "Pazar: Kapalı"
+      - generic [ref=e255]:
+        - generic [ref=e256]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=e257]:
+          - link "Gizlilik Politikası" [ref=e258] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=e259] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=e265] [cursor=pointer]
+  - alert [ref=e383]

@@ -1,0 +1,8 @@
+[   12931ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://www.yedekparca.com.tr/volkswagen-yedek-parca:0
+[   12980ms] ReferenceError: fbq is not defined
+    at <anonymous>:159:7
+    at t.activateScript (https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:11855)
+    at https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:11052
+    at t.run (https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:11259)
+    at https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:11156
+    at HTMLScriptElement.<anonymous> (https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:670)

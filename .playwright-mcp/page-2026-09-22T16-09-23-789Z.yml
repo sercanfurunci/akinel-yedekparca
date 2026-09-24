@@ -1,0 +1,1072 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e8]:
+    - generic [ref=f4e9]:
+      - generic [ref=f4e12]:
+        - generic [ref=f4e14]:
+          - generic [ref=f4e15]:
+            - generic [ref=f4e16]: 
+            - text: 0850 532 1935
+          - link " info@yedekparca.com.tr" [ref=f4e17] [cursor=pointer]:
+            - /url: mailto:info@yedekparca.com.tr
+            - generic [ref=f4e18]: 
+            - generic [ref=f4e19]: info@yedekparca.com.tr
+        - generic [ref=f4e21]:
+          - generic [ref=f4e22]: Türkçe
+          - generic [ref=f4e25]: TRY - Türk Lirası
+          - link "Sipariş Takip" [ref=f4e27] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+          - link "Yardım" [ref=f4e28] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/yardim
+          - link "İletişim" [ref=f4e29] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/iletisim-sID0
+      - generic [ref=f4e33]:
+        - link [ref=f4e36] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+        - generic [ref=f4e38]:
+          - generic [ref=f4e39]:
+            - generic [ref=f4e42]:
+              - generic [ref=f4e43]: 
+              - textbox "Parça adı, oem numara veya parça referansı ara" [ref=f4e46]
+              - button "Ürün Ara" [ref=f4e47] [cursor=pointer]
+            - list [ref=f4e50]:
+              - listitem [ref=f4e51]:
+                - button "Fren" [ref=f4e52] [cursor=pointer]
+              - listitem [ref=f4e53]:
+                - button "Debriyaj" [ref=f4e54] [cursor=pointer]
+              - listitem [ref=f4e55]:
+                - button "Yakıt" [ref=f4e56] [cursor=pointer]
+              - listitem [ref=f4e57]:
+                - button "Süspansiyon" [ref=f4e58] [cursor=pointer]
+              - listitem [ref=f4e59]:
+                - button "Direksiyon" [ref=f4e60] [cursor=pointer]
+              - listitem [ref=f4e61]:
+                - button "Elektrik" [ref=f4e62] [cursor=pointer]
+              - listitem [ref=f4e63]:
+                - button "Soğutma" [ref=f4e64] [cursor=pointer]
+          - generic [ref=f4e67]:
+            - link "" [ref=f4e69] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hesabim/garajim
+            - link "" [ref=f4e72] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hesabim/favori-listem
+            - link " 0" [ref=f4e75] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/sepet
+              - generic [ref=f4e76]:
+                - generic [ref=f4e77]: 
+                - generic [ref=f4e78]: "0"
+            - generic [ref=f4e79]:
+              - generic [ref=f4e80]: 
+              - strong [ref=f4e83]: Hesabım
+    - text:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+  - generic:   
+  - navigation "breadcrumb" [ref=f4e93]:
+    - list [ref=f4e94]:
+      - listitem [ref=f4e95]:
+        - link "" [ref=f4e96] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+      - listitem [ref=f4e99]:
+        - text: ">"
+        - link "Fren" [ref=f4e100] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/fren
+      - listitem [ref=f4e101]:
+        - text: ">"
+        - link "Balata" [ref=f4e102] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr/balata
+  - generic [ref=f4e106]:
+    - generic [ref=f4e109]:
+      - status [ref=f4e113]:
+        - generic [ref=f4e114]: Yükleniyor...
+      - list [ref=f4e118]:
+        - listitem [ref=f4e119]:
+          - link "YEDEK PARÇALAR" [ref=f4e120] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/tumu-c-0
+        - listitem [ref=f4e121]:
+          - link "Fren " [ref=f4e122] [cursor=pointer]:
+            - /url: javascript:;
+          - list [ref=f4e123]:
+            - listitem [ref=f4e124]:
+              - link "Fren (Tümü)" [ref=f4e125] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren
+            - listitem [ref=f4e126]:
+              - link "Abs Sensörü" [ref=f4e127] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/abs-sensoru
+            - listitem [ref=f4e128]:
+              - link "Balata" [ref=f4e129] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/balata
+            - listitem [ref=f4e130]:
+              - link "Fren Pabuçlu Balata" [ref=f4e131] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren-pabuclu-balata
+            - listitem [ref=f4e132]:
+              - link "Fren Diski" [ref=f4e133] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren-diski
+            - listitem [ref=f4e134]:
+              - link "Fren Ana Merkezi" [ref=f4e135] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren-ana-merkezi
+            - listitem [ref=f4e136]:
+              - link "Fren Kaliperi" [ref=f4e137] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren-kaliperi
+            - listitem [ref=f4e138]:
+              - link "Kampana" [ref=f4e139] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/kampana
+            - listitem [ref=f4e140]:
+              - link "Balata İkaz Kablosu" [ref=f4e141] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/balata-ikaz-kablosu
+            - listitem [ref=f4e142]:
+              - link "Fren Limitörü" [ref=f4e143] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren-limitoru
+            - listitem [ref=f4e144]:
+              - link "El Fren Teli" [ref=f4e145] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/el-fren-teli
+            - listitem [ref=f4e146]:
+              - link "Fren Silindiri" [ref=f4e147] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren-silindiri
+            - listitem [ref=f4e148]:
+              - link "El Fren Balatası" [ref=f4e149] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/el-fren-balatasi
+            - listitem [ref=f4e150]:
+              - link "Fren Müşürü" [ref=f4e151] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/fren-musuru
+            - listitem [ref=f4e152]:
+              - link "Balata Yayı" [ref=f4e153] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/balata-yayi
+            - listitem [ref=f4e154]:
+              - link "Balata Fişi" [ref=f4e155] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/balata-fisi
+        - listitem [ref=f4e156]:
+          - link "Debriyaj " [ref=f4e157] [cursor=pointer]:
+            - /url: javascript:;
+          - text: 
+        - listitem [ref=f4e158]:
+          - link "Yakıt " [ref=f4e159] [cursor=pointer]:
+            - /url: javascript:;
+          - text: 
+        - listitem [ref=f4e160]:
+          - link "Süspansiyon " [ref=f4e161] [cursor=pointer]:
+            - /url: javascript:;
+        - listitem [ref=f4e162]:
+          - link "Direksiyon " [ref=f4e163] [cursor=pointer]:
+            - /url: javascript:;
+        - listitem [ref=f4e164]:
+          - link "Elektrik " [ref=f4e165] [cursor=pointer]:
+            - /url: javascript:;
+          - text: 
+        - listitem [ref=f4e166]:
+          - link "Soğutma " [ref=f4e167] [cursor=pointer]:
+            - /url: javascript:;
+          - text: 
+        - listitem [ref=f4e168]:
+          - link "Filtreler " [ref=f4e169] [cursor=pointer]:
+            - /url: javascript:;
+        - listitem [ref=f4e170]:
+          - link "Motor " [ref=f4e171] [cursor=pointer]:
+            - /url: javascript:;
+          - text:   
+        - listitem [ref=f4e172]:
+          - link "Diger" [ref=f4e173] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/diger
+        - listitem [ref=f4e174]:
+          - link "Araç Markaları " [ref=f4e175] [cursor=pointer]:
+            - /url: javascript:;
+          - text:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+      - generic [ref=f4e176]: Markalar
+    - generic [ref=f4e184]:
+      - heading "Balata" [level=1] [ref=f4e187]
+      - generic [ref=f4e188]:
+        - list [ref=f4e192]:
+          - listitem [ref=f4e193]:
+            - generic [ref=f4e194]: En yeniler
+          - listitem [ref=f4e196]:
+            - generic [ref=f4e197]: En çok satanlar
+          - listitem [ref=f4e199]:
+            - generic [ref=f4e200]: Ürün adı A'dan-Z'ye
+          - listitem [ref=f4e202]:
+            - generic [ref=f4e203]: Ürün adı Z'den-A'ya
+          - listitem [ref=f4e205]:
+            - generic [ref=f4e206]: Fiyata göre artan
+          - listitem [ref=f4e208]:
+            - generic [ref=f4e209]: Fiyata göre azalan
+          - listitem [ref=f4e211]:
+            - generic [ref=f4e212]: En çok oylananlar
+        - generic [ref=f4e214]:
+          - generic [ref=f4e216]:
+            - link [ref=f4e217] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-balatasi-arka-golf3-golf4-golf5-jetta-passat-a3-toledo-octavia-97
+              - img "FREN BALATASI ARKA GOLF3-GOLF4-GOLF5-JETTA-PASSAT-A3-TOLEDO-OCTAVIA 97-" [ref=f4e220]
+            - generic [ref=f4e221]:
+              - generic [ref=f4e222]: FREN BALATASI ARKA GOLF3-GOLF4-GOLF5-JETTA-PASSAT-A3-TOLEDO-OCTAVIA 97-
+              - generic [ref=f4e224]:
+                - generic [ref=f4e225]: 
+                - generic [ref=f4e227]: 
+                - generic [ref=f4e229]: 
+                - generic [ref=f4e231]: 
+                - generic [ref=f4e233]: 
+              - list [ref=f4e236]:
+                - listitem [ref=f4e237]:
+                  - link "Kategori Balata" [ref=f4e238] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e239]: Balata
+                - listitem [ref=f4e240]:
+                  - link "Marka Bosch" [ref=f4e241] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f4e242]: Bosch
+            - generic [ref=f4e243]:
+              - generic [ref=f4e244]: 943,95 TL
+              - generic [ref=f4e245]: 755,16 TL
+            - generic [ref=f4e246]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e248]:
+            - link [ref=f4e249] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-balatasi-on-citroen-berlingo-iii-c5-iii-x-ds-ds-4-ii-ds-7-fiat-doblo-23-opel-astra-l-combo-e-grandland-grandland-x-peugeot-308-iii-508-iii-partner-rifter-2018
+              - img "FREN BALATASI ON CITROEN BERLINGO III - C5 III X / DS DS 4 II- DS 7 / FIAT DOBLO 23>/ OPEL ASTRA L - COMBO E - GRANDLAND - GRANDLAND X / PEUGEOT 308 III-508 III-PARTNER -RIFTER 2018-" [ref=f4e252]
+            - generic [ref=f4e253]:
+              - generic [ref=f4e254]: FREN BALATASI ON CITROEN BERLINGO III - C5 III X / DS DS 4 II- DS 7 / FIAT DOBLO 23>/ OPEL ASTRA L - COMBO E - GRANDLAND - GRANDLAND X / PEUGEOT 308 III-508 III-PARTNER -RIFTER 2018-
+              - generic [ref=f4e256]:
+                - generic [ref=f4e257]: 
+                - generic [ref=f4e259]: 
+                - generic [ref=f4e261]: 
+                - generic [ref=f4e263]: 
+                - generic [ref=f4e265]: 
+              - list [ref=f4e268]:
+                - listitem [ref=f4e269]:
+                  - link "Kategori Balata" [ref=f4e270] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e271]: Balata
+                - listitem [ref=f4e272]:
+                  - link "Marka TRW" [ref=f4e273] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/trw
+                    - text: Marka
+                    - generic [ref=f4e274]: TRW
+            - generic [ref=f4e275]:
+              - generic [ref=f4e276]: 3.077,95 TL
+              - generic [ref=f4e277]: 2.462,36 TL
+            - link "Sepete Ekle " [ref=f4e279] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f4e280]: 
+          - generic [ref=f4e282]:
+            - link [ref=f4e283] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/on-fren-balatasi-17mm-vw-porsche
+              - img "ON FREN BALATASI-17MM VW PORSCHE" [ref=f4e286]
+            - generic [ref=f4e287]:
+              - generic [ref=f4e288]: ON FREN BALATASI-17MM VW PORSCHE
+              - generic [ref=f4e290]:
+                - generic [ref=f4e291]: 
+                - generic [ref=f4e293]: 
+                - generic [ref=f4e295]: 
+                - generic [ref=f4e297]: 
+                - generic [ref=f4e299]: 
+              - list [ref=f4e302]:
+                - listitem [ref=f4e303]:
+                  - link "Kategori Balata" [ref=f4e304] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e305]: Balata
+                - listitem [ref=f4e306]:
+                  - link "Marka Diger" [ref=f4e307] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/diger-2886
+                    - text: Marka
+                    - generic [ref=f4e308]: Diger
+            - generic [ref=f4e309]:
+              - generic [ref=f4e310]: 11.074,00 TL
+              - generic [ref=f4e311]: 8.652,00 TL
+            - generic [ref=f4e312]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e314]:
+            - link [ref=f4e315] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/balata-fren-on-hyundai-starex-97-02-wva-23536-h100
+              - img "BALATA FREN ON-(HYUNDAI STAREX 97-02 ) WVA 23536 - H100" [ref=f4e318]
+            - generic [ref=f4e319]:
+              - generic [ref=f4e320]: BALATA FREN ON-(HYUNDAI STAREX 97-02 ) WVA 23536 - H100
+              - generic [ref=f4e322]:
+                - generic [ref=f4e323]: 
+                - generic [ref=f4e325]: 
+                - generic [ref=f4e327]: 
+                - generic [ref=f4e329]: 
+                - generic [ref=f4e331]: 
+              - list [ref=f4e334]:
+                - listitem [ref=f4e335]:
+                  - link "Kategori Balata" [ref=f4e336] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e337]: Balata
+                - listitem [ref=f4e338]:
+                  - link "Marka Bosch" [ref=f4e339] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f4e340]: Bosch
+            - generic [ref=f4e341]:
+              - generic [ref=f4e342]: 2.560,00 TL
+              - generic [ref=f4e343]: 1.950,00 TL
+            - generic [ref=f4e344]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e346]:
+            - link [ref=f4e347] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/peugeot-2008-gti-1-5-dizel-2018-2024-arasi-arka-fren-balata-takimi-delphi-marka
+              - img "Peugeot 2008 Gti 1.5 Dizel 2018-2024 Arası Arka Fren Balata Takımı Delphi Marka" [ref=f4e350]
+            - generic [ref=f4e351]:
+              - generic [ref=f4e352]: Peugeot 2008 Gti 1.5 Dizel 2018-2024 Arası Arka Fren Balata Takımı Delphi Marka
+              - generic [ref=f4e354]:
+                - generic [ref=f4e355]: 
+                - generic [ref=f4e357]: 
+                - generic [ref=f4e359]: 
+                - generic [ref=f4e361]: 
+                - generic [ref=f4e363]: 
+              - list [ref=f4e366]:
+                - listitem [ref=f4e367]:
+                  - link "Kategori Balata" [ref=f4e368] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e369]: Balata
+                - listitem [ref=f4e370]:
+                  - link "Marka Delphi" [ref=f4e371] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/delphi
+                    - text: Marka
+                    - generic [ref=f4e372]: Delphi
+            - generic [ref=f4e373]:
+              - generic [ref=f4e374]: 2.850,00 TL
+              - generic [ref=f4e375]: 2.280,00 TL
+            - generic [ref=f4e376]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e378]:
+            - link [ref=f4e379] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/bmw-f20-kasa-116d-arka-fren-balatasi
+              - img "Bmw F20 Kasa 116d Arka Fren Balatası" [ref=f4e382]
+            - generic [ref=f4e383]:
+              - generic [ref=f4e384]: Bmw F20 Kasa 116d Arka Fren Balatası
+              - generic [ref=f4e386]:
+                - generic [ref=f4e387]: 
+                - generic [ref=f4e389]: 
+                - generic [ref=f4e391]: 
+                - generic [ref=f4e393]: 
+                - generic [ref=f4e395]: 
+              - list [ref=f4e398]:
+                - listitem [ref=f4e399]:
+                  - link "Kategori Balata" [ref=f4e400] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e401]: Balata
+                - listitem [ref=f4e402]:
+                  - link "Marka TRW" [ref=f4e403] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/trw
+                    - text: Marka
+                    - generic [ref=f4e404]: TRW
+            - generic [ref=f4e405]: 2.061,00 TL
+            - generic [ref=f4e407]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e409]:
+            - link [ref=f4e410] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/mazda-mpv-i-ii-on-balata
+              - img "Mazda MPV I, II Ön Balata" [ref=f4e413]
+            - generic [ref=f4e414]:
+              - generic [ref=f4e415]: Mazda MPV I, II Ön Balata
+              - generic [ref=f4e417]:
+                - generic [ref=f4e418]: 
+                - generic [ref=f4e420]: 
+                - generic [ref=f4e422]: 
+                - generic [ref=f4e424]: 
+                - generic [ref=f4e426]: 
+              - list [ref=f4e429]:
+                - listitem [ref=f4e430]:
+                  - link "Kategori Balata" [ref=f4e431] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e432]: Balata
+                - listitem [ref=f4e433]:
+                  - link "Marka Bosch" [ref=f4e434] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f4e435]: Bosch
+            - generic [ref=f4e436]:
+              - generic [ref=f4e437]: 1.780,00 TL
+              - generic [ref=f4e438]: 1.225,00 TL
+            - generic [ref=f4e439]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e441]:
+            - link [ref=f4e442] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-balatasi-on-bmw-f10-f11-11
+              - img "FREN BALATASI ON BMW F10 F11 11>" [ref=f4e445]
+            - generic [ref=f4e446]:
+              - generic [ref=f4e447]: FREN BALATASI ON BMW F10 F11 11>
+              - generic [ref=f4e449]:
+                - generic [ref=f4e450]: 
+                - generic [ref=f4e452]: 
+                - generic [ref=f4e454]: 
+                - generic [ref=f4e456]: 
+                - generic [ref=f4e458]: 
+              - list [ref=f4e461]:
+                - listitem [ref=f4e462]:
+                  - link "Kategori Balata" [ref=f4e463] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e464]: Balata
+                - listitem [ref=f4e465]:
+                  - link "Marka Bosch" [ref=f4e466] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f4e467]: Bosch
+            - generic [ref=f4e468]:
+              - generic [ref=f4e469]: 2.782,94 TL
+              - generic [ref=f4e470]: 2.226,35 TL
+            - link "Sepete Ekle " [ref=f4e472] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f4e473]: 
+          - generic [ref=f4e475]:
+            - link [ref=f4e476] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/fren-balata-on-05-307-308-c4-2.0i-hdi
+              - img "FREN BALATA ON 05> 307-308-C4 2.0i-hdi" [ref=f4e479]
+            - generic [ref=f4e480]:
+              - generic [ref=f4e481]: FREN BALATA ON 05> 307-308-C4 2.0i-hdi
+              - generic [ref=f4e483]:
+                - generic [ref=f4e484]: 
+                - generic [ref=f4e486]: 
+                - generic [ref=f4e488]: 
+                - generic [ref=f4e490]: 
+                - generic [ref=f4e492]: 
+              - list [ref=f4e495]:
+                - listitem [ref=f4e496]:
+                  - link "Kategori Balata" [ref=f4e497] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e498]: Balata
+                - listitem [ref=f4e499]:
+                  - link "Marka Delphi" [ref=f4e500] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/delphi
+                    - text: Marka
+                    - generic [ref=f4e501]: Delphi
+            - generic [ref=f4e502]:
+              - generic [ref=f4e503]: 1.821,91 TL
+              - generic [ref=f4e504]: 1.402,00 TL
+            - generic [ref=f4e505]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e507]:
+            - link [ref=f4e508] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/audi-a3-s3-arka-fren-balatasi-2-0-tfsi-2013-2020-bosch-marka
+              - img "Audi A3 S3 Arka Fren Balatası 2.0 TFSI 2013-2020 BOSCH" [ref=f4e511]
+            - generic [ref=f4e512]:
+              - generic [ref=f4e513]: Audi A3 S3 Arka Fren Balatası 2.0 TFSI 2013-2020 BOSCH
+              - generic [ref=f4e515]:
+                - generic [ref=f4e516]: 
+                - generic [ref=f4e518]: 
+                - generic [ref=f4e520]: 
+                - generic [ref=f4e522]: 
+                - generic [ref=f4e524]: 
+              - list [ref=f4e527]:
+                - listitem [ref=f4e528]:
+                  - link "Kategori Balata" [ref=f4e529] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e530]: Balata
+                - listitem [ref=f4e531]:
+                  - link "Marka Bosch" [ref=f4e532] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f4e533]: Bosch
+            - generic [ref=f4e534]:
+              - generic [ref=f4e535]: 1.845,14 TL
+              - generic [ref=f4e536]: 1.476,11 TL
+            - generic [ref=f4e537]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e539]:
+            - link [ref=f4e540] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/mercedes-w205-on-fren-balatasi-brembo-marka-amg-sport
+              - img "Mercedes W205 Ön Fren Balatası Brembo Marka (AMG Sport)" [ref=f4e543]
+            - generic [ref=f4e544]:
+              - generic [ref=f4e545]: Mercedes W205 Ön Fren Balatası Brembo Marka (AMG Sport)
+              - generic [ref=f4e547]:
+                - generic [ref=f4e548]: 
+                - generic [ref=f4e550]: 
+                - generic [ref=f4e552]: 
+                - generic [ref=f4e554]: 
+                - generic [ref=f4e556]: 
+              - list [ref=f4e559]:
+                - listitem [ref=f4e560]:
+                  - link "Kategori Balata" [ref=f4e561] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e562]: Balata
+                - listitem [ref=f4e563]:
+                  - link "Marka Diger" [ref=f4e564] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/diger-2886
+                    - text: Marka
+                    - generic [ref=f4e565]: Diger
+            - generic [ref=f4e566]:
+              - generic [ref=f4e567]: 3.575,00 TL
+              - generic [ref=f4e568]: 2.300,00 TL
+            - generic [ref=f4e569]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e571]:
+            - link [ref=f4e572] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/mercedes-w205-arka-fren-balatasi-brembo-marka
+              - img "Mercedes W205 Arka Fren Balatası Brembo Marka" [ref=f4e575]
+            - generic [ref=f4e576]:
+              - generic [ref=f4e577]: Mercedes W205 Arka Fren Balatası Brembo Marka
+              - generic [ref=f4e579]:
+                - generic [ref=f4e580]: 
+                - generic [ref=f4e582]: 
+                - generic [ref=f4e584]: 
+                - generic [ref=f4e586]: 
+                - generic [ref=f4e588]: 
+              - list [ref=f4e591]:
+                - listitem [ref=f4e592]:
+                  - link "Kategori Balata" [ref=f4e593] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e594]: Balata
+                - listitem [ref=f4e595]:
+                  - link "Marka Diger" [ref=f4e596] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/diger-2886
+                    - text: Marka
+                    - generic [ref=f4e597]: Diger
+            - generic [ref=f4e598]:
+              - generic [ref=f4e599]: 2.850,00 TL
+              - generic [ref=f4e600]: 1.700,00 TL
+            - generic [ref=f4e601]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e603]:
+            - link [ref=f4e604] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/bmw-3-serisi-g20-320i-1-6-turbo-170-beygir-2019-sonrasi-arka-fren-balata-takimi-brembo-marka
+              - img "BMW 3 Serisi G20 320i 1.6 Turbo 170 Beygir 2019 Sonrası Arka Fren Balata Takımı Brembo Marka" [ref=f4e607]
+            - generic [ref=f4e608]:
+              - generic [ref=f4e609]: BMW 3 Serisi G20 320i 1.6 Turbo 170 Beygir 2019 Sonrası Arka Fren Balata Takımı Brembo Marka
+              - generic [ref=f4e611]:
+                - generic [ref=f4e612]: 
+                - generic [ref=f4e614]: 
+                - generic [ref=f4e616]: 
+                - generic [ref=f4e618]: 
+                - generic [ref=f4e620]: 
+              - list [ref=f4e623]:
+                - listitem [ref=f4e624]:
+                  - link "Kategori Balata" [ref=f4e625] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e626]: Balata
+                - listitem [ref=f4e627]:
+                  - link "Marka" [ref=f4e628] [cursor=pointer]:
+                    - /url: ""
+            - generic [ref=f4e629]:
+              - generic [ref=f4e630]: 4.106,00 TL
+              - generic [ref=f4e631]: 3.285,00 TL
+            - generic [ref=f4e632]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e634]:
+            - link [ref=f4e635] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/on-fren-balatasi-vw-transporter-2020-sonrasi
+              - img "ON FREN BALATASI VW TRANSPORTER 2020 Sonrası" [ref=f4e638]
+            - generic [ref=f4e639]:
+              - generic [ref=f4e640]: ON FREN BALATASI VW TRANSPORTER 2020 Sonrası
+              - generic [ref=f4e642]:
+                - generic [ref=f4e643]: 
+                - generic [ref=f4e645]: 
+                - generic [ref=f4e647]: 
+                - generic [ref=f4e649]: 
+                - generic [ref=f4e651]: 
+              - list [ref=f4e654]:
+                - listitem [ref=f4e655]:
+                  - link "Kategori Balata" [ref=f4e656] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e657]: Balata
+                - listitem [ref=f4e658]:
+                  - link "Marka TRW" [ref=f4e659] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/trw
+                    - text: Marka
+                    - generic [ref=f4e660]: TRW
+            - generic [ref=f4e661]:
+              - generic [ref=f4e662]: 3.298,68 TL
+              - generic [ref=f4e663]: 2.572,00 TL
+            - generic [ref=f4e664]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e666]:
+            - link [ref=f4e667] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/arka-fren-balatasi-hyundai-accent-blue-11-elantra-11-i40-11-i30-11-optima-11-15-rio-11-ceed-11-soul-14-sportage-16-ssangyong-tivoli-korando-xlv-15-sonata-07-10-tucson-08-10-i20-15-tucson-2015-blueprint
+              - img "ARKA FREN BALATASI HYUNDAI ACCENT BLUE 11-> ELANTRA 11-> I40 11-> I30 11-> OPTIMA 11-15 RIO 11-> CEED 11-> SOUL 14-> SPORTAGE 16-> SSANGYONG TIVOLI KORANDO XLV 15-> SONATA 07-10 TUCSON 08-10 I20 15-> TUCSON 2015->" [ref=f4e670]
+            - generic [ref=f4e671]:
+              - generic [ref=f4e672]: ARKA FREN BALATASI HYUNDAI ACCENT BLUE 11-> ELANTRA 11-> I40 11-> I30 11-> OPTIMA 11-15 RIO 11-> CEED 11-> SOUL 14-> SPORTAGE 16-> SSANGYONG TIVOLI KORANDO XLV 15-> SONATA 07-10 TUCSON 08-10 I20 15-> TUCSON 2015->
+              - generic [ref=f4e674]:
+                - generic [ref=f4e675]: 
+                - generic [ref=f4e677]: 
+                - generic [ref=f4e679]: 
+                - generic [ref=f4e681]: 
+                - generic [ref=f4e683]: 
+              - list [ref=f4e686]:
+                - listitem [ref=f4e687]:
+                  - link "Kategori Balata" [ref=f4e688] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e689]: Balata
+                - listitem [ref=f4e690]:
+                  - link "Marka Blueprint" [ref=f4e691] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/blueprint
+                    - text: Marka
+                    - generic [ref=f4e692]: Blueprint
+            - generic [ref=f4e693]:
+              - generic [ref=f4e694]: 1.632,32 TL
+              - generic [ref=f4e695]: 1.305,86 TL
+            - link "Sepete Ekle " [ref=f4e697] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f4e698]: 
+          - generic [ref=f4e700]:
+            - link [ref=f4e701] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/opel-zafira-b-arka-fren-balata-takimi-bosch-marka-2005-model-ve-uzeri
+              - img "Opel Zafira B Arka Fren Balata Takımı Bosch Marka 2005 Model Ve Üzeri" [ref=f4e704]
+            - generic [ref=f4e705]:
+              - generic [ref=f4e706]: Opel Zafira B Arka Fren Balata Takımı Bosch Marka 2005 Model Ve Üzeri
+              - generic [ref=f4e708]:
+                - generic [ref=f4e709]: 
+                - generic [ref=f4e711]: 
+                - generic [ref=f4e713]: 
+                - generic [ref=f4e715]: 
+                - generic [ref=f4e717]: 
+              - list [ref=f4e720]:
+                - listitem [ref=f4e721]:
+                  - link "Kategori Balata" [ref=f4e722] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e723]: Balata
+                - listitem [ref=f4e724]:
+                  - link "Marka Bosch" [ref=f4e725] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f4e726]: Bosch
+            - generic [ref=f4e727]:
+              - generic [ref=f4e728]: 883,59 TL
+              - generic [ref=f4e729]: 756,87 TL
+            - generic [ref=f4e730]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e732]:
+            - link [ref=f4e733] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/on-fren-balatasi-micra-2003-2010-k12-kasa-note-2006-2012-clio-iii-2005-clio-iv-2010-kangoo-ii-2008-modus-2004-captur-2013-/-logan-2007-duster-2010-dokker-2012-lodgy-2012-citan-2012-w415
+              - img "ON FREN BALATASI MICRA 2003 - 2010 ( K12 KASA ) NOTE 2006 - 2012 CLIO III 2005 -> CLIO IV 2010 -> KANGOO II 2008 -> MODUS 2004 -> CAPTUR 2013 -> / LOGAN 2007 -> DUSTER 2010 -> DOKKER 2012 -> LODGY 2012 -> CITAN 2012 -> W415" [ref=f4e736]
+            - generic [ref=f4e737]:
+              - generic [ref=f4e738]: ON FREN BALATASI MICRA 2003 - 2010 ( K12 KASA ) NOTE 2006 - 2012 CLIO III 2005 -> CLIO IV 2010 -> KANGOO II 2008 -> MODUS 2004 -> CAPTUR 2013 -> / LOGAN 2007 -> DUSTER 2010 -> DOKKER 2012 -> LODGY 2012 -> CITAN 2012 -> W415
+              - generic [ref=f4e740]:
+                - generic [ref=f4e741]: 
+                - generic [ref=f4e743]: 
+                - generic [ref=f4e745]: 
+                - generic [ref=f4e747]: 
+                - generic [ref=f4e749]: 
+              - list [ref=f4e752]:
+                - listitem [ref=f4e753]:
+                  - link "Kategori Balata" [ref=f4e754] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e755]: Balata
+                - listitem [ref=f4e756]:
+                  - link "Marka Ferodo" [ref=f4e757] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/ferodo
+                    - text: Marka
+                    - generic [ref=f4e758]: Ferodo
+            - generic [ref=f4e759]:
+              - generic [ref=f4e760]: 1.208,75 TL
+              - generic [ref=f4e761]: 967,00 TL
+            - link "Sepete Ekle " [ref=f4e763] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f4e764]: 
+          - generic [ref=f4e766]:
+            - link [ref=f4e767] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/volkswagen-t-roc-2021-sonrasi-arka-fren-balatasi-textar-marka
+              - img "Volkswagen T-Roc 2021 Sonrası Arka Fren Balatası Textar Marka" [ref=f4e770]
+            - generic [ref=f4e771]:
+              - generic [ref=f4e772]: Volkswagen T-Roc 2021 Sonrası Arka Fren Balatası Textar Marka
+              - generic [ref=f4e774]:
+                - generic [ref=f4e775]: 
+                - generic [ref=f4e777]: 
+                - generic [ref=f4e779]: 
+                - generic [ref=f4e781]: 
+                - generic [ref=f4e783]: 
+              - list [ref=f4e786]:
+                - listitem [ref=f4e787]:
+                  - link "Kategori Balata" [ref=f4e788] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e789]: Balata
+                - listitem [ref=f4e790]:
+                  - link "Marka Textar" [ref=f4e791] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/textar
+                    - text: Marka
+                    - generic [ref=f4e792]: Textar
+            - generic [ref=f4e793]:
+              - generic [ref=f4e794]: 2.685,00 TL
+              - generic [ref=f4e795]: 2.150,00 TL
+            - generic [ref=f4e796]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e798]:
+            - link [ref=f4e799] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/skoda-scala-1.6-tdi-2016-sonrasi-on-fren-balatasi-trw-marka
+              - img "Skoda Scala 1.6 TDI 2016 Sonrası Ön Fren Balatası Trw Marka" [ref=f4e802]
+            - generic [ref=f4e803]:
+              - generic [ref=f4e804]: Skoda Scala 1.6 TDI 2016 Sonrası Ön Fren Balatası Trw Marka
+              - generic [ref=f4e806]:
+                - generic [ref=f4e807]: 
+                - generic [ref=f4e809]: 
+                - generic [ref=f4e811]: 
+                - generic [ref=f4e813]: 
+                - generic [ref=f4e815]: 
+              - list [ref=f4e818]:
+                - listitem [ref=f4e819]:
+                  - link "Kategori Balata" [ref=f4e820] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e821]: Balata
+                - listitem [ref=f4e822]:
+                  - link "Marka TRW" [ref=f4e823] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/trw
+                    - text: Marka
+                    - generic [ref=f4e824]: TRW
+            - generic [ref=f4e825]:
+              - generic [ref=f4e826]: 1.913,32 TL
+              - generic [ref=f4e827]: 1.530,65 TL
+            - generic [ref=f4e828]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e830]:
+            - link [ref=f4e831] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/jeep-compass-1-4-2016-2020-arasi-on-fren-balatasi-bosch-marka
+              - img "Jeep Compass 1.4 2016-2020 Arası Ön Fren Balatası Bosch Marka" [ref=f4e834]
+            - generic [ref=f4e835]:
+              - generic [ref=f4e836]: Jeep Compass 1.4 2016-2020 Arası Ön Fren Balatası Bosch Marka
+              - generic [ref=f4e838]:
+                - generic [ref=f4e839]: 
+                - generic [ref=f4e841]: 
+                - generic [ref=f4e843]: 
+                - generic [ref=f4e845]: 
+                - generic [ref=f4e847]: 
+              - list [ref=f4e850]:
+                - listitem [ref=f4e851]:
+                  - link "Kategori Balata" [ref=f4e852] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e853]: Balata
+                - listitem [ref=f4e854]:
+                  - link "Marka Bosch" [ref=f4e855] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f4e856]: Bosch
+            - generic [ref=f4e857]:
+              - generic [ref=f4e858]: 2.685,00 TL
+              - generic [ref=f4e859]: 2.150,00 TL
+            - generic [ref=f4e860]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e862]:
+            - link [ref=f4e863] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/ford-focus-1-5-tdci-2016-2020-arasi-arka-fren-balata-takimi-kale-marka
+              - img "Ford Focus 1.5 TDCI 2016-2020 Arası Arka Fren Balata Takımı Kale Marka" [ref=f4e866]
+            - generic [ref=f4e867]:
+              - generic [ref=f4e868]: Ford Focus 1.5 TDCI 2016-2020 Arası Arka Fren Balata Takımı Kale Marka
+              - generic [ref=f4e870]:
+                - generic [ref=f4e871]: 
+                - generic [ref=f4e873]: 
+                - generic [ref=f4e875]: 
+                - generic [ref=f4e877]: 
+                - generic [ref=f4e879]: 
+              - list [ref=f4e882]:
+                - listitem [ref=f4e883]:
+                  - link "Kategori Balata" [ref=f4e884] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e885]: Balata
+                - listitem [ref=f4e886]:
+                  - link "Marka Kale" [ref=f4e887] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/kale
+                    - text: Marka
+                    - generic [ref=f4e888]: Kale
+            - generic [ref=f4e889]:
+              - generic [ref=f4e890]: 1.106,55 TL
+              - generic [ref=f4e891]: 885,24 TL
+            - generic [ref=f4e892]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e894]:
+            - link [ref=f4e895] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hyundai-tucson-1-6-d4f-motor-arka-balata-mga-marka
+              - img "Hyundai Tucson 1.6 D4F Motor Arka Balata MGA Marka" [ref=f4e898]
+            - generic [ref=f4e899]:
+              - generic [ref=f4e900]: Hyundai Tucson 1.6 D4F Motor Arka Balata MGA Marka
+              - generic [ref=f4e902]:
+                - generic [ref=f4e903]: 
+                - generic [ref=f4e905]: 
+                - generic [ref=f4e907]: 
+                - generic [ref=f4e909]: 
+                - generic [ref=f4e911]: 
+              - list [ref=f4e914]:
+                - listitem [ref=f4e915]:
+                  - link "Kategori Balata" [ref=f4e916] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e917]: Balata
+                - listitem [ref=f4e918]:
+                  - link "Marka MGA" [ref=f4e919] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/mga
+                    - text: Marka
+                    - generic [ref=f4e920]: MGA
+            - generic [ref=f4e921]:
+              - generic [ref=f4e922]: 1.280,00 TL
+              - generic [ref=f4e923]: 812,00 TL
+            - generic [ref=f4e924]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e926]:
+            - link [ref=f4e927] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/renault-symbol-1-4-benzinli-2007-2012-arasi-on-fren-balatasi-ferodo-marka
+              - img "Renault Symbol 1.4 Benzinli 2007-2012 Arası Ön Fren Balatası Ferodo Marka" [ref=f4e930]
+            - generic [ref=f4e931]:
+              - generic [ref=f4e932]: Renault Symbol 1.4 Benzinli 2007-2012 Arası Ön Fren Balatası Ferodo Marka
+              - generic [ref=f4e934]:
+                - generic [ref=f4e935]: 
+                - generic [ref=f4e937]: 
+                - generic [ref=f4e939]: 
+                - generic [ref=f4e941]: 
+                - generic [ref=f4e943]: 
+              - list [ref=f4e946]:
+                - listitem [ref=f4e947]:
+                  - link "Kategori Balata" [ref=f4e948] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e949]: Balata
+                - listitem [ref=f4e950]:
+                  - link "Marka Ferodo" [ref=f4e951] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/ferodo
+                    - text: Marka
+                    - generic [ref=f4e952]: Ferodo
+            - generic [ref=f4e953]:
+              - generic [ref=f4e954]: 880,00 TL
+              - generic [ref=f4e955]: 705,00 TL
+            - generic [ref=f4e956]:
+              - link "Stokta Yok ":
+                - /url: javascript:;
+                - text: Stokta Yok
+                - generic: 
+          - generic [ref=f4e958]:
+            - link [ref=f4e959] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/toyota-corolla-on-fren-balatasi-1-4-/-1-6-benzinli-akebono-fren-sistemi-icin-275-mm-cap-2007-2012-bosch
+              - img "Toyota Corolla Ön Fren Balatası 1.4 / 1.6 Benzinli Akebono Fren Sistemi İçin 275 mm Çap 2007-2012 BOSCH" [ref=f4e962]
+            - generic [ref=f4e963]:
+              - generic [ref=f4e964]: Toyota Corolla Ön Fren Balatası 1.4 / 1.6 Benzinli Akebono Fren Sistemi İçin 275 mm Çap 2007-2012 BOSCH
+              - generic [ref=f4e966]:
+                - generic [ref=f4e967]: 
+                - generic [ref=f4e969]: 
+                - generic [ref=f4e971]: 
+                - generic [ref=f4e973]: 
+                - generic [ref=f4e975]: 
+              - list [ref=f4e978]:
+                - listitem [ref=f4e979]:
+                  - link "Kategori Balata" [ref=f4e980] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/balata
+                    - text: Kategori
+                    - generic [ref=f4e981]: Balata
+                - listitem [ref=f4e982]:
+                  - link "Marka Bosch" [ref=f4e983] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/bosch
+                    - text: Marka
+                    - generic [ref=f4e984]: Bosch
+            - generic [ref=f4e985]:
+              - generic [ref=f4e986]: 1.460,78 TL
+              - generic [ref=f4e987]: 1.168,62 TL
+            - link "Sepete Ekle " [ref=f4e989] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Sepete Ekle
+              - generic [ref=f4e990]: 
+        - navigation [ref=f4e992]:
+          - list [ref=f4e993]:
+            - listitem [ref=f4e994]:
+              - link "1" [ref=f4e995] [cursor=pointer]:
+                - /url: javascript:;
+            - listitem [ref=f4e996]:
+              - link "2" [ref=f4e997] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/balata?fiyat=hepsi&siralama=en-yeniler&pageing=1&list=0&k=&pageing=2
+            - listitem [ref=f4e998]:
+              - link "3" [ref=f4e999] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/balata?fiyat=hepsi&siralama=en-yeniler&pageing=1&list=0&k=&pageing=3
+            - listitem [ref=f4e1000]:
+              - link "..." [ref=f4e1001] [cursor=pointer]:
+                - /url: javascript:;
+            - listitem [ref=f4e1002]:
+              - link "385" [ref=f4e1003] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/balata?fiyat=hepsi&siralama=en-yeniler&pageing=1&list=0&k=&pageing=385
+  - generic [ref=f4e1010]:
+    - generic [ref=f4e1013]:
+      - generic [ref=f4e1014]:
+        - strong [ref=f4e1016]: KREDİ KARTI İLE ALIŞVERİŞ
+        - paragraph [ref=f4e1017]: Tüm Kredi Kartları ile Güvenli Alışveriş Yapabilirsiniz.
+      - generic [ref=f4e1018]:
+        - strong [ref=f4e1020]: HIZLI TESLİMAT
+        - paragraph [ref=f4e1021]: Siparişiniz En Hızlı Şekilde Teslim Edilir.
+      - generic [ref=f4e1022]:
+        - strong [ref=f4e1024]: GÜVENLİ ALIŞVERİŞ
+        - paragraph [ref=f4e1025]: 256bit SSL Sertifikası ile Güvenli Satın Alma
+      - generic [ref=f4e1026]:
+        - strong [ref=f4e1028]: MÜŞTERİ HİZMETLERİ
+        - paragraph [ref=f4e1029]: 0850 532 1935 ulaşabilirsiniz
+    - generic [ref=f4e1030]:
+      - generic [ref=f4e1032]:
+        - generic [ref=f4e1033]:
+          - generic [ref=f4e1036]:
+            - generic [ref=f4e1037]:
+              - generic [ref=f4e1038]: Kurumsal
+              - list [ref=f4e1040]:
+                - listitem [ref=f4e1041]:
+                  - link "Periyodik Bakım Robotu" [ref=f4e1042] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/periyodik-bakim-robotu-yp
+                - listitem [ref=f4e1043]:
+                  - link "Hakkımızda" [ref=f4e1044] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/hakkimizda
+                - listitem [ref=f4e1045]:
+                  - link "İletişim" [ref=f4e1046] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/iletisim
+                - listitem [ref=f4e1047]:
+                  - link "Gizlilik Sözleşmesi" [ref=f4e1048] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/gizlilik-sozlesmesi
+                - listitem [ref=f4e1049]:
+                  - link "Kullanıcı Sözleşmesi" [ref=f4e1050] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/kullanici-sozlesmesi
+                - listitem [ref=f4e1051]:
+                  - link "İade/İptal Koşulları" [ref=f4e1052] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/iade-iptal
+                - listitem [ref=f4e1053]:
+                  - link "Sıkça Sorulan Sorular" [ref=f4e1054] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sss-sID0
+                - listitem [ref=f4e1055]:
+                  - link "Sipariş Takip" [ref=f4e1056] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+                - listitem [ref=f4e1057]:
+                  - link "Havale Bildirimleri" [ref=f4e1058] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+                - listitem [ref=f4e1059]:
+                  - link "Puan Sistemi" [ref=f4e1060] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/puan-sistemi-sID0
+            - generic [ref=f4e1061]:
+              - generic [ref=f4e1062]: Kategoriler
+              - list [ref=f4e1064]:
+                - listitem [ref=f4e1065]:
+                  - link "Fren" [ref=f4e1066] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/fren
+                - listitem [ref=f4e1067]:
+                  - link "Debriyaj" [ref=f4e1068] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/debriyaj
+                - listitem [ref=f4e1069]:
+                  - link "Yakıt" [ref=f4e1070] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/yakit
+                - listitem [ref=f4e1071]:
+                  - link "Süspansiyon" [ref=f4e1072] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/suspansiyon
+                - listitem [ref=f4e1073]:
+                  - link "Direksiyon" [ref=f4e1074] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/direksiyon
+                - listitem [ref=f4e1075]:
+                  - link "Elektrik" [ref=f4e1076] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/elektrik
+                - listitem [ref=f4e1077]:
+                  - link "Soğutma" [ref=f4e1078] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sogutma
+                - listitem [ref=f4e1079]:
+                  - link "Filtreler" [ref=f4e1080] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/filtreler
+                - listitem [ref=f4e1081]:
+                  - link "Motor" [ref=f4e1082] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/motor
+                - listitem [ref=f4e1083]:
+                  - link "Diger" [ref=f4e1084] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/diger
+            - generic [ref=f4e1085]:
+              - generic [ref=f4e1086]: Alışveriş
+              - list [ref=f4e1088]:
+                - listitem [ref=f4e1089]:
+                  - link "Sıkça Sorulan Sorular" [ref=f4e1090] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sss-sID0
+                - listitem [ref=f4e1091]:
+                  - link "Sipariş Takip" [ref=f4e1092] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+                - listitem [ref=f4e1093]:
+                  - link "Havale Bildirimleri" [ref=f4e1094] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+          - generic [ref=f4e1095]:
+            - generic [ref=f4e1096]:
+              - generic [ref=f4e1097]:
+                - generic [ref=f4e1098]: 
+                - generic [ref=f4e1100]:
+                  - generic [ref=f4e1101]: Müşteri Hizmetleri
+                  - link "0850 532 1935" [ref=f4e1102] [cursor=pointer]:
+                    - /url: tel:+90850 532 1935
+              - generic [ref=f4e1103]:
+                - generic [ref=f4e1104]: "Uygulamalarımız:"
+                - list [ref=f4e1105]:
+                  - listitem [ref=f4e1106]:
+                    - link [ref=f4e1107] [cursor=pointer]:
+                      - /url: ""
+                  - listitem [ref=f4e1109]:
+                    - link [ref=f4e1110] [cursor=pointer]:
+                      - /url: ""
+            - generic [ref=f4e1112]:
+              - generic [ref=f4e1113]: Bloga Göz At
+              - link "Blog" [ref=f4e1114] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/blog
+        - generic [ref=f4e1118]:
+          - link [ref=f4e1122] [cursor=pointer]:
+            - /url: https://etbis.eticaret.gov.tr/sitedogrulama/7834168730156187
+          - link "" [ref=f4e1124] [cursor=pointer]:
+            - /url: https://www.facebook.com/yamanyedekparca
+          - link "" [ref=f4e1126] [cursor=pointer]:
+            - /url: ""
+          - link "" [ref=f4e1128] [cursor=pointer]:
+            - /url: https://www.instagram.com/yedekparcacomtr
+          - link "" [ref=f4e1130] [cursor=pointer]:
+            - /url: ""
+      - paragraph [ref=f4e1137]: Tüm bilgileriniz 256bit SSL Sertifikası ile korunmaktadır. © 2026 Tüm Hakları Saklıdır
+  - link [ref=f4e1141] [cursor=pointer]:
+    - /url: https://api.whatsapp.com/send?phone=9005305701935&text=Ürünleriniz hakkında detaylı bilgi almak istiyorum

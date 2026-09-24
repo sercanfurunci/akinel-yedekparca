@@ -1,0 +1,234 @@
+- generic [ref=f105e1]:
+  - banner [ref=f105e2]:
+    - generic [ref=f105e4]:
+      - link "+90 533 140 56 49" [ref=f105e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f105e8]:
+        - link "Sipariş Takip" [ref=f105e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f105e10]: "|"
+        - link "Yardım" [ref=f105e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f105e12]: "|"
+        - link "İletişim" [ref=f105e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f105e14]: "|"
+        - generic [ref=f105e15]: TR
+    - generic [ref=f105e17]:
+      - link "Akinel Yedek Parça" [ref=f105e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f105e19]: Akinel
+        - generic [ref=f105e20]: Yedek Parça
+      - generic [ref=f105e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f105e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f105e24]:
+        - button "Sepet" [ref=f105e25]:
+          - generic [ref=f105e128]: "1"
+        - link "Garajım" [ref=f105e31] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f105e129] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f105e130] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f105e42]:
+      - link "Ana Sayfa" [ref=f105e43] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f105e44] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f105e45] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f105e46] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f105e47] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f105e48] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f105e49] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f105e50] [cursor=pointer]:
+        - /url: /contact
+    - generic [ref=f105e133]:
+      - generic [ref=f105e138]: "Seçili Araç:"
+      - generic [ref=f105e139]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link "Değiştir" [ref=f105e140] [cursor=pointer]:
+        - /url: /vehicle
+      - button "Araç seçimini temizle" [ref=f105e141]
+  - main [ref=f105e51]:
+    - generic [ref=f105e52]:
+      - heading "Ödeme" [level=1] [ref=f105e53]
+      - generic [ref=f105e54]:
+        - generic [ref=f105e146]:
+          - generic [ref=f105e147]:
+            - heading "Müşteri Bilgileri" [level=2] [ref=f105e148]
+            - generic [ref=f105e149]:
+              - generic [ref=f105e150]:
+                - generic [ref=f105e151]: Ad Soyad *
+                - textbox "Ad Soyad *" [ref=f105e152]:
+                  - /placeholder: Ali Yılmaz
+                  - text: Test Kullanıcı
+              - generic [ref=f105e153]:
+                - generic [ref=f105e154]: Telefon *
+                - textbox "Telefon *" [ref=f105e155]:
+                  - /placeholder: "05321234567"
+                  - text: "05321234567"
+            - generic [ref=f105e156]:
+              - generic [ref=f105e157]: E-posta *
+              - textbox "E-posta *" [ref=f105e158]:
+                - /placeholder: ali@example.com
+                - text: test@test.com
+          - generic [ref=f105e159]:
+            - heading "Teslimat Adresi" [level=2] [ref=f105e160]
+            - generic [ref=f105e161]:
+              - generic [ref=f105e162]: Adres *
+              - textbox "Adres *" [ref=f105e163]:
+                - /placeholder: Cadde, Sokak, Bina No, Daire
+                - text: Test Mahallesi Test Sokak No:1
+            - generic [ref=f105e164]:
+              - generic [ref=f105e165]:
+                - generic [ref=f105e166]: Şehir *
+                - textbox "Şehir *" [ref=f105e167]:
+                  - /placeholder: İstanbul
+                  - text: İstanbul
+              - generic [ref=f105e168]:
+                - generic [ref=f105e169]: İlçe *
+                - textbox "İlçe *" [ref=f105e170]:
+                  - /placeholder: Kadıköy
+                  - text: Kadıköy
+              - generic [ref=f105e171]:
+                - generic [ref=f105e172]: Posta Kodu
+                - textbox "Posta Kodu" [ref=f105e173]:
+                  - /placeholder: "34710"
+            - generic [ref=f105e174]:
+              - generic [ref=f105e175]: Notlar
+              - textbox "Notlar" [ref=f105e176]:
+                - /placeholder: Sipariş ile ilgili eklemek istediğiniz notlar...
+          - generic [ref=f105e177]:
+            - heading "Ödeme Yöntemi" [level=2] [ref=f105e178]
+            - generic [ref=f105e179]:
+              - generic [ref=f105e180] [cursor=pointer]:
+                - radio "Kapıda Ödeme" [checked] [ref=f105e181]
+                - generic [ref=f105e182]: Kapıda Ödeme
+              - generic [ref=f105e183] [cursor=pointer]:
+                - radio "Banka Havalesi / EFT" [ref=f105e184]
+                - generic [ref=f105e185]: Banka Havalesi / EFT
+              - generic [ref=f105e186] [cursor=pointer]:
+                - radio "Kredi Kartı (sonraki adımda)" [ref=f105e187]
+                - generic [ref=f105e188]: Kredi Kartı (sonraki adımda)
+          - generic [ref=f105e189]:
+            - heading "Sözleşmeler ve Onaylar" [level=2] [ref=f105e190]
+            - generic [ref=f105e191]:
+              - checkbox "Kullanım Koşulları'nı okudum ve kabul ediyorum. *" [checked] [active] [ref=f105e192] [cursor=pointer]
+              - generic [ref=f105e193] [cursor=pointer]:
+                - link "Kullanım Koşulları" [ref=f105e194]:
+                  - /url: /belgeler/kullanim-kosullari
+                - text: "'nı okudum ve kabul ediyorum. *"
+            - generic [ref=f105e196]:
+              - checkbox "Gizlilik Politikası ve KVKK Aydınlatma Metni'ni okudum, onaylıyorum. *" [ref=f105e197] [cursor=pointer]
+              - generic [ref=f105e198] [cursor=pointer]:
+                - link "Gizlilik Politikası" [ref=f105e199]:
+                  - /url: /belgeler/gizlilik-politikasi
+                - text: ve
+                - link "KVKK Aydınlatma Metni" [ref=f105e200]:
+                  - /url: /belgeler/kvkk
+                - text: "'ni okudum, onaylıyorum. *"
+            - paragraph [ref=f105e201]: Gizlilik politikasını kabul etmeniz gerekmektedir.
+            - generic [ref=f105e202]:
+              - checkbox "Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme Formu'nu okudum ve onaylıyorum. *" [ref=f105e203] [cursor=pointer]
+              - generic [ref=f105e204] [cursor=pointer]:
+                - link "Mesafeli Satış Sözleşmesi" [ref=f105e205]:
+                  - /url: /belgeler/mesafeli-satis-sozlesmesi
+                - text: ve
+                - link "Ön Bilgilendirme Formu" [ref=f105e206]:
+                  - /url: /belgeler/on-bilgilendirme-formu
+                - text: "'nu okudum ve onaylıyorum. *"
+            - paragraph [ref=f105e207]: Mesafeli satış sözleşmesini kabul etmeniz gerekmektedir.
+            - generic [ref=f105e208]:
+              - checkbox "Kampanya, indirim ve haberlerden haberdar olmak için iletişim izni veriyorum. (İsteğe bağlı)" [checked] [ref=f105e209] [cursor=pointer]
+              - generic [ref=f105e210] [cursor=pointer]: Kampanya, indirim ve haberlerden haberdar olmak için iletişim izni veriyorum. (İsteğe bağlı)
+            - paragraph [ref=f105e211]: "* işaretli onaylar sipariş tamamlamak için zorunludur."
+          - button "Siparişi Tamamla" [ref=f105e212]
+        - generic [ref=f105e214]:
+          - heading "Sipariş Özeti" [level=2] [ref=f105e215]
+          - generic [ref=f105e217]:
+            - generic [ref=f105e223]:
+              - paragraph [ref=f105e224]: Bosch Fren Balata Seti - Test Ürünü
+              - paragraph [ref=f105e225]: 1 adet × ₺400,00
+            - generic [ref=f105e226]: ₺400,00
+          - generic [ref=f105e227]:
+            - generic [ref=f105e228]:
+              - generic [ref=f105e229]: Ara Toplam (1 ürün)
+              - generic [ref=f105e230]: ₺400,00
+            - generic [ref=f105e231]:
+              - generic [ref=f105e232]: Kargo
+              - generic [ref=f105e233]: Ücretsiz
+            - generic [ref=f105e234]:
+              - generic [ref=f105e235]: Toplam
+              - generic [ref=f105e236]: ₺400,00
+  - contentinfo [ref=f105e64]:
+    - generic [ref=f105e65]:
+      - generic [ref=f105e66]:
+        - generic [ref=f105e67]:
+          - generic [ref=f105e68]:
+            - generic [ref=f105e69]: Akinel
+            - generic [ref=f105e70]: Yedek Parça
+          - paragraph [ref=f105e71]: Test açıklaması güncel
+        - generic [ref=f105e72]:
+          - heading "Hızlı Linkler" [level=3] [ref=f105e73]
+          - list [ref=f105e74]:
+            - listitem [ref=f105e75]:
+              - link "Ana Sayfa" [ref=f105e76] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f105e77]:
+              - link "Ürünler" [ref=f105e78] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f105e79]:
+              - link "Aracımı Seç" [ref=f105e80] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f105e81]:
+              - link "OEM Ara" [ref=f105e82] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f105e83]:
+              - link "Garajım" [ref=f105e84] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f105e85]:
+              - link "Hakkımızda" [ref=f105e86] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f105e87]:
+          - heading "Müşteri" [level=3] [ref=f105e88]
+          - list [ref=f105e89]:
+            - listitem [ref=f105e90]:
+              - link "Giriş Yap" [ref=f105e91] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f105e92]:
+              - link "Kayıt Ol" [ref=f105e93] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f105e94]:
+              - link "Garajım" [ref=f105e95] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f105e96]:
+              - link "Hesabım" [ref=f105e97] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f105e98]:
+              - link "Periyodik Bakım" [ref=f105e99] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f105e100]:
+          - heading "İletişim" [level=3] [ref=f105e101]
+          - generic [ref=f105e102]:
+            - paragraph [ref=f105e103]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f105e104] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f105e111]:
+              - paragraph [ref=f105e112]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f105e113]: "Pazar: Kapalı"
+      - generic [ref=f105e114]:
+        - generic [ref=f105e115]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f105e116]:
+          - link "Gizlilik Politikası" [ref=f105e117] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f105e118] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f105e124] [cursor=pointer]
+  - alert [ref=f105e237]

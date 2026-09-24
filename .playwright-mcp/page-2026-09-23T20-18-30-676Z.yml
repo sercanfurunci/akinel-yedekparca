@@ -1,0 +1,169 @@
+- generic [ref=f49e1]:
+  - banner [aria-hidden] [ref=f49e2]:
+    - generic [ref=f49e4]:
+      - button [ref=f49e96]
+      - link [ref=f49e97] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f49e8]: Akinel
+      - generic [ref=f49e9]:
+        - link [ref=f49e98] [cursor=pointer]:
+          - /url: /search
+        - button [ref=f49e99]:
+          - generic [ref=f49e100]: "1"
+        - link [ref=f49e101] [cursor=pointer]:
+          - /url: /garage
+    - generic [ref=f49e104]:
+      - generic [ref=f49e109]: "Seçili Araç:"
+      - generic [ref=f49e110]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link [ref=f49e111] [cursor=pointer]:
+        - /url: /vehicle
+        - text: Değiştir
+      - button [ref=f49e112]
+  - main [aria-hidden] [ref=f49e29]:
+    - generic [ref=f49e116]:
+      - navigation [ref=f49e117]:
+        - link [ref=f49e119] [cursor=pointer]:
+          - /url: /
+          - text: Ana Sayfa
+        - link [ref=f49e123] [cursor=pointer]:
+          - /url: /products
+          - text: Ürünler
+        - generic [ref=f49e124]: Arka Fren Balata Seti
+      - generic [ref=f49e134]:
+        - generic [ref=f49e135]: Bosch
+        - heading [level=1] [ref=f49e136]: Arka Fren Balata Seti
+        - paragraph [ref=f49e137]: Fren Balatası
+        - generic [ref=f49e138]:
+          - generic [ref=f49e139]: "12345"
+          - generic [ref=f49e140]: "0986424706"
+        - paragraph [ref=f49e141]: "Parça No: 0986424706"
+        - generic [ref=f49e142]:
+          - generic [ref=f49e143]: ₺850,00
+          - generic [ref=f49e144]: Stokta
+        - paragraph [ref=f49e145]: 50 adet mevcut
+        - generic [ref=f49e146]:
+          - generic [ref=f49e147]:
+            - button [ref=f49e148]
+            - generic [ref=f49e150]: "1"
+            - button [ref=f49e151]
+          - button [ref=f49e154]: Sepete Ekle
+        - generic [ref=f49e162]:
+          - paragraph [ref=f49e163]: Seçili Aracınız
+          - paragraph [ref=f49e164]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+          - paragraph [ref=f49e165]: Bu ürün aracınızla uyumludur.
+      - generic [ref=f49e166]:
+        - generic [ref=f49e168]:
+          - button [ref=f49e169]: Ürün Bilgileri
+          - button [ref=f49e170]: OEM Numaraları
+          - button [ref=f49e171]: Uyumlu Araçlar
+          - button [ref=f49e172]: Stok Bilgisi
+        - paragraph [ref=f49e175]: Araç arka fren sistemi için OEM uyumlu fren balata seti. Yüksek performanslı malzeme yapısıyla güvenli ve sessiz frenleme sağlar.
+  - contentinfo [aria-hidden] [ref=f49e32]:
+    - generic [ref=f49e33]:
+      - generic [ref=f49e34]:
+        - generic [ref=f49e35]:
+          - generic [ref=f49e36]:
+            - generic [ref=f49e37]: Akinel
+            - generic [ref=f49e38]: Yedek Parça
+          - paragraph [ref=f49e39]: Test açıklaması güncel
+        - generic [ref=f49e40]:
+          - heading [level=3] [ref=f49e176]: Hızlı Linkler
+          - list [ref=f49e42]:
+            - listitem [ref=f49e43]:
+              - link [ref=f49e177] [cursor=pointer]:
+                - /url: /
+                - text: Ana Sayfa
+            - listitem [ref=f49e45]:
+              - link [ref=f49e178] [cursor=pointer]:
+                - /url: /products
+                - text: Ürünler
+            - listitem [ref=f49e47]:
+              - link [ref=f49e179] [cursor=pointer]:
+                - /url: /vehicle
+                - text: Aracımı Seç
+            - listitem [ref=f49e49]:
+              - link [ref=f49e180] [cursor=pointer]:
+                - /url: /vin
+                - text: OEM Ara
+            - listitem [ref=f49e51]:
+              - link [ref=f49e181] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f49e53]:
+              - link [ref=f49e182] [cursor=pointer]:
+                - /url: /about
+                - text: Hakkımızda
+        - generic [ref=f49e55]:
+          - heading [level=3] [ref=f49e183]: Müşteri
+          - list [ref=f49e57]:
+            - listitem [ref=f49e58]:
+              - link [ref=f49e184] [cursor=pointer]:
+                - /url: /login
+                - text: Giriş Yap
+            - listitem [ref=f49e60]:
+              - link [ref=f49e185] [cursor=pointer]:
+                - /url: /register
+                - text: Kayıt Ol
+            - listitem [ref=f49e62]:
+              - link [ref=f49e186] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f49e64]:
+              - link [ref=f49e187] [cursor=pointer]:
+                - /url: /account
+                - text: Hesabım
+            - listitem [ref=f49e66]:
+              - link [ref=f49e188] [cursor=pointer]:
+                - /url: /maintenance
+                - text: Periyodik Bakım
+        - generic [ref=f49e68]:
+          - heading [level=3] [ref=f49e189]: İletişim
+          - generic [ref=f49e70]:
+            - paragraph [ref=f49e71]: AKN MOTORS Car Service
+            - link [ref=f49e190] [cursor=pointer]:
+              - /url: tel:+905331405649
+              - text: +90 533 140 56 49
+            - generic [ref=f49e79]:
+              - paragraph [ref=f49e80]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f49e81]: "Pazar: Kapalı"
+      - generic [ref=f49e82]:
+        - generic [ref=f49e83]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f49e84]:
+          - link [ref=f49e191] [cursor=pointer]:
+            - /url: "#"
+            - text: Gizlilik Politikası
+          - link [ref=f49e192] [cursor=pointer]:
+            - /url: "#"
+            - text: Kullanım Koşulları
+  - button "Open Next.js Dev Tools" [ref=f49e92] [cursor=pointer]
+  - alert [ref=f49e193]
+  - dialog [ref=f49e197]:
+    - heading "Sepetim 1" [level=2] [ref=f49e199]:
+      - text: Sepetim
+      - generic [ref=f49e205]: "1"
+    - list [ref=f49e207]:
+      - listitem [ref=f49e208]:
+        - link [active] [ref=f49e209] [cursor=pointer]:
+          - /url: /products/arka-fren-balata-seti
+        - generic [ref=f49e215]:
+          - paragraph [ref=f49e216]: Bosch
+          - link [ref=f49e217] [cursor=pointer]:
+            - /url: /products/arka-fren-balata-seti
+            - paragraph [ref=f49e218]: Arka Fren Balata Seti
+          - paragraph [ref=f49e219]: ₺850,00
+          - generic [ref=f49e220]:
+            - button "Azalt" [disabled] [ref=f49e221]
+            - generic [ref=f49e223]: "1"
+            - button "Artır" [ref=f49e224]
+            - generic [ref=f49e226]: = ₺850,00
+            - button "Kaldır" [ref=f49e227]
+    - generic [ref=f49e231]:
+      - separator [ref=f49e232]
+      - generic [ref=f49e233]:
+        - generic [ref=f49e234]: Ara Toplam
+        - generic [ref=f49e235]: ₺850,00
+      - link [ref=f49e236] [cursor=pointer]:
+        - /url: /checkout
+        - button "Ödemeye Geç" [ref=f49e237]
+      - button "Alışverişe Devam Et" [ref=f49e238]
+    - button "Close" [ref=f49e239]

@@ -1,0 +1,9 @@
+[    2167ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdnaws.com.tr/d4/29uj23/yedekparcacomtr/QvGYHLnFzROHVUkzZW3D2LnFzROHVUkzZW3D2/urunler/indir-2026-03-04t162744.465-69a83108e6175.webp:0
+[    2225ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://www.yedekparca.com.tr/fren:0
+[    2254ms] ReferenceError: fbq is not defined
+    at <anonymous>:159:7
+    at t.activateScript (https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:11855)
+    at https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:11052
+    at t.run (https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:11259)
+    at https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:11156
+    at HTMLScriptElement.<anonymous> (https://www.yedekparca.com.tr/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:1:670)

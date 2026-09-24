@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Akinel.Api/Akinel.Api.csproj" />
+  <Project Path="Akinel.Application/Akinel.Application.csproj" />
+  <Project Path="Akinel.Domain/Akinel.Domain.csproj" />
+  <Project Path="Akinel.Infrastructure/Akinel.Infrastructure.csproj" />
+  <Project Path="Akinel.Tests/Akinel.Tests.csproj" />
+</Solution>

@@ -1,0 +1,419 @@
+- generic [active] [ref=f117e1]:
+  - banner [ref=f117e2]:
+    - generic [ref=f117e4]:
+      - link "+90 533 140 56 49" [ref=f117e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f117e8]:
+        - link "Sipariş Takip" [ref=f117e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f117e10]: "|"
+        - link "Yardım" [ref=f117e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f117e12]: "|"
+        - link "İletişim" [ref=f117e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f117e14]: "|"
+        - generic [ref=f117e15]: TR
+    - generic [ref=f117e17]:
+      - link "Akinel Yedek Parça" [ref=f117e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f117e19]: Akinel
+        - generic [ref=f117e20]: Yedek Parça
+      - generic [ref=f117e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f117e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f117e24]:
+        - button "Sepet" [ref=f117e25]:
+          - generic [ref=f117e116]: "1"
+        - link "Garajım" [ref=f117e31] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f117e117] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f117e118] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f117e42]:
+      - link "Ana Sayfa" [ref=f117e43] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f117e44] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f117e45] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f117e46] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f117e47] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f117e48] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f117e49] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f117e50] [cursor=pointer]:
+        - /url: /contact
+    - generic [ref=f117e121]:
+      - generic [ref=f117e126]: "Seçili Araç:"
+      - generic [ref=f117e127]: FIAT EGEA EGEA Sedan (2008-2022) 1.6L Diesel 120HP
+      - link "Değiştir" [ref=f117e128] [cursor=pointer]:
+        - /url: /vehicle
+      - button "Araç seçimini temizle" [ref=f117e129]
+  - main [ref=f117e51]:
+    - generic [ref=f117e133]:
+      - complementary [ref=f117e134]:
+        - link "Akinel Admin" [ref=f117e136] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f117e137]:
+          - link "Gösterge Paneli" [ref=f117e138] [cursor=pointer]:
+            - /url: /admin
+          - link "Ürünler" [ref=f117e145] [cursor=pointer]:
+            - /url: /admin/products
+          - link "Kategoriler" [ref=f117e151] [cursor=pointer]:
+            - /url: /admin/categories
+          - link "Markalar" [ref=f117e155] [cursor=pointer]:
+            - /url: /admin/brands
+          - link "Araçlar" [ref=f117e160] [cursor=pointer]:
+            - /url: /admin/vehicles
+          - link "Stok" [ref=f117e166] [cursor=pointer]:
+            - /url: /admin/stock
+          - link "Müşteriler" [ref=f117e171] [cursor=pointer]:
+            - /url: /admin/customers
+          - link "Siparişler" [ref=f117e178] [cursor=pointer]:
+            - /url: /admin/orders
+          - link "İşletme" [ref=f117e183] [cursor=pointer]:
+            - /url: /admin/business
+      - main [ref=f117e189]:
+        - generic [ref=f117e190]:
+          - generic [ref=f117e191]:
+            - heading "Araç Kataloğu" [level=1] [ref=f117e192]
+            - textbox "Marka, model veya motor ara..." [ref=f117e194]
+          - button "Markalar" [ref=f117e197]
+          - generic [ref=f117e198]:
+            - generic [ref=f117e199]:
+              - generic [ref=f117e200]:
+                - generic [ref=f117e201]: Araç Markaları
+                - generic [ref=f117e202]: (35 marka)
+              - generic [ref=f117e203]:
+                - textbox "Ara..." [ref=f117e205]
+                - button "Marka Ekle" [ref=f117e206]
+            - table [ref=f117e208]:
+              - rowgroup [ref=f117e209]:
+                - row [ref=f117e210]:
+                  - columnheader "Marka" [ref=f117e211]
+                  - columnheader "Model Sayısı" [ref=f117e212]
+                  - columnheader "İşlem" [ref=f117e213]
+              - rowgroup [ref=f117e214]:
+                - row [ref=f117e215]:
+                  - cell [ref=f117e216]:
+                    - button "ALFA ROMEO" [ref=f117e217]
+                  - cell "15" [ref=f117e220]
+                  - cell [ref=f117e221]:
+                    - generic [ref=f117e222]:
+                      - button "Düzenle" [ref=f117e223]
+                      - button "Sil" [ref=f117e227]
+                - row [ref=f117e231]:
+                  - cell [ref=f117e232]:
+                    - button "AUDI" [ref=f117e233]
+                  - cell "63" [ref=f117e236]
+                  - cell [ref=f117e237]:
+                    - generic [ref=f117e238]:
+                      - button "Düzenle" [ref=f117e239]
+                      - button "Sil" [ref=f117e243]
+                - row [ref=f117e247]:
+                  - cell [ref=f117e248]:
+                    - button "BMW" [ref=f117e249]
+                  - cell "203" [ref=f117e252]
+                  - cell [ref=f117e253]:
+                    - generic [ref=f117e254]:
+                      - button "Düzenle" [ref=f117e255]
+                      - button "Sil" [ref=f117e259]
+                - row [ref=f117e263]:
+                  - cell [ref=f117e264]:
+                    - button "CITROEN" [ref=f117e265]
+                  - cell "82" [ref=f117e268]
+                  - cell [ref=f117e269]:
+                    - generic [ref=f117e270]:
+                      - button "Düzenle" [ref=f117e271]
+                      - button "Sil" [ref=f117e275]
+                - row [ref=f117e279]:
+                  - cell [ref=f117e280]:
+                    - button "CUPRA" [ref=f117e281]
+                  - cell "4" [ref=f117e284]
+                  - cell [ref=f117e285]:
+                    - generic [ref=f117e286]:
+                      - button "Düzenle" [ref=f117e287]
+                      - button "Sil" [ref=f117e291]
+                - row [ref=f117e295]:
+                  - cell [ref=f117e296]:
+                    - button "DACIA" [ref=f117e297]
+                  - cell "42" [ref=f117e300]
+                  - cell [ref=f117e301]:
+                    - generic [ref=f117e302]:
+                      - button "Düzenle" [ref=f117e303]
+                      - button "Sil" [ref=f117e307]
+                - row [ref=f117e311]:
+                  - cell [ref=f117e312]:
+                    - button "DS" [ref=f117e313]
+                  - cell "6" [ref=f117e316]
+                  - cell [ref=f117e317]:
+                    - generic [ref=f117e318]:
+                      - button "Düzenle" [ref=f117e319]
+                      - button "Sil" [ref=f117e323]
+                - row [ref=f117e327]:
+                  - cell [ref=f117e328]:
+                    - button "FIAT" [ref=f117e329]
+                  - cell "44" [ref=f117e332]
+                  - cell [ref=f117e333]:
+                    - generic [ref=f117e334]:
+                      - button "Düzenle" [ref=f117e335]
+                      - button "Sil" [ref=f117e339]
+                - row [ref=f117e343]:
+                  - cell [ref=f117e344]:
+                    - button "FORD" [ref=f117e345]
+                  - cell "173" [ref=f117e348]
+                  - cell [ref=f117e349]:
+                    - generic [ref=f117e350]:
+                      - button "Düzenle" [ref=f117e351]
+                      - button "Sil" [ref=f117e355]
+                - row [ref=f117e359]:
+                  - cell [ref=f117e360]:
+                    - button "HONDA" [ref=f117e361]
+                  - cell "23" [ref=f117e364]
+                  - cell [ref=f117e365]:
+                    - generic [ref=f117e366]:
+                      - button "Düzenle" [ref=f117e367]
+                      - button "Sil" [ref=f117e371]
+                - row [ref=f117e375]:
+                  - cell [ref=f117e376]:
+                    - button "HYUNDAI" [ref=f117e377]
+                  - cell "33" [ref=f117e380]
+                  - cell [ref=f117e381]:
+                    - generic [ref=f117e382]:
+                      - button "Düzenle" [ref=f117e383]
+                      - button "Sil" [ref=f117e387]
+                - row [ref=f117e391]:
+                  - cell [ref=f117e392]:
+                    - button "INFINITI" [ref=f117e393]
+                  - cell "19" [ref=f117e396]
+                  - cell [ref=f117e397]:
+                    - generic [ref=f117e398]:
+                      - button "Düzenle" [ref=f117e399]
+                      - button "Sil" [ref=f117e403]
+                - row [ref=f117e407]:
+                  - cell [ref=f117e408]:
+                    - button "JAGUAR" [ref=f117e409]
+                  - cell "46" [ref=f117e412]
+                  - cell [ref=f117e413]:
+                    - generic [ref=f117e414]:
+                      - button "Düzenle" [ref=f117e415]
+                      - button "Sil" [ref=f117e419]
+                - row [ref=f117e423]:
+                  - cell [ref=f117e424]:
+                    - button "KIA" [ref=f117e425]
+                  - cell "58" [ref=f117e428]
+                  - cell [ref=f117e429]:
+                    - generic [ref=f117e430]:
+                      - button "Düzenle" [ref=f117e431]
+                      - button "Sil" [ref=f117e435]
+                - row [ref=f117e439]:
+                  - cell [ref=f117e440]:
+                    - button "LANCIA" [ref=f117e441]
+                  - cell "6" [ref=f117e444]
+                  - cell [ref=f117e445]:
+                    - generic [ref=f117e446]:
+                      - button "Düzenle" [ref=f117e447]
+                      - button "Sil" [ref=f117e451]
+                - row [ref=f117e455]:
+                  - cell [ref=f117e456]:
+                    - button "LAND ROVER" [ref=f117e457]
+                  - cell "12" [ref=f117e460]
+                  - cell [ref=f117e461]:
+                    - generic [ref=f117e462]:
+                      - button "Düzenle" [ref=f117e463]
+                      - button "Sil" [ref=f117e467]
+                - row [ref=f117e471]:
+                  - cell [ref=f117e472]:
+                    - button "LEXUS" [ref=f117e473]
+                  - cell "44" [ref=f117e476]
+                  - cell [ref=f117e477]:
+                    - generic [ref=f117e478]:
+                      - button "Düzenle" [ref=f117e479]
+                      - button "Sil" [ref=f117e483]
+                - row [ref=f117e487]:
+                  - cell [ref=f117e488]:
+                    - button "MAZDA" [ref=f117e489]
+                  - cell "20" [ref=f117e492]
+                  - cell [ref=f117e493]:
+                    - generic [ref=f117e494]:
+                      - button "Düzenle" [ref=f117e495]
+                      - button "Sil" [ref=f117e499]
+                - row [ref=f117e503]:
+                  - cell [ref=f117e504]:
+                    - button "MERCEDES-BENZ" [ref=f117e505]
+                  - cell "200" [ref=f117e508]
+                  - cell [ref=f117e509]:
+                    - generic [ref=f117e510]:
+                      - button "Düzenle" [ref=f117e511]
+                      - button "Sil" [ref=f117e515]
+                - row [ref=f117e519]:
+                  - cell [ref=f117e520]:
+                    - button "MINI" [ref=f117e521]
+                  - cell "42" [ref=f117e524]
+                  - cell [ref=f117e525]:
+                    - generic [ref=f117e526]:
+                      - button "Düzenle" [ref=f117e527]
+                      - button "Sil" [ref=f117e531]
+                - row [ref=f117e535]:
+                  - cell [ref=f117e536]:
+                    - button "MITSUBISHI" [ref=f117e537]
+                  - cell "29" [ref=f117e540]
+                  - cell [ref=f117e541]:
+                    - generic [ref=f117e542]:
+                      - button "Düzenle" [ref=f117e543]
+                      - button "Sil" [ref=f117e547]
+                - row [ref=f117e551]:
+                  - cell [ref=f117e552]:
+                    - button "NISSAN" [ref=f117e553]
+                  - cell "49" [ref=f117e556]
+                  - cell [ref=f117e557]:
+                    - generic [ref=f117e558]:
+                      - button "Düzenle" [ref=f117e559]
+                      - button "Sil" [ref=f117e563]
+                - row [ref=f117e567]:
+                  - cell [ref=f117e568]:
+                    - button "OPEL" [ref=f117e569]
+                  - cell "66" [ref=f117e572]
+                  - cell [ref=f117e573]:
+                    - generic [ref=f117e574]:
+                      - button "Düzenle" [ref=f117e575]
+                      - button "Sil" [ref=f117e579]
+                - row [ref=f117e583]:
+                  - cell [ref=f117e584]:
+                    - button "PEUGEOT" [ref=f117e585]
+                  - cell "51" [ref=f117e588]
+                  - cell [ref=f117e589]:
+                    - generic [ref=f117e590]:
+                      - button "Düzenle" [ref=f117e591]
+                      - button "Sil" [ref=f117e595]
+                - row [ref=f117e599]:
+                  - cell [ref=f117e600]:
+                    - button "PORSCHE" [ref=f117e601]
+                  - cell "44" [ref=f117e604]
+                  - cell [ref=f117e605]:
+                    - generic [ref=f117e606]:
+                      - button "Düzenle" [ref=f117e607]
+                      - button "Sil" [ref=f117e611]
+                - row [ref=f117e615]:
+                  - cell [ref=f117e616]:
+                    - button "RENAULT" [ref=f117e617]
+                  - cell "78" [ref=f117e620]
+                  - cell [ref=f117e621]:
+                    - generic [ref=f117e622]:
+                      - button "Düzenle" [ref=f117e623]
+                      - button "Sil" [ref=f117e627]
+                - row [ref=f117e631]:
+                  - cell [ref=f117e632]:
+                    - button "SAAB" [ref=f117e633]
+                  - cell "10" [ref=f117e636]
+                  - cell [ref=f117e637]:
+                    - generic [ref=f117e638]:
+                      - button "Düzenle" [ref=f117e639]
+                      - button "Sil" [ref=f117e643]
+                - row [ref=f117e647]:
+                  - cell [ref=f117e648]:
+                    - button "SEAT" [ref=f117e649]
+                  - cell "39" [ref=f117e652]
+                  - cell [ref=f117e653]:
+                    - generic [ref=f117e654]:
+                      - button "Düzenle" [ref=f117e655]
+                      - button "Sil" [ref=f117e659]
+                - row [ref=f117e663]:
+                  - cell [ref=f117e664]:
+                    - button "SKODA" [ref=f117e665]
+                  - cell "27" [ref=f117e668]
+                  - cell [ref=f117e669]:
+                    - generic [ref=f117e670]:
+                      - button "Düzenle" [ref=f117e671]
+                      - button "Sil" [ref=f117e675]
+                - row [ref=f117e679]:
+                  - cell [ref=f117e680]:
+                    - button "SMART" [ref=f117e681]
+                  - cell "6" [ref=f117e684]
+                  - cell [ref=f117e685]:
+                    - generic [ref=f117e686]:
+                      - button "Düzenle" [ref=f117e687]
+                      - button "Sil" [ref=f117e691]
+            - generic [ref=f117e695]:
+              - generic [ref=f117e696]: 35 markadan 1–30 gösteriliyor
+              - generic [ref=f117e697]:
+                - button "‹ Önceki" [disabled]
+                - generic [ref=f117e698]: 1 / 2
+                - button "Sonraki ›" [ref=f117e699]
+          - generic [ref=f117e701]:
+            - heading "Silme Onayı" [level=2] [ref=f117e702]
+            - paragraph [ref=f117e703]: "\"FIAT\" öğesini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
+            - paragraph [ref=f117e704]: Bu markaya bağlı 44 model bulunmaktadır. Silmek için önce modelleri kaldırın.
+            - button "Kapat" [ref=f117e705]
+  - contentinfo [ref=f117e52]:
+    - generic [ref=f117e53]:
+      - generic [ref=f117e54]:
+        - generic [ref=f117e55]:
+          - generic [ref=f117e56]:
+            - generic [ref=f117e57]: Akinel
+            - generic [ref=f117e58]: Yedek Parça
+          - paragraph [ref=f117e59]: Test açıklaması güncel
+        - generic [ref=f117e60]:
+          - heading "Hızlı Linkler" [level=3] [ref=f117e61]
+          - list [ref=f117e62]:
+            - listitem [ref=f117e63]:
+              - link "Ana Sayfa" [ref=f117e64] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f117e65]:
+              - link "Ürünler" [ref=f117e66] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f117e67]:
+              - link "Aracımı Seç" [ref=f117e68] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f117e69]:
+              - link "OEM Ara" [ref=f117e70] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f117e71]:
+              - link "Garajım" [ref=f117e72] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f117e73]:
+              - link "Hakkımızda" [ref=f117e74] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f117e75]:
+          - heading "Müşteri" [level=3] [ref=f117e76]
+          - list [ref=f117e77]:
+            - listitem [ref=f117e78]:
+              - link "Giriş Yap" [ref=f117e79] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f117e80]:
+              - link "Kayıt Ol" [ref=f117e81] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f117e82]:
+              - link "Garajım" [ref=f117e83] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f117e84]:
+              - link "Hesabım" [ref=f117e85] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f117e86]:
+              - link "Periyodik Bakım" [ref=f117e87] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f117e88]:
+          - heading "İletişim" [level=3] [ref=f117e89]
+          - generic [ref=f117e90]:
+            - paragraph [ref=f117e91]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f117e92] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f117e99]:
+              - paragraph [ref=f117e100]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f117e101]: "Pazar: Kapalı"
+      - generic [ref=f117e102]:
+        - generic [ref=f117e103]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f117e104]:
+          - link "Gizlilik Politikası" [ref=f117e105] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f117e106] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f117e112] [cursor=pointer]
+  - alert [ref=f117e706]

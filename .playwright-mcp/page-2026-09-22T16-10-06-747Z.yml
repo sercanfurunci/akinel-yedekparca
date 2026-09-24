@@ -1,0 +1,197 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e8]:
+    - generic [ref=f6e9]:
+      - generic [ref=f6e12]:
+        - generic [ref=f6e14]:
+          - generic [ref=f6e15]:
+            - generic [ref=f6e16]: 
+            - text: 0850 532 1935
+          - link " info@yedekparca.com.tr" [ref=f6e17] [cursor=pointer]:
+            - /url: mailto:info@yedekparca.com.tr
+            - generic [ref=f6e18]: 
+            - generic [ref=f6e19]: info@yedekparca.com.tr
+        - generic [ref=f6e21]:
+          - generic [ref=f6e22]: Türkçe
+          - generic [ref=f6e25]: TRY - Türk Lirası
+          - link "Sipariş Takip" [ref=f6e27] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+          - link "Yardım" [ref=f6e28] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/yardim
+          - link "İletişim" [ref=f6e29] [cursor=pointer]:
+            - /url: https://www.yedekparca.com.tr/iletisim-sID0
+      - generic [ref=f6e33]:
+        - link [ref=f6e36] [cursor=pointer]:
+          - /url: https://www.yedekparca.com.tr
+        - generic [ref=f6e38]:
+          - generic [ref=f6e39]:
+            - generic [ref=f6e43]:
+              - generic [ref=f6e44]: 
+              - textbox "Parça adı, oem numara veya parça referansı ara" [ref=f6e47]
+              - button "Ürün Ara" [ref=f6e48] [cursor=pointer]
+            - list [ref=f6e51]:
+              - listitem [ref=f6e52]:
+                - button "Fren" [ref=f6e53] [cursor=pointer]
+              - listitem [ref=f6e54]:
+                - button "Debriyaj" [ref=f6e55] [cursor=pointer]
+              - listitem [ref=f6e56]:
+                - button "Yakıt" [ref=f6e57] [cursor=pointer]
+              - listitem [ref=f6e58]:
+                - button "Süspansiyon" [ref=f6e59] [cursor=pointer]
+              - listitem [ref=f6e60]:
+                - button "Direksiyon" [ref=f6e61] [cursor=pointer]
+              - listitem [ref=f6e62]:
+                - button "Elektrik" [ref=f6e63] [cursor=pointer]
+              - listitem [ref=f6e64]:
+                - button "Soğutma" [ref=f6e65] [cursor=pointer]
+          - generic [ref=f6e68]:
+            - link "" [ref=f6e70] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hesabim/garajim
+            - link "" [ref=f6e73] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/hesabim/favori-listem
+            - link " 0" [ref=f6e76] [cursor=pointer]:
+              - /url: https://www.yedekparca.com.tr/sepet
+              - generic [ref=f6e77]:
+                - generic [ref=f6e78]: 
+                - generic [ref=f6e79]: "0"
+            - generic [ref=f6e80]:
+              - generic [ref=f6e81]: 
+              - strong [ref=f6e84]: Hesabım
+    - text:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+  - generic [ref=f6e94]:
+    - heading "Sepetinizde ürün bulunmamaktadır." [level=6] [ref=f6e95]
+    - generic [ref=f6e96]: Binlerce ürünü büyük indirimlerle satın almak için hemen alışverişe başlayın.
+    - link "ALIŞVERİŞE BAŞLA " [ref=f6e97] [cursor=pointer]:
+      - /url: https://www.yedekparca.com.tr
+      - text: ALIŞVERİŞE BAŞLA
+      - generic [ref=f6e98]: 
+  - generic [ref=f6e105]:
+    - generic [ref=f6e108]:
+      - generic [ref=f6e109]:
+        - strong [ref=f6e111]: KREDİ KARTI İLE ALIŞVERİŞ
+        - paragraph [ref=f6e112]: Tüm Kredi Kartları ile Güvenli Alışveriş Yapabilirsiniz.
+      - generic [ref=f6e113]:
+        - strong [ref=f6e115]: HIZLI TESLİMAT
+        - paragraph [ref=f6e116]: Siparişiniz En Hızlı Şekilde Teslim Edilir.
+      - generic [ref=f6e117]:
+        - strong [ref=f6e119]: GÜVENLİ ALIŞVERİŞ
+        - paragraph [ref=f6e120]: 256bit SSL Sertifikası ile Güvenli Satın Alma
+      - generic [ref=f6e121]:
+        - strong [ref=f6e123]: MÜŞTERİ HİZMETLERİ
+        - paragraph [ref=f6e124]: 0850 532 1935 ulaşabilirsiniz
+    - generic [ref=f6e125]:
+      - generic [ref=f6e127]:
+        - generic [ref=f6e128]:
+          - generic [ref=f6e131]:
+            - generic [ref=f6e132]:
+              - generic [ref=f6e133]: Kurumsal
+              - list [ref=f6e135]:
+                - listitem [ref=f6e136]:
+                  - link "Periyodik Bakım Robotu" [ref=f6e137] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/periyodik-bakim-robotu-yp
+                - listitem [ref=f6e138]:
+                  - link "Hakkımızda" [ref=f6e139] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/hakkimizda
+                - listitem [ref=f6e140]:
+                  - link "İletişim" [ref=f6e141] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/iletisim
+                - listitem [ref=f6e142]:
+                  - link "Gizlilik Sözleşmesi" [ref=f6e143] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/gizlilik-sozlesmesi
+                - listitem [ref=f6e144]:
+                  - link "Kullanıcı Sözleşmesi" [ref=f6e145] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/kullanici-sozlesmesi
+                - listitem [ref=f6e146]:
+                  - link "İade/İptal Koşulları" [ref=f6e147] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/iade-iptal
+                - listitem [ref=f6e148]:
+                  - link "Sıkça Sorulan Sorular" [ref=f6e149] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sss-sID0
+                - listitem [ref=f6e150]:
+                  - link "Sipariş Takip" [ref=f6e151] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+                - listitem [ref=f6e152]:
+                  - link "Havale Bildirimleri" [ref=f6e153] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+                - listitem [ref=f6e154]:
+                  - link "Puan Sistemi" [ref=f6e155] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/puan-sistemi-sID0
+            - generic [ref=f6e156]:
+              - generic [ref=f6e157]: Kategoriler
+              - list [ref=f6e159]:
+                - listitem [ref=f6e160]:
+                  - link "Fren" [ref=f6e161] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/fren
+                - listitem [ref=f6e162]:
+                  - link "Debriyaj" [ref=f6e163] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/debriyaj
+                - listitem [ref=f6e164]:
+                  - link "Yakıt" [ref=f6e165] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/yakit
+                - listitem [ref=f6e166]:
+                  - link "Süspansiyon" [ref=f6e167] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/suspansiyon
+                - listitem [ref=f6e168]:
+                  - link "Direksiyon" [ref=f6e169] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/direksiyon
+                - listitem [ref=f6e170]:
+                  - link "Elektrik" [ref=f6e171] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/elektrik
+                - listitem [ref=f6e172]:
+                  - link "Soğutma" [ref=f6e173] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sogutma
+                - listitem [ref=f6e174]:
+                  - link "Filtreler" [ref=f6e175] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/filtreler
+                - listitem [ref=f6e176]:
+                  - link "Motor" [ref=f6e177] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/motor
+                - listitem [ref=f6e178]:
+                  - link "Diger" [ref=f6e179] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/diger
+            - generic [ref=f6e180]:
+              - generic [ref=f6e181]: Alışveriş
+              - list [ref=f6e183]:
+                - listitem [ref=f6e184]:
+                  - link "Sıkça Sorulan Sorular" [ref=f6e185] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/sss-sID0
+                - listitem [ref=f6e186]:
+                  - link "Sipariş Takip" [ref=f6e187] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/siparis-takip-sID0
+                - listitem [ref=f6e188]:
+                  - link "Havale Bildirimleri" [ref=f6e189] [cursor=pointer]:
+                    - /url: https://www.yedekparca.com.tr/havale-bildirim-sID0
+          - generic [ref=f6e190]:
+            - generic [ref=f6e191]:
+              - generic [ref=f6e192]:
+                - generic [ref=f6e193]: 
+                - generic [ref=f6e195]:
+                  - generic [ref=f6e196]: Müşteri Hizmetleri
+                  - link "0850 532 1935" [ref=f6e197] [cursor=pointer]:
+                    - /url: tel:+90850 532 1935
+              - generic [ref=f6e198]:
+                - generic [ref=f6e199]: "Uygulamalarımız:"
+                - list [ref=f6e200]:
+                  - listitem [ref=f6e201]:
+                    - link [ref=f6e202] [cursor=pointer]:
+                      - /url: ""
+                  - listitem [ref=f6e204]:
+                    - link [ref=f6e205] [cursor=pointer]:
+                      - /url: ""
+            - generic [ref=f6e207]:
+              - generic [ref=f6e208]: Bloga Göz At
+              - link "Blog" [ref=f6e209] [cursor=pointer]:
+                - /url: https://www.yedekparca.com.tr/blog
+        - generic [ref=f6e213]:
+          - link [ref=f6e217] [cursor=pointer]:
+            - /url: https://etbis.eticaret.gov.tr/sitedogrulama/7834168730156187
+          - link "" [ref=f6e219] [cursor=pointer]:
+            - /url: https://www.facebook.com/yamanyedekparca
+          - link "" [ref=f6e221] [cursor=pointer]:
+            - /url: ""
+          - link "" [ref=f6e223] [cursor=pointer]:
+            - /url: https://www.instagram.com/yedekparcacomtr
+          - link "" [ref=f6e225] [cursor=pointer]:
+            - /url: ""
+      - paragraph [ref=f6e232]: Tüm bilgileriniz 256bit SSL Sertifikası ile korunmaktadır. © 2026 Tüm Hakları Saklıdır
+  - link [ref=f6e236] [cursor=pointer]:
+    - /url: https://api.whatsapp.com/send?phone=9005305701935&text=Ürünleriniz hakkında detaylı bilgi almak istiyorum

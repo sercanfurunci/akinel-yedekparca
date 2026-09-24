@@ -1,0 +1,417 @@
+- generic [active] [ref=f9e1]:
+  - banner [ref=f9e2]:
+    - generic [ref=f9e4]:
+      - link "+90 533 140 56 49" [ref=f9e5] [cursor=pointer]:
+        - /url: tel:+905331405649
+      - generic [ref=f9e8]:
+        - link "Sipariş Takip" [ref=f9e9] [cursor=pointer]:
+          - /url: /search
+        - generic [ref=f9e10]: "|"
+        - link "Yardım" [ref=f9e11] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f9e12]: "|"
+        - link "İletişim" [ref=f9e13] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=f9e14]: "|"
+        - generic [ref=f9e15]: TR
+    - generic [ref=f9e17]:
+      - link "Akinel Yedek Parça" [ref=f9e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f9e19]: Akinel
+        - generic [ref=f9e20]: Yedek Parça
+      - generic [ref=f9e22]:
+        - searchbox "OEM numarası, parça adı veya parça kodu…" [ref=f9e23]
+        - generic:
+          - generic: ⌘
+          - generic: K
+      - generic [ref=f9e24]:
+        - link "Garajım" [ref=f9e25] [cursor=pointer]:
+          - /url: /garage
+        - link "Admin" [ref=f9e157] [cursor=pointer]:
+          - /url: /account
+        - link "Admin" [ref=f9e158] [cursor=pointer]:
+          - /url: /admin
+    - navigation [ref=f9e36]:
+      - link "Ana Sayfa" [ref=f9e37] [cursor=pointer]:
+        - /url: /
+      - link "Ürünler" [ref=f9e38] [cursor=pointer]:
+        - /url: /products
+      - link "Markalar" [ref=f9e39] [cursor=pointer]:
+        - /url: /brands
+      - link "Aracımı Seç" [ref=f9e40] [cursor=pointer]:
+        - /url: /vehicle
+      - link "OEM Ara" [ref=f9e41] [cursor=pointer]:
+        - /url: /search
+      - link "Garajım" [ref=f9e42] [cursor=pointer]:
+        - /url: /garage
+      - link "Hakkımızda" [ref=f9e43] [cursor=pointer]:
+        - /url: /about
+      - link "İletişim" [ref=f9e44] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=f9e45]:
+    - generic [ref=f9e46]:
+      - navigation "Breadcrumb" [ref=f9e47]:
+        - link "Ana Sayfa" [ref=f9e49] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f9e50]: Aracımı Seç
+      - generic [ref=f9e54]:
+        - heading "Aracınızı Seçin" [level=1] [ref=f9e55]
+        - paragraph [ref=f9e56]: 4 adımda aracınızı seçin ve uyumlu parçaları keşfedin.
+        - generic [ref=f9e58]:
+          - generic [ref=f9e59]:
+            - generic [ref=f9e61]:
+              - generic [ref=f9e62]: ✓
+              - generic [ref=f9e63]: Marka
+            - generic [ref=f9e66]:
+              - generic [ref=f9e67]: ✓
+              - generic [ref=f9e68]: Model
+            - generic [ref=f9e71]:
+              - generic [ref=f9e72]: "3"
+              - generic [ref=f9e73]: Kasa / Nesil
+            - generic [ref=f9e76]:
+              - generic [ref=f9e77]: "4"
+              - generic [ref=f9e78]: Motor
+          - generic [ref=f9e79]:
+            - generic [ref=f9e80]:
+              - generic [ref=f9e81]: Marka
+              - combobox [ref=f9e82]:
+                - option "Marka seçin"
+                - option "ALFA ROMEO"
+                - option "AUDI"
+                - option "BMW"
+                - option "CITROEN"
+                - option "CUPRA"
+                - option "DACIA"
+                - option "DS"
+                - option "FIAT" [selected]
+                - option "FORD"
+                - option "HONDA"
+                - option "HYUNDAI"
+                - option "INFINITI"
+                - option "JAGUAR"
+                - option "KIA"
+                - option "LANCIA"
+                - option "LAND ROVER"
+                - option "LEXUS"
+                - option "MAZDA"
+                - option "MERCEDES-BENZ"
+                - option "MINI"
+                - option "MITSUBISHI"
+                - option "NISSAN"
+                - option "OPEL"
+                - option "PEUGEOT"
+                - option "PORSCHE"
+                - option "RENAULT"
+                - option "SAAB"
+                - option "SEAT"
+                - option "SKODA"
+                - option "SMART"
+                - option "SUBARU"
+                - option "SUZUKI"
+                - option "TOYOTA"
+                - option "VOLKSWAGEN"
+                - option "VOLVO"
+            - generic [ref=f9e83]:
+              - generic [ref=f9e84]: Model
+              - combobox [ref=f9e85]:
+                - option "Model seçin"
+                - option "124 SPIDER"
+                - option "124 SPIDER CLASSICA"
+                - option "124 SPIDER LUSSO"
+                - option "500"
+                - option "500 ABARTH"
+                - option "500 ANNIVERSARIO"
+                - option "500 C"
+                - option "500 COLLEZIONE WINTER"
+                - option "500 CULT"
+                - option "500 DOLCEVITA"
+                - option "500 E"
+                - option "500 GQ"
+                - option "500 LOUNGE"
+                - option "500 POP"
+                - option "500 POPSTAR"
+                - option "500 ROCKSTAR"
+                - option "500 SPORT"
+                - option "500 STAR"
+                - option "500 VINTAGE 57"
+                - option "500C"
+                - option "500C ANNIVERSARIO"
+                - option "500C COLLOZIONE"
+                - option "500C CULT"
+                - option "500C DOLCEVITA"
+                - option "500C GQ TWINAIR 105"
+                - option "500C LOUNGE"
+                - option "500C POPSTAR"
+                - option "500C RIVA"
+                - option "500C SPORT"
+                - option "500C STAR"
+                - option "500L"
+                - option "500L BEATS EDITION"
+                - option "500L LIVING"
+                - option "500L LIVING LOUNGE"
+                - option "500L LIVING LOUNGE 1.3 MJET 95 DUALOGIC"
+                - option "500L MIRROR"
+                - option "500L POPSTAR"
+                - option "500L ROCKSTAR"
+                - option "500L S5"
+                - option "500L S5 POPSTAR"
+                - option "500L WAGON"
+                - option "500X"
+                - option "500X CITY"
+                - option "500X POP"
+                - option "500X POP PLUS"
+                - option "500X POPSTAR"
+                - option "500X SPORT"
+                - option "500X URBAN"
+                - option "ABART 500 ANNUVERSARIO"
+                - option "ABARTH 595C"
+                - option "ALBEA"
+                - option "ALBEA 1.2 16V"
+                - option "ALBEA 1.4 FIRE"
+                - option "ALBEA SOLE"
+                - option "ALBEA SOLE 1.3 MULTIJET"
+                - option "ALBEA SOLE 1.4"
+                - option "ALBEA SOLE DYNAMIC PLUS"
+                - option "ALBEA SOLE PREMIO PLUS"
+                - option "BRAVO"
+                - option "BRAVO 1.4 16V (90)"
+                - option "BRAVO 1.4 16V T-JET (120)"
+                - option "BRAVO 1.6 16V MULTIJET (105)"
+                - option "BRAVO S2 EASY"
+                - option "BRAVO S2 POP"
+                - option "BRAVO S2 SPORT"
+                - option "DOBLO"
+                - option "DOBLO 1.2"
+                - option "DOBLO 1.3 MULTIJET"
+                - option "DOBLO 1.6 16V"
+                - option "DOBLO CLASSIC"
+                - option "DOBLO CLASSIC COMBI"
+                - option "DOBLO CLASSIC COMBI PLUS"
+                - option "DOBLO CLASSIC COMBI SAFELINE"
+                - option "DOBLO CLASSIC SAFELINE"
+                - option "DOBLO COMBI"
+                - option "DOBLO COMBI 1.3 MULTIJET"
+                - option "DOBLO COMBI 1.4"
+                - option "DOBLO COMBI 1.9 D"
+                - option "DOBLO COMBI 1.9 JTD"
+                - option "DOBLO COMBI 1.9 MULTIJET"
+                - option "DOBLO COMBI 20.YIL OZEL SERI"
+                - option "DOBLO COMBI 20.YIL OZELSERI"
+                - option "DOBLO COMBI EASY"
+                - option "DOBLO COMBI EASY MAXI"
+                - option "DOBLO COMBI MAXI"
+                - option "DOBLO COMBI MAXI 1.3 MULTIJET"
+                - option "DOBLO COMBI MAXI 1.9 MULTIJET"
+                - option "DOBLO COMBI PREMIO"
+                - option "DOBLO COMBI PREMIO MAXI"
+                - option "DOBLO COMBI PREMIO MAXI PLUS"
+                - option "DOBLO COMBI PREMIO PLUS"
+                - option "DOBLO COMBI PREMIO PLUS MAXI"
+                - option "DOBLO COMBI PREMIOPLUS"
+                - option "DOBLO COMBI PREMIOPLUSMAXI"
+                - option "DOBLO COMBI SAFELINE"
+                - option "DOBLO COMBI SAFELINE MAXI"
+                - option "DOBLO COMBI TREKKING"
+                - option "DOBLO COMBI URBAN"
+                - option "DOBLO COMBI VIP"
+                - option "DOBLO COMBIMIX MAXI 1.3 MULTIJET"
+                - option "DOBLO COMBIMIX MAXI 1.9 MULTIJET"
+                - option "DOBLO MAXI"
+                - option "DOBLO MY COMBI"
+                - option "DOBLO PAN.PREMIO"
+                - option "DOBLO PANO. PREMIO BLACK"
+                - option "DUCATO"
+                - option "DUCATO 11"
+                - option "DUCATO 15"
+                - option "DUCATO CAMLIVAN 2.8 JTD"
+                - option "DUCATO MAXI"
+                - option "DUCATO MAXI C. KABIN SASI 2.8 JTD"
+                - option "DUCATO MAXI C.KABIN SASI"
+                - option "DUCATO MAXI CIFT KABIN SASI"
+                - option "DUCATO MAXI SASI"
+                - option "DUCATO MAXI SASI 2.8 JTD"
+                - option "DUCATO MAXIMINIBUS L3H2"
+                - option "DUCATO MINI.MAXI L4H2"
+                - option "DUCATO O. MAXI L4H2"
+                - option "DUCATO OTO.MAXI L4H2"
+                - option "DUCATO OTOB.MAXI L3H2"
+                - option "DUCATO OTOB.MAXI L4H2"
+                - option "DUCATO SASI MAXI CIFT KABIN L3H1"
+                - option "DUCATO SASI MAXI TEK KABINL3H1"
+                - option "DUCATO SASI TEK KABIN L2H1"
+                - option "DUCATO TEK KABIN ORTA SASI"
+                - option "EGEA" [selected]
+                - option "EGEA HATCBACK EASY PLUS"
+                - option "EGEA S.WAGON LOUNGE PLUS"
+                - option "EGEA S.WAGON MIRROR"
+                - option "EGEA S.WAGON S-DESIGN"
+                - option "EGEA S.WAGON STREET"
+                - option "EGEA S.WAGON URBAN PLUS"
+                - option "EGEA STATIONWAGON URBAN PLUS"
+                - option "FIORINO"
+                - option "FIORINO COMBI"
+                - option "FIORINO COMBI 1.3 M.JET 75"
+                - option "FIORINO COMBI 1.4"
+                - option "FIORINO COMBI EMOTION"
+                - option "FIORINO COMBI POP"
+                - option "FIORINO COMBI PREMIO"
+                - option "FIORINO COMBI SAFELINE"
+                - option "FIORINO COMBI TREKKING"
+                - option "FIORINO COMBI URBAN"
+                - option "FIORINO COMBIMIX"
+                - option "FIORINO COMBIMIX 1.3 MULTIJET"
+                - option "FIORINO COMBISAFELINE"
+                - option "FIORINO TREKKING"
+                - option "FREEMONT"
+                - option "FREEMONT LOUNGE"
+                - option "FREEMONT URBAN"
+                - option "FULLBACK FULLROCK 4X4 A/T"
+                - option "FULLBACK FULLROCK 4X4 A/T 2.4 180"
+                - option "FULLBACK HARDROCK 4X4 A/T"
+                - option "FULLBACK HARDROCK 4X4 A/T 2.4 180"
+                - option "FULLBACK HARDROCK 4X4 M/T"
+                - option "FULLBACK HARDROCK 4X4 M/T 2.4 180"
+                - option "FULLBACK ROCK 4X2 M/T"
+                - option "FULLBACK ROCK 4X2 M/T 2.4 150"
+                - option "FULLBACK ROCK 4X4 M/T"
+                - option "FULLBACK ROCK 4X4 M/T 2.4 150"
+                - option "G. PUNTO"
+                - option "G.PUNTO"
+                - option "G.PUNTO 3 K"
+                - option "GRANDE PUNTO"
+                - option "GRANDE PUNTO S5 3 KAPI"
+                - option "GRANDE PUNTO S5 5 KAPI"
+                - option "IDEA"
+                - option "IDEA 1.3 MULTIJET"
+                - option "IDEA 1.4 16V"
+                - option "LINEA"
+                - option "LINEA 1.3 MULTIJET"
+                - option "LINEA 1.4"
+                - option "LINEA 1.4 16V T-JET"
+                - option "LINEA ACTUAL"
+                - option "LINEA ACTUAL PLUS"
+                - option "LINEA DYNAMIC PLUS"
+                - option "LINEA EASY"
+                - option "LINEA EMOTION PLUS"
+                - option "LINEA LOUNGE"
+                - option "LINEA MOOD"
+                - option "LINEA POP"
+                - option "LINEA URBAN"
+                - option "LINEA VIA"
+                - option "MY FIORINO"
+                - option "MY FIORINO COMBI"
+                - option "MY FIORINO COMBI 1.3 M.JET"
+                - option "MY FIORINO COMBI 1.4"
+                - option "MY FIORINO COMBIMIX"
+                - option "PALIO"
+                - option "PALIO 1.4 FIRE"
+                - option "PALIO SOLE"
+                - option "PALIO SOLE 1.3 MULTIJET"
+                - option "PALIO SOLE 1.4"
+                - option "PANDA"
+                - option "PANDA 1.1"
+                - option "PANDA 1.2"
+                - option "PANDA 4X4"
+                - option "PANDA CITY"
+                - option "PANDA JOY"
+                - option "PANDA LOUNGE"
+                - option "PANDA POP"
+                - option "PANDA POP EASY"
+                - option "PANDA POPSTAR"
+                - option "PANDA URBAN"
+                - option "PRATICO"
+                - option "PRATICO KASALI"
+                - option "PRATICO PLUS KASALI"
+                - option "PRATICO PLUS KASALIKAMYONET"
+                - option "PRATICO SASI"
+                - option "PRATICOPLUS KASALIKAMYONET"
+                - option "PUNTO"
+                - option "PUNTO EASY"
+                - option "PUNTO EVO"
+                - option "PUNTO LOUNGE"
+                - option "PUNTO POP"
+                - option "PUNTO POPSTAR"
+                - option "SCUDO"
+                - option "SCUDO COMBI"
+                - option "SCUDO COMBIMIX"
+                - option "SCUDO EXECUTIVE"
+                - option "SEDICI"
+                - option "STRADA PICK UP"
+                - option "STRADA PICK UP 1.2"
+                - option "STRADA PICK UP 1.9D"
+                - option "STRADA PICK UP UZUN KABIN"
+            - generic [ref=f9e86]:
+              - generic [ref=f9e87]: Kasa / Nesil
+              - combobox [ref=f9e88]:
+                - option "Nesil seçin" [selected]
+            - generic [ref=f9e89]:
+              - generic [ref=f9e90]: Motor
+              - combobox [disabled] [ref=f9e91]:
+                - option "Motor seçin" [selected]
+          - generic [ref=f9e92]:
+            - button "Parçaları Göster" [disabled]
+  - contentinfo [ref=f9e93]:
+    - generic [ref=f9e94]:
+      - generic [ref=f9e95]:
+        - generic [ref=f9e96]:
+          - generic [ref=f9e97]:
+            - generic [ref=f9e98]: Akinel
+            - generic [ref=f9e99]: Yedek Parça
+          - paragraph [ref=f9e100]: Test açıklaması güncel
+        - generic [ref=f9e101]:
+          - heading "Hızlı Linkler" [level=3] [ref=f9e102]
+          - list [ref=f9e103]:
+            - listitem [ref=f9e104]:
+              - link "Ana Sayfa" [ref=f9e105] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f9e106]:
+              - link "Ürünler" [ref=f9e107] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f9e108]:
+              - link "Aracımı Seç" [ref=f9e109] [cursor=pointer]:
+                - /url: /vehicle
+            - listitem [ref=f9e110]:
+              - link "OEM Ara" [ref=f9e111] [cursor=pointer]:
+                - /url: /vin
+            - listitem [ref=f9e112]:
+              - link "Garajım" [ref=f9e113] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f9e114]:
+              - link "Hakkımızda" [ref=f9e115] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=f9e116]:
+          - heading "Müşteri" [level=3] [ref=f9e117]
+          - list [ref=f9e118]:
+            - listitem [ref=f9e119]:
+              - link "Giriş Yap" [ref=f9e120] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=f9e121]:
+              - link "Kayıt Ol" [ref=f9e122] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=f9e123]:
+              - link "Garajım" [ref=f9e124] [cursor=pointer]:
+                - /url: /garage
+            - listitem [ref=f9e125]:
+              - link "Hesabım" [ref=f9e126] [cursor=pointer]:
+                - /url: /account
+            - listitem [ref=f9e127]:
+              - link "Periyodik Bakım" [ref=f9e128] [cursor=pointer]:
+                - /url: /maintenance
+        - generic [ref=f9e129]:
+          - heading "İletişim" [level=3] [ref=f9e130]
+          - generic [ref=f9e131]:
+            - paragraph [ref=f9e132]: AKN MOTORS Car Service
+            - link "+90 533 140 56 49" [ref=f9e133] [cursor=pointer]:
+              - /url: tel:+905331405649
+            - generic [ref=f9e140]:
+              - paragraph [ref=f9e141]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f9e142]: "Pazar: Kapalı"
+      - generic [ref=f9e143]:
+        - generic [ref=f9e144]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f9e145]:
+          - link "Gizlilik Politikası" [ref=f9e146] [cursor=pointer]:
+            - /url: "#"
+          - link "Kullanım Koşulları" [ref=f9e147] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f9e153] [cursor=pointer]
+  - alert [ref=f9e159]

@@ -1,0 +1,188 @@
+- generic [ref=f27e1]:
+  - banner [aria-hidden] [ref=f27e2]:
+    - generic [ref=f27e4]:
+      - button [ref=f27e342]
+      - link [ref=f27e343] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f27e8]: Akinel
+      - generic [ref=f27e9]:
+        - link [ref=f27e344] [cursor=pointer]:
+          - /url: /search
+        - link [ref=f27e345] [cursor=pointer]:
+          - /url: /garage
+  - main [aria-hidden] [ref=f27e23]:
+    - generic [ref=f27e26]:
+      - generic [ref=f27e27]: 3 sonuç
+      - generic [ref=f27e28]:
+        - button [ref=f27e346]: Filtrele
+        - combobox [ref=f27e30]
+    - generic [ref=f27e31]:
+      - navigation [ref=f27e347]:
+        - link [ref=f27e348] [cursor=pointer]:
+          - /url: /
+          - text: Ana Sayfa
+        - generic [ref=f27e35]: Ürünler
+      - generic [ref=f27e40]:
+        - heading [level=1] [ref=f27e349]: Tüm Ürünler
+        - paragraph [ref=f27e289]: 3 ürün bulundu
+      - generic [ref=f27e44]:
+        - generic [ref=f27e290]:
+          - link [ref=f27e350] [cursor=pointer]:
+            - /url: /products/arka-fren-balata-seti
+            - generic [ref=f27e298]:
+              - paragraph [ref=f27e299]: Bosch
+              - heading [level=3] [ref=f27e351]: Arka Fren Balata Seti
+              - paragraph [ref=f27e301]: Fren Balatası
+              - generic [ref=f27e302]:
+                - generic [ref=f27e303]: ₺850,00
+                - generic [ref=f27e304]: Stokta
+          - button [ref=f27e352]: Sepete Ekle
+        - generic [ref=f27e307]:
+          - link [ref=f27e353] [cursor=pointer]:
+            - /url: /products/on-fren-diski
+            - generic [ref=f27e315]:
+              - paragraph [ref=f27e316]: TRW
+              - heading [level=3] [ref=f27e354]: Ön Fren Diski
+              - paragraph [ref=f27e318]: Fren Diskleri
+              - generic [ref=f27e319]:
+                - generic [ref=f27e320]: ₺1.200,00
+                - generic [ref=f27e321]: Stokta
+          - button [ref=f27e355]: Sepete Ekle
+        - generic [ref=f27e324]:
+          - link [ref=f27e356] [cursor=pointer]:
+            - /url: /products/yag-filtresi
+            - generic [ref=f27e332]:
+              - paragraph [ref=f27e333]: Bosch
+              - heading [level=3] [ref=f27e357]: Yağ Filtresi
+              - paragraph [ref=f27e335]: Yağ Filtreleri
+              - generic [ref=f27e336]:
+                - generic [ref=f27e337]: ₺120,00
+                - generic [ref=f27e338]: Stokta
+          - button [ref=f27e358]: Sepete Ekle
+  - contentinfo [aria-hidden] [ref=f27e225]:
+    - generic [ref=f27e226]:
+      - generic [ref=f27e227]:
+        - generic [ref=f27e228]:
+          - generic [ref=f27e229]:
+            - generic [ref=f27e230]: Akinel
+            - generic [ref=f27e231]: Yedek Parça
+          - paragraph [ref=f27e232]: Test açıklaması güncel
+        - generic [ref=f27e233]:
+          - heading [level=3] [ref=f27e359]: Hızlı Linkler
+          - list [ref=f27e235]:
+            - listitem [ref=f27e236]:
+              - link [ref=f27e360] [cursor=pointer]:
+                - /url: /
+                - text: Ana Sayfa
+            - listitem [ref=f27e238]:
+              - link [ref=f27e361] [cursor=pointer]:
+                - /url: /products
+                - text: Ürünler
+            - listitem [ref=f27e240]:
+              - link [ref=f27e362] [cursor=pointer]:
+                - /url: /vehicle
+                - text: Aracımı Seç
+            - listitem [ref=f27e242]:
+              - link [ref=f27e363] [cursor=pointer]:
+                - /url: /vin
+                - text: OEM Ara
+            - listitem [ref=f27e244]:
+              - link [ref=f27e364] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f27e246]:
+              - link [ref=f27e365] [cursor=pointer]:
+                - /url: /about
+                - text: Hakkımızda
+        - generic [ref=f27e248]:
+          - heading [level=3] [ref=f27e366]: Müşteri
+          - list [ref=f27e250]:
+            - listitem [ref=f27e251]:
+              - link [ref=f27e367] [cursor=pointer]:
+                - /url: /login
+                - text: Giriş Yap
+            - listitem [ref=f27e253]:
+              - link [ref=f27e368] [cursor=pointer]:
+                - /url: /register
+                - text: Kayıt Ol
+            - listitem [ref=f27e255]:
+              - link [ref=f27e369] [cursor=pointer]:
+                - /url: /garage
+                - text: Garajım
+            - listitem [ref=f27e257]:
+              - link [ref=f27e370] [cursor=pointer]:
+                - /url: /account
+                - text: Hesabım
+            - listitem [ref=f27e259]:
+              - link [ref=f27e371] [cursor=pointer]:
+                - /url: /maintenance
+                - text: Periyodik Bakım
+        - generic [ref=f27e261]:
+          - heading [level=3] [ref=f27e372]: İletişim
+          - generic [ref=f27e263]:
+            - paragraph [ref=f27e264]: AKN MOTORS Car Service
+            - link [ref=f27e373] [cursor=pointer]:
+              - /url: tel:+905331405649
+              - text: +90 533 140 56 49
+            - generic [ref=f27e272]:
+              - paragraph [ref=f27e273]: "Pzt - Cmt: 09:00 - 19:00"
+              - paragraph [ref=f27e274]: "Pazar: Kapalı"
+      - generic [ref=f27e275]:
+        - generic [ref=f27e276]: © 2026 Akinel Yedek Parça. Tüm hakları saklıdır.
+        - generic [ref=f27e277]:
+          - link [ref=f27e374] [cursor=pointer]:
+            - /url: "#"
+            - text: Gizlilik Politikası
+          - link [ref=f27e375] [cursor=pointer]:
+            - /url: "#"
+            - text: Kullanım Koşulları
+  - button "Open Next.js Dev Tools" [ref=f27e285] [cursor=pointer]
+  - alert [ref=f27e341]
+  - dialog [ref=f27e379]:
+    - heading "Filtreler" [level=2] [ref=f27e381]
+    - generic [ref=f27e383]:
+      - generic [ref=f27e384]:
+        - paragraph [ref=f27e385]: Marka
+        - combobox [active] [ref=f27e386]:
+          - option "Tüm Markalar"
+          - option "Bosch" [selected]
+          - option "Delphi"
+          - option "SKF"
+          - option "TRW"
+          - option "Valeo"
+      - generic [ref=f27e387]:
+        - paragraph [ref=f27e388]: Kategori
+        - combobox [ref=f27e389]:
+          - option "Tüm Kategoriler" [selected]
+          - option "ABS Sensörleri"
+          - option "Debriyaj"
+          - option "Elektrik"
+          - option "Filtreler (Tümü)"
+          - option "Hava Filtreleri"
+          - option "Yağ Filtreleri"
+          - option "Frenler (Tümü)"
+          - option "Fren Balatası"
+          - option "Fren Diskleri"
+          - option "Soğutma Sistemi"
+          - option "Süspansiyon"
+      - generic [ref=f27e391] [cursor=pointer]:
+        - checkbox "Sadece stokta olanlar" [ref=f27e392]
+        - text: Sadece stokta olanlar
+      - generic [ref=f27e393]:
+        - paragraph [ref=f27e394]: Fiyat Aralığı (₺)
+        - generic [ref=f27e395]:
+          - spinbutton "Min" [ref=f27e396]
+          - spinbutton "Maks" [ref=f27e397]
+      - generic [ref=f27e398]:
+        - paragraph [ref=f27e399]: Sıralama
+        - combobox [ref=f27e400]:
+          - option "Varsayılan" [selected]
+          - option "En Yeni"
+          - 'option "Fiyat: Düşükten Yükseğe"'
+          - 'option "Fiyat: Yüksekten Düşüğe"'
+          - 'option "İsim: A-Z"'
+          - 'option "İsim: Z-A"'
+    - generic [ref=f27e401]:
+      - button "Filtrele Uygula" [ref=f27e402]
+      - button "Temizle" [ref=f27e403]
+    - button "Close" [ref=f27e404]

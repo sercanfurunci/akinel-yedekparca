@@ -1,0 +1,2 @@
+[    1597ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://www.yedekparca.com.tr/uye-giris:0
+[    1606ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://www.yedekparca.com.tr/uye-giris:0
