@@ -37,7 +37,7 @@ export function MobileNav() {
       <SheetContent side="left" className="w-72 p-0">
         <SheetHeader className="border-b px-4 py-4">
           <SheetTitle className="text-left">
-            <span className="text-brand font-bold text-xl">Akinel</span>
+            <span className="text-brand font-bold text-xl">'AKINEL</span>
             <span className="text-muted-foreground font-normal text-base ml-1.5">Yedek Parça</span>
           </SheetTitle>
         </SheetHeader>

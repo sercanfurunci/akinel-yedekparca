@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Kullanım Koşulları | AKİNEL OTO YEDEK PARÇA',
+  title: 'Kullanım Koşulları | AKINEL OTO YEDEK PARÇA',
 };
 
 export default function KullanimKosullariPage() {
@@ -19,13 +19,13 @@ export default function KullanimKosullariPage() {
         <section>
           <h2 className="text-base font-semibold mb-2">1. Taraflar ve Kapsam</h2>
           <p>
-            Bu Kullanım Koşulları, <strong>[İŞLETME ADI]</strong> (&ldquo;Akinel&rdquo; veya &ldquo;Satıcı&rdquo;) ile siteyi ziyaret eden veya hizmetlerden yararlanan kişi (&ldquo;Kullanıcı&rdquo;) arasındaki ilişkiyi düzenler. Siteyi kullanmakla bu koşulları kabul etmiş sayılırsınız.
+            Bu Kullanım Koşulları, <strong>[İŞLETME ADI]</strong> (&ldquo;AKINEL&rdquo; veya &ldquo;Satıcı&rdquo;) ile siteyi ziyaret eden veya hizmetlerden yararlanan kişi (&ldquo;Kullanıcı&rdquo;) arasındaki ilişkiyi düzenler. Siteyi kullanmakla bu koşulları kabul etmiş sayılırsınız.
           </p>
         </section>
 
         <section>
           <h2 className="text-base font-semibold mb-2">2. Hizmetin Kapsamı</h2>
-          <p>AKİNEL OTO YEDEK PARÇA, otomotiv yedek parçalarının çevrimiçi olarak satışını gerçekleştiren bir e-ticaret platformudur. Site üzerinden sunulan araç uyumluluk bilgileri yardımcı nitelikte olup, kesin uyumluluk için yetkili servis danışmanınıza başvurmanız önerilir.</p>
+          <p>AKINEL OTO YEDEK PARÇA, otomotiv yedek parçalarının çevrimiçi olarak satışını gerçekleştiren bir e-ticaret platformudur. Site üzerinden sunulan araç uyumluluk bilgileri yardımcı nitelikte olup, kesin uyumluluk için yetkili servis danışmanınıza başvurmanız önerilir.</p>
         </section>
 
         <section>
@@ -55,12 +55,12 @@ export default function KullanimKosullariPage() {
 
         <section>
           <h2 className="text-base font-semibold mb-2">7. Fikri Mülkiyet</h2>
-          <p>Sitedeki tüm içerik, logo, görsel ve yazılım Akinel&apos;e aittir. İzinsiz kopyalanamaz, çoğaltılamaz veya dağıtılamaz.</p>
+          <p>Sitedeki tüm içerik, logo, görsel ve yazılım AKINEL&apos;e aittir. İzinsiz kopyalanamaz, çoğaltılamaz veya dağıtılamaz.</p>
         </section>
 
         <section>
           <h2 className="text-base font-semibold mb-2">8. Sorumluluk Sınırlaması</h2>
-          <p>Akinel, siteye erişim kesintilerinden, üçüncü taraf bağlantılarından veya kullanıcının yanlış araç seçiminden kaynaklanabilecek zararlardan sorumlu tutulamaz.</p>
+          <p>AKINEL, siteye erişim kesintilerinden, üçüncü taraf bağlantılarından veya kullanıcının yanlış araç seçiminden kaynaklanabilecek zararlardan sorumlu tutulamaz.</p>
         </section>
 
         <section>
@@ -70,7 +70,7 @@ export default function KullanimKosullariPage() {
 
         <section>
           <h2 className="text-base font-semibold mb-2">10. Değişiklikler</h2>
-          <p>Akinel bu koşulları önceden haber vermeksizin güncelleme hakkını saklı tutar. Güncel koşullar sitede yayımlanır.</p>
+          <p>AKINEL bu koşulları önceden haber vermeksizin güncelleme hakkını saklı tutar. Güncel koşullar sitede yayımlanır.</p>
         </section>
 
         <section>

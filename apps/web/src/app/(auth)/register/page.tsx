@@ -58,7 +58,7 @@ export default function RegisterPage() {
     <div className="container max-w-md mx-auto py-12 px-4">
       <Card>
         <CardHeader className="text-center">
-          <div className="text-brand font-bold text-2xl mb-1">Akinel</div>
+          <div className="text-brand font-bold text-2xl mb-1">'AKINEL</div>
           <CardTitle>Kayıt Ol</CardTitle>
         </CardHeader>
         <CardContent>

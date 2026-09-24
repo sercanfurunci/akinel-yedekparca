@@ -73,7 +73,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-2xl mx-auto text-center">
             <p className="text-brand-foreground/60 text-xs font-semibold uppercase tracking-widest mb-3">
-              Akinel Otomotiv Yedek Parça
+              AKINEL OTO YEDEK PARÇA
             </p>
             <h1 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">
               Aracınız için doğru parçayı bulun
@@ -116,7 +116,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 max-w-7xl py-10">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="flex-1">
-              <h2 className="text-xl font-bold mb-2">Akinel Otomotiv Yedek Parça</h2>
+              <h2 className="text-xl font-bold mb-2">AKINEL OTO YEDEK PARÇA</h2>
               <p className="text-muted-foreground text-sm leading-relaxed max-w-xl">
                 Otomobil ve ticari araçlar için geniş yedek parça seçenekleri.
                 OEM numarasıyla arama, araç bazlı uyumlu parça bulma ve anlık stok bilgisi.

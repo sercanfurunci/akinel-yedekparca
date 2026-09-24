@@ -36,11 +36,11 @@ export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 max-w-4xl py-12">
       <h1 className="text-3xl font-bold mb-2">Hakkımızda</h1>
-      <p className="text-muted-foreground mb-10">AKİNEL OTO YEDEK PARÇA nedir ve ne sağlar?</p>
+      <p className="text-muted-foreground mb-10">AKINEL OTO YEDEK PARÇA nedir ve ne sağlar?</p>
 
       <div className="prose prose-sm max-w-none space-y-6 text-muted-foreground mb-12">
         <p className="text-foreground text-base leading-relaxed">
-          <strong>AKİNEL OTO YEDEK PARÇA</strong>, Darıca/Kocaeli merkezli{' '}
+          <strong>AKINEL OTO YEDEK PARÇA</strong>, Darıca/Kocaeli merkezli{' '}
           <strong>AKN MOTORS Car Service</strong> hizmet noktasının online yedek parça platformudur.
         </p>
         <p className="leading-relaxed">
