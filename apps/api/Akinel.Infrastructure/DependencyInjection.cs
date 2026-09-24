@@ -17,8 +17,15 @@ public static class DependencyInjection
         services.Configure<SessionSettings>(configuration.GetSection("SessionSettings"));
         services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
 
-        services.AddDbContext<AkinelDbContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+        var connStr = configuration.GetConnectionString("DefaultConnection")
+            ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+        if (connStr != null && connStr.StartsWith("postgresql://"))
+        {
+            var uri = new Uri(connStr);
+            var userInfo = uri.UserInfo.Split(':');
+            connStr = $"Host={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
+        }
+        services.AddDbContext<AkinelDbContext>(options => options.UseNpgsql(connStr));
 
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IOrderService, OrderService>();
