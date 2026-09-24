@@ -69,36 +69,52 @@ export default function HomePage() {
   return (
     <div>
       {/* ── 1. HERO ─────────────────────────────────── */}
-      <section className="bg-brand text-brand-foreground py-12 md:py-16">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="max-w-2xl mx-auto text-center">
-            <p className="text-brand-foreground/60 text-xs font-semibold uppercase tracking-widest mb-3">
-              AKINEL OTO YEDEK PARÇA
-            </p>
-            <h1 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">
-              Aracınız için doğru parçayı bulun
-            </h1>
-            <p className="text-brand-foreground/75 mb-7 text-base md:text-lg">
-              OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın.
-            </p>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-2 mb-5">
-              <GlobalSearch size="lg" className="[&_input]:bg-white [&_input]:text-foreground [&_input]:placeholder:text-muted-foreground" />
+      <section className="relative bg-[#111827] text-white py-16 md:py-24 overflow-hidden">
+        {/* Subtle red gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent pointer-events-none" />
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+        <div className="container mx-auto px-4 max-w-7xl relative">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <span className="h-0.5 w-8 bg-brand rounded-full" />
+              <p className="text-brand text-xs font-bold uppercase tracking-widest">
+                AKINEL OTO YEDEK PARÇA
+              </p>
+              <span className="h-0.5 w-8 bg-brand rounded-full" />
             </div>
-            <div className="flex flex-wrap justify-center gap-2.5">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight tracking-tight">
+              Aracınız için{' '}
+              <span className="text-brand">doğru parçayı</span>{' '}
+              bulun
+            </h1>
+            <p className="text-white/70 mb-8 text-base md:text-lg max-w-2xl mx-auto">
+              OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın.
+              AKN MOTORS Car Service güvencesi.
+            </p>
+            <div className="bg-white rounded-xl p-2 mb-6 shadow-2xl shadow-brand/10 ring-1 ring-white/10">
+              <GlobalSearch size="lg" />
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
               <Link
                 href="/vehicle"
-                className={cn(buttonVariants({ variant: 'secondary' }), 'bg-white/20 text-white hover:bg-white/30 border-white/30')}
+                className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-5')}
               >
-                <Car size={15} className="mr-2" /> Aracımı Seç
+                <Car size={16} className="mr-2" /> Aracımı Seç
               </Link>
               <Link
                 href="/search"
-                className={cn(buttonVariants({ variant: 'secondary' }), 'bg-white/20 text-white hover:bg-white/30 border-white/30')}
+                className={cn(buttonVariants({ variant: 'secondary', size: 'lg' }), 'h-11 px-5')}
               >
-                <Search size={15} className="mr-2" /> OEM ile Ara
+                <Search size={16} className="mr-2" /> OEM ile Ara
               </Link>
               <span
-                className={cn(buttonVariants({ variant: 'secondary' }), 'bg-white/10 text-white/40 border-white/15 cursor-not-allowed opacity-50')}
+                className="inline-flex items-center h-11 px-5 rounded-lg bg-white/5 text-white/40 border border-white/10 text-sm font-medium cursor-not-allowed"
                 title="Yakında"
               >
                 VIN ile Ara (Yakında)
@@ -112,22 +128,27 @@ export default function HomePage() {
       <BusinessStrip />
 
       {/* ── 3. AKINEL INTRODUCTION ──────────────────── */}
-      <section className="border-b bg-muted/20">
-        <div className="container mx-auto px-4 max-w-7xl py-10">
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <div className="flex-1">
-              <h2 className="text-xl font-bold mb-2">AKINEL OTO YEDEK PARÇA</h2>
-              <p className="text-muted-foreground text-sm leading-relaxed max-w-xl">
+      <section className="bg-white border-b border-border">
+        <div className="container mx-auto px-4 max-w-7xl py-14">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <div className="w-12 h-1 bg-brand rounded-full mb-4" />
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#111827]">
+                AKINEL OTO YEDEK PARÇA
+              </h2>
+              <p className="text-muted-foreground text-base leading-relaxed">
                 Otomobil ve ticari araçlar için geniş yedek parça seçenekleri.
                 OEM numarasıyla arama, araç bazlı uyumlu parça bulma ve anlık stok bilgisi.
-                AKN MOTORS Car Service güvencesiyle.
+                <span className="font-semibold text-[#111827]"> AKN MOTORS Car Service</span> güvencesiyle.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-2 shrink-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {trustItems.map((item) => (
-                <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Check size={14} className="text-brand shrink-0" />
-                  {item}
+                <div key={item} className="flex items-center gap-3 rounded-lg border border-border bg-[#F3F4F6]/40 px-4 py-3">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand">
+                    <Check size={14} className="text-white" strokeWidth={3} />
+                  </div>
+                  <span className="text-sm font-medium text-[#111827]">{item}</span>
                 </div>
               ))}
             </div>
@@ -137,13 +158,16 @@ export default function HomePage() {
 
       {/* ── 4. POPULAR BRANDS ───────────────────────── */}
       {brands.length > 0 && (
-        <section className="border-b">
-          <div className="container mx-auto px-4 max-w-7xl py-8">
-            <div className="flex items-center justify-between mb-5">
-              <h2 className="text-lg font-bold">Popüler Markalar</h2>
+        <section className="border-b bg-[#F3F4F6]">
+          <div className="container mx-auto px-4 max-w-7xl py-12">
+            <div className="flex items-end justify-between mb-6">
+              <div>
+                <div className="w-10 h-1 bg-brand rounded-full mb-3" />
+                <h2 className="text-xl md:text-2xl font-bold text-[#111827]">Popüler Markalar</h2>
+              </div>
               <Link
                 href="/products"
-                className="text-sm text-brand hover:text-brand/80 flex items-center gap-1 transition-colors"
+                className="text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors"
               >
                 Tümü <ChevronRight size={14} />
               </Link>
@@ -153,7 +177,7 @@ export default function HomePage() {
                 <Link
                   key={brand.id}
                   href={`/products?brandId=${brand.id}`}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border bg-card hover:border-brand hover:bg-brand-muted/30 hover:text-brand transition-all text-sm font-semibold text-foreground"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border bg-white hover:border-brand hover:text-brand hover:shadow-sm transition-all text-sm font-semibold text-[#111827]"
                 >
                   {brand.name}
                 </Link>
@@ -164,50 +188,58 @@ export default function HomePage() {
       )}
 
       {/* ── 5. VEHICLE FINDER ───────────────────────── */}
-      <section className="container mx-auto px-4 max-w-7xl py-10">
-        <div className="bg-card border rounded-xl p-6">
-          <div className="mb-5">
-            <h2 className="text-lg font-bold">Aracınıza Göre Parça Bulun</h2>
-            <p className="text-sm text-muted-foreground mt-0.5">
-              Aracınızı seçin, uyumlu parçaları görüntüleyin.
-            </p>
-          </div>
-          {selectedVehicle ? (
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 rounded-lg bg-brand-muted px-4 py-3">
-                <Car size={18} className="text-brand shrink-0" />
-                <div>
-                  <p className="text-xs text-muted-foreground">Seçili Araç</p>
-                  <p className="font-semibold text-sm">{selectedVehicle.displayLabel}</p>
+      <section className="bg-white">
+        <div className="container mx-auto px-4 max-w-7xl py-12">
+          <div className="bg-white border border-border rounded-2xl p-6 md:p-8 shadow-sm">
+            <div className="mb-6">
+              <div className="w-10 h-1 bg-brand rounded-full mb-3" />
+              <h2 className="text-xl md:text-2xl font-bold text-[#111827]">Aracınıza Göre Parça Bulun</h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                Aracınızı seçin, uyumlu parçaları anında görüntüleyin.
+              </p>
+            </div>
+            {selectedVehicle ? (
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 rounded-lg bg-brand-muted border border-brand/20 px-4 py-3.5">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand text-white">
+                    <Car size={18} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-brand font-semibold uppercase tracking-wide">Seçili Araç</p>
+                    <p className="font-bold text-sm text-[#111827]">{selectedVehicle.displayLabel}</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href={`/products?vehicleEngineId=${selectedVehicle.engineId}`}
+                    className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-5')}
+                  >
+                    Parçaları Gör
+                  </Link>
+                  <Link href="/vehicle" className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-11 px-5')}>
+                    Aracı Değiştir
+                  </Link>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href={`/products?vehicleEngineId=${selectedVehicle.engineId}`}
-                  className={cn(buttonVariants({ variant: 'default' }), 'bg-brand text-brand-foreground hover:bg-brand/90')}
-                >
-                  Parçaları Gör
-                </Link>
-                <Link href="/vehicle" className={buttonVariants({ variant: 'outline' })}>
-                  Aracı Değiştir
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <VehicleFinder showSaveButton />
-          )}
+            ) : (
+              <VehicleFinder showSaveButton />
+            )}
+          </div>
         </div>
       </section>
 
       {/* ── 6. CATEGORIES ───────────────────────────── */}
       {categories.length > 0 && (
-        <section className="border-t bg-muted/20">
-          <div className="container mx-auto px-4 max-w-7xl py-10">
-            <div className="flex items-center justify-between mb-5">
-              <h2 className="text-lg font-bold">Yedek Parça Kategorileri</h2>
+        <section className="border-t bg-[#F3F4F6]">
+          <div className="container mx-auto px-4 max-w-7xl py-12">
+            <div className="flex items-end justify-between mb-6">
+              <div>
+                <div className="w-10 h-1 bg-brand rounded-full mb-3" />
+                <h2 className="text-xl md:text-2xl font-bold text-[#111827]">Yedek Parça Kategorileri</h2>
+              </div>
               <Link
                 href="/products"
-                className="text-sm text-brand hover:text-brand/80 flex items-center gap-1 transition-colors"
+                className="text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors"
               >
                 Tümü <ChevronRight size={14} />
               </Link>
@@ -219,12 +251,12 @@ export default function HomePage() {
                   <Link
                     key={cat.id}
                     href={`/category/${cat.slug}`}
-                    className="flex flex-col items-center gap-2.5 py-5 px-3 rounded-xl border bg-card hover:border-brand hover:bg-brand-muted/20 transition-all text-center group"
+                    className="flex flex-col items-center gap-3 py-6 px-3 rounded-xl border border-border bg-white hover:border-brand hover:-translate-y-0.5 hover:shadow-md transition-all text-center group"
                   >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-muted group-hover:bg-brand group-hover:text-brand-foreground transition-colors">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F3F4F6] text-[#111827] group-hover:bg-brand group-hover:text-white transition-colors">
                       <Icon size={22} />
                     </div>
-                    <span className="text-xs font-semibold leading-snug">{cat.name}</span>
+                    <span className="text-xs font-semibold leading-snug text-[#111827]">{cat.name}</span>
                   </Link>
                 );
               })}
@@ -234,14 +266,19 @@ export default function HomePage() {
       )}
 
       {/* ── 7. FEATURED PRODUCTS ────────────────────── */}
-      <section className="container mx-auto px-4 max-w-7xl py-10">
-        <div className="flex items-baseline justify-between mb-5">
-          <h2 className="text-lg font-bold">Öne Çıkan Ürünler</h2>
-          <Link href="/products" className={cn(buttonVariants({ variant: 'outline' }), 'text-sm h-8 px-3')}>
-            Tümünü Gör
-          </Link>
+      <section className="bg-white border-t border-border">
+        <div className="container mx-auto px-4 max-w-7xl py-12">
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <div className="w-10 h-1 bg-brand rounded-full mb-3" />
+              <h2 className="text-xl md:text-2xl font-bold text-[#111827]">Öne Çıkan Ürünler</h2>
+            </div>
+            <Link href="/products" className={cn(buttonVariants({ variant: 'outline' }), 'text-sm h-9 px-4')}>
+              Tümünü Gör
+            </Link>
+          </div>
+          <ProductGrid products={products} loading={loadingProducts} skeletonCount={6} />
         </div>
-        <ProductGrid products={products} loading={loadingProducts} skeletonCount={6} />
       </section>
     </div>
   );

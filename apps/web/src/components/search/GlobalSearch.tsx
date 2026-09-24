@@ -58,8 +58,8 @@ export function GlobalSearch({ defaultValue = '', className, size = 'default', a
         onChange={(e) => setQuery(e.target.value)}
         placeholder="OEM numarası, parça adı veya parça kodu…"
         className={cn(
-          'w-full rounded-lg border border-input bg-background pl-10 pr-16 text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 focus:border-ring transition-colors placeholder:text-muted-foreground',
-          size === 'lg' ? 'h-12 text-base pl-12 pr-20' : 'h-9'
+          'w-full rounded-lg border border-input bg-background pl-10 pr-16 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand transition-colors placeholder:text-muted-foreground',
+          size === 'lg' ? 'h-12 text-base pl-12 pr-20' : 'h-10'
         )}
       />
       <span className="absolute right-3 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-0.5 text-xs text-muted-foreground pointer-events-none">

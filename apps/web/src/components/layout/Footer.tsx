@@ -6,8 +6,6 @@ import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react';
 import { api } from '@/lib/api';
 import type { BusinessSettings } from '@/lib/types';
 
-const DAY_NAMES = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
-
 export function Footer() {
   const [biz, setBiz] = useState<BusinessSettings | null>(null);
 
@@ -26,75 +24,79 @@ export function Footer() {
   const sunOpen = biz?.workingHours.find(h => h.dayOfWeek === 0)?.isOpen ?? false;
 
   return (
-    <footer className="border-t mt-auto bg-muted/30">
-      <div className="container mx-auto px-4 max-w-7xl py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="mt-auto bg-[#111827] text-white">
+      <div className="container mx-auto px-4 max-w-7xl py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {/* Column 1 — Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="mb-3">
-              <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-10 w-auto rounded-md" />
+            <div className="mb-4">
+              <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-11 w-auto" />
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-white/60 leading-relaxed">
               {biz?.shortDescription ?? 'Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.'}
             </p>
+            <div className="mt-5 flex items-center gap-2">
+              <span className="h-0.5 w-8 bg-brand rounded-full" />
+              <span className="text-xs uppercase tracking-widest text-white/50 font-semibold">AKN Motors Güvencesiyle</span>
+            </div>
           </div>
 
           {/* Column 2 — Hızlı Linkler */}
           <div>
-            <h3 className="font-semibold text-sm mb-4">Hızlı Linkler</h3>
-            <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li><Link href="/" className="hover:text-foreground transition-colors">Ana Sayfa</Link></li>
-              <li><Link href="/products" className="hover:text-foreground transition-colors">Ürünler</Link></li>
-              <li><Link href="/vehicle" className="hover:text-foreground transition-colors">Aracımı Seç</Link></li>
-              <li><Link href="/vin" className="hover:text-foreground transition-colors">OEM Ara</Link></li>
-              <li><Link href="/garage" className="hover:text-foreground transition-colors">Garajım</Link></li>
-              <li><Link href="/about" className="hover:text-foreground transition-colors">Hakkımızda</Link></li>
+            <h3 className="font-semibold text-sm mb-4 text-white uppercase tracking-wider">Hızlı Linkler</h3>
+            <ul className="space-y-2.5 text-sm text-white/60">
+              <li><Link href="/" className="hover:text-brand transition-colors">Ana Sayfa</Link></li>
+              <li><Link href="/products" className="hover:text-brand transition-colors">Ürünler</Link></li>
+              <li><Link href="/vehicle" className="hover:text-brand transition-colors">Aracımı Seç</Link></li>
+              <li><Link href="/vin" className="hover:text-brand transition-colors">OEM Ara</Link></li>
+              <li><Link href="/garage" className="hover:text-brand transition-colors">Garajım</Link></li>
+              <li><Link href="/about" className="hover:text-brand transition-colors">Hakkımızda</Link></li>
             </ul>
           </div>
 
           {/* Column 3 — Müşteri */}
           <div>
-            <h3 className="font-semibold text-sm mb-4">Müşteri</h3>
-            <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li><Link href="/login" className="hover:text-foreground transition-colors">Giriş Yap</Link></li>
-              <li><Link href="/register" className="hover:text-foreground transition-colors">Kayıt Ol</Link></li>
-              <li><Link href="/garage" className="hover:text-foreground transition-colors">Garajım</Link></li>
-              <li><Link href="/account" className="hover:text-foreground transition-colors">Hesabım</Link></li>
-              <li><Link href="/maintenance" className="hover:text-foreground transition-colors">Periyodik Bakım</Link></li>
+            <h3 className="font-semibold text-sm mb-4 text-white uppercase tracking-wider">Müşteri</h3>
+            <ul className="space-y-2.5 text-sm text-white/60">
+              <li><Link href="/login" className="hover:text-brand transition-colors">Giriş Yap</Link></li>
+              <li><Link href="/register" className="hover:text-brand transition-colors">Kayıt Ol</Link></li>
+              <li><Link href="/garage" className="hover:text-brand transition-colors">Garajım</Link></li>
+              <li><Link href="/account" className="hover:text-brand transition-colors">Hesabım</Link></li>
+              <li><Link href="/maintenance" className="hover:text-brand transition-colors">Periyodik Bakım</Link></li>
             </ul>
           </div>
 
           {/* Column 4 — İletişim */}
           <div>
-            <h3 className="font-semibold text-sm mb-4">İletişim</h3>
-            <div className="space-y-3 text-sm text-muted-foreground">
-              <p className="font-medium text-foreground text-xs uppercase tracking-wide">AKN MOTORS Car Service</p>
+            <h3 className="font-semibold text-sm mb-4 text-white uppercase tracking-wider">İletişim</h3>
+            <div className="space-y-3 text-sm text-white/60">
+              <p className="font-semibold text-white text-xs uppercase tracking-wide">AKN MOTORS Car Service</p>
 
               {fullAddress && (
-                <div className="flex items-start gap-2">
-                  <MapPin size={14} className="mt-0.5 shrink-0 text-brand" />
+                <div className="flex items-start gap-2.5">
+                  <MapPin size={15} className="mt-0.5 shrink-0 text-brand" />
                   <span className="leading-snug">{fullAddress}</span>
                 </div>
               )}
 
               {biz?.phone && (
-                <a href={`tel:${biz.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-foreground transition-colors">
-                  <Phone size={14} className="shrink-0 text-brand" />
+                <a href={`tel:${biz.phone.replace(/\s/g, '')}`} className="flex items-center gap-2.5 hover:text-white transition-colors">
+                  <Phone size={15} className="shrink-0 text-brand" />
                   {biz.phone}
                 </a>
               )}
 
               {biz?.email && (
-                <a href={`mailto:${biz.email}`} className="flex items-center gap-2 hover:text-foreground transition-colors">
-                  <Mail size={14} className="shrink-0 text-brand" />
+                <a href={`mailto:${biz.email}`} className="flex items-center gap-2.5 hover:text-white transition-colors">
+                  <Mail size={15} className="shrink-0 text-brand" />
                   {biz.email}
                 </a>
               )}
 
               {(openLabel || !sunOpen) && (
-                <div className="flex items-start gap-2">
-                  <Clock size={14} className="mt-0.5 shrink-0 text-brand" />
+                <div className="flex items-start gap-2.5">
+                  <Clock size={15} className="mt-0.5 shrink-0 text-brand" />
                   <div className="leading-snug">
                     {openLabel && <p>{openLabel}</p>}
                     {!sunOpen && <p>Pazar: Kapalı</p>}
@@ -107,7 +109,7 @@ export function Footer() {
                   href={biz.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-brand hover:text-brand/80 font-medium transition-colors"
+                  className="inline-flex items-center gap-1.5 text-brand hover:text-white font-semibold transition-colors mt-1"
                 >
                   <ExternalLink size={13} />
                   Yol Tarifi Al
@@ -117,14 +119,14 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/50">
           <span>© {new Date().getFullYear()} AKINEL OTO YEDEK PARÇA. Tüm hakları saklıdır.</span>
           <div className="flex flex-wrap items-center gap-4 justify-center md:justify-end">
-            <Link href="/belgeler/gizlilik-politikasi" className="hover:text-foreground transition-colors">Gizlilik Politikası</Link>
-            <Link href="/belgeler/kvkk-aydinlatma-metni" className="hover:text-foreground transition-colors">KVKK</Link>
-            <Link href="/belgeler/kullanim-kosullari" className="hover:text-foreground transition-colors">Kullanım Koşulları</Link>
-            <Link href="/belgeler/mesafeli-satis-sozlesmesi" className="hover:text-foreground transition-colors">Mesafeli Satış Sözleşmesi</Link>
-            <Link href="/belgeler/on-bilgilendirme-formu" className="hover:text-foreground transition-colors">Ön Bilgilendirme Formu</Link>
+            <Link href="/belgeler/gizlilik-politikasi" className="hover:text-white transition-colors">Gizlilik Politikası</Link>
+            <Link href="/belgeler/kvkk-aydinlatma-metni" className="hover:text-white transition-colors">KVKK</Link>
+            <Link href="/belgeler/kullanim-kosullari" className="hover:text-white transition-colors">Kullanım Koşulları</Link>
+            <Link href="/belgeler/mesafeli-satis-sozlesmesi" className="hover:text-white transition-colors">Mesafeli Satış Sözleşmesi</Link>
+            <Link href="/belgeler/on-bilgilendirme-formu" className="hover:text-white transition-colors">Ön Bilgilendirme Formu</Link>
           </div>
         </div>
       </div>

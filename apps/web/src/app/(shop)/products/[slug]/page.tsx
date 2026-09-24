@@ -138,8 +138,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
               </span>
             )}
             {product.discountPercentage != null && product.discountPercentage > 0 && (
-              <span className="bg-red-500 text-white text-sm font-bold px-2 py-0.5 rounded">
-                %{Math.round(product.discountPercentage)} indirim
+              <span className="bg-brand text-white text-sm font-bold px-2.5 py-1 rounded-md">
+                %{Math.round(product.discountPercentage)} İNDİRİM
               </span>
             )}
             <span className={`text-sm px-3 py-1 rounded-full font-medium ${stockColor}`}>

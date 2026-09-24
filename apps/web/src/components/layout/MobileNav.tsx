@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu } from 'lucide-react';
+import { Menu, LogOut, Shield, User } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useAuthStore } from '@/store/authStore';
 import { useState } from 'react';
@@ -29,57 +29,62 @@ export function MobileNav() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
-        className="inline-flex h-9 w-9 items-center justify-center rounded-lg hover:bg-muted transition-colors md:hidden"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors md:hidden"
         aria-label="Menüyü aç"
       >
         <Menu size={22} />
       </SheetTrigger>
-      <SheetContent side="left" className="w-72 p-0">
-        <SheetHeader className="border-b px-4 py-4">
+      <SheetContent side="left" className="w-80 p-0 bg-[#111827] text-white border-0">
+        <SheetHeader className="border-b border-white/10 px-5 py-5">
           <SheetTitle className="text-left">
-            <span className="text-brand font-bold text-xl">'AKINEL</span>
-            <span className="text-muted-foreground font-normal text-base ml-1.5">Yedek Parça</span>
+            <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-10 w-auto" />
           </SheetTitle>
         </SheetHeader>
         <nav className="flex flex-col p-4 gap-1">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              onClick={() => setOpen(false)}
-              className={cn(
-                'flex items-center px-3 py-2.5 rounded-lg text-sm transition-colors',
-                pathname === href
-                  ? 'bg-brand text-brand-foreground font-medium'
-                  : 'hover:bg-muted text-foreground'
-              )}
-            >
-              {label}
-            </Link>
-          ))}
-          <div className="border-t my-3" />
+          {navLinks.map(({ href, label }) => {
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  'flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors',
+                  isActive
+                    ? 'bg-brand text-white'
+                    : 'text-white/80 hover:bg-white/10 hover:text-white'
+                )}
+              >
+                {label}
+              </Link>
+            );
+          })}
+          <div className="border-t border-white/10 my-3" />
           {isAuthenticated ? (
             <>
               <Link
                 href="/account"
                 onClick={() => setOpen(false)}
-                className="flex items-center px-3 py-2.5 rounded-lg text-sm hover:bg-muted transition-colors"
+                className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors"
               >
+                <User size={15} />
                 Hesabım — {user?.firstName}
               </Link>
               {isAdmin && (
                 <Link
                   href="/admin"
                   onClick={() => setOpen(false)}
-                  className="flex items-center px-3 py-2.5 rounded-lg text-sm hover:bg-muted transition-colors"
+                  className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors"
                 >
+                  <Shield size={15} className="text-brand" />
                   Admin Paneli
                 </Link>
               )}
               <button
                 onClick={() => { clearAuth(); setOpen(false); }}
-                className="flex items-center px-3 py-2.5 rounded-lg text-sm text-destructive hover:bg-destructive/10 transition-colors w-full text-left"
+                className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm text-brand hover:bg-brand/10 transition-colors w-full text-left"
               >
+                <LogOut size={15} />
                 Çıkış Yap
               </button>
             </>
@@ -88,14 +93,14 @@ export function MobileNav() {
               <Link
                 href="/login"
                 onClick={() => setOpen(false)}
-                className="flex items-center px-3 py-2.5 rounded-lg text-sm hover:bg-muted transition-colors"
+                className="flex items-center px-4 py-3 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors"
               >
                 Giriş Yap
               </Link>
               <Link
                 href="/register"
                 onClick={() => setOpen(false)}
-                className="flex items-center px-3 py-2.5 rounded-lg text-sm hover:bg-muted transition-colors"
+                className="flex items-center justify-center px-4 py-3 rounded-lg text-sm bg-brand text-white hover:bg-brand/90 transition-colors font-semibold"
               >
                 Kayıt Ol
               </Link>

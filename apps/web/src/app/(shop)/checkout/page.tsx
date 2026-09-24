@@ -252,11 +252,11 @@ export default function CheckoutPage() {
                     onCheckedChange={(checked: boolean) => setValue('termsAccepted', checked === true ? true : (undefined as unknown as true), { shouldValidate: true })}
                   />
                   <label htmlFor="terms" className="text-sm leading-snug cursor-pointer">
-                    <a href="/belgeler/kullanim-kosullari" target="_blank" className="text-blue-600 underline">
+                    <a href="/belgeler/kullanim-kosullari" target="_blank" className="text-brand underline underline-offset-2 hover:text-brand/80">
                       Kullanım Koşulları
                     </a>
                     {"'nı okudum ve kabul ediyorum."}{" "}
-                    <span className="text-red-500">*</span>
+                    <span className="text-brand font-bold">*</span>
                   </label>
                 </div>
                 {errors.termsAccepted && (
@@ -271,15 +271,15 @@ export default function CheckoutPage() {
                     onCheckedChange={(checked: boolean) => setValue('privacyAccepted', checked === true ? true : (undefined as unknown as true), { shouldValidate: true })}
                   />
                   <label htmlFor="privacy" className="text-sm leading-snug cursor-pointer">
-                    <a href="/belgeler/gizlilik-politikasi" target="_blank" className="text-blue-600 underline">
+                    <a href="/belgeler/gizlilik-politikasi" target="_blank" className="text-brand underline underline-offset-2 hover:text-brand/80">
                       Gizlilik Politikası
                     </a>
                     {" ve "}
-                    <a href="/belgeler/kvkk" target="_blank" className="text-blue-600 underline">
+                    <a href="/belgeler/kvkk" target="_blank" className="text-brand underline underline-offset-2 hover:text-brand/80">
                       KVKK Aydınlatma Metni
                     </a>
                     {"'ni okudum, onaylıyorum."}{" "}
-                    <span className="text-red-500">*</span>
+                    <span className="text-brand font-bold">*</span>
                   </label>
                 </div>
                 {errors.privacyAccepted && (
@@ -294,15 +294,15 @@ export default function CheckoutPage() {
                     onCheckedChange={(checked: boolean) => setValue('distanceSalesAccepted', checked === true ? true : (undefined as unknown as true), { shouldValidate: true })}
                   />
                   <label htmlFor="distanceSales" className="text-sm leading-snug cursor-pointer">
-                    <a href="/belgeler/mesafeli-satis-sozlesmesi" target="_blank" className="text-blue-600 underline">
+                    <a href="/belgeler/mesafeli-satis-sozlesmesi" target="_blank" className="text-brand underline underline-offset-2 hover:text-brand/80">
                       Mesafeli Satış Sözleşmesi
                     </a>
                     {" ve "}
-                    <a href="/belgeler/on-bilgilendirme-formu" target="_blank" className="text-blue-600 underline">
+                    <a href="/belgeler/on-bilgilendirme-formu" target="_blank" className="text-brand underline underline-offset-2 hover:text-brand/80">
                       Ön Bilgilendirme Formu
                     </a>
                     {"'nu okudum ve onaylıyorum."}{" "}
-                    <span className="text-red-500">*</span>
+                    <span className="text-brand font-bold">*</span>
                   </label>
                 </div>
                 {errors.distanceSalesAccepted && (

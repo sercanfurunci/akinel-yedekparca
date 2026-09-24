@@ -10,7 +10,6 @@ import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import type { AuthResponse } from '@/lib/types';
@@ -59,38 +58,39 @@ function LoginForm() {
         <SessionExpiredBanner />
       </Suspense>
       {error && (
-        <div className="rounded-lg bg-destructive/10 text-destructive text-sm px-4 py-3">
+        <div className="rounded-lg bg-brand-muted border border-brand/20 text-brand text-sm px-4 py-3">
           {error}
         </div>
       )}
 
-      <div className="space-y-1">
-        <Label htmlFor="email">E-posta</Label>
+      <div className="space-y-1.5">
+        <Label htmlFor="email" className="text-xs font-semibold text-[#111827] uppercase tracking-wide">E-posta</Label>
         <Input
           id="email"
           type="email"
           placeholder="ornek@email.com"
           autoComplete="email"
+          className="h-11 focus-visible:border-brand focus-visible:ring-brand/30"
           {...register('email')}
         />
         {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
       </div>
 
-      <div className="space-y-1">
-        <Label htmlFor="password">Şifre</Label>
+      <div className="space-y-1.5">
+        <Label htmlFor="password" className="text-xs font-semibold text-[#111827] uppercase tracking-wide">Şifre</Label>
         <div className="relative">
           <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
             placeholder="••••••••"
             autoComplete="current-password"
-            className="pr-10"
+            className="pr-10 h-11 focus-visible:border-brand focus-visible:ring-brand/30"
             {...register('password')}
           />
           <button
             type="button"
             onClick={() => setShowPassword((v) => !v)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-brand transition-colors"
             aria-label={showPassword ? 'Şifreyi gizle' : 'Şifreyi göster'}
           >
             {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -100,22 +100,22 @@ function LoginForm() {
       </div>
 
       <div className="flex items-center justify-between">
-        <label className="flex items-center gap-2 text-sm cursor-pointer">
+        <label className="flex items-center gap-2 text-sm cursor-pointer text-[#111827]">
           <input
             type="checkbox"
             {...register('rememberMe')}
-            className="rounded border-input"
+            className="rounded border-input accent-brand"
           />
           Beni Hatırla
         </label>
-        <Link href="#" className="text-xs text-brand hover:underline">
+        <Link href="#" className="text-xs text-brand font-semibold hover:underline">
           Şifremi Unuttum
         </Link>
       </div>
 
       <Button
         type="submit"
-        className="w-full bg-brand text-brand-foreground hover:bg-brand/90"
+        className="w-full h-11 text-sm font-semibold"
         disabled={isSubmitting}
       >
         {isSubmitting ? 'Giriş yapılıyor...' : 'Giriş Yap'}
@@ -126,22 +126,28 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="container max-w-sm mx-auto py-16 px-4">
-      <Card>
-        <CardHeader className="text-center">
-          <div className="text-brand font-bold text-2xl mb-1">'AKINEL</div>
-          <CardTitle>Giriş Yap</CardTitle>
-        </CardHeader>
-        <CardContent>
+    <div className="min-h-[calc(100vh-4rem)] bg-[#F3F4F6] flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-6">
+          <Link href="/" className="inline-block">
+            <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-14 w-auto mx-auto" />
+          </Link>
+        </div>
+        <div className="bg-white rounded-2xl shadow-sm border border-border p-7">
+          <div className="text-center mb-6">
+            <div className="w-10 h-1 bg-brand rounded-full mx-auto mb-3" />
+            <h1 className="text-2xl font-bold text-[#111827]">Giriş Yap</h1>
+            <p className="text-sm text-muted-foreground mt-1">Hesabınıza erişmek için giriş yapın.</p>
+          </div>
           <LoginForm />
-          <p className="text-sm text-center mt-5 text-muted-foreground">
+          <p className="text-sm text-center mt-6 text-muted-foreground">
             Hesabınız yok mu?{' '}
-            <Link href="/register" className="text-brand font-medium hover:underline">
+            <Link href="/register" className="text-brand font-semibold hover:underline">
               Kayıt Olun
             </Link>
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

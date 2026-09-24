@@ -20,24 +20,38 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="shrink-0 w-12 md:w-60 min-h-screen bg-slate-900 text-slate-100 flex flex-col">
-      <div className="p-3 md:p-4 border-b border-slate-700 flex items-center justify-center md:justify-start">
-        <Link href="/" className="font-bold text-lg hidden md:block">Akinel Admin</Link>
-        <Link href="/" className="font-bold text-base md:hidden" title="Akinel Admin">A</Link>
+    <aside className="shrink-0 w-14 md:w-60 min-h-screen bg-[#111827] text-white flex flex-col border-r border-black/40">
+      <div className="p-3 md:p-5 border-b border-white/10 flex items-center justify-center md:justify-start gap-2.5">
+        <div className="h-8 w-8 rounded-lg bg-brand flex items-center justify-center shrink-0">
+          <span className="font-bold text-white text-sm">A</span>
+        </div>
+        <Link href="/" className="font-bold text-base hidden md:block text-white">
+          AKINEL <span className="text-white/50 font-normal text-sm">Admin</span>
+        </Link>
       </div>
-      <nav className="flex-1 p-1 md:p-2">
-        {navItems.map(({ href, label, icon: Icon }) => (
-          <Link key={href} href={href}
-            title={label}
-            className={cn(
-              'flex items-center justify-center md:justify-start gap-3 px-2 md:px-3 py-2 rounded-lg mb-1 text-sm transition-colors',
-              (href === '/admin' ? pathname === href : pathname.startsWith(href)) ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-            )}>
-            <Icon size={16} className="shrink-0" />
-            <span className="hidden md:block">{label}</span>
-          </Link>
-        ))}
+      <nav className="flex-1 p-2 md:p-3">
+        {navItems.map(({ href, label, icon: Icon }) => {
+          const active = href === '/admin' ? pathname === href : pathname.startsWith(href);
+          return (
+            <Link key={href} href={href}
+              title={label}
+              className={cn(
+                'relative flex items-center justify-center md:justify-start gap-3 px-2 md:px-3 py-2.5 rounded-lg mb-1 text-sm font-medium transition-colors',
+                active
+                  ? 'bg-brand text-white'
+                  : 'text-white/70 hover:bg-white/10 hover:text-white'
+              )}>
+              <Icon size={17} className="shrink-0" />
+              <span className="hidden md:block">{label}</span>
+            </Link>
+          );
+        })}
       </nav>
+      <div className="p-3 md:p-4 border-t border-white/10 hidden md:block">
+        <Link href="/" className="text-xs text-white/50 hover:text-white transition-colors">
+          ← Siteye Dön
+        </Link>
+      </div>
     </aside>
   );
 }
