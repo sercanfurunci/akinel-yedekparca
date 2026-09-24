@@ -37,7 +37,9 @@ public class ProductService : IProductService
 
         if (!string.IsNullOrWhiteSpace(query.Query))
             q = q.Where(p => EF.Functions.ILike(p.Name, $"%{query.Query}%") ||
-                              EF.Functions.ILike(p.PartNumber ?? "", $"%{query.Query}%"));
+                              EF.Functions.ILike(p.PartNumber ?? "", $"%{query.Query}%") ||
+                              EF.Functions.ILike(p.Category.Name, $"%{query.Query}%") ||
+                              EF.Functions.ILike(p.Brand.Name, $"%{query.Query}%"));
 
         if (query.VehicleEngineId.HasValue)
             q = q.Where(p => p.VehicleCompatibilities.Any(vc => vc.VehicleEngineId == query.VehicleEngineId.Value));
