@@ -188,7 +188,7 @@ function ProductsContent() {
   const searchQuery = searchParams.get('search') ?? '';
 
   // Initialize filter state from URL
-  const [filterInStock, setFilterInStock] = useState(searchParams.get('inStock') === 'true');
+  const [filterInStock, setFilterInStock] = useState(searchParams.get('inStock') !== 'false');
   const [filterSort, setFilterSort] = useState(searchParams.get('sort') ?? '');
   const [filterMinPrice, setFilterMinPrice] = useState(searchParams.get('minPrice') ?? '');
   const [filterMaxPrice, setFilterMaxPrice] = useState(searchParams.get('maxPrice') ?? '');

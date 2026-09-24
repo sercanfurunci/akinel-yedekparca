@@ -54,7 +54,7 @@ function CategoryContent({ slug }: { slug: string }) {
 
   const page = parseInt(searchParams.get('page') ?? '1');
   const [filterBrandId, setFilterBrandId] = useState(searchParams.get('brandId') ?? '');
-  const [filterInStock, setFilterInStock] = useState(searchParams.get('inStock') === 'true');
+  const [filterInStock, setFilterInStock] = useState(searchParams.get('inStock') !== 'false');
   const [filterSort, setFilterSort] = useState(searchParams.get('sort') ?? '');
   const [filterMinPrice, setFilterMinPrice] = useState(searchParams.get('minPrice') ?? '');
   const [filterMaxPrice, setFilterMaxPrice] = useState(searchParams.get('maxPrice') ?? '');
