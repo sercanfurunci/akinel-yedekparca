@@ -1,22 +1,19 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react';
+import { api } from '@/lib/api';
 import type { BusinessSettings } from '@/lib/types';
 
 const DAY_NAMES = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
 
-async function getBusinessSettings(): Promise<BusinessSettings | null> {
-  try {
-    const base = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5100';
-    const res = await fetch(`${base}/api/business/settings`, { next: { revalidate: 3600 } });
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
-    return null;
-  }
-}
+export function Footer() {
+  const [biz, setBiz] = useState<BusinessSettings | null>(null);
 
-export async function Footer() {
-  const biz = await getBusinessSettings();
+  useEffect(() => {
+    api.business.settings().then(d => setBiz(d as BusinessSettings)).catch(() => {});
+  }, []);
 
   const fullAddress = biz
     ? [biz.address, biz.district && biz.city ? `${biz.postalCode} ${biz.district}/${biz.city}` : biz.city].filter(Boolean).join(', ')
