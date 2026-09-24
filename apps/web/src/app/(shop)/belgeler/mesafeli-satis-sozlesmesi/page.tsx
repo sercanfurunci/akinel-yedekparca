@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Mesafeli Satış Sözleşmesi | Akinel Oto Yedek Parça',
+  title: 'Mesafeli Satış Sözleşmesi | AKİNEL OTO YEDEK PARÇA',
 };
 
 export default function MesafeliSatisSozlesmesiPage() {

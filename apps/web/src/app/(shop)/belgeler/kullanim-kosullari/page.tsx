@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Kullanım Koşulları | Akinel Oto Yedek Parça',
+  title: 'Kullanım Koşulları | AKİNEL OTO YEDEK PARÇA',
 };
 
 export default function KullanimKosullariPage() {
@@ -25,7 +25,7 @@ export default function KullanimKosullariPage() {
 
         <section>
           <h2 className="text-base font-semibold mb-2">2. Hizmetin Kapsamı</h2>
-          <p>Akinel Oto Yedek Parça, otomotiv yedek parçalarının çevrimiçi olarak satışını gerçekleştiren bir e-ticaret platformudur. Site üzerinden sunulan araç uyumluluk bilgileri yardımcı nitelikte olup, kesin uyumluluk için yetkili servis danışmanınıza başvurmanız önerilir.</p>
+          <p>AKİNEL OTO YEDEK PARÇA, otomotiv yedek parçalarının çevrimiçi olarak satışını gerçekleştiren bir e-ticaret platformudur. Site üzerinden sunulan araç uyumluluk bilgileri yardımcı nitelikte olup, kesin uyumluluk için yetkili servis danışmanınıza başvurmanız önerilir.</p>
         </section>
 
         <section>

@@ -71,7 +71,7 @@ export function Header() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
-            <img src="/logo.png" alt="Akinel Oto Yedek Parça" className="h-10 w-auto rounded-md" />
+            <img src="/logo.png" alt="AKİNEL OTO YEDEK PARÇA" className="h-10 w-auto rounded-md" />
           </Link>
 
           {/* Search bar — flex-1 center */}

@@ -33,7 +33,7 @@ export function Footer() {
           {/* Column 1 — Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-3">
-              <img src="/logo.png" alt="Akinel Oto Yedek Parça" className="h-10 w-auto rounded-md" />
+              <img src="/logo.png" alt="AKİNEL OTO YEDEK PARÇA" className="h-10 w-auto rounded-md" />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {biz?.shortDescription ?? 'Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.'}
@@ -118,7 +118,7 @@ export function Footer() {
         </div>
 
         <div className="border-t mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} Akinel Oto Yedek Parça. Tüm hakları saklıdır.</span>
+          <span>© {new Date().getFullYear()} AKİNEL OTO YEDEK PARÇA. Tüm hakları saklıdır.</span>
           <div className="flex flex-wrap items-center gap-4 justify-center md:justify-end">
             <Link href="/belgeler/gizlilik-politikasi" className="hover:text-foreground transition-colors">Gizlilik Politikası</Link>
             <Link href="/belgeler/kvkk-aydinlatma-metni" className="hover:text-foreground transition-colors">KVKK</Link>
