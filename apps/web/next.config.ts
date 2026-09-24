@@ -2,10 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  staticPageGenerationTimeout: 120,
-  experimental: {
-    staticGenerationRetryCount: 0,
-  },
+  staticPageGenerationTimeout: 300,
 };
 
 export default nextConfig;
