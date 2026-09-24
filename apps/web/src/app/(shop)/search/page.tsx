@@ -23,8 +23,12 @@ function SearchResults() {
   const [vehicleSuggestions, setVehicleSuggestions] = useState<VehicleSearchResult | null>(null);
   const [useVehicleFilter, setUseVehicleFilter] = useState(false);
 
-  // Auto-detect OEM-style queries: purely alphanumeric (no spaces), 5+ chars
-  const isOemQuery = query.length >= 5 && /^[A-Za-z0-9\-]+$/.test(query) && !/\s/.test(query);
+  // OEM numbers always contain at least one digit (e.g. 1J0698151B, 34116778138)
+  // Pure-letter words like "Toyota" or "Golf" are NOT OEM queries
+  const isOemQuery = query.length >= 5 &&
+    /^[A-Za-z0-9\-]+$/.test(query) &&
+    !/\s/.test(query) &&
+    /\d/.test(query);
 
   // Search for vehicle suggestions when query looks like a vehicle name
   const searchVehicles = useCallback(async (q: string) => {
