@@ -59,19 +59,19 @@ public static class DatabaseSeeder
         };
         context.Brands.AddRange(brands);
 
-        var catBrakes = new Category { Name = "Brakes", Slug = "brakes" };
-        var catClutch = new Category { Name = "Clutch", Slug = "clutch" };
-        var catFilters = new Category { Name = "Filters", Slug = "filters" };
-        var catSuspension = new Category { Name = "Suspension", Slug = "suspension" };
-        var catElectrical = new Category { Name = "Electrical", Slug = "electrical" };
-        var catCooling = new Category { Name = "Cooling", Slug = "cooling" };
+        var catBrakes = new Category { Name = "Fren Sistemi", Slug = "fren-sistemi" };
+        var catClutch = new Category { Name = "Debriyaj", Slug = "debriyaj" };
+        var catFilters = new Category { Name = "Filtreler", Slug = "filtreler" };
+        var catSuspension = new Category { Name = "Süspansiyon", Slug = "suspansiyon" };
+        var catElectrical = new Category { Name = "Elektrik Sistemi", Slug = "elektrik-sistemi" };
+        var catCooling = new Category { Name = "Soğutma Sistemi", Slug = "sogutma-sistemi" };
         context.Categories.AddRange(catBrakes, catClutch, catFilters, catSuspension, catElectrical, catCooling);
 
-        var subBrakePads = new Category { Name = "Brake Pads", Slug = "brake-pads", ParentCategory = catBrakes };
-        var subBrakeDiscs = new Category { Name = "Brake Discs", Slug = "brake-discs", ParentCategory = catBrakes };
-        var subAbsSensors = new Category { Name = "ABS Sensors", Slug = "abs-sensors", ParentCategory = catBrakes };
-        var subOilFilter = new Category { Name = "Oil Filters", Slug = "oil-filters", ParentCategory = catFilters };
-        var subAirFilter = new Category { Name = "Air Filters", Slug = "air-filters", ParentCategory = catFilters };
+        var subBrakePads = new Category { Name = "Fren Balatası", Slug = "fren-balatasi", ParentCategory = catBrakes };
+        var subBrakeDiscs = new Category { Name = "Fren Diski", Slug = "fren-diski", ParentCategory = catBrakes };
+        var subAbsSensors = new Category { Name = "ABS Sensörleri", Slug = "abs-sensorleri", ParentCategory = catBrakes };
+        var subOilFilter = new Category { Name = "Yağ Filtresi", Slug = "yag-filtresi", ParentCategory = catFilters };
+        var subAirFilter = new Category { Name = "Hava Filtresi", Slug = "hava-filtresi", ParentCategory = catFilters };
         context.Categories.AddRange(subBrakePads, subBrakeDiscs, subAbsSensors, subOilFilter, subAirFilter);
 
         // Vehicles
@@ -105,9 +105,9 @@ public static class DatabaseSeeder
         var bosch = brands[0];
         var trw = brands[4];
 
-        var p1 = new Product { Name = "Rear Brake Pad Set", Slug = "rear-brake-pad-set-bosch", BrandId = bosch.Id, CategoryId = subBrakePads.Id, PartNumber = "0986424706", Price = 850.00m };
-        var p2 = new Product { Name = "Front Brake Disc", Slug = "front-brake-disc-trw", BrandId = trw.Id, CategoryId = subBrakeDiscs.Id, PartNumber = "DF4101", Price = 1200.00m };
-        var p3 = new Product { Name = "Oil Filter", Slug = "oil-filter-bosch", BrandId = bosch.Id, CategoryId = subOilFilter.Id, PartNumber = "P3370", Price = 120.00m };
+        var p1 = new Product { Name = "Arka Fren Balata Seti", Slug = "arka-fren-balata-seti-bosch", BrandId = bosch.Id, CategoryId = subBrakePads.Id, PartNumber = "0986424706", Price = 850.00m };
+        var p2 = new Product { Name = "Ön Fren Diski", Slug = "on-fren-diski-trw", BrandId = trw.Id, CategoryId = subBrakeDiscs.Id, PartNumber = "DF4101", Price = 1200.00m };
+        var p3 = new Product { Name = "Yağ Filtresi", Slug = "yag-filtresi-bosch", BrandId = bosch.Id, CategoryId = subOilFilter.Id, PartNumber = "P3370", Price = 120.00m };
         context.Products.AddRange(p1, p2, p3);
         await context.SaveChangesAsync();
 
