@@ -70,9 +70,8 @@ export function Header() {
           <MobileNav />
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1.5 shrink-0">
-            <span className="text-brand font-bold text-xl tracking-tight">Akinel</span>
-            <span className="text-muted-foreground font-normal text-base hidden sm:inline">Oto Yedek Parça</span>
+          <Link href="/" className="flex items-center shrink-0">
+            <img src="/logo.png" alt="Akinel Oto Yedek Parça" className="h-10 w-auto rounded-md" />
           </Link>
 
           {/* Search bar — flex-1 center */}

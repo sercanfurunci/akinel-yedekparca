@@ -32,9 +32,8 @@ export function Footer() {
 
           {/* Column 1 — Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-baseline gap-1.5 mb-3">
-              <span className="text-brand font-bold text-xl">Akinel</span>
-              <span className="text-muted-foreground text-sm">Oto Yedek Parça</span>
+            <div className="mb-3">
+              <img src="/logo.png" alt="Akinel Oto Yedek Parça" className="h-10 w-auto rounded-md" />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {biz?.shortDescription ?? 'Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.'}
