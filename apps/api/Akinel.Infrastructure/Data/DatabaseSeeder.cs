@@ -17,7 +17,7 @@ public static class DatabaseSeeder
             var biz = new BusinessSettings
             {
                 Id = bizId,
-                CompanyName = "Akinel Yedek Parça",
+                CompanyName = "Akinel Oto Yedek Parça",
                 ShortDescription = "Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.",
                 Description = "AKN MOTORS Car Service hizmet noktasının online yedek parça platformu. Araç seçimi veya OEM numarasıyla uyumlu parçaları kolayca bulun ve sipariş verin.",
                 Phone = "+90 533 140 56 49",

@@ -4,7 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: { default: 'Akinel Yedek Parça', template: '%s | Akinel Yedek Parça' },
+  title: { default: 'Akinel Oto Yedek Parça', template: '%s | Akinel Oto Yedek Parça' },
   description: 'Aracınız için kaliteli yedek parçalar. Araç seçimi veya OEM numarası ile hızlı arama.',
 };
 

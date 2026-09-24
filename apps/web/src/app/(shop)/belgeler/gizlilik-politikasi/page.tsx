@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Gizlilik Politikası | Akinel Yedek Parça',
+  title: 'Gizlilik Politikası | Akinel Oto Yedek Parça',
 };
 
 export default function GizlilikPolitikasiPage() {
@@ -19,7 +19,7 @@ export default function GizlilikPolitikasiPage() {
         <section>
           <h2 className="text-base font-semibold mb-2">1. Veri Sorumlusu</h2>
           <p>
-            Bu Gizlilik Politikası, [İŞLETME ADI], [ADRES], [VERGİ NO] tarafından işletilen <strong>Akinel Yedek Parça</strong> web sitesine (<em>akinel.com</em>) ilişkindir. Kişisel verileriniz bakımından veri sorumlusu sıfatını taşıyan şirketimiz, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamındaki yükümlülüklerini yerine getirmeyi taahhüt eder.
+            Bu Gizlilik Politikası, [İŞLETME ADI], [ADRES], [VERGİ NO] tarafından işletilen <strong>Akinel Oto Yedek Parça</strong> web sitesine (<em>akinel.com</em>) ilişkindir. Kişisel verileriniz bakımından veri sorumlusu sıfatını taşıyan şirketimiz, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamındaki yükümlülüklerini yerine getirmeyi taahhüt eder.
           </p>
         </section>
 

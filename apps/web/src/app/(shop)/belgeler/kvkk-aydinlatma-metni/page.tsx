@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'KVKK Aydınlatma Metni | Akinel Yedek Parça',
+  title: 'KVKK Aydınlatma Metni | Akinel Oto Yedek Parça',
 };
 
 export default function KvkkAydinlatmaMetniPage() {

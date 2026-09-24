@@ -72,7 +72,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-1.5 shrink-0">
             <span className="text-brand font-bold text-xl tracking-tight">Akinel</span>
-            <span className="text-muted-foreground font-normal text-base hidden sm:inline">Yedek Parça</span>
+            <span className="text-muted-foreground font-normal text-base hidden sm:inline">Oto Yedek Parça</span>
           </Link>
 
           {/* Search bar — flex-1 center */}

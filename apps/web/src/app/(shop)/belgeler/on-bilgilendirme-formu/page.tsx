@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Ön Bilgilendirme Formu | Akinel Yedek Parça',
+  title: 'Ön Bilgilendirme Formu | Akinel Oto Yedek Parça',
 };
 
 export default function OnBilgilendirmeFormuPage() {
