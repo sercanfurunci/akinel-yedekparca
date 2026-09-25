@@ -29,19 +29,19 @@ export function MobileNav() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
-        className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all md:hidden cursor-pointer"
+        className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all md:hidden cursor-pointer"
         aria-label="Menüyü aç"
         title="Menü"
       >
         <Menu size={22} />
       </SheetTrigger>
-      <SheetContent side="left" className="w-80 p-0 bg-[#111827] text-white border-0">
-        <SheetHeader className="border-b border-white/10 px-5 py-5">
+      <SheetContent side="left" className="w-80 p-0 bg-[#111827] text-white border-0 flex flex-col">
+        <SheetHeader className="border-b border-white/10 px-5 py-5 shrink-0">
           <SheetTitle className="text-left">
             <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-10 w-auto" />
           </SheetTitle>
         </SheetHeader>
-        <nav className="flex flex-col p-4 gap-1" aria-label="Mobil menü">
+        <nav className="flex flex-col p-4 gap-1 overflow-y-auto flex-1" aria-label="Mobil menü">
           {navLinks.map(({ href, label }) => {
             const isActive = pathname === href;
             return (

@@ -76,19 +76,20 @@ export function ProductCard({ product }: Props) {
           {/* Category */}
           <p className="text-xs text-muted-foreground mb-3 truncate">{product.categoryName}</p>
 
-          {/* Price + Stock */}
-          <div className="flex items-center justify-between gap-2 mb-1">
-            <div className="min-w-0">
-              <span className="font-bold text-lg text-brand tracking-tight">
-                {formatPrice(product.salePrice ?? product.price, product.currency)}
+          {/* Price */}
+          <div className="flex items-baseline gap-1.5 mb-1.5">
+            <span className="font-bold text-lg text-brand tracking-tight">
+              {formatPrice(product.salePrice ?? product.price, product.currency)}
+            </span>
+            {product.salePrice != null && (
+              <span className="text-xs text-muted-foreground line-through">
+                {formatPrice(product.price, product.currency)}
               </span>
-              {product.salePrice != null && (
-                <span className="ml-1.5 text-xs text-muted-foreground line-through">
-                  {formatPrice(product.price, product.currency)}
-                </span>
-              )}
-            </div>
-            <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold shrink-0 uppercase tracking-wide ${statusColor}`}>
+            )}
+          </div>
+          {/* Stock badge */}
+          <div className="mb-1">
+            <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide ${statusColor}`}>
               {statusLabel}
             </span>
           </div>

@@ -108,15 +108,17 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
 
           {/* OEM numbers */}
           {product.oemNumbers && product.oemNumbers.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {product.oemNumbers.map((oem, i) => (
-                <span
-                  key={i}
-                  className="font-mono text-xs bg-muted border border-border rounded px-2 py-1"
-                >
-                  {oem}
-                </span>
-              ))}
+            <div className="overflow-x-auto -mx-1 px-1">
+              <div className="flex flex-nowrap gap-2">
+                {product.oemNumbers.map((oem, i) => (
+                  <span
+                    key={i}
+                    className="font-mono text-xs bg-muted border border-border rounded px-2 py-1 whitespace-nowrap shrink-0"
+                  >
+                    {oem}
+                  </span>
+                ))}
+              </div>
             </div>
           )}
 
@@ -213,8 +215,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
       {/* Tabs */}
       <div className="mt-12">
         {/* Tab nav — horizontal scroll on mobile, no text shrink */}
-        <div className="border-b mb-6 overflow-x-auto">
-          <div className="flex gap-0 min-w-max sm:min-w-0" role="tablist" aria-label="Ürün detayları sekmeleri">
+        <div className="border-b mb-6 overflow-x-auto -mx-4 px-4">
+          <div className="flex gap-0 min-w-max" role="tablist" aria-label="Ürün detayları sekmeleri">
             {tabs.map((tab) => {
               const active = activeTab === tab.id;
               return (
@@ -285,15 +287,18 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
           {activeTab === 'oem' && (
             <div>
               {product.oemNumbers && product.oemNumbers.length > 0 ? (
-                <ul className="space-y-2">
-                  {product.oemNumbers.map((oem, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <span className="font-mono text-sm bg-muted border border-border rounded px-3 py-1.5 break-all">
+                <div className="overflow-x-auto pb-2 -mx-1 px-1">
+                  <div className="flex flex-nowrap gap-2">
+                    {product.oemNumbers.map((oem, i) => (
+                      <span
+                        key={i}
+                        className="font-mono text-sm bg-muted border border-border rounded px-3 py-1.5 whitespace-nowrap shrink-0"
+                      >
                         {oem}
                       </span>
-                    </li>
-                  ))}
-                </ul>
+                    ))}
+                  </div>
+                </div>
               ) : (
                 <p className="text-muted-foreground text-sm">OEM numarası bilgisi mevcut değil.</p>
               )}

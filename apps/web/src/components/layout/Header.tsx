@@ -68,18 +68,18 @@ export function Header() {
       {/* Main header — dark bar */}
       <div className="bg-[#111827]">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex h-16 items-center gap-4">
+          <div className="flex h-16 items-center gap-2 sm:gap-4 min-w-0">
             {/* Mobile nav trigger */}
             <MobileNav />
 
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center shrink-0 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand rounded"
+              className="flex items-center min-h-[44px] shrink-0 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand rounded"
               aria-label="AKINEL OTO YEDEK PARÇA — Ana sayfa"
               title="Ana sayfa"
             >
-              <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-11 w-auto" />
+              <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-10 sm:h-11 w-auto max-w-[120px] sm:max-w-[160px] object-contain" />
             </Link>
 
             {/* Search bar — flex-1 center */}
@@ -90,26 +90,26 @@ export function Header() {
             </div>
 
             {/* Right icons */}
-            <div className="flex items-center gap-1 ml-auto md:ml-0">
+            <div className="flex items-center gap-0.5 ml-auto md:ml-0 shrink-0">
               {/* Mobile search icon */}
               <Link
                 href="/search"
-                className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
+                className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
                 aria-label="Ara"
                 title="Ara"
               >
-                <Search size={20} />
+                <Search size={22} />
               </Link>
 
               {/* Cart */}
               <button
                 onClick={openCart}
                 type="button"
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
+                className="relative inline-flex h-11 w-11 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
                 aria-label={totalItems > 0 ? `Sepet (${totalItems} ürün)` : 'Sepet (boş)'}
                 title="Sepetim"
               >
-                <ShoppingCart size={20} />
+                <ShoppingCart size={22} />
                 {totalItems > 0 && (
                   <span
                     className="absolute top-0.5 right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand text-white text-[10px] font-bold leading-none ring-2 ring-[#111827] px-1"
@@ -120,37 +120,37 @@ export function Header() {
                 )}
               </button>
 
-              {/* Garage */}
+              {/* Garage — hidden on very small screens */}
               <Link
                 href="/garage"
-                className="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
+                className="hidden sm:inline-flex h-11 w-11 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
                 aria-label="Garajım"
                 title="Garajım"
                 aria-current={pathname === '/garage' ? 'page' : undefined}
               >
-                <Car size={20} />
+                <Car size={22} />
               </Link>
 
               {/* Account */}
               {isAuthenticated ? (
                 <Link
                   href="/account"
-                  className="hidden md:inline-flex h-10 items-center gap-2 px-3 rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all text-sm cursor-pointer"
+                  className="hidden md:inline-flex h-11 items-center gap-2 px-3 rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all text-sm cursor-pointer"
                   aria-label={`Hesabım — ${user?.firstName ?? ''}`}
                   title="Hesabım"
                   aria-current={pathname === '/account' ? 'page' : undefined}
                 >
-                  <User size={16} />
+                  <User size={18} />
                   {user?.firstName}
                 </Link>
               ) : (
                 <Link
                   href="/login"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
                   aria-label="Giriş Yap"
                   title="Giriş Yap"
                 >
-                  <User size={20} />
+                  <User size={22} />
                 </Link>
               )}
 

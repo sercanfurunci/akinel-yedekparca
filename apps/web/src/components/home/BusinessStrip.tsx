@@ -31,15 +31,17 @@ export function BusinessStrip() {
             {location}
           </span>
           <span className="hidden sm:block text-border">·</span>
-          <a href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-1.5 hover:text-foreground transition-colors">
+          <a href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-1.5 hover:text-foreground transition-colors min-h-[44px] py-1">
             <Phone size={12} className="text-brand shrink-0" />
             {phone}
           </a>
           <span className="hidden sm:block text-border">·</span>
-          <a href={`mailto:${email}`} className="flex items-center gap-1.5 hover:text-foreground transition-colors">
-            <Mail size={12} className="text-brand shrink-0" />
-            {email}
-          </a>
+          {email && (
+            <a href={`mailto:${email}`} className="flex items-center gap-1.5 hover:text-foreground transition-colors min-h-[44px] py-1">
+              <Mail size={12} className="text-brand shrink-0" />
+              {email}
+            </a>
+          )}
           <span className="hidden sm:block text-border">·</span>
           <span className="flex items-center gap-1.5">
             <Clock size={12} className="text-brand shrink-0" />
@@ -50,7 +52,7 @@ export function BusinessStrip() {
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-brand font-medium hover:text-brand/80 transition-colors"
+            className="flex items-center gap-1 text-brand font-medium hover:text-brand/80 transition-colors min-h-[44px] py-1"
           >
             <ExternalLink size={11} />
             Yol Tarifi

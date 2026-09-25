@@ -31,7 +31,7 @@ export function AddToCartButton({ productId, quantity = 1, disabled = false, cla
     }
   };
 
-  const sizeClass = size === 'lg' ? 'h-11 px-6 text-sm' : size === 'md' ? 'h-9 px-4 text-sm' : 'h-8 px-3 text-xs';
+  const sizeClass = size === 'lg' ? 'h-11 px-6 text-sm' : size === 'md' ? 'h-10 px-4 text-sm' : 'h-10 px-3 text-xs';
 
   const label = disabled
     ? 'Stok Yok'

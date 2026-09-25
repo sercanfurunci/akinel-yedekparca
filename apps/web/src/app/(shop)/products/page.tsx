@@ -347,18 +347,18 @@ function ProductsContent() {
   return (
     <>
       {/* Mobile sticky toolbar */}
-      <div className="lg:hidden sticky top-[var(--header-height,64px)] z-30 border-b bg-background/95 backdrop-blur">
+      <div className="lg:hidden sticky top-[var(--header-height,64px)] z-30 border-b bg-background/95 backdrop-blur overflow-x-hidden">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex items-center gap-2 py-2">
-            <span className="text-sm text-muted-foreground shrink-0">
+          <div className="flex items-center gap-2 py-2 min-w-0">
+            <span className="text-sm text-muted-foreground shrink-0 hidden xs:inline">
               {loading ? '...' : `${totalCount} sonuç`}
             </span>
-            <div className="flex gap-2 ml-auto">
+            <div className="flex gap-2 ml-auto min-w-0">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={openDrawer}
-                className="flex items-center gap-1.5 h-8"
+                className="flex items-center gap-1.5 h-8 shrink-0"
               >
                 <SlidersHorizontal size={14} />
                 Filtrele
@@ -378,7 +378,7 @@ function ProductsContent() {
                   params.set('page', '1');
                   router.push(`/products?${params.toString()}`);
                 }}
-                className="h-8 rounded-lg border border-input bg-background px-2 text-xs focus:outline-none focus:ring-1 focus:ring-ring"
+                className="h-8 rounded-lg border border-input bg-background px-2 text-xs focus:outline-none focus:ring-1 focus:ring-ring max-w-[140px]"
               >
                 {sortOptions.map((opt) => (
                   <option key={opt.value} value={opt.value}>{opt.label}</option>

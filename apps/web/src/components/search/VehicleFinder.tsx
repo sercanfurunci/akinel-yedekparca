@@ -119,42 +119,44 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
   return (
     <div className="space-y-4">
       {/* Step indicators */}
-      <ol
-        className="flex items-center gap-0 mb-4 overflow-x-auto pb-1"
-        aria-label="Araç seçim adımları"
-      >
-        {steps.map((step, i) => {
-          const done = i < completedSteps;
-          const active = i === completedSteps;
-          return (
-            <li key={i} className="flex items-center shrink-0" aria-current={active ? 'step' : undefined}>
-              <span className="flex flex-col items-center gap-1">
-                <span
-                  className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold transition-colors ${
-                    done
-                      ? 'bg-brand text-brand-foreground'
-                      : active
-                      ? 'bg-brand text-white ring-2 ring-brand/30'
-                      : 'bg-muted text-muted-foreground'
-                  }`}
-                  aria-label={`Adım ${i + 1}${done ? ' tamamlandı' : active ? ' aktif' : ''}`}
-                >
-                  {done ? <Check size={14} strokeWidth={3} aria-hidden="true" /> : i + 1}
+      <div className="overflow-x-auto -mx-1 px-1 pb-1 mb-4">
+        <ol
+          className="flex items-center gap-0 min-w-max"
+          aria-label="Araç seçim adımları"
+        >
+          {steps.map((step, i) => {
+            const done = i < completedSteps;
+            const active = i === completedSteps;
+            return (
+              <li key={i} className="flex items-center shrink-0" aria-current={active ? 'step' : undefined}>
+                <span className="flex flex-col items-center gap-1">
+                  <span
+                    className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold transition-colors ${
+                      done
+                        ? 'bg-brand text-brand-foreground'
+                        : active
+                        ? 'bg-brand text-white ring-2 ring-brand/30'
+                        : 'bg-muted text-muted-foreground'
+                    }`}
+                    aria-label={`Adım ${i + 1}${done ? ' tamamlandı' : active ? ' aktif' : ''}`}
+                  >
+                    {done ? <Check size={14} strokeWidth={3} aria-hidden="true" /> : i + 1}
+                  </span>
+                  <span className={`text-[11px] font-medium ${active ? 'text-foreground' : done ? 'text-brand' : 'text-muted-foreground'}`}>
+                    {step.label}
+                  </span>
                 </span>
-                <span className={`text-[11px] font-medium ${active ? 'text-foreground' : done ? 'text-brand' : 'text-muted-foreground'}`}>
-                  {step.label}
-                </span>
-              </span>
-              {i < 3 && (
-                <span
-                  className={`mx-2 h-px w-8 shrink-0 mb-3.5 ${done ? 'bg-brand' : 'bg-muted-foreground/20'}`}
-                  aria-hidden="true"
-                />
-              )}
-            </li>
-          );
-        })}
-      </ol>
+                {i < 3 && (
+                  <span
+                    className={`mx-2 h-px w-8 shrink-0 mb-3.5 ${done ? 'bg-brand' : 'bg-muted-foreground/20'}`}
+                    aria-hidden="true"
+                  />
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </div>
 
       {/* Select dropdowns */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -198,10 +200,11 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
       {/* CTA */}
       <div className="flex flex-wrap items-center gap-3">
         <Button
+          size="lg"
           onClick={handleSearch}
           disabled={!selectedEngine || loading}
           aria-label={loading ? 'Parçalar yükleniyor' : 'Uyumlu parçaları göster'}
-          className="bg-brand text-brand-foreground hover:bg-brand/90 px-6 cursor-pointer disabled:cursor-not-allowed"
+          className="bg-brand text-brand-foreground hover:bg-brand/90 px-6 cursor-pointer disabled:cursor-not-allowed h-11"
         >
           <Car size={16} className="mr-2" aria-hidden="true" />
           {loading ? 'Yükleniyor...' : 'Parçaları Göster'}
@@ -209,11 +212,12 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
 
         {showSaveButton && selectedEngine && isAuthenticated && (
           <Button
+            size="lg"
             variant="outline"
             onClick={handleSaveToGarage}
             disabled={saving}
             aria-label={saving ? 'Garaja kaydediliyor' : 'Aracı garaja kaydet'}
-            className="cursor-pointer disabled:cursor-not-allowed"
+            className="cursor-pointer disabled:cursor-not-allowed h-11"
           >
             {saving ? 'Kaydediliyor...' : 'Garaja Kaydet'}
           </Button>

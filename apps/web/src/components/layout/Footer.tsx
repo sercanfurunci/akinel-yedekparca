@@ -81,7 +81,7 @@ export function Footer() {
               )}
 
               {biz?.phone && (
-                <a href={`tel:${biz.phone.replace(/\s/g, '')}`} className="flex items-center gap-2.5 hover:text-white transition-colors">
+                <a href={`tel:${biz.phone.replace(/\s/g, '')}`} className="flex items-center gap-2.5 hover:text-white transition-colors min-h-[44px]">
                   <Phone size={15} className="shrink-0 text-brand" />
                   {biz.phone}
                 </a>
@@ -109,7 +109,7 @@ export function Footer() {
                   href={biz.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-brand hover:text-white font-semibold transition-colors mt-1"
+                  className="inline-flex items-center gap-1.5 text-brand hover:text-white font-semibold transition-colors mt-1 min-h-[44px] py-2"
                 >
                   <ExternalLink size={13} />
                   Yol Tarifi Al

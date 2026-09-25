@@ -167,7 +167,7 @@ export default function HomePage() {
               </div>
               <Link
                 href="/products"
-                className="text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors"
+                className="text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors py-3 px-1 min-h-[44px]"
               >
                 Tümü <ChevronRight size={14} />
               </Link>
@@ -239,7 +239,7 @@ export default function HomePage() {
               </div>
               <Link
                 href="/products"
-                className="text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors"
+                className="text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors py-3 px-1 min-h-[44px]"
               >
                 Tümü <ChevronRight size={14} />
               </Link>
@@ -273,7 +273,7 @@ export default function HomePage() {
               <div className="w-10 h-1 bg-brand rounded-full mb-3" />
               <h2 className="text-xl md:text-2xl font-bold text-[#111827]">Öne Çıkan Ürünler</h2>
             </div>
-            <Link href="/products" className={cn(buttonVariants({ variant: 'outline' }), 'text-sm h-9 px-4')}>
+            <Link href="/products" className={cn(buttonVariants({ variant: 'outline' }), 'text-sm h-11 px-4')}>
               Tümünü Gör
             </Link>
           </div>
