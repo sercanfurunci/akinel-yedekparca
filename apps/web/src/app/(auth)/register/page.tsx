@@ -58,7 +58,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
           <Link href="/" className="inline-block">
-            <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-14 w-auto mx-auto" />
+            <img src="/logo-light.png" alt="AKINEL OTO YEDEK PARÇA" className="h-14 w-auto mx-auto" />
           </Link>
         </div>
         <div className="bg-white rounded-2xl shadow-sm border border-border p-7">
