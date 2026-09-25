@@ -7,10 +7,10 @@ import { useVehicleStore } from '@/store/vehicleStore';
 import { useAuthStore } from '@/store/authStore';
 import type { VehicleMake, VehicleModel, VehicleGeneration, VehicleEngine, VehicleContext } from '@/lib/types';
 import { Button } from '@/components/ui/button';
-import { Car, ChevronRight } from 'lucide-react';
+import { Car, Check } from 'lucide-react';
 
 const selectClass =
-  'flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 focus:border-ring disabled:opacity-50 disabled:cursor-not-allowed transition-colors';
+  'flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-muted/40 transition-colors';
 
 interface VehicleFinderProps {
   onVehicleSelected?: (ctx: VehicleContext) => void;
@@ -33,6 +33,10 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
   const [selectedGeneration, setSelectedGeneration] = useState('');
   const [selectedEngine, setSelectedEngine] = useState('');
 
+  const [loadingModels, setLoadingModels] = useState(false);
+  const [loadingGenerations, setLoadingGenerations] = useState(false);
+  const [loadingEngines, setLoadingEngines] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveMsg, setSaveMsg] = useState('');
@@ -43,27 +47,39 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
 
   useEffect(() => {
     if (!selectedMake) { setModels([]); return; }
-    api.vehicles.models(selectedMake).then((d) => setModels(d as VehicleModel[])).catch(() => {});
+    setLoadingModels(true);
+    api.vehicles.models(selectedMake)
+      .then((d) => setModels(d as VehicleModel[]))
+      .catch(() => setModels([]))
+      .finally(() => setLoadingModels(false));
     setSelectedModel(''); setSelectedGeneration(''); setSelectedEngine('');
   }, [selectedMake]);
 
   useEffect(() => {
     if (!selectedModel) { setGenerations([]); return; }
-    api.vehicles.generations(selectedModel).then((d) => setGenerations(d as VehicleGeneration[])).catch(() => {});
+    setLoadingGenerations(true);
+    api.vehicles.generations(selectedModel)
+      .then((d) => setGenerations(d as VehicleGeneration[]))
+      .catch(() => setGenerations([]))
+      .finally(() => setLoadingGenerations(false));
     setSelectedGeneration(''); setSelectedEngine('');
   }, [selectedModel]);
 
   useEffect(() => {
     if (!selectedGeneration) { setEngines([]); return; }
-    api.vehicles.engines(selectedGeneration).then((d) => setEngines(d as VehicleEngine[])).catch(() => {});
+    setLoadingEngines(true);
+    api.vehicles.engines(selectedGeneration)
+      .then((d) => setEngines(d as VehicleEngine[]))
+      .catch(() => setEngines([]))
+      .finally(() => setLoadingEngines(false));
     setSelectedEngine('');
   }, [selectedGeneration]);
 
   const steps = [
-    { label: 'Marka', value: selectedMake, onChange: setSelectedMake, items: makes, disabled: false, placeholder: 'Marka seçin' },
-    { label: 'Model', value: selectedModel, onChange: setSelectedModel, items: models, disabled: !selectedMake, placeholder: 'Model seçin' },
-    { label: 'Kasa / Nesil', value: selectedGeneration, onChange: setSelectedGeneration, items: generations, disabled: !selectedModel, placeholder: 'Nesil seçin' },
-    { label: 'Motor', value: selectedEngine, onChange: setSelectedEngine, items: engines, disabled: !selectedGeneration, placeholder: 'Motor seçin' },
+    { label: 'Marka', value: selectedMake, onChange: setSelectedMake, items: makes, disabled: false, loading: false, placeholder: 'Marka seçin' },
+    { label: 'Model', value: selectedModel, onChange: setSelectedModel, items: models, disabled: !selectedMake, loading: loadingModels, placeholder: !selectedMake ? 'Önce marka seçin' : (loadingModels ? 'Yükleniyor...' : 'Model seçin') },
+    { label: 'Kasa / Nesil', value: selectedGeneration, onChange: setSelectedGeneration, items: generations, disabled: !selectedModel, loading: loadingGenerations, placeholder: !selectedModel ? 'Önce model seçin' : (loadingGenerations ? 'Yükleniyor...' : 'Nesil seçin') },
+    { label: 'Motor', value: selectedEngine, onChange: setSelectedEngine, items: engines, disabled: !selectedGeneration, loading: loadingEngines, placeholder: !selectedGeneration ? 'Önce nesil seçin' : (loadingEngines ? 'Yükleniyor...' : 'Motor seçin') },
   ];
 
   const handleSearch = async () => {
@@ -103,56 +119,80 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
   return (
     <div className="space-y-4">
       {/* Step indicators */}
-      <div className="flex items-center gap-0 mb-4 overflow-x-auto pb-1">
+      <ol
+        className="flex items-center gap-0 mb-4 overflow-x-auto pb-1"
+        aria-label="Araç seçim adımları"
+      >
         {steps.map((step, i) => {
           const done = i < completedSteps;
           const active = i === completedSteps;
           return (
-            <span key={i} className="flex items-center shrink-0">
+            <li key={i} className="flex items-center shrink-0" aria-current={active ? 'step' : undefined}>
               <span className="flex flex-col items-center gap-1">
                 <span
                   className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold transition-colors ${
                     done
                       ? 'bg-brand text-brand-foreground'
                       : active
-                      ? 'bg-accent-brand text-white ring-2 ring-accent-brand/30'
+                      ? 'bg-brand text-white ring-2 ring-brand/30'
                       : 'bg-muted text-muted-foreground'
                   }`}
+                  aria-label={`Adım ${i + 1}${done ? ' tamamlandı' : active ? ' aktif' : ''}`}
                 >
-                  {done ? '✓' : i + 1}
+                  {done ? <Check size={14} strokeWidth={3} aria-hidden="true" /> : i + 1}
                 </span>
                 <span className={`text-[11px] font-medium ${active ? 'text-foreground' : done ? 'text-brand' : 'text-muted-foreground'}`}>
                   {step.label}
                 </span>
               </span>
               {i < 3 && (
-                <span className={`mx-2 h-px w-8 shrink-0 mb-3.5 ${done ? 'bg-brand' : 'bg-muted-foreground/20'}`} />
+                <span
+                  className={`mx-2 h-px w-8 shrink-0 mb-3.5 ${done ? 'bg-brand' : 'bg-muted-foreground/20'}`}
+                  aria-hidden="true"
+                />
               )}
-            </span>
+            </li>
           );
         })}
-      </div>
+      </ol>
 
       {/* Select dropdowns */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        {steps.map((step, i) => (
-          <div key={i} className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-muted-foreground">{step.label}</label>
-            <select
-              value={step.value}
-              onChange={(e) => step.onChange(e.target.value)}
-              disabled={step.disabled}
-              className={selectClass}
-            >
-              <option value="">{step.placeholder}</option>
-              {step.items.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        ))}
+        {steps.map((step, i) => {
+          const selectId = `vehicle-step-${i}`;
+          const hasNoItems = !step.disabled && !step.loading && step.items.length === 0 && i > 0;
+          return (
+            <div key={i} className="flex flex-col gap-1">
+              <label
+                htmlFor={selectId}
+                className="text-xs font-medium text-muted-foreground"
+              >
+                {step.label} <span className="text-brand" aria-hidden="true">*</span>
+              </label>
+              <select
+                id={selectId}
+                value={step.value}
+                onChange={(e) => step.onChange(e.target.value)}
+                disabled={step.disabled || step.loading}
+                aria-label={`${step.label} seçin`}
+                aria-busy={step.loading}
+                className={selectClass}
+              >
+                <option value="">{step.placeholder}</option>
+                {step.items.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+              {hasNoItems && (
+                <p className="text-[11px] text-muted-foreground italic">
+                  Bu seçim için veri bulunamadı
+                </p>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {/* CTA */}
@@ -160,14 +200,21 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
         <Button
           onClick={handleSearch}
           disabled={!selectedEngine || loading}
-          className="bg-brand text-brand-foreground hover:bg-brand/90 px-6"
+          aria-label={loading ? 'Parçalar yükleniyor' : 'Uyumlu parçaları göster'}
+          className="bg-brand text-brand-foreground hover:bg-brand/90 px-6 cursor-pointer disabled:cursor-not-allowed"
         >
-          <Car size={16} className="mr-2" />
+          <Car size={16} className="mr-2" aria-hidden="true" />
           {loading ? 'Yükleniyor...' : 'Parçaları Göster'}
         </Button>
 
         {showSaveButton && selectedEngine && isAuthenticated && (
-          <Button variant="outline" onClick={handleSaveToGarage} disabled={saving}>
+          <Button
+            variant="outline"
+            onClick={handleSaveToGarage}
+            disabled={saving}
+            aria-label={saving ? 'Garaja kaydediliyor' : 'Aracı garaja kaydet'}
+            className="cursor-pointer disabled:cursor-not-allowed"
+          >
             {saving ? 'Kaydediliyor...' : 'Garaja Kaydet'}
           </Button>
         )}
@@ -175,11 +222,19 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
         {showSaveButton && selectedEngine && !isAuthenticated && (
           <span className="text-xs text-muted-foreground">
             Garaja kaydetmek için{' '}
-            <a href="/login" className="text-brand underline">giriş yapın</a>.
+            <a href="/login" className="text-brand underline cursor-pointer hover:text-brand/80">giriş yapın</a>.
           </span>
         )}
 
-        {saveMsg && <span className="text-xs text-muted-foreground">{saveMsg}</span>}
+        {saveMsg && (
+          <span
+            className="text-xs text-muted-foreground"
+            role="status"
+            aria-live="polite"
+          >
+            {saveMsg}
+          </span>
+        )}
       </div>
 
       {/* Already selected vehicle context */}

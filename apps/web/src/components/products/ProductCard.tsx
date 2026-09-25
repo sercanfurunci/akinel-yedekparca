@@ -19,8 +19,13 @@ export function ProductCard({ product }: Props) {
   const resolvedImageUrl = imgError ? null : getImageUrl(product.primaryImageUrl);
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-white transition-all duration-200 hover:border-brand/40 hover:shadow-lg hover:-translate-y-0.5">
-      <Link href={`/products/${product.slug}`} className="block">
+    <div className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-white transition-all duration-200 hover:border-brand/40 hover:shadow-lg hover:-translate-y-0.5 focus-within:ring-2 focus-within:ring-brand/40">
+      <Link
+        href={`/products/${product.slug}`}
+        className="block cursor-pointer"
+        aria-label={`${product.brandName} ${product.name} ürününü görüntüle`}
+        title={product.name}
+      >
         {/* Image area */}
         <div className="relative aspect-square bg-[#F3F4F6] overflow-hidden">
           {resolvedImageUrl ? (
@@ -28,18 +33,31 @@ export function ProductCard({ product }: Props) {
               src={resolvedImageUrl}
               alt={product.name}
               onError={() => setImgError(true)}
+              loading="lazy"
               className="w-full h-full object-contain p-5 group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
             <img
               src="/images/placeholder-product.svg"
               alt={product.name}
+              loading="lazy"
               className="w-full h-full object-contain p-5"
             />
           )}
           {product.discountPercentage != null && product.discountPercentage > 0 && (
-            <span className="absolute top-2.5 left-2.5 bg-brand text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+            <span
+              className="absolute top-2.5 left-2.5 bg-brand text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm"
+              aria-label={`%${Math.round(product.discountPercentage)} indirim`}
+            >
               %{Math.round(product.discountPercentage)} İNDİRİM
+            </span>
+          )}
+          {!inStock && (
+            <span
+              className="absolute top-2.5 right-2.5 bg-gray-700/85 text-white text-[10px] font-bold px-2 py-0.5 rounded-md backdrop-blur-sm"
+              aria-label="Stokta yok"
+            >
+              STOKTA YOK
             </span>
           )}
         </div>

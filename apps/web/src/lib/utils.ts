@@ -36,14 +36,14 @@ export function stockStatusColor(status: string | number): string {
   switch (status) {
     case 'InStock':
     case 2:
-      return 'bg-green-100 text-green-800';
+      return 'bg-green-100 text-green-800 border border-green-200';
     case 'LowStock':
     case 1:
-      return 'bg-yellow-100 text-yellow-800';
+      return 'bg-amber-100 text-amber-800 border border-amber-200';
     case 'OutOfStock':
     case 0:
-      return 'bg-gray-100 text-gray-500';
+      return 'bg-gray-100 text-gray-600 border border-gray-200';
     default:
-      return 'bg-gray-100 text-gray-500';
+      return 'bg-gray-100 text-gray-500 border border-gray-200';
   }
 }

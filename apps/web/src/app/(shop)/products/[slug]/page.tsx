@@ -157,22 +157,33 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
           {/* Quantity + Add to Cart */}
           {(product.stockStatus === 'InStock' || product.stockStatus === 'LowStock' || (product.stockStatus as unknown as number) === 2 || (product.stockStatus as unknown as number) === 1) && (
             <div className="flex items-center gap-3">
-              <div className="flex items-center rounded-lg border">
+              <div className="flex items-center rounded-lg border" role="group" aria-label="Adet seçici">
                 <button
+                  type="button"
                   onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                  className="flex h-10 w-10 items-center justify-center hover:bg-muted transition-colors rounded-l-lg"
-                  aria-label="Azalt"
+                  disabled={quantity <= 1}
+                  className="flex h-10 w-10 items-center justify-center hover:bg-muted active:scale-95 transition-all rounded-l-lg cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                  aria-label="Adedi azalt"
+                  title="Azalt"
                 >
-                  <Minus size={14} />
+                  <Minus size={14} aria-hidden="true" />
                 </button>
-                <span className="w-10 text-center font-medium text-sm">{quantity}</span>
+                <span
+                  className="w-10 text-center font-medium text-sm"
+                  aria-label={`Adet: ${quantity}`}
+                  aria-live="polite"
+                >
+                  {quantity}
+                </span>
                 <button
+                  type="button"
                   onClick={() => setQuantity(q => Math.min(product.availableQuantity || 99, q + 1))}
-                  className="flex h-10 w-10 items-center justify-center hover:bg-muted transition-colors rounded-r-lg"
-                  aria-label="Artır"
+                  className="flex h-10 w-10 items-center justify-center hover:bg-muted active:scale-95 transition-all rounded-r-lg cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                  aria-label="Adedi artır"
+                  title="Artır"
                   disabled={quantity >= (product.availableQuantity || 99)}
                 >
-                  <Plus size={14} />
+                  <Plus size={14} aria-hidden="true" />
                 </button>
               </div>
               <div className="flex-1">
@@ -203,20 +214,27 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
       <div className="mt-12">
         {/* Tab nav — horizontal scroll on mobile, no text shrink */}
         <div className="border-b mb-6 overflow-x-auto">
-          <div className="flex gap-0 min-w-max sm:min-w-0">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors border-b-2 -mb-px shrink-0 ${
-                  activeTab === tab.id
-                    ? 'border-brand text-brand'
-                    : 'border-transparent text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div className="flex gap-0 min-w-max sm:min-w-0" role="tablist" aria-label="Ürün detayları sekmeleri">
+            {tabs.map((tab) => {
+              const active = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  aria-current={active ? 'true' : undefined}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors border-b-2 -mb-px shrink-0 cursor-pointer ${
+                    active
+                      ? 'border-brand text-brand'
+                      : 'border-transparent text-muted-foreground hover:text-foreground hover:border-muted-foreground/30'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 

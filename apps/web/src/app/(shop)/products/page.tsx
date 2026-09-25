@@ -476,21 +476,30 @@ function ProductsContent() {
 
         {/* Active filter chips */}
         {activeChips.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div
+            className="flex flex-wrap gap-2 mb-4"
+            role="group"
+            aria-label="Aktif filtreler"
+          >
             {activeChips.map((chip) => (
               <button
                 key={chip.removeKey}
+                type="button"
                 onClick={() => removeFilter(chip.removeKey)}
-                className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand-muted/40 px-3 py-1 text-xs font-medium text-brand hover:bg-brand/10 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand-muted/40 px-3 py-1 text-xs font-medium text-brand hover:bg-brand/10 active:scale-95 transition-all cursor-pointer"
+                aria-label={`Filtreyi kaldır: ${chip.label}`}
+                title="Kaldır"
               >
                 {chip.label}
-                <X size={11} />
+                <X size={11} aria-hidden="true" />
               </button>
             ))}
             {activeChips.length > 1 && (
               <button
+                type="button"
                 onClick={clearFilters}
-                className="inline-flex items-center gap-1.5 rounded-full border border-muted-foreground/30 bg-muted px-3 py-1 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-full border border-muted-foreground/30 bg-muted px-3 py-1 text-xs font-medium text-muted-foreground hover:text-foreground active:scale-95 transition-all cursor-pointer"
+                aria-label="Tüm filtreleri temizle"
               >
                 Tümünü Temizle
               </button>
@@ -574,7 +583,20 @@ function ProductsContent() {
               <EmptyState
                 icon={<Package size={48} />}
                 title="Ürün bulunamadı"
-                description="Seçili filtrelere uygun ürün mevcut değil. Filtreleri değiştirmeyi deneyin."
+                description="Arama kriterlerinize uygun ürün bulunamadı. Filtreleri değiştirmeyi deneyin."
+                action={
+                  hasActiveFilters ? (
+                    <button
+                      onClick={clearFilters}
+                      type="button"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-brand text-brand-foreground hover:bg-brand/90 active:scale-[0.98] h-10 px-5 text-sm font-semibold transition-all cursor-pointer"
+                      aria-label="Tüm filtreleri temizle"
+                    >
+                      <X size={14} aria-hidden="true" />
+                      Filtreleri Temizle
+                    </button>
+                  ) : null
+                }
               />
             ) : (
               <>

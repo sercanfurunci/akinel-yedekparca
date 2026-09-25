@@ -96,21 +96,27 @@ export default function GaragePage() {
       </div>
 
       {garageUnavailable ? (
-        <div className="rounded-xl border bg-card p-8 text-center">
-          <Car size={48} className="mx-auto text-muted-foreground mb-4" />
+        <div
+          className="rounded-xl border bg-card p-8 text-center"
+          role="status"
+          aria-live="polite"
+        >
+          <Car size={48} className="mx-auto text-muted-foreground mb-4" aria-hidden="true" />
           <h2 className="font-semibold mb-2">Garaj özelliği yakında</h2>
           <p className="text-sm text-muted-foreground">Bu özellik şu anda geliştirme aşamasında. Yakında kullanıma açılacak.</p>
         </div>
       ) : vehicles.length === 0 ? (
         <EmptyState
           icon={<Car size={48} />}
-          title="Henüz aracınız yok"
-          description="Araç eklemek için 'Aracımı Seç' sayfasını ziyaret edin."
+          title="Henüz araç eklemediniz"
+          description="Aracınızı seçerek kişiselleştirilmiş parça önerilerine hızlıca ulaşın."
           action={
             <Link
               href="/vehicle"
-              className={cn(buttonVariants({ variant: 'default' }), 'bg-brand text-brand-foreground hover:bg-brand/90')}
+              className={cn(buttonVariants({ variant: 'default' }), 'bg-brand text-brand-foreground hover:bg-brand/90 cursor-pointer')}
+              aria-label="Yeni araç ekle"
             >
+              <Plus size={16} className="mr-2" aria-hidden="true" />
               Araç Ekle
             </Link>
           }

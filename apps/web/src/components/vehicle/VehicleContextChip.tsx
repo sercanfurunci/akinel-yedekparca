@@ -18,16 +18,19 @@ export function VehicleContextChip() {
       </span>
       <Link
         href="/vehicle"
-        className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
+        className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0 cursor-pointer"
+        title="Aracı değiştir"
       >
         Değiştir
       </Link>
       <button
+        type="button"
         onClick={clearVehicle}
-        className="inline-flex items-center justify-center h-4 w-4 rounded-full hover:bg-muted-foreground/20 transition-colors shrink-0"
+        className="inline-flex items-center justify-center h-5 w-5 rounded-full hover:bg-muted-foreground/20 active:scale-95 transition-all shrink-0 cursor-pointer"
         aria-label="Araç seçimini temizle"
+        title="Temizle"
       >
-        <X size={10} />
+        <X size={10} aria-hidden="true" />
       </button>
     </div>
   );

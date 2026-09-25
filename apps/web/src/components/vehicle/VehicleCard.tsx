@@ -42,7 +42,13 @@ export function VehicleCard({ vehicle, onSelect, onDelete }: VehicleCardProps) {
           </div>
           <div className="flex flex-col gap-2 shrink-0">
             {onSelect && (
-              <Button size="sm" onClick={() => onSelect(vehicle)}>
+              <Button
+                size="sm"
+                onClick={() => onSelect(vehicle)}
+                aria-label={`${vehicle.makeName} ${vehicle.modelName} aracını seç`}
+                title="Bu aracı seç"
+                className="cursor-pointer"
+              >
                 Seç
               </Button>
             )}
@@ -51,6 +57,9 @@ export function VehicleCard({ vehicle, onSelect, onDelete }: VehicleCardProps) {
                 size="sm"
                 variant="destructive"
                 onClick={() => onDelete(vehicle.id)}
+                aria-label={`${vehicle.makeName} ${vehicle.modelName} aracını sil`}
+                title="Aracı sil"
+                className="cursor-pointer"
               >
                 Sil
               </Button>

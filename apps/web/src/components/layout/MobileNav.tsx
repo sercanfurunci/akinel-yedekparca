@@ -29,8 +29,9 @@ export function MobileNav() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
-        className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors md:hidden"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 active:scale-95 transition-all md:hidden cursor-pointer"
         aria-label="Menüyü aç"
+        title="Menü"
       >
         <Menu size={22} />
       </SheetTrigger>
@@ -40,7 +41,7 @@ export function MobileNav() {
             <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-10 w-auto" />
           </SheetTitle>
         </SheetHeader>
-        <nav className="flex flex-col p-4 gap-1">
+        <nav className="flex flex-col p-4 gap-1" aria-label="Mobil menü">
           {navLinks.map(({ href, label }) => {
             const isActive = pathname === href;
             return (
@@ -48,8 +49,9 @@ export function MobileNav() {
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
+                aria-current={isActive ? 'page' : undefined}
                 className={cn(
-                  'flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors',
+                  'flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors cursor-pointer',
                   isActive
                     ? 'bg-brand text-white'
                     : 'text-white/80 hover:bg-white/10 hover:text-white'
@@ -65,7 +67,8 @@ export function MobileNav() {
               <Link
                 href="/account"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+                className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
+                aria-label={`Hesabım — ${user?.firstName ?? ''}`}
               >
                 <User size={15} />
                 Hesabım — {user?.firstName}
@@ -74,15 +77,17 @@ export function MobileNav() {
                 <Link
                   href="/admin"
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+                  className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
                 >
                   <Shield size={15} className="text-brand" />
                   Admin Paneli
                 </Link>
               )}
               <button
+                type="button"
                 onClick={() => { clearAuth(); setOpen(false); }}
-                className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm text-brand hover:bg-brand/10 transition-colors w-full text-left"
+                className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm text-brand hover:bg-brand/10 transition-colors w-full text-left cursor-pointer"
+                aria-label="Çıkış Yap"
               >
                 <LogOut size={15} />
                 Çıkış Yap
@@ -93,14 +98,14 @@ export function MobileNav() {
               <Link
                 href="/login"
                 onClick={() => setOpen(false)}
-                className="flex items-center px-4 py-3 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+                className="flex items-center px-4 py-3 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
               >
                 Giriş Yap
               </Link>
               <Link
                 href="/register"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center px-4 py-3 rounded-lg text-sm bg-brand text-white hover:bg-brand/90 transition-colors font-semibold"
+                className="flex items-center justify-center px-4 py-3 rounded-lg text-sm bg-brand text-white hover:bg-brand/90 transition-colors font-semibold cursor-pointer"
               >
                 Kayıt Ol
               </Link>

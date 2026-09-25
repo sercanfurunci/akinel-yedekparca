@@ -73,16 +73,19 @@ function SearchResults() {
       {selectedVehicle && query && !isOemQuery && (
         <div className="mb-5">
           <button
+            type="button"
             onClick={() => setUseVehicleFilter(v => !v)}
-            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+            aria-pressed={useVehicleFilter}
+            aria-label={useVehicleFilter ? 'Araç filtresini kaldır' : `Sonuçları ${selectedVehicle.displayLabel} için filtrele`}
+            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium border transition-all active:scale-95 cursor-pointer ${
               useVehicleFilter
                 ? 'bg-brand text-brand-foreground border-brand'
                 : 'bg-muted text-muted-foreground border-border hover:border-brand hover:text-brand'
             }`}
           >
-            <Car size={14} />
+            <Car size={14} aria-hidden="true" />
             {selectedVehicle.displayLabel}
-            {useVehicleFilter && <X size={12} />}
+            {useVehicleFilter && <X size={12} aria-hidden="true" />}
           </button>
           {!useVehicleFilter && (
             <p className="text-xs text-muted-foreground mt-1.5 ml-1">
@@ -96,34 +99,40 @@ function SearchResults() {
       {vehicleSuggestions && !isOemQuery && query && (
         <div className="mb-6 rounded-xl border bg-muted/30 p-4">
           <p className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
-            <Car size={14} /> Araç Sonuçları — uyumlu ürünleri görmek için bir araç seçin
+            <Car size={14} aria-hidden="true" /> Araç Sonuçları — uyumlu ürünleri görmek için bir araç seçin
           </p>
           <div className="flex flex-wrap gap-2">
             {vehicleSuggestions.makes.map(m => (
               <button
                 key={m.id}
+                type="button"
                 onClick={() => router.push(`/vehicle?makeId=${m.id}`)}
-                className="text-sm px-3 py-1.5 rounded-full bg-background border hover:border-brand hover:text-brand transition-colors"
+                aria-label={`${m.name} markasını seç`}
+                className="text-sm px-3 py-1.5 rounded-full bg-background border hover:border-brand hover:text-brand active:scale-95 transition-all cursor-pointer"
               >
-                🏷️ {m.name}
+                <span aria-hidden="true">🏷️ </span>{m.name}
               </button>
             ))}
             {vehicleSuggestions.models.map(m => (
               <button
                 key={m.id}
+                type="button"
                 onClick={() => router.push(`/vehicle?makeId=${m.makeId}&modelId=${m.id}`)}
-                className="text-sm px-3 py-1.5 rounded-full bg-background border hover:border-brand hover:text-brand transition-colors"
+                aria-label={`${m.makeName} ${m.name} modelini seç`}
+                className="text-sm px-3 py-1.5 rounded-full bg-background border hover:border-brand hover:text-brand active:scale-95 transition-all cursor-pointer"
               >
-                🚗 {m.makeName} {m.name}
+                <span aria-hidden="true">🚗 </span>{m.makeName} {m.name}
               </button>
             ))}
             {vehicleSuggestions.engines.map(e => (
               <button
                 key={e.id}
+                type="button"
                 onClick={() => router.push(`/products?vehicleEngineId=${e.id}`)}
-                className="text-sm px-3 py-1.5 rounded-full bg-background border hover:border-brand hover:text-brand transition-colors"
+                aria-label={`${e.path} motoru için parçaları göster`}
+                className="text-sm px-3 py-1.5 rounded-full bg-background border hover:border-brand hover:text-brand active:scale-95 transition-all cursor-pointer"
               >
-                🔧 {e.path}
+                <span aria-hidden="true">🔧 </span>{e.path}
               </button>
             ))}
           </div>

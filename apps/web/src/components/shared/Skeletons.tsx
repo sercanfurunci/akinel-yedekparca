@@ -1,6 +1,11 @@
 export function ProductCardSkeleton() {
   return (
-    <div className="rounded-xl border bg-card overflow-hidden animate-pulse">
+    <div
+      className="rounded-xl border bg-card overflow-hidden animate-pulse"
+      role="status"
+      aria-label="Ürün yükleniyor"
+      aria-busy="true"
+    >
       <div className="aspect-square bg-muted" />
       <div className="p-4 space-y-3">
         <div className="h-3 bg-muted rounded w-1/3" />
@@ -10,6 +15,7 @@ export function ProductCardSkeleton() {
           <div className="h-6 bg-muted rounded w-20" />
           <div className="h-5 bg-muted rounded w-16" />
         </div>
+        <div className="h-8 bg-muted rounded" />
       </div>
     </div>
   );
