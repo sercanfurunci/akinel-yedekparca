@@ -6,15 +6,15 @@ import type { LucideIcon } from 'lucide-react';
 import {
   Disc, Cog, Filter, Zap, GitMerge,
   Lightbulb, Thermometer, AirVent, Layers, Gauge, Package,
-  Search, Car, Check, ChevronRight,
+  Car, Check, ChevronRight,
 } from 'lucide-react';
-import { GlobalSearch } from '@/components/search/GlobalSearch';
 import { VehicleFinder } from '@/components/search/VehicleFinder';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { BusinessStrip } from '@/components/home/BusinessStrip';
+import { HeroCarousel, StaticHero } from '@/components/home/HeroCarousel';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { api } from '@/lib/api';
-import type { ProductListItem, PaginatedResult, Brand, Category } from '@/lib/types';
+import type { ProductListItem, PaginatedResult, Brand, Category, HeroSlide } from '@/lib/types';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -46,6 +46,7 @@ export default function HomePage() {
   const [brands, setBrands] = useState<Brand[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
+  const [heroSlides, setHeroSlides] = useState<HeroSlide[] | null>(null);
 
   useEffect(() => {
     api.products
@@ -64,65 +65,25 @@ export default function HomePage() {
     api.categories.list()
       .then((data) => setCategories(data as Category[]))
       .catch(() => {});
+
+    api.hero.slides()
+      .then((data) => setHeroSlides(data as HeroSlide[]))
+      .catch(() => setHeroSlides([]));
   }, []);
 
   return (
     <div>
       {/* ── 1. HERO ─────────────────────────────────── */}
-      <section className="relative bg-[#111827] text-white py-16 md:py-24 overflow-hidden">
-        {/* Subtle red gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent pointer-events-none" />
-        <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-            backgroundSize: '32px 32px',
-          }}
-        />
-        <div className="container mx-auto px-4 max-w-7xl relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="h-0.5 w-8 bg-brand rounded-full" />
-              <p className="text-brand text-xs font-bold uppercase tracking-widest">
-                AKINEL OTO YEDEK PARÇA
-              </p>
-              <span className="h-0.5 w-8 bg-brand rounded-full" />
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight tracking-tight">
-              Aracınız için{' '}
-              <span className="text-brand">doğru parçayı</span>{' '}
-              bulun
-            </h1>
-            <p className="text-white/70 mb-8 text-base md:text-lg max-w-2xl mx-auto">
-              OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın.
-              AKN MOTORS Car Service güvencesi.
-            </p>
-            <div className="bg-white rounded-xl p-2 mb-6 shadow-2xl shadow-brand/10 ring-1 ring-white/10">
-              <GlobalSearch size="lg" />
-            </div>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link
-                href="/vehicle"
-                className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-5')}
-              >
-                <Car size={16} className="mr-2" /> Aracımı Seç
-              </Link>
-              <Link
-                href="/search"
-                className={cn(buttonVariants({ variant: 'secondary', size: 'lg' }), 'h-11 px-5')}
-              >
-                <Search size={16} className="mr-2" /> OEM ile Ara
-              </Link>
-              <span
-                className="inline-flex items-center h-11 px-5 rounded-lg bg-white/5 text-white/40 border border-white/10 text-sm font-medium cursor-not-allowed"
-                title="Yakında"
-              >
-                VIN ile Ara (Yakında)
-              </span>
-            </div>
-          </div>
+      {heroSlides === null ? (
+        /* Loading skeleton — prevent layout shift */
+        <div className="relative bg-[#111827] text-white overflow-hidden" style={{ minHeight: 'clamp(480px, 60vw, 640px)' }}>
+          <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent" />
         </div>
-      </section>
+      ) : heroSlides.length > 0 ? (
+        <HeroCarousel slides={heroSlides} />
+      ) : (
+        <StaticHero />
+      )}
 
       {/* ── 2. BUSINESS STRIP ───────────────────────── */}
       <BusinessStrip />

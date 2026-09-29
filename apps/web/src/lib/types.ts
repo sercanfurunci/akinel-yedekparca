@@ -261,6 +261,22 @@ export interface CreateEngineData {
   yearTo?: number;
 }
 
+export interface HeroSlide {
+  id: string;
+  imageUrl: string;
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaUrl?: string;
+  displayOrder: number;
+}
+
+export interface AdminHeroSlide extends HeroSlide {
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface ProductSearchQuery {
   query?: string;
   queryType?: 'FreeText' | 'OemNumber' | 'PartNumber' | 'Brand';

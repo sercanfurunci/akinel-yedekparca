@@ -38,6 +38,34 @@ function handleSessionExpired(): void {
   }
 }
 
+async function uploadFile<T>(path: string, formData: FormData): Promise<T> {
+  // Always read the freshest token from the store at call time — never use a stale closure.
+  const token = useAuthStore.getState().accessToken;
+  if (!token) throw new Error('Oturumunuz sona erdi.');
+
+  const doFetch = (t: string) =>
+    fetch(`${API_BASE}${path}`, {
+      method: 'POST',
+      // Do NOT set Content-Type — browser must set multipart/form-data with the boundary.
+      headers: { Authorization: `Bearer ${t}` },
+      body: formData,
+    });
+
+  let res = await doFetch(token);
+
+  if (res.status === 401) {
+    const newToken = await tryRefresh();
+    if (!newToken) throw new Error('Oturumunuz sona erdi.');
+    res = await doFetch(newToken);
+  }
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => null) as { message?: string } | null;
+    throw new Error(body?.message ?? `API error: ${res.status} ${res.statusText}`);
+  }
+  return res.json() as Promise<T>;
+}
+
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const { headers: extraHeaders, ...restOptions } = options ?? {};
   const headers: Record<string, string> = {
@@ -120,6 +148,9 @@ export const api = {
   brands: {
     list: () => request('/api/brands'),
   },
+  hero: {
+    slides: () => request('/api/hero/slides'),
+  },
   business: {
     settings: () => request('/api/business/settings'),
     updateSettings: (data: unknown, token: string) =>
@@ -167,16 +198,10 @@ export const api = {
         request(`/api/admin/products/${id}/compatibility/${engineId}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
       getImages: (id: string, token: string) =>
         request(`/api/admin/products/${id}/images`, { headers: { Authorization: `Bearer ${token}` } }),
-      uploadImage: async (id: string, file: File, token: string) => {
+      uploadImage: async (id: string, file: File, _token?: string) => {
         const formData = new FormData();
         formData.append('file', file);
-        const res = await fetch(`${API_BASE}/api/admin/products/${id}/images`, {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${token}` },
-          body: formData,
-        });
-        if (!res.ok) throw new Error(`API error: ${res.status}`);
-        return res.json();
+        return uploadFile(`/api/admin/products/${id}/images`, formData);
       },
       setPrimaryImage: (id: string, imageId: string, token: string) =>
         request(`/api/admin/products/${id}/images/${imageId}/primary`, { method: 'PUT', headers: { Authorization: `Bearer ${token}` } }),
@@ -206,6 +231,23 @@ export const api = {
         request(`/api/admin/categories/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
       delete: (id: string, token: string) =>
         request(`/api/admin/categories/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
+    },
+    hero: {
+      list: (token: string) =>
+        request('/api/admin/hero/slides', { headers: { Authorization: `Bearer ${token}` } }),
+      create: (data: { title?: string; subtitle?: string; ctaText?: string; ctaUrl?: string; displayOrder?: number; isActive?: boolean }, token: string) =>
+        request('/api/admin/hero/slides', { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
+      update: (id: string, data: { title?: string; subtitle?: string; ctaText?: string; ctaUrl?: string; displayOrder?: number; isActive?: boolean }, token: string) =>
+        request(`/api/admin/hero/slides/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
+      uploadImage: async (id: string, file: File, _token?: string) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        return uploadFile(`/api/admin/hero/slides/${id}/image`, formData);
+      },
+      toggle: (id: string, token: string) =>
+        request(`/api/admin/hero/slides/${id}/toggle`, { method: 'PATCH', headers: { Authorization: `Bearer ${token}` } }),
+      delete: (id: string, token: string) =>
+        request(`/api/admin/hero/slides/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
     },
     vehicles: {
       getMakes: (token: string, params?: { search?: string; page?: number; pageSize?: number }) => {
