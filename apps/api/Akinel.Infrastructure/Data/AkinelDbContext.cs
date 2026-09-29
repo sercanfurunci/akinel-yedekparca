@@ -28,6 +28,7 @@ public class AkinelDbContext : DbContext
     public DbSet<BasketItem> BasketItems => Set<BasketItem>();
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+    public DbSet<HomepageHeroSlide> HomepageHeroSlides => Set<HomepageHeroSlide>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

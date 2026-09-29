@@ -402,6 +402,109 @@ public class AdminController : ControllerBase
         return Ok(new { stock.ProductId, stock.Quantity, stock.AvailableQuantity, Status = stock.Status.ToString() });
     }
 
+    // ── Homepage Hero Slides ─────────────────────────────────────────
+
+    [HttpGet("hero/slides")]
+    public async Task<IActionResult> GetHeroSlides(CancellationToken ct)
+    {
+        var slides = await _db.HomepageHeroSlides
+            .OrderBy(s => s.DisplayOrder)
+            .Select(s => new { s.Id, s.ImageUrl, s.Title, s.Subtitle, s.CtaText, s.CtaUrl, s.DisplayOrder, s.IsActive, s.CreatedAt, s.UpdatedAt })
+            .ToListAsync(ct);
+        return Ok(slides);
+    }
+
+    [HttpPost("hero/slides")]
+    public async Task<IActionResult> CreateHeroSlide([FromBody] CreateHeroSlideRequest request, CancellationToken ct)
+    {
+        var slide = new HomepageHeroSlide
+        {
+            Title = string.IsNullOrWhiteSpace(request.Title) ? null : request.Title,
+            Subtitle = string.IsNullOrWhiteSpace(request.Subtitle) ? null : request.Subtitle,
+            CtaText = string.IsNullOrWhiteSpace(request.CtaText) ? null : request.CtaText,
+            CtaUrl = string.IsNullOrWhiteSpace(request.CtaUrl) ? null : request.CtaUrl,
+            DisplayOrder = request.DisplayOrder,
+            IsActive = request.IsActive,
+        };
+        _db.HomepageHeroSlides.Add(slide);
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { slide.Id, slide.ImageUrl, slide.Title, slide.Subtitle, slide.CtaText, slide.CtaUrl, slide.DisplayOrder, slide.IsActive, slide.CreatedAt, slide.UpdatedAt });
+    }
+
+    [HttpPut("hero/slides/{id:guid}")]
+    public async Task<IActionResult> UpdateHeroSlide(Guid id, [FromBody] UpdateHeroSlideRequest request, CancellationToken ct)
+    {
+        var slide = await _db.HomepageHeroSlides.FindAsync(new object[] { id }, ct);
+        if (slide == null) return NotFound();
+        slide.Title = string.IsNullOrWhiteSpace(request.Title) ? null : request.Title;
+        slide.Subtitle = string.IsNullOrWhiteSpace(request.Subtitle) ? null : request.Subtitle;
+        slide.CtaText = string.IsNullOrWhiteSpace(request.CtaText) ? null : request.CtaText;
+        slide.CtaUrl = string.IsNullOrWhiteSpace(request.CtaUrl) ? null : request.CtaUrl;
+        slide.DisplayOrder = request.DisplayOrder;
+        slide.IsActive = request.IsActive;
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { slide.Id, slide.ImageUrl, slide.Title, slide.Subtitle, slide.CtaText, slide.CtaUrl, slide.DisplayOrder, slide.IsActive, slide.CreatedAt, slide.UpdatedAt });
+    }
+
+    [HttpPost("hero/slides/{id:guid}/image")]
+    public async Task<IActionResult> UploadHeroSlideImage(Guid id, IFormFile file, CancellationToken ct)
+    {
+        var slide = await _db.HomepageHeroSlides.FindAsync(new object[] { id }, ct);
+        if (slide == null) return NotFound();
+
+        if (file == null || file.Length == 0) return BadRequest("Dosya gerekli.");
+
+        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+        if (ext is not (".jpg" or ".jpeg" or ".png" or ".webp")) return BadRequest("Sadece jpg, png veya webp dosyaları desteklenmektedir.");
+
+        // Delete previous image if stored locally
+        if (!string.IsNullOrEmpty(slide.ImageUrl) && slide.ImageUrl.StartsWith("/uploads/"))
+        {
+            var oldPath = Path.Combine("wwwroot", slide.ImageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+            if (System.IO.File.Exists(oldPath)) System.IO.File.Delete(oldPath);
+        }
+
+        var uploadsDir = Path.Combine("wwwroot", "uploads", "homepage");
+        Directory.CreateDirectory(uploadsDir);
+        var fileName = $"{Guid.NewGuid()}{ext}";
+        var filePath = Path.Combine(uploadsDir, fileName);
+
+        using (var stream = System.IO.File.Create(filePath))
+            await file.CopyToAsync(stream, ct);
+
+        slide.ImageUrl = $"/uploads/homepage/{fileName}";
+        await _db.SaveChangesAsync(ct);
+
+        return Ok(new { slide.Id, slide.ImageUrl });
+    }
+
+    [HttpPatch("hero/slides/{id:guid}/toggle")]
+    public async Task<IActionResult> ToggleHeroSlide(Guid id, CancellationToken ct)
+    {
+        var slide = await _db.HomepageHeroSlides.FindAsync(new object[] { id }, ct);
+        if (slide == null) return NotFound();
+        slide.IsActive = !slide.IsActive;
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { slide.Id, slide.IsActive });
+    }
+
+    [HttpDelete("hero/slides/{id:guid}")]
+    public async Task<IActionResult> DeleteHeroSlide(Guid id, CancellationToken ct)
+    {
+        var slide = await _db.HomepageHeroSlides.FindAsync(new object[] { id }, ct);
+        if (slide == null) return NotFound();
+
+        if (!string.IsNullOrEmpty(slide.ImageUrl) && slide.ImageUrl.StartsWith("/uploads/"))
+        {
+            var filePath = Path.Combine("wwwroot", slide.ImageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+            if (System.IO.File.Exists(filePath)) System.IO.File.Delete(filePath);
+        }
+
+        _db.HomepageHeroSlides.Remove(slide);
+        await _db.SaveChangesAsync(ct);
+        return NoContent();
+    }
+
     // ── Helpers ──────────────────────────────────────────────────────
 
     private static string GenerateSlug(string name)
@@ -423,3 +526,5 @@ public record UpdateCategoryRequest(string Name, Guid? ParentCategoryId, bool Is
 public record UpdateStockRequest(int Quantity);
 public record AddOemRequest(string Number, string? Manufacturer);
 public record AddCompatibilityRequest(Guid VehicleEngineId, string? Notes);
+public record CreateHeroSlideRequest(string? Title, string? Subtitle, string? CtaText, string? CtaUrl, int DisplayOrder = 0, bool IsActive = true);
+public record UpdateHeroSlideRequest(string? Title, string? Subtitle, string? CtaText, string? CtaUrl, int DisplayOrder = 0, bool IsActive = true);

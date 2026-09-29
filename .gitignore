@@ -33,7 +33,4 @@ Thumbs.db
 *.log
 
 # Uploads (user content — not committed)
-apps/api/Akinel.Api/wwwroot/uploads/products/*.jpg
-apps/api/Akinel.Api/wwwroot/uploads/products/*.jpeg
-apps/api/Akinel.Api/wwwroot/uploads/products/*.png
-apps/api/Akinel.Api/wwwroot/uploads/products/*.webp
+apps/api/Akinel.Api/wwwroot/uploads/
