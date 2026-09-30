@@ -281,6 +281,32 @@ export interface AdminHeroSlide extends HeroSlide {
   updatedAt: string;
 }
 
+export interface InternalVehicleMatch {
+  engineId: string;
+  generationId: string;
+  engineDisplay: string;
+  generationDisplay: string;
+  modelDisplay: string;
+  makeDisplay: string;
+}
+
+export interface VinDecodeResult {
+  vin: string;
+  make?: string;
+  model?: string;
+  year?: string;
+  fuelType?: string;
+  displacement?: string;
+  engineCode?: string;
+  bodyStyle?: string;
+  transmission?: string;
+  country?: string;
+  manufacturerName?: string;
+  isPartial: boolean;
+  internalVehicle?: InternalVehicleMatch;
+  possibleMatches: InternalVehicleMatch[];
+}
+
 export interface ProductSearchQuery {
   query?: string;
   queryType?: 'FreeText' | 'OemNumber' | 'PartNumber' | 'Brand';

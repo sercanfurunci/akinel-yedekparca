@@ -113,9 +113,22 @@ export const api = {
     get: (slug: string) => request(`/api/products/${slug}`),
     search: (params: Record<string, string>) =>
       request(`/api/products/search?${new URLSearchParams(params)}`),
+    related: (slug: string, engineId?: string) => {
+      const qs = engineId ? `?engineId=${encodeURIComponent(engineId)}` : '';
+      return request(`/api/products/${encodeURIComponent(slug)}/related${qs}`);
+    },
+    notifyStock: (productId: string, email: string) =>
+      request(`/api/products/${productId}/notify-stock`, {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+      }),
   },
   categories: {
     list: () => request('/api/categories'),
+  },
+  search: {
+    suggest: (q: string) =>
+      request(`/api/search/suggest?q=${encodeURIComponent(q)}`),
   },
   vehicles: {
     makes: () => request('/api/vehicles/makes'),

@@ -23,4 +23,15 @@ public class CategoriesController : ControllerBase
 
         return Ok(categories);
     }
+
+    [HttpGet("{slug}")]
+    public async Task<IActionResult> GetBySlug(string slug, CancellationToken ct)
+    {
+        var category = await _db.Categories
+            .Where(c => c.IsActive && c.Slug == slug)
+            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.ImageUrl })
+            .FirstOrDefaultAsync(ct);
+
+        return category == null ? NotFound() : Ok(category);
+    }
 }

@@ -19,26 +19,32 @@ export function AnnouncementTicker() {
 
   if (items.length === 0) return null;
 
-  // Duplicate for seamless loop
+  // Duplicate for seamless loop: animation goes 0 → -50% and loops
   const doubled = [...items, ...items];
 
   return (
-    <div className="bg-brand text-white text-[11px] font-medium overflow-hidden h-7 flex items-center">
+    <div
+      className="bg-brand text-white text-[11px] font-medium h-7 flex items-center"
+      style={{ overflow: 'hidden', width: '100vw', maxWidth: '100%' }}
+    >
       <div
-        className="flex gap-0 whitespace-nowrap"
-        style={{ animation: 'ticker 30s linear infinite' }}
+        className="flex whitespace-nowrap shrink-0"
+        style={{ animation: 'ticker-scroll 30s linear infinite', willChange: 'transform' }}
       >
         {doubled.map((item, i) => (
-          <span key={i} className="flex items-center">
+          <span key={i} className="inline-flex items-center">
             <span className="px-8">{item}</span>
-            <span className="text-white/50">✦</span>
+            <span className="text-white/50" aria-hidden="true">✦</span>
           </span>
         ))}
       </div>
       <style>{`
-        @keyframes ticker {
-          0% { transform: translateX(0); }
+        @keyframes ticker-scroll {
+          0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .ticker-scroll { animation: none; }
         }
       `}</style>
     </div>

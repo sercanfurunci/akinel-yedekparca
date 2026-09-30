@@ -1,14 +1,15 @@
 'use client';
 
 import { useState, useEffect, use } from 'react';
-import { Package, Car, Minus, Plus } from 'lucide-react';
+import { Package, Car, Minus, Plus, Bell } from 'lucide-react';
 import { api } from '@/lib/api';
-import type { Product, VehicleCompatibilityEntry } from '@/lib/types';
+import type { Product, VehicleCompatibilityEntry, ProductListItem } from '@/lib/types';
 import { formatPrice, stockStatusLabel, stockStatusColor, getImageUrl } from '@/lib/utils';
 import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
 import { LoadingPage } from '@/components/shared/LoadingSpinner';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { AddToCartButton } from '@/components/cart/AddToCartButton';
+import { ProductGrid } from '@/components/products/ProductGrid';
 
 interface Tab {
   id: string;
@@ -32,6 +33,10 @@ export default function ProductDetailClient({ params }: { params: Promise<{ slug
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const { selectedVehicle } = useVehicleStore();
+  const [relatedProducts, setRelatedProducts] = useState<ProductListItem[]>([]);
+  const [notifyEmail, setNotifyEmail] = useState('');
+  const [notifyStatus, setNotifyStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [notifyError, setNotifyError] = useState('');
 
   useEffect(() => {
     let cancelled = false;
@@ -48,12 +53,37 @@ export default function ProductDetailClient({ params }: { params: Promise<{ slug
           .then(res => res.ok ? res.json() : [])
           .then((d: VehicleCompatibilityEntry[]) => { if (!cancelled) setCompatData(d); })
           .catch(() => {});
+
+        // Load related products
+        const engineId = useVehicleStore.getState().selectedVehicle?.engineId;
+        api.products.related(p.slug, engineId)
+          .then((data) => { if (!cancelled) setRelatedProducts(data as ProductListItem[]); })
+          .catch(() => {});
       })
       .catch(() => { if (!cancelled) setNotFound(true); })
       .finally(() => { if (!cancelled) setLoading(false); });
 
     return () => { cancelled = true; };
   }, [slug]);
+
+  const handleNotifyStock = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!product) return;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(notifyEmail)) {
+      setNotifyError('Geçerli bir e-posta adresi girin.');
+      return;
+    }
+    setNotifyStatus('sending');
+    setNotifyError('');
+    try {
+      await api.products.notifyStock(product.id, notifyEmail);
+      setNotifyStatus('success');
+    } catch (err) {
+      setNotifyStatus('error');
+      setNotifyError(err instanceof Error ? err.message : 'Bir hata oluştu.');
+    }
+  };
 
   if (loading) return <LoadingPage />;
 
@@ -221,6 +251,46 @@ export default function ProductDetailClient({ params }: { params: Promise<{ slug
             </div>
           )}
 
+          {/* Stock notification — only when out of stock */}
+          {(product.stockStatus === 'OutOfStock' || (product.stockStatus as unknown as number) === 0) && (
+            <div className="rounded-lg border border-dashed border-border bg-muted/30 p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Bell size={16} className="text-muted-foreground shrink-0" />
+                <p className="text-sm font-medium">Stok Gelince Haber Ver</p>
+              </div>
+              {notifyStatus === 'success' ? (
+                <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+                  Harika! Ürün stoğa girdiğinde e-posta ile bildirileceksiniz.
+                </p>
+              ) : (
+                <form onSubmit={handleNotifyStock} className="flex gap-2">
+                  <input
+                    type="email"
+                    value={notifyEmail}
+                    onChange={(e) => setNotifyEmail(e.target.value)}
+                    placeholder="E-posta adresiniz"
+                    aria-label="E-posta adresiniz"
+                    required
+                    className="flex-1 h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    disabled={notifyStatus === 'sending'}
+                    className="shrink-0 h-9 px-4 rounded-lg bg-brand text-white text-sm font-medium hover:bg-brand/90 disabled:opacity-60 transition-colors cursor-pointer"
+                  >
+                    {notifyStatus === 'sending' ? '...' : 'Bildir'}
+                  </button>
+                </form>
+              )}
+              {notifyStatus === 'error' && notifyError && (
+                <p className="text-xs text-red-600 mt-2">{notifyError}</p>
+              )}
+              {notifyStatus !== 'error' && notifyError && (
+                <p className="text-xs text-red-600 mt-2">{notifyError}</p>
+              )}
+            </div>
+          )}
+
           {/* Vehicle context */}
           {selectedVehicle && (
             <div className="rounded-lg border bg-brand-muted/40 p-4 flex items-start gap-3">
@@ -364,6 +434,13 @@ export default function ProductDetailClient({ params }: { params: Promise<{ slug
           )}
         </div>
       </div>
+      {/* Related products */}
+      {relatedProducts.length > 0 && (
+        <div className="mt-16">
+          <h2 className="text-xl font-bold mb-6">Benzer Ürünler</h2>
+          <ProductGrid products={relatedProducts} />
+        </div>
+      )}
     </div>
   );
 }

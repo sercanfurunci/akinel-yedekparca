@@ -600,7 +600,12 @@ function ProductsContent() {
               />
             ) : (
               <>
-                <ProductGrid products={products} loading={loading} skeletonCount={20} />
+                <ProductGrid
+                  products={products}
+                  loading={loading}
+                  skeletonCount={20}
+                  showCompatibilityBadge={!!vehicleEngineId}
+                />
 
                 {totalPages > 1 && (
                   <div className="flex items-center justify-center gap-1 mt-8 flex-wrap">

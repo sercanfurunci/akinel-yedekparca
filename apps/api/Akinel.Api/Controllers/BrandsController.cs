@@ -23,4 +23,15 @@ public class BrandsController : ControllerBase
 
         return Ok(brands);
     }
+
+    [HttpGet("{slug}")]
+    public async Task<IActionResult> GetBySlug(string slug, CancellationToken ct)
+    {
+        var brand = await _db.Brands
+            .Where(b => b.IsActive && b.Slug == slug)
+            .Select(b => new { b.Id, b.Name, b.Slug, b.LogoUrl })
+            .FirstOrDefaultAsync(ct);
+
+        return brand == null ? NotFound() : Ok(brand);
+    }
 }

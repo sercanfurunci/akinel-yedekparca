@@ -7,6 +7,7 @@ using Akinel.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Akinel.Infrastructure;
 
@@ -35,6 +36,11 @@ public static class DependencyInjection
         services.AddScoped<IPartsCatalogProvider, NullPartsCatalogProvider>();
         services.AddScoped<IBusinessSettingsService, BusinessSettingsService>();
         services.AddSingleton<IStorageService, B2StorageService>();
+        services.AddHttpClient<IVinDecoder, NhtsaVinDecoder>(client =>
+        {
+            client.Timeout = TimeSpan.FromSeconds(10);
+            client.DefaultRequestHeaders.Add("User-Agent", "Akinel/1.0");
+        });
 
         return services;
     }

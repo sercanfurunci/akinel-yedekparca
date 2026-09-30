@@ -10,4 +10,5 @@ public interface IVehicleService
     Task<IEnumerable<VehicleEngineDto>> GetEnginesByGenerationAsync(Guid generationId, CancellationToken ct = default);
     Task<VehicleContextDto?> GetVehicleContextAsync(Guid engineId, CancellationToken ct = default);
     Task<VehicleContextDto?> DecodeVinAsync(string vin, CancellationToken ct = default);
+    Task<VinDecodeDto?> DecodeVinRichAsync(string vin, CancellationToken ct = default);
 }

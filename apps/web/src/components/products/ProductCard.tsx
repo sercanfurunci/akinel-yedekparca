@@ -8,9 +8,10 @@ import { AddToCartButton } from '@/components/cart/AddToCartButton';
 
 interface Props {
   product: ProductListItem;
+  isCompatible?: boolean;
 }
 
-export function ProductCard({ product }: Props) {
+export function ProductCard({ product, isCompatible }: Props) {
   const [imgError, setImgError] = useState(false);
   const statusLabel = stockStatusLabel(product.stockStatus);
   const statusColor = stockStatusColor(product.stockStatus);
@@ -88,10 +89,15 @@ export function ProductCard({ product }: Props) {
             )}
           </div>
           {/* Stock badge */}
-          <div className="mb-1">
+          <div className="mb-1 flex flex-wrap items-center gap-1.5">
             <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide ${statusColor}`}>
               {statusLabel}
             </span>
+            {isCompatible && (
+              <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold bg-green-50 text-green-700 border border-green-200">
+                ✓ Aracınızla uyumlu
+              </span>
+            )}
           </div>
         </div>
       </Link>

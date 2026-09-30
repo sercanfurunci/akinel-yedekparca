@@ -5,12 +5,12 @@ import { useParams, useRouter } from 'next/navigation';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ArrowLeft, Plus, Trash2, Star, Upload, X, Car } from 'lucide-react';
+import { ArrowLeft, Plus, Trash2, Star, Upload, X, Car, Search } from 'lucide-react';
 import Link from 'next/link';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import { getImageUrl } from '@/lib/utils';
-import type { Product, OemEntry, VehicleCompatibilityEntry, ProductImage, AdminBrand, AdminCategory } from '@/lib/types';
+import type { Product, OemEntry, VehicleCompatibilityEntry, ProductImage, AdminBrand, AdminCategory, VinDecodeResult } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -64,6 +64,12 @@ export default function AdminProductEditPage() {
   // Compatibility state
   const [compat, setCompat] = useState<VehicleCompatibilityEntry[]>([]);
   const [showVehicleFinder, setShowVehicleFinder] = useState(false);
+
+  // VIN helper state
+  const [vinInput, setVinInput] = useState('');
+  const [vinLoading, setVinLoading] = useState(false);
+  const [vinResult, setVinResult] = useState<VinDecodeResult | null>(null);
+  const [vinError, setVinError] = useState('');
 
   // Images state
   const [images, setImages] = useState<ProductImage[]>([]);
@@ -190,6 +196,22 @@ export default function AdminProductEditPage() {
       await api.admin.products.removeOem(id, oemId, accessToken);
       setOems(prev => prev.filter(o => o.id !== oemId));
     } catch { /* ignore */ }
+  };
+
+  const decodeVinForCompat = async () => {
+    const cleanVin = vinInput.trim().toUpperCase();
+    if (cleanVin.length !== 17) { setVinError('VIN 17 karakter olmalıdır.'); return; }
+    setVinLoading(true);
+    setVinResult(null);
+    setVinError('');
+    try {
+      const data = await api.vehicles.decodeVin(cleanVin) as VinDecodeResult;
+      setVinResult(data);
+    } catch {
+      setVinError('VIN sorgulanamadı. Lütfen manuel seçim yapın.');
+    } finally {
+      setVinLoading(false);
+    }
   };
 
   const addCompatibility = async (engineId: string) => {
@@ -519,17 +541,87 @@ export default function AdminProductEditPage() {
       {/* ── TAB: Araç Uyumluluğu ───────────────────── */}
       {tab === 'compat' && (
         <div className="max-w-2xl space-y-4">
-          <Button
-            onClick={() => setShowVehicleFinder(v => !v)}
-            variant="outline"
-            className="gap-2"
-          >
-            <Car size={15} />
-            {showVehicleFinder ? 'Gizle' : 'Araç Ekle'}
-          </Button>
+          <div className="flex gap-2 flex-wrap">
+            <Button
+              onClick={() => setShowVehicleFinder(v => !v)}
+              variant="outline"
+              className="gap-2"
+            >
+              <Car size={15} />
+              {showVehicleFinder ? 'Listeden Gizle' : 'Listeden Araç Ekle'}
+            </Button>
+          </div>
 
           {showVehicleFinder && (
-            <div className="border rounded-xl p-4 bg-muted/20">
+            <div className="border rounded-xl p-4 bg-muted/20 space-y-4">
+              {/* VIN helper */}
+              <details className="border rounded-lg bg-background">
+                <summary className="px-4 py-2.5 text-sm font-medium cursor-pointer select-none hover:bg-muted/40 transition-colors flex items-center gap-2">
+                  <Search size={14} className="text-brand" />
+                  VIN ile Hızlı Ekle (İsteğe Bağlı)
+                </summary>
+                <div className="px-4 pb-4 pt-3 border-t space-y-3">
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={vinInput}
+                      onChange={e => { setVinInput(e.target.value.toUpperCase().replace(/[\s-]/g, '')); setVinResult(null); setVinError(''); }}
+                      placeholder="VIN numarası (17 karakter)"
+                      maxLength={17}
+                      className="flex h-9 flex-1 rounded-lg border border-input bg-background px-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-ring/50"
+                    />
+                    <Button
+                      onClick={decodeVinForCompat}
+                      disabled={vinLoading || vinInput.length !== 17}
+                      size="sm"
+                      className="bg-brand text-brand-foreground hover:bg-brand/90 shrink-0"
+                    >
+                      {vinLoading ? 'Sorgulanıyor...' : 'Sorgula'}
+                    </Button>
+                  </div>
+                  {vinError && <p className="text-xs text-destructive">{vinError}</p>}
+                  {vinResult && (
+                    <div className="rounded-lg border bg-muted/30 p-3 space-y-2 text-sm">
+                      <p className="font-medium">{vinResult.make} {vinResult.model} ({vinResult.year})</p>
+                      {vinResult.internalVehicle && (
+                        <div className="space-y-1">
+                          <p className="text-xs text-muted-foreground">Katalog eşleşmesi:</p>
+                          <p className="text-xs">{vinResult.internalVehicle.makeDisplay} {vinResult.internalVehicle.modelDisplay} — {vinResult.internalVehicle.generationDisplay} — {vinResult.internalVehicle.engineDisplay}</p>
+                          <Button
+                            size="sm"
+                            onClick={() => { addCompatibility(vinResult.internalVehicle!.engineId).catch(() => {}); setVinResult(null); setVinInput(''); }}
+                            className="bg-brand text-brand-foreground hover:bg-brand/90 mt-1"
+                          >
+                            <Plus size={13} className="mr-1" /> Bu Motoru Ekle
+                          </Button>
+                        </div>
+                      )}
+                      {!vinResult.internalVehicle && vinResult.possibleMatches.length > 0 && (
+                        <div className="space-y-1.5">
+                          <p className="text-xs text-muted-foreground">Olası eşleşmeler:</p>
+                          {vinResult.possibleMatches.map(m => (
+                            <div key={m.engineId} className="flex items-center justify-between gap-2 rounded border bg-background px-3 py-2">
+                              <p className="text-xs">{m.makeDisplay} {m.modelDisplay} — {m.generationDisplay} — {m.engineDisplay}</p>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => { addCompatibility(m.engineId).catch(() => {}); setVinResult(null); setVinInput(''); }}
+                                className="shrink-0 h-7 px-2 text-xs"
+                              >
+                                <Plus size={11} className="mr-1" /> Ekle
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {!vinResult.internalVehicle && vinResult.possibleMatches.length === 0 && (
+                        <p className="text-xs text-muted-foreground">Katalogda eşleşme bulunamadı. Aşağıdan manuel seçin.</p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </details>
+
               <VehicleFinder
                 onVehicleSelected={(ctx) => addCompatibility(ctx.engineId)}
               />

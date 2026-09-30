@@ -91,10 +91,14 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpPost("vin-decode")]
+    [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("login")]
     public async Task<IActionResult> DecodeVin([FromBody] VinDecodeRequest request, CancellationToken ct)
     {
-        var result = await _vehicleService.DecodeVinAsync(request.Vin, ct);
-        return result == null ? NotFound(new { message = "Vehicle not found for this VIN." }) : Ok(result);
+        if (string.IsNullOrWhiteSpace(request.Vin) || request.Vin.Trim().Length != 17)
+            return BadRequest(new { message = "VIN 17 karakter olmalıdır." });
+
+        var result = await _vehicleService.DecodeVinRichAsync(request.Vin.Trim(), ct);
+        return result == null ? NotFound(new { message = "Bu VIN numarası için araç bilgisi bulunamadı." }) : Ok(result);
     }
 }
 
