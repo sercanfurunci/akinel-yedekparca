@@ -131,8 +131,8 @@ public static class DatabaseSeeder
         await context.SaveChangesAsync();
         context.ProductOemNumbers.Add(new ProductOemNumber { ProductId = p1.Id, OemNumberId = oem1.Id });
 
-        // Admin user
-        if (!await context.Users.AnyAsync())
+        // Admin user — always ensure exists, regardless of other users
+        if (!await context.Users.AnyAsync(u => u.Email == "admin@akinel.com"))
         {
             context.Users.Add(new User
             {
