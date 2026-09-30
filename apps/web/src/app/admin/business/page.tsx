@@ -20,6 +20,7 @@ const schema = z.object({
   description: z.string().optional(),
   logoUrl: z.string().optional(),
   phone: z.string().optional(),
+  phone2: z.string().optional(),
   whatsApp: z.string().optional(),
   email: z.string().optional(),
   address: z.string().optional(),
@@ -75,6 +76,7 @@ export default function AdminBusinessPage() {
           description: biz.description ?? '',
           logoUrl: biz.logoUrl ?? '',
           phone: biz.phone ?? '',
+          phone2: biz.phone2 ?? '',
           whatsApp: biz.whatsApp ?? '',
           email: biz.email ?? '',
           address: biz.address ?? '',
@@ -146,8 +148,11 @@ export default function AdminBusinessPage() {
         <section className="rounded-xl border bg-card p-6 space-y-4">
           <h2 className="font-semibold text-sm">İletişim</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Field label="Telefon">
+            <Field label="Telefon 1">
               <Input {...register('phone')} placeholder="+90 5xx xxx xx xx" />
+            </Field>
+            <Field label="Telefon 2 (opsiyonel)">
+              <Input {...register('phone2')} placeholder="+90 5xx xxx xx xx" />
             </Field>
             <Field label="WhatsApp (numara, boşluksuz)">
               <Input {...register('whatsApp')} placeholder="905xxxxxxxxx" />

@@ -39,6 +39,7 @@ public class BusinessSettingsService : IBusinessSettingsService
         entity.Description = request.Description;
         entity.LogoUrl = request.LogoUrl;
         entity.Phone = request.Phone;
+        entity.Phone2 = request.Phone2;
         entity.WhatsApp = request.WhatsApp;
         entity.Email = request.Email;
         entity.Address = request.Address;
@@ -86,6 +87,7 @@ public class BusinessSettingsService : IBusinessSettingsService
         Description = e.Description,
         LogoUrl = e.LogoUrl,
         Phone = e.Phone,
+        Phone2 = e.Phone2,
         WhatsApp = e.WhatsApp,
         Email = e.Email,
         Address = e.Address,

@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Search, Car, Gauge, MapPin, Package } from 'lucide-react';
 
-export const metadata: Metadata = { title: 'Hakkımızda' };
+export const metadata: Metadata = {
+  title: 'Hakkımızda',
+  description: 'AKINEL Oto Yedek Parça hakkında bilgi edinin. Darıca, Kocaeli\'de faaliyet gösteren otomotiv yedek parça mağazamız OEM numarası ve araç seçimiyle hizmet vermektedir.',
+};
 
 const features = [
   {
@@ -40,17 +43,18 @@ export default function AboutPage() {
 
       <div className="prose prose-sm max-w-none space-y-6 text-muted-foreground mb-12">
         <p className="text-foreground text-base leading-relaxed">
-          <strong>AKINEL OTO YEDEK PARÇA</strong>, Darıca/Kocaeli merkezli{' '}
-          <strong>AKINEL OTO YEDEK PARÇA</strong> hizmet noktasının online yedek parça platformudur.
+          <strong>AKINEL OTO YEDEK PARÇA</strong>, Darıca / Kocaeli'de faaliyet gösteren bir otomotiv yedek
+          parça mağazasıdır. Fren sistemleri, filtreler, süspansiyon, debriyaj ve elektrik sistemi
+          parçaları başta olmak üzere geniş ürün yelpazesiyle hizmet vermekteyiz.
         </p>
         <p className="leading-relaxed">
           Amacımız; araç sahiplerinin doğru yedek parçayı, doğru fiyatla ve en kısa sürede bulmasını sağlamak.
-          Araç bilginizi seçerek ya da OEM numaranızı girerek uyumlu parçaları anında listeleyebilir,
-          stok ve fiyat durumunu şeffaf biçimde görebilirsiniz.
+          Marka, model ve motor bilginizi seçerek ya da OEM / orijinal parça numaranızı girerek uyumlu
+          parçaları anında listeleyebilir, stok ve fiyat durumunu şeffaf biçimde görebilirsiniz.
         </p>
         <p className="leading-relaxed">
-          Platform, otomotiv yedek parça aramanızı mağaza gezisi gerektirmeden ve teknik bilgiye ihtiyaç duymadan
-          kolaylaştırmak için tasarlanmıştır.
+          Bosch, Valeo, SKF, TRW, Delphi gibi kaliteli markalardan ürünler stoklarımızda bulunmaktadır.
+          Kocaeli, İstanbul ve çevre illere hızlı teslimat sağlamaktayız.
         </p>
       </div>
 

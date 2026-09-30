@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react';
 import type { BusinessSettings } from '@/lib/types';
 
-export const metadata: Metadata = { title: 'İletişim' };
+export const metadata: Metadata = {
+  title: 'İletişim',
+  description: 'AKINEL Oto Yedek Parça iletişim bilgileri. Nenehatun, Fatih Cd. No:81, Darıca / Kocaeli. Tel: +90 539 462 41 49. Yol tarifi ve çalışma saatleri.',
+};
 
 const DAY_NAMES = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
 
@@ -24,10 +27,11 @@ export default async function ContactPage() {
     ? [biz.address, biz.district && biz.city ? `${biz.postalCode} ${biz.district}/${biz.city}` : biz.city, biz.country].filter(Boolean).join(', ')
     : 'Nenehatun, Fatih Cd. No:81, 41700 Darıca/Kocaeli, Türkiye';
 
-  const phone = biz?.phone ?? '+90 533 140 56 49';
-  const email = biz?.email ?? 'info@aknmotors.com.tr';
-  const mapsUrl = biz?.googleMapsUrl ?? 'https://maps.google.com/?q=Nenehatun+Fatih+Caddesi+No+81+41700+Darica+Kocaeli';
-  const embedUrl = biz?.googleMapsEmbedUrl ?? 'https://maps.google.com/maps?q=Nenehatun+Fatih+Caddesi+No+81+41700+Darica+Kocaeli&output=embed&hl=tr';
+  const phone = biz?.phone ?? '+90 539 462 41 49';
+  const phone2 = biz?.phone2;
+  const email = biz?.email ?? 'info@akinelotoyedekparca.com.tr';
+  const mapsUrl = biz?.googleMapsUrl ?? 'https://maps.google.com/?q=AKINEL+OTO+YEDEK+PARCA+Darica+Kocaeli';
+  const embedUrl = biz?.googleMapsEmbedUrl ?? 'https://maps.google.com/maps?q=AKINEL+OTO+YEDEK+PARCA+Darica+Kocaeli&output=embed&hl=tr';
 
   const openDays = biz?.workingHours.filter(h => h.isOpen) ?? [];
   const weekdayHours = openDays.find(h => h.dayOfWeek === 1);
@@ -64,9 +68,14 @@ export default async function ContactPage() {
                 </div>
                 <div>
                   <p className="font-medium text-foreground mb-0.5">Telefon</p>
-                  <a href={`tel:${phone.replace(/\s/g, '')}`} className="text-brand hover:text-brand/80 transition-colors">
+                  <a href={`tel:${phone.replace(/\s/g, '')}`} className="text-brand hover:text-brand/80 transition-colors block">
                     {phone}
                   </a>
+                  {phone2 && (
+                    <a href={`tel:${phone2.replace(/\s/g, '')}`} className="text-brand hover:text-brand/80 transition-colors block mt-0.5">
+                      {phone2}
+                    </a>
+                  )}
                 </div>
               </div>
 

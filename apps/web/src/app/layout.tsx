@@ -5,13 +5,17 @@ import { Footer } from '@/components/layout/Footer';
 
 const SITE_URL = 'https://akinelotoyedekparca.com.tr';
 const SITE_NAME = 'AKINEL OTO YEDEK PARÇA';
-const DESCRIPTION = 'Aracınız için kaliteli yedek parçalar. OEM numarası veya araç seçimi ile hızlı arama. Darıca, Kocaeli.';
+const DESCRIPTION = 'AKINEL Oto Yedek Parça — Darıca, Kocaeli. OEM numarası veya araç seçimiyle hızlı yedek parça arama. Fren, filtre, süspansiyon ve daha fazlası.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
   description: DESCRIPTION,
-  keywords: ['yedek parça', 'oto yedek parça', 'OEM', 'araba parçası', 'Darıca', 'Kocaeli', 'AKINEL'],
+  keywords: [
+    'akinel oto yedek parça', 'akinel yedek parça', 'oto yedek parça',
+    'yedek parça darıca', 'yedek parça kocaeli', 'OEM yedek parça',
+    'araba parçası', 'otomotiv yedek parça', 'AKINEL',
+  ],
   authors: [{ name: 'AKINEL OTO YEDEK PARÇA' }],
   icons: {
     icon: '/favicon.png',
@@ -36,11 +40,15 @@ export const metadata: Metadata = {
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': 'AutoPartsStore',
   name: 'AKINEL OTO YEDEK PARÇA',
+  alternateName: 'Akinel Yedek Parça',
   url: 'https://akinelotoyedekparca.com.tr',
-  telephone: '+905331405649',
-  email: 'info@aknmotors.com.tr',
+  telephone: '+905394624149',
+  email: 'info@akinelotoyedekparca.com.tr',
+  image: 'https://akinelotoyedekparca.com.tr/logo.png',
+  priceRange: '₺₺',
+  description: 'Darıca, Kocaeli\'de otomotiv yedek parça satışı. OEM numarası veya araç seçimiyle hızlı arama.',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Nenehatun, Fatih Cd. No:81',
@@ -49,9 +57,15 @@ const structuredData = {
     postalCode: '41700',
     addressCountry: 'TR',
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 40.7647,
+    longitude: 29.3712,
+  },
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:00', closes: '19:00' },
   ],
+  hasMap: 'https://maps.google.com/?q=AKINEL+OTO+YEDEK+PARCA+Darica+Kocaeli',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

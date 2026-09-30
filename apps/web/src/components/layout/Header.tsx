@@ -11,7 +11,9 @@ import { useAuthStore } from '@/store/authStore';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { useCartStore } from '@/store/cartStore';
 import { cn } from '@/lib/utils';
-import { useEffect } from 'react';
+import { api } from '@/lib/api';
+import { useEffect, useState } from 'react';
+import type { BusinessSettings } from '@/lib/types';
 
 const navLinks = [
   { href: '/', label: 'Ana Sayfa' },
@@ -31,10 +33,18 @@ export function Header() {
   const isAdmin = user?.role === 'Admin';
   const { selectedVehicle } = useVehicleStore();
   const { totalItems, openCart, fetchCart } = useCartStore();
+  const [biz, setBiz] = useState<BusinessSettings | null>(null);
 
   useEffect(() => {
     fetchCart();
   }, [fetchCart]);
+
+  useEffect(() => {
+    api.business.settings().then(d => setBiz(d as BusinessSettings)).catch(() => {});
+  }, []);
+
+  const phone = biz?.phone ?? '+90 539 462 41 49';
+  const phone2 = biz?.phone2;
 
   return (
     <>
@@ -44,15 +54,28 @@ export function Header() {
       {/* Utility bar — desktop only */}
       <div className="hidden md:block bg-[#111827] border-b border-white/5">
         <div className="container mx-auto px-4 max-w-7xl flex items-center justify-between h-8 text-xs text-white/60">
-          <a
-            href="tel:+905331405649"
-            className="flex items-center gap-1.5 hover:text-brand transition-colors cursor-pointer"
-            aria-label="Telefonla ara: +90 533 140 56 49"
-            title="Telefonla ara"
-          >
-            <Phone size={11} />
-            +90 533 140 56 49
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href={`tel:${phone.replace(/\s/g, '')}`}
+              className="flex items-center gap-1.5 hover:text-brand transition-colors cursor-pointer"
+              aria-label={`Telefonla ara: ${phone}`}
+              title="Telefonla ara"
+            >
+              <Phone size={11} />
+              {phone}
+            </a>
+            {phone2 && (
+              <a
+                href={`tel:${phone2.replace(/\s/g, '')}`}
+                className="flex items-center gap-1.5 hover:text-brand transition-colors cursor-pointer"
+                aria-label={`Telefonla ara: ${phone2}`}
+                title="Telefonla ara"
+              >
+                <Phone size={11} />
+                {phone2}
+              </a>
+            )}
+          </div>
           <div className="flex items-center gap-4">
             <Link href="/search" className="hover:text-white transition-colors" title="Sipariş takip">Sipariş Takip</Link>
             <span className="text-white/20" aria-hidden="true">|</span>

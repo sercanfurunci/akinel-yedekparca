@@ -170,6 +170,7 @@ export interface BusinessSettings {
   description?: string;
   logoUrl?: string;
   phone?: string;
+  phone2?: string;
   whatsApp?: string;
   email?: string;
   address?: string;

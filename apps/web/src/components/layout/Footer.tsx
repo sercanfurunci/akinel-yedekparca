@@ -38,7 +38,7 @@ export function Footer() {
             </p>
             <div className="mt-5 flex items-center gap-2">
               <span className="h-0.5 w-8 bg-brand rounded-full" />
-              <span className="text-xs uppercase tracking-widest text-white/50 font-semibold">AKN Motors Güvencesiyle</span>
+              <span className="text-xs uppercase tracking-widest text-white/50 font-semibold">AKINEL OTO YEDEK PARÇA</span>
             </div>
           </div>
 
@@ -84,6 +84,12 @@ export function Footer() {
                 <a href={`tel:${biz.phone.replace(/\s/g, '')}`} className="flex items-center gap-2.5 hover:text-white transition-colors min-h-[44px]">
                   <Phone size={15} className="shrink-0 text-brand" />
                   {biz.phone}
+                </a>
+              )}
+              {biz?.phone2 && (
+                <a href={`tel:${biz.phone2.replace(/\s/g, '')}`} className="flex items-center gap-2.5 hover:text-white transition-colors min-h-[44px]">
+                  <Phone size={15} className="shrink-0 text-brand" />
+                  {biz.phone2}
                 </a>
               )}
 

@@ -10,6 +10,7 @@ public class BusinessSettings : BaseEntity
     public string? LogoUrl { get; set; }
     public string? FaviconUrl { get; set; }
     public string? Phone { get; set; }
+    public string? Phone2 { get; set; }
     public string? WhatsApp { get; set; }
     public string? Email { get; set; }
     public string? Address { get; set; }

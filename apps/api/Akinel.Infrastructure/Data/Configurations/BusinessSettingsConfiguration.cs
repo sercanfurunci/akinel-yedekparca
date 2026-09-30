@@ -14,6 +14,7 @@ public class BusinessSettingsConfiguration : IEntityTypeConfiguration<BusinessSe
         builder.Property(b => b.ShortDescription).HasMaxLength(500);
         builder.Property(b => b.Description).HasMaxLength(2000);
         builder.Property(b => b.Phone).HasMaxLength(30);
+        builder.Property(b => b.Phone2).HasMaxLength(30);
         builder.Property(b => b.WhatsApp).HasMaxLength(30);
         builder.Property(b => b.Email).HasMaxLength(200);
         builder.Property(b => b.Address).HasMaxLength(500);
