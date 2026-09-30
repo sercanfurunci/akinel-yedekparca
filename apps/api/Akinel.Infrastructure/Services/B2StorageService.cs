@@ -13,6 +13,7 @@ public class B2StorageService : IStorageService
     private readonly string _keyId;
     private readonly string _applicationKey;
     private readonly string _bucketName;
+    private readonly string? _cdnUrl;
     private readonly HttpClient _http = new();
     private readonly SemaphoreSlim _lock = new(1, 1);
 
@@ -28,7 +29,11 @@ public class B2StorageService : IStorageService
         _applicationKey = configuration["B2:ApplicationKey"] ?? "";
         _bucketName = configuration["B2:BucketName"] ?? "akinel-uploads";
         _bucketId = configuration["B2:BucketId"];
+        _cdnUrl = configuration["B2:CdnUrl"];
     }
+
+    private string FileUrl(string key) =>
+        $"{(_cdnUrl ?? _downloadUrl)}/file/{_bucketName}/{key}";
 
     private async Task AuthorizeAsync(CancellationToken ct)
     {
@@ -116,7 +121,7 @@ public class B2StorageService : IStorageService
         using var uploadResp = await _http.SendAsync(uploadReq, ct);
         uploadResp.EnsureSuccessStatusCode();
 
-        return $"{_downloadUrl}/file/{_bucketName}/{key}";
+        return FileUrl(key);
     }
 
     private string? ExtractKey(string fileUrl)
@@ -124,6 +129,7 @@ public class B2StorageService : IStorageService
         // new format: https://f003.backblazeb2.com/file/akinel-uploads/{key}
         var bucketPrefix = $"/file/{_bucketName}/";
         var idx = fileUrl.IndexOf(bucketPrefix, StringComparison.OrdinalIgnoreCase);
+        // strip CDN or B2 host prefix
         if (idx >= 0) return fileUrl[(idx + bucketPrefix.Length)..];
         // old format: /api/files/{key}
         const string apiPrefix = "/api/files/";
@@ -166,6 +172,6 @@ public class B2StorageService : IStorageService
     public async Task<string> GetPresignedUrlAsync(string fileKey, CancellationToken ct = default)
     {
         await AuthorizeAsync(ct);
-        return $"{_downloadUrl}/file/{_bucketName}/{fileKey}";
+        return FileUrl(fileKey);
     }
 }
