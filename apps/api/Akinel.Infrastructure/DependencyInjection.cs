@@ -34,6 +34,7 @@ public static class DependencyInjection
         services.AddScoped<ISearchService, SearchService>();
         services.AddScoped<IPartsCatalogProvider, NullPartsCatalogProvider>();
         services.AddScoped<IBusinessSettingsService, BusinessSettingsService>();
+        services.AddSingleton<IStorageService, B2StorageService>();
 
         return services;
     }

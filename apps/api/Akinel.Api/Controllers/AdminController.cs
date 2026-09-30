@@ -18,12 +18,14 @@ public class AdminController : ControllerBase
     private readonly IProductService _productService;
     private readonly IOrderService _orderService;
     private readonly AkinelDbContext _db;
+    private readonly IStorageService _storage;
 
-    public AdminController(IProductService productService, IOrderService orderService, AkinelDbContext db)
+    public AdminController(IProductService productService, IOrderService orderService, AkinelDbContext db, IStorageService storage)
     {
         _productService = productService;
         _orderService = orderService;
         _db = db;
+        _storage = storage;
     }
 
     // ── Orders ───────────────────────────────────────────────────────
@@ -236,19 +238,13 @@ public class AdminController : ControllerBase
         var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
         if (ext is not (".jpg" or ".jpeg" or ".png" or ".webp")) return BadRequest("Sadece jpg, png veya webp dosyaları desteklenmektedir.");
 
-        var uploadsDir = Path.Combine("wwwroot", "uploads", "products");
-        Directory.CreateDirectory(uploadsDir);
-        var fileName = $"{Guid.NewGuid()}{ext}";
-        var filePath = Path.Combine(uploadsDir, fileName);
-
-        using (var stream = System.IO.File.Create(filePath))
-            await file.CopyToAsync(stream, ct);
+        var imageUrl = await _storage.UploadAsync(file, "products", ct);
 
         var isPrimary = !await _db.ProductImages.AnyAsync(i => i.ProductId == id, ct);
         var image = new ProductImage
         {
             ProductId = id,
-            Url = $"/uploads/products/{fileName}",
+            Url = imageUrl,
             AltText = file.FileName,
             SortOrder = await _db.ProductImages.CountAsync(i => i.ProductId == id, ct),
             IsPrimary = isPrimary,
@@ -274,8 +270,7 @@ public class AdminController : ControllerBase
         var image = await _db.ProductImages.FirstOrDefaultAsync(i => i.Id == imageId && i.ProductId == id, ct);
         if (image == null) return NotFound();
 
-        var filePath = Path.Combine("wwwroot", image.Url.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-        if (System.IO.File.Exists(filePath)) System.IO.File.Delete(filePath);
+        await _storage.DeleteAsync(image.Url, ct);
 
         _db.ProductImages.Remove(image);
         await _db.SaveChangesAsync(ct);
@@ -392,20 +387,9 @@ public class AdminController : ControllerBase
         if (!allowed.Contains(ext)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
         if (file.Length > 5 * 1024 * 1024) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
 
-        if (!string.IsNullOrEmpty(category.ImageUrl) && category.ImageUrl.StartsWith("/uploads/"))
-        {
-            var oldPath = Path.Combine("wwwroot", category.ImageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-            if (System.IO.File.Exists(oldPath)) System.IO.File.Delete(oldPath);
-        }
+        await _storage.DeleteAsync(category.ImageUrl, ct);
 
-        var uploadsDir = Path.Combine("wwwroot", "uploads", "categories");
-        Directory.CreateDirectory(uploadsDir);
-        var fileName = $"{Guid.NewGuid()}{ext}";
-        var filePath = Path.Combine(uploadsDir, fileName);
-        using (var stream = System.IO.File.Create(filePath))
-            await file.CopyToAsync(stream, ct);
-
-        category.ImageUrl = $"/uploads/categories/{fileName}";
+        category.ImageUrl = await _storage.UploadAsync(file, "categories", ct);
         await _db.SaveChangesAsync(ct);
         return Ok(new { imageUrl = category.ImageUrl });
     }
@@ -488,22 +472,9 @@ public class AdminController : ControllerBase
         var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
         if (ext is not (".jpg" or ".jpeg" or ".png" or ".webp")) return BadRequest("Sadece jpg, png veya webp dosyaları desteklenmektedir.");
 
-        // Delete previous image if stored locally
-        if (!string.IsNullOrEmpty(slide.ImageUrl) && slide.ImageUrl.StartsWith("/uploads/"))
-        {
-            var oldPath = Path.Combine("wwwroot", slide.ImageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-            if (System.IO.File.Exists(oldPath)) System.IO.File.Delete(oldPath);
-        }
+        await _storage.DeleteAsync(slide.ImageUrl, ct);
 
-        var uploadsDir = Path.Combine("wwwroot", "uploads", "homepage");
-        Directory.CreateDirectory(uploadsDir);
-        var fileName = $"{Guid.NewGuid()}{ext}";
-        var filePath = Path.Combine(uploadsDir, fileName);
-
-        using (var stream = System.IO.File.Create(filePath))
-            await file.CopyToAsync(stream, ct);
-
-        slide.ImageUrl = $"/uploads/homepage/{fileName}";
+        slide.ImageUrl = await _storage.UploadAsync(file, "homepage", ct);
         await _db.SaveChangesAsync(ct);
 
         return Ok(new { slide.Id, slide.ImageUrl });
@@ -525,11 +496,7 @@ public class AdminController : ControllerBase
         var slide = await _db.HomepageHeroSlides.FindAsync(new object[] { id }, ct);
         if (slide == null) return NotFound();
 
-        if (!string.IsNullOrEmpty(slide.ImageUrl) && slide.ImageUrl.StartsWith("/uploads/"))
-        {
-            var filePath = Path.Combine("wwwroot", slide.ImageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-            if (System.IO.File.Exists(filePath)) System.IO.File.Delete(filePath);
-        }
+        await _storage.DeleteAsync(slide.ImageUrl, ct);
 
         _db.HomepageHeroSlides.Remove(slide);
         await _db.SaveChangesAsync(ct);
