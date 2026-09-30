@@ -53,7 +53,7 @@ const structuredData = {
   description: 'Darıca, Kocaeli\'de otomotiv yedek parça satışı. OEM numarası veya araç seçimiyle hızlı arama.',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Nenehatun, Fatih Cd. No:81',
+    streetAddress: 'Osman Gazi, Tuzla Cd. No:238/B',
     addressLocality: 'Darıca',
     addressRegion: 'Kocaeli',
     postalCode: '41700',
@@ -61,8 +61,8 @@ const structuredData = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 40.7647,
-    longitude: 29.3712,
+    latitude: 40.7793666,
+    longitude: 29.3758179,
   },
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:00', closes: '19:00' },
