@@ -43,7 +43,6 @@ public class B2StorageService : IStorageService, IDisposable
             Key = key,
             InputStream = ms,
             ContentType = file.ContentType,
-            ContentLength = ms.Length,
             DisablePayloadSigning = true,
             UseChunkEncoding = false,
         }, ct);
