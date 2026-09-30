@@ -1,10 +1,11 @@
 using Akinel.Domain.Entities;
 using Akinel.Domain.Enums;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Akinel.Infrastructure.Data;
 
-public class AkinelDbContext : DbContext
+public class AkinelDbContext : DbContext, IDataProtectionKeyContext
 {
     public AkinelDbContext(DbContextOptions<AkinelDbContext> options) : base(options) { }
 
@@ -29,6 +30,7 @@ public class AkinelDbContext : DbContext
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<HomepageHeroSlide> HomepageHeroSlides => Set<HomepageHeroSlide>();
+    public DbSet<DataProtectionKey> DataProtectionKeys => Set<DataProtectionKey>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
