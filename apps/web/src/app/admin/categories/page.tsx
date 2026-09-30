@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Plus, Pencil, Trash2, X } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Plus, Pencil, Trash2, X, ImagePlus, Loader2 } from 'lucide-react';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import type { AdminCategory } from '@/lib/types';
@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { TableSkeleton } from '@/components/shared/Skeletons';
+import { getImageUrl } from '@/lib/utils';
 
 const selectClass = 'flex h-9 rounded-lg border border-input bg-background px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors';
 
@@ -20,12 +21,15 @@ export default function AdminCategoriesPage() {
   const [editing, setEditing] = useState<AdminCategory | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const [name, setName] = useState('');
   const [parentId, setParentId] = useState('');
   const [sortOrder, setSortOrder] = useState(0);
   const [isActive, setIsActive] = useState(true);
   const [imageUrl, setImageUrl] = useState('');
+  const [savedId, setSavedId] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const fetchCategories = () => {
     if (!accessToken) return;
@@ -42,6 +46,7 @@ export default function AdminCategoriesPage() {
 
   const openAdd = () => {
     setEditing(null);
+    setSavedId(null);
     setName('');
     setParentId('');
     setSortOrder(0);
@@ -53,6 +58,7 @@ export default function AdminCategoriesPage() {
 
   const openEdit = (cat: AdminCategory) => {
     setEditing(cat);
+    setSavedId(cat.id);
     setName(cat.name);
     setParentId(cat.parentCategoryId ?? '');
     setSortOrder(cat.sortOrder);
@@ -67,28 +73,43 @@ export default function AdminCategoriesPage() {
     setSaving(true);
     setError('');
     try {
+      let result: AdminCategory;
       if (editing) {
-        await api.admin.categories.update(editing.id, {
+        result = await api.admin.categories.update(editing.id, {
           name: name.trim(),
           parentCategoryId: parentId || null,
           isActive,
           sortOrder,
           imageUrl: imageUrl || null,
-        }, accessToken);
+        }, accessToken) as AdminCategory;
       } else {
-        await api.admin.categories.create({
+        result = await api.admin.categories.create({
           name: name.trim(),
           parentCategoryId: parentId || null,
           sortOrder,
           imageUrl: imageUrl || null,
-        }, accessToken);
+        }, accessToken) as AdminCategory;
+        setSavedId(result.id);
       }
-      setFormOpen(false);
       fetchCategories();
     } catch {
       setError('Kaydedilemedi. Lütfen tekrar deneyin.');
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleImageUpload = async (file: File) => {
+    if (!accessToken || !savedId) return;
+    setUploading(true);
+    try {
+      const res = await api.admin.categories.uploadImage(savedId, file, accessToken) as { imageUrl: string };
+      setImageUrl(res.imageUrl);
+      fetchCategories();
+    } catch {
+      setError('Fotoğraf yüklenemedi.');
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -142,8 +163,16 @@ export default function AdminCategoriesPage() {
                     return (
                       <tr key={c.id} className="border-b last:border-0 hover:bg-muted/20 transition-colors">
                         <td className="py-3 px-4 font-medium">
-                          {c.parentCategoryId && <span className="text-muted-foreground mr-2">↳</span>}
-                          {c.name}
+                          <div className="flex items-center gap-2">
+                            {c.imageUrl
+                              ? <img src={getImageUrl(c.imageUrl) ?? ''} alt="" className="h-7 w-7 rounded object-cover shrink-0" />
+                              : <div className="h-7 w-7 rounded bg-muted shrink-0" />
+                            }
+                            <span>
+                              {c.parentCategoryId && <span className="text-muted-foreground mr-1">↳</span>}
+                              {c.name}
+                            </span>
+                          </div>
                         </td>
                         <td className="py-3 px-4 text-muted-foreground hidden md:table-cell">
                           {parent?.name ?? '—'}
@@ -223,10 +252,47 @@ export default function AdminCategoriesPage() {
                   placeholder="0"
                 />
               </div>
-              <div className="space-y-1">
-                <Label>Fotoğraf URL (opsiyonel)</Label>
-                <Input value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://..." />
+
+              {/* Image upload */}
+              <div className="space-y-2">
+                <Label>Kategori Fotoğrafı</Label>
+                {!savedId && (
+                  <p className="text-xs text-muted-foreground">Önce kaydet, sonra fotoğraf yükleyebilirsiniz.</p>
+                )}
+                {imageUrl && (
+                  <div className="rounded-lg overflow-hidden border h-28 bg-muted">
+                    <img src={getImageUrl(imageUrl) ?? ''} alt="" className="w-full h-full object-cover" />
+                  </div>
+                )}
+                {savedId && (
+                  <>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.webp"
+                      style={{ display: 'none' }}
+                      disabled={uploading}
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        e.target.value = '';
+                        handleImageUpload(file);
+                      }}
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full gap-2"
+                      disabled={uploading}
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      {uploading ? <Loader2 size={14} className="animate-spin" /> : <ImagePlus size={14} />}
+                      {uploading ? 'Yükleniyor...' : imageUrl ? 'Fotoğrafı Değiştir' : 'Fotoğraf Yükle'}
+                    </Button>
+                  </>
+                )}
               </div>
+
               {editing && (
                 <div className="flex items-center gap-2">
                   <input type="checkbox" id="catActive" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} className="rounded" />
@@ -235,10 +301,12 @@ export default function AdminCategoriesPage() {
               )}
               {error && <p className="text-sm text-destructive">{error}</p>}
               <div className="flex gap-3 pt-2">
-                <Button onClick={handleSave} className="flex-1 bg-brand text-brand-foreground hover:bg-brand/90" disabled={saving}>
+                <Button onClick={handleSave} className="flex-1 bg-brand text-brand-foreground hover:bg-brand/90" disabled={saving || uploading}>
                   {saving ? 'Kaydediliyor...' : 'Kaydet'}
                 </Button>
-                <Button variant="outline" onClick={() => setFormOpen(false)}>İptal</Button>
+                <Button variant="outline" onClick={() => setFormOpen(false)}>
+                  {savedId ? 'Kapat' : 'İptal'}
+                </Button>
               </div>
             </div>
           </div>

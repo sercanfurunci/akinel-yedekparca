@@ -381,6 +381,35 @@ public class AdminController : ControllerBase
         return Ok(new { category.Id, category.Name, category.Slug, category.ParentCategoryId, category.IsActive, category.SortOrder, category.ImageUrl });
     }
 
+    [HttpPost("categories/{id:guid}/image")]
+    public async Task<IActionResult> UploadCategoryImage(Guid id, IFormFile file, CancellationToken ct)
+    {
+        var category = await _db.Categories.FindAsync(new object[] { id }, ct);
+        if (category == null) return NotFound();
+
+        var allowed = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+        if (!allowed.Contains(ext)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
+        if (file.Length > 5 * 1024 * 1024) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+
+        if (!string.IsNullOrEmpty(category.ImageUrl) && category.ImageUrl.StartsWith("/uploads/"))
+        {
+            var oldPath = Path.Combine("wwwroot", category.ImageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+            if (System.IO.File.Exists(oldPath)) System.IO.File.Delete(oldPath);
+        }
+
+        var uploadsDir = Path.Combine("wwwroot", "uploads", "categories");
+        Directory.CreateDirectory(uploadsDir);
+        var fileName = $"{Guid.NewGuid()}{ext}";
+        var filePath = Path.Combine(uploadsDir, fileName);
+        using (var stream = System.IO.File.Create(filePath))
+            await file.CopyToAsync(stream, ct);
+
+        category.ImageUrl = $"/uploads/categories/{fileName}";
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { imageUrl = category.ImageUrl });
+    }
+
     [HttpDelete("categories/{id:guid}")]
     public async Task<IActionResult> DeleteCategory(Guid id, CancellationToken ct)
     {

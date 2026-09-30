@@ -231,6 +231,11 @@ export const api = {
         request(`/api/admin/categories/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
       delete: (id: string, token: string) =>
         request(`/api/admin/categories/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
+      uploadImage: (id: string, file: File, token: string) => {
+        const form = new FormData();
+        form.append('file', file);
+        return request(`/api/admin/categories/${id}/image`, { method: 'POST', body: form, headers: { Authorization: `Bearer ${token}` } });
+      },
     },
     hero: {
       list: (token: string) =>
