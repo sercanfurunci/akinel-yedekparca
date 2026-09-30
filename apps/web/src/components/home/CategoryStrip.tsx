@@ -8,9 +8,29 @@ interface Props {
   categories: Category[];
 }
 
+function idealCols(n: number): number {
+  const max = Math.min(n, 6);
+  for (let c = max; c >= 2; c--) {
+    if (n % c === 0) return c;
+  }
+  return max;
+}
+
+const colClass: Record<number, string> = {
+  1: 'grid-cols-1',
+  2: 'grid-cols-2',
+  3: 'grid-cols-2 sm:grid-cols-3',
+  4: 'grid-cols-2 md:grid-cols-4',
+  5: 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5',
+  6: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6',
+};
+
 export function CategoryStrip({ categories }: Props) {
   const roots = categories.filter(c => !c.parentCategoryId);
   if (roots.length === 0) return null;
+
+  const cols = idealCols(roots.length);
+  const gridClass = colClass[cols] ?? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5';
 
   return (
     <section className="border-b bg-[#F3F4F6]">
@@ -27,7 +47,7 @@ export function CategoryStrip({ categories }: Props) {
             Tümü <ChevronRight size={14} />
           </Link>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className={`grid ${gridClass} gap-4`}>
           {roots.map((cat) => (
             <Link
               key={cat.id}

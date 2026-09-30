@@ -69,11 +69,11 @@ export default function HomePage() {
         <StaticHero />
       )}
 
-      {/* ── 2. CATEGORY STRIP ───────────────────────── */}
-      <CategoryStrip categories={categories} />
-
-      {/* ── 3. BUSINESS STRIP ───────────────────────── */}
+      {/* ── 2. BUSINESS STRIP ───────────────────────── */}
       <BusinessStrip />
+
+      {/* ── 3. CATEGORY STRIP ───────────────────────── */}
+      <CategoryStrip categories={categories} />
 
       {/* ── 3. AKINEL INTRODUCTION ──────────────────── */}
       <section className="bg-white border-b border-border">
