@@ -121,7 +121,7 @@ public class B2StorageService : IStorageService
         using var uploadResp = await _http.SendAsync(uploadReq, ct);
         uploadResp.EnsureSuccessStatusCode();
 
-        return FileUrl(key);
+        return $"/api/files/{key}";
     }
 
     private string? ExtractKey(string fileUrl)
@@ -172,6 +172,6 @@ public class B2StorageService : IStorageService
     public async Task<string> GetPresignedUrlAsync(string fileKey, CancellationToken ct = default)
     {
         await AuthorizeAsync(ct);
-        return FileUrl(fileKey);
+        return $"/api/files/{fileKey}";
     }
 }
