@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { TableSkeleton } from '@/components/shared/Skeletons';
+import { toast } from '@/components/ui/toast';
 
 export default function AdminBrandsPage() {
   const { accessToken } = useAuthStore();
@@ -64,6 +65,7 @@ export default function AdminBrandsPage() {
       }
       setFormOpen(false);
       fetchBrands();
+      toast.add({ title: 'Kaydedildi', description: `Marka başarıyla ${editing ? 'güncellendi' : 'oluşturuldu'}.`, type: 'success' });
     } catch {
       setError('Kaydedilemedi. Lütfen tekrar deneyin.');
     } finally {

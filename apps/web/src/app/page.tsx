@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import type { LucideIcon } from 'lucide-react';
 import {
-  Disc, Cog, Filter, Zap, GitMerge,
-  Lightbulb, Thermometer, AirVent, Layers, Gauge, Package,
   Car, Check, ChevronRight,
 } from 'lucide-react';
 import { VehicleFinder } from '@/components/search/VehicleFinder';
@@ -19,20 +16,6 @@ import type { ProductListItem, PaginatedResult, Brand, Category, HeroSlide } fro
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-// Icon mapping for categories — UI concern, not stored in DB.
-// Covers both Turkish slugs (admin-created) and English slugs (seeded defaults).
-const categoryIconMap: Record<string, LucideIcon> = {
-  'brakes': Disc, 'fren-sistemi': Disc,
-  'clutch': GitMerge, 'debriyaj': GitMerge,
-  'filters': Filter, 'filtreler': Filter,
-  'suspension': Layers, 'suspansiyon': Layers,
-  'electrical': Zap, 'elektrik': Zap,
-  'cooling': Thermometer, 'sogutma': Thermometer,
-  'motor': Cog, 'engine': Cog,
-  'steering': Gauge, 'direksiyon': Gauge,
-  'air-conditioning': AirVent, 'klima': AirVent,
-  'lighting': Lightbulb, 'aydinlatma': Lightbulb,
-};
 
 const trustItems = [
   'OEM uyumlu ürünler',
@@ -193,42 +176,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 6. CATEGORIES ───────────────────────────── */}
-      {categories.length > 0 && (
-        <section className="border-t bg-[#F3F4F6]">
-          <div className="container mx-auto px-4 max-w-7xl py-12">
-            <div className="flex items-end justify-between mb-6">
-              <div>
-                <div className="w-10 h-1 bg-brand rounded-full mb-3" />
-                <h2 className="text-xl md:text-2xl font-bold text-[#111827]">Yedek Parça Kategorileri</h2>
-              </div>
-              <Link
-                href="/products"
-                className="text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors py-3 px-1 min-h-[44px]"
-              >
-                Tümü <ChevronRight size={14} />
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {categories.filter((c) => !c.parentCategoryId).map((cat) => {
-                const Icon = categoryIconMap[cat.slug] ?? Package;
-                return (
-                  <Link
-                    key={cat.id}
-                    href={`/category/${cat.slug}`}
-                    className="flex flex-col items-center gap-3 py-6 px-3 rounded-xl border border-border bg-white hover:border-brand hover:-translate-y-0.5 hover:shadow-md transition-all text-center group"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F3F4F6] text-[#111827] group-hover:bg-brand group-hover:text-white transition-colors">
-                      <Icon size={22} />
-                    </div>
-                    <span className="text-xs font-semibold leading-snug text-[#111827]">{cat.name}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ── 7. FEATURED PRODUCTS ────────────────────── */}
       <section className="bg-white border-t border-border">

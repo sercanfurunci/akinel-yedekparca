@@ -3,6 +3,7 @@ import { useAuthStore } from '@/store/authStore';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { AdminSidebar } from '@/components/layout/AdminSidebar';
+import { Toaster } from '@/components/ui/toast';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { accessToken, user, _hasHydrated } = useAuthStore();
@@ -18,9 +19,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (!isAuthenticated || !isAdmin) return null;
 
   return (
-    <div className="flex min-h-screen">
-      <AdminSidebar />
-      <main className="flex-1 min-w-0 p-4 md:p-6 bg-muted/30 overflow-x-auto">{children}</main>
-    </div>
+    <Toaster>
+      <div className="flex min-h-screen">
+        <AdminSidebar />
+        <main className="flex-1 min-w-0 p-4 md:p-6 bg-muted/30 overflow-x-auto">{children}</main>
+      </div>
+    </Toaster>
   );
 }

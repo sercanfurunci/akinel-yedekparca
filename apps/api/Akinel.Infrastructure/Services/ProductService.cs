@@ -208,6 +208,7 @@ public class ProductService : IProductService
     private static ProductDto MapToDto(Product p)
     {
         var dp = EffectiveDiscount(p);
+        var sortedImages = p.Images.OrderByDescending(i => i.IsPrimary).ThenBy(i => i.SortOrder).ToList();
         return new(
             p.Id, p.Name, p.Slug, p.Description,
             p.BrandId, p.Brand.Name, p.CategoryId, p.Category.Name,
@@ -215,9 +216,10 @@ public class ProductService : IProductService
             p.Currency, p.IsActive,
             p.Stock?.Status ?? StockStatus.OutOfStock,
             p.Stock?.AvailableQuantity ?? 0,
-            p.Images.FirstOrDefault(i => i.IsPrimary)?.Url ?? p.Images.FirstOrDefault()?.Url,
+            sortedImages.FirstOrDefault(i => i.IsPrimary)?.Url ?? sortedImages.FirstOrDefault()?.Url,
             p.OemNumbers.Select(po => po.OemNumber.Number),
-            p.Barcode, p.WeightKg, p.WidthCm, p.LengthCm, p.HeightCm, p.WarrantyInfo
+            p.Barcode, p.WeightKg, p.WidthCm, p.LengthCm, p.HeightCm, p.WarrantyInfo,
+            sortedImages.Select(i => new ProductImageDto(i.Id, i.Url, i.AltText, i.SortOrder, i.IsPrimary))
         );
     }
 

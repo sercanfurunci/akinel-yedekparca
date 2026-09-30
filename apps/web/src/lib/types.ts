@@ -29,6 +29,7 @@ export interface Product extends ProductListItem {
   lengthCm?: number;
   heightCm?: number;
   warrantyInfo?: string;
+  images?: ProductImage[];
 }
 
 export type OrderStatus = 'Pending' | 'Confirmed' | 'Preparing' | 'Shipped' | 'Delivered' | 'Cancelled';

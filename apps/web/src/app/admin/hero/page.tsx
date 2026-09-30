@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { toast } from '@/components/ui/toast';
 
 function CardUploadButton({ slideId, isUploading, hasImage, onUpload }: {
   slideId: string;
@@ -159,6 +160,7 @@ export default function AdminHeroPage() {
       setShowForm(false);
       clearFormFile();
       fetchSlides();
+      toast.add({ title: 'Kaydedildi', description: editingSlide ? 'Slayt güncellendi.' : 'Slayt oluşturuldu.', type: 'success' });
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Bir hata oluştu.');
     } finally {

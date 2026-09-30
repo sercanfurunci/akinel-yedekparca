@@ -2,6 +2,8 @@ using Akinel.Domain.Enums;
 
 namespace Akinel.Application.DTOs;
 
+public record ProductImageDto(Guid Id, string Url, string? AltText, int SortOrder, bool IsPrimary);
+
 public record ProductDto(
     Guid Id,
     string Name,
@@ -27,7 +29,8 @@ public record ProductDto(
     decimal? WidthCm = null,
     decimal? LengthCm = null,
     decimal? HeightCm = null,
-    string? WarrantyInfo = null
+    string? WarrantyInfo = null,
+    IEnumerable<ProductImageDto>? Images = null
 );
 
 public record ProductListItemDto(

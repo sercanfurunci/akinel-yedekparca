@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { VehicleFinder } from '@/components/search/VehicleFinder';
+import { toast } from '@/components/ui/toast';
 
 const selectClass = 'flex h-9 w-full rounded-lg border border-input bg-background px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors';
 
@@ -163,6 +164,7 @@ export default function AdminProductEditPage() {
       }, accessToken);
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
+      toast.add({ title: 'Kaydedildi', description: 'Ürün bilgileri başarıyla güncellendi.', type: 'success' });
     } catch {
       setSaveError('Kaydedilemedi. Lütfen tekrar deneyin.');
     } finally {
@@ -214,7 +216,10 @@ export default function AdminProductEditPage() {
     try {
       const img = await api.admin.products.uploadImage(id, file, accessToken) as ProductImage;
       setImages(prev => [...prev, img]);
-    } catch { /* ignore */ }
+      toast.add({ title: 'Fotoğraf yüklendi', description: 'Ürün görseli başarıyla eklendi.', type: 'success' });
+    } catch {
+      toast.add({ title: 'Hata', description: 'Fotoğraf yüklenemedi.', type: 'error' });
+    }
     setUploading(false);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };

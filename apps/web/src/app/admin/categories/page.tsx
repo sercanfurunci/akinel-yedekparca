@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { TableSkeleton } from '@/components/shared/Skeletons';
 import { getImageUrl } from '@/lib/utils';
+import { toast } from '@/components/ui/toast';
 
 const selectClass = 'flex h-9 rounded-lg border border-input bg-background px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors';
 
@@ -92,6 +93,7 @@ export default function AdminCategoriesPage() {
         setSavedId(result.id);
       }
       fetchCategories();
+      toast.add({ title: 'Kaydedildi', description: `Kategori başarıyla ${editing ? 'güncellendi' : 'oluşturuldu'}.`, type: 'success' });
     } catch {
       setError('Kaydedilemedi. Lütfen tekrar deneyin.');
     } finally {
@@ -106,6 +108,7 @@ export default function AdminCategoriesPage() {
       const res = await api.admin.categories.uploadImage(savedId, file, accessToken) as { imageUrl: string };
       setImageUrl(res.imageUrl);
       fetchCategories();
+      toast.add({ title: 'Fotoğraf yüklendi', description: 'Kategori fotoğrafı başarıyla güncellendi.', type: 'success' });
     } catch {
       setError('Fotoğraf yüklenemedi.');
     } finally {

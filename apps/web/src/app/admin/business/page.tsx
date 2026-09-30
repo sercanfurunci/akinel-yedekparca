@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import type { BusinessSettings } from '@/lib/types';
+import { toast } from '@/components/ui/toast';
 
 const DAY_NAMES = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
 
@@ -58,7 +59,6 @@ export default function AdminBusinessPage() {
   const { accessToken } = useAuthStore();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
 
   const { register, handleSubmit, reset, control, formState: { errors } } = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -107,8 +107,7 @@ export default function AdminBusinessPage() {
     setSaving(true);
     try {
       await api.business.updateSettings(data, accessToken);
-      setSaved(true);
-      setTimeout(() => setSaved(false), 3000);
+      toast.add({ title: 'Kaydedildi', description: 'İşletme ayarları başarıyla güncellendi.', type: 'success' });
     } finally {
       setSaving(false);
     }
@@ -123,7 +122,6 @@ export default function AdminBusinessPage() {
           <h1 className="text-2xl font-bold">İşletme Ayarları</h1>
           <p className="text-muted-foreground text-sm mt-1">İletişim ve çalışma saati bilgileri</p>
         </div>
-        {saved && <span className="text-sm text-green-600 font-medium">Kaydedildi ✓</span>}
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
