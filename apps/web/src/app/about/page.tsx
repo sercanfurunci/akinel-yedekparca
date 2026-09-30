@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Search, Car, Gauge, MapPin, Package } from 'lucide-react';
+import { Search, Car, Gauge, MapPin, Package, ExternalLink } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Hakkımızda',
@@ -71,6 +71,47 @@ export default function AboutPage() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Map section */}
+      <div className="mb-8">
+        <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+          <MapPin size={20} className="text-brand" />
+          Neredeyiz?
+        </h2>
+        <div className="grid lg:grid-cols-3 gap-4">
+          <div className="lg:col-span-2 rounded-xl overflow-hidden border" style={{ minHeight: '320px' }}>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.211392343826!2d29.37324297745954!3d40.77936657138359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cadfa5b24995a1%3A0xc7de0d66a28e88a9!2sAKINEL%20OTO%20YEDEK%20PAR%C3%87A!5e0!3m2!1str!2str!4v1790785274428!5m2!1str!2str"
+              width="100%"
+              height="100%"
+              style={{ minHeight: '320px', border: 0, display: 'block' }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="AKINEL OTO YEDEK PARÇA konum"
+            />
+          </div>
+          <div className="flex flex-col gap-3">
+            <div className="rounded-xl border bg-card p-5 flex-1">
+              <p className="font-semibold text-sm mb-1">Adresimiz</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Osman Gazi, Tuzla Cd. No:238/B<br />
+                41700 Darıca / Kocaeli
+              </p>
+            </div>
+            <a
+              href="https://www.google.com/maps/dir//AKINEL+OTO+YEDEK+PAR%C3%87A,+Osman+Gazi,+Tuzla+Cd.+No:238%2FB,+41700+Dar%C4%B1ca%2FKocaeli/@40.7793666,29.3758179,17z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl border bg-brand text-brand-foreground p-4 flex items-center gap-3 hover:bg-brand/90 transition-colors"
+            >
+              <MapPin size={18} />
+              <span className="font-medium text-sm">Yol Tarifi Al</span>
+              <ExternalLink size={13} className="ml-auto opacity-70" />
+            </a>
+          </div>
+        </div>
       </div>
 
       <div className="rounded-xl border bg-muted/30 p-6 text-center">
