@@ -40,6 +40,7 @@ public class B2StorageService : IStorageService, IDisposable
             Key = key,
             InputStream = stream,
             ContentType = file.ContentType,
+            DisablePayloadSigning = true,
         }, ct);
 
         // return the internal key — served via /api/files/{key}
