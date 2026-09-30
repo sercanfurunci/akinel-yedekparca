@@ -33,13 +33,17 @@ public class B2StorageService : IStorageService, IDisposable
         var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
         var key = $"uploads/{folder}/{Guid.NewGuid()}{ext}";
 
-        using var stream = file.OpenReadStream();
+        using var ms = new MemoryStream();
+        await file.CopyToAsync(ms, ct);
+        ms.Position = 0;
+
         await _client.PutObjectAsync(new PutObjectRequest
         {
             BucketName = _bucketName,
             Key = key,
-            InputStream = stream,
+            InputStream = ms,
             ContentType = file.ContentType,
+            ContentLength = ms.Length,
             DisablePayloadSigning = true,
             UseChunkEncoding = false,
         }, ct);
