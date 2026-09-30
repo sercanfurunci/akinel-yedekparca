@@ -474,14 +474,7 @@ public class AdminController : ControllerBase
 
         await _storage.DeleteAsync(slide.ImageUrl, ct);
 
-        try
-        {
-            slide.ImageUrl = await _storage.UploadAsync(file, "homepage", ct);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new { error = ex.Message, inner = ex.InnerException?.Message });
-        }
+        slide.ImageUrl = await _storage.UploadAsync(file, "homepage", ct);
         await _db.SaveChangesAsync(ct);
 
         return Ok(new { slide.Id, slide.ImageUrl });
@@ -508,32 +501,6 @@ public class AdminController : ControllerBase
         _db.HomepageHeroSlides.Remove(slide);
         await _db.SaveChangesAsync(ct);
         return NoContent();
-    }
-
-    // ── B2 Test ──────────────────────────────────────────────────────
-
-    [HttpGet("b2-test")]
-    [AllowAnonymous]
-    public async Task<IActionResult> B2Test([FromServices] IStorageService storage, CancellationToken ct)
-    {
-        try
-        {
-            // Try to authorize with B2
-            var http = new System.Net.Http.HttpClient();
-            var keyId = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Configuration.IConfiguration>()["B2:KeyId"];
-            var appKey = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Configuration.IConfiguration>()["B2:ApplicationKey"];
-            var bucketId = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Configuration.IConfiguration>()["B2:BucketId"];
-            var creds = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{keyId}:{appKey}"));
-            var req = new System.Net.Http.HttpRequestMessage(System.Net.Http.HttpMethod.Get, "https://api.backblazeb2.com/b2api/v3/b2_authorize_account");
-            req.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", creds);
-            var resp = await http.SendAsync(req, ct);
-            var body = await resp.Content.ReadAsStringAsync(ct);
-            return Ok(new { status = (int)resp.StatusCode, keyId = keyId?[..8] + "...", bucketId, body });
-        }
-        catch (Exception ex)
-        {
-            return Ok(new { error = ex.Message, inner = ex.InnerException?.Message });
-        }
     }
 
     // ── Helpers ──────────────────────────────────────────────────────
