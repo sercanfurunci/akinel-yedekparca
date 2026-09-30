@@ -474,7 +474,14 @@ public class AdminController : ControllerBase
 
         await _storage.DeleteAsync(slide.ImageUrl, ct);
 
-        slide.ImageUrl = await _storage.UploadAsync(file, "homepage", ct);
+        try
+        {
+            slide.ImageUrl = await _storage.UploadAsync(file, "homepage", ct);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message, inner = ex.InnerException?.Message });
+        }
         await _db.SaveChangesAsync(ct);
 
         return Ok(new { slide.Id, slide.ImageUrl });
