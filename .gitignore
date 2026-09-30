@@ -39,3 +39,7 @@ apps/api/Akinel.Api/wwwroot/uploads/
 /*.png
 /*.jpg
 /*.jpeg
+
+# Python
+**/__pycache__/
+*.pyc
