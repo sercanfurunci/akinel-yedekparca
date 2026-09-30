@@ -51,6 +51,8 @@ public class AdminController : ControllerBase
     [HttpGet("orders")]
     public async Task<IActionResult> GetOrders([FromQuery] int page = 1, [FromQuery] int pageSize = 20, CancellationToken ct = default)
     {
+        page = Math.Max(1, page);
+        pageSize = Math.Clamp(pageSize, 1, 100);
         var orders = await _orderService.GetAllOrdersAsync(page, pageSize, ct);
         var total = await _db.Orders.CountAsync(ct);
         return Ok(new { items = orders, totalCount = total, page, pageSize });
@@ -89,6 +91,8 @@ public class AdminController : ControllerBase
     [HttpPost("products")]
     public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequest request, CancellationToken ct)
     {
+        if (request.Price <= 0)
+            return BadRequest(new { message = "Ürün fiyatı sıfırdan büyük olmalıdır." });
         if (request.DiscountPercentage.HasValue && (request.DiscountPercentage < 0 || request.DiscountPercentage >= 100))
             return BadRequest(new { message = "İndirim oranı 0 ile 99,99 arasında olmalıdır." });
         return Ok(await _productService.CreateAsync(request, ct));
@@ -97,6 +101,8 @@ public class AdminController : ControllerBase
     [HttpPut("products/{id:guid}")]
     public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] UpdateProductRequest request, CancellationToken ct)
     {
+        if (request.Price <= 0)
+            return BadRequest(new { message = "Ürün fiyatı sıfırdan büyük olmalıdır." });
         if (request.DiscountPercentage.HasValue && (request.DiscountPercentage < 0 || request.DiscountPercentage >= 100))
             return BadRequest(new { message = "İndirim oranı 0 ile 99,99 arasında olmalıdır." });
         var result = await _productService.UpdateAsync(id, request, ct);
@@ -399,6 +405,7 @@ public class AdminController : ControllerBase
         var category = await _db.Categories.FindAsync(new object[] { id }, ct);
         if (category == null) return NotFound();
 
+        if (file == null || file.Length == 0) return BadRequest(new { message = "Dosya gerekli." });
         if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
         if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
 
@@ -424,6 +431,8 @@ public class AdminController : ControllerBase
     [HttpPut("stock/{productId:guid}")]
     public async Task<IActionResult> UpdateStock(Guid productId, [FromBody] UpdateStockRequest request, CancellationToken ct)
     {
+        if (request.Quantity < 0)
+            return BadRequest(new { message = "Stok miktarı negatif olamaz." });
         var stock = await _db.Stocks.FirstOrDefaultAsync(s => s.ProductId == productId, ct);
         if (stock == null) return NotFound();
         stock.Quantity = request.Quantity;
@@ -447,6 +456,9 @@ public class AdminController : ControllerBase
     [HttpPost("hero/slides")]
     public async Task<IActionResult> CreateHeroSlide([FromBody] CreateHeroSlideRequest request, CancellationToken ct)
     {
+        if (!IsSafeUrl(request.CtaUrl))
+            return BadRequest(new { message = "Geçersiz CTA URL. Yalnızca göreli yollar veya https:// ile başlayan URL'ler kabul edilir." });
+
         var slide = new HomepageHeroSlide
         {
             Title = string.IsNullOrWhiteSpace(request.Title) ? null : request.Title,
@@ -464,6 +476,9 @@ public class AdminController : ControllerBase
     [HttpPut("hero/slides/{id:guid}")]
     public async Task<IActionResult> UpdateHeroSlide(Guid id, [FromBody] UpdateHeroSlideRequest request, CancellationToken ct)
     {
+        if (!IsSafeUrl(request.CtaUrl))
+            return BadRequest(new { message = "Geçersiz CTA URL. Yalnızca göreli yollar veya https:// ile başlayan URL'ler kabul edilir." });
+
         var slide = await _db.HomepageHeroSlides.FindAsync(new object[] { id }, ct);
         if (slide == null) return NotFound();
         slide.Title = string.IsNullOrWhiteSpace(request.Title) ? null : request.Title;
@@ -518,6 +533,15 @@ public class AdminController : ControllerBase
     }
 
     // ── Helpers ──────────────────────────────────────────────────────
+
+    private static bool IsSafeUrl(string? url)
+    {
+        if (string.IsNullOrWhiteSpace(url)) return true;
+        // Allow relative paths (e.g. /products, /search) and absolute https:// URLs only.
+        // Rejects javascript:, data:, http:, ftp:, and other potentially dangerous schemes.
+        return url.StartsWith("/", StringComparison.Ordinal) ||
+               url.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
+    }
 
     private static string GenerateSlug(string name)
     {

@@ -209,15 +209,17 @@ export default function AdminBusinessPage() {
           <h2 className="font-semibold text-sm">Çalışma Saatleri</h2>
           <div className="space-y-3">
             {fields.map((field, idx) => (
-              <div key={field.id} className="flex items-center gap-3">
-                <span className="w-24 text-sm text-muted-foreground shrink-0">{DAY_NAMES[idx]}</span>
-                <label className="flex items-center gap-2 cursor-pointer">
+              <div key={field.id} className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span className="w-20 sm:w-24 text-sm text-muted-foreground shrink-0">{DAY_NAMES[idx]}</span>
+                <label className="flex items-center gap-1.5 cursor-pointer shrink-0">
                   <input type="checkbox" {...register(`workingHours.${idx}.isOpen`)} className="rounded" />
                   <span className="text-sm">Açık</span>
                 </label>
-                <Input {...register(`workingHours.${idx}.openTime`)} placeholder="09:00" className="w-24 text-sm" />
-                <span className="text-muted-foreground text-sm">–</span>
-                <Input {...register(`workingHours.${idx}.closeTime`)} placeholder="19:00" className="w-24 text-sm" />
+                <div className="flex items-center gap-1.5">
+                  <Input {...register(`workingHours.${idx}.openTime`)} placeholder="09:00" className="w-20 text-sm" />
+                  <span className="text-muted-foreground text-sm shrink-0">–</span>
+                  <Input {...register(`workingHours.${idx}.closeTime`)} placeholder="19:00" className="w-20 text-sm" />
+                </div>
               </div>
             ))}
           </div>

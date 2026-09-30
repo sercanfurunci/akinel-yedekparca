@@ -24,12 +24,12 @@ public static class DatabaseSeeder
                 Phone2 = "+90 533 140 56 49",
                 WhatsApp = "905394624149",
                 Email = "info@akinelotoyedekparca.com.tr",
-                Address = "Nenehatun, Fatih Cd. No:81",
+                Address = "Osmangazi Mh. Tuzla Cd. No:238/B",
                 District = "Darıca",
                 City = "Kocaeli",
                 Country = "Türkiye",
                 PostalCode = "41700",
-                GoogleMapsUrl = "https://maps.google.com/?q=AKINEL+OTO+YEDEK+PARCA+Nenehatun+Fatih+Cd+No+81+Darica+Kocaeli",
+                GoogleMapsUrl = "https://www.google.com/maps/dir//AKINEL+OTO+YEDEK+PAR%C3%87A,+Osman+Gazi,+Tuzla+Cd.+No:238%2FB,+41700+Dar%C4%B1ca%2FKocaeli/@40.7793666,29.3758179,17z",
                 GoogleMapsEmbedUrl = "https://maps.google.com/maps?q=AKINEL+OTO+YEDEK+PARCA+Darica+Kocaeli&output=embed&hl=tr",
                 WebsiteUrl = "https://akinelotoyedekparca.com.tr",
             };
@@ -135,11 +135,15 @@ public static class DatabaseSeeder
         // Admin user — always ensure exists, regardless of other users
         if (!await context.Users.AnyAsync(u => u.Email == "admin@akinel.com"))
         {
+            // Read initial admin password from environment variable; fall back to dev-only default.
+            // IMPORTANT: Override AKINEL_ADMIN_PASSWORD in production before first deploy.
+            var adminPassword = Environment.GetEnvironmentVariable("AKINEL_ADMIN_PASSWORD")
+                ?? "Admin123!";
             context.Users.Add(new User
             {
                 Email = "admin@akinel.com",
                 NormalizedEmail = "ADMIN@AKINEL.COM",
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123!"),
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword),
                 FirstName = "Admin",
                 LastName = "User",
                 Role = UserRole.Admin,

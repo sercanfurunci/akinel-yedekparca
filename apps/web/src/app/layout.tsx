@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { AnnouncementTicker } from '@/components/layout/AnnouncementTicker';
-import { WhatsAppButton } from '@/components/layout/WhatsAppButton';
+import { PublicShell } from '@/components/layout/PublicShell';
 
 const SITE_URL = 'https://akinelotoyedekparca.com.tr';
 const SITE_NAME = 'AKINEL OTO YEDEK PARÇA';
@@ -80,11 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-sans min-h-screen flex flex-col">
-        <AnnouncementTicker />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <PublicShell>{children}</PublicShell>
       </body>
     </html>
   );

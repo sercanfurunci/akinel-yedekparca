@@ -2,6 +2,7 @@ using Akinel.Application.DTOs;
 using Akinel.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using System.Security.Claims;
 
 namespace Akinel.Api.Controllers;
@@ -43,6 +44,7 @@ public class OrdersController : ControllerBase
     }
 
     [HttpPost("checkout")]
+    [EnableRateLimiting("checkout")]
     public async Task<IActionResult> Checkout([FromBody] CheckoutRequest request, CancellationToken ct)
     {
         var sessionId = GetOrCreateSessionId();

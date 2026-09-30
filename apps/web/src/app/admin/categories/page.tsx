@@ -222,7 +222,7 @@ export default function AdminCategoriesPage() {
           <div className="bg-white rounded-xl shadow-xl w-full max-w-sm">
             <div className="flex items-center justify-between px-6 py-4 border-b">
               <h2 className="font-semibold">{editing ? 'Kategoriyi Düzenle' : 'Yeni Kategori Ekle'}</h2>
-              <button onClick={() => setFormOpen(false)} className="text-muted-foreground hover:text-foreground">
+              <button onClick={() => setFormOpen(false)} className="text-muted-foreground hover:text-foreground" aria-label="Kapat">
                 <X size={18} />
               </button>
             </div>

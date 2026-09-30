@@ -216,7 +216,7 @@ export default function AdminHeroPage() {
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-5xl">
+    <div>
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-xl font-bold text-[#111827]">Ana Sayfa Görselleri</h1>
@@ -231,7 +231,7 @@ export default function AdminHeroPage() {
         <div className="mb-4 flex items-center gap-2 rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
           <X size={14} className="shrink-0" />
           {error}
-          <button onClick={() => setError(null)} className="ml-auto text-red-400 hover:text-red-600">
+          <button onClick={() => setError(null)} className="ml-auto text-red-400 hover:text-red-600" aria-label="Hatayı kapat">
             <X size={14} />
           </button>
         </div>
@@ -246,7 +246,7 @@ export default function AdminHeroPage() {
         <div className="mb-6 rounded-xl border border-border bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-[#111827]">{editingSlide ? 'Slaytı Düzenle' : 'Yeni Slayt Ekle'}</h2>
-            <button onClick={() => { setShowForm(false); clearFormFile(); }} className="text-muted-foreground hover:text-foreground">
+            <button onClick={() => { setShowForm(false); clearFormFile(); }} className="text-muted-foreground hover:text-foreground" aria-label="Formu kapat">
               <X size={16} />
             </button>
           </div>

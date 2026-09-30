@@ -52,9 +52,14 @@ public class SearchService : ISearchService
 
     public async Task<IEnumerable<string>> GetSuggestionsAsync(string query, int limit = 10, CancellationToken ct = default)
     {
+        // Escape LIKE wildcards to prevent wildcard injection (same pattern as ProductService)
+        var safe = query.Length > 100 ? query[..100] : query;
+        safe = safe.Replace("\\", "\\\\").Replace("%", "\\%").Replace("_", "\\_");
+        var pattern = $"%{safe}%";
+
         var productNames = await _context.Products
-            .Where(p => p.IsActive && EF.Functions.ILike(p.Name, $"%{query}%"))
-            .Take(limit)
+            .Where(p => p.IsActive && EF.Functions.ILike(p.Name, pattern, "\\"))
+            .Take(Math.Clamp(limit, 1, 20))
             .Select(p => p.Name)
             .ToListAsync(ct);
 

@@ -34,3 +34,8 @@ Thumbs.db
 
 # Uploads (user content — not committed)
 apps/api/Akinel.Api/wwwroot/uploads/
+
+# Development screenshots (visual review artifacts — not source code)
+/*.png
+/*.jpg
+/*.jpeg

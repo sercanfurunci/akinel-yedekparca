@@ -8,33 +8,14 @@ interface Props {
   categories: Category[];
 }
 
-function idealCols(n: number): number {
-  const max = Math.min(n, 6);
-  for (let c = max; c >= 2; c--) {
-    if (n % c === 0) return c;
-  }
-  return max;
-}
-
-const colClass: Record<number, string> = {
-  1: 'grid-cols-1',
-  2: 'grid-cols-2',
-  3: 'grid-cols-2 sm:grid-cols-3',
-  4: 'grid-cols-2 md:grid-cols-4',
-  5: 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5',
-  6: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6',
-};
 
 export function CategoryStrip({ categories }: Props) {
   const roots = categories.filter(c => !c.parentCategoryId);
   if (roots.length === 0) return null;
 
-  const cols = idealCols(roots.length);
-  const gridClass = colClass[cols] ?? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5';
-
   return (
     <section className="border-b bg-[#F3F4F6]">
-      <div className="container mx-auto px-4 max-w-7xl py-12">
+      <div className="container mx-auto px-4 max-w-7xl py-8 md:py-12">
         <div className="flex items-end justify-between mb-6">
           <div>
             <div className="w-10 h-1 bg-brand rounded-full mb-3" />
@@ -47,14 +28,14 @@ export function CategoryStrip({ categories }: Props) {
             Tümü <ChevronRight size={14} />
           </Link>
         </div>
-        <div className={`grid ${gridClass} gap-4`}>
-          {roots.map((cat) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {roots.map((cat, i) => (
             <Link
               key={cat.id}
               href={`/products?categoryId=${cat.id}`}
-              className="flex flex-col items-center gap-3 rounded-xl border border-border bg-white hover:border-brand hover:-translate-y-0.5 hover:shadow-md transition-all text-center group overflow-hidden"
+              className={`flex flex-col items-center gap-3 rounded-xl border border-border bg-white hover:border-brand hover:-translate-y-0.5 hover:shadow-md transition-all text-center group overflow-hidden${i >= 4 ? ' hidden sm:flex' : ''}`}
             >
-              <div className="w-full aspect-square overflow-hidden bg-muted">
+              <div className="w-full aspect-[4/3] sm:aspect-square overflow-hidden bg-muted">
                 {cat.imageUrl ? (
                   <img
                     src={getImageUrl(cat.imageUrl) ?? ''}
@@ -71,6 +52,16 @@ export function CategoryStrip({ categories }: Props) {
             </Link>
           ))}
         </div>
+        {roots.length > 4 && (
+          <div className="mt-4 sm:hidden">
+            <Link
+              href="/products"
+              className="flex items-center justify-center w-full gap-2 rounded-xl border-2 border-brand text-brand font-semibold text-sm py-3 hover:bg-brand hover:text-white transition-colors"
+            >
+              Tüm Kategorileri Gör <ChevronRight size={16} />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

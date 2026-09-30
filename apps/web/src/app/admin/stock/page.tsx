@@ -138,7 +138,7 @@ export default function AdminStockPage() {
           <div className="bg-white rounded-xl shadow-xl w-full max-w-sm p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="font-semibold">Stok Güncelle</h2>
-              <button onClick={() => setEditingId(null)} className="text-muted-foreground hover:text-foreground">
+              <button onClick={() => setEditingId(null)} className="text-muted-foreground hover:text-foreground" aria-label="Kapat">
                 <X size={18} />
               </button>
             </div>

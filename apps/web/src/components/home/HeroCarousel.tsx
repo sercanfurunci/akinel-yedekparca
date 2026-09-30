@@ -76,8 +76,8 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
       <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/95 via-[#111827]/60 to-[#111827]/30 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/40 via-transparent to-[#111827]/20 pointer-events-none" />
 
-      {/* ── CONTENT (overlay, centered vertically) ─────────────────────── */}
-      <div className="relative z-10 flex flex-col justify-end h-full" style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}>
+      {/* ── CONTENT (overlay, anchored to bottom) ──────────────────────── */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-end">
         <div className="container mx-auto px-4 max-w-5xl pb-14 md:pb-20">
           <div className="max-w-2xl mx-auto text-center text-white">
 
@@ -158,7 +158,7 @@ export function StaticHero() {
   return (
     <section className="relative overflow-hidden bg-[#111827]" style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}>
       <div className="absolute inset-0 bg-gradient-to-br from-brand/15 via-[#111827] to-[#111827]" />
-      <div className="relative z-10 flex flex-col justify-end h-full" style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}>
+      <div className="absolute inset-0 z-10 flex flex-col justify-end">
         <div className="container mx-auto px-4 max-w-5xl pb-14 md:pb-20">
           <div className="max-w-2xl mx-auto text-center text-white">
             <div className="inline-flex items-center gap-2 mb-4">

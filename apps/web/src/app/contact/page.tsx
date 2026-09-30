@@ -4,7 +4,7 @@ import type { BusinessSettings } from '@/lib/types';
 
 export const metadata: Metadata = {
   title: 'İletişim',
-  description: 'AKINEL Oto Yedek Parça iletişim bilgileri. Nenehatun, Fatih Cd. No:81, Darıca / Kocaeli. Tel: +90 539 462 41 49. Yol tarifi ve çalışma saatleri.',
+  description: 'AKINEL Oto Yedek Parça iletişim bilgileri. Osmangazi Mh. Tuzla Cd. No:238/B, 41700 Darıca / Kocaeli. Tel: +90 539 462 41 49. Yol tarifi ve çalışma saatleri.',
 };
 
 const DAY_NAMES = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
@@ -25,7 +25,7 @@ export default async function ContactPage() {
 
   const fullAddress = biz
     ? [biz.address, biz.district && biz.city ? `${biz.postalCode} ${biz.district}/${biz.city}` : biz.city, biz.country].filter(Boolean).join(', ')
-    : 'Nenehatun, Fatih Cd. No:81, 41700 Darıca/Kocaeli, Türkiye';
+    : 'Osmangazi Mh. Tuzla Cd. No:238/B, 41700 Darıca/Kocaeli, Türkiye';
 
   const phone = biz?.phone ?? '+90 539 462 41 49';
   const phone2 = biz?.phone2;

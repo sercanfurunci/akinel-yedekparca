@@ -249,7 +249,7 @@ export default function AdminProductsPage() {
           <div className="bg-white rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between px-6 py-4 border-b sticky top-0 bg-white">
               <h2 className="font-semibold">Yeni Ürün Ekle</h2>
-              <button onClick={() => setFormOpen(false)} className="text-muted-foreground hover:text-foreground"><X size={18} /></button>
+              <button onClick={() => setFormOpen(false)} className="text-muted-foreground hover:text-foreground" aria-label="Kapat"><X size={18} /></button>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4">
               <div className="space-y-1">

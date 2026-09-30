@@ -2,6 +2,8 @@
 
 Automotive spare parts e-commerce platform with vehicle compatibility search, OEM number lookup, and VIN decoding.
 
+> **Full technical documentation:** See [`PROJECT_DOCUMENTATION.md`](./PROJECT_DOCUMENTATION.md) — the single source of truth for architecture, deployment, storage, environment variables, and troubleshooting.
+
 ## Prerequisites
 
 - Node.js v18+

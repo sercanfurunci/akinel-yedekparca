@@ -34,7 +34,7 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
       <div className="bg-white rounded-xl shadow-xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between px-6 py-4 border-b sticky top-0 bg-white">
           <h2 className="font-semibold text-sm">{title}</h2>
-          <button onClick={onClose} className="text-muted-foreground hover:text-foreground p-1"><X size={16} /></button>
+          <button onClick={onClose} className="text-muted-foreground hover:text-foreground p-1" aria-label="Kapat"><X size={16} /></button>
         </div>
         <div className="p-6">{children}</div>
       </div>
