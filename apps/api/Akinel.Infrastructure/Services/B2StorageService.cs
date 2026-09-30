@@ -172,6 +172,6 @@ public class B2StorageService : IStorageService
     public async Task<string> GetPresignedUrlAsync(string fileKey, CancellationToken ct = default)
     {
         await AuthorizeAsync(ct);
-        return $"/api/files/{fileKey}";
+        return $"{_downloadUrl}/file/{_bucketName}/{fileKey}";
     }
 }
