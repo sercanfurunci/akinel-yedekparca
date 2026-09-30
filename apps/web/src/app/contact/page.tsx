@@ -30,8 +30,8 @@ export default async function ContactPage() {
   const phone = biz?.phone ?? '+90 539 462 41 49';
   const phone2 = biz?.phone2;
   const email = biz?.email ?? 'info@akinelotoyedekparca.com.tr';
-  const mapsUrl = biz?.googleMapsUrl ?? 'https://maps.google.com/?q=AKINEL+OTO+YEDEK+PARCA+Darica+Kocaeli';
-  const embedUrl = biz?.googleMapsEmbedUrl ?? 'https://maps.google.com/maps?q=AKINEL+OTO+YEDEK+PARCA+Darica+Kocaeli&output=embed&hl=tr';
+  const mapsUrl = biz?.googleMapsUrl ?? 'https://www.google.com/maps/dir//AKINEL+OTO+YEDEK+PAR%C3%87A,+Osman+Gazi,+Tuzla+Cd.+No:238%2FB,+41700+Dar%C4%B1ca%2FKocaeli/@40.7793666,29.3758179,17z';
+  const embedUrl = biz?.googleMapsEmbedUrl ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.211392343826!2d29.37324297745954!3d40.77936657138359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cadfa5b24995a1%3A0xc7de0d66a28e88a9!2sAKINEL%20OTO%20YEDEK%20PAR%C3%87A!5e0!3m2!1str!2str!4v1790785274428!5m2!1str!2str';
 
   const openDays = biz?.workingHours.filter(h => h.isOpen) ?? [];
   const weekdayHours = openDays.find(h => h.dayOfWeek === 1);

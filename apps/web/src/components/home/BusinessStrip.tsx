@@ -17,7 +17,7 @@ export function BusinessStrip() {
   const phone = biz?.phone ?? '+90 539 462 41 49';
   const email = biz?.email ?? 'info@akinelotoyedekparca.com.tr';
   const location = biz ? `${biz.district} / ${biz.city}` : 'Darıca / Kocaeli';
-  const mapsUrl = biz?.googleMapsUrl ?? 'https://maps.google.com/?q=AKINEL+OTO+YEDEK+PARCA+Darica+Kocaeli';
+  const mapsUrl = biz?.googleMapsUrl ?? 'https://www.google.com/maps/dir//AKINEL+OTO+YEDEK+PAR%C3%87A,+Osman+Gazi,+Tuzla+Cd.+No:238%2FB,+41700+Dar%C4%B1ca%2FKocaeli/@40.7793666,29.3758179,17z';
 
   const weekdayHour = biz?.workingHours.find(h => h.isOpen && h.dayOfWeek === 1);
   const hoursLabel = weekdayHour ? `Pzt – Cmt: ${weekdayHour.openTime} – ${weekdayHour.closeTime}` : 'Pzt – Cmt: 09:00 – 19:00';

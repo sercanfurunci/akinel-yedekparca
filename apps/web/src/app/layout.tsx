@@ -67,7 +67,7 @@ const structuredData = {
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:00', closes: '19:00' },
   ],
-  hasMap: 'https://maps.google.com/?q=AKINEL+OTO+YEDEK+PARCA+Darica+Kocaeli',
+  hasMap: 'https://www.google.com/maps/dir//AKINEL+OTO+YEDEK+PAR%C3%87A,+Osman+Gazi,+Tuzla+Cd.+No:238%2FB,+41700+Dar%C4%B1ca%2FKocaeli/@40.7793666,29.3758179,17z',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
