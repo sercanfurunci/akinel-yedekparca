@@ -13,103 +13,125 @@ interface HeroCarouselProps {
   slides: HeroSlide[];
 }
 
-const INTERVAL_MS = 5000;
+const INTERVAL_MS = 5500;
 
 export function HeroCarousel({ slides }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const totalSlides = slides.length;
+  const total = slides.length;
 
-  const goTo = useCallback((index: number) => {
-    setCurrent(((index % totalSlides) + totalSlides) % totalSlides);
-  }, [totalSlides]);
+  const goTo = useCallback((i: number) => {
+    setCurrent(((i % total) + total) % total);
+  }, [total]);
 
   const next = useCallback(() => goTo(current + 1), [current, goTo]);
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
   useEffect(() => {
-    if (isPaused || totalSlides <= 1) return;
-    const prefersReduced = typeof window !== 'undefined'
-      && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
+    if (isPaused || total <= 1) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     timerRef.current = setTimeout(next, INTERVAL_MS);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [current, isPaused, next, totalSlides]);
+  }, [current, isPaused, next, total]);
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
+    const h = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') prev();
       else if (e.key === 'ArrowRight') next();
     };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
   }, [prev, next]);
 
-  const slide = slides[current];
-
   return (
-    <section aria-label="Ana sayfa slayt gösterisi">
-      {/* ── IMAGE SLIDER (top, pure visual) ─────────────────────────── */}
-      <div
-        className="relative overflow-hidden bg-[#111827]"
-        style={{ height: 'clamp(220px, 35vw, 420px)' }}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-        {slides.map((s, i) => {
-          const imgUrl = getImageUrl(s.imageUrl);
-          return (
-            <div
-              key={s.id}
-              aria-hidden={i !== current}
-              className={cn(
-                'absolute inset-0 transition-opacity duration-700',
-                i === current ? 'opacity-100' : 'opacity-0 pointer-events-none'
-              )}
-            >
-              {imgUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={imgUrl}
-                  alt=""
-                  role="presentation"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  decoding={i === 0 ? 'sync' : 'async'}
-                  fetchPriority={i === 0 ? 'high' : 'low'}
-                />
-              ) : (
-                <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent" />
-              )}
-            </div>
-          );
-        })}
+    <section
+      className="relative overflow-hidden bg-[#111827]"
+      style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      aria-label="Ana sayfa hero bölümü"
+    >
+      {/* ── BACKGROUND IMAGES (crossfade) ──────────────────────────────── */}
+      {slides.map((s, i) => {
+        const url = getImageUrl(s.imageUrl);
+        return (
+          <div
+            key={s.id}
+            aria-hidden={i !== current}
+            className={cn(
+              'absolute inset-0 transition-opacity duration-1000',
+              i === current ? 'opacity-100' : 'opacity-0'
+            )}
+          >
+            {url
+              ? <img src={url} alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} fetchPriority={i === 0 ? 'high' : 'low'} />
+              : <div className="absolute inset-0 bg-[#1F2937]" />
+            }
+          </div>
+        );
+      })}
 
-        {/* Prev / Next */}
-        {totalSlides > 1 && (
+      {/* ── GRADIENT OVERLAY ──────────────────────────────────────────── */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/95 via-[#111827]/60 to-[#111827]/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/40 via-transparent to-[#111827]/20 pointer-events-none" />
+
+      {/* ── CONTENT (overlay, centered vertically) ─────────────────────── */}
+      <div className="relative z-10 flex flex-col justify-end h-full" style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}>
+        <div className="container mx-auto px-4 max-w-5xl pb-14 md:pb-20">
+          <div className="max-w-2xl mx-auto text-center text-white">
+
+            <div className="inline-flex items-center gap-2 mb-4">
+              <span className="h-px w-10 bg-brand" />
+              <p className="text-brand text-[11px] font-bold uppercase tracking-[0.2em]">AKINEL OTO YEDEK PARÇA</p>
+              <span className="h-px w-10 bg-brand" />
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-[1.1] tracking-tight drop-shadow-lg">
+              Aracınız için{' '}
+              <span className="text-brand">doğru parçayı</span>{' '}
+              bulun
+            </h1>
+
+            <p className="text-white/75 mb-8 text-sm md:text-base leading-relaxed drop-shadow">
+              OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın.
+              <span className="hidden md:inline"> Kaliteli ürün, hızlı teslimat.</span>
+            </p>
+
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-1.5 mb-6 shadow-2xl">
+              <GlobalSearch size="lg" />
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link href="/vehicle" className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-6 shadow-lg')}>
+                <Car size={16} className="mr-2" /> Aracımı Seç
+              </Link>
+              <Link href="/search" className={cn(buttonVariants({ size: 'lg' }), 'h-11 px-6 bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-sm shadow-lg')}>
+                <Search size={16} className="mr-2" /> OEM ile Ara
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Prev / Next + Dots */}
+        {total > 1 && (
           <>
             <button
               onClick={prev}
               aria-label="Önceki slayt"
-              className="absolute left-3 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white/80 hover:bg-black/50 hover:text-white transition-colors backdrop-blur-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/60"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/30 text-white/80 hover:bg-black/55 hover:text-white transition-all backdrop-blur-sm border border-white/10"
             >
-              <ChevronLeft size={18} />
+              <ChevronLeft size={20} />
             </button>
             <button
               onClick={next}
               aria-label="Sonraki slayt"
-              className="absolute right-3 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white/80 hover:bg-black/50 hover:text-white transition-colors backdrop-blur-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/60"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/30 text-white/80 hover:bg-black/55 hover:text-white transition-all backdrop-blur-sm border border-white/10"
             >
-              <ChevronRight size={18} />
+              <ChevronRight size={20} />
             </button>
 
-            {/* Dots */}
-            <div
-              className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2"
-              role="tablist"
-              aria-label="Slaytlar"
-            >
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5" role="tablist">
               {slides.map((s, i) => (
                 <button
                   key={s.id}
@@ -118,70 +140,14 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
                   aria-label={`Slayt ${i + 1}`}
                   onClick={() => goTo(i)}
                   className={cn(
-                    'rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/60',
-                    i === current ? 'w-6 h-2 bg-white' : 'w-2 h-2 bg-white/40 hover:bg-white/60'
+                    'rounded-full transition-all duration-400',
+                    i === current ? 'w-7 h-2 bg-brand' : 'w-2 h-2 bg-white/40 hover:bg-white/70'
                   )}
                 />
               ))}
             </div>
           </>
         )}
-      </div>
-
-      {/* ── CONTENT (below image, always readable) ───────────────────── */}
-      <div className="bg-[#111827] text-white">
-        <div className="container mx-auto px-4 max-w-7xl py-10 md:py-14">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="h-0.5 w-8 bg-brand rounded-full" />
-              <p className="text-brand text-xs font-bold uppercase tracking-widest">
-                AKINEL OTO YEDEK PARÇA
-              </p>
-              <span className="h-0.5 w-8 bg-brand rounded-full" />
-            </div>
-
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight tracking-tight">
-              {slide?.title ? (
-                slide.title
-              ) : (
-                <>Aracınız için <span className="text-brand">doğru parçayı</span> bulun</>
-              )}
-            </h1>
-
-            <p className="text-white/70 mb-6 text-sm md:text-base max-w-2xl mx-auto">
-              {slide?.subtitle
-                ? slide.subtitle
-                : 'OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın. AKN MOTORS Car Service güvencesi.'}
-            </p>
-
-            <div className="bg-white rounded-xl p-2 mb-5 shadow-2xl shadow-brand/10">
-              <GlobalSearch size="lg" />
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-3">
-              {slide?.ctaText && slide?.ctaUrl ? (
-                <Link
-                  href={slide.ctaUrl}
-                  className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-5')}
-                >
-                  {slide.ctaText}
-                </Link>
-              ) : null}
-              <Link
-                href="/vehicle"
-                className={cn(buttonVariants({ variant: slide?.ctaText ? 'secondary' : 'default', size: 'lg' }), 'h-11 px-5')}
-              >
-                <Car size={16} className="mr-2" /> Aracımı Seç
-              </Link>
-              <Link
-                href="/search"
-                className={cn(buttonVariants({ variant: 'secondary', size: 'lg' }), 'h-11 px-5 bg-white/15 hover:bg-white/25 text-white border-white/20')}
-              >
-                <Search size={16} className="mr-2" /> OEM ile Ara
-              </Link>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -190,42 +156,33 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
 /** Static hero — fallback when no active slides */
 export function StaticHero() {
   return (
-    <section className="bg-[#111827] text-white py-14 md:py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent pointer-events-none" />
-      <div className="container mx-auto px-4 max-w-7xl relative">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="h-0.5 w-8 bg-brand rounded-full" />
-            <p className="text-brand text-xs font-bold uppercase tracking-widest">
-              AKINEL OTO YEDEK PARÇA
+    <section className="relative overflow-hidden bg-[#111827]" style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}>
+      <div className="absolute inset-0 bg-gradient-to-br from-brand/15 via-[#111827] to-[#111827]" />
+      <div className="relative z-10 flex flex-col justify-end h-full" style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}>
+        <div className="container mx-auto px-4 max-w-5xl pb-14 md:pb-20">
+          <div className="max-w-2xl mx-auto text-center text-white">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <span className="h-px w-10 bg-brand" />
+              <p className="text-brand text-[11px] font-bold uppercase tracking-[0.2em]">AKINEL OTO YEDEK PARÇA</p>
+              <span className="h-px w-10 bg-brand" />
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-[1.1] tracking-tight">
+              Aracınız için <span className="text-brand">doğru parçayı</span> bulun
+            </h1>
+            <p className="text-white/75 mb-8 text-sm md:text-base leading-relaxed">
+              OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın. Kaliteli ürün, hızlı teslimat.
             </p>
-            <span className="h-0.5 w-8 bg-brand rounded-full" />
-          </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight tracking-tight">
-            Aracınız için{' '}
-            <span className="text-brand">doğru parçayı</span>{' '}
-            bulun
-          </h1>
-          <p className="text-white/70 mb-6 text-sm md:text-base max-w-2xl mx-auto">
-            OEM numarası, parça adı veya aracınızı seçerek hızlıca arayın.
-            AKN MOTORS Car Service güvencesi.
-          </p>
-          <div className="bg-white rounded-xl p-2 mb-5 shadow-2xl shadow-brand/10">
-            <GlobalSearch size="lg" />
-          </div>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link
-              href="/vehicle"
-              className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-5')}
-            >
-              <Car size={16} className="mr-2" /> Aracımı Seç
-            </Link>
-            <Link
-              href="/search"
-              className={cn(buttonVariants({ variant: 'secondary', size: 'lg' }), 'h-11 px-5')}
-            >
-              <Search size={16} className="mr-2" /> OEM ile Ara
-            </Link>
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-1.5 mb-6 shadow-2xl">
+              <GlobalSearch size="lg" />
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link href="/vehicle" className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-6')}>
+                <Car size={16} className="mr-2" /> Aracımı Seç
+              </Link>
+              <Link href="/search" className={cn(buttonVariants({ size: 'lg' }), 'h-11 px-6 bg-white/15 hover:bg-white/25 text-white border border-white/30')}>
+                <Search size={16} className="mr-2" /> OEM ile Ara
+              </Link>
+            </div>
           </div>
         </div>
       </div>

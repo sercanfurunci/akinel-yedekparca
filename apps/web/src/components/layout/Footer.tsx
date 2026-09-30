@@ -71,7 +71,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-sm mb-4 text-white uppercase tracking-wider">İletişim</h3>
             <div className="space-y-3 text-sm text-white/60">
-              <p className="font-semibold text-white text-xs uppercase tracking-wide">AKN MOTORS Car Service</p>
+              <p className="font-semibold text-white text-xs uppercase tracking-wide">AKINEL OTO YEDEK PARÇA</p>
 
               {fullAddress && (
                 <div className="flex items-start gap-2.5">

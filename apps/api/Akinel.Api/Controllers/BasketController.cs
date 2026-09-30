@@ -77,9 +77,10 @@ public class BasketController : ControllerBase
         var existing = await _db.BasketItems.FirstOrDefaultAsync(
             b => b.SessionId == sessionId && b.ProductId == request.ProductId, ct);
 
+        const int maxQty = 100;
         if (existing != null)
         {
-            existing.Quantity += request.Quantity;
+            existing.Quantity = Math.Min(existing.Quantity + Math.Max(1, request.Quantity), maxQty);
         }
         else
         {
@@ -87,7 +88,7 @@ public class BasketController : ControllerBase
             {
                 SessionId = sessionId,
                 ProductId = request.ProductId,
-                Quantity = Math.Max(1, request.Quantity),
+                Quantity = Math.Clamp(request.Quantity, 1, maxQty),
             });
         }
 
@@ -118,7 +119,7 @@ public class BasketController : ControllerBase
         }
         else
         {
-            item.Quantity = request.Quantity;
+            item.Quantity = Math.Min(request.Quantity, 100);
         }
 
         await _db.SaveChangesAsync(ct);

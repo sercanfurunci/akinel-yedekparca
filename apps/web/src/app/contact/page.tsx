@@ -44,7 +44,7 @@ export default async function ContactPage() {
           <div className="rounded-xl border bg-card p-6 space-y-5">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Hizmet Noktamız</p>
-              <h2 className="text-lg font-bold">AKN MOTORS Car Service</h2>
+              <h2 className="text-lg font-bold">AKINEL OTO YEDEK PARÇA</h2>
             </div>
 
             <div className="space-y-4 text-sm">
@@ -138,7 +138,7 @@ export default async function ContactPage() {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="AKN MOTORS Car Service harita"
+            title="AKINEL OTO YEDEK PARÇA harita"
           />
         </div>
       </div>

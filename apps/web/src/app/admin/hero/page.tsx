@@ -14,6 +14,44 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 
+function CardUploadButton({ slideId, isUploading, hasImage, onUpload }: {
+  slideId: string;
+  isUploading: boolean;
+  hasImage: boolean;
+  onUpload: (slideId: string, file: File) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  return (
+    <>
+      <input
+        ref={inputRef}
+        type="file"
+        accept=".jpg,.jpeg,.png,.webp"
+        style={{ display: 'none' }}
+        disabled={isUploading}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+          e.target.value = '';
+          onUpload(slideId, file);
+        }}
+      />
+      <button
+        type="button"
+        title={hasImage ? 'Görseli değiştir' : 'Görsel yükle'}
+        disabled={isUploading}
+        onClick={() => inputRef.current?.click()}
+        className={cn(
+          'flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground hover:border-brand hover:text-brand transition-colors',
+          isUploading && 'opacity-50 pointer-events-none'
+        )}
+      >
+        <ImagePlus size={14} />
+      </button>
+    </>
+  );
+}
+
 const slideSchema = z.object({
   title: z.string().optional(),
   subtitle: z.string().optional(),
@@ -151,11 +189,7 @@ export default function AdminHeroPage() {
     }
   };
 
-  // Card-level upload — each card has its own <input> inside a <label>, no programmatic click needed
-  const handleCardFileChange = async (e: React.ChangeEvent<HTMLInputElement>, slideId: string) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    e.target.value = '';
+  const handleCardFileChange = async (slideId: string, file: File) => {
     setUploadingId(slideId);
     setError(null);
     try {
@@ -173,6 +207,7 @@ export default function AdminHeroPage() {
   const handleFormFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    e.target.value = '';
     if (formFilePreview) URL.revokeObjectURL(formFilePreview);
     setFormFile(file);
     setFormFilePreview(URL.createObjectURL(file));
@@ -205,16 +240,6 @@ export default function AdminHeroPage() {
         </div>
       )}
 
-      {/* Always in DOM so Chrome's label→input association never breaks on mount */}
-      <input
-        ref={formFileInputRef}
-        id="hero-form-file"
-        type="file"
-        accept=".jpg,.jpeg,.png,.webp"
-        style={{ position: 'fixed', left: '-9999px', top: '-9999px', opacity: 0, width: '1px', height: '1px' }}
-        onChange={handleFormFileChange}
-      />
-
       {showForm && (
         <div className="mb-6 rounded-xl border border-border bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
@@ -225,9 +250,17 @@ export default function AdminHeroPage() {
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
-            {/* Image picker — label htmlFor triggers always-mounted input above */}
+            {/* Single hidden input — ref.click() called from buttons */}
+            <input
+              ref={formFileInputRef}
+              type="file"
+              accept=".jpg,.jpeg,.png,.webp"
+              style={{ display: 'none' }}
+              onChange={handleFormFileChange}
+            />
+
             <div className="space-y-1.5">
-              <Label htmlFor="hero-form-file">Fotoğraf</Label>
+              <Label>Fotoğraf</Label>
               {formFilePreview ? (
                 <div className="relative w-full h-44 rounded-lg overflow-hidden border border-border bg-[#F3F4F6]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -239,33 +272,36 @@ export default function AdminHeroPage() {
                   >
                     <X size={13} />
                   </button>
-                  <label
-                    htmlFor="hero-form-file"
-                    className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-lg bg-black/50 px-3 py-1.5 text-xs text-white hover:bg-black/70 cursor-pointer"
+                  <button
+                    type="button"
+                    onClick={() => formFileInputRef.current?.click()}
+                    className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-lg bg-black/50 px-3 py-1.5 text-xs text-white hover:bg-black/70"
                   >
                     <Upload size={12} /> Değiştir
-                  </label>
+                  </button>
                 </div>
               ) : editingSlide?.imageUrl ? (
                 <div className="relative w-full h-44 rounded-lg overflow-hidden border border-border bg-[#F3F4F6]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={getImageUrl(editingSlide.imageUrl) ?? ''} alt="Mevcut görsel" className="w-full h-full object-cover" />
-                  <label
-                    htmlFor="hero-form-file"
-                    className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-lg bg-black/50 px-3 py-1.5 text-xs text-white hover:bg-black/70 cursor-pointer"
+                  <button
+                    type="button"
+                    onClick={() => formFileInputRef.current?.click()}
+                    className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-lg bg-black/50 px-3 py-1.5 text-xs text-white hover:bg-black/70"
                   >
                     <Upload size={12} /> Değiştir
-                  </label>
+                  </button>
                 </div>
               ) : (
-                <label
-                  htmlFor="hero-form-file"
-                  className="flex w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-border bg-[#F3F4F6]/50 py-10 text-muted-foreground hover:border-brand hover:text-brand transition-colors cursor-pointer"
+                <button
+                  type="button"
+                  onClick={() => formFileInputRef.current?.click()}
+                  className="flex w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-border bg-[#F3F4F6]/50 py-10 text-muted-foreground hover:border-brand hover:text-brand transition-colors"
                 >
                   <ImagePlus size={32} />
                   <span className="text-sm font-medium">Fotoğraf seç veya buraya sürükle</span>
                   <span className="text-xs">JPG, PNG veya WebP — önerilen 1920×640 px</span>
-                </label>
+                </button>
               )}
             </div>
 
@@ -329,7 +365,6 @@ export default function AdminHeroPage() {
             const imgUrl = getImageUrl(slide.imageUrl);
             const isUploading = uploadingId === slide.id;
             const isDeleting = deletingId === slide.id;
-            const cardInputId = `card-file-${slide.id}`;
             return (
               <div
                 key={slide.id}
@@ -383,25 +418,12 @@ export default function AdminHeroPage() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-end md:items-center gap-1.5 shrink-0">
-                  {/* Card-level image upload: <label> wraps <input> — no JS click needed */}
-                  <label
-                    htmlFor={cardInputId}
-                    title={slide.imageUrl ? 'Görseli değiştir' : 'Görsel yükle'}
-                    className={cn(
-                      'flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground hover:border-brand hover:text-brand transition-colors cursor-pointer',
-                      isUploading && 'pointer-events-none opacity-50'
-                    )}
-                  >
-                    <input
-                      id={cardInputId}
-                      type="file"
-                      accept=".jpg,.jpeg,.png,.webp"
-                      style={{ position: 'absolute', left: '-9999px', opacity: 0, width: '1px', height: '1px' }}
-                      disabled={isUploading}
-                      onChange={(e) => handleCardFileChange(e, slide.id)}
-                    />
-                    <ImagePlus size={14} />
-                  </label>
+                  <CardUploadButton
+                    slideId={slide.id}
+                    isUploading={isUploading}
+                    hasImage={!!slide.imageUrl}
+                    onUpload={handleCardFileChange}
+                  />
                   <button
                     onClick={() => openEdit(slide)}
                     title="Düzenle"

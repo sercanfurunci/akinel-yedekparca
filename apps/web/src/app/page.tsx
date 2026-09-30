@@ -100,7 +100,7 @@ export default function HomePage() {
               <p className="text-muted-foreground text-base leading-relaxed">
                 Otomobil ve ticari araçlar için geniş yedek parça seçenekleri.
                 OEM numarasıyla arama, araç bazlı uyumlu parça bulma ve anlık stok bilgisi.
-                <span className="font-semibold text-[#111827]"> AKN MOTORS Car Service</span> güvencesiyle.
+                <span className="font-semibold text-[#111827]"> AKINEL OTO YEDEK PARÇA</span> güvencesiyle.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

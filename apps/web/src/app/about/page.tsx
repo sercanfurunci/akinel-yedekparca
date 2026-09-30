@@ -41,7 +41,7 @@ export default function AboutPage() {
       <div className="prose prose-sm max-w-none space-y-6 text-muted-foreground mb-12">
         <p className="text-foreground text-base leading-relaxed">
           <strong>AKINEL OTO YEDEK PARÇA</strong>, Darıca/Kocaeli merkezli{' '}
-          <strong>AKN MOTORS Car Service</strong> hizmet noktasının online yedek parça platformudur.
+          <strong>AKINEL OTO YEDEK PARÇA</strong> hizmet noktasının online yedek parça platformudur.
         </p>
         <p className="leading-relaxed">
           Amacımız; araç sahiplerinin doğru yedek parçayı, doğru fiyatla ve en kısa sürede bulmasını sağlamak.
@@ -72,7 +72,7 @@ export default function AboutPage() {
       <div className="rounded-xl border bg-muted/30 p-6 text-center">
         <h3 className="font-semibold mb-2">Sormak istediğiniz bir şey mi var?</h3>
         <p className="text-sm text-muted-foreground mb-4">
-          AKN MOTORS Car Service ekibimiz size yardımcı olmaktan memnuniyet duyar.
+          AKINEL OTO YEDEK PARÇA ekibimiz size yardımcı olmaktan memnuniyet duyar.
         </p>
         <Link
           href="/contact"
