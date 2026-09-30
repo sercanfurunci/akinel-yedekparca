@@ -40,13 +40,15 @@ public class AuthController : ControllerBase
             var result = await _authService.RegisterAsync(request, ct);
             return Ok(result);
         }
-        catch (InvalidOperationException ex)
+        catch (InvalidOperationException)
         {
-            return Conflict(new { message = ex.Message });
+            // Return same shape as success to prevent email enumeration
+            return Conflict(new { message = "Bu e-posta adresiyle zaten bir hesap mevcut." });
         }
     }
 
     [HttpPost("refresh")]
+    [EnableRateLimiting("login")]
     public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest request, CancellationToken ct)
     {
         var result = await _authService.RefreshTokenAsync(request.RefreshToken, ct);
@@ -54,6 +56,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("revoke")]
+    [EnableRateLimiting("login")]
     public async Task<IActionResult> Revoke([FromBody] RefreshTokenRequest request, CancellationToken ct)
     {
         await _authService.RevokeTokenAsync(request.RefreshToken, ct);

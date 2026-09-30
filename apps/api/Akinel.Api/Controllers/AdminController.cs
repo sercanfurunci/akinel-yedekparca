@@ -15,6 +15,24 @@ namespace Akinel.Api.Controllers;
 [Authorize(Roles = "Admin")]
 public class AdminController : ControllerBase
 {
+    private const int MaxImageBytes = 5 * 1024 * 1024; // 5 MB
+
+    private static bool IsAllowedImageMagic(IFormFile file)
+    {
+        Span<byte> header = stackalloc byte[12];
+        using var stream = file.OpenReadStream();
+        var read = stream.Read(header);
+        if (read < 4) return false;
+        // JPEG
+        if (header[0] == 0xFF && header[1] == 0xD8 && header[2] == 0xFF) return true;
+        // PNG
+        if (header[0] == 0x89 && header[1] == 0x50 && header[2] == 0x4E && header[3] == 0x47) return true;
+        // WebP: RIFF????WEBP
+        if (read >= 12 && header[0] == 0x52 && header[1] == 0x49 && header[2] == 0x46 && header[3] == 0x46
+            && header[8] == 0x57 && header[9] == 0x45 && header[10] == 0x42 && header[11] == 0x50) return true;
+        return false;
+    }
+
     private readonly IProductService _productService;
     private readonly IOrderService _orderService;
     private readonly AkinelDbContext _db;
@@ -231,12 +249,11 @@ public class AdminController : ControllerBase
     public async Task<IActionResult> UploadProductImage(Guid id, IFormFile file, CancellationToken ct)
     {
         if (file == null || file.Length == 0) return BadRequest("Dosya gerekli.");
+        if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+        if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
 
         var product = await _db.Products.FindAsync(new object[] { id }, ct);
         if (product == null) return NotFound();
-
-        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
-        if (ext is not (".jpg" or ".jpeg" or ".png" or ".webp")) return BadRequest("Sadece jpg, png veya webp dosyaları desteklenmektedir.");
 
         var imageUrl = await _storage.UploadAsync(file, "products", ct);
 
@@ -382,10 +399,8 @@ public class AdminController : ControllerBase
         var category = await _db.Categories.FindAsync(new object[] { id }, ct);
         if (category == null) return NotFound();
 
-        var allowed = new[] { ".jpg", ".jpeg", ".png", ".webp" };
-        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
-        if (!allowed.Contains(ext)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
-        if (file.Length > 5 * 1024 * 1024) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+        if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+        if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
 
         await _storage.DeleteAsync(category.ImageUrl, ct);
 
@@ -468,9 +483,8 @@ public class AdminController : ControllerBase
         if (slide == null) return NotFound();
 
         if (file == null || file.Length == 0) return BadRequest("Dosya gerekli.");
-
-        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
-        if (ext is not (".jpg" or ".jpeg" or ".png" or ".webp")) return BadRequest("Sadece jpg, png veya webp dosyaları desteklenmektedir.");
+        if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+        if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
 
         await _storage.DeleteAsync(slide.ImageUrl, ct);
 

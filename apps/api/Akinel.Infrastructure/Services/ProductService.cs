@@ -36,10 +36,15 @@ public class ProductService : IProductService
             q = q.Where(p => p.BrandId == query.BrandId.Value);
 
         if (!string.IsNullOrWhiteSpace(query.Query))
-            q = q.Where(p => EF.Functions.ILike(p.Name, $"%{query.Query}%") ||
-                              EF.Functions.ILike(p.PartNumber ?? "", $"%{query.Query}%") ||
-                              EF.Functions.ILike(p.Category.Name, $"%{query.Query}%") ||
-                              EF.Functions.ILike(p.Brand.Name, $"%{query.Query}%"));
+        {
+            var safe = query.Query.Length > 100 ? query.Query[..100] : query.Query;
+            safe = safe.Replace("\\", "\\\\").Replace("%", "\\%").Replace("_", "\\_");
+            var pattern = $"%{safe}%";
+            q = q.Where(p => EF.Functions.ILike(p.Name, pattern, "\\") ||
+                              EF.Functions.ILike(p.PartNumber ?? "", pattern, "\\") ||
+                              EF.Functions.ILike(p.Category.Name, pattern, "\\") ||
+                              EF.Functions.ILike(p.Brand.Name, pattern, "\\"));
+        }
 
         if (query.VehicleEngineId.HasValue)
             q = q.Where(p => p.VehicleCompatibilities.Any(vc => vc.VehicleEngineId == query.VehicleEngineId.Value));

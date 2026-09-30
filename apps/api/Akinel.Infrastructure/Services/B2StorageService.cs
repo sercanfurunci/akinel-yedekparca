@@ -5,6 +5,10 @@ using System.Text.Json;
 using Akinel.Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp.Formats.Webp;
 
 namespace Akinel.Infrastructure.Services;
 
@@ -16,6 +20,7 @@ public class B2StorageService : IStorageService
     private readonly string? _cdnUrl;
     private readonly HttpClient _http = new();
     private readonly SemaphoreSlim _lock = new(1, 1);
+    private readonly ILogger<B2StorageService> _logger;
 
     private string? _authToken;
     private string? _apiUrl;
@@ -23,13 +28,14 @@ public class B2StorageService : IStorageService
     private string? _bucketId;
     private DateTime _authExpiry = DateTime.MinValue;
 
-    public B2StorageService(IConfiguration configuration)
+    public B2StorageService(IConfiguration configuration, ILogger<B2StorageService> logger)
     {
         _keyId = configuration["B2:KeyId"] ?? "";
         _applicationKey = configuration["B2:ApplicationKey"] ?? "";
         _bucketName = configuration["B2:BucketName"] ?? "akinel-uploads";
         _bucketId = configuration["B2:BucketId"];
         _cdnUrl = configuration["B2:CdnUrl"];
+        _logger = logger;
     }
 
     private string FileUrl(string key) =>
@@ -87,6 +93,40 @@ public class B2StorageService : IStorageService
             { _bucketId = b.GetProperty("bucketId").GetString(); break; }
     }
 
+    private static readonly HashSet<string> _imageExts =
+        new(StringComparer.OrdinalIgnoreCase) { ".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".tiff" };
+
+    private static async Task<(byte[] bytes, string ext, string contentType)> ProcessFileAsync(
+        IFormFile file, CancellationToken ct)
+    {
+        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+
+        if (!_imageExts.Contains(ext))
+        {
+            using var raw = new MemoryStream();
+            await file.CopyToAsync(raw, ct);
+            return (raw.ToArray(), ext, file.ContentType ?? "application/octet-stream");
+        }
+
+        using var input = new MemoryStream();
+        await file.CopyToAsync(input, ct);
+        input.Position = 0;
+
+        using var image = await Image.LoadAsync(input, ct);
+
+        // Resize if wider or taller than 1200px, preserving aspect ratio
+        if (image.Width > 1200 || image.Height > 1200)
+            image.Mutate(x => x.Resize(new ResizeOptions
+            {
+                Size = new Size(1200, 1200),
+                Mode = ResizeMode.Max,
+            }));
+
+        using var output = new MemoryStream();
+        await image.SaveAsWebpAsync(output, new WebpEncoder { Quality = 82 }, ct);
+        return (output.ToArray(), ".webp", "image/webp");
+    }
+
     public async Task<string> UploadAsync(IFormFile file, string folder, CancellationToken ct = default)
     {
         await AuthorizeAsync(ct);
@@ -102,12 +142,9 @@ public class B2StorageService : IStorageService
         var uploadUrl = urlDoc.RootElement.GetProperty("uploadUrl").GetString()!;
         var uploadToken = urlDoc.RootElement.GetProperty("authorizationToken").GetString()!;
 
-        // Read file and compute SHA1
-        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+        // Process (compress + convert) and compute SHA1
+        var (bytes, ext, contentType) = await ProcessFileAsync(file, ct);
         var key = $"uploads/{folder}/{Guid.NewGuid()}{ext}";
-        using var ms = new MemoryStream();
-        await file.CopyToAsync(ms, ct);
-        var bytes = ms.ToArray();
         var sha1 = Convert.ToHexString(SHA1.HashData(bytes)).ToLowerInvariant();
 
         // Upload
@@ -116,7 +153,7 @@ public class B2StorageService : IStorageService
         uploadReq.Headers.TryAddWithoutValidation("X-Bz-File-Name", Uri.EscapeDataString(key));
         uploadReq.Headers.TryAddWithoutValidation("X-Bz-Content-Sha1", sha1);
         uploadReq.Content = new ByteArrayContent(bytes);
-        uploadReq.Content.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType ?? "application/octet-stream");
+        uploadReq.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
 
         using var uploadResp = await _http.SendAsync(uploadReq, ct);
         uploadResp.EnsureSuccessStatusCode();
@@ -166,7 +203,10 @@ public class B2StorageService : IStorageService
             delReq.Content = new StringContent(JsonSerializer.Serialize(new { fileId, fileName }), Encoding.UTF8, "application/json");
             await _http.SendAsync(delReq, ct);
         }
-        catch { }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "B2 dosya silme başarısız: {FileUrl}", fileUrl);
+        }
     }
 
     public async Task<string> GetPresignedUrlAsync(string fileKey, CancellationToken ct = default)

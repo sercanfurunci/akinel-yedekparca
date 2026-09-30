@@ -79,12 +79,6 @@ builder.Services.AddCors(options =>
     {
         var origins = builder.Configuration["Cors:AllowedOrigins"]?.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? ["http://localhost:3000"];
         policy.WithOrigins(origins)
-              .SetIsOriginAllowed(origin =>
-                  origins.Any(o => o == origin) ||
-                  origin.EndsWith(".railway.app") ||
-                  origin.EndsWith(".furunci.tech") ||
-                  origin == "https://akinelotoyedekparca.com.tr" ||
-                  origin == "https://www.akinelotoyedekparca.com.tr")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -111,6 +105,18 @@ app.UseExceptionHandler(errorApp =>
 });
 
 app.UseSerilogRequestLogging();
+
+app.Use(async (ctx, next) =>
+{
+    ctx.Response.Headers.Append("X-Content-Type-Options", "nosniff");
+    ctx.Response.Headers.Append("X-Frame-Options", "DENY");
+    ctx.Response.Headers.Append("Referrer-Policy", "strict-origin-when-cross-origin");
+    ctx.Response.Headers.Append("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    if (ctx.Request.IsHttps)
+        ctx.Response.Headers.Append("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    await next();
+});
+
 app.UseStaticFiles();
 app.UseCors("AllowFrontend");
 app.UseRateLimiter();

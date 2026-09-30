@@ -25,7 +25,8 @@ export const useAuthStore = create<AuthStore>()(
     }),
     {
       name: 'akinel-auth',
-      partialize: (state) => ({ user: state.user, accessToken: state.accessToken, refreshToken: state.refreshToken }),
+      // refreshToken is kept in memory only — not persisted to localStorage
+      partialize: (state) => ({ user: state.user, accessToken: state.accessToken }),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);
       },
