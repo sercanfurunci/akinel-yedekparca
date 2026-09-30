@@ -152,8 +152,9 @@ public class B2StorageService : IStorageService
         catch { }
     }
 
-    public string GetPresignedUrl(string fileKey, int expiryMinutes = 60)
+    public async Task<string> GetPresignedUrlAsync(string fileKey, CancellationToken ct = default)
     {
-        return $"{_downloadUrl}/b2api/v3/b2_download_file_by_name?bucketName={_bucketName}&fileName={Uri.EscapeDataString(fileKey)}&Authorization={Uri.EscapeDataString(_authToken ?? "")}";
+        await AuthorizeAsync(ct);
+        return $"{_downloadUrl}/file/{_bucketName}/{Uri.EscapeDataString(fileKey)}?Authorization={Uri.EscapeDataString(_authToken!)}";
     }
 }

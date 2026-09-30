@@ -12,10 +12,10 @@ public class FilesController : ControllerBase
 
     [HttpGet("api/files/{*key}")]
     [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any)]
-    public IActionResult Get(string key)
+    public async Task<IActionResult> Get(string key, CancellationToken ct)
     {
         if (string.IsNullOrWhiteSpace(key)) return NotFound();
-        var url = _storage.GetPresignedUrl(key, expiryMinutes: 60);
+        var url = await _storage.GetPresignedUrlAsync(key, ct);
         return Redirect(url);
     }
 }

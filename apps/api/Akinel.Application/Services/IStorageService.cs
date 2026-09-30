@@ -6,5 +6,5 @@ public interface IStorageService
 {
     Task<string> UploadAsync(IFormFile file, string folder, CancellationToken ct = default);
     Task DeleteAsync(string? fileUrl, CancellationToken ct = default);
-    string GetPresignedUrl(string fileKey, int expiryMinutes = 60);
+    Task<string> GetPresignedUrlAsync(string fileKey, CancellationToken ct = default);
 }
