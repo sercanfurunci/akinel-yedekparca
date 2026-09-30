@@ -513,6 +513,7 @@ public class AdminController : ControllerBase
     // ── B2 Test ──────────────────────────────────────────────────────
 
     [HttpGet("b2-test")]
+    [AllowAnonymous]
     public async Task<IActionResult> B2Test([FromServices] IStorageService storage, CancellationToken ct)
     {
         try
