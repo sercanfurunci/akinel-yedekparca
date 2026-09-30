@@ -205,6 +205,16 @@ export default function AdminHeroPage() {
         </div>
       )}
 
+      {/* Always in DOM so Chrome's label→input association never breaks on mount */}
+      <input
+        ref={formFileInputRef}
+        id="hero-form-file"
+        type="file"
+        accept=".jpg,.jpeg,.png,.webp"
+        style={{ position: 'fixed', left: '-9999px', top: '-9999px', opacity: 0, width: '1px', height: '1px' }}
+        onChange={handleFormFileChange}
+      />
+
       {showForm && (
         <div className="mb-6 rounded-xl border border-border bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
@@ -215,17 +225,9 @@ export default function AdminHeroPage() {
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
-            {/* Image picker — uses htmlFor, no programmatic .click() */}
+            {/* Image picker — label htmlFor triggers always-mounted input above */}
             <div className="space-y-1.5">
               <Label htmlFor="hero-form-file">Fotoğraf</Label>
-              <input
-                ref={formFileInputRef}
-                id="hero-form-file"
-                type="file"
-                accept=".jpg,.jpeg,.png,.webp"
-                className="sr-only"
-                onChange={handleFormFileChange}
-              />
               {formFilePreview ? (
                 <div className="relative w-full h-44 rounded-lg overflow-hidden border border-border bg-[#F3F4F6]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -394,7 +396,7 @@ export default function AdminHeroPage() {
                       id={cardInputId}
                       type="file"
                       accept=".jpg,.jpeg,.png,.webp"
-                      className="sr-only"
+                      style={{ position: 'absolute', left: '-9999px', opacity: 0, width: '1px', height: '1px' }}
                       disabled={isUploading}
                       onChange={(e) => handleCardFileChange(e, slide.id)}
                     />
