@@ -116,15 +116,26 @@ public class B2StorageService : IStorageService
         using var uploadResp = await _http.SendAsync(uploadReq, ct);
         uploadResp.EnsureSuccessStatusCode();
 
-        return $"/api/files/{key}";
+        return $"{_downloadUrl}/file/{_bucketName}/{key}";
+    }
+
+    private string? ExtractKey(string fileUrl)
+    {
+        // new format: https://f003.backblazeb2.com/file/akinel-uploads/{key}
+        var bucketPrefix = $"/file/{_bucketName}/";
+        var idx = fileUrl.IndexOf(bucketPrefix, StringComparison.OrdinalIgnoreCase);
+        if (idx >= 0) return fileUrl[(idx + bucketPrefix.Length)..];
+        // old format: /api/files/{key}
+        const string apiPrefix = "/api/files/";
+        if (fileUrl.StartsWith(apiPrefix, StringComparison.OrdinalIgnoreCase)) return fileUrl[apiPrefix.Length..];
+        return null;
     }
 
     public async Task DeleteAsync(string? fileUrl, CancellationToken ct = default)
     {
         if (string.IsNullOrEmpty(fileUrl)) return;
-        const string prefix = "/api/files/";
-        if (!fileUrl.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return;
-        var key = fileUrl[prefix.Length..];
+        var key = ExtractKey(fileUrl);
+        if (key == null) return;
 
         try
         {
@@ -155,6 +166,6 @@ public class B2StorageService : IStorageService
     public async Task<string> GetPresignedUrlAsync(string fileKey, CancellationToken ct = default)
     {
         await AuthorizeAsync(ct);
-        return $"{_downloadUrl}/file/{_bucketName}/{fileKey}?Authorization={Uri.EscapeDataString(_authToken!)}";
+        return $"{_downloadUrl}/file/{_bucketName}/{fileKey}";
     }
 }
