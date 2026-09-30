@@ -1,5 +1,4 @@
 using Akinel.Application.Services;
-using Amazon;
 using Amazon.Runtime;
 using Amazon.S3;
 using Amazon.S3.Model;
@@ -35,38 +34,40 @@ public class B2StorageService : IStorageService, IDisposable
         var key = $"uploads/{folder}/{Guid.NewGuid()}{ext}";
 
         using var stream = file.OpenReadStream();
-        var request = new PutObjectRequest
+        await _client.PutObjectAsync(new PutObjectRequest
         {
             BucketName = _bucketName,
             Key = key,
             InputStream = stream,
             ContentType = file.ContentType,
-            CannedACL = S3CannedACL.PublicRead,
-        };
-        await _client.PutObjectAsync(request, ct);
+        }, ct);
 
-        return $"https://{_bucketName}.{_endpoint}/{key}";
+        // return the internal key — served via /api/files/{key}
+        return $"/api/files/{key}";
     }
 
     public async Task DeleteAsync(string? fileUrl, CancellationToken ct = default)
     {
         if (string.IsNullOrEmpty(fileUrl)) return;
 
-        string? key = null;
-        var prefix = $"https://{_bucketName}.{_endpoint}/";
-        if (fileUrl.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-            key = fileUrl[prefix.Length..];
+        // extract key from /api/files/{key}
+        const string prefix = "/api/files/";
+        if (!fileUrl.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return;
+        var key = fileUrl[prefix.Length..];
 
-        if (key == null) return;
+        try { await _client.DeleteObjectAsync(_bucketName, key, ct); } catch { }
+    }
 
-        try
+    public string GetPresignedUrl(string fileKey, int expiryMinutes = 60)
+    {
+        var request = new GetPreSignedUrlRequest
         {
-            await _client.DeleteObjectAsync(_bucketName, key, ct);
-        }
-        catch
-        {
-            // best-effort delete — ignore errors
-        }
+            BucketName = _bucketName,
+            Key = fileKey,
+            Expires = DateTime.UtcNow.AddMinutes(expiryMinutes),
+            Protocol = Protocol.HTTPS,
+        };
+        return _client.GetPreSignedURL(request);
     }
 
     public void Dispose() => _client.Dispose();
