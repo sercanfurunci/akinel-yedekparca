@@ -27,6 +27,7 @@ public class B2StorageService : IStorageService
         _keyId = configuration["B2:KeyId"] ?? "";
         _applicationKey = configuration["B2:ApplicationKey"] ?? "";
         _bucketName = configuration["B2:BucketName"] ?? "akinel-uploads";
+        _bucketId = configuration["B2:BucketId"];
     }
 
     private async Task AuthorizeAsync(CancellationToken ct)
