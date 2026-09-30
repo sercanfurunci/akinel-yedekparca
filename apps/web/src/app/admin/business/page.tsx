@@ -34,6 +34,7 @@ const schema = z.object({
   instagramUrl: z.string().optional(),
   facebookUrl: z.string().optional(),
   linkedInUrl: z.string().optional(),
+  announcementBanner: z.string().optional(),
   workingHours: z.array(z.object({
     dayOfWeek: z.number(),
     isOpen: z.boolean(),
@@ -90,6 +91,7 @@ export default function AdminBusinessPage() {
           instagramUrl: biz.instagramUrl ?? '',
           facebookUrl: biz.facebookUrl ?? '',
           linkedInUrl: biz.linkedInUrl ?? '',
+          announcementBanner: biz.announcementBanner ?? '',
           workingHours: Array.from({ length: 7 }, (_, i) => {
             const h = biz.workingHours.find(w => w.dayOfWeek === i);
             return { dayOfWeek: i, isOpen: h?.isOpen ?? false, openTime: h?.openTime ?? '09:00', closeTime: h?.closeTime ?? '19:00' };
@@ -141,6 +143,9 @@ export default function AdminBusinessPage() {
           </Field>
           <Field label="Logo URL">
             <Input {...register('logoUrl')} placeholder="https://" />
+          </Field>
+          <Field label="Duyuru Bandı (| ile ayırın: Hızlı Teslimat | Kaliteli Ürün)">
+            <Input {...register('announcementBanner')} placeholder="Hızlı Teslimat | Kaliteli Ürün | OEM Garantili" />
           </Field>
         </section>
 

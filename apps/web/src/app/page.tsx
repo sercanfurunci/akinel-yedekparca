@@ -12,6 +12,7 @@ import { VehicleFinder } from '@/components/search/VehicleFinder';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { BusinessStrip } from '@/components/home/BusinessStrip';
 import { HeroCarousel, StaticHero } from '@/components/home/HeroCarousel';
+import { CategoryStrip } from '@/components/home/CategoryStrip';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { api } from '@/lib/api';
 import type { ProductListItem, PaginatedResult, Brand, Category, HeroSlide } from '@/lib/types';
@@ -85,7 +86,10 @@ export default function HomePage() {
         <StaticHero />
       )}
 
-      {/* ── 2. BUSINESS STRIP ───────────────────────── */}
+      {/* ── 2. CATEGORY STRIP ───────────────────────── */}
+      <CategoryStrip categories={categories} />
+
+      {/* ── 3. BUSINESS STRIP ───────────────────────── */}
       <BusinessStrip />
 
       {/* ── 3. AKINEL INTRODUCTION ──────────────────── */}

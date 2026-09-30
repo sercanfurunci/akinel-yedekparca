@@ -22,6 +22,7 @@ public class BusinessSettingsDto
     public string? InstagramUrl { get; set; }
     public string? FacebookUrl { get; set; }
     public string? LinkedInUrl { get; set; }
+    public string? AnnouncementBanner { get; set; }
     public List<BusinessWorkingHourDto> WorkingHours { get; set; } = [];
 }
 
@@ -54,5 +55,6 @@ public class UpdateBusinessSettingsRequest
     public string? InstagramUrl { get; set; }
     public string? FacebookUrl { get; set; }
     public string? LinkedInUrl { get; set; }
+    public string? AnnouncementBanner { get; set; }
     public List<BusinessWorkingHourDto> WorkingHours { get; set; } = [];
 }

@@ -345,7 +345,7 @@ public class AdminController : ControllerBase
     {
         var categories = await _db.Categories
             .OrderBy(c => c.SortOrder).ThenBy(c => c.Name)
-            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.IsActive, c.SortOrder })
+            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.IsActive, c.SortOrder, c.ImageUrl })
             .ToListAsync(ct);
         return Ok(categories);
     }
@@ -359,10 +359,11 @@ public class AdminController : ControllerBase
             Slug = GenerateSlug(request.Name),
             ParentCategoryId = request.ParentCategoryId,
             SortOrder = request.SortOrder,
+            ImageUrl = request.ImageUrl,
         };
         _db.Categories.Add(category);
         await _db.SaveChangesAsync(ct);
-        return Ok(new { category.Id, category.Name, category.Slug, category.ParentCategoryId, category.IsActive, category.SortOrder });
+        return Ok(new { category.Id, category.Name, category.Slug, category.ParentCategoryId, category.IsActive, category.SortOrder, category.ImageUrl });
     }
 
     [HttpPut("categories/{id:guid}")]
@@ -375,8 +376,9 @@ public class AdminController : ControllerBase
         category.ParentCategoryId = request.ParentCategoryId;
         category.IsActive = request.IsActive;
         category.SortOrder = request.SortOrder;
+        category.ImageUrl = request.ImageUrl;
         await _db.SaveChangesAsync(ct);
-        return Ok(new { category.Id, category.Name, category.Slug, category.ParentCategoryId, category.IsActive, category.SortOrder });
+        return Ok(new { category.Id, category.Name, category.Slug, category.ParentCategoryId, category.IsActive, category.SortOrder, category.ImageUrl });
     }
 
     [HttpDelete("categories/{id:guid}")]
@@ -521,8 +523,8 @@ public class AdminController : ControllerBase
 
 public record CreateBrandRequest(string Name, string? LogoUrl);
 public record UpdateBrandRequest(string Name, string? LogoUrl, bool IsActive);
-public record CreateCategoryRequest(string Name, Guid? ParentCategoryId, int SortOrder = 0);
-public record UpdateCategoryRequest(string Name, Guid? ParentCategoryId, bool IsActive, int SortOrder = 0);
+public record CreateCategoryRequest(string Name, Guid? ParentCategoryId, int SortOrder = 0, string? ImageUrl = null);
+public record UpdateCategoryRequest(string Name, Guid? ParentCategoryId, bool IsActive, int SortOrder = 0, string? ImageUrl = null);
 public record UpdateStockRequest(int Quantity);
 public record AddOemRequest(string Number, string? Manufacturer);
 public record AddCompatibilityRequest(Guid VehicleEngineId, string? Notes);

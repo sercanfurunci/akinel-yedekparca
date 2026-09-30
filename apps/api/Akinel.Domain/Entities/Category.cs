@@ -12,4 +12,5 @@ public class Category : BaseEntity
     public ICollection<Product> Products { get; set; } = new List<Product>();
     public bool IsActive { get; set; } = true;
     public int SortOrder { get; set; } = 0;
+    public string? ImageUrl { get; set; }
 }

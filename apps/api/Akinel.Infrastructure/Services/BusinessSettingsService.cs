@@ -53,6 +53,7 @@ public class BusinessSettingsService : IBusinessSettingsService
         entity.InstagramUrl = request.InstagramUrl;
         entity.FacebookUrl = request.FacebookUrl;
         entity.LinkedInUrl = request.LinkedInUrl;
+        entity.AnnouncementBanner = request.AnnouncementBanner;
 
         await _db.SaveChangesAsync(ct);
 
@@ -101,6 +102,7 @@ public class BusinessSettingsService : IBusinessSettingsService
         InstagramUrl = e.InstagramUrl,
         FacebookUrl = e.FacebookUrl,
         LinkedInUrl = e.LinkedInUrl,
+        AnnouncementBanner = e.AnnouncementBanner,
         WorkingHours = e.WorkingHours
             .OrderBy(h => h.DayOfWeek)
             .Select(h => new BusinessWorkingHourDto

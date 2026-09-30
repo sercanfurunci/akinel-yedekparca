@@ -18,7 +18,7 @@ public class CategoriesController : ControllerBase
         var categories = await _db.Categories
             .Where(c => c.IsActive)
             .OrderBy(c => c.SortOrder).ThenBy(c => c.Name)
-            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId })
+            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.ImageUrl })
             .ToListAsync(ct);
 
         return Ok(categories);

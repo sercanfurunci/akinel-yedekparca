@@ -24,6 +24,7 @@ public class BusinessSettings : BaseEntity
     public string? InstagramUrl { get; set; }
     public string? FacebookUrl { get; set; }
     public string? LinkedInUrl { get; set; }
+    public string? AnnouncementBanner { get; set; }
 
     public ICollection<BusinessWorkingHour> WorkingHours { get; set; } = new List<BusinessWorkingHour>();
 }

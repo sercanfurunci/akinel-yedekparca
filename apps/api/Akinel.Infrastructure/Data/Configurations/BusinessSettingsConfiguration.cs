@@ -30,6 +30,7 @@ public class BusinessSettingsConfiguration : IEntityTypeConfiguration<BusinessSe
         builder.Property(b => b.LinkedInUrl).HasMaxLength(500);
         builder.Property(b => b.LogoUrl).HasMaxLength(1000);
         builder.Property(b => b.FaviconUrl).HasMaxLength(1000);
+        builder.Property(b => b.AnnouncementBanner).HasMaxLength(500);
 
         builder.HasMany(b => b.WorkingHours)
             .WithOne(w => w.BusinessSettings)

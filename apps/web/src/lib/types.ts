@@ -145,6 +145,7 @@ export interface Category {
   parentCategoryId?: string;
   isActive?: boolean;
   sortOrder?: number;
+  imageUrl?: string;
 }
 
 export interface AdminBrand extends Brand {
@@ -184,6 +185,7 @@ export interface BusinessSettings {
   instagramUrl?: string;
   facebookUrl?: string;
   linkedInUrl?: string;
+  announcementBanner?: string;
   workingHours: BusinessWorkingHour[];
 }
 

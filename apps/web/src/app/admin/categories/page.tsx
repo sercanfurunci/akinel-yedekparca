@@ -25,6 +25,7 @@ export default function AdminCategoriesPage() {
   const [parentId, setParentId] = useState('');
   const [sortOrder, setSortOrder] = useState(0);
   const [isActive, setIsActive] = useState(true);
+  const [imageUrl, setImageUrl] = useState('');
 
   const fetchCategories = () => {
     if (!accessToken) return;
@@ -45,6 +46,7 @@ export default function AdminCategoriesPage() {
     setParentId('');
     setSortOrder(0);
     setIsActive(true);
+    setImageUrl('');
     setError('');
     setFormOpen(true);
   };
@@ -55,6 +57,7 @@ export default function AdminCategoriesPage() {
     setParentId(cat.parentCategoryId ?? '');
     setSortOrder(cat.sortOrder);
     setIsActive(cat.isActive);
+    setImageUrl(cat.imageUrl ?? '');
     setError('');
     setFormOpen(true);
   };
@@ -70,12 +73,14 @@ export default function AdminCategoriesPage() {
           parentCategoryId: parentId || null,
           isActive,
           sortOrder,
+          imageUrl: imageUrl || null,
         }, accessToken);
       } else {
         await api.admin.categories.create({
           name: name.trim(),
           parentCategoryId: parentId || null,
           sortOrder,
+          imageUrl: imageUrl || null,
         }, accessToken);
       }
       setFormOpen(false);
@@ -217,6 +222,10 @@ export default function AdminCategoriesPage() {
                   onChange={(e) => setSortOrder(parseInt(e.target.value) || 0)}
                   placeholder="0"
                 />
+              </div>
+              <div className="space-y-1">
+                <Label>Fotoğraf URL (opsiyonel)</Label>
+                <Input value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://..." />
               </div>
               {editing && (
                 <div className="flex items-center gap-2">

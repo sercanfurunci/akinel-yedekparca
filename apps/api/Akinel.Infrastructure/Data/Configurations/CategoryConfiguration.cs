@@ -11,6 +11,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Name).IsRequired().HasMaxLength(200);
         builder.Property(c => c.Slug).IsRequired().HasMaxLength(200);
+        builder.Property(c => c.ImageUrl).HasMaxLength(1000);
         builder.HasIndex(c => c.Slug).IsUnique();
         builder.HasOne(c => c.ParentCategory)
             .WithMany(c => c.SubCategories)
