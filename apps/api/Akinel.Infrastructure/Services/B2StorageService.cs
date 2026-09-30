@@ -52,7 +52,9 @@ public class B2StorageService : IStorageService
             _apiUrl = api.GetProperty("apiUrl").GetString()!;
             _downloadUrl = api.GetProperty("downloadUrl").GetString()!;
 
-            if (api.TryGetProperty("bucketId", out var bid) && bid.ValueKind == JsonValueKind.String)
+            if (_bucketId == null &&
+                api.TryGetProperty("bucketId", out var bid) &&
+                bid.ValueKind == JsonValueKind.String)
                 _bucketId = bid.GetString();
 
             _authExpiry = DateTime.UtcNow.AddHours(23);
@@ -60,11 +62,17 @@ public class B2StorageService : IStorageService
         finally { _lock.Release(); }
     }
 
+    private HttpRequestMessage AuthorizedRequest(HttpMethod method, string url)
+    {
+        var req = new HttpRequestMessage(method, url);
+        req.Headers.TryAddWithoutValidation("Authorization", _authToken);
+        return req;
+    }
+
     private async Task EnsureBucketIdAsync(CancellationToken ct)
     {
         if (_bucketId != null) return;
-        using var req = new HttpRequestMessage(HttpMethod.Post, $"{_apiUrl}/b2api/v3/b2_list_buckets");
-        req.Headers.Authorization = new AuthenticationHeaderValue(_authToken!);
+        using var req = AuthorizedRequest(HttpMethod.Post, $"{_apiUrl}/b2api/v3/b2_list_buckets");
         req.Content = new StringContent(JsonSerializer.Serialize(new { bucketName = _bucketName }), Encoding.UTF8, "application/json");
         using var resp = await _http.SendAsync(req, ct);
         resp.EnsureSuccessStatusCode();
@@ -80,8 +88,7 @@ public class B2StorageService : IStorageService
         await EnsureBucketIdAsync(ct);
 
         // Get upload URL
-        using var urlReq = new HttpRequestMessage(HttpMethod.Post, $"{_apiUrl}/b2api/v3/b2_get_upload_url");
-        urlReq.Headers.Authorization = new AuthenticationHeaderValue(_authToken!);
+        using var urlReq = AuthorizedRequest(HttpMethod.Post, $"{_apiUrl}/b2api/v3/b2_get_upload_url");
         urlReq.Content = new StringContent(JsonSerializer.Serialize(new { bucketId = _bucketId }), Encoding.UTF8, "application/json");
         using var urlResp = await _http.SendAsync(urlReq, ct);
         urlResp.EnsureSuccessStatusCode();
@@ -90,7 +97,7 @@ public class B2StorageService : IStorageService
         var uploadUrl = urlDoc.RootElement.GetProperty("uploadUrl").GetString()!;
         var uploadToken = urlDoc.RootElement.GetProperty("authorizationToken").GetString()!;
 
-        // Read file into memory and compute SHA1
+        // Read file and compute SHA1
         var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
         var key = $"uploads/{folder}/{Guid.NewGuid()}{ext}";
         using var ms = new MemoryStream();
@@ -100,9 +107,9 @@ public class B2StorageService : IStorageService
 
         // Upload
         using var uploadReq = new HttpRequestMessage(HttpMethod.Post, uploadUrl);
-        uploadReq.Headers.Authorization = new AuthenticationHeaderValue(uploadToken);
-        uploadReq.Headers.Add("X-Bz-File-Name", Uri.EscapeDataString(key));
-        uploadReq.Headers.Add("X-Bz-Content-Sha1", sha1);
+        uploadReq.Headers.TryAddWithoutValidation("Authorization", uploadToken);
+        uploadReq.Headers.TryAddWithoutValidation("X-Bz-File-Name", Uri.EscapeDataString(key));
+        uploadReq.Headers.TryAddWithoutValidation("X-Bz-Content-Sha1", sha1);
         uploadReq.Content = new ByteArrayContent(bytes);
         uploadReq.Content.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType ?? "application/octet-stream");
 
@@ -124,8 +131,7 @@ public class B2StorageService : IStorageService
             await AuthorizeAsync(ct);
             await EnsureBucketIdAsync(ct);
 
-            using var listReq = new HttpRequestMessage(HttpMethod.Post, $"{_apiUrl}/b2api/v3/b2_list_file_names");
-            listReq.Headers.Authorization = new AuthenticationHeaderValue(_authToken!);
+            using var listReq = AuthorizedRequest(HttpMethod.Post, $"{_apiUrl}/b2api/v3/b2_list_file_names");
             listReq.Content = new StringContent(
                 JsonSerializer.Serialize(new { bucketId = _bucketId, prefix = key, maxFileCount = 1 }),
                 Encoding.UTF8, "application/json");
@@ -139,8 +145,7 @@ public class B2StorageService : IStorageService
             var fileId = files[0].GetProperty("fileId").GetString()!;
             var fileName = files[0].GetProperty("fileName").GetString()!;
 
-            using var delReq = new HttpRequestMessage(HttpMethod.Post, $"{_apiUrl}/b2api/v3/b2_delete_file_version");
-            delReq.Headers.Authorization = new AuthenticationHeaderValue(_authToken!);
+            using var delReq = AuthorizedRequest(HttpMethod.Post, $"{_apiUrl}/b2api/v3/b2_delete_file_version");
             delReq.Content = new StringContent(JsonSerializer.Serialize(new { fileId, fileName }), Encoding.UTF8, "application/json");
             await _http.SendAsync(delReq, ct);
         }
@@ -149,7 +154,6 @@ public class B2StorageService : IStorageService
 
     public string GetPresignedUrl(string fileKey, int expiryMinutes = 60)
     {
-        // B2 download URL with embedded auth token (valid 23h, refreshed on upload)
-        return $"{_downloadUrl}/b2api/v3/b2_download_file_by_name?bucketName={_bucketName}&fileName={Uri.EscapeDataString(fileKey)}&Authorization={_authToken}";
+        return $"{_downloadUrl}/b2api/v3/b2_download_file_by_name?bucketName={_bucketName}&fileName={Uri.EscapeDataString(fileKey)}&Authorization={Uri.EscapeDataString(_authToken ?? "")}";
     }
 }
