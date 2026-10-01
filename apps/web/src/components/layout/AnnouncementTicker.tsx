@@ -3,6 +3,11 @@ import { useEffect, useState } from 'react';
 import { api } from '@/lib/api';
 import type { BusinessSettings } from '@/lib/types';
 
+// How many times we repeat items.
+// 30 copies guarantees total width >> any viewport (even a single short item).
+// Animation moves exactly 1 copy width (−100/30 %), then loops seamlessly.
+const COPIES = 30;
+
 export function AnnouncementTicker() {
   const [items, setItems] = useState<string[]>([]);
 
@@ -19,19 +24,21 @@ export function AnnouncementTicker() {
 
   if (items.length === 0) return null;
 
-  // Duplicate for seamless loop: animation goes 0 → -50% and loops
-  const doubled = [...items, ...items];
+  const repeated = Array.from({ length: COPIES }, () => items).flat();
 
   return (
     <div
-      className="bg-brand text-white text-[11px] font-medium h-7 flex items-center"
-      style={{ overflow: 'hidden', width: '100vw', maxWidth: '100%' }}
+      className="bg-brand text-white text-[11px] font-medium h-7 flex items-center overflow-hidden w-full"
+      aria-label="Duyurular"
     >
       <div
         className="flex whitespace-nowrap shrink-0"
-        style={{ animation: 'ticker-scroll 30s linear infinite', willChange: 'transform' }}
+        style={{
+          animation: 'akinel-ticker 30s linear infinite',
+          willChange: 'transform',
+        }}
       >
-        {doubled.map((item, i) => (
+        {repeated.map((item, i) => (
           <span key={i} className="inline-flex items-center">
             <span className="px-8">{item}</span>
             <span className="text-white/50" aria-hidden="true">✦</span>
@@ -39,12 +46,12 @@ export function AnnouncementTicker() {
         ))}
       </div>
       <style>{`
-        @keyframes ticker-scroll {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+        @keyframes akinel-ticker {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-${(100 / COPIES).toFixed(6)}%); }
         }
         @media (prefers-reduced-motion: reduce) {
-          .ticker-scroll { animation: none; }
+          .akinel-ticker-track { animation: none !important; }
         }
       `}</style>
     </div>
