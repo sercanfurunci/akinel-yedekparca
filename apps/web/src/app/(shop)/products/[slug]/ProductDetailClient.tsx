@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, use } from 'react';
+import Image from 'next/image';
 import { Package, Car, Minus, Plus, Bell } from 'lucide-react';
 import { api } from '@/lib/api';
 import type { Product, VehicleCompatibilityEntry, ProductListItem } from '@/lib/types';
@@ -113,12 +114,15 @@ export default function ProductDetailClient({ params }: { params: Promise<{ slug
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Image Gallery */}
         <div className="space-y-3">
-          <div className="aspect-square bg-muted rounded-xl overflow-hidden flex items-center justify-center">
+          <div className="relative aspect-square bg-muted rounded-xl overflow-hidden flex items-center justify-center">
             {getImageUrl(activeImage ?? product.primaryImageUrl) ? (
-              <img
+              <Image
                 src={getImageUrl(activeImage ?? product.primaryImageUrl)!}
                 alt={product.name}
-                className="w-full h-full object-contain p-8"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain p-8"
               />
             ) : (
               <Package size={80} strokeWidth={1} className="text-muted-foreground/30" />
@@ -134,10 +138,10 @@ export default function ProductDetailClient({ params }: { params: Promise<{ slug
                     key={img.id}
                     type="button"
                     onClick={() => setActiveImage(img.url)}
-                    className={`shrink-0 w-16 h-16 rounded-lg border-2 overflow-hidden transition-all ${isActive ? 'border-brand' : 'border-border hover:border-brand/50'}`}
+                    className={`relative shrink-0 w-16 h-16 rounded-lg border-2 overflow-hidden transition-all ${isActive ? 'border-brand' : 'border-border hover:border-brand/50'}`}
                   >
                     {url ? (
-                      <img src={url} alt="" className="w-full h-full object-cover" />
+                      <Image src={url} alt="" fill sizes="64px" className="object-cover" />
                     ) : (
                       <div className="w-full h-full bg-muted flex items-center justify-center">
                         <Package size={20} className="text-muted-foreground/40" />

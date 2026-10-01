@@ -106,6 +106,26 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
   return res.json();
 }
 
+// Module-level cache for business settings — these rarely change, and both
+// Header and BusinessStrip need them on every page load. One fetch per session.
+let businessSettingsCache: unknown = null;
+let businessSettingsInflight: Promise<unknown> | null = null;
+function getBusinessSettings(): Promise<unknown> {
+  if (businessSettingsCache !== null) return Promise.resolve(businessSettingsCache);
+  if (businessSettingsInflight) return businessSettingsInflight;
+  businessSettingsInflight = request('/api/business/settings')
+    .then((d) => {
+      businessSettingsCache = d;
+      businessSettingsInflight = null;
+      return d;
+    })
+    .catch((e) => {
+      businessSettingsInflight = null;
+      throw e;
+    });
+  return businessSettingsInflight;
+}
+
 export const api = {
   products: {
     list: (params?: Record<string, string>) =>
@@ -165,9 +185,13 @@ export const api = {
     slides: () => request('/api/hero/slides'),
   },
   business: {
-    settings: () => request('/api/business/settings'),
-    updateSettings: (data: unknown, token: string) =>
-      request('/api/business/settings', { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
+    settings: () => getBusinessSettings(),
+    updateSettings: (data: unknown, token: string) => {
+      // Invalidate cache on write
+      businessSettingsCache = null;
+      businessSettingsInflight = null;
+      return request('/api/business/settings', { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } });
+    },
   },
   orders: {
     checkout: (data: unknown) =>

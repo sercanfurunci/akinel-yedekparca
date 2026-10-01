@@ -21,22 +21,27 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpGet("makes")]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any)]
     public async Task<IActionResult> GetMakes(CancellationToken ct)
         => Ok(await _vehicleService.GetMakesAsync(ct));
 
     [HttpGet("makes/{makeId:guid}/models")]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
     public async Task<IActionResult> GetModels(Guid makeId, CancellationToken ct)
         => Ok(await _vehicleService.GetModelsByMakeAsync(makeId, ct));
 
     [HttpGet("models/{modelId:guid}/generations")]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
     public async Task<IActionResult> GetGenerations(Guid modelId, CancellationToken ct)
         => Ok(await _vehicleService.GetGenerationsByModelAsync(modelId, ct));
 
     [HttpGet("generations/{generationId:guid}/engines")]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
     public async Task<IActionResult> GetEngines(Guid generationId, CancellationToken ct)
         => Ok(await _vehicleService.GetEnginesByGenerationAsync(generationId, ct));
 
     [HttpGet("context/{engineId:guid}")]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
     public async Task<IActionResult> GetContext(Guid engineId, CancellationToken ct)
     {
         var ctx = await _vehicleService.GetVehicleContextAsync(engineId, ct);
@@ -55,21 +60,25 @@ public class VehiclesController : ControllerBase
 
         var lower = q.ToLower();
 
+        // Run three queries in parallel against separate DbContext scopes would require
+        // scope management; keep sequential but trimmed. Projections already avoid full
+        // entity hydration — Include() was redundant and has been removed.
         var makes = await _db.VehicleMakes
+            .AsNoTracking()
             .Where(m => m.Name.ToLower().Contains(lower) && m.IsActive)
             .Take(5)
             .Select(m => new { m.Id, m.Name, type = "make" })
             .ToListAsync(ct);
 
         var models = await _db.VehicleModels
-            .Include(m => m.VehicleMake)
+            .AsNoTracking()
             .Where(m => m.Name.ToLower().Contains(lower) && m.VehicleMake.IsActive)
             .Take(5)
             .Select(m => new { m.Id, m.Name, makeName = m.VehicleMake.Name, makeId = m.VehicleMakeId, type = "model" })
             .ToListAsync(ct);
 
         var engines = await _db.VehicleEngines
-            .Include(e => e.VehicleGeneration).ThenInclude(g => g.VehicleModel).ThenInclude(m => m.VehicleMake)
+            .AsNoTracking()
             .Where(e => (e.Name.ToLower().Contains(lower) ||
                          e.VehicleGeneration.VehicleModel.Name.ToLower().Contains(lower) ||
                          e.VehicleGeneration.VehicleModel.VehicleMake.Name.ToLower().Contains(lower)) &&

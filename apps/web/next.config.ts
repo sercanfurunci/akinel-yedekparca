@@ -27,6 +27,19 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: "standalone",
   staticPageGenerationTimeout: 300,
+  compress: true,
+  poweredByHeader: false,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      // Dev API — product/category/hero images come from here
+      { protocol: "http", hostname: "localhost", port: "5100", pathname: "/**" },
+      // Prod API
+      { protocol: "https", hostname: "akinelotoyedekparca-api.railway.app", pathname: "/**" },
+      // Future Railway subdomains
+      { protocol: "https", hostname: "*.railway.app", pathname: "/**" },
+    ],
+  },
   async headers() {
     return [
       {

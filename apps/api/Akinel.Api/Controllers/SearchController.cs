@@ -25,8 +25,9 @@ public class SearchController : ControllerBase
         safe = safe.Replace("\\", "\\\\").Replace("%", "\\%").Replace("_", "\\_");
         var pattern = $"%{safe}%";
 
+        // Projection pulls Brand.Name — Include() is redundant and was removed.
         var productsTask = _db.Products
-            .Include(p => p.Brand)
+            .AsNoTracking()
             .Where(p => p.IsActive && EF.Functions.ILike(p.Name, pattern, "\\"))
             .OrderByDescending(p => p.CreatedAt)
             .Take(4)
@@ -34,12 +35,14 @@ public class SearchController : ControllerBase
             .ToListAsync(ct);
 
         var brandsTask = _db.Brands
+            .AsNoTracking()
             .Where(b => b.IsActive && EF.Functions.ILike(b.Name, pattern, "\\"))
             .Take(3)
             .Select(b => new { b.Name, b.Slug })
             .ToListAsync(ct);
 
         var categoriesTask = _db.Categories
+            .AsNoTracking()
             .Where(c => c.IsActive && EF.Functions.ILike(c.Name, pattern, "\\"))
             .OrderBy(c => c.SortOrder)
             .Take(3)

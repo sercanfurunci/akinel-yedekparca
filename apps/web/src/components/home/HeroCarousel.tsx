@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Car, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GlobalSearch } from '@/components/search/GlobalSearch';
 import { buttonVariants } from '@/components/ui/button';
@@ -64,10 +65,20 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
               i === current ? 'opacity-100' : 'opacity-0'
             )}
           >
-            {url
-              ? <img src={url} alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} fetchPriority={i === 0 ? 'high' : 'low'} />
-              : <div className="absolute inset-0 bg-[#1F2937]" />
-            }
+            {url ? (
+              <Image
+                src={url}
+                alt=""
+                role="presentation"
+                fill
+                priority={i === 0}
+                fetchPriority={i === 0 ? 'high' : 'low'}
+                sizes="100vw"
+                className="object-cover"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-[#1F2937]" />
+            )}
           </div>
         );
       })}

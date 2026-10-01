@@ -21,6 +21,7 @@ public class VehicleService : IVehicleService
 
     public async Task<IEnumerable<VehicleMakeDto>> GetMakesAsync(CancellationToken ct = default)
         => await _context.VehicleMakes
+            .AsNoTracking()
             .Where(m => m.IsActive)
             .OrderBy(m => m.Name)
             .Select(m => new VehicleMakeDto(m.Id, m.Name, m.Slug, m.LogoUrl))
@@ -28,6 +29,7 @@ public class VehicleService : IVehicleService
 
     public async Task<IEnumerable<VehicleModelDto>> GetModelsByMakeAsync(Guid makeId, CancellationToken ct = default)
         => await _context.VehicleModels
+            .AsNoTracking()
             .Where(m => m.VehicleMakeId == makeId)
             .OrderBy(m => m.Name)
             .Select(m => new VehicleModelDto(m.Id, m.Name, m.Slug, m.VehicleMakeId))
@@ -35,6 +37,7 @@ public class VehicleService : IVehicleService
 
     public async Task<IEnumerable<VehicleGenerationDto>> GetGenerationsByModelAsync(Guid modelId, CancellationToken ct = default)
         => await _context.VehicleGenerations
+            .AsNoTracking()
             .Where(g => g.VehicleModelId == modelId)
             .OrderBy(g => g.YearFrom)
             .Select(g => new VehicleGenerationDto(g.Id, g.Name, g.Slug, g.VehicleModelId, g.YearFrom, g.YearTo, g.BodyType))
@@ -42,6 +45,7 @@ public class VehicleService : IVehicleService
 
     public async Task<IEnumerable<VehicleEngineDto>> GetEnginesByGenerationAsync(Guid generationId, CancellationToken ct = default)
         => await _context.VehicleEngines
+            .AsNoTracking()
             .Where(e => e.VehicleGenerationId == generationId)
             .OrderBy(e => e.Name)
             .Select(e => new VehicleEngineDto(e.Id, e.Name, e.VehicleGenerationId, e.Displacement, e.FuelType, e.PowerKw, e.PowerHp, e.YearFrom, e.YearTo, e.EngineCode))
@@ -49,26 +53,22 @@ public class VehicleService : IVehicleService
 
     public async Task<VehicleContextDto?> GetVehicleContextAsync(Guid engineId, CancellationToken ct = default)
     {
-        var engine = await _context.VehicleEngines
-            .Include(e => e.VehicleGeneration)
-                .ThenInclude(g => g.VehicleModel)
-                    .ThenInclude(m => m.VehicleMake)
-            .FirstOrDefaultAsync(e => e.Id == engineId, ct);
+        // Project directly into DTO — no entity hydration, no Include chain needed.
+        var ctx = await _context.VehicleEngines
+            .AsNoTracking()
+            .Where(e => e.Id == engineId)
+            .Select(e => new VehicleContextDto(
+                e.Id,
+                e.VehicleGeneration.VehicleModel.VehicleMake.Name,
+                e.VehicleGeneration.VehicleModel.Name,
+                e.VehicleGeneration.Name,
+                e.Name,
+                e.VehicleGeneration.VehicleModel.VehicleMake.Name + " " +
+                e.VehicleGeneration.VehicleModel.Name + " " +
+                e.VehicleGeneration.Name + " " + e.Name))
+            .FirstOrDefaultAsync(ct);
 
-        if (engine == null) return null;
-
-        var make = engine.VehicleGeneration.VehicleModel.VehicleMake;
-        var model = engine.VehicleGeneration.VehicleModel;
-        var gen = engine.VehicleGeneration;
-
-        return new VehicleContextDto(
-            engine.Id,
-            make.Name,
-            model.Name,
-            gen.Name,
-            engine.Name,
-            $"{make.Name} {model.Name} {gen.Name} {engine.Name}"
-        );
+        return ctx;
     }
 
     public async Task<VehicleContextDto?> DecodeVinAsync(string vin, CancellationToken ct = default)

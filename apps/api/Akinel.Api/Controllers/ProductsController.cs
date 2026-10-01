@@ -26,6 +26,7 @@ public class ProductsController : ControllerBase
         => Ok(await _productService.GetProductsAsync(filter, ct));
 
     [HttpGet("{slug}")]
+    [ResponseCache(Duration = 120, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
     public async Task<IActionResult> GetProduct(string slug, CancellationToken ct)
     {
         var product = await _productService.GetBySlugAsync(slug, ct);
@@ -82,6 +83,7 @@ public class ProductsController : ControllerBase
 
         // Base query: same category, exclude current product, active only
         var q = _db.Products
+            .AsNoTracking()
             .Include(p => p.Brand)
             .Include(p => p.Category)
             .Include(p => p.Images)
@@ -94,6 +96,7 @@ public class ProductsController : ControllerBase
         if (engineId.HasValue)
         {
             var compatIds = await _db.ProductVehicleCompatibilities
+                .AsNoTracking()
                 .Where(vc => vc.VehicleEngineId == engineId.Value)
                 .Select(vc => vc.ProductId)
                 .ToListAsync(ct);
@@ -163,13 +166,12 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet("{id:guid}/compatibility")]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
     public async Task<IActionResult> GetCompatibility(Guid id, CancellationToken ct)
     {
+        // No Include() needed — projection pulls what we need via navigation properties.
         var items = await _db.ProductVehicleCompatibilities
-            .Include(vc => vc.VehicleEngine)
-                .ThenInclude(e => e.VehicleGeneration)
-                    .ThenInclude(g => g.VehicleModel)
-                        .ThenInclude(m => m.VehicleMake)
+            .AsNoTracking()
             .Where(vc => vc.ProductId == id)
             .Select(vc => new
             {

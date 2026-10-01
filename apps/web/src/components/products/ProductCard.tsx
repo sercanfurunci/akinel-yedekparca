@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { ProductListItem } from '@/lib/types';
 import { formatPrice, stockStatusLabel, stockStatusColor, getImageUrl } from '@/lib/utils';
 import { AddToCartButton } from '@/components/cart/AddToCartButton';
@@ -11,7 +12,7 @@ interface Props {
   isCompatible?: boolean;
 }
 
-export function ProductCard({ product, isCompatible }: Props) {
+function ProductCardBase({ product, isCompatible }: Props) {
   const [imgError, setImgError] = useState(false);
   const statusLabel = stockStatusLabel(product.stockStatus);
   const statusColor = stockStatusColor(product.stockStatus);
@@ -30,19 +31,21 @@ export function ProductCard({ product, isCompatible }: Props) {
         {/* Image area */}
         <div className="relative aspect-square bg-[#F3F4F6] overflow-hidden">
           {resolvedImageUrl ? (
-            <img
+            <Image
               src={resolvedImageUrl}
               alt={product.name}
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               onError={() => setImgError(true)}
-              loading="lazy"
-              className="w-full h-full object-contain p-5 group-hover:scale-105 transition-transform duration-300"
+              className="object-contain p-5 group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
-            <img
+            <Image
               src="/images/placeholder-product.svg"
               alt={product.name}
-              loading="lazy"
-              className="w-full h-full object-contain p-5"
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-contain p-5"
             />
           )}
           {product.discountPercentage != null && product.discountPercentage > 0 && (
@@ -109,3 +112,5 @@ export function ProductCard({ product, isCompatible }: Props) {
     </div>
   );
 }
+
+export const ProductCard = memo(ProductCardBase);

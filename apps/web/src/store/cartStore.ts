@@ -46,6 +46,10 @@ async function basketRequest(path: string, options?: RequestInit): Promise<Baske
   return res.json();
 }
 
+// Deduplicate concurrent fetchCart() calls — e.g. Header mounts and other
+// components may trigger a refresh at the same time. Only one network hop.
+let fetchCartInflight: Promise<void> | null = null;
+
 export const useCartStore = create<CartStore>((set) => ({
   items: [],
   subTotal: 0,
@@ -54,15 +58,20 @@ export const useCartStore = create<CartStore>((set) => ({
   isOpen: false,
 
   fetchCart: async () => {
+    if (fetchCartInflight) return fetchCartInflight;
     set({ isLoading: true });
-    try {
-      const data = await basketRequest('/api/basket');
-      set({ items: data.items, subTotal: data.subTotal, totalItems: data.totalItems });
-    } catch {
-      // silent — don't crash if basket unavailable
-    } finally {
-      set({ isLoading: false });
-    }
+    fetchCartInflight = (async () => {
+      try {
+        const data = await basketRequest('/api/basket');
+        set({ items: data.items, subTotal: data.subTotal, totalItems: data.totalItems });
+      } catch {
+        // silent — don't crash if basket unavailable
+      } finally {
+        set({ isLoading: false });
+        fetchCartInflight = null;
+      }
+    })();
+    return fetchCartInflight;
   },
 
   addItem: async (productId, quantity = 1) => {

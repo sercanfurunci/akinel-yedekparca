@@ -19,6 +19,7 @@ public class ProductService : IProductService
     public async Task<PaginatedResult<ProductListItemDto>> GetProductsAsync(ProductSearchQuery query, CancellationToken ct = default)
     {
         var q = _context.Products
+            .AsNoTracking()
             .Include(p => p.Brand)
             .Include(p => p.Category)
             .Include(p => p.Images)
@@ -76,6 +77,7 @@ public class ProductService : IProductService
     public async Task<ProductDto?> GetBySlugAsync(string slug, CancellationToken ct = default)
     {
         var product = await _context.Products
+            .AsNoTracking()
             .Include(p => p.Brand)
             .Include(p => p.Category)
             .Include(p => p.Images)
@@ -89,6 +91,7 @@ public class ProductService : IProductService
     public async Task<ProductDto?> GetByIdAsync(Guid id, CancellationToken ct = default)
     {
         var product = await _context.Products
+            .AsNoTracking()
             .Include(p => p.Brand)
             .Include(p => p.Category)
             .Include(p => p.Images)
@@ -165,6 +168,7 @@ public class ProductService : IProductService
     public async Task<IEnumerable<ProductListItemDto>> GetByVehicleAsync(Guid engineId, int page = 1, int pageSize = 24, CancellationToken ct = default)
     {
         return await _context.Products
+            .AsNoTracking()
             .Include(p => p.Brand)
             .Include(p => p.Category)
             .Include(p => p.Images)

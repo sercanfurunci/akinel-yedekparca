@@ -13,9 +13,11 @@ public class CategoriesController : ControllerBase
     public CategoriesController(AkinelDbContext db) => _db = db;
 
     [HttpGet]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
     public async Task<IActionResult> GetCategories(CancellationToken ct)
     {
         var categories = await _db.Categories
+            .AsNoTracking()
             .Where(c => c.IsActive)
             .OrderBy(c => c.SortOrder).ThenBy(c => c.Name)
             .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.ImageUrl })
@@ -25,9 +27,11 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpGet("{slug}")]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
     public async Task<IActionResult> GetBySlug(string slug, CancellationToken ct)
     {
         var category = await _db.Categories
+            .AsNoTracking()
             .Where(c => c.IsActive && c.Slug == slug)
             .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.ImageUrl })
             .FirstOrDefaultAsync(ct);

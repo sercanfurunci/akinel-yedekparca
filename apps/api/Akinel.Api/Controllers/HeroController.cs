@@ -16,9 +16,11 @@ public class HeroController : ControllerBase
     }
 
     [HttpGet("slides")]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
     public async Task<IActionResult> GetActiveSlides(CancellationToken ct)
     {
         var slides = await _db.HomepageHeroSlides
+            .AsNoTracking()
             .Where(s => s.IsActive)
             .OrderBy(s => s.DisplayOrder)
             .Select(s => new { s.Id, s.ImageUrl, s.Title, s.Subtitle, s.CtaText, s.CtaUrl, s.DisplayOrder })

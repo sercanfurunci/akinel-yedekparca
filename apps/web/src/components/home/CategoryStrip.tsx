@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronRight, Package } from 'lucide-react';
 import { getImageUrl } from '@/lib/utils';
 import type { Category } from '@/lib/types';
@@ -35,12 +36,14 @@ export function CategoryStrip({ categories }: Props) {
               href={`/products?categoryId=${cat.id}`}
               className={`flex flex-col items-center gap-3 rounded-xl border border-border bg-white hover:border-brand hover:-translate-y-0.5 hover:shadow-md transition-all text-center group overflow-hidden${i >= 4 ? ' hidden sm:flex' : ''}`}
             >
-              <div className="w-full aspect-[4/3] sm:aspect-square overflow-hidden bg-muted">
+              <div className="relative w-full aspect-[4/3] sm:aspect-square overflow-hidden bg-muted">
                 {cat.imageUrl ? (
-                  <img
+                  <Image
                     src={getImageUrl(cat.imageUrl) ?? ''}
                     alt={cat.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#F3F4F6] to-muted">

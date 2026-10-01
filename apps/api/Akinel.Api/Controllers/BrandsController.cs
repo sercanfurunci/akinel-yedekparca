@@ -13,9 +13,11 @@ public class BrandsController : ControllerBase
     public BrandsController(AkinelDbContext db) => _db = db;
 
     [HttpGet]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
     public async Task<IActionResult> GetBrands(CancellationToken ct)
     {
         var brands = await _db.Brands
+            .AsNoTracking()
             .Where(b => b.IsActive)
             .OrderBy(b => b.Name)
             .Select(b => new { b.Id, b.Name, b.Slug, b.LogoUrl })
@@ -25,9 +27,11 @@ public class BrandsController : ControllerBase
     }
 
     [HttpGet("{slug}")]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
     public async Task<IActionResult> GetBySlug(string slug, CancellationToken ct)
     {
         var brand = await _db.Brands
+            .AsNoTracking()
             .Where(b => b.IsActive && b.Slug == slug)
             .Select(b => new { b.Id, b.Name, b.Slug, b.LogoUrl })
             .FirstOrDefaultAsync(ct);

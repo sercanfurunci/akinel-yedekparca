@@ -22,6 +22,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
+builder.Services.AddResponseCaching();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddDataProtection().PersistKeysToDbContext<AkinelDbContext>();
@@ -132,6 +133,7 @@ app.Use(async (ctx, next) =>
 
 app.UseStaticFiles();
 app.UseCors("AllowFrontend");
+app.UseResponseCaching();
 app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
