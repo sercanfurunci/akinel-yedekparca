@@ -28,7 +28,24 @@ export const useAuthStore = create<AuthStore>()(
       // refreshToken is kept in memory only — not persisted to localStorage
       partialize: (state) => ({ user: state.user, accessToken: state.accessToken }),
       onRehydrateStorage: () => (state) => {
-        state?.setHasHydrated(true);
+        if (state) {
+          const token = state.accessToken;
+          if (token) {
+            try {
+              const payload = JSON.parse(atob(token.split('.')[1])) as { exp?: number };
+              if (payload.exp && Date.now() / 1000 > payload.exp) {
+                // Token expired and no refreshToken in memory — force logout
+                state.clearAuth();
+                if (typeof window !== 'undefined') {
+                  window.location.href = '/login?session=expired';
+                }
+              }
+            } catch {
+              state.clearAuth();
+            }
+          }
+          state.setHasHydrated(true);
+        }
       },
     }
   )
