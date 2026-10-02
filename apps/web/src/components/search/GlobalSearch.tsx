@@ -111,7 +111,7 @@ export function GlobalSearch({ defaultValue = '', className, size = 'default', a
     const q = query.trim();
     setOpen(false);
     if (q) {
-      analytics.productSearched('text');
+      analytics.productSearched('text', q);
       router.push(`/search?q=${encodeURIComponent(q)}`);
     }
   };

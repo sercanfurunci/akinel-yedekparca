@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { LayoutDashboard, Package, Tag, FolderOpen, Car, Archive, Users, ShoppingBag, Building2, Images } from 'lucide-react';
+import { LayoutDashboard, Package, Tag, FolderOpen, Car, Archive, Users, ShoppingBag, Building2, Images, BarChart2 } from 'lucide-react';
 
 const navItems = [
   { href: '/admin', label: 'Gösterge Paneli', icon: LayoutDashboard },
@@ -15,6 +15,7 @@ const navItems = [
   { href: '/admin/orders', label: 'Siparişler', icon: ShoppingBag },
   { href: '/admin/hero', label: 'Ana Sayfa', icon: Images },
   { href: '/admin/business', label: 'İşletme', icon: Building2 },
+  { href: '/admin/analytics', label: 'Analitik', icon: BarChart2 },
 ];
 
 export function AdminSidebar() {

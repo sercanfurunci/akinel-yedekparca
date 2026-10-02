@@ -317,6 +317,10 @@ export const api = {
       toggle: (id: string, token: string) => { _heroCache.invalidate(); return request(`/api/admin/hero/slides/${id}/toggle`, { method: 'PATCH', headers: { Authorization: `Bearer ${token}` } }); },
       delete: (id: string, token: string) => { _heroCache.invalidate(); return request(`/api/admin/hero/slides/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }); },
     },
+    analytics: {
+      get: (period: string, token: string) =>
+        request(`/api/admin/analytics?period=${encodeURIComponent(period)}`, { headers: { Authorization: `Bearer ${token}` } }),
+    },
     vehicles: {
       getMakes: (token: string, params?: { search?: string; page?: number; pageSize?: number }) => {
         const qs = params ? '?' + new URLSearchParams(

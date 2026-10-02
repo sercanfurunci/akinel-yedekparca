@@ -45,6 +45,12 @@ public static class DependencyInjection
             client.DefaultRequestHeaders.Add("User-Agent", "Akinel/1.0");
         });
 
+        services.AddScoped<IAnalyticsService, AnalyticsService>();
+        services.AddHttpClient<AnalyticsService>(client =>
+        {
+            client.Timeout = TimeSpan.FromSeconds(15);
+        });
+
         return services;
     }
 }

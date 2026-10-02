@@ -26,8 +26,8 @@ export const analytics = {
       price: product.price,
     }),
 
-  productSearched: (searchType: 'text' | 'oem' | 'vehicle') =>
-    capture('product_searched', { search_type: searchType }),
+  productSearched: (searchType: 'text' | 'oem' | 'vehicle', query?: string) =>
+    capture('product_searched', { search_type: searchType, ...(query ? { query } : {}) }),
 
   categoryViewed: (category: string, productCount?: number) =>
     capture('category_viewed', { category, product_count: productCount }),

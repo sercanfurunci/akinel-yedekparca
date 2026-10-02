@@ -46,6 +46,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.AddResponseCaching();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddDataProtection().PersistKeysToDbContext<AkinelDbContext>();
