@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import '../../../sentry.client.config';
 import { PublicShell } from '@/components/layout/PublicShell';
 import { PostHogProvider } from '@/components/analytics/PostHogProvider';
 import type { BusinessSettings } from '@/lib/types';
