@@ -736,6 +736,8 @@ Railway detects push
 | Hosting | Railway.app | Frontend + backend hosting | Railway dashboard | **Yes** |
 | Database | PostgreSQL 16 | Primary data store | `ConnectionStrings:DefaultConnection` | **Yes** |
 | Maps | Google Maps | Contact page map embed, about page | `BusinessSettings.GoogleMapsEmbedUrl` | No (degradable) |
+| Error tracking | Sentry | Frontend + backend exception capture | `Sentry__Dsn` (backend), `NEXT_PUBLIC_SENTRY_DSN` (frontend) | No (optional) |
+| Product analytics | PostHog (EU) | Funnel events, user behaviour | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | No (optional) |
 | VIN decode / parts catalog | `NullPartsCatalogProvider` | **Not yet integrated** — placeholder | `IPartsCatalogProvider` interface | No |
 | Email | Not implemented | Order confirmations, notifications | — | Not yet |
 | Payment gateway | Not implemented | Online payment processing | — | Not yet |
@@ -1166,9 +1168,17 @@ Check in order:
 
 ### Rate limiting
 
-- Login: 10 attempts per minute per IP
-- Register: 5 attempts per hour per IP
-- Returns HTTP 429 on limit exceeded
+All limits are configurable via `RateLimiting` section in `appsettings.json` (no redeploy needed when changed via env vars).
+
+| Policy | Default limit | Endpoint |
+|---|---|---|
+| login | 10/min | POST /api/auth/login |
+| register | 5/hour | POST /api/auth/register |
+| checkout | 10/hour | POST /api/orders |
+| search | 60/min | GET /api/products/search |
+| vin | 10/min | POST /api/vehicles/vin-decode |
+
+Returns HTTP 429 on limit exceeded. Violations logged at Warning level with IP and path.
 
 ### Upload security
 
@@ -1208,7 +1218,46 @@ ASP.NET Core Data Protection keys are persisted in the `DataProtectionKeys` data
 
 ---
 
-## 24. Current Production Status
+## 24. Observability & Feature Flags
+
+### Error tracking (Sentry)
+
+- **Backend:** `builder.WebHost.UseSentry()` in `Program.cs`. Reads `Sentry__Dsn` env var. `SetBeforeSend` strips `Authorization` and `Cookie` headers before sending events. `TracesSampleRate: 0.1` in production.
+- **Frontend:** `sentry.client.config.ts`, `sentry.server.config.ts`, `sentry.edge.config.ts` + `instrumentation.ts`. `src/app/error.tsx` and `src/app/global-error.tsx` are error boundaries that capture unhandled exceptions. Disabled in development.
+- If `NEXT_PUBLIC_SENTRY_DSN` / `Sentry__Dsn` is not set, Sentry is silently disabled — no runtime error.
+
+### Product analytics (PostHog)
+
+- `PostHogProvider` wraps `app/layout.tsx`. `autocapture: false` — no automatic form/click capture (privacy-safe).
+- Typed event helpers in `src/lib/analytics.ts`. All calls are wrapped in try/catch — analytics failure never breaks UI.
+- Events tracked: `page_view`, `vehicle_selected`, `product_searched`, `product_viewed`, `add_to_cart`, `checkout_started`, `purchase_completed`.
+- If `NEXT_PUBLIC_POSTHOG_KEY` is not set, PostHog initialisation is skipped.
+
+### Feature flags
+
+Config-based — no external platform. Flags live in `appsettings.json` → `Features` section and can be overridden by environment variables (`Features__VinSearch=false`).
+
+| Flag | Default | Effect when disabled |
+|---|---|---|
+| `VinSearch` | true | Backend returns 503; frontend hides VIN UI |
+| `StockNotifications` | true | Hide "Stok bildir" button on product pages |
+| `Analytics` | true | PostHog initialisation skipped |
+| `MaintenanceMode` | false | Show `/maintenance` page; hide shop |
+
+Public endpoint: `GET /api/features` (no auth, 60s response cache). Frontend reads this and caches for 60s — toggle takes effect within ~1 minute of Railway restart.
+
+### Health checks
+
+| Endpoint | Tag | Purpose |
+|---|---|---|
+| `GET /health/live` | — | Liveness probe — always 200 if process is up |
+| `GET /health/ready` | `ready` | Readiness probe — checks database connectivity |
+
+Use `/health/live` for Railway restart policy, `/health/ready` for load balancer drain.
+
+---
+
+## 25. Current Production Status
 
 ### Implemented and functional
 
@@ -1229,7 +1278,11 @@ ASP.NET Core Data Protection keys are persisted in the `DataProtectionKeys` data
 - Legal pages (6 documents)
 - Backblaze B2 image storage with optimization
 - Security headers + CSP
-- Rate limiting on auth endpoints
+- Rate limiting on all public endpoints (auth, search, VIN, checkout)
+- Feature flags (config-based kill-switches: VinSearch, StockNotifications, Analytics, MaintenanceMode)
+- Health check endpoints (/health/live, /health/ready)
+- Sentry error tracking (frontend + backend — needs DSN configured)
+- PostHog analytics (needs API key configured)
 - Serilog structured logging
 - Swagger UI
 - Playwright E2E test suite
@@ -1239,8 +1292,10 @@ ASP.NET Core Data Protection keys are persisted in the `DataProtectionKeys` data
 
 - Backblaze B2: bucket and keys must be configured in Railway env vars
 - CORS: `Cors__AllowedOrigins` must point to production frontend URL
-- JWT: `Jwt__Secret` must be a strong secret (32+ chars)
+- JWT: `Jwt__Secret` must be a strong secret (32+ chars) — **app refuses to start in non-Development if empty**
 - Database: production PostgreSQL connection string
+- Sentry (optional): create project → set `Sentry__Dsn` (Railway) + `NEXT_PUBLIC_SENTRY_DSN` (Vercel)
+- PostHog (optional): create project at eu.posthog.com → set `NEXT_PUBLIC_POSTHOG_KEY` + `NEXT_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com` (Vercel)
 
 ### Needs external integration
 
@@ -1273,7 +1328,6 @@ All legal page content is currently placeholder / template text. A qualified Tur
 - Wishlist
 - Advanced product filtering (price range, attributes)
 - SEO: dynamic sitemap for all products (partially started)
-- Analytics integration
 - Abandoned cart recovery
 - Bulk product import (CSV/Excel)
 - Multi-language support
