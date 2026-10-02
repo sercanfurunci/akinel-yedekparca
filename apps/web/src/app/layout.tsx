@@ -7,16 +7,32 @@ import type { BusinessSettings } from '@/lib/types';
 
 const SITE_URL = 'https://akinelotoyedekparca.com.tr';
 const SITE_NAME = 'AKINEL OTO YEDEK PARÇA';
-const DESCRIPTION = 'AKINEL Oto Yedek Parça — Darıca, Kocaeli. OEM numarası veya araç seçimiyle hızlı yedek parça arama. Fren, filtre, süspansiyon ve daha fazlası.';
+const DESCRIPTION = 'Akinel Oto Yedek Parça — Darıca, Kocaeli. Gebze, Tuzla, Pendik, İzmit ve çevre ilçelere hizmet. OEM numarası veya araç seçimiyle hızlı yedek parça arama. Fren, filtre, süspansiyon ve daha fazlası.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
+  title: { default: `${SITE_NAME} | Darıca Kocaeli`, template: `%s | ${SITE_NAME}` },
   description: DESCRIPTION,
   keywords: [
-    'akinel oto yedek parça', 'akinel yedek parça', 'oto yedek parça',
-    'yedek parça darıca', 'yedek parça kocaeli', 'OEM yedek parça',
-    'araba parçası', 'otomotiv yedek parça', 'AKINEL',
+    // Marka
+    'akinel', 'akinel yedek parça', 'akinel oto yedek parça', 'akinel oto', 'akinel parça',
+    // Genel
+    'yedek parça', 'oto yedek parça', 'otomotiv yedek parça', 'araba yedek parçası',
+    'OEM yedek parça', 'orijinal yedek parça', 'ucuz yedek parça',
+    // Darıca & Kocaeli
+    'darıca yedek parça', 'darıca oto yedek parça', 'darıca oto',
+    'kocaeli yedek parça', 'kocaeli oto yedek parça',
+    'gebze yedek parça', 'gebze oto yedek parça',
+    'dilovası yedek parça', 'çayırova yedek parça',
+    'körfez yedek parça', 'izmit yedek parça', 'başiskele yedek parça',
+    'gölcük yedek parça', 'kartepe yedek parça',
+    // İstanbul yakın ilçeler
+    'tuzla yedek parça', 'tuzla oto yedek parça',
+    'pendik yedek parça', 'kartal yedek parça', 'maltepe yedek parça',
+    'istanbul yedek parça', 'anadolu yakası yedek parça',
+    // Ürün kategorileri
+    'fren balatası', 'fren diski', 'hava filtresi', 'yağ filtresi',
+    'amortisör', 'süspansiyon', 'motor parçaları', 'debriyaj seti',
   ],
   authors: [{ name: 'AKINEL OTO YEDEK PARÇA' }],
   icons: {
@@ -89,6 +105,21 @@ function buildStructuredData(biz: BusinessSettings | null) {
       ? [{ '@type': 'OpeningHoursSpecification', dayOfWeek: openDays, opens: firstOpen?.openTime ?? '09:00', closes: firstOpen?.closeTime ?? '19:00' }]
       : [],
     ...(biz?.googleMapsUrl ? { hasMap: biz.googleMapsUrl } : {}),
+    areaServed: [
+      'Darıca', 'Gebze', 'Dilovası', 'Çayırova', 'Körfez', 'İzmit', 'Başiskele',
+      'Kartepe', 'Gölcük', 'Kocaeli', 'Tuzla', 'Pendik', 'Kartal', 'Maltepe', 'İstanbul',
+    ],
+    sameAs: [
+      ...(biz?.instagramUrl ? [biz.instagramUrl] : []),
+      ...(biz?.facebookUrl ? [biz.facebookUrl] : []),
+      ...(biz?.googleMapsUrl ? [biz.googleMapsUrl] : []),
+    ],
+    servesCuisine: undefined,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: `${SITE_URL}/products?search={search_term_string}` },
+      'query-input': 'required name=search_term_string',
+    },
   };
 }
 

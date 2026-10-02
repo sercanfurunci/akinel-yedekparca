@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Kategori Bulunamadı — AKINEL OTO YEDEK PARÇA' };
   }
 
-  const title = `${category.name} Yedek Parça — AKINEL OTO YEDEK PARÇA`;
-  const description = `${category.name} kategorisinde otomobil ve araç yedek parçaları. En uygun fiyat garantisi.`;
+  const title = `${category.name} Yedek Parça Darıca Kocaeli — AKINEL OTO YEDEK PARÇA`;
+  const description = `${category.name} kategorisinde otomobil yedek parçaları. Darıca, Kocaeli, Gebze, Tuzla ve çevre ilçelere hizmet. Akinel Oto Yedek Parça'da OEM uyumlu ürünler.`;
 
   return {
     title,

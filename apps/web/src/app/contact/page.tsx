@@ -3,8 +3,9 @@ import { MapPin, Phone, Mail, Clock, ExternalLink, Star } from 'lucide-react';
 import type { BusinessSettings } from '@/lib/types';
 
 export const metadata: Metadata = {
-  title: 'İletişim',
-  description: 'AKINEL Oto Yedek Parça iletişim bilgileri. Osmangazi Mh. Tuzla Cd. No:238/B, 41700 Darıca / Kocaeli. Tel: +90 539 462 41 49. Yol tarifi ve çalışma saatleri.',
+  title: 'İletişim — Darıca Kocaeli Yedek Parça',
+  description: 'Akinel Oto Yedek Parça iletişim. Osmangazi Mh. Tuzla Cd. No:238/B, Darıca/Kocaeli. Gebze, Tuzla, Pendik, İzmit ve çevre ilçelere hizmet. Tel: +90 539 462 41 49.',
+  keywords: ['akinel iletişim', 'darıca yedek parça telefon', 'kocaeli oto yedek parça adres', 'gebze yedek parça', 'tuzla yedek parça'],
   alternates: { canonical: '/contact' },
 };
 

@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { Search, Car, Gauge, MapPin, Package, ExternalLink } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Hakkımızda',
-  description: 'AKINEL Oto Yedek Parça hakkında bilgi edinin. Darıca, Kocaeli\'de faaliyet gösteren otomotiv yedek parça mağazamız OEM numarası ve araç seçimiyle hizmet vermektedir.',
+  title: 'Hakkımızda — Akinel Oto Yedek Parça Darıca Kocaeli',
+  description: 'Akinel Oto Yedek Parça hakkında. Darıca, Kocaeli merkezli; Gebze, İzmit, Tuzla, Pendik, Kartal ve çevre ilçelere hizmet veren otomotiv yedek parça mağazası. OEM numarası ve araç seçimiyle arama.',
+  keywords: ['akinel hakkında', 'darıca oto yedek parça', 'kocaeli yedek parça mağazası', 'gebze oto', 'tuzla yedek parça'],
   alternates: { canonical: '/about' },
 };
 
