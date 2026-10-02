@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
+import { analytics } from '@/lib/analytics';
 import type { AuthResponse } from '@/lib/types';
 
 const schema = z.object({
@@ -39,6 +40,7 @@ export default function RegisterPage() {
 
   const onSubmit = async (data: FormValues) => {
     setError('');
+    analytics.signupStarted();
     try {
       const res = await api.auth.register({
         firstName: data.firstName,
@@ -47,6 +49,7 @@ export default function RegisterPage() {
         password: data.password,
       }) as AuthResponse;
       setAuth(res.user, res.accessToken, res.refreshToken);
+      analytics.signupCompleted();
       router.push('/account');
     } catch {
       setError('Kayıt sırasında bir hata oluştu. E-posta adresi zaten kullanılıyor olabilir.');

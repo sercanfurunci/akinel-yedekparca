@@ -12,13 +12,14 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.posthog.com",
       "style-src 'self' 'unsafe-inline'",
       isDev ? "img-src 'self' data: blob: https: http://localhost:5100" : "img-src 'self' data: blob: https:",
       "font-src 'self'",
       isDev
-        ? "connect-src 'self' http://localhost:5100 ws://localhost:3000 https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://eu.i.posthog.com https://eu.posthog.com"
-        : "connect-src 'self' https://akinelotoyedekparca-api.railway.app https://*.railway.app https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://eu.i.posthog.com https://eu.posthog.com",
+        ? "connect-src 'self' http://localhost:5100 ws://localhost:3000 https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://*.posthog.com"
+        : "connect-src 'self' https://akinelotoyedekparca-api.railway.app https://*.railway.app https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://*.posthog.com",
+      "worker-src 'self' blob: data:",
       "frame-src https://www.google.com https://maps.google.com",
       "frame-ancestors 'none'",
     ].join("; "),

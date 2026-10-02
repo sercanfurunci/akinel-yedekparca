@@ -6,6 +6,7 @@ import { Search, X } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { api } from '@/lib/api';
+import { analytics } from '@/lib/analytics';
 
 interface SuggestResult {
   products: Array<{ name: string; slug: string; brand: string }>;
@@ -109,7 +110,10 @@ export function GlobalSearch({ defaultValue = '', className, size = 'default', a
     e.preventDefault();
     const q = query.trim();
     setOpen(false);
-    if (q) router.push(`/search?q=${encodeURIComponent(q)}`);
+    if (q) {
+      analytics.productSearched('text');
+      router.push(`/search?q=${encodeURIComponent(q)}`);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

@@ -9,6 +9,8 @@ import { api } from '@/lib/api';
 import { useVehicleStore } from '@/store/vehicleStore';
 import type { VinDecodeResult, InternalVehicleMatch, VehicleContext } from '@/lib/types';
 import Link from 'next/link';
+import { analytics } from '@/lib/analytics';
+import { posthogLogs } from '@/lib/posthogLogs';
 
 const VIN_REGEX = /^[A-HJ-NPR-Z0-9]{17}$/i;
 const INVALID_CHARS = /[IOQ]/i;
@@ -53,6 +55,7 @@ export default function VinLookupPage() {
     e.preventDefault();
     if (!isValid) return;
 
+    analytics.vinSearchStarted();
     setPageState('loading');
     setResult(null);
     setErrorMsg('');
@@ -60,6 +63,8 @@ export default function VinLookupPage() {
 
     try {
       const data = await api.vehicles.decodeVin(vin) as VinDecodeResult;
+      analytics.vinSearchCompleted(true);
+      posthogLogs.vinLookupCompleted(Boolean(data.internalVehicle), data.possibleMatches.length);
       setResult(data);
       setPageState('result');
       // Auto-select if single internal vehicle match
@@ -67,8 +72,11 @@ export default function VinLookupPage() {
         setSelectedMatch(data.internalVehicle);
       }
     } catch (err: unknown) {
+      analytics.vinSearchCompleted(false);
       const msg = err instanceof Error ? err.message : '';
-      if (msg.includes('404') || msg.toLowerCase().includes('bulunamadı')) {
+      const isNotFound = msg.includes('404') || msg.toLowerCase().includes('bulunamadı');
+      posthogLogs.vinLookupFailed(isNotFound ? 'not_found' : 'request_failed');
+      if (isNotFound) {
         setErrorMsg('Bu VIN numarası için araç bilgisi bulunamadı. Lütfen listeden seçin.');
       } else {
         setErrorMsg('VIN sorgusu yapılamadı. İnternet bağlantınızı kontrol edin veya listeden seçin.');

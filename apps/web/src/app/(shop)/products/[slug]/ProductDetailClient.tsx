@@ -11,6 +11,7 @@ import { LoadingPage } from '@/components/shared/LoadingSpinner';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { AddToCartButton } from '@/components/cart/AddToCartButton';
 import { ProductGrid } from '@/components/products/ProductGrid';
+import { analytics } from '@/lib/analytics';
 
 interface Tab {
   id: string;
@@ -79,6 +80,7 @@ export default function ProductDetailClient({ params }: { params: Promise<{ slug
     setNotifyError('');
     try {
       await api.products.notifyStock(product.id, notifyEmail);
+      analytics.stockNotificationRequested(product.id);
       setNotifyStatus('success');
     } catch (err) {
       setNotifyStatus('error');

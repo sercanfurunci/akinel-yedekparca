@@ -7,6 +7,7 @@ import { useVehicleStore } from '@/store/vehicleStore';
 import { useAuthStore } from '@/store/authStore';
 import type { VehicleMake, VehicleModel, VehicleGeneration, VehicleEngine, VehicleContext } from '@/lib/types';
 import { Button } from '@/components/ui/button';
+import { analytics } from '@/lib/analytics';
 import { Car, Check } from 'lucide-react';
 
 const selectClass =
@@ -88,6 +89,12 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
     try {
       const ctx = await api.vehicles.context(selectedEngine) as VehicleContext;
       setSelectedVehicle(ctx);
+      analytics.vehicleSelected({
+        make: ctx.makeName,
+        model: ctx.modelName,
+        generation: ctx.generationName,
+        engine: ctx.engineName,
+      });
       if (onVehicleSelected) {
         onVehicleSelected(ctx);
       } else {
@@ -106,6 +113,7 @@ export function VehicleFinder({ onVehicleSelected, showSaveButton = false }: Veh
     setSaveMsg('');
     try {
       await api.garage.add({ vehicleEngineId: selectedEngine }, accessToken);
+      analytics.vehicleSavedToGarage();
       setSaveMsg('Araç garaja eklendi!');
     } catch {
       setSaveMsg('Garaja eklenemedi.');

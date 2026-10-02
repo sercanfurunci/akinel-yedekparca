@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { ShoppingCart, Check, Loader2 } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
+import { analytics } from '@/lib/analytics';
+import { posthogLogs } from '@/lib/posthogLogs';
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -24,9 +26,12 @@ export function AddToCartButton({ productId, quantity = 1, disabled = false, cla
     setState('loading');
     try {
       await addItem(productId, quantity);
+      analytics.addToCart(productId, quantity);
+      posthogLogs.cartItemAdded(productId, quantity);
       setState('success');
       setTimeout(() => setState('idle'), 1800);
     } catch {
+      posthogLogs.cartItemAddFailed();
       setState('idle');
     }
   };

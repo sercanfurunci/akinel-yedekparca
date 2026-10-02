@@ -1,13 +1,12 @@
 import posthog from 'posthog-js';
 
-// Safe wrapper: swallows errors so analytics never breaks the UI
+export const isPostHogConfigured = Boolean(
+  process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST
+);
+
 const capture = (event: string, properties?: Record<string, unknown>) => {
-  if (typeof window === 'undefined') return;
-  try {
-    posthog.capture(event, properties);
-  } catch {
-    // Analytics must never break the app
-  }
+  if (typeof window === 'undefined' || !isPostHogConfigured) return;
+  posthog.capture(event, properties);
 };
 
 export const analytics = {
@@ -27,16 +26,8 @@ export const analytics = {
       price: product.price,
     }),
 
-  productSearched: (
-    query: string,
-    resultCount: number,
-    searchType: 'text' | 'oem' | 'vehicle'
-  ) =>
-    capture('product_searched', {
-      query,
-      result_count: resultCount,
-      search_type: searchType,
-    }),
+  productSearched: (searchType: 'text' | 'oem' | 'vehicle') =>
+    capture('product_searched', { search_type: searchType }),
 
   categoryViewed: (category: string, productCount?: number) =>
     capture('category_viewed', { category, product_count: productCount }),
@@ -57,6 +48,8 @@ export const analytics = {
       vehicle_engine: vehicle.engine,
     }),
 
+  vehicleSavedToGarage: () => capture('vehicle_saved_to_garage'),
+
   // ── VIN search ────────────────────────────────────────────────────────────
   vinSearchStarted: () => capture('vin_search_started'),
 
@@ -66,19 +59,10 @@ export const analytics = {
     capture('vin_search_completed', { found }),
 
   // ── Cart ─────────────────────────────────────────────────────────────────
-  addToCart: (product: {
-    id: string;
-    name: string;
-    brand: string;
-    quantity: number;
-    price: number;
-  }) =>
+  addToCart: (productId: string, quantity: number) =>
     capture('add_to_cart', {
-      product_id: product.id,
-      product_name: product.name,
-      brand: product.brand,
-      quantity: product.quantity,
-      price: product.price,
+      product_id: productId,
+      quantity,
     }),
 
   // ── Checkout funnel ───────────────────────────────────────────────────────
@@ -96,8 +80,13 @@ export const analytics = {
     }),
 
   // ── Auth ──────────────────────────────────────────────────────────────────
+  loginCompleted: () => capture('login_completed'),
   signupStarted: () => capture('signup_started'),
   signupCompleted: () => capture('signup_completed'),
+
+  // ── Product availability ─────────────────────────────────────────────────
+  stockNotificationRequested: (productId: string) =>
+    capture('stock_notification_requested', { product_id: productId }),
 };
 
 /*
@@ -113,13 +102,7 @@ export const analytics = {
  * VIN funnel:
  *   vin_search_started → vin_search_completed (found=true) → product_viewed
  *
- * Events NOT yet implemented (require code changes in listed components):
- *   - product_viewed: add to apps/web/src/app/(shop)/products/[slug]/page.tsx
- *   - add_to_cart: add to apps/web/src/components/cart/AddToCartButton.tsx (or cartStore)
- *   - vehicle_selected: add to apps/web/src/components/vehicle/VehicleFinder.tsx
- *   - vin_search_started/completed: add to apps/web/src/app/(shop)/vin/page.tsx
- *   - category_viewed: add to apps/web/src/app/(shop)/category/[slug]/page.tsx
- *   - brand_viewed: add to apps/web/src/app/(shop)/brands/[slug]/page.tsx (if exists)
- *   - signup_started/completed: add to apps/web/src/app/(auth)/register/page.tsx
- *   checkout_started and purchase_completed are wired below in their pages.
+ * Core discovery, cart, checkout, and authentication events are wired at their
+ * respective action handlers. Product, category, and brand view events remain
+ * intentionally uninstrumented because they would fire on page load.
  */

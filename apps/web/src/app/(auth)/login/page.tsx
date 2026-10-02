@@ -12,6 +12,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
+import { analytics } from '@/lib/analytics';
+import { posthogLogs } from '@/lib/posthogLogs';
 import type { AuthResponse } from '@/lib/types';
 
 const schema = z.object({
@@ -46,8 +48,11 @@ function LoginForm() {
     try {
       const res = await api.auth.login({ email: data.email, password: data.password }) as AuthResponse;
       setAuth(res.user, res.accessToken, res.refreshToken);
+      analytics.loginCompleted();
+      posthogLogs.loginCompleted(res.user.role);
       router.push(res.user.role === 'Admin' ? '/admin' : '/account');
     } catch {
+      posthogLogs.loginFailed();
       setError('E-posta veya şifre hatalı. Lütfen tekrar deneyin.');
     }
   };
