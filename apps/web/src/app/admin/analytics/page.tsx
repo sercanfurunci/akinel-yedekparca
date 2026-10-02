@@ -299,7 +299,7 @@ export default function AnalyticsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
         {/* Funnel */}
         <div className="lg:col-span-2 bg-white rounded-xl border p-5">
-          <h2 className="font-semibold mb-4">Dönüşüm Hunisi</h2>
+          <h2 className="font-semibold mb-4">Kullanıcı Akışı</h2>
           {loading ? (
             <div className="space-y-3">
               {[1, 2, 3, 4, 5].map((i) => (

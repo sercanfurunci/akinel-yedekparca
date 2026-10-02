@@ -18,7 +18,7 @@ import type { AuthResponse } from '@/lib/types';
 
 const schema = z.object({
   email: z.string().email('Geçerli bir e-posta adresi girin'),
-  password: z.string().min(1, 'Şifre gerekli'),
+  password: z.string().min(8, 'Şifre en az 8 karakter olmalı'),
   rememberMe: z.boolean().optional(),
 });
 

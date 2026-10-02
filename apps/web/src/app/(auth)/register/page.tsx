@@ -16,10 +16,13 @@ import { analytics } from '@/lib/analytics';
 import type { AuthResponse } from '@/lib/types';
 
 const schema = z.object({
-  firstName: z.string().min(1, 'Ad gerekli'),
-  lastName: z.string().min(1, 'Soyad gerekli'),
+  firstName: z.string().min(2, 'Ad en az 2 karakter olmalı'),
+  lastName: z.string().min(2, 'Soyad en az 2 karakter olmalı'),
   email: z.string().email('Geçerli bir e-posta adresi girin'),
-  password: z.string().min(6, 'Şifre en az 6 karakter olmalı'),
+  password: z.string()
+    .min(8, 'Şifre en az 8 karakter olmalı')
+    .regex(/[A-Z]/, 'Şifre en az bir büyük harf içermeli')
+    .regex(/[0-9]/, 'Şifre en az bir rakam içermeli'),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: 'Şifreler eşleşmiyor',
@@ -110,7 +113,7 @@ export default function RegisterPage() {
                 <Input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
-                  placeholder="En az 6 karakter"
+                  placeholder="En az 8 karakter, büyük harf ve rakam"
                   autoComplete="new-password"
                   className="pr-10 h-11 focus-visible:border-brand focus-visible:ring-brand/30"
                   {...register('password')}

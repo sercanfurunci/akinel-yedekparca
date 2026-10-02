@@ -15,15 +15,16 @@ import { toast } from '@/components/ui/toast';
 
 const DAY_NAMES = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
 
+const phoneRegex = /^(\+90|0)(5[0-9]{9})$/;
+
 const schema = z.object({
-  companyName: z.string().min(1),
+  companyName: z.string().min(1, 'Şirket adı zorunludur'),
   shortDescription: z.string().optional(),
   description: z.string().optional(),
-  logoUrl: z.string().optional(),
-  phone: z.string().optional(),
-  phone2: z.string().optional(),
-  whatsApp: z.string().optional(),
-  email: z.string().optional(),
+  phone: z.string().regex(phoneRegex, 'Geçerli bir numara girin (örn: +905xxxxxxxxx veya 05xxxxxxxxx)').or(z.literal('')).optional(),
+  phone2: z.string().regex(phoneRegex, 'Geçerli bir numara girin (örn: +905xxxxxxxxx veya 05xxxxxxxxx)').or(z.literal('')).optional(),
+  whatsApp: z.string().regex(/^905[0-9]{9}$/, 'Boşluksuz, 905 ile başlamalı (örn: 905xxxxxxxxx)').or(z.literal('')).optional(),
+  email: z.string().email('Geçerli bir e-posta girin (örn: info@sirket.com)').or(z.literal('')).optional(),
   address: z.string().optional(),
   district: z.string().optional(),
   city: z.string().optional(),
@@ -46,11 +47,12 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, children, error }: { label: string; children: React.ReactNode; error?: string }) {
   return (
     <div className="space-y-1">
       <Label className="text-xs text-muted-foreground">{label}</Label>
       {children}
+      {error && <p className="text-xs text-red-500">{error}</p>}
     </div>
   );
 }
@@ -75,7 +77,6 @@ export default function AdminBusinessPage() {
           companyName: biz.companyName,
           shortDescription: biz.shortDescription ?? '',
           description: biz.description ?? '',
-          logoUrl: biz.logoUrl ?? '',
           phone: biz.phone ?? '',
           phone2: biz.phone2 ?? '',
           whatsApp: biz.whatsApp ?? '',
@@ -116,7 +117,7 @@ export default function AdminBusinessPage() {
   if (loading) return <div className="flex items-center gap-2 text-muted-foreground"><Loader2 size={16} className="animate-spin" /> Yükleniyor...</div>;
 
   return (
-    <div className="max-w-3xl">
+    <div>
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold">İşletme Ayarları</h1>
@@ -129,7 +130,7 @@ export default function AdminBusinessPage() {
         <section className="rounded-xl border bg-card p-6 space-y-4">
           <h2 className="font-semibold text-sm">Genel Bilgiler</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Field label="Şirket / Görünen Ad">
+            <Field label="Şirket / Görünen Ad" error={errors.companyName?.message}>
               <Input {...register('companyName')} />
             </Field>
             <Field label="Website URL">
@@ -138,9 +139,6 @@ export default function AdminBusinessPage() {
           </div>
           <Field label="Kısa Açıklama">
             <Input {...register('shortDescription')} />
-          </Field>
-          <Field label="Logo URL">
-            <Input {...register('logoUrl')} placeholder="https://" />
           </Field>
           <Field label="Duyuru Bandı (| ile ayırın: Hızlı Teslimat | Kaliteli Ürün)">
             <Input {...register('announcementBanner')} placeholder="Hızlı Teslimat | Kaliteli Ürün | OEM Garantili" />
@@ -151,16 +149,16 @@ export default function AdminBusinessPage() {
         <section className="rounded-xl border bg-card p-6 space-y-4">
           <h2 className="font-semibold text-sm">İletişim</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Field label="Telefon 1">
+            <Field label="Telefon 1" error={errors.phone?.message}>
               <Input {...register('phone')} placeholder="+90 5xx xxx xx xx" />
             </Field>
-            <Field label="Telefon 2 (opsiyonel)">
+            <Field label="Telefon 2 (opsiyonel)" error={errors.phone2?.message}>
               <Input {...register('phone2')} placeholder="+90 5xx xxx xx xx" />
             </Field>
-            <Field label="WhatsApp (numara, boşluksuz)">
+            <Field label="WhatsApp (boşluksuz, örn: 905xxxxxxxxx)" error={errors.whatsApp?.message}>
               <Input {...register('whatsApp')} placeholder="905xxxxxxxxx" />
             </Field>
-            <Field label="E-posta">
+            <Field label="E-posta" error={errors.email?.message}>
               <Input {...register('email')} type="email" />
             </Field>
           </div>
