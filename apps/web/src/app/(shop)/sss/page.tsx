@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Sık Sorulan Sorular — AKINEL OTO YEDEK PARÇA',
+  title: { absolute: 'Sık Sorulan Sorular — AKINEL OTO YEDEK PARÇA' },
   description: 'Sipariş, iade, ödeme, araç uyumluluğu ve teslimat hakkında sık sorulan sorular.',
   alternates: { canonical: '/sss' },
 };

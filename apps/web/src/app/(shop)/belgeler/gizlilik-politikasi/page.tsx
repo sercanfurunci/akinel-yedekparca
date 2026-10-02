@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Gizlilik Politikası | AKINEL OTO YEDEK PARÇA',
+  title: { absolute: 'Gizlilik Politikası | AKINEL OTO YEDEK PARÇA' },
 };
 
 export default function GizlilikPolitikasiPage() {
@@ -199,6 +199,33 @@ export default function GizlilikPolitikasiPage() {
               </tbody>
             </table>
           </div>
+        </section>
+
+        <section>
+          <h2 className="text-base font-semibold mb-3">4a. Üçüncü Taraf API Hizmetleri — VIN/Şasi Sorgulama</h2>
+          <p className="mb-2">
+            Web sitemizin VIN (araç kimlik numarası) sorgulama özelliği kullanıldığında, girilen
+            VIN numarası ABD Ulusal Karayolu Trafik Güvenliği İdaresi&apos;nin (&ldquo;NHTSA&rdquo;)
+            kamuya açık veri API&apos;sine iletilmektedir:{' '}
+            <strong>vpic.nhtsa.dot.gov</strong>. Bu servis araç tipi, marka, model ve motor
+            bilgilerini döndürmek amacıyla kullanılmaktadır.
+          </p>
+          <ul className="list-disc pl-5 space-y-1 text-sm">
+            <li>NHTSA, ABD federal hükümetine bağlı bir kuruluştur; verilen VIN numarası bu kuruluşun sunucularına iletilir.</li>
+            <li>VIN numaranız sunucularımızda saklanmaz; yalnızca anlık araç bilgisi sorgusu için kullanılır.</li>
+            <li>
+              NHTSA&apos;nın gizlilik politikası için{' '}
+              <a
+                href="https://www.nhtsa.gov/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand hover:underline"
+              >
+                nhtsa.gov/privacy-policy
+              </a>{' '}
+              adresini ziyaret edebilirsiniz.
+            </li>
+          </ul>
         </section>
 
         <section>

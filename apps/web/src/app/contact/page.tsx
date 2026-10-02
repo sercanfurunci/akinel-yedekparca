@@ -5,6 +5,7 @@ import type { BusinessSettings } from '@/lib/types';
 export const metadata: Metadata = {
   title: 'İletişim',
   description: 'AKINEL Oto Yedek Parça iletişim bilgileri. Osmangazi Mh. Tuzla Cd. No:238/B, 41700 Darıca / Kocaeli. Tel: +90 539 462 41 49. Yol tarifi ve çalışma saatleri.',
+  alternates: { canonical: '/contact' },
 };
 
 const DAY_NAMES = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];

@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: product.name,
       description,
+      url: `/products/${slug}`,
       images: ogImage ? [{ url: ogImage }] : [],
     },
     twitter: {
@@ -55,6 +56,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         '@context': 'https://schema.org',
         '@type': 'Product',
         name: product.name,
+        url: `${SITE_URL}/products/${slug}`,
         brand: { '@type': 'Brand', name: product.brandName },
         sku: product.sku ?? product.partNumber ?? undefined,
         description: product.description ?? undefined,
@@ -71,12 +73,30 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       }
     : null;
 
+  const breadcrumbLd = product
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Ürünler', item: `${SITE_URL}/products` },
+          { '@type': 'ListItem', position: 3, name: product.name, item: `${SITE_URL}/products/${slug}` },
+        ],
+      }
+    : null;
+
   return (
     <>
       {jsonLd && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      {breadcrumbLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
         />
       )}
       <ProductDetailClient params={params} />

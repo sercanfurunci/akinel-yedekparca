@@ -15,18 +15,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     const base = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5100';
-    const res = await fetch(`${base}/api/products?pageSize=500&pageNumber=1`, {
-      next: { revalidate: 3600 },
-    });
-    if (res.ok) {
-      const data = await res.json();
-      const productPages: MetadataRoute.Sitemap = (data.items ?? []).map((p: { slug: string; updatedAt?: string }) => ({
-        url: `${SITE_URL}/products/${p.slug}`,
-        lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.7,
-      }));
-      return [...staticPages, ...productPages];
+
+    const [productsRes, categoriesRes] = await Promise.all([
+      fetch(`${base}/api/products?pageSize=500&pageNumber=1`, { next: { revalidate: 3600 } }),
+      fetch(`${base}/api/categories`, { next: { revalidate: 3600 } }),
+    ]);
+
+    const productPages: MetadataRoute.Sitemap = productsRes.ok
+      ? (await productsRes.json()).items?.map((p: { slug: string; updatedAt?: string }) => ({
+          url: `${SITE_URL}/products/${p.slug}`,
+          lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),
+          changeFrequency: 'weekly' as const,
+          priority: 0.7,
+        })) ?? []
+      : [];
+
+    const categoryPages: MetadataRoute.Sitemap = categoriesRes.ok
+      ? (await categoriesRes.json()).map?.((c: { slug: string; updatedAt?: string }) => ({
+          url: `${SITE_URL}/kategori/${c.slug}`,
+          lastModified: c.updatedAt ? new Date(c.updatedAt) : new Date(),
+          changeFrequency: 'weekly' as const,
+          priority: 0.75,
+        })) ?? []
+      : [];
+
+    if (productPages.length > 0 || categoryPages.length > 0) {
+      return [...staticPages, ...categoryPages, ...productPages];
     }
   } catch {
     // return static pages only if API is unavailable

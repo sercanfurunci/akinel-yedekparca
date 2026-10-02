@@ -5,6 +5,7 @@ import { Search, Car, Gauge, MapPin, Package, ExternalLink } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Hakkımızda',
   description: 'AKINEL Oto Yedek Parça hakkında bilgi edinin. Darıca, Kocaeli\'de faaliyet gösteren otomotiv yedek parça mağazamız OEM numarası ve araç seçimiyle hizmet vermektedir.',
+  alternates: { canonical: '/about' },
 };
 
 const features = [

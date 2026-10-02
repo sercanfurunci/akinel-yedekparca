@@ -33,7 +33,7 @@ export function CategoryStrip({ categories }: Props) {
           {roots.map((cat, i) => (
             <Link
               key={cat.id}
-              href={`/products?categoryId=${cat.id}`}
+              href={`/kategori/${cat.slug}`}
               className={`flex flex-col items-center gap-3 rounded-xl border border-border bg-white hover:border-brand hover:-translate-y-0.5 hover:shadow-md transition-all text-center group overflow-hidden${i >= 4 ? ' hidden sm:flex' : ''}`}
             >
               <div className="relative w-full aspect-[4/3] sm:aspect-square overflow-hidden bg-muted">

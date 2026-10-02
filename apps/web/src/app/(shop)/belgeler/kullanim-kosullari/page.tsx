@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Kullanım Koşulları | AKINEL OTO YEDEK PARÇA',
+  title: { absolute: 'Kullanım Koşulları | AKINEL OTO YEDEK PARÇA' },
 };
 
 export default function KullanimKosullariPage() {
