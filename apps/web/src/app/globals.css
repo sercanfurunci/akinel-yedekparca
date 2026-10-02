@@ -128,6 +128,20 @@
   --sidebar-ring: #E31E24;
 }
 
+/* Fallback for browsers that don't support @layer (Chrome < 99 / old Android).
+   These rules apply everywhere; modern browsers apply Tailwind on top. */
+body {
+  background-color: #FFFFFF;
+  color: #111827;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+img { max-width: 100%; height: auto; }
+*, *::before, *::after { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
