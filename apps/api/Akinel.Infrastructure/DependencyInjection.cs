@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Akinel.Infrastructure;
 
@@ -17,6 +18,8 @@ public static class DependencyInjection
     {
         services.Configure<SessionSettings>(configuration.GetSection("SessionSettings"));
         services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
+        services.Configure<FeatureFlags>(configuration.GetSection("Features"));
+        services.AddSingleton<IFeatureFlagService, FeatureFlagService>();
 
         var connStr = configuration.GetConnectionString("DefaultConnection")
             ?? Environment.GetEnvironmentVariable("DATABASE_URL");

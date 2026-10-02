@@ -47,7 +47,7 @@ export default function BrandsPage() {
           {brands.map((brand) => (
             <Link
               key={brand.id}
-              href={`/products?brandId=${brand.id}`}
+              href={`/marka/${brand.slug}`}
               className="flex items-center justify-center px-4 py-5 rounded-xl border bg-card hover:border-brand hover:bg-brand-muted/20 hover:text-brand transition-all text-sm font-semibold text-center"
             >
               {brand.name}

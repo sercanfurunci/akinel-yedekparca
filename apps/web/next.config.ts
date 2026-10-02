@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSentryConfig } from "@sentry/nextjs/config";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -16,8 +17,8 @@ const securityHeaders = [
       isDev ? "img-src 'self' data: blob: https: http://localhost:5100" : "img-src 'self' data: blob: https:",
       "font-src 'self'",
       isDev
-        ? "connect-src 'self' http://localhost:5100 ws://localhost:3000"
-        : "connect-src 'self' https://akinelotoyedekparca-api.railway.app https://*.railway.app",
+        ? "connect-src 'self' http://localhost:5100 ws://localhost:3000 https://*.sentry.io https://*.ingest.sentry.io https://eu.i.posthog.com https://eu.posthog.com"
+        : "connect-src 'self' https://akinelotoyedekparca-api.railway.app https://*.railway.app https://*.sentry.io https://*.ingest.sentry.io https://eu.i.posthog.com https://eu.posthog.com /monitoring",
       "frame-src https://www.google.com https://maps.google.com",
       "frame-ancestors 'none'",
     ].join("; "),
@@ -31,15 +32,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
-    // Allow the image optimizer to fetch from localhost (dev only — local IP blocked by default)
     dangerouslyAllowSVG: false,
     ...(isDev && { dangerouslyAllowLocalIP: true } as object),
     remotePatterns: [
-      // Dev API — product/category/hero images come from here
       { protocol: "http", hostname: "localhost", port: "5100", pathname: "/**" },
-      // Prod API
       { protocol: "https", hostname: "akinelotoyedekparca-api.railway.app", pathname: "/**" },
-      // Future Railway subdomains
       { protocol: "https", hostname: "*.railway.app", pathname: "/**" },
     ],
   },
@@ -53,4 +50,12 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  silent: !process.env.CI,
+  // Source map upload requires SENTRY_AUTH_TOKEN + SENTRY_ORG + SENTRY_PROJECT
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
+  // Tunnel Sentry requests through /monitoring to avoid ad blockers
+  tunnelRoute: "/monitoring",
+});

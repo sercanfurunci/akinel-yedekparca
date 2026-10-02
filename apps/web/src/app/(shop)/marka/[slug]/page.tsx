@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { API_BASE } from '@/lib/api';
+import BrandPageContent from './BrandPageContent';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -50,6 +51,23 @@ export default async function MarkaPage({ params }: Props) {
     notFound();
   }
 
-  // Redirect to /products filtered by brand ID
-  redirect(`/products?brandId=${brand.id}`);
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: 'https://akinelotoyedekparca.com.tr' },
+      { '@type': 'ListItem', position: 2, name: 'Markalar', item: 'https://akinelotoyedekparca.com.tr/brands' },
+      { '@type': 'ListItem', position: 3, name: brand.name, item: `https://akinelotoyedekparca.com.tr/marka/${slug}` },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <BrandPageContent brandId={brand.id} brandName={brand.name} slug={slug} />
+    </>
+  );
 }

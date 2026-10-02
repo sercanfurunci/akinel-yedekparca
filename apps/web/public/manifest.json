@@ -1,0 +1,16 @@
+{
+  "name": "AKINEL OTO YEDEK PARÇA",
+  "short_name": "Akinel",
+  "description": "Otomotiv yedek parçaları — OEM arama, araç uyumlu parça bulma",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#E42424",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

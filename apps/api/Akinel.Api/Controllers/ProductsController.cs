@@ -34,6 +34,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet("search")]
+    [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("search")]
     public async Task<IActionResult> Search([FromQuery] ProductSearchQuery filter, CancellationToken ct)
         => Ok(await _searchService.SearchAsync(filter, ct));
 

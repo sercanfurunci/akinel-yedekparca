@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { api, API_BASE } from '@/lib/api';
 import { useCartStore } from '@/store/cartStore';
 import { useAuthStore } from '@/store/authStore';
+import { analytics } from '@/lib/analytics';
 import { formatPrice, getImageUrl } from '@/lib/utils';
 import type { Order } from '@/lib/types';
 import { Button } from '@/components/ui/button';
@@ -90,6 +91,7 @@ export default function CheckoutPage() {
       return;
     }
 
+    analytics.checkoutStarted(totalItems, subTotal);
     setSubmitting(true);
     setError('');
 
@@ -128,6 +130,7 @@ export default function CheckoutPage() {
       const order = await res.json() as Order;
       // Clear local cart state
       await fetchCart();
+      analytics.purchaseCompleted(order.orderNumber, totalItems, subTotal);
       router.push(`/order-confirmation?orderNumber=${order.orderNumber}&orderId=${order.id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Sipariş oluşturulamadı.');

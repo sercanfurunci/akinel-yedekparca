@@ -81,9 +81,9 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
               <div className="w-12 h-1 bg-brand rounded-full mb-4" />
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#111827]">
-                AKINEL OTO YEDEK PARÇA
-              </h2>
+              <h1 className="text-2xl md:text-3xl font-bold mb-4 text-[#111827]">
+                Aracınız için doğru yedek parçayı bulun
+              </h1>
               <p className="text-muted-foreground text-base leading-relaxed">
                 Otomobil ve ticari araçlar için geniş yedek parça seçenekleri.
                 OEM numarasıyla arama, araç bazlı uyumlu parça bulma ve anlık stok bilgisi.
@@ -124,7 +124,7 @@ export default function HomePage() {
               {brands.map((brand) => (
                 <Link
                   key={brand.id}
-                  href={`/products?brandId=${brand.id}`}
+                  href={`/marka/${brand.slug}`}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border bg-white hover:border-brand hover:text-brand hover:shadow-sm transition-all text-sm font-semibold text-[#111827]"
                 >
                   {brand.name}
@@ -170,7 +170,23 @@ export default function HomePage() {
                 </div>
               </div>
             ) : (
-              <VehicleFinder showSaveButton />
+              <>
+                <VehicleFinder showSaveButton />
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link
+                    href="/products"
+                    className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-11 px-5')}
+                  >
+                    Tüm Ürünlere Gözat
+                  </Link>
+                  <Link
+                    href="/products"
+                    className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-5')}
+                  >
+                    Ürünleri Keşfet
+                  </Link>
+                </div>
+              </>
             )}
           </div>
         </div>

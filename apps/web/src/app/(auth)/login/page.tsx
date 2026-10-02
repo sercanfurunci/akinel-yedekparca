@@ -108,7 +108,7 @@ function LoginForm() {
           />
           Beni Hatırla
         </label>
-        <Link href="#" className="text-xs text-brand font-semibold hover:underline">
+        <Link href="/contact" className="text-xs text-brand font-semibold hover:underline">
           Şifremi Unuttum
         </Link>
       </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { PublicShell } from '@/components/layout/PublicShell';
+import { PostHogProvider } from '@/components/analytics/PostHogProvider';
 
 const SITE_URL = 'https://akinelotoyedekparca.com.tr';
 const SITE_NAME = 'AKINEL OTO YEDEK PARÇA';
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     icon: '/favicon.png',
     apple: '/favicon.png',
   },
+  manifest: '/manifest.json',
   openGraph: {
     type: 'website',
     locale: 'tr_TR',
@@ -77,7 +79,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-sans min-h-screen flex flex-col">
-        <PublicShell>{children}</PublicShell>
+        <PostHogProvider>
+          <PublicShell>{children}</PublicShell>
+        </PostHogProvider>
       </body>
     </html>
   );

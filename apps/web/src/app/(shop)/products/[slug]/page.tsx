@@ -2,6 +2,13 @@ import type { Metadata } from 'next';
 import ProductDetailClient from './ProductDetailClient';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5100';
+const SITE_URL = 'https://akinelotoyedekparca.com.tr';
+
+function absoluteImageUrl(path: string | undefined): string | null {
+  if (!path) return null;
+  if (API_BASE.startsWith('http://localhost')) return null;
+  return `${API_BASE}${path}`;
+}
 
 async function fetchProduct(slug: string) {
   try {
@@ -17,15 +24,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const product = await fetchProduct(slug);
   if (!product) return { title: 'Ürün Bulunamadı' };
+  const description = product.description
+    ? product.description.slice(0, 160)
+    : `${product.brandName} ${product.name} — OEM uyumlu yedek parça.`;
+  const ogImage = absoluteImageUrl(product.primaryImageUrl);
   return {
     title: `${product.name} — AKINEL OTO YEDEK PARÇA`,
-    description: product.description
-      ? product.description.slice(0, 160)
-      : `${product.brandName} ${product.name} — OEM uyumlu yedek parça.`,
+    description,
+    alternates: { canonical: `/products/${slug}` },
     openGraph: {
       title: product.name,
-      description: product.description?.slice(0, 160),
-      images: product.primaryImageUrl ? [{ url: `${API_BASE}${product.primaryImageUrl}` }] : [],
+      description,
+      images: ogImage ? [{ url: ogImage }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image' as const,
+      title: product.name,
+      description,
+      images: ogImage ? [ogImage] : [],
     },
   };
 }
@@ -42,7 +58,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         brand: { '@type': 'Brand', name: product.brandName },
         sku: product.sku ?? product.partNumber ?? undefined,
         description: product.description ?? undefined,
-        image: product.primaryImageUrl ? `${API_BASE}${product.primaryImageUrl}` : undefined,
+        image: absoluteImageUrl(product.primaryImageUrl) ?? undefined,
         offers: {
           '@type': 'Offer',
           priceCurrency: product.currency ?? 'TRY',

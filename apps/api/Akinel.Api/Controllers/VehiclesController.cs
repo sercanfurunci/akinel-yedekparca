@@ -11,12 +11,14 @@ public class VehiclesController : ControllerBase
 {
     private readonly IVehicleService _vehicleService;
     private readonly IProductService _productService;
+    private readonly IFeatureFlagService _features;
     private readonly AkinelDbContext _db;
 
-    public VehiclesController(IVehicleService vehicleService, IProductService productService, AkinelDbContext db)
+    public VehiclesController(IVehicleService vehicleService, IProductService productService, IFeatureFlagService features, AkinelDbContext db)
     {
         _vehicleService = vehicleService;
         _productService = productService;
+        _features = features;
         _db = db;
     }
 
@@ -100,9 +102,12 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpPost("vin-decode")]
-    [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("login")]
+    [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("vin")]
     public async Task<IActionResult> DecodeVin([FromBody] VinDecodeRequest request, CancellationToken ct)
     {
+        if (!_features.IsEnabled("VinSearch"))
+            return StatusCode(503, new { message = "VIN arama şu anda kullanılamamaktadır." });
+
         if (string.IsNullOrWhiteSpace(request.Vin) || request.Vin.Trim().Length != 17)
             return BadRequest(new { message = "VIN 17 karakter olmalıdır." });
 
