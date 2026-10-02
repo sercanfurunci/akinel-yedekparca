@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import '../../sentry.client.config';
 import { PublicShell } from '@/components/layout/PublicShell';
 import { PostHogProvider } from '@/components/analytics/PostHogProvider';
+import { SentryProvider } from '@/components/SentryProvider';
 import type { BusinessSettings } from '@/lib/types';
 
 const SITE_URL = 'https://akinelotoyedekparca.com.tr';
@@ -104,9 +104,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </head>
       <body className="font-sans min-h-screen flex flex-col">
-        <PostHogProvider>
-          <PublicShell>{children}</PublicShell>
-        </PostHogProvider>
+        <SentryProvider>
+          <PostHogProvider>
+            <PublicShell>{children}</PublicShell>
+          </PostHogProvider>
+        </SentryProvider>
       </body>
     </html>
   );
