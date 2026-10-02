@@ -1,7 +1,7 @@
 import posthog from 'posthog-js';
 
-const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+const key = process.env.NEXT_PUBLIC_POSTHOG_KEY ?? 'phc_sh2NfoVJFKxNGUkXK8NLGja62V7UWyj9U3T4hwCZCDJq';
+const host = process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://eu.i.posthog.com';
 const missingVariable = !key
   ? 'NEXT_PUBLIC_POSTHOG_KEY'
   : !host
@@ -23,8 +23,4 @@ if (key && host) {
     },
     debug: process.env.NODE_ENV === 'development',
   });
-} else if (process.env.NODE_ENV === 'development') {
-  throw new Error(
-    `${missingVariable} variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once ${missingVariable} is configured`
-  );
 }
