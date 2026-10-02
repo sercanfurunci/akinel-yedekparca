@@ -179,7 +179,7 @@ export function GlobalSearch({ defaultValue = '', className, size = 'default', a
           aria-autocomplete="list"
           autoComplete="off"
           className={cn(
-            'w-full rounded-lg border border-input bg-background pl-10 pr-20 text-sm cursor-text focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand transition-colors placeholder:text-muted-foreground',
+            'w-full rounded-lg border border-input bg-background text-foreground pl-10 pr-20 text-sm cursor-text focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand transition-colors placeholder:text-muted-foreground',
             size === 'lg' ? 'h-12 text-base pl-12 pr-24' : 'h-10'
           )}
         />
