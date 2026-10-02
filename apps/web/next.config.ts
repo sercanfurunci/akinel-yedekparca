@@ -31,6 +31,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    // Allow the image optimizer to fetch from localhost (dev only — local IP blocked by default)
+    dangerouslyAllowSVG: false,
+    ...(isDev && { dangerouslyAllowLocalIP: true } as object),
     remotePatterns: [
       // Dev API — product/category/hero images come from here
       { protocol: "http", hostname: "localhost", port: "5100", pathname: "/**" },

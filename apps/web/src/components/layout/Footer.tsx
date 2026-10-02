@@ -31,7 +31,7 @@ export function Footer() {
           {/* Column 1 — Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4">
-              <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-11 w-auto" />
+              <img src="/logo.webp" alt="AKINEL OTO YEDEK PARÇA" className="h-11 w-auto" />
             </div>
             <p className="text-sm text-white/60 leading-relaxed">
               {biz?.shortDescription ?? 'Otomotiv yedek parçalarını araç, OEM numarası ve parça bilgisine göre kolayca bulun.'}

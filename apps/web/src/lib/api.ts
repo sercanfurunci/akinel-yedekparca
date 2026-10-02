@@ -66,12 +66,43 @@ async function uploadFile<T>(path: string, formData: FormData): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+// Inflight dedup map for anonymous GET requests — if the same URL is already
+// in-flight, share the promise. Clears automatically when the request settles.
+// Does NOT cache results; only prevents simultaneous duplicate network calls.
+const _inflight = new Map<string, Promise<unknown>>();
+
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const { headers: extraHeaders, ...restOptions } = options ?? {};
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
     ...(extraHeaders as Record<string, string>),
   };
+
+  const isAnonymousGet = !options?.method || options.method === 'GET';
+  const isUnauthenticated = !headers['Authorization'];
+
+  if (isAnonymousGet && isUnauthenticated) {
+    const key = path;
+    const existing = _inflight.get(key);
+    if (existing) return existing as Promise<T>;
+    const promise = fetch(`${API_BASE}${path}`, { headers, ...restOptions })
+      .then(async (res) => {
+        _inflight.delete(key);
+        if (res.status === 401) {
+          const body = await res.json().catch(() => null) as { message?: string } | null;
+          throw new Error(body?.message ?? `API error: ${res.status}`);
+        }
+        if (!res.ok) {
+          const body = await res.json().catch(() => null) as { message?: string } | null;
+          throw new Error(body?.message ?? `API error: ${res.status} ${res.statusText}`);
+        }
+        if (res.status === 204) return undefined;
+        return res.json();
+      })
+      .catch((e) => { _inflight.delete(key); throw e; });
+    _inflight.set(key, promise);
+    return promise as Promise<T>;
+  }
 
   const res = await fetch(`${API_BASE}${path}`, { headers, ...restOptions });
 
@@ -106,25 +137,30 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
   return res.json();
 }
 
-// Module-level cache for business settings — these rarely change, and both
-// Header and BusinessStrip need them on every page load. One fetch per session.
-let businessSettingsCache: unknown = null;
-let businessSettingsInflight: Promise<unknown> | null = null;
-function getBusinessSettings(): Promise<unknown> {
-  if (businessSettingsCache !== null) return Promise.resolve(businessSettingsCache);
-  if (businessSettingsInflight) return businessSettingsInflight;
-  businessSettingsInflight = request('/api/business/settings')
-    .then((d) => {
-      businessSettingsCache = d;
-      businessSettingsInflight = null;
-      return d;
-    })
-    .catch((e) => {
-      businessSettingsInflight = null;
-      throw e;
-    });
-  return businessSettingsInflight;
+// Generic session-scoped cache + inflight dedup for stable, read-only endpoints.
+// Prevents duplicate network requests when the same endpoint is called by multiple
+// components on mount (e.g. Zustand hydration triggering extra renders).
+function makeSessionCache<T>(fetcher: () => Promise<T>): { get: () => Promise<T>; invalidate: () => void } {
+  let cache: T | null = null;
+  let inflight: Promise<T> | null = null;
+  return {
+    get(): Promise<T> {
+      if (cache !== null) return Promise.resolve(cache);
+      if (inflight) return inflight;
+      inflight = fetcher()
+        .then((d) => { cache = d; inflight = null; return d; })
+        .catch((e) => { inflight = null; throw e; });
+      return inflight;
+    },
+    invalidate() { cache = null; inflight = null; },
+  };
 }
+
+const _brandCache    = makeSessionCache<unknown>(() => request('/api/brands'));
+const _categoryCache = makeSessionCache<unknown>(() => request('/api/categories'));
+const _heroCache     = makeSessionCache<unknown>(() => request('/api/hero/slides'));
+const _makesCache    = makeSessionCache<unknown>(() => request('/api/vehicles/makes'));
+const _bizCache      = makeSessionCache<unknown>(() => request('/api/business/settings'));
 
 export const api = {
   products: {
@@ -144,14 +180,14 @@ export const api = {
       }),
   },
   categories: {
-    list: () => request('/api/categories'),
+    list: () => _categoryCache.get(),
   },
   search: {
     suggest: (q: string) =>
       request(`/api/search/suggest?q=${encodeURIComponent(q)}`),
   },
   vehicles: {
-    makes: () => request('/api/vehicles/makes'),
+    makes: () => _makesCache.get(),
     models: (makeId: string) => request(`/api/vehicles/makes/${makeId}/models`),
     generations: (modelId: string) => request(`/api/vehicles/models/${modelId}/generations`),
     engines: (generationId: string) => request(`/api/vehicles/generations/${generationId}/engines`),
@@ -179,17 +215,15 @@ export const api = {
       request(`/api/garage/${id}/default`, { method: 'PUT', headers: { Authorization: `Bearer ${token}` } }),
   },
   brands: {
-    list: () => request('/api/brands'),
+    list: () => _brandCache.get(),
   },
   hero: {
-    slides: () => request('/api/hero/slides'),
+    slides: () => _heroCache.get(),
   },
   business: {
-    settings: () => getBusinessSettings(),
+    settings: () => _bizCache.get(),
     updateSettings: (data: unknown, token: string) => {
-      // Invalidate cache on write
-      businessSettingsCache = null;
-      businessSettingsInflight = null;
+      _bizCache.invalidate();
       return request('/api/business/settings', { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } });
     },
   },
@@ -252,23 +286,18 @@ export const api = {
     brands: {
       list: (token: string) =>
         request('/api/admin/brands', { headers: { Authorization: `Bearer ${token}` } }),
-      create: (data: unknown, token: string) =>
-        request('/api/admin/brands', { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
-      update: (id: string, data: unknown, token: string) =>
-        request(`/api/admin/brands/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
-      delete: (id: string, token: string) =>
-        request(`/api/admin/brands/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
+      create: (data: unknown, token: string) => { _brandCache.invalidate(); return request('/api/admin/brands', { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }); },
+      update: (id: string, data: unknown, token: string) => { _brandCache.invalidate(); return request(`/api/admin/brands/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }); },
+      delete: (id: string, token: string) => { _brandCache.invalidate(); return request(`/api/admin/brands/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }); },
     },
     categories: {
       list: (token: string) =>
         request('/api/admin/categories', { headers: { Authorization: `Bearer ${token}` } }),
-      create: (data: unknown, token: string) =>
-        request('/api/admin/categories', { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
-      update: (id: string, data: unknown, token: string) =>
-        request(`/api/admin/categories/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
-      delete: (id: string, token: string) =>
-        request(`/api/admin/categories/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
+      create: (data: unknown, token: string) => { _categoryCache.invalidate(); return request('/api/admin/categories', { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }); },
+      update: (id: string, data: unknown, token: string) => { _categoryCache.invalidate(); return request(`/api/admin/categories/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }); },
+      delete: (id: string, token: string) => { _categoryCache.invalidate(); return request(`/api/admin/categories/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }); },
       uploadImage: (id: string, file: File, token: string) => {
+        _categoryCache.invalidate();
         const form = new FormData();
         form.append('file', file);
         return request(`/api/admin/categories/${id}/image`, { method: 'POST', body: form, headers: { Authorization: `Bearer ${token}` } });
@@ -277,19 +306,16 @@ export const api = {
     hero: {
       list: (token: string) =>
         request('/api/admin/hero/slides', { headers: { Authorization: `Bearer ${token}` } }),
-      create: (data: { title?: string; subtitle?: string; ctaText?: string; ctaUrl?: string; displayOrder?: number; isActive?: boolean }, token: string) =>
-        request('/api/admin/hero/slides', { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
-      update: (id: string, data: { title?: string; subtitle?: string; ctaText?: string; ctaUrl?: string; displayOrder?: number; isActive?: boolean }, token: string) =>
-        request(`/api/admin/hero/slides/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
+      create: (data: { title?: string; subtitle?: string; ctaText?: string; ctaUrl?: string; displayOrder?: number; isActive?: boolean }, token: string) => { _heroCache.invalidate(); return request('/api/admin/hero/slides', { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }); },
+      update: (id: string, data: { title?: string; subtitle?: string; ctaText?: string; ctaUrl?: string; displayOrder?: number; isActive?: boolean }, token: string) => { _heroCache.invalidate(); return request(`/api/admin/hero/slides/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }); },
       uploadImage: async (id: string, file: File, _token?: string) => {
+        _heroCache.invalidate();
         const formData = new FormData();
         formData.append('file', file);
         return uploadFile(`/api/admin/hero/slides/${id}/image`, formData);
       },
-      toggle: (id: string, token: string) =>
-        request(`/api/admin/hero/slides/${id}/toggle`, { method: 'PATCH', headers: { Authorization: `Bearer ${token}` } }),
-      delete: (id: string, token: string) =>
-        request(`/api/admin/hero/slides/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
+      toggle: (id: string, token: string) => { _heroCache.invalidate(); return request(`/api/admin/hero/slides/${id}/toggle`, { method: 'PATCH', headers: { Authorization: `Bearer ${token}` } }); },
+      delete: (id: string, token: string) => { _heroCache.invalidate(); return request(`/api/admin/hero/slides/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }); },
     },
     vehicles: {
       getMakes: (token: string, params?: { search?: string; page?: number; pageSize?: number }) => {

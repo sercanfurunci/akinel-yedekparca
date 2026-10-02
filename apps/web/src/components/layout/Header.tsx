@@ -102,7 +102,7 @@ export function Header() {
               aria-label="AKINEL OTO YEDEK PARÇA — Ana sayfa"
               title="Ana sayfa"
             >
-              <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-10 sm:h-11 w-auto max-w-[120px] sm:max-w-[160px] object-contain" />
+              <img src="/logo.webp" alt="AKINEL OTO YEDEK PARÇA" className="h-10 sm:h-11 w-auto max-w-[120px] sm:max-w-[160px] object-contain" />
             </Link>
 
             {/* Search bar — flex-1 center */}

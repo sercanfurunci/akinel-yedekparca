@@ -38,7 +38,7 @@ export function MobileNav() {
       <SheetContent side="left" className="w-80 p-0 bg-[#111827] text-white border-0 flex flex-col">
         <SheetHeader className="border-b border-white/10 px-5 py-5 shrink-0">
           <SheetTitle className="text-left">
-            <img src="/logo.png" alt="AKINEL OTO YEDEK PARÇA" className="h-10 w-auto" />
+            <img src="/logo.webp" alt="AKINEL OTO YEDEK PARÇA" className="h-10 w-auto" />
           </SheetTitle>
         </SheetHeader>
         <nav className="flex flex-col p-4 gap-1 overflow-y-auto flex-1" aria-label="Mobil menü">
