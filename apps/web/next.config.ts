@@ -18,7 +18,7 @@ const securityHeaders = [
       "font-src 'self'",
       isDev
         ? "connect-src 'self' http://localhost:5100 ws://localhost:3000 https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://eu.i.posthog.com https://eu.posthog.com"
-        : "connect-src 'self' https://akinelotoyedekparca-api.railway.app https://*.railway.app https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://eu.i.posthog.com https://eu.posthog.com /monitoring",
+        : "connect-src 'self' https://akinelotoyedekparca-api.railway.app https://*.railway.app https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://eu.i.posthog.com https://eu.posthog.com",
       "frame-src https://www.google.com https://maps.google.com",
       "frame-ancestors 'none'",
     ].join("; "),
