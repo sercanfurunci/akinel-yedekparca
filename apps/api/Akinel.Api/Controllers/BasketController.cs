@@ -28,8 +28,9 @@ public class BasketController : ControllerBase
         Response.Cookies.Append(SessionCookieName, newId, new CookieOptions
         {
             HttpOnly = true,
-            SameSite = SameSiteMode.Lax,
-            Secure = !_env.IsDevelopment(), // true in production, false in development
+            // SameSite=None required for cross-origin requests (frontend on different domain than API)
+            SameSite = _env.IsDevelopment() ? SameSiteMode.Lax : SameSiteMode.None,
+            Secure = !_env.IsDevelopment(),
             Expires = DateTimeOffset.UtcNow.AddDays(30),
         });
         return newId;
