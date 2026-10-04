@@ -15,6 +15,6 @@ export const useVehicleStore = create<VehicleStore>()(
       setSelectedVehicle: (vehicle) => set({ selectedVehicle: vehicle }),
       clearVehicle: () => set({ selectedVehicle: null }),
     }),
-    { name: 'akinel-vehicle-context' }
+    { name: 'akinel-vehicle-context', skipHydration: true }
   )
 );

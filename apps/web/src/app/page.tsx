@@ -26,6 +26,7 @@ const trustItems = [
 
 export default function HomePage() {
   const { selectedVehicle } = useVehicleStore();
+  const [mounted, setMounted] = useState(false);
   const [products, setProducts] = useState<ProductListItem[]>([]);
   const [brands, setBrands] = useState<Brand[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -33,6 +34,7 @@ export default function HomePage() {
   const [heroSlides, setHeroSlides] = useState<HeroSlide[] | null>(null);
 
   useEffect(() => {
+    setMounted(true);
     api.products
       .list({ inStockOnly: 'true', page: '1', pageSize: '8' })
       .then((data) => {
@@ -146,7 +148,7 @@ export default function HomePage() {
                 Aracınızı seçin, uyumlu parçaları anında görüntüleyin.
               </p>
             </div>
-            {selectedVehicle ? (
+            {mounted && selectedVehicle ? (
               <div className="space-y-4">
                 <div className="flex items-center gap-3 rounded-lg bg-brand-muted border border-brand/20 px-4 py-3.5">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand text-white">

@@ -34,8 +34,11 @@ export function Header() {
   const { selectedVehicle } = useVehicleStore();
   const { totalItems, openCart, fetchCart } = useCartStore();
   const [biz, setBiz] = useState<BusinessSettings | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    useVehicleStore.persist.rehydrate();
     fetchCart();
   }, [fetchCart]);
 
@@ -224,7 +227,7 @@ export function Header() {
       </div>
 
       {/* Vehicle context chip row */}
-      {selectedVehicle && (
+      {mounted && selectedVehicle && (
         <div className="border-b border-border bg-brand-muted">
           <div className="container mx-auto px-4 max-w-7xl py-1.5">
             <VehicleContextChip />
