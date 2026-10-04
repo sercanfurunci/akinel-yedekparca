@@ -14,7 +14,6 @@ public class BusinessController : ControllerBase
     public BusinessController(IBusinessSettingsService service) => _service = service;
 
     [HttpGet("settings")]
-    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
     public async Task<IActionResult> GetSettings(CancellationToken ct)
     {
         var settings = await _service.GetAsync(ct);

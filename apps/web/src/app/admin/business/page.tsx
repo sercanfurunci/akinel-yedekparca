@@ -108,7 +108,36 @@ export default function AdminBusinessPage() {
     setSaving(true);
     try {
       await api.business.updateSettings(data, accessToken);
+      // Re-fetch to confirm saved values from server
+      const fresh = await api.business.settings() as BusinessSettings;
+      reset({
+        companyName: fresh.companyName,
+        shortDescription: fresh.shortDescription ?? '',
+        description: fresh.description ?? '',
+        phone: fresh.phone ?? '',
+        phone2: fresh.phone2 ?? '',
+        whatsApp: fresh.whatsApp ?? '',
+        email: fresh.email ?? '',
+        address: fresh.address ?? '',
+        district: fresh.district ?? '',
+        city: fresh.city ?? '',
+        country: fresh.country ?? '',
+        postalCode: fresh.postalCode ?? '',
+        googleMapsUrl: fresh.googleMapsUrl ?? '',
+        googleMapsEmbedUrl: fresh.googleMapsEmbedUrl ?? '',
+        websiteUrl: fresh.websiteUrl ?? '',
+        instagramUrl: fresh.instagramUrl ?? '',
+        facebookUrl: fresh.facebookUrl ?? '',
+        linkedInUrl: fresh.linkedInUrl ?? '',
+        announcementBanner: fresh.announcementBanner ?? '',
+        workingHours: Array.from({ length: 7 }, (_, i) => {
+          const h = fresh.workingHours.find(w => w.dayOfWeek === i);
+          return { dayOfWeek: i, isOpen: h?.isOpen ?? false, openTime: h?.openTime ?? '09:00', closeTime: h?.closeTime ?? '19:00' };
+        }),
+      });
       toast.add({ title: 'Kaydedildi', description: 'İşletme ayarları başarıyla güncellendi.', type: 'success' });
+    } catch {
+      toast.add({ title: 'Hata', description: 'Ayarlar kaydedilemedi.', type: 'error' });
     } finally {
       setSaving(false);
     }
