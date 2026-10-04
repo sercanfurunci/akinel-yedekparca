@@ -13,6 +13,7 @@ export interface ProductListItem {
   salePrice?: number;
   currency: string;
   stockStatus: StockStatus;
+  stockQuantity: number;
   primaryImageUrl?: string;
 }
 

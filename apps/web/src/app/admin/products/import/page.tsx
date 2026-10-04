@@ -4,7 +4,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft, Upload, Download, CheckCircle2, AlertCircle, Clock,
-  FileSpreadsheet, ChevronRight, RotateCcw, Info, X,
+  FileSpreadsheet, ChevronRight, RotateCcw, Info, X, Pencil,
 } from 'lucide-react';
 import { api, API_BASE } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 
 type Tab = 'products' | 'stock-price';
 type Step = 'upload' | 'preview' | 'result';
+type RowCorrection = { rowNumber: number; name?: string; brandName?: string; categoryName?: string; price?: string; stock?: number; sku?: string; };
 
 // ── Status helpers ────────────────────────────────────────────────────────────
 
@@ -105,14 +106,127 @@ function FileDropZone({ onFile, accept = '.xlsx,.csv', disabled }: {
   );
 }
 
+// ── Edit Row Modal ────────────────────────────────────────────────────────────
+
+function EditRowModal({ row, existing, onSave, onClose }: {
+  row: ImportRowPreview;
+  existing?: RowCorrection;
+  onSave: (c: RowCorrection) => void;
+  onClose: () => void;
+}) {
+  const [sku, setSku] = useState(existing?.sku ?? row.sku ?? '');
+  const [name, setName] = useState(existing?.name ?? row.name ?? '');
+  const [brandName, setBrandName] = useState(existing?.brandName ?? row.brandName ?? '');
+  const [categoryName, setCategoryName] = useState(existing?.categoryName ?? row.categoryName ?? '');
+  const [price, setPrice] = useState(existing?.price ?? (row.price != null ? String(row.price) : ''));
+  const [stock, setStock] = useState<string>(existing?.stock != null ? String(existing.stock) : (row.stock != null ? String(row.stock) : ''));
+
+  const handleSave = () => {
+    const c: RowCorrection = {
+      rowNumber: row.rowNumber,
+      sku: sku.trim() || undefined,
+      name: name.trim() || undefined,
+      brandName: brandName.trim() || undefined,
+      categoryName: categoryName.trim() || undefined,
+      price: price.trim() || undefined,
+      stock: stock.trim() !== '' ? Number(stock) : undefined,
+    };
+    onSave(c);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+      <div className="bg-white rounded-xl shadow-xl w-full max-w-md">
+        <div className="flex items-center justify-between px-5 py-4 border-b">
+          <h2 className="font-semibold text-sm">Satır {row.rowNumber} — Düzelt</h2>
+          <button onClick={onClose} className="text-muted-foreground hover:text-foreground"><X size={16} /></button>
+        </div>
+
+        {row.issues.length > 0 && (
+          <div className="mx-5 mt-4 rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-xs text-red-700">
+            <ul className="space-y-0.5 list-disc list-inside">
+              {row.issues.map((iss, i) => <li key={i}>{iss}</li>)}
+            </ul>
+          </div>
+        )}
+
+        <div className="px-5 py-4 space-y-3">
+          {(
+            [
+              { label: 'SKU', value: sku, onChange: setSku, placeholder: 'Ürün kodu' },
+              { label: 'Ürün Adı', value: name, onChange: setName, placeholder: 'Ürün adı' },
+              { label: 'Marka', value: brandName, onChange: setBrandName, placeholder: 'Marka adı' },
+              { label: 'Kategori', value: categoryName, onChange: setCategoryName, placeholder: 'Kategori adı' },
+              { label: 'Fiyat (₺)', value: price, onChange: setPrice, placeholder: '0.00' },
+              { label: 'Stok', value: stock, onChange: setStock, placeholder: '0' },
+            ] as const
+          ).map(({ label, value, onChange, placeholder }) => (
+            <div key={label} className="flex items-center gap-3">
+              <label className="text-xs text-muted-foreground w-24 shrink-0">{label}</label>
+              <input
+                value={value}
+                onChange={e => (onChange as (v: string) => void)(e.target.value)}
+                placeholder={placeholder}
+                className="flex-1 rounded-lg border px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-end gap-2 px-5 pb-5">
+          <button onClick={onClose} className="px-4 py-2 rounded-lg border text-sm hover:bg-muted transition-colors">İptal</button>
+          <button
+            onClick={handleSave}
+            className="px-4 py-2 rounded-lg bg-brand text-white text-sm font-medium hover:bg-brand/90 transition-colors"
+          >
+            Kaydet
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Preview table ─────────────────────────────────────────────────────────────
 
 type RowFilter = 'all' | 'Error' | 'New' | 'Update' | 'Unchanged' | 'Duplicate';
 
-function PreviewTable({ rows }: { rows: ImportRowPreview[] }) {
+function downloadErrorsCsv(rows: ImportRowPreview[]) {
+  const errors = rows.filter(r => r.status === 'Error');
+  if (errors.length === 0) return;
+  const header = ['Satır', 'SKU', 'Ürün Adı', 'Marka', 'Kategori', 'Fiyat', 'Stok', 'Sorunlar'];
+  const csvRows = [
+    header.join(';'),
+    ...errors.map(r => [
+      r.rowNumber,
+      r.sku ?? '',
+      r.name ?? '',
+      r.brandName ?? '',
+      r.categoryName ?? '',
+      r.price ?? '',
+      r.stock ?? '',
+      r.issues.join(' | '),
+    ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(';')),
+  ];
+  const bom = '\uFEFF';
+  const blob = new Blob([bom + csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'hatali-satirlar.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function PreviewTable({ rows, onEdit, corrections }: {
+  rows: ImportRowPreview[];
+  onEdit?: (row: ImportRowPreview) => void;
+  corrections?: Map<number, RowCorrection>;
+}) {
   const [filter, setFilter] = useState<RowFilter>('all');
   const [page, setPage] = useState(0);
   const PAGE_SIZE = 100;
+  const errorCount = rows.filter(r => r.status === 'Error').length;
 
   const filtered = filter === 'all' ? rows : rows.filter(r => r.status === filter);
   const pageRows = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
@@ -130,7 +244,7 @@ function PreviewTable({ rows }: { rows: ImportRowPreview[] }) {
   return (
     <div>
       {/* Filter chips */}
-      <div className="flex flex-wrap gap-2 mb-3">
+      <div className="flex flex-wrap items-center gap-2 mb-3">
         {filterOptions.map(opt => (
           <button
             key={opt.value}
@@ -145,6 +259,15 @@ function PreviewTable({ rows }: { rows: ImportRowPreview[] }) {
             {opt.label}
           </button>
         ))}
+        {errorCount > 0 && (
+          <button
+            onClick={() => downloadErrorsCsv(rows)}
+            className="ml-auto inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full border border-red-300 text-red-600 hover:bg-red-50 transition-colors"
+          >
+            <Download size={12} />
+            Hatalı {errorCount} satırı indir
+          </button>
+        )}
       </div>
 
       <div className="overflow-x-auto rounded-lg border">
@@ -165,33 +288,58 @@ function PreviewTable({ rows }: { rows: ImportRowPreview[] }) {
           <tbody>
             {pageRows.length === 0 ? (
               <tr><td colSpan={9} className="py-8 text-center text-muted-foreground">Satır bulunamadı</td></tr>
-            ) : pageRows.map(row => (
-              <tr
-                key={row.rowNumber}
-                className={cn(
-                  'border-b last:border-0',
-                  row.status === 'Error' ? 'bg-red-50' :
-                  row.status === 'Duplicate' ? 'bg-yellow-50' :
-                  row.status === 'New' ? 'bg-green-50/40' : '',
-                )}
-              >
-                <td className="py-2 px-3 text-muted-foreground">{row.rowNumber}</td>
-                <td className="py-2 px-3"><StatusBadge status={row.status} /></td>
-                <td className="py-2 px-3 font-mono">{row.sku ?? '—'}</td>
-                <td className="py-2 px-3 max-w-[160px] truncate">{row.name ?? '—'}</td>
-                <td className="py-2 px-3 hidden sm:table-cell">{row.brandName ?? '—'}</td>
-                <td className="py-2 px-3 hidden md:table-cell">{row.categoryName ?? '—'}</td>
-                <td className="py-2 px-3 text-right hidden md:table-cell">{row.price != null ? `₺${row.price.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}` : '—'}</td>
-                <td className="py-2 px-3 text-right hidden md:table-cell">{row.stock ?? '—'}</td>
-                <td className="py-2 px-3 text-red-600 max-w-[200px]">
-                  {row.issues.length > 0 && (
-                    <ul className="space-y-0.5">
-                      {row.issues.map((iss, i) => <li key={i} className="truncate">{iss}</li>)}
-                    </ul>
+            ) : pageRows.map(row => {
+              const corrected = corrections?.has(row.rowNumber);
+              return (
+                <tr
+                  key={row.rowNumber}
+                  className={cn(
+                    'border-b last:border-0',
+                    corrected ? 'bg-blue-50' :
+                    row.status === 'Error' ? 'bg-red-50' :
+                    row.status === 'Duplicate' ? 'bg-yellow-50' :
+                    row.status === 'New' ? 'bg-green-50/40' : '',
                   )}
-                </td>
-              </tr>
-            ))}
+                >
+                  <td className="py-2 px-3 text-muted-foreground">{row.rowNumber}</td>
+                  <td className="py-2 px-3">
+                    <StatusBadge status={row.status} />
+                    {corrected && (
+                      <span className="ml-1 inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-blue-100 text-blue-700 tracking-wide">DÜZ</span>
+                    )}
+                  </td>
+                  <td className="py-2 px-3 font-mono">{corrections?.get(row.rowNumber)?.sku ?? row.sku ?? '—'}</td>
+                  <td className="py-2 px-3 max-w-[160px] truncate">{corrections?.get(row.rowNumber)?.name ?? row.name ?? '—'}</td>
+                  <td className="py-2 px-3 hidden sm:table-cell">{corrections?.get(row.rowNumber)?.brandName ?? row.brandName ?? '—'}</td>
+                  <td className="py-2 px-3 hidden md:table-cell">{corrections?.get(row.rowNumber)?.categoryName ?? row.categoryName ?? '—'}</td>
+                  <td className="py-2 px-3 text-right hidden md:table-cell">{row.price != null ? `₺${row.price.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}` : '—'}</td>
+                  <td className="py-2 px-3 text-right hidden md:table-cell">{corrections?.get(row.rowNumber)?.stock ?? row.stock ?? '—'}</td>
+                  <td className="py-2 px-3 text-red-600 max-w-[200px]">
+                    <div className="flex items-start gap-2">
+                      <div className="flex-1">
+                        {row.issues.length > 0 && !corrected && (
+                          <ul className="space-y-0.5">
+                            {row.issues.map((iss, i) => <li key={i} className="truncate">{iss}</li>)}
+                          </ul>
+                        )}
+                        {corrected && (
+                          <span className="text-blue-600 text-[11px]">Düzeltildi — aktarımda yeniden doğrulanacak</span>
+                        )}
+                      </div>
+                      {row.status === 'Error' && onEdit && (
+                        <button
+                          onClick={() => onEdit(row)}
+                          title="Düzenle"
+                          className="shrink-0 p-1 rounded hover:bg-red-100 text-red-500 hover:text-red-700 transition-colors"
+                        >
+                          <Pencil size={13} />
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -223,6 +371,8 @@ export default function ImportPage() {
   const [result, setResult] = useState<ImportResult | null>(null);
   const [history, setHistory] = useState<ImportHistoryItem[]>([]);
   const [historyLoading, setHistoryLoading] = useState(true);
+  const [corrections, setCorrections] = useState<Map<number, RowCorrection>>(new Map());
+  const [editingRow, setEditingRow] = useState<ImportRowPreview | null>(null);
 
   const fetchHistory = useCallback(() => {
     if (!accessToken) return;
@@ -242,6 +392,8 @@ export default function ImportPage() {
     setResult(null);
     setError('');
     setAllowOverwrite(false);
+    setCorrections(new Map());
+    setEditingRow(null);
   };
 
   const handleTabChange = (t: Tab) => {
@@ -277,7 +429,7 @@ export default function ImportPage() {
     try {
       let data: unknown;
       if (tab === 'products') {
-        data = await api.admin.import.commitProducts(preview.previewToken, accessToken);
+        data = await api.admin.import.commitProducts(preview.previewToken, accessToken, Array.from(corrections.values()));
       } else {
         data = await api.admin.import.commitStockPrice(preview.previewToken, accessToken);
       }
@@ -495,7 +647,7 @@ export default function ImportPage() {
                 Satır Önizlemesi
                 <span className="ml-2 text-xs font-normal text-muted-foreground">(ilk 500 satır gösteriliyor)</span>
               </h2>
-              <PreviewTable rows={preview.rows} />
+              <PreviewTable rows={preview.rows} onEdit={setEditingRow} corrections={corrections} />
             </div>
           )}
 
@@ -565,6 +717,23 @@ export default function ImportPage() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* ── Edit Row Modal ───────────────────────────────────────────── */}
+      {editingRow && (
+        <EditRowModal
+          row={editingRow}
+          existing={corrections.get(editingRow.rowNumber)}
+          onSave={(correction) => {
+            setCorrections(prev => {
+              const next = new Map(prev);
+              next.set(correction.rowNumber, correction);
+              return next;
+            });
+            setEditingRow(null);
+          }}
+          onClose={() => setEditingRow(null)}
+        />
       )}
 
       {/* ── Import History ───────────────────────────────────────────── */}

@@ -87,6 +87,7 @@ public class SearchService : ISearchService
             p.Id, p.Name, p.Slug, p.BrandId, p.Brand.Name, p.CategoryId, p.Category.Name,
             p.Price, dp, CalcSalePrice(p.Price, dp), p.Currency,
             p.Stock?.Status ?? Domain.Enums.StockStatus.OutOfStock,
+            p.Stock?.AvailableQuantity ?? 0,
             p.Images.FirstOrDefault(i => i.IsPrimary)?.Url ?? p.Images.FirstOrDefault()?.Url
         );
     }

@@ -24,9 +24,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const product = await fetchProduct(slug);
   if (!product) return { title: 'Ürün Bulunamadı' };
+  const priceStr = product.salePrice
+    ? `₺${Number(product.salePrice).toLocaleString('tr-TR', { minimumFractionDigits: 2 })}`
+    : `₺${Number(product.price).toLocaleString('tr-TR', { minimumFractionDigits: 2 })}`;
   const description = product.description
     ? product.description.slice(0, 160)
-    : `${product.brandName} ${product.name} — OEM uyumlu yedek parça.`;
+    : `${product.brandName} ${product.name} — ${product.categoryName} yedek parçası. ${priceStr} fiyatıyla hızlı teslimat. OEM uyumlu, garantili ürün.`.slice(0, 160);
   const ogImage = absoluteImageUrl(product.primaryImageUrl);
   return {
     title: `${product.name} — AKINEL OTO YEDEK PARÇA`,

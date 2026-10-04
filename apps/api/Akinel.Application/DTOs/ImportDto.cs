@@ -64,6 +64,18 @@ public class ImportPreviewResponseDto
 public class ImportCommitRequest
 {
     public string PreviewToken { get; set; } = string.Empty;
+    public List<ImportRowCorrection> Corrections { get; set; } = new();
+}
+
+public class ImportRowCorrection
+{
+    public int RowNumber { get; set; }
+    public string? Name { get; set; }
+    public string? BrandName { get; set; }
+    public string? CategoryName { get; set; }
+    public string? Price { get; set; }
+    public int? Stock { get; set; }
+    public string? Sku { get; set; }
 }
 
 public class ImportResultDto

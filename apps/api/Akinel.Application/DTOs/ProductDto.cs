@@ -46,6 +46,7 @@ public record ProductListItemDto(
     decimal? SalePrice,
     string Currency,
     StockStatus StockStatus,
+    int StockQuantity,
     string? PrimaryImageUrl
 );
 

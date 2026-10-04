@@ -85,6 +85,7 @@ public class AdminController : ControllerBase
     public async Task<IActionResult> GetProducts([FromQuery] ProductSearchQuery filter, CancellationToken ct)
     {
         filter.InStockOnly = false;
+        filter.IncludeInactive = true;
         return Ok(await _productService.GetProductsAsync(filter, ct));
     }
 

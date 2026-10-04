@@ -24,7 +24,7 @@ public class ProductService : IProductService
             .Include(p => p.Category)
             .Include(p => p.Images)
             .Include(p => p.Stock)
-            .Where(p => p.IsActive)
+            .Where(p => query.IncludeInactive || p.IsActive)
             .AsQueryable();
 
         if (query.InStockOnly)
@@ -52,6 +52,17 @@ public class ProductService : IProductService
 
         if (query.MinPrice.HasValue) q = q.Where(p => p.Price >= query.MinPrice.Value);
         if (query.MaxPrice.HasValue) q = q.Where(p => p.Price <= query.MaxPrice.Value);
+
+        if (!string.IsNullOrWhiteSpace(query.StockStatusFilter))
+        {
+            q = query.StockStatusFilter switch
+            {
+                "InStock"    => q.Where(p => p.Stock != null && (p.Stock.Quantity - p.Stock.ReservedQuantity) > (p.Stock.MinimumStockLevel > 0 ? p.Stock.MinimumStockLevel : 0)),
+                "LowStock"   => q.Where(p => p.Stock != null && (p.Stock.Quantity - p.Stock.ReservedQuantity) > 0 && (p.Stock.Quantity - p.Stock.ReservedQuantity) <= p.Stock.MinimumStockLevel),
+                "OutOfStock" => q.Where(p => p.Stock == null || (p.Stock.Quantity - p.Stock.ReservedQuantity) <= 0),
+                _ => q
+            };
+        }
 
         q = query.SortBy switch
         {
@@ -210,6 +221,7 @@ public class ProductService : IProductService
             p.Id, p.Name, p.Slug, p.BrandId, p.Brand.Name, p.CategoryId, p.Category.Name,
             p.Price, dp, CalcSalePrice(p.Price, dp), p.Currency,
             p.Stock?.Status ?? StockStatus.OutOfStock,
+            p.Stock?.AvailableQuantity ?? 0,
             p.Images.FirstOrDefault(i => i.IsPrimary)?.Url ?? p.Images.FirstOrDefault()?.Url
         );
     }

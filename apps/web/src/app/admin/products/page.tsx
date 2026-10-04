@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Plus, Pencil, Trash2, X, Search, Upload } from 'lucide-react';
+import { Plus, Pencil, Trash2, X, Search, Upload, ChevronLeft, ChevronRight } from 'lucide-react';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import type { ProductListItem, PaginatedResult, AdminBrand, AdminCategory } from '@/lib/types';
@@ -47,6 +47,11 @@ export default function AdminProductsPage() {
   const [stockFilter, setStockFilter] = useState('');
   const [brandFilter, setBrandFilter] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [pageSize, setPageSize] = useState(50);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [bulkDeleting, setBulkDeleting] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -81,25 +86,26 @@ export default function AdminProductsPage() {
   const fetchProducts = useCallback(() => {
     if (!accessToken) return;
     setLoading(true);
-    const params: Record<string, string> = { pageSize: '100', page: '1' };
+    setSelected(new Set());
+    const params: Record<string, string> = { pageSize: String(pageSize), page: String(page) };
     if (searchQuery) params.query = searchQuery;
+    if (brandFilter) params.brandId = brandFilter;
+    if (categoryFilter) params.categoryId = categoryFilter;
+    if (stockFilter) params.stockStatusFilter = stockFilter;
     api.admin.products.list(params, accessToken)
       .then((data) => {
         const result = data as PaginatedResult<ProductListItem>;
         setProducts(result.items ?? []);
+        setTotalCount(result.totalCount ?? 0);
       })
-      .catch(() => setProducts([]))
+      .catch(() => { setProducts([]); setTotalCount(0); })
       .finally(() => setLoading(false));
-  }, [searchQuery, accessToken]);
+  }, [searchQuery, brandFilter, categoryFilter, stockFilter, accessToken, page, pageSize]);
 
+  useEffect(() => { setPage(1); }, [searchQuery, brandFilter, categoryFilter, stockFilter, pageSize]);
   useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
-  const filteredProducts = products.filter((p) => {
-    if (stockFilter && p.stockStatus !== stockFilter) return false;
-    if (brandFilter && p.brandId !== brandFilter) return false;
-    if (categoryFilter && p.categoryId !== categoryFilter) return false;
-    return true;
-  });
+  const filteredProducts = products;
 
   const openAddForm = () => {
     setError('');
@@ -138,6 +144,7 @@ export default function AdminProductsPage() {
     try {
       await api.admin.products.delete(id, accessToken);
       setProducts((prev) => prev.filter((p) => p.id !== id));
+      setTotalCount((c) => c - 1);
     } catch {
       // ignore
     } finally {
@@ -145,10 +152,57 @@ export default function AdminProductsPage() {
     }
   };
 
+  const toggleSelect = (id: string) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selected.size === filteredProducts.length) {
+      setSelected(new Set());
+    } else {
+      setSelected(new Set(filteredProducts.map((p) => p.id)));
+    }
+  };
+
+  const handleBulkDelete = async () => {
+    if (!accessToken || selected.size === 0) return;
+    setBulkDeleting(true);
+    const ids = Array.from(selected);
+    for (const id of ids) {
+      try { await api.admin.products.delete(id, accessToken); } catch { /* continue */ }
+    }
+    setSelected(new Set());
+    setBulkDeleting(false);
+    fetchProducts();
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Ürünler</h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-bold">Ürünler</h1>
+          {selected.size > 0 && (
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">{selected.size} seçili</span>
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={handleBulkDelete}
+                disabled={bulkDeleting}
+              >
+                <Trash2 size={14} className="mr-1" />
+                {bulkDeleting ? 'Siliniyor...' : `${selected.size} Ürünü Sil`}
+              </Button>
+              <button onClick={() => setSelected(new Set())} className="text-xs text-muted-foreground hover:text-foreground">
+                Seçimi temizle
+              </button>
+            </div>
+          )}
+        </div>
         <div className="flex items-center gap-2">
           <Link
             href="/admin/products/import"
@@ -197,6 +251,14 @@ export default function AdminProductsPage() {
             <table className="w-full text-sm">
               <thead className="border-b bg-muted/30">
                 <tr>
+                  <th className="py-3 px-4 w-10">
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4 cursor-pointer accent-red-600"
+                      checked={filteredProducts.length > 0 && selected.size === filteredProducts.length}
+                      onChange={toggleSelectAll}
+                    />
+                  </th>
                   <th className="text-left py-3 px-4 font-medium text-muted-foreground">Ürün Adı</th>
                   <th className="text-left py-3 px-4 font-medium text-muted-foreground hidden md:table-cell">Marka</th>
                   <th className="text-left py-3 px-4 font-medium text-muted-foreground hidden lg:table-cell">Kategori</th>
@@ -208,11 +270,19 @@ export default function AdminProductsPage() {
               <tbody>
                 {filteredProducts.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="py-12 text-center text-muted-foreground">Ürün bulunamadı</td>
+                    <td colSpan={7} className="py-12 text-center text-muted-foreground">Ürün bulunamadı</td>
                   </tr>
                 ) : (
                   filteredProducts.map((p) => (
-                    <tr key={p.id} className="border-b last:border-0 hover:bg-muted/20 transition-colors">
+                    <tr key={p.id} className={`border-b last:border-0 hover:bg-muted/20 transition-colors ${selected.has(p.id) ? 'bg-blue-50' : ''}`}>
+                      <td className="py-3 px-4">
+                        <input
+                          type="checkbox"
+                          className="rounded"
+                          checked={selected.has(p.id)}
+                          onChange={() => toggleSelect(p.id)}
+                        />
+                      </td>
                       <td className="py-3 px-4 font-medium">
                         <Link href={`/admin/products/${p.id}`} className="hover:text-brand hover:underline line-clamp-1">
                           {p.name}
@@ -229,9 +299,12 @@ export default function AdminProductsPage() {
                         </div>
                       </td>
                       <td className="py-3 px-4 text-center">
-                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${stockStatusColor(p.stockStatus)}`}>
-                          {stockStatusLabel(p.stockStatus)}
-                        </span>
+                        <div className="flex flex-col items-center gap-0.5">
+                          <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${stockStatusColor(p.stockStatus)}`}>
+                            {stockStatusLabel(p.stockStatus)}
+                          </span>
+                          <span className="text-xs text-muted-foreground">{p.stockQuantity} adet</span>
+                        </div>
                       </td>
                       <td className="py-3 px-4">
                         <div className="flex items-center justify-end gap-2">
@@ -251,6 +324,42 @@ export default function AdminProductsPage() {
           </div>
         )}
       </div>
+
+      {/* Pagination */}
+      {totalCount > 0 && (
+        <div className="flex items-center justify-between mt-4 gap-4 flex-wrap">
+          <div className="flex items-center gap-3">
+            <p className="text-sm text-muted-foreground">
+              Toplam <span className="font-medium">{totalCount}</span> ürün — Sayfa <span className="font-medium">{page}</span> / <span className="font-medium">{Math.ceil(totalCount / pageSize)}</span>
+            </p>
+            <select
+              value={pageSize}
+              onChange={(e) => setPageSize(Number(e.target.value))}
+              className={selectClass}
+            >
+              {[10, 25, 50, 100].map((n) => (
+                <option key={n} value={n}>{n} / sayfa</option>
+              ))}
+            </select>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="inline-flex items-center gap-1 h-8 px-3 rounded-lg border text-sm disabled:opacity-40 hover:bg-muted transition-colors"
+            >
+              <ChevronLeft size={14} /> Önceki
+            </button>
+            <button
+              onClick={() => setPage((p) => Math.min(Math.ceil(totalCount / pageSize), p + 1))}
+              disabled={page >= Math.ceil(totalCount / pageSize)}
+              className="inline-flex items-center gap-1 h-8 px-3 rounded-lg border text-sm disabled:opacity-40 hover:bg-muted transition-colors"
+            >
+              Sonraki <ChevronRight size={14} />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Create product modal */}
       {formOpen && (

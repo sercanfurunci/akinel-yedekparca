@@ -212,10 +212,50 @@ public class BulkImportService : IBulkImportService
         return BuildPreviewResponse(parsedRows, "ProductImport", allowOverwriteWithEmpty);
     }
 
-    public async Task<ImportResultDto> CommitProductImportAsync(string token, string adminEmail, CancellationToken ct)
+    public async Task<ImportResultDto> CommitProductImportAsync(string token, string adminEmail, CancellationToken ct, IEnumerable<ImportRowCorrection>? corrections = null)
     {
         if (!_cache.TryGetValue<CachedImportData>(token, out var cached) || cached == null)
             throw new InvalidOperationException("Önizleme verisi bulunamadı veya süresi doldu. Lütfen tekrar yükleyin.");
+
+        // Apply corrections to cached rows before committing
+        if (corrections != null)
+        {
+            var brands = await _db.Brands.AsNoTracking().ToDictionaryAsync(b => ImportParseHelper.NormalizeForLookup(b.Name), b => b.Id, ct);
+            var cats   = await _db.Categories.AsNoTracking().ToDictionaryAsync(c => ImportParseHelper.NormalizeForLookup(c.Name), c => c.Id, ct);
+
+            foreach (var fix in corrections)
+            {
+                var row = cached.Rows.FirstOrDefault(r => r.RowNumber == fix.RowNumber);
+                if (row == null) continue;
+
+                if (!string.IsNullOrWhiteSpace(fix.Name))       row.Name = fix.Name;
+                if (!string.IsNullOrWhiteSpace(fix.Sku))        row.Sku  = fix.Sku;
+                if (!string.IsNullOrWhiteSpace(fix.Price))
+                {
+                    var p = ImportParseHelper.ParsePrice(fix.Price, out _);
+                    if (p.HasValue && p.Value > 0) row.Price = p.Value;
+                }
+                if (fix.Stock.HasValue && fix.Stock.Value >= 0)  row.Stock = fix.Stock.Value;
+                if (!string.IsNullOrWhiteSpace(fix.BrandName))
+                {
+                    var key = ImportParseHelper.NormalizeForLookup(fix.BrandName);
+                    if (brands.TryGetValue(key, out var bid)) { row.BrandId = bid; row.BrandName = fix.BrandName; }
+                }
+                if (!string.IsNullOrWhiteSpace(fix.CategoryName))
+                {
+                    var key = ImportParseHelper.NormalizeForLookup(fix.CategoryName);
+                    if (cats.TryGetValue(key, out var cid)) { row.CategoryId = cid; row.CategoryName = fix.CategoryName; }
+                }
+
+                // Re-validate and clear error status if now valid
+                row.Issues.Clear();
+                if (string.IsNullOrWhiteSpace(row.Name))       row.Issues.Add("Ürün adı zorunludur.");
+                if (!row.BrandId.HasValue)                     row.Issues.Add($"Marka bulunamadı: '{row.BrandName}'");
+                if (!row.CategoryId.HasValue)                  row.Issues.Add($"Kategori bulunamadı: '{row.CategoryName}'");
+                if (!row.Price.HasValue || row.Price <= 0)     row.Issues.Add("Fiyat zorunludur ve sıfırdan büyük olmalıdır.");
+                row.Status = row.Issues.Count == 0 ? ImportRowStatus.New : ImportRowStatus.Error;
+            }
+        }
 
         var sw = System.Diagnostics.Stopwatch.StartNew();
         var errors = new List<string>();

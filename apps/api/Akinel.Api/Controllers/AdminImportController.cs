@@ -69,7 +69,7 @@ public class AdminImportController : ControllerBase
 
         try
         {
-            var result = await _importService.CommitProductImportAsync(request.PreviewToken, adminEmail, ct);
+            var result = await _importService.CommitProductImportAsync(request.PreviewToken, adminEmail, ct, request.Corrections);
             return Ok(result);
         }
         catch (InvalidOperationException ex)

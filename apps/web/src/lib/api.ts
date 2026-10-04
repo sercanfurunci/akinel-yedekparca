@@ -327,8 +327,8 @@ export const api = {
         formData.append('file', file);
         return uploadFile<unknown>(`/api/admin/import/products/preview?allowOverwriteWithEmpty=${allowOverwriteWithEmpty}`, formData);
       },
-      commitProducts: (previewToken: string, token: string) =>
-        request('/api/admin/import/products/commit', { method: 'POST', body: JSON.stringify({ previewToken }), headers: { Authorization: `Bearer ${token}` } }),
+      commitProducts: (previewToken: string, token: string, corrections?: unknown[]) =>
+        request('/api/admin/import/products/commit', { method: 'POST', body: JSON.stringify({ previewToken, corrections: corrections ?? [] }), headers: { Authorization: `Bearer ${token}` } }),
       previewStockPrice: async (file: File) => {
         const formData = new FormData();
         formData.append('file', file);
