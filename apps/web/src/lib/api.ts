@@ -321,6 +321,24 @@ export const api = {
       get: (period: string, token: string) =>
         request(`/api/admin/analytics?period=${encodeURIComponent(period)}`, { headers: { Authorization: `Bearer ${token}` } }),
     },
+    import: {
+      previewProducts: async (file: File, allowOverwriteWithEmpty = false) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        return uploadFile<unknown>(`/api/admin/import/products/preview?allowOverwriteWithEmpty=${allowOverwriteWithEmpty}`, formData);
+      },
+      commitProducts: (previewToken: string, token: string) =>
+        request('/api/admin/import/products/commit', { method: 'POST', body: JSON.stringify({ previewToken }), headers: { Authorization: `Bearer ${token}` } }),
+      previewStockPrice: async (file: File) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        return uploadFile<unknown>('/api/admin/import/stock-price/preview', formData);
+      },
+      commitStockPrice: (previewToken: string, token: string) =>
+        request('/api/admin/import/stock-price/commit', { method: 'POST', body: JSON.stringify({ previewToken }), headers: { Authorization: `Bearer ${token}` } }),
+      history: (token: string) =>
+        request('/api/admin/import/history', { headers: { Authorization: `Bearer ${token}` } }),
+    },
     vehicles: {
       getMakes: (token: string, params?: { search?: string; page?: number; pageSize?: number }) => {
         const qs = params ? '?' + new URLSearchParams(

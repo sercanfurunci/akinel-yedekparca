@@ -51,6 +51,8 @@ public static class DependencyInjection
             client.Timeout = TimeSpan.FromSeconds(15);
         });
 
+        services.AddScoped<IBulkImportService, BulkImportService>();
+
         return services;
     }
 }

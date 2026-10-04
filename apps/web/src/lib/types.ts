@@ -321,3 +321,55 @@ export interface ProductSearchQuery {
   page?: number;
   pageSize?: number;
 }
+
+// ── Bulk Import Types ─────────────────────────────────────────────────────────
+
+export interface ImportRowPreview {
+  rowNumber: number;
+  status: 'New' | 'Update' | 'Unchanged' | 'Error' | 'Duplicate';
+  sku?: string;
+  name?: string;
+  brandName?: string;
+  categoryName?: string;
+  price?: number;
+  stock?: number;
+  issues: string[];
+}
+
+export interface ImportPreviewResponse {
+  previewToken: string;
+  total: number;
+  new: number;
+  update: number;
+  unchanged: number;
+  error: number;
+  duplicate: number;
+  rows: ImportRowPreview[];
+}
+
+export interface ImportResult {
+  created: number;
+  updated: number;
+  unchanged: number;
+  failed: number;
+  skipped: number;
+  durationSeconds: number;
+  errors: string[];
+  importLogId?: string;
+}
+
+export interface ImportHistoryItem {
+  id: string;
+  fileName: string;
+  importType: string;
+  adminEmail?: string;
+  totalRows: number;
+  created: number;
+  updated: number;
+  unchanged: number;
+  failed: number;
+  skipped: number;
+  status: string;
+  durationSeconds: number;
+  createdAt: string;
+}

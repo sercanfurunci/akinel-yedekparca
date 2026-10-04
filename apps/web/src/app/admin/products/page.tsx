@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Plus, Pencil, Trash2, X, Search } from 'lucide-react';
+import { Plus, Pencil, Trash2, X, Search, Upload } from 'lucide-react';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import type { ProductListItem, PaginatedResult, AdminBrand, AdminCategory } from '@/lib/types';
@@ -149,10 +149,19 @@ export default function AdminProductsPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">Ürünler</h1>
-        <Button onClick={openAddForm} className="bg-brand text-brand-foreground hover:bg-brand/90">
-          <Plus size={16} className="mr-2" />
-          Ürün Ekle
-        </Button>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/admin/products/import"
+            className="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg border border-input bg-background text-sm font-medium hover:bg-muted transition-colors"
+          >
+            <Upload size={14} />
+            Toplu Aktarım
+          </Link>
+          <Button onClick={openAddForm} className="bg-brand text-brand-foreground hover:bg-brand/90">
+            <Plus size={16} className="mr-2" />
+            Ürün Ekle
+          </Button>
+        </div>
       </div>
 
       {/* Filters */}

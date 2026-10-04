@@ -32,6 +32,7 @@ public class AkinelDbContext : DbContext, IDataProtectionKeyContext
     public DbSet<HomepageHeroSlide> HomepageHeroSlides => Set<HomepageHeroSlide>();
     public DbSet<StockNotification> StockNotifications => Set<StockNotification>();
     public DbSet<DataProtectionKey> DataProtectionKeys => Set<DataProtectionKey>();
+    public DbSet<ImportLog> ImportLogs => Set<ImportLog>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
