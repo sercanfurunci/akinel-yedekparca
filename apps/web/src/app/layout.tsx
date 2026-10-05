@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { PublicShell } from '@/components/layout/PublicShell';
+import { CookieConsent } from '@/components/layout/CookieConsent';
 import { PostHogProvider } from '@/components/analytics/PostHogProvider';
 import { SentryProvider } from '@/components/SentryProvider';
 import type { BusinessSettings } from '@/lib/types';
@@ -138,6 +139,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <SentryProvider>
           <PostHogProvider>
             <PublicShell>{children}</PublicShell>
+            <CookieConsent />
           </PostHogProvider>
         </SentryProvider>
       </body>
