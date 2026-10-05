@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const STORAGE_KEY = 'cookie-consent';
@@ -66,13 +65,6 @@ export function CookieConsent() {
             className="px-4 py-2 rounded-lg bg-brand text-white text-sm font-medium hover:bg-brand/90 transition-colors"
           >
             Tümünü Kabul Et
-          </button>
-          <button
-            onClick={necessary}
-            aria-label="Kapat"
-            className="p-1.5 rounded-lg hover:bg-muted transition-colors text-muted-foreground"
-          >
-            <X size={16} />
           </button>
         </div>
       </div>
