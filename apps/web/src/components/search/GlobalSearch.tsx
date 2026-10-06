@@ -285,7 +285,7 @@ export function GlobalSearch({ defaultValue = '', className, size = 'default', a
                 return (
                   <Link
                     key={cat.slug}
-                    href={`/kategori/${cat.slug}`}
+                    href={`/yedek-parcalar/${cat.slug}`}
                     onClick={() => setOpen(false)}
                     role="option"
                     aria-selected={isActive}

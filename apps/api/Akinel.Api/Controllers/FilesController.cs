@@ -20,17 +20,9 @@ public class FilesController : ControllerBase
     public async Task<IActionResult> Get(string key, CancellationToken ct)
     {
         if (string.IsNullOrWhiteSpace(key)) return NotFound();
-
-        // Reject obvious path traversal attempts
         if (key.Contains("..") || key.Contains('\0')) return NotFound();
 
         var b2Url = await _storage.GetPresignedUrlAsync(key, ct);
-        var http = _httpClientFactory.CreateClient();
-        var resp = await http.GetAsync(b2Url, ct);
-        if (!resp.IsSuccessStatusCode) return NotFound();
-
-        var contentType = resp.Content.Headers.ContentType?.ToString() ?? "application/octet-stream";
-        var stream = await resp.Content.ReadAsStreamAsync(ct);
-        return File(stream, contentType);
+        return Redirect(b2Url);
     }
 }

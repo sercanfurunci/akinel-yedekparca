@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Ana Sayfa' },
+  { href: '/yedek-parcalar', label: 'Yedek Parçalar' },
   { href: '/products', label: 'Ürünler' },
   { href: '/brands', label: 'Markalar' },
   { href: '/vehicle', label: 'Aracımı Seç' },

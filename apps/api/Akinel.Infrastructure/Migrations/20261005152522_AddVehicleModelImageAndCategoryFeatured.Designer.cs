@@ -3,6 +3,7 @@ using System;
 using Akinel.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Akinel.Infrastructure.Migrations
 {
     [DbContext(typeof(AkinelDbContext))]
-    partial class AkinelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20261005152522_AddVehicleModelImageAndCategoryFeatured")]
+    partial class AddVehicleModelImageAndCategoryFeatured
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,14 +239,8 @@ namespace Akinel.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("BannerImageUrl")
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
 
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(1000)
@@ -1060,9 +1057,6 @@ namespace Akinel.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsPopular")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LogoUrl")

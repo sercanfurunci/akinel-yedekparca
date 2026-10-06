@@ -8,6 +8,7 @@ public class VehicleMake : BaseEntity
     public string Slug { get; set; } = string.Empty;
     public string? LogoUrl { get; set; }
     public bool IsActive { get; set; } = true;
+    public bool IsPopular { get; set; } = false;
     public int? ExternalId { get; set; }
     public ICollection<VehicleModel> Models { get; set; } = new List<VehicleModel>();
 }

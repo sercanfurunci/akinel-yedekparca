@@ -13,4 +13,7 @@ public class Category : BaseEntity
     public bool IsActive { get; set; } = true;
     public int SortOrder { get; set; } = 0;
     public string? ImageUrl { get; set; }
+    public bool IsHomepageFeatured { get; set; } = false;
+    public string? Description { get; set; }
+    public string? BannerImageUrl { get; set; }
 }

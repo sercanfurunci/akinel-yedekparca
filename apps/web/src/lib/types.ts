@@ -125,7 +125,7 @@ export interface PaginatedResult<T> {
 }
 
 export interface VehicleMake { id: string; name: string; slug: string; logoUrl?: string; }
-export interface VehicleModel { id: string; name: string; slug: string; vehicleMakeId: string; }
+export interface VehicleModel { id: string; name: string; slug: string; vehicleMakeId: string; imageUrl?: string; }
 export interface VehicleGeneration { id: string; name: string; slug: string; vehicleModelId: string; yearFrom?: number; yearTo?: number; bodyType?: string; }
 export interface VehicleEngine { id: string; name: string; vehicleGenerationId: string; displacement?: string; fuelType?: string; powerKw?: number; powerHp?: number; yearFrom?: number; yearTo?: number; engineCode?: string; }
 export interface VehicleContext { engineId: string; makeName: string; modelName: string; generationName: string; engineName: string; displayLabel: string; }
@@ -148,6 +148,9 @@ export interface Category {
   isActive?: boolean;
   sortOrder?: number;
   imageUrl?: string;
+  isHomepageFeatured?: boolean;
+  description?: string;
+  bannerImageUrl?: string;
 }
 
 export interface AdminBrand extends Brand {
@@ -157,6 +160,9 @@ export interface AdminBrand extends Brand {
 export interface AdminCategory extends Category {
   isActive: boolean;
   sortOrder: number;
+  isHomepageFeatured: boolean;
+  description?: string;
+  bannerImageUrl?: string;
 }
 
 export interface BusinessWorkingHour {
@@ -198,7 +204,9 @@ export interface VehicleMakeAdmin {
   name: string;
   slug: string;
   isActive: boolean;
+  isPopular: boolean;
   modelCount: number;
+  logoUrl?: string;
 }
 
 export interface VehicleModelAdmin {
@@ -206,6 +214,7 @@ export interface VehicleModelAdmin {
   name: string;
   vehicleMakeId: string;
   generationCount: number;
+  imageUrl?: string;
 }
 
 export interface VehicleGenerationAdmin {

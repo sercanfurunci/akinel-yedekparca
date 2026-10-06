@@ -23,7 +23,7 @@ export function CategoryStrip({ categories }: Props) {
             <h2 className="text-xl md:text-2xl font-bold text-[#111827]">Yedek Parça Kategorileri</h2>
           </div>
           <Link
-            href="/products"
+            href="/yedek-parcalar"
             className="text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors py-3 px-1 min-h-[44px]"
           >
             Tümü <ChevronRight size={14} />
@@ -33,7 +33,7 @@ export function CategoryStrip({ categories }: Props) {
           {roots.map((cat, i) => (
             <Link
               key={cat.id}
-              href={`/kategori/${cat.slug}`}
+              href={`/yedek-parcalar/${cat.slug}`}
               className={`flex flex-col items-center gap-3 rounded-xl border border-border bg-white hover:border-brand hover:-translate-y-0.5 hover:shadow-md transition-all text-center group overflow-hidden${i >= 4 ? ' hidden sm:flex' : ''}`}
             >
               <div className="relative w-full aspect-[4/3] sm:aspect-square overflow-hidden bg-muted">
@@ -58,7 +58,7 @@ export function CategoryStrip({ categories }: Props) {
         {roots.length > 4 && (
           <div className="mt-4 sm:hidden">
             <Link
-              href="/products"
+              href="/yedek-parcalar"
               className="flex items-center justify-center w-full gap-2 rounded-xl border-2 border-brand text-brand font-semibold text-sm py-3 hover:bg-brand hover:text-white transition-colors"
             >
               Tüm Kategorileri Gör <ChevronRight size={16} />

@@ -23,27 +23,36 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpGet("makes")]
-    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any)]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client, VaryByHeader = "Origin")]
     public async Task<IActionResult> GetMakes(CancellationToken ct)
         => Ok(await _vehicleService.GetMakesAsync(ct));
 
+    [HttpGet("makes/popular")]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client, VaryByHeader = "Origin")]
+    public async Task<IActionResult> GetPopularMakes(CancellationToken ct)
+    {
+        var makes = await _vehicleService.GetMakesAsync(ct);
+        var popular = makes.Where(m => m.IsPopular).ToList();
+        return Ok(popular.Count > 0 ? popular : makes.Take(8).ToList());
+    }
+
     [HttpGet("makes/{makeId:guid}/models")]
-    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client, VaryByHeader = "Origin")]
     public async Task<IActionResult> GetModels(Guid makeId, CancellationToken ct)
         => Ok(await _vehicleService.GetModelsByMakeAsync(makeId, ct));
 
     [HttpGet("models/{modelId:guid}/generations")]
-    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client, VaryByHeader = "Origin")]
     public async Task<IActionResult> GetGenerations(Guid modelId, CancellationToken ct)
         => Ok(await _vehicleService.GetGenerationsByModelAsync(modelId, ct));
 
     [HttpGet("generations/{generationId:guid}/engines")]
-    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client, VaryByHeader = "Origin")]
     public async Task<IActionResult> GetEngines(Guid generationId, CancellationToken ct)
         => Ok(await _vehicleService.GetEnginesByGenerationAsync(generationId, ct));
 
     [HttpGet("context/{engineId:guid}")]
-    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new[] { "*" })]
+    [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client, VaryByHeader = "Origin")]
     public async Task<IActionResult> GetContext(Guid engineId, CancellationToken ct)
     {
         var ctx = await _vehicleService.GetVehicleContextAsync(engineId, ct);

@@ -357,6 +357,22 @@ public class AdminController : ControllerBase
         return NoContent();
     }
 
+    [HttpPost("brands/{id:guid}/logo")]
+    public async Task<IActionResult> UploadBrandLogo(Guid id, IFormFile file, CancellationToken ct)
+    {
+        var brand = await _db.Brands.FindAsync(new object[] { id }, ct);
+        if (brand == null) return NotFound();
+
+        if (file == null || file.Length == 0) return BadRequest(new { message = "Dosya gerekli." });
+        if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+        if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
+
+        await _storage.DeleteAsync(brand.LogoUrl, ct);
+        brand.LogoUrl = await _storage.UploadAsync(file, "brands", ct);
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { logoUrl = brand.LogoUrl });
+    }
+
     // ── Categories ──────────────────────────────────────────────────
 
     [HttpGet("categories")]
@@ -364,7 +380,7 @@ public class AdminController : ControllerBase
     {
         var categories = await _db.Categories
             .OrderBy(c => c.SortOrder).ThenBy(c => c.Name)
-            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.IsActive, c.SortOrder, c.ImageUrl })
+            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.IsActive, c.SortOrder, c.ImageUrl, c.IsHomepageFeatured, c.Description, c.BannerImageUrl })
             .ToListAsync(ct);
         return Ok(categories);
     }
@@ -379,10 +395,12 @@ public class AdminController : ControllerBase
             ParentCategoryId = request.ParentCategoryId,
             SortOrder = request.SortOrder,
             ImageUrl = request.ImageUrl,
+            IsHomepageFeatured = request.IsHomepageFeatured,
+            Description = request.Description,
         };
         _db.Categories.Add(category);
         await _db.SaveChangesAsync(ct);
-        return Ok(new { category.Id, category.Name, category.Slug, category.ParentCategoryId, category.IsActive, category.SortOrder, category.ImageUrl });
+        return Ok(new { category.Id, category.Name, category.Slug, category.ParentCategoryId, category.IsActive, category.SortOrder, category.ImageUrl, category.IsHomepageFeatured, category.Description, category.BannerImageUrl });
     }
 
     [HttpPut("categories/{id:guid}")]
@@ -396,8 +414,10 @@ public class AdminController : ControllerBase
         category.IsActive = request.IsActive;
         category.SortOrder = request.SortOrder;
         category.ImageUrl = request.ImageUrl;
+        category.IsHomepageFeatured = request.IsHomepageFeatured;
+        category.Description = request.Description;
         await _db.SaveChangesAsync(ct);
-        return Ok(new { category.Id, category.Name, category.Slug, category.ParentCategoryId, category.IsActive, category.SortOrder, category.ImageUrl });
+        return Ok(new { category.Id, category.Name, category.Slug, category.ParentCategoryId, category.IsActive, category.SortOrder, category.ImageUrl, category.IsHomepageFeatured, category.Description, category.BannerImageUrl });
     }
 
     [HttpPost("categories/{id:guid}/image")]
@@ -415,6 +435,22 @@ public class AdminController : ControllerBase
         category.ImageUrl = await _storage.UploadAsync(file, "categories", ct);
         await _db.SaveChangesAsync(ct);
         return Ok(new { imageUrl = category.ImageUrl });
+    }
+
+    [HttpPost("categories/{id:guid}/banner")]
+    public async Task<IActionResult> UploadCategoryBanner(Guid id, IFormFile file, CancellationToken ct)
+    {
+        var category = await _db.Categories.FindAsync(new object[] { id }, ct);
+        if (category == null) return NotFound();
+
+        if (file == null || file.Length == 0) return BadRequest(new { message = "Dosya gerekli." });
+        if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+        if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
+
+        await _storage.DeleteAsync(category.BannerImageUrl, ct);
+        category.BannerImageUrl = await _storage.UploadAsync(file, "categories/banners", ct);
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { bannerImageUrl = category.BannerImageUrl });
     }
 
     [HttpDelete("categories/{id:guid}")]
@@ -558,8 +594,8 @@ public class AdminController : ControllerBase
 
 public record CreateBrandRequest(string Name, string? LogoUrl);
 public record UpdateBrandRequest(string Name, string? LogoUrl, bool IsActive);
-public record CreateCategoryRequest(string Name, Guid? ParentCategoryId, int SortOrder = 0, string? ImageUrl = null);
-public record UpdateCategoryRequest(string Name, Guid? ParentCategoryId, bool IsActive, int SortOrder = 0, string? ImageUrl = null);
+public record CreateCategoryRequest(string Name, Guid? ParentCategoryId, int SortOrder = 0, string? ImageUrl = null, bool IsHomepageFeatured = false, string? Description = null);
+public record UpdateCategoryRequest(string Name, Guid? ParentCategoryId, bool IsActive, int SortOrder = 0, string? ImageUrl = null, bool IsHomepageFeatured = false, string? Description = null);
 public record UpdateStockRequest(int Quantity);
 public record AddOemRequest(string Number, string? Manufacturer);
 public record AddCompatibilityRequest(Guid VehicleEngineId, string? Notes);

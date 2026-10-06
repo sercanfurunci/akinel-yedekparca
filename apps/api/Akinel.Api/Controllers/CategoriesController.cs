@@ -20,7 +20,7 @@ public class CategoriesController : ControllerBase
             .AsNoTracking()
             .Where(c => c.IsActive)
             .OrderBy(c => c.SortOrder).ThenBy(c => c.Name)
-            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.ImageUrl })
+            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.ImageUrl, c.IsHomepageFeatured, c.Description, c.BannerImageUrl })
             .ToListAsync(ct);
 
         return Ok(categories);
@@ -33,7 +33,7 @@ public class CategoriesController : ControllerBase
         var category = await _db.Categories
             .AsNoTracking()
             .Where(c => c.IsActive && c.Slug == slug)
-            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.ImageUrl })
+            .Select(c => new { c.Id, c.Name, c.Slug, c.ParentCategoryId, c.ImageUrl, c.Description, c.BannerImageUrl })
             .FirstOrDefaultAsync(ct);
 
         return category == null ? NotFound() : Ok(category);

@@ -24,7 +24,7 @@ public class VehicleService : IVehicleService
             .AsNoTracking()
             .Where(m => m.IsActive)
             .OrderBy(m => m.Name)
-            .Select(m => new VehicleMakeDto(m.Id, m.Name, m.Slug, m.LogoUrl))
+            .Select(m => new VehicleMakeDto(m.Id, m.Name, m.Slug, m.LogoUrl, m.IsPopular))
             .ToListAsync(ct);
 
     public async Task<IEnumerable<VehicleModelDto>> GetModelsByMakeAsync(Guid makeId, CancellationToken ct = default)
@@ -32,7 +32,7 @@ public class VehicleService : IVehicleService
             .AsNoTracking()
             .Where(m => m.VehicleMakeId == makeId)
             .OrderBy(m => m.Name)
-            .Select(m => new VehicleModelDto(m.Id, m.Name, m.Slug, m.VehicleMakeId))
+            .Select(m => new VehicleModelDto(m.Id, m.Name, m.Slug, m.VehicleMakeId, m.ImageUrl))
             .ToListAsync(ct);
 
     public async Task<IEnumerable<VehicleGenerationDto>> GetGenerationsByModelAsync(Guid modelId, CancellationToken ct = default)

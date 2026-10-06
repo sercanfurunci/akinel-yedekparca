@@ -55,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const categoryPages: MetadataRoute.Sitemap = categoriesRes.ok
       ? ((await categoriesRes.json()) as CategorySlugItem[]).map((c) => ({
-          url: `${SITE_URL}/kategori/${c.slug}`,
+          url: `${SITE_URL}/yedek-parcalar/${c.slug}`,
           lastModified: c.updatedAt ? new Date(c.updatedAt) : new Date(),
           changeFrequency: 'weekly' as const,
           priority: 0.75,

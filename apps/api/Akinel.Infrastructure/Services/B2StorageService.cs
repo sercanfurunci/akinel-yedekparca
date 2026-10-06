@@ -26,6 +26,7 @@ public class B2StorageService : IStorageService
     private string? _apiUrl;
     private string? _downloadUrl;
     private string? _bucketId;
+    private string? _accountId;
     private DateTime _authExpiry = DateTime.MinValue;
 
     public B2StorageService(IConfiguration configuration, ILogger<B2StorageService> logger)
@@ -59,6 +60,7 @@ public class B2StorageService : IStorageService
             using var doc = JsonDocument.Parse(await resp.Content.ReadAsStringAsync(ct));
             var root = doc.RootElement;
             _authToken = root.GetProperty("authorizationToken").GetString()!;
+            _accountId = root.GetProperty("accountId").GetString()!;
             var api = root.GetProperty("apiInfo").GetProperty("storageApi");
             _apiUrl = api.GetProperty("apiUrl").GetString()!;
             _downloadUrl = api.GetProperty("downloadUrl").GetString()!;
@@ -84,7 +86,7 @@ public class B2StorageService : IStorageService
     {
         if (_bucketId != null) return;
         using var req = AuthorizedRequest(HttpMethod.Post, $"{_apiUrl}/b2api/v3/b2_list_buckets");
-        req.Content = new StringContent(JsonSerializer.Serialize(new { bucketName = _bucketName }), Encoding.UTF8, "application/json");
+        req.Content = new StringContent(JsonSerializer.Serialize(new { accountId = _accountId, bucketName = _bucketName }), Encoding.UTF8, "application/json");
         using var resp = await _http.SendAsync(req, ct);
         resp.EnsureSuccessStatusCode();
         using var doc = JsonDocument.Parse(await resp.Content.ReadAsStringAsync(ct));
@@ -158,7 +160,11 @@ public class B2StorageService : IStorageService
         using var uploadResp = await _http.SendAsync(uploadReq, ct);
         uploadResp.EnsureSuccessStatusCode();
 
-        return $"/api/files/{key}";
+        // CdnUrl = S3-compatible base (e.g. https://bucket.s3.region.backblazeb2.com) → no /file/bucket prefix
+        // No CdnUrl = native B2 download URL → /file/bucket/key
+        return _cdnUrl != null
+            ? $"{_cdnUrl}/{key}"
+            : $"{_downloadUrl}/file/{_bucketName}/{key}";
     }
 
     private string? ExtractKey(string fileUrl)
@@ -212,6 +218,8 @@ public class B2StorageService : IStorageService
     public async Task<string> GetPresignedUrlAsync(string fileKey, CancellationToken ct = default)
     {
         await AuthorizeAsync(ct);
-        return $"{_downloadUrl}/file/{_bucketName}/{fileKey}";
+        return _cdnUrl != null
+            ? $"{_cdnUrl}/{fileKey}"
+            : $"{_downloadUrl}/file/{_bucketName}/{fileKey}";
     }
 }

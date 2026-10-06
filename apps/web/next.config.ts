@@ -39,6 +39,7 @@ const nextConfig: NextConfig = {
       { protocol: "http", hostname: "localhost", port: "5100", pathname: "/**" },
       { protocol: "https", hostname: "akinelotoyedekparca-api.railway.app", pathname: "/**" },
       { protocol: "https", hostname: "*.railway.app", pathname: "/**" },
+      { protocol: "https", hostname: "**", pathname: "/**" },
     ],
   },
   async headers() {

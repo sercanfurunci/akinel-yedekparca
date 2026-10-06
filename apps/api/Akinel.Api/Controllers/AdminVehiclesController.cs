@@ -1,3 +1,4 @@
+using Akinel.Application.Services;
 using Akinel.Domain.Entities;
 using Akinel.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -12,11 +13,28 @@ namespace Akinel.Api.Controllers;
 [Authorize(Roles = "Admin")]
 public class AdminVehiclesController : ControllerBase
 {
-    private readonly AkinelDbContext _db;
+    private const int MaxImageBytes = 5 * 1024 * 1024;
 
-    public AdminVehiclesController(AkinelDbContext db)
+    private static bool IsAllowedImageMagic(IFormFile file)
+    {
+        Span<byte> header = stackalloc byte[12];
+        using var stream = file.OpenReadStream();
+        var read = stream.Read(header);
+        if (read < 4) return false;
+        if (header[0] == 0xFF && header[1] == 0xD8 && header[2] == 0xFF) return true;
+        if (header[0] == 0x89 && header[1] == 0x50 && header[2] == 0x4E && header[3] == 0x47) return true;
+        if (read >= 12 && header[0] == 0x52 && header[1] == 0x49 && header[2] == 0x46 && header[3] == 0x46
+            && header[8] == 0x57 && header[9] == 0x45 && header[10] == 0x42 && header[11] == 0x50) return true;
+        return false;
+    }
+
+    private readonly AkinelDbContext _db;
+    private readonly IStorageService _storage;
+
+    public AdminVehiclesController(AkinelDbContext db, IStorageService storage)
     {
         _db = db;
+        _storage = storage;
     }
 
     // ── Makes ─────────────────────────────────────────────────────────
@@ -44,6 +62,8 @@ public class AdminVehiclesController : ControllerBase
                 m.Name,
                 m.Slug,
                 m.IsActive,
+                m.IsPopular,
+                m.LogoUrl,
                 modelCount = _db.VehicleModels.Count(vm => vm.VehicleMakeId == m.Id)
             })
             .ToListAsync(ct);
@@ -94,7 +114,17 @@ public class AdminVehiclesController : ControllerBase
         make.Name = normalized;
         make.Slug = GenerateSlug(normalized);
         await _db.SaveChangesAsync(ct);
-        return Ok(new { make.Id, make.Name, make.Slug, make.IsActive });
+        return Ok(new { make.Id, make.Name, make.Slug, make.IsActive, make.IsPopular });
+    }
+
+    [HttpPatch("makes/{id:guid}/popular")]
+    public async Task<IActionResult> TogglePopular(Guid id, CancellationToken ct)
+    {
+        var make = await _db.VehicleMakes.FindAsync(new object[] { id }, ct);
+        if (make == null) return NotFound();
+        make.IsPopular = !make.IsPopular;
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { make.Id, make.IsPopular });
     }
 
     [HttpDelete("makes/{id:guid}")]
@@ -132,11 +162,43 @@ public class AdminVehiclesController : ControllerBase
                 m.Id,
                 m.Name,
                 m.VehicleMakeId,
+                m.ImageUrl,
                 generationCount = _db.VehicleGenerations.Count(g => g.VehicleModelId == m.Id)
             })
             .ToListAsync(ct);
 
         return Ok(items);
+    }
+
+    [HttpPost("makes/{id:guid}/logo")]
+    public async Task<IActionResult> UploadMakeLogo(Guid id, IFormFile file, CancellationToken ct)
+    {
+        var make = await _db.VehicleMakes.FindAsync(new object[] { id }, ct);
+        if (make == null) return NotFound();
+        if (file == null || file.Length == 0) return BadRequest(new { message = "Dosya gerekli." });
+        if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+        if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
+
+        await _storage.DeleteAsync(make.LogoUrl, ct);
+        make.LogoUrl = await _storage.UploadAsync(file, "vehicle-makes", ct);
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { logoUrl = make.LogoUrl });
+    }
+
+    [HttpPost("models/{id:guid}/image")]
+    public async Task<IActionResult> UploadModelImage(Guid id, IFormFile file, CancellationToken ct)
+    {
+        var model = await _db.VehicleModels.FindAsync(new object[] { id }, ct);
+        if (model == null) return NotFound();
+
+        if (file == null || file.Length == 0) return BadRequest(new { message = "Dosya gerekli." });
+        if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+        if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
+
+        await _storage.DeleteAsync(model.ImageUrl, ct);
+        model.ImageUrl = await _storage.UploadAsync(file, "vehicle-models", ct);
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { imageUrl = model.ImageUrl });
     }
 
     [HttpPost("makes/{makeId:guid}/models")]

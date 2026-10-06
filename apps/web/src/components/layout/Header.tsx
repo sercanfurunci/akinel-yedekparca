@@ -17,9 +17,9 @@ import type { BusinessSettings } from '@/lib/types';
 
 const navLinks = [
   { href: '/', label: 'Ana Sayfa' },
+  { href: '/yedek-parcalar', label: 'Yedek Parçalar' },
   { href: '/products', label: 'Ürünler' },
   { href: '/brands', label: 'Markalar' },
-  { href: '/vehicle', label: 'Aracımı Seç' },
   { href: '/search', label: 'OEM Ara' },
   { href: '/garage', label: 'Garajım' },
   { href: '/about', label: 'Hakkımızda' },
@@ -105,7 +105,7 @@ export function Header() {
               aria-label="AKINEL OTO YEDEK PARÇA — Ana sayfa"
               title="Ana sayfa"
             >
-              <img src="/logo.webp" alt="AKINEL OTO YEDEK PARÇA" className="h-10 sm:h-11 w-auto max-w-[120px] sm:max-w-[160px] object-contain" style={{ maxHeight: '44px', maxWidth: '160px', width: 'auto' }} />
+              <img src="/logo.webp" alt="AKINEL OTO YEDEK PARÇA" className="h-12 sm:h-14 w-auto max-w-[140px] sm:max-w-[180px] object-contain" style={{ maxHeight: '56px', maxWidth: '180px', width: 'auto' }} />
             </Link>
 
             {/* Search bar — flex-1 center */}

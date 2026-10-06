@@ -2,8 +2,11 @@
 
 import { useState, useEffect, use, useCallback, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Package, SlidersHorizontal, X, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Package, SlidersHorizontal, X, ChevronDown, ChevronRight, Tag } from 'lucide-react';
 import { api } from '@/lib/api';
+import { getImageUrl } from '@/lib/utils';
 import type { ProductListItem, PaginatedResult, Category, Brand } from '@/lib/types';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
@@ -46,6 +49,7 @@ function CategoryContent({ slug }: { slug: string }) {
   const [products, setProducts] = useState<ProductListItem[]>([]);
   const [category, setCategory] = useState<Category | null>(null);
   const [subcategories, setSubcategories] = useState<Category[]>([]);
+  const [groupedSubcategories, setGroupedSubcategories] = useState<{ group: Category; items: Category[] }[]>([]);
   const [brands, setBrands] = useState<Brand[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
@@ -76,7 +80,13 @@ function CategoryContent({ slug }: { slug: string }) {
         const found = all.find((c) => c.slug === slug) ?? null;
         setCategory(found);
         if (found) {
-          setSubcategories(all.filter((c) => c.parentCategoryId === found.id));
+          const direct = all.filter((c) => c.parentCategoryId === found.id);
+          setSubcategories(direct);
+          // Check if any direct child has its own children → grouped layout
+          const groups = direct
+            .map((child) => ({ group: child, items: all.filter((c) => c.parentCategoryId === child.id) }))
+            .filter((g) => g.items.length > 0);
+          setGroupedSubcategories(groups);
         }
       })
       .catch(() => {});
@@ -119,7 +129,7 @@ function CategoryContent({ slug }: { slug: string }) {
     if (filterMinPrice) params.set('minPrice', filterMinPrice);
     if (filterMaxPrice) params.set('maxPrice', filterMaxPrice);
     params.set('page', '1');
-    router.push(`/category/${slug}?${params.toString()}`);
+    router.push(`/yedek-parcalar/${slug}?${params.toString()}`);
   };
 
   const clearFilters = () => {
@@ -128,14 +138,14 @@ function CategoryContent({ slug }: { slug: string }) {
     setFilterSort('');
     setFilterMinPrice('');
     setFilterMaxPrice('');
-    router.push(`/category/${slug}`);
+    router.push(`/yedek-parcalar/${slug}`);
   };
 
   const removeFilter = (key: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.delete(key);
     params.set('page', '1');
-    router.push(`/category/${slug}?${params.toString()}`);
+    router.push(`/yedek-parcalar/${slug}?${params.toString()}`);
     if (key === 'brandId') setFilterBrandId('');
     if (key === 'inStock') setFilterInStock(false);
     if (key === 'sort') setFilterSort('');
@@ -146,7 +156,7 @@ function CategoryContent({ slug }: { slug: string }) {
   const goToPage = (p: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', String(p));
-    router.push(`/category/${slug}?${params.toString()}`);
+    router.push(`/yedek-parcalar/${slug}?${params.toString()}`);
   };
 
   const openDrawer = () => {
@@ -171,7 +181,7 @@ function CategoryContent({ slug }: { slug: string }) {
     if (drawerMinPrice) params.set('minPrice', drawerMinPrice);
     if (drawerMaxPrice) params.set('maxPrice', drawerMaxPrice);
     params.set('page', '1');
-    router.push(`/category/${slug}?${params.toString()}`);
+    router.push(`/yedek-parcalar/${slug}?${params.toString()}`);
     setDrawerOpen(false);
   };
 
@@ -246,7 +256,7 @@ function CategoryContent({ slug }: { slug: string }) {
                   const params = new URLSearchParams(searchParams.toString());
                   if (e.target.value) params.set('sort', e.target.value); else params.delete('sort');
                   params.set('page', '1');
-                  router.push(`/category/${slug}?${params.toString()}`);
+                  router.push(`/yedek-parcalar/${slug}?${params.toString()}`);
                 }}
                 className="h-8 rounded-lg border border-input bg-background px-2 text-xs focus:outline-none focus:ring-1 focus:ring-ring"
               >
@@ -302,11 +312,86 @@ function CategoryContent({ slug }: { slug: string }) {
         <Breadcrumbs
           items={[
             { label: 'Ana Sayfa', href: '/' },
-            { label: 'Ürünler', href: '/products' },
+            { label: 'Yedek Parçalar', href: '/yedek-parcalar' },
             { label: categoryName },
           ]}
         />
 
+        {/* Grouped layout: category has sub-groups (e.g. Fren ve Debriyaj → Fren + Debriyaj) */}
+        {groupedSubcategories.length > 0 ? (
+          <>
+            <h1 className="text-2xl font-bold text-[#111827] mb-6">{categoryName}</h1>
+            <div className="space-y-8">
+              {groupedSubcategories.map(({ group, items }) => (
+                <div key={group.id}>
+                  <h2 className="text-lg font-bold text-brand mb-3">{group.name}</h2>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5">
+                    {items.map((item) => (
+                      <Link
+                        key={item.id}
+                        href={`/yedek-parcalar/${item.slug}`}
+                        className="group relative flex flex-col rounded-xl border border-border bg-white hover:border-brand/50 hover:shadow-sm transition-all p-3 min-h-[88px]"
+                      >
+                        <div className="flex items-center gap-2.5 flex-1">
+                          <div className="shrink-0 w-12 h-12 rounded-lg overflow-hidden bg-[#F9FAFB] border border-border/40 flex items-center justify-center">
+                            {item.imageUrl ? (
+                              <Image src={getImageUrl(item.imageUrl)!} alt={item.name} width={48} height={48} className="object-cover w-full h-full" />
+                            ) : (
+                              <Tag size={18} className="text-gray-300 group-hover:text-brand/40 transition-colors" />
+                            )}
+                          </div>
+                          <span className="text-sm font-medium text-[#1F2937] group-hover:text-brand transition-colors leading-snug line-clamp-2 flex-1">
+                            {item.name}
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : subcategories.length > 0 ? (
+          <>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h1 className="text-2xl font-bold text-[#111827]">{categoryName}</h1>
+                <p className="text-sm text-muted-foreground mt-1">{subcategories.length} alt kategori</p>
+              </div>
+              <Link
+                href={`/products?categoryId=${category?.id}`}
+                className="text-sm text-brand font-semibold flex items-center gap-1 hover:text-brand/80 transition-colors"
+              >
+                Tüm Ürünleri Gör <ChevronRight size={14} />
+              </Link>
+            </div>
+
+            <div className="bg-white rounded-2xl border border-border p-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2.5">
+                {subcategories.map((sub) => (
+                  <Link
+                    key={sub.id}
+                    href={`/yedek-parcalar/${sub.slug}`}
+                    className="group relative flex items-center gap-3 rounded-xl border border-border bg-[#FAFAFA] hover:border-brand/50 hover:bg-white hover:shadow-sm transition-all p-3"
+                  >
+                    <div className="shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-white border border-border/50 flex items-center justify-center">
+                      {sub.imageUrl ? (
+                        <Image src={getImageUrl(sub.imageUrl)!} alt={sub.name} width={56} height={56} className="object-cover w-full h-full" />
+                      ) : (
+                        <Tag size={20} className="text-gray-300 group-hover:text-brand/40 transition-colors" />
+                      )}
+                    </div>
+                    <span className="text-sm font-medium text-[#1F2937] group-hover:text-brand transition-colors leading-snug line-clamp-2 flex-1">
+                      {sub.name}
+                    </span>
+                    <ChevronRight size={14} className="shrink-0 text-gray-300 group-hover:text-brand transition-colors" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
         <div className="flex items-baseline justify-between mb-4">
           <div>
             <h1 className="text-2xl font-bold">{categoryName}</h1>
@@ -320,21 +405,6 @@ function CategoryContent({ slug }: { slug: string }) {
             </button>
           )}
         </div>
-
-        {/* Subcategory chips */}
-        {subcategories.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {subcategories.map((sub) => (
-              <a
-                key={sub.id}
-                href={`/category/${sub.slug}`}
-                className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium hover:border-brand hover:text-brand transition-colors"
-              >
-                {sub.name}
-              </a>
-            ))}
-          </div>
-        )}
 
         {/* Active filter chips */}
         {activeChips.length > 0 && (
@@ -356,6 +426,7 @@ function CategoryContent({ slug }: { slug: string }) {
             )}
           </div>
         )}
+
 
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Desktop sidebar */}
@@ -387,7 +458,7 @@ function CategoryContent({ slug }: { slug: string }) {
                   const params = new URLSearchParams(searchParams.toString());
                   if (e.target.value) params.set('sort', e.target.value); else params.delete('sort');
                   params.set('page', '1');
-                  router.push(`/category/${slug}?${params.toString()}`);
+                  router.push(`/yedek-parcalar/${slug}?${params.toString()}`);
                 }}
                 className="h-8 rounded-lg border border-input bg-background px-2 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
               >
@@ -436,6 +507,40 @@ function CategoryContent({ slug }: { slug: string }) {
             )}
           </div>
         </div>
+          </>
+        )}
+
+        {/* Description section — shown when category has description or banner */}
+        {(category?.description || category?.bannerImageUrl) && (
+          <div className="mt-10 bg-white rounded-2xl border border-border overflow-hidden">
+            <div className="flex flex-col md:flex-row gap-0">
+              {category.bannerImageUrl && (
+                <div className="md:w-64 shrink-0">
+                  <div className="relative h-48 md:h-full min-h-[192px]">
+                    <Image
+                      src={getImageUrl(category.bannerImageUrl)!}
+                      alt={categoryName}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 256px"
+                    />
+                  </div>
+                </div>
+              )}
+              {category.description && (
+                <div className="flex-1 p-6 md:p-8">
+                  <h2 className="text-lg font-bold text-[#111827] mb-3">
+                    {categoryName} | Orijinal &amp; Uygun Fiyatlı Yedek Parçalar
+                  </h2>
+                  <div
+                    className="prose prose-sm max-w-none text-muted-foreground leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: category.description }}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

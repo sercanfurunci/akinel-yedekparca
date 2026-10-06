@@ -289,6 +289,12 @@ export const api = {
       create: (data: unknown, token: string) => { _brandCache.invalidate(); return request('/api/admin/brands', { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }); },
       update: (id: string, data: unknown, token: string) => { _brandCache.invalidate(); return request(`/api/admin/brands/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }); },
       delete: (id: string, token: string) => { _brandCache.invalidate(); return request(`/api/admin/brands/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }); },
+      uploadLogo: (id: string, file: File, token: string) => {
+        _brandCache.invalidate();
+        const form = new FormData();
+        form.append('file', file);
+        return request(`/api/admin/brands/${id}/logo`, { method: 'POST', body: form, headers: { Authorization: `Bearer ${token}` } });
+      },
     },
     categories: {
       list: (token: string) =>
@@ -301,6 +307,12 @@ export const api = {
         const form = new FormData();
         form.append('file', file);
         return request(`/api/admin/categories/${id}/image`, { method: 'POST', body: form, headers: { Authorization: `Bearer ${token}` } });
+      },
+      uploadBanner: (id: string, file: File, token: string) => {
+        _categoryCache.invalidate();
+        const form = new FormData();
+        form.append('file', file);
+        return request(`/api/admin/categories/${id}/banner`, { method: 'POST', body: form, headers: { Authorization: `Bearer ${token}` } });
       },
     },
     hero: {
@@ -350,6 +362,8 @@ export const api = {
         request('/api/admin/vehicles/makes', { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
       updateMake: (id: string, data: { name: string }, token: string) =>
         request(`/api/admin/vehicles/makes/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
+      togglePopular: (id: string, token: string) =>
+        request(`/api/admin/vehicles/makes/${id}/popular`, { method: 'PATCH', headers: { Authorization: `Bearer ${token}` } }),
       deleteMake: (id: string, token: string) =>
         request(`/api/admin/vehicles/makes/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
 
@@ -381,6 +395,18 @@ export const api = {
         request(`/api/admin/vehicles/engines/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
       deleteEngine: (id: string, token: string) =>
         request(`/api/admin/vehicles/engines/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
+
+      uploadMakeLogo: async (id: string, file: File) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        return uploadFile<{ logoUrl: string }>(`/api/admin/vehicles/makes/${id}/logo`, formData);
+      },
+
+      uploadModelImage: async (id: string, file: File) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        return uploadFile<{ imageUrl: string }>(`/api/admin/vehicles/models/${id}/image`, formData);
+      },
 
       search: (q: string, token: string) =>
         request(`/api/admin/vehicles/search?q=${encodeURIComponent(q)}`, { headers: { Authorization: `Bearer ${token}` } }),

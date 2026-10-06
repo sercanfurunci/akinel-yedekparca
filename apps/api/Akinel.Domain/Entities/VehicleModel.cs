@@ -9,5 +9,6 @@ public class VehicleModel : BaseEntity
     public Guid VehicleMakeId { get; set; }
     public VehicleMake VehicleMake { get; set; } = null!;
     public int? ExternalId { get; set; }
+    public string? ImageUrl { get; set; }
     public ICollection<VehicleGeneration> Generations { get; set; } = new List<VehicleGeneration>();
 }

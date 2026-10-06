@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import Image from 'next/image';
+import { getImageUrl } from '@/lib/utils';
 import {
   ChevronRight, ChevronDown, Plus, Pencil, Trash2, X,
-  ArrowLeft, Search, Car, Layers, Zap, RefreshCw
+  ArrowLeft, Search, Car, Layers, Zap, RefreshCw, ImagePlus, Loader2
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
@@ -176,6 +178,16 @@ export default function AdminVehiclesPage() {
   const [fDrivetrain, setFDrivetrain] = useState('');
   const [fEngineCode, setFEngineCode] = useState('');
 
+  // Make logo upload
+  const [makeLogoUrl, setMakeLogoUrl] = useState('');
+  const [makeLogoUploading, setMakeLogoUploading] = useState(false);
+  const makeLogoFileRef = useRef<HTMLInputElement>(null);
+
+  // Model image upload
+  const [modelImageUrl, setModelImageUrl] = useState('');
+  const [modelUploading, setModelUploading] = useState(false);
+  const modelFileRef = useRef<HTMLInputElement>(null);
+
   // Delete
   const [deleteTarget, setDeleteTarget] = useState<{ id: string; label: string; type: Level } | null>(null);
   const [deleteError, setDeleteError] = useState('');
@@ -325,11 +337,11 @@ export default function AdminVehiclesPage() {
 
   const closeModal = () => { setModal(null); setEditingItem(null); setFormError(''); };
 
-  const openCreateMake = () => { setFName(''); setFormError(''); setModal('createMake'); };
-  const openEditMake = (m: VehicleMakeAdmin) => { setEditingItem(m); setFName(m.name); setFormError(''); setModal('editMake'); };
+  const openCreateMake = () => { setFName(''); setMakeLogoUrl(''); setFormError(''); setModal('createMake'); };
+  const openEditMake = (m: VehicleMakeAdmin) => { setEditingItem(m); setFName(m.name); setMakeLogoUrl(m.logoUrl ?? ''); setFormError(''); setModal('editMake'); };
 
-  const openCreateModel = () => { setFName(''); setFormError(''); setModal('createModel'); };
-  const openEditModel = (m: VehicleModelAdmin) => { setEditingItem(m); setFName(m.name); setFormError(''); setModal('editModel'); };
+  const openCreateModel = () => { setFName(''); setModelImageUrl(''); setFormError(''); setModal('createModel'); };
+  const openEditModel = (m: VehicleModelAdmin) => { setEditingItem(m); setFName(m.name); setModelImageUrl(m.imageUrl ?? ''); setFormError(''); setModal('editModel'); };
 
   const openCreateGen = () => { setFName(''); setFBodyType(''); setFYearFrom(''); setFYearTo(''); setFormError(''); setModal('createGen'); };
   const openEditGen = (g: VehicleGenerationAdmin) => {
@@ -466,6 +478,50 @@ export default function AdminVehiclesPage() {
     }
   };
 
+  // ── Toggle popular ────────────────────────────────────────────────────────
+
+  const handleTogglePopular = async (makeId: string) => {
+    if (!accessToken) return;
+    try {
+      const res = await api.admin.vehicles.togglePopular(makeId, accessToken) as { id: string; isPopular: boolean };
+      setMakes((prev) => ({ ...prev, items: prev.items.map((m) => m.id === res.id ? { ...m, isPopular: res.isPopular } : m) }));
+    } catch {
+      // ignore
+    }
+  };
+
+  // ── Make logo upload ──────────────────────────────────────────────────────
+
+  const handleMakeLogoUpload = async (file: File) => {
+    if (!editingItem) return;
+    setMakeLogoUploading(true);
+    try {
+      const res = await api.admin.vehicles.uploadMakeLogo(editingItem.id, file);
+      setMakeLogoUrl(res.logoUrl);
+      fetchMakes(makesPage, makeSearch);
+    } catch {
+      setFormError('Logo yüklenemedi.');
+    } finally {
+      setMakeLogoUploading(false);
+    }
+  };
+
+  // ── Model image upload ────────────────────────────────────────────────────
+
+  const handleModelImageUpload = async (file: File) => {
+    if (!editingItem) return;
+    setModelUploading(true);
+    try {
+      const res = await api.admin.vehicles.uploadModelImage(editingItem.id, file);
+      setModelImageUrl(res.imageUrl);
+      if (selectedMake) fetchModels(selectedMake.id);
+    } catch {
+      setFormError('Fotoğraf yüklenemedi.');
+    } finally {
+      setModelUploading(false);
+    }
+  };
+
   // ── Breadcrumbs ───────────────────────────────────────────────────────────
 
   const breadcrumbs: Breadcrumb[] = [{ label: 'Markalar', level: 'makes' }];
@@ -595,13 +651,15 @@ export default function AdminVehiclesPage() {
                   <thead className="bg-muted/20 text-muted-foreground">
                     <tr>
                       <th className="text-left py-2.5 px-4 font-medium">Marka</th>
+                      <th className="text-left py-2.5 px-4 font-medium hidden sm:table-cell">Logo</th>
                       <th className="text-center py-2.5 px-4 font-medium hidden sm:table-cell">Model Sayısı</th>
+                      <th className="text-center py-2.5 px-4 font-medium">Anasayfa</th>
                       <th className="text-right py-2.5 px-4 font-medium">İşlem</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
                     {makes.length === 0 ? (
-                      <tr><td colSpan={3} className="py-10 text-center text-muted-foreground text-sm">Marka bulunamadı.</td></tr>
+                      <tr><td colSpan={4} className="py-10 text-center text-muted-foreground text-sm">Marka bulunamadı.</td></tr>
                     ) : makes.map((m) => (
                       <tr key={m.id} className="hover:bg-muted/10 transition-colors">
                         <td className="py-2.5 px-4">
@@ -610,7 +668,27 @@ export default function AdminVehiclesPage() {
                             {m.name}
                           </button>
                         </td>
+                        <td className="py-2.5 px-4 hidden sm:table-cell">
+                          {m.logoUrl ? (
+                            <div className="relative h-7 w-14 rounded overflow-hidden bg-muted">
+                              <Image src={getImageUrl(m.logoUrl)!} alt={m.name} fill className="object-contain p-0.5" sizes="56px" />
+                            </div>
+                          ) : (
+                            <div className="h-7 w-14 rounded bg-muted flex items-center justify-center">
+                              <Car size={12} className="text-muted-foreground" />
+                            </div>
+                          )}
+                        </td>
                         <td className="py-2.5 px-4 text-center text-muted-foreground hidden sm:table-cell">{m.modelCount}</td>
+                        <td className="py-2.5 px-4 text-center">
+                          <button
+                            onClick={() => handleTogglePopular(m.id)}
+                            title={m.isPopular ? 'Anasayfadan kaldır' : 'Anasayfada göster'}
+                            className={`text-xs px-2.5 py-1 rounded-full font-medium transition-colors ${m.isPopular ? 'bg-brand text-white hover:bg-brand/80' : 'bg-gray-100 text-gray-500 hover:bg-brand/10 hover:text-brand'}`}
+                          >
+                            {m.isPopular ? 'Gösteriliyor' : 'Gizli'}
+                          </button>
+                        </td>
                         <td className="py-2.5 px-4">
                           <div className="flex items-center justify-end gap-1">
                             <button onClick={() => openEditMake(m)}
@@ -637,13 +715,14 @@ export default function AdminVehiclesPage() {
                   <thead className="bg-muted/20 text-muted-foreground">
                     <tr>
                       <th className="text-left py-2.5 px-4 font-medium">Model</th>
+                      <th className="text-left py-2.5 px-4 font-medium hidden sm:table-cell">Fotoğraf</th>
                       <th className="text-center py-2.5 px-4 font-medium hidden sm:table-cell">Nesil Sayısı</th>
                       <th className="text-right py-2.5 px-4 font-medium">İşlem</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
                     {models.length === 0 ? (
-                      <tr><td colSpan={3} className="py-10 text-center text-muted-foreground text-sm">Model bulunamadı.</td></tr>
+                      <tr><td colSpan={4} className="py-10 text-center text-muted-foreground text-sm">Model bulunamadı.</td></tr>
                     ) : models.map((m) => (
                       <tr key={m.id} className="hover:bg-muted/10 transition-colors">
                         <td className="py-2.5 px-4">
@@ -651,6 +730,17 @@ export default function AdminVehiclesPage() {
                             <ChevronRight size={13} className="text-muted-foreground" />
                             {m.name}
                           </button>
+                        </td>
+                        <td className="py-2.5 px-4 hidden sm:table-cell">
+                          {m.imageUrl ? (
+                            <div className="relative h-8 w-12 rounded overflow-hidden bg-muted">
+                              <Image src={getImageUrl(m.imageUrl)!} alt={m.name} fill className="object-cover" sizes="48px" />
+                            </div>
+                          ) : (
+                            <div className="h-8 w-12 rounded bg-muted flex items-center justify-center">
+                              <Car size={12} className="text-muted-foreground" />
+                            </div>
+                          )}
                         </td>
                         <td className="py-2.5 px-4 text-center text-muted-foreground hidden sm:table-cell">{m.generationCount}</td>
                         <td className="py-2.5 px-4">
@@ -796,6 +886,40 @@ export default function AdminVehiclesPage() {
               <Label htmlFor="makeName">Marka Adı</Label>
               <Input id="makeName" value={fName} onChange={(e) => setFName(e.target.value)} placeholder="ör: Toyota" autoFocus />
             </div>
+
+            {modal === 'editMake' && (
+              <div className="space-y-2">
+                <Label>Marka Logosu</Label>
+                {makeLogoUrl && (
+                  <div className="relative h-16 w-full rounded-lg overflow-hidden border bg-muted flex items-center justify-center">
+                    <Image src={getImageUrl(makeLogoUrl)!} alt="logo" fill className="object-contain p-2" sizes="320px" />
+                  </div>
+                )}
+                <input
+                  ref={makeLogoFileRef}
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.webp"
+                  style={{ display: 'none' }}
+                  disabled={makeLogoUploading}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    e.target.value = '';
+                    handleMakeLogoUpload(file);
+                  }}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full gap-2"
+                  disabled={makeLogoUploading}
+                  onClick={() => makeLogoFileRef.current?.click()}
+                >
+                  {makeLogoUploading ? <Loader2 size={14} className="animate-spin" /> : <ImagePlus size={14} />}
+                  {makeLogoUploading ? 'Yükleniyor...' : makeLogoUrl ? 'Logoyu Değiştir' : 'Logo Yükle'}
+                </Button>
+              </div>
+            )}
             {formError && <p className="text-sm text-destructive">{formError}</p>}
             <div className="flex gap-2 pt-1">
               <Button onClick={handleSave} className="flex-1 bg-brand text-brand-foreground hover:bg-brand/90" disabled={saving}>
@@ -815,9 +939,45 @@ export default function AdminVehiclesPage() {
               <Label htmlFor="modelName">Model Adı</Label>
               <Input id="modelName" value={fName} onChange={(e) => setFName(e.target.value)} placeholder="ör: Corolla" autoFocus />
             </div>
+
+            {/* Image upload — only available when editing an existing model */}
+            {modal === 'editModel' && (
+              <div className="space-y-2">
+                <Label>Model Fotoğrafı</Label>
+                {modelImageUrl && (
+                  <div className="relative h-24 w-full rounded-lg overflow-hidden border bg-muted">
+                    <Image src={getImageUrl(modelImageUrl)!} alt="model" fill className="object-cover" sizes="320px" />
+                  </div>
+                )}
+                <input
+                  ref={modelFileRef}
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.webp"
+                  style={{ display: 'none' }}
+                  disabled={modelUploading}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    e.target.value = '';
+                    handleModelImageUpload(file);
+                  }}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full gap-2"
+                  disabled={modelUploading}
+                  onClick={() => modelFileRef.current?.click()}
+                >
+                  {modelUploading ? <Loader2 size={14} className="animate-spin" /> : <ImagePlus size={14} />}
+                  {modelUploading ? 'Yükleniyor...' : modelImageUrl ? 'Fotoğrafı Değiştir' : 'Fotoğraf Yükle'}
+                </Button>
+              </div>
+            )}
+
             {formError && <p className="text-sm text-destructive">{formError}</p>}
             <div className="flex gap-2 pt-1">
-              <Button onClick={handleSave} className="flex-1 bg-brand text-brand-foreground hover:bg-brand/90" disabled={saving}>
+              <Button onClick={handleSave} className="flex-1 bg-brand text-brand-foreground hover:bg-brand/90" disabled={saving || modelUploading}>
                 {saving ? 'Kaydediliyor...' : 'Kaydet'}
               </Button>
               <Button variant="outline" onClick={closeModal}>İptal</Button>

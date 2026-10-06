@@ -10,6 +10,8 @@ import { ProductGrid } from '@/components/products/ProductGrid';
 import { BusinessStrip } from '@/components/home/BusinessStrip';
 import { HeroCarousel, StaticHero } from '@/components/home/HeroCarousel';
 import { CategoryStrip } from '@/components/home/CategoryStrip';
+import { PopularVehicleMakes } from '@/components/home/PopularVehicleMakes';
+import { BrandLogoStrip } from '@/components/layout/BrandLogoStrip';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { api } from '@/lib/api';
 import type { ProductListItem, PaginatedResult, Brand, Category, HeroSlide } from '@/lib/types';
@@ -71,10 +73,16 @@ export default function HomePage() {
         <StaticHero />
       )}
 
-      {/* ── 2. BUSINESS STRIP ───────────────────────── */}
+      {/* ── 2. BRAND LOGO STRIP ─────────────────────── */}
+      <BrandLogoStrip />
+
+      {/* ── 3. BUSINESS STRIP ───────────────────────── */}
       <BusinessStrip />
 
-      {/* ── 3. CATEGORY STRIP ───────────────────────── */}
+      {/* ── 3. POPULAR VEHICLE MAKES ───────────────── */}
+      <PopularVehicleMakes />
+
+      {/* ── 4. CATEGORY STRIP ───────────────────────── */}
       <CategoryStrip categories={categories} />
 
       {/* ── 3. AKINEL INTRODUCTION ──────────────────── */}
@@ -123,7 +131,7 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="flex flex-wrap gap-3">
-              {brands.map((brand) => (
+              {brands.slice(0, 24).map((brand) => (
                 <Link
                   key={brand.id}
                   href={`/marka/${brand.slug}`}
