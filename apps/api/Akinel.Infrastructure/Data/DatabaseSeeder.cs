@@ -48,6 +48,34 @@ public static class DatabaseSeeder
             await context.SaveChangesAsync();
         }
 
+        // Sync vehicle make logos & IsPopular from B2 (runs on every deploy, idempotent)
+        var logoMap = new Dictionary<string, string>
+        {
+            ["audi"]          = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/d5f62b4a-c758-4a2c-b1b2-5d08b8059658.webp",
+            ["bmw"]           = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/702dcd5b-59d8-47e0-9bc4-a1f05a1127c1.webp",
+            ["citroen"]       = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/c67668e6-117a-4341-915a-b5d15c27fb90.webp",
+            ["fiat"]          = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/c03967b4-a99d-4235-9ffd-e92fd02fcfdd.webp",
+            ["ford"]          = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/ab6f6b46-cd6a-4dbb-9d19-bb1a0b3ada1d.webp",
+            ["honda"]         = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/2e99b61e-1ca0-4d2c-a00c-644251b6cbf0.webp",
+            ["hyundai"]       = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/bbf4e117-cd41-4bd3-ad7e-89e6150a2995.webp",
+            ["mercedes-benz"] = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/290da447-c727-4df1-8e8a-d08be5503463.webp",
+            ["opel"]          = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/9454e1af-5d74-48ca-830f-4999c6d38eec.webp",
+            ["peugeot"]       = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/d45544af-fc12-4f0f-9fc3-db5010925133.webp",
+            ["renault"]       = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/76d08d36-4448-4b7e-97ab-2b7314fe3334.webp",
+            ["toyota"]        = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/ed5a471a-59b8-4de9-94e6-dd3d502f8fad.webp",
+            ["volkswagen"]    = "https://akinel-uploads.s3.eu-central-003.backblazeb2.com/uploads/vehicle-makes/318143a8-a712-4c2c-a205-1a32dece11a0.webp",
+        };
+        var popularSlugs = new HashSet<string> { "audi", "bmw", "citroen", "fiat", "ford", "honda", "hyundai", "mercedes-benz", "opel", "peugeot", "renault", "toyota", "volkswagen" };
+        var makesToPatch = await context.VehicleMakes
+            .Where(m => logoMap.Keys.Contains(m.Slug))
+            .ToListAsync();
+        foreach (var make in makesToPatch)
+        {
+            if (logoMap.TryGetValue(make.Slug, out var logo)) make.LogoUrl = logo;
+            make.IsPopular = popularSlugs.Contains(make.Slug);
+        }
+        if (makesToPatch.Count > 0) await context.SaveChangesAsync();
+
         if (await context.Brands.AnyAsync()) return;
 
         var brands = new List<Brand>
