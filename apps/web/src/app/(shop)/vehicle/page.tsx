@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronRight, Search, Car } from 'lucide-react';
@@ -16,7 +16,7 @@ function MakeInitial({ name }: { name: string }) {
   );
 }
 
-export default function VehiclePage() {
+function VehiclePageInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const makeId = searchParams.get('makeId');
@@ -314,5 +314,13 @@ export default function VehiclePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function VehiclePage() {
+  return (
+    <Suspense>
+      <VehiclePageInner />
+    </Suspense>
   );
 }
