@@ -159,7 +159,7 @@ export default function AdminBrandsPage() {
                         {b.logoUrl ? (
                           <div className="relative w-10 h-10">
                             <Image
-                              src={getImageUrl(b.logoUrl)}
+                              src={getImageUrl(b.logoUrl)!}
                               alt={b.name}
                               fill
                               className="object-contain rounded"
@@ -232,7 +232,7 @@ export default function AdminBrandsPage() {
                     {logoUrl ? (
                       <div className="relative w-16 h-16 border rounded-lg overflow-hidden bg-muted/20">
                         <Image
-                          src={getImageUrl(logoUrl)}
+                          src={getImageUrl(logoUrl)!}
                           alt={name}
                           fill
                           className="object-contain p-1"

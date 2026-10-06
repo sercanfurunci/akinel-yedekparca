@@ -484,7 +484,7 @@ export default function AdminVehiclesPage() {
     if (!accessToken) return;
     try {
       const res = await api.admin.vehicles.togglePopular(makeId, accessToken) as { id: string; isPopular: boolean };
-      setMakes((prev) => ({ ...prev, items: prev.items.map((m) => m.id === res.id ? { ...m, isPopular: res.isPopular } : m) }));
+      setMakes((prev) => prev.map((m) => m.id === res.id ? { ...m, isPopular: res.isPopular } : m));
     } catch {
       // ignore
     }
