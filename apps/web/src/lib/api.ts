@@ -159,6 +159,7 @@ function makeSessionCache<T>(fetcher: () => Promise<T>): { get: () => Promise<T>
 const _brandCache    = makeSessionCache<unknown>(() => request('/api/brands'));
 const _categoryCache = makeSessionCache<unknown>(() => request('/api/categories'));
 const _heroCache     = makeSessionCache<unknown>(() => request('/api/hero/slides'));
+const _bannersCache  = makeSessionCache<unknown>(() => request('/api/home/banners'));
 const _makesCache    = makeSessionCache<unknown>(() => request('/api/vehicles/makes'));
 const _bizCache      = makeSessionCache<unknown>(() => request('/api/business/settings'));
 
@@ -219,6 +220,9 @@ export const api = {
   },
   hero: {
     slides: () => _heroCache.get(),
+  },
+  home: {
+    banners: () => _bannersCache.get(),
   },
   business: {
     settings: () => _bizCache.get(),
@@ -328,6 +332,20 @@ export const api = {
       },
       toggle: (id: string, token: string) => { _heroCache.invalidate(); return request(`/api/admin/hero/slides/${id}/toggle`, { method: 'PATCH', headers: { Authorization: `Bearer ${token}` } }); },
       delete: (id: string, token: string) => { _heroCache.invalidate(); return request(`/api/admin/hero/slides/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }); },
+    },
+    homepageBanners: {
+      list: (token: string) =>
+        request('/api/admin/homepage-banners', { headers: { Authorization: `Bearer ${token}` } }),
+      uploadImage: async (sectionKey: string, file: File) => {
+        _bannersCache.invalidate();
+        const formData = new FormData();
+        formData.append('file', file);
+        return uploadFile(`/api/admin/homepage-banners/${encodeURIComponent(sectionKey)}/image`, formData);
+      },
+      deleteImage: (sectionKey: string, token: string) => {
+        _bannersCache.invalidate();
+        return request(`/api/admin/homepage-banners/${encodeURIComponent(sectionKey)}/image`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+      },
     },
     analytics: {
       get: (period: string, token: string) =>

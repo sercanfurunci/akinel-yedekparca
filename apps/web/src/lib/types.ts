@@ -285,6 +285,19 @@ export interface HeroSlide {
   displayOrder: number;
 }
 
+export interface HomepageBanner {
+  sectionKey: string;
+  imageUrl?: string;
+}
+
+export interface AdminHomepageBanner {
+  id: string;
+  sectionKey: string;
+  imageUrl?: string;
+  isActive: boolean;
+  updatedAt: string;
+}
+
 export interface AdminHeroSlide extends HeroSlide {
   isActive: boolean;
   createdAt: string;

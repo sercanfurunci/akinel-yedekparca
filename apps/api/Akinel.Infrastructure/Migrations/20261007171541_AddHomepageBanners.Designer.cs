@@ -3,6 +3,7 @@ using System;
 using Akinel.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Akinel.Infrastructure.Migrations
 {
     [DbContext(typeof(AkinelDbContext))]
-    partial class AkinelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20261007171541_AddHomepageBanners")]
+    partial class AddHomepageBanners
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1049,9 +1052,6 @@ namespace Akinel.Infrastructure.Migrations
 
                     b.Property<int?>("ExternalId")
                         .HasColumnType("integer");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()

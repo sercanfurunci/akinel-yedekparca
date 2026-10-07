@@ -3,6 +3,7 @@ using System;
 using Akinel.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Akinel.Infrastructure.Migrations
 {
     [DbContext(typeof(AkinelDbContext))]
-    partial class AkinelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20261007221218_AddVehicleGenerationImageUrl")]
+    partial class AddVehicleGenerationImageUrl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

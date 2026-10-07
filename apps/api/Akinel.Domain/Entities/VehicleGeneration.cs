@@ -11,6 +11,7 @@ public class VehicleGeneration : BaseEntity
     public int? YearFrom { get; set; }
     public int? YearTo { get; set; }
     public string? BodyType { get; set; }
+    public string? ImageUrl { get; set; }
     public int? ExternalId { get; set; }
     public ICollection<VehicleEngine> Engines { get; set; } = new List<VehicleEngine>();
 }

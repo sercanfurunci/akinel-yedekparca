@@ -574,6 +574,56 @@ public class AdminController : ControllerBase
         return NoContent();
     }
 
+    // ── Homepage Banners ─────────────────────────────────────────────
+
+    [HttpGet("homepage-banners")]
+    public async Task<IActionResult> GetHomepageBanners(CancellationToken ct)
+    {
+        var banners = await _db.HomepageBanners
+            .AsNoTracking()
+            .OrderBy(b => b.SectionKey)
+            .Select(b => new { b.Id, b.SectionKey, b.ImageUrl, b.IsActive, b.UpdatedAt })
+            .ToListAsync(ct);
+        return Ok(banners);
+    }
+
+    [HttpPost("homepage-banners/{sectionKey}/image")]
+    public async Task<IActionResult> UploadHomepageBannerImage(string sectionKey, IFormFile file, CancellationToken ct)
+    {
+        if (file == null || file.Length == 0) return BadRequest(new { message = "Dosya gerekli." });
+        if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5 MB'den büyük olamaz." });
+        if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Geçersiz dosya türü." });
+
+        var banner = await _db.HomepageBanners.FirstOrDefaultAsync(b => b.SectionKey == sectionKey, ct);
+        if (banner == null)
+        {
+            banner = new Domain.Entities.HomepageBanner { SectionKey = sectionKey };
+            _db.HomepageBanners.Add(banner);
+        }
+        else if (!string.IsNullOrEmpty(banner.ImageUrl))
+        {
+            await _storage.DeleteAsync(banner.ImageUrl, ct);
+        }
+
+        var url = await _storage.UploadAsync(file, "homepage-banners", ct);
+        banner.ImageUrl = url;
+        banner.IsActive = true;
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { banner.Id, banner.SectionKey, banner.ImageUrl });
+    }
+
+    [HttpDelete("homepage-banners/{sectionKey}/image")]
+    public async Task<IActionResult> DeleteHomepageBannerImage(string sectionKey, CancellationToken ct)
+    {
+        var banner = await _db.HomepageBanners.FirstOrDefaultAsync(b => b.SectionKey == sectionKey, ct);
+        if (banner == null || string.IsNullOrEmpty(banner.ImageUrl)) return NotFound();
+
+        await _storage.DeleteAsync(banner.ImageUrl, ct);
+        banner.ImageUrl = null;
+        await _db.SaveChangesAsync(ct);
+        return NoContent();
+    }
+
     // ── Helpers ──────────────────────────────────────────────────────
 
     private static bool IsSafeUrl(string? url)

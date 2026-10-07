@@ -1,766 +1,1359 @@
-# Akinel Oto Yedek Parça — Competitor Benchmark, UX Audit & Feature Gap Analysis
+# Akinel Oto Yedek Parça — Competitor Audit Report
 
-**Date:** 2026-10-01  
-**Analyst:** Claude Sonnet 4.6 (automated audit via Playwright + codebase review)  
+**Date:** 2026-10-05
+**Analyst:** Claude Sonnet 4.6 (automated audit — codebase review + competitor research)
 **Project root:** `/Users/sercanfurunci/Desktop/akinel-yedekparca`
+**Competitors audited:** otoparcasan.com, onlineyedekparca.com
 
 ---
 
 ## 1. Executive Summary
 
-Akinel Oto Yedek Parça is a custom-built automotive spare-parts e-commerce platform with a technically solid foundation that exceeds most Turkish competitors in code quality and architecture. The platform has implemented the complete core purchase flow (vehicle finder → product listing → product detail → cart → checkout → order management), a persistent garage, OEM number search, vehicle compatibility display, admin panel, and a well-structured domain model. This puts it ahead of several niche Turkish competitors that are either login-walled (parcamax.com), offline (manual VIN lookup), or inventory-limited.
+Akinel is a functional automotive spare-parts e-commerce platform built on a modern stack (Next.js 15, ASP.NET Core 10, PostgreSQL). However, compared with the two leading Turkish competitors, Otoparcasan and OnlineYedekParca, Akinel is missing a significant number of conversion-driving, SEO-critical, and discovery-enabling features.
 
-The two most-inspected live competitors — **onlineyedekparca.com** and **yedekparca.com.tr** — are significantly larger catalogs with decades of vehicle data, but Akinel's architecture is designed to compete correctly: separating vehicle compatibility from product names, using OEM number indexing, and persisting vehicle context across sessions. These are design decisions the incumbents get wrong.
+The most critical gaps are:
 
-**Biggest gaps versus competitors:**
-1. No guest order tracking (order number + email lookup without login)
-2. No "notify when back in stock" feature
-3. VIN page is a UI shell with no backend functionality
-4. No category navigation tree (SEO-critical: competitors expose `/fren`, `/balata`, `/debriyaj` as indexable paths)
-5. No installment/taksit display at checkout
-6. No back-in-stock alert or wishlist/favorites
+1. **No "Oto Bakım ve Yağlar" category** — oil and maintenance products are a high-frequency, high-margin segment that both competitors prioritise heavily. Its absence in Akinel's category tree is a direct revenue gap.
+2. **No model-level pages** — competitors have deep `/brand/model` URL trees generating thousands of SEO-indexed pages. Akinel only has brand-level pages (`/marka/[slug]`), missing an entire tier of long-tail organic traffic.
+3. **No SEO footer link columns** — the industry standard footer contains Popüler Markalar / Popüler Araçlar / Popüler Modeller / Popüler Kategoriler link blocks. These columns contribute directly to crawl depth and PageRank distribution.
+4. **Homepage popular-brand cards with model links** — both competitors surface clickable model lists on the homepage. Akinel shows only pill buttons.
+5. **No periyodik bakım robotu / maintenance tool** — Otoparcasan's Bakım Robotu is a major differentiator for average-order-value and repeat usage.
+6. **VIN search uses NHTSA (US data)** — wholly inadequate for the Turkish market. Turkish vehicles are not in the NHTSA database.
+7. **No installment/taksit information** — a fundamental purchase-decision factor in the Turkish e-commerce context.
 
-**Biggest Akinel advantages over competitors:**
-1. OEM number search that actually works automatically (competitors handle this manually)
-2. Clean vehicle compatibility architecture (not embedded in product names)
-3. Persistent vehicle context chip across sessions (localStorage + Zustand)
-4. Admin panel built-in for self-managed catalog
-5. Legal document compliance (KVKK, Mesafeli Satış, Ön Bilgilendirme)
-
-**Recommendation in two weeks:** Focus on (1) guest order tracking, (2) category URL/SEO structure, (3) "notify when in stock", (4) real payment gateway integration. All other roadmap items are improvements, not blockers.
+The 15 capability gaps, their priorities, and exact implementation specs are detailed in Section 13. Section 14 provides a complete proposed homepage and vehicle-discovery structure.
 
 ---
 
-## 2. Current Akinel Feature Inventory
+## 2. Otoparcasan.com — Deep Audit
 
-| Feature | Status | Notes |
-|---|---|---|
-| **Homepage** | Implemented | Hero carousel (admin-managed), category strip, brand strip, vehicle finder, featured products |
-| **Hero carousel** | Implemented | Admin can upload images, set CTA text/URL, toggle slides |
-| **Category strip** | Implemented | Pulls from API, shows category images |
-| **Brand strip** | Implemented | Links to `/products?brandId=X` |
-| **Vehicle finder (4-step)** | Implemented | Make → Model → Generation → Engine; persisted in localStorage |
-| **Vehicle context chip** | Implemented | Header-level persistent chip; links to products filtered by engineId |
-| **Persistent vehicle context** | Implemented | Zustand + localStorage; survives page refresh |
-| **Garage (My Vehicles)** | Partial | UI built, API endpoints exist; shows "coming soon" if 404 from backend |
-| **Free-text search** | Implemented | Header search bar; Cmd+K shortcut; navigates to /search |
-| **OEM number search** | Implemented | Heuristic detection in /search page; `queryType=1` passed to API |
-| **OEM number display on product** | Implemented | Tab + header chips on product detail |
-| **Vehicle compatibility display** | Implemented | "Uyumlu Araçlar" tab on product detail with compatibility check vs selected vehicle |
-| **VIN page** | Partial | UI shell exists at /vin, API endpoint exists (`POST /api/vehicles/vin-decode`); page shows "coming soon" message; no actual decode logic wired |
-| **Product listing** | Implemented | Paginated, brand/category/stock/price-range/sort filters |
-| **Product listing — desktop sidebar** | Implemented | Sticky sidebar with filter panel |
-| **Product listing — mobile filter drawer** | Implemented | Sheet-based drawer, applied on confirm |
-| **Active filter chips** | Implemented | Removable chips; individual or bulk clear |
-| **Product detail page** | Implemented | Image gallery, price/discount, stock status, tabs (info/OEM/compat/stock), quantity selector, add-to-cart |
-| **Product images (multi)** | Implemented | Horizontal thumbnail strip, active state, primary selection |
-| **Price display with discount** | Implemented | Strike-through original price + discount badge |
-| **Stock status display** | Implemented | InStock / LowStock / OutOfStock; quantity shown |
-| **Category pages** | Partial | `/category/[slug]` exists but is a simple wrapper over `/products?categoryId=X`. No dedicated SEO-friendly category landing page |
-| **Brand listing page** | Implemented | `/brands` lists all brands |
-| **Cart drawer** | Implemented | Side sheet, quantity controls, remove, subtotal |
-| **Cart persistence** | Implemented | Server-side session (cookie-based basket); fetched on mount |
-| **Checkout** | Implemented | Customer info, shipping address (city/district/postcode), payment method selection, KVKK/legal checkboxes |
-| **Payment — credit card processing** | Missing | Only label shown ("Kredi Kartı — sonraki adımda"); no actual payment gateway (iyzico, PayTR, etc.) |
-| **Payment — bank transfer** | Implemented | Order created; customer pays separately |
-| **Payment — cash on delivery** | Implemented | Supported in order model |
-| **Installment/taksit display** | Missing | Competitors show installment options from banks at checkout |
-| **Order confirmation page** | Implemented | Shows order number, items, status |
-| **Order tracking (logged-in)** | Implemented | `/account/orders` and `/account/orders/[id]` |
-| **Order tracking (guest / no login)** | Missing | Competitors allow lookup by order number + email without login |
-| **Account registration** | Implemented | Email + password |
-| **Account login** | Implemented | JWT + refresh token |
-| **Social login** | Missing | No Google/Apple OAuth |
-| **Password reset** | Missing | No forgot-password flow |
-| **Account profile page** | Implemented | `/account` shows basic user info |
-| **Address book** | Missing | Shipping address entered fresh each checkout |
-| **Favorites / wishlist** | Missing | No save-product feature |
-| **Back-in-stock notification** | Missing | No "Gelince Haber Ver" feature |
-| **Product reviews / ratings** | Missing | No review system |
-| **Recently viewed products** | Missing | No tracking |
-| **Related/suggested products** | Missing | No "you may also like" section |
-| **Maintenance kit tool (bakım robotu)** | Missing | Competitors have a vehicle → full service kit builder |
-| **SEO — sitemap** | Implemented | `sitemap.ts` generates a sitemap |
-| **SEO — robots.txt** | Implemented | `robots.ts` exists |
-| **SEO — OG image** | Implemented | `opengraph-image.tsx` |
-| **SEO — category URL paths** | Partial | URLs are `/products?categoryId=X`, not `/kategori/[slug]`; not SEO-friendly |
-| **SEO — brand URL paths** | Partial | URLs are `/products?brandId=X`, not `/marka/[slug]` |
-| **Legal pages** | Implemented | Gizlilik, KVKK, Kullanım Koşulları, Mesafeli Satış, Ön Bilgilendirme |
-| **About page** | Implemented | `/about` exists |
-| **Contact page** | Implemented | `/contact` exists |
-| **WhatsApp button** | Implemented | Floating WhatsApp button (business number from BusinessSettings) |
-| **Announcement ticker** | Implemented | Scrolling announcement bar in header |
-| **Admin dashboard** | Implemented | Stats cards (total/in-stock/low/out products), recent products table |
-| **Admin products CRUD** | Implemented | List, create, edit, delete; with image upload |
-| **Admin OEM number management** | Implemented | Add/remove OEM numbers per product |
-| **Admin vehicle compatibility** | Implemented | Add/remove vehicle engine compatibility per product |
-| **Admin image management** | Implemented | Upload, set primary, delete |
-| **Admin orders** | Implemented | List, view, update status |
-| **Admin stock management** | Implemented | Update quantity per product |
-| **Admin brands CRUD** | Implemented | List, create, edit, delete |
-| **Admin categories CRUD** | Implemented | List, create, edit, delete, image upload |
-| **Admin hero slides** | Implemented | Full CRUD + image upload + toggle |
-| **Admin vehicle catalog** | Implemented | Full Make/Model/Generation/Engine CRUD with search |
-| **Admin customers** | Partial | List view exists; no edit/detail |
-| **Admin business settings** | Implemented | Logo, phone, WhatsApp, address, social links, working hours, announcement banner |
-| **Notification emails** | Missing | No transactional emails (order confirmation, shipped, etc.) |
-| **B2B / trade account** | Missing | No mechanic/service center tier |
+### 2.1 Homepage Structure (section by section)
+
+The Otoparcasan homepage is built around a single conversion objective: get the user to select their vehicle and find a part. Every section above the fold serves that goal. Below the fold, the page shifts to SEO content and social proof.
+
+**Section 1 — Sticky top bar**
+- Full-width orange bar pinned to top of viewport, persists on scroll.
+- Content: "5000 TL VE ÜZERİ ALIŞVERİŞLERİNİZDE KARGO BEDAVA" (free shipping threshold) + phone number + WhatsApp CTA icon.
+- Purpose: sets the free-shipping threshold expectation on every page load.
+
+**Section 2 — Header**
+- Logo (left) + combined search bar (center) + Garajım (garage) icon + Sepet (cart) + Giriş Yap (login).
+- Search bar placeholder: "Marka, Model, Parça veya Şasi No yaz..." — a single input that accepts vehicle name, part name, or VIN. This is a meaningfully broader scope than a pure product search.
+
+**Section 3 — Brand navigation bar**
+- Immediately below header: TÜM ARAÇLAR button (orange, full-width clickable) + 13 brand logo icons (Audi, Mercedes-Benz, VW, BMW, Toyota, Hyundai, Ford, Citroën, Opel, Honda, Renault, Fiat, Peugeot, BYD).
+- All logos are hyperlinks to brand-specific product listing pages.
+- This is the fastest possible path from homepage to brand-filtered product list — one click from any page.
+
+**Section 4 — Vehicle Selector Widget (hero)**
+- The dominant visual element: a large card widget with 4 tabs.
+  - Tab 1 "Araç Kataloğu" (default): cascading dropdowns — Marka → Seri → Yıl → Model → Vites → Motor → Ek özellik — with a step indicator "1/7". Orange "PARÇA ARA" CTA.
+  - Tab 2 "Şasi No ile Ara": single text input for VIN or chassis number.
+  - Tab 3 "Garajımdan Seç": user's saved/garage vehicles.
+  - Tab 4 "Anlaşmalı Servisler": authorised service center finder.
+- The step-counter "1/7" gives users a clear sense of completion progress and reduces abandonment.
+
+**Section 5 — Popular Brands carousel**
+- A horizontally-scrolling carousel of large brand cards (BMW, Citroën, Fiat, Ford visible initially; carousel auto-advances through all brands).
+- Each card contains: large brand logo + list of 6–8 popular model names as clickable links + a "BMW ÜRÜNLERINI LİSTELE" CTA button.
+- Example BMW card links: 3 Serisi, 1 Serisi, 5 Serisi, X3, X5, 4 Serisi, 6 Serisi, X6.
+- This is the homepage's most important internal-linking structure: it distributes PageRank from the high-authority homepage to model-level pages.
+
+**Section 6 — Promotional banner row**
+- 4 icon+label tiles: Bakım Robotu | Anlaşmalı Servisler | Tüm Kategoriler | Silecek Bulucu.
+- Acts as a "tools navigation" section — surfaces the platform's differentiating tools without requiring the user to find them in a menu.
+
+**Section 7 — Installment/shipping banner**
+- Full-width banner: "7500TL+ siparişlerde 2 taksit %0 komisyon" / "10000TL+ siparişlerde 3 taksit %0 komisyon".
+- Reduces purchase friction for high-value items (e.g., a compressor kit at 4,000 TL becomes much more accessible framed as "2 x 2,000 TL").
+
+**Section 8 — Oil & Maintenance section (tabbed)**
+- Tabs: Motor Yağı | Ampul | Oto Bakım | Aksesuar | Akü.
+- Active tab (Motor Yağı) shows a grid of oil brand logos: Castrol, Opet, Motul, Firmy, Elf, Total.
+- Positions Otoparcasan as the destination for routine maintenance purchases, not just breakdown repairs.
+
+**Section 9 — Best Sellers (En Çok Satılanlar)**
+- Standard product grid with "Daha Fazla" pagination link.
+- Social proof via popularity signal.
+
+**Section 10 — Social proof bar**
+- Text: "159+ Bin Mutlu Müşteri, 276+ Bin Sipariş".
+- Auto-scrolling review carousel beneath the stats.
+
+**Section 11 — SEO text block**
+- H1: "Oto Yedek Parça" (the primary target keyword, not the brand name).
+- Multiple H2 subheadings with keyword-rich copy paragraphs.
+- FAQ accordion (8 Q&As) structured for Featured Snippet targeting.
+- This section is invisible to most users but is the reason the page ranks for generic queries.
+
+**Section 12 — Trust badges**
+- 4 badges in a row: Garanti Belgeli Ürünler | 14 Gün İçinde Kolay İade | 100% Uyumlu Parçalar | Ödeme Koruma Sistemi.
+
+**Section 13 — Footer (6 columns)**
+1. Kurumsal Sayfalar (14 links)
+2. Hızlı Erişim: Anlaşmalı Servisler, Ürün Kataloğu, Bakım Robotu, Garajım, Kargom Nerede?, Silecek Bulucu, Şasi Sorgulama, Uygulamalar, Blog
+3. Popüler Markalar (12: Bosch, Delphi, Depo, Febi Bilstein, Filtron, Gates, Hella, Magneti Marelli, Maher, Mando, Sachs, Valeo)
+4. Popüler Araçlar (12 vehicle makes + "Tüm Araçlar" link)
+5. Popüler Modeller (12: Audi A3, BMW 3 Serisi, Fiat Egea, Ford Focus, Honda Civic, Hyundai i20, Mercedes C Serisi, Opel Astra, Peugeot 2008, Renault Clio, Toyota Corolla, VW Passat)
+6. Popüler Kategoriler (12: Abs Sensörü, Amortisör, Ateşleme Bujisi, Debriyaj Seti, Far Lambası, Fren Disk Ayna, Fren Disk Balata, Hava Filtresi, Klima Kompresörü, Motor Yağı, Polen Filtresi, Triğer Zincir Seti)
+- Trust marks: ETBİS, OSS, 256-bit SSL.
+- App badges: App Store + Google Play + App Gallery.
 
 ---
 
-## 3. Competitor Websites Audited
+### 2.2 Vehicle Catalog & Selection Flow
 
-| Site | URL | Status | Relevance |
+**URL:** `https://otoparcasan.com/arac`
+
+The vehicle catalog page presents the full make list in an alphabetical A-to-Z index (tabbed by initial letter). Each make is displayed as a row containing a coloured logo and the make name, all as clickable links. A search box in the top-right allows filtering by make name.
+
+Total makes: ~50+ (Abarth, Alfa Romeo, Audi, BMW, BYD, Cadillac, Chevrolet, Chrysler, Citroën, Cupra, Dacia, Daihatsu, Dodge, DS, Fiat, Ford, Genesis, Great Wall, Honda, Hyundai, Infiniti, Isuzu, Iveco, Jaguar, Jeep, Kia, Lada, Lancia, Land Rover, Lexus, Lynk & Co, MAN, Maserati, Mazda, Mercedes, MG, Mini, Mitsubishi, Nissan, Opel, Ora, Peugeot, Polestar, Porsche, Renault, and more).
+
+**Selection flow — 7 steps with step counter:**
+1. Marka (Make)
+2. Seri (Series / Model family — e.g., BMW "3 Serisi")
+3. Yıl (Year)
+4. Model (Specific body variant)
+5. Vites (Transmission: Manuel / Otomatik)
+6. Motor (Engine: displacement + power rating, e.g., "2.0d 190hp")
+7. Ek özellik (Additional attribute — for edge cases)
+
+The "1/7" step counter persists throughout the widget and reinforces progressive disclosure.
+
+**Akinel current state:** 4-step flow (Make → Model → Generation → Engine). Missing the Seri level and Vites level. Year is surfaced via Generation (e.g., "2019–2023 Sedan") rather than as an explicit year dropdown.
+
+---
+
+### 2.3 Vehicle Brand/Model Presentation
+
+**Brand page URL pattern:** `https://otoparcasan.com/oto-yedek-parca/bmw-yedek-parca`
+
+- Breadcrumb: Anasayfa > Tüm Araçlar > BMW
+- Title: "BMW Yedek Parça" (+ product count: "10,000+ ürün listeleniyor")
+- Left sidebar filters: Series tabs (1 Serisi, 2 Serisi, 3 Serisi…) + Kategori + Marka + Montaj Yeri + Silecek Uzunluk + Silecek Tip + Fiyat range
+- Filter apply button: "Seçimleri Uygula"
+- Product grid: 4 columns, sort dropdown (Önerilen, En Düşük Fiyat, En Yüksek Fiyat, Kargo Süresi En Kısa, Kargo Süresi En Geç)
+- Product cards: image + brand badge (e.g., MEYA, Kröger) + "UYUMLU MUT" badge (compatibility confirmed) + green SEPETE EKLE button + price in orange
+
+**Model page URL pattern:** `https://otoparcasan.com/oto-yedek-parca/bmw_3-serisi`
+
+- Same layout as brand page but pre-filtered to the selected model.
+- This means every model gets its own indexable URL — a major SEO multiplier.
+
+---
+
+### 2.4 Category Architecture
+
+Top-level: 9 categories (URL root: `https://otoparcasan.com/yedek-parcalar`)
+
+1. **Fren ve Debriyaj** — 38 subcategories
+   - Fren: Abs Sensörü, Fren Disk Ayna, Fren Disk Balata, El Fren, Fren Ana Merkez, Fren Hortumuları, Kaliperler, Fren Tablası, Kampana (28 items)
+   - Debriyaj: Debriyaj Balatası, Debriyaj Baskı, Debriyaj Çatali, Debriyaj Merkezi, Debriyaj Müjürü, Debriyaj Seti, Debriyaj Teli, Volan, Volan Dişlisi (10 items)
+2. **Motor ve Yakıt** — Motor Takuzu, Triger Kayış Seti, Turbo Şarj, Hava Dedektörü, Oksijen Sensörü
+3. **Süspansiyon ve Direksiyon** — Amortisör, Rotil, Rot Başı, Salıncak, Direksiyon Pompası
+4. **Elektrik ve Aydınlatma** — Akü, Ateşleme Bobini, Far Lambası, Stop Lambası
+5. **Kaporta ve Trim** — Dikiz Aynası, Tampon, Çamurluk
+6. **Şanzıman ve Diferansiyel** — Şanzıman Takuzu, Diferansiyel Seti, Vites Teli
+7. **Soğutma ve Filtreler** — Klima Kompresörü, Su Radyatörü, Hava Filtresi, Yağ Filtresi
+8. **Aksesuar ve Tuning** — Telefon Tutacağı, Araç İçi Kamera, Akü Kablosu
+9. **Oto Bakım ve Yağlar** — 50+ Oto Bakım subcategories + 5 oil types (see Section 2.5)
+
+URL pattern for category: `https://otoparcasan.com/yedek-parcalar/fren-ve-debriyaj`
+URL pattern for subcategory: `https://otoparcasan.com/yedek-parcalar/oto-bakim-ve-yaglar/motor-yagi`
+
+---
+
+### 2.5 Oto Bakım ve Yağlar
+
+This category is the most important gap for Akinel to fill. It is broken into two sub-branches:
+
+**Oto Bakım (50+ SKU types):**
+Ad Blue, Akışmetre Sprey, Antifriz, Araç Temizlik Fırçası, Araç Temizlik Süngeri, Buğu Önleyici, Buz Giderici, Buz Kazıyıcı, Cam Çekeceği, Cam Yıkama Şampuanı, Cam Yıkama Suyu, Çatlak Tıkayıcı, Cıvata Sabitleyi, El Temizleyici, Eldiven, Enjektör Temizleyici, Eter Sprey, Etiket Sökücü, Fren Balata Temizleyici, Genel Temizlik Ürünleri, Jant Parlatıcı, Kaçak Tespit, Karbüratör Temizleyici, Koku Giderici, Kontak Temizleyici, Lastik Parlattıcı, Lastik Tamir Kiti, Motor Temizleyici, Oto Bakım Setleri, Oto Koltuk Temizleyici, Oto Temizlik Bezi, Oto Yıkama Şampuanı, Pas Sökücü, Pasta Cila, Radyatör Temizleyici, Rötuş Boya, Silikon Yağlayıcı, Sıvı Conta, Spray Boya, Yakıt Katkısı, Yağ Katkısı, Yağmur Kaydırıcı, Zift Temizleyici, Zincir Yağlayıcı (and more).
+
+**Yağlar (5 types):**
+- Direksiyon Yağı
+- Fren Hidrolik Yağı
+- Gres Yağı
+- Motor Yağı
+- Şanzıman Yağı
+
+**Brands stocked (as shown in homepage Oil section):** Castrol, Opet, Motul, Elf, Total, Firmy.
+
+Maintenance and oil products share two characteristics that make them uniquely valuable: (a) they are purchased frequently (every 10,000–15,000 km), creating a repeat-customer habit; and (b) they are not vehicle-specific in the way a brake caliper is, meaning they can be sold without a vehicle-selection step, reducing cart abandonment.
+
+---
+
+### 2.6 Brand & Model SEO Architecture
+
+Otoparcasan operates a two-tier URL architecture below the brand root:
+
+- **Tier 1 (make):** `/oto-yedek-parca/bmw-yedek-parca` — targets keyword "BMW yedek parça"
+- **Tier 2 (model):** `/oto-yedek-parca/bmw_3-serisi` — targets keyword "BMW 3 Serisi yedek parça"
+
+Each tier-2 page is indexed independently. For a brand like BMW with 20+ models, this generates 20+ indexed URLs all targeting high-intent long-tail queries.
+
+The naming convention for Tier 1 is `{make-slug}-yedek-parca`. This is not accidental — the term "yedek parça" is appended to the slug, making the URL itself a ranking signal for "BMW yedek parça".
+
+The footer section "Popüler Modeller" contains 12 model-level links, ensuring these model pages receive homepage PageRank.
+
+---
+
+### 2.7 VIN / Chassis Search
+
+On Otoparcasan, VIN/Chassis search is a **tab** within the vehicle selector widget, not a separate page. It is labelled "Şasi No ile Ara" and accepts a free-text input. The feature is available from the homepage without navigation.
+
+The integration is UI-level: the user enters a VIN prefix or full VIN, and the platform resolves it against their internal vehicle catalog. The underlying data source is not disclosed.
+
+**Key design observation:** VIN search is positioned as an alternative to the 7-step dropdown flow, not a primary feature. This correctly sets user expectations — VIN lookup is for users who have the number in hand; dropdown selection is for everyone else.
+
+---
+
+### 2.8 Product Pages & UX
+
+- Product cards show: part image, brand badge (aftermarket brand name), "UYUMLU MUT" (compatibility verified) badge, SEPETE EKLE button (green), price (orange).
+- Brand logos on product cards are distinct from vehicle make logos — they show the aftermarket parts brand (Bosch, Valeo, Hella, etc.).
+- Sort options on listing pages: Önerilen, En Düşük Fiyat, En Yüksek Fiyat, Kargo Süresi En Kısa, Kargo Süresi En Geç.
+- Filter sidebar on brand/model pages: Series tabs + Kategori + Marka (parts brand) + Montaj Yeri + Fiyat range.
+- No star ratings visible on product cards on Otoparcasan (unlike OnlineYedekParca).
+
+---
+
+### 2.9 Visual UX Analysis
+
+- **Colour system:** Orange as the primary action colour (CTAs, prices, brand bar buttons). White and light grey for backgrounds. Dark grey for body text.
+- **Typography:** Clear hierarchy — large serif headings for section titles, sans-serif for everything else.
+- **Icon language:** Brand logos are consistently sized and placed on white pill-shaped containers with a slight drop shadow.
+- **Mobile:** Brand navigation bar collapses to a horizontal scroll. Vehicle selector widget stacks vertically. Carousel becomes swipeable.
+- **Trust signals placement:** Trust badge row appears BELOW the product grid sections, not in the header — the assumption is that product quality and availability are the primary trust builders; badges reinforce rather than lead.
+
+---
+
+## 3. OnlineYedekParca.com — Audit
+
+### 3.1 Homepage & Structure
+
+OnlineYedekParca takes a different strategic position from Otoparcasan: it is more B2B-oriented, more brand-focused (the top navigation IS the brand list), and places VIN search as the primary search method.
+
+**Homepage section order:**
+
+1. **Top announcement bar** — B2B account application link ("Başvuru yap").
+2. **Header** — Logo + search bar + location selector + dark/light mode toggle + Giriş Yap + Sepetim + gift box icon (promotions).
+3. **Top navigation bar** — Horizontal tab-style nav listing brand names directly: OPEL | CHEVROLET | BMW | MERCEDES-BENZ | VOLKSWAGEN | AUDI | SEAT | SKODA | RENAULT | PEUGEOT | CITROËN | FORD | FORD TİCARİ | VW TİCARİ | YAĞ. This navigation replaces a traditional category menu with direct brand access — a stronger signal that the brand (vehicle make) is the primary browse axis.
+4. **Hero area (3 panels side-by-side):**
+   - Panel 1: VIN/Şasi widget ("Şasi numarası ile ara") as primary search + Marka/Model/Motor dropdowns as secondary.
+   - Panel 2: "BÜYÜK OUTLET İNDİRİMLERİ" promotional banner.
+   - Panel 3: "Online Express" app-based delivery pilot information.
+5. **Öne Çıkan Ürünler (Featured Products):** 5-column product grid with star ratings, prices, SEPETE EKLE.
+6. **Haftanın Fırsatları (Week's Deals):** Similar 5-column grid with strikethrough prices.
+7. **Brand promotional banners:** "Opel marka yedek parçalar stoklarda!", "Aracınızı Garaja Kaydet Kazan!", "Renault marka ürünler çok yakında!"
+8. **İndirime Göre (By Discount):** Products sorted by discount percentage.
+9. **Trust section:** %100 Güvenli Alışveriş | Online Express | Ücretsiz Kargo (2,500 TL üzeri).
+10. **Footer:** Logo + nav links + brand links in columns.
+
+---
+
+### 3.2 Vehicle Selection
+
+OnlineYedekParca uses a 3-step dropdown flow: Marka → Model → Motor. This is significantly simpler than Otoparcasan's 7-step flow and Akinel's 4-step flow. It prioritises speed over precision.
+
+The dropdown is embedded in the hero panel alongside the VIN widget, meaning the two methods (VIN and manual selection) are presented simultaneously at equal visual weight.
+
+---
+
+### 3.3 VIN / Chassis Search
+
+VIN search on OnlineYedekParca is **front-and-center in Panel 1 of the hero** — it is the most prominent feature on the homepage. The heading "Şasi numarası ile ara" is the largest text in the panel. The input + "Ara" button is the dominant interactive element.
+
+This positions VIN lookup as a first-class feature, likely because their B2B customers (garages, workshops) have vehicles on the lift with VIN in hand and need fast lookup.
+
+---
+
+### 3.4 Category & Brand Architecture
+
+**Brand navigation:** The top nav bar IS the brand list. Clicking "BMW" loads `/marka/bmw`.
+
+**Brand page (`/marka/bmw`):**
+- Left sidebar filter chips: "Seçimlerin" area showing the active filter (BMW chip) + "Tüm Seçimleri Kaldır".
+- Category filter includes: OUTLET, SMART, YAĞ, OPEL, CHEVROLET, BMW, MERCEDES-BENZ, VOLKSWAGEN (brands are treated as a category filter on their own).
+- Popular filters: Fırsat Grubu, Ücretsiz Kargo, Hediyelik Ürünler, En Yeniler.
+- Price range: 0–250 TL | 250–500 TL | 500–1000 TL | 1000–2500 TL | 2500–10000 TL.
+- 4-column product grid with product names that include vehicle compatibility inline (e.g., "Opel Astra J 1.3 D Direksiyon Rotili").
+- Star ratings visible on product cards.
+
+**Important naming difference:** Product names on OnlineYedekParca embed vehicle make/model (e.g., "Opel Astra J 1.3 D..."). This is counter to Akinel's design principle ("product names never contain vehicle info"). The Akinel approach is architecturally cleaner but the OnlineYedekParca approach makes product names more scannable in a vehicle-filtered list.
+
+---
+
+### 3.5 Key Differentiators
+
+1. **B2B portal** — Header link to B2B application. B2B users likely get different pricing tiers.
+2. **YAĞ as a top-nav item** — Oil is treated as a peer category to vehicle makes in the navigation, underscoring its commercial importance.
+3. **Online Express** — App-based same-day or rapid delivery in pilot regions. Significant logistics differentiator.
+4. **VIN search as primary** — Positions the platform as a professional/garage tool rather than a consumer platform.
+5. **Star ratings on product cards** — Provides a trust signal at the browse stage, before the product page.
+6. **Price comparison context** — Products show "Havale fiyatı" (bank transfer price) vs card price, a transparency signal common in Turkish e-commerce.
+7. **Outlet category** — Dedicated clearance section visible in category filters.
+8. **Dark/light mode toggle** — A minor but notable UI sophistication.
+
+---
+
+## 4. Akinel Current-State Audit
+
+### 4.1 Homepage
+
+**File:** `apps/web/src/app/page.tsx`
+**Component files:** `apps/web/src/components/home/HeroCarousel.tsx`, `BusinessStrip.tsx`, `CategoryStrip.tsx`
+
+Current homepage sections (top to bottom):
+
+1. **Hero Carousel** — Admin-managed slides with search bar. CTAs: "Aracımı Seç" and "OEM ile Ara".
+2. **Business Strip** — 4 trust signals (currently static, managed via admin panel at `/admin/business`).
+3. **Category Strip** — Horizontally scrollable category chips.
+4. **Akinel Introduction** — Text content + trust items.
+5. **Popular Brands** — Pill-style text buttons (not cards, no model links).
+6. **Vehicle Finder Section** — Shows vehicle selector if no vehicle selected; shows selected vehicle chip if one is active.
+7. **Featured Products** — 6–8 in-stock products.
+
+**Missing vs competitors:**
+- No brand navigation bar in header (no brand logos as one-click links).
+- No popular brand cards with model lists.
+- No oil/maintenance tabbed section.
+- No best-sellers section.
+- No social proof numbers (customer count, order count).
+- No promotional tool tiles (Bakım Robotu, Silecek Bulucu equivalents).
+- No installment/taksit banner.
+- No FAQ/SEO text block.
+
+---
+
+### 4.2 Vehicle Catalog
+
+**File:** `apps/web/src/app/(shop)/vehicle/page.tsx`
+**Flow:** Make → Model → Generation (year range + body type) → Engine (4 steps)
+
+The Generation step is Akinel's unique design: instead of a bare year dropdown, it groups year ranges with body types (e.g., "2019–2023 Sedan"). This is more informative than a raw year dropdown but may confuse users expecting a year field.
+
+**Browse mode gap:** The `/vehicle` page only shows the selection widget — there is no browseable catalog mode for users who want to explore all makes. Competitors both have an `/arac`-style page listing all makes with logos.
+
+---
+
+### 4.3 Brand & Category Pages
+
+**Brand page:** `apps/web/src/app/(shop)/marka/[slug]/page.tsx` — `/marka/{slug}` (e.g., `/marka/bosch`)
+**Category page:** `apps/web/src/app/(shop)/kategori/[slug]/page.tsx` — `/kategori/{slug}`
+
+Both pages have:
+- Correct Turkish URLs (marka, kategori) — good.
+- Metadata (title, description, canonical) — good.
+- JSON-LD breadcrumb — good.
+
+**Missing:**
+- No model-level pages (no `/arac/[make-slug]/[model-slug]` equivalent).
+- Brand pages for parts brands (Bosch, Valeo) rather than vehicle makes — while valid, this misses the primary browse axis (vehicle make → compatible parts).
+- No series/model filter tabs on brand pages.
+
+---
+
+### 4.4 SEO State
+
+- Sitemap: `apps/web/src/app/sitemap.ts` — generates 3,618+ URLs.
+- Robots.txt: present.
+- OG tags: implemented.
+- JSON-LD: AutoPartsStore + Product + BreadcrumbList schemas on relevant pages.
+- H1 on homepage: brand name rather than generic keyword "Oto Yedek Parça" (competitors use generic H1 to target generic queries).
+- No FAQ schema on homepage.
+- No "Popüler Markalar / Araçlar / Modeller / Kategoriler" footer link columns — these are some of the most important internal links on competitor sites.
+
+---
+
+### 4.5 Known Gaps (as catalogued from codebase review)
+
+1. No "Oto Bakım ve Yağlar" category.
+2. No popular brand cards with model links on homepage.
+3. No maintenance robot / periyodik bakım tool.
+4. No installment/taksit information.
+5. No wiper finder (Silecek Bulucu).
+6. No authorised service centers (Anlaşmalı Servisler).
+7. No footer SEO link columns (Popüler Markalar / Araçlar / Modeller / Kategoriler).
+8. No brand logos in header nav.
+9. No model-level pages.
+10. VIN uses NHTSA (US-only data) — not Turkish market data.
+11. No product reviews/ratings.
+12. No B2B section.
+13. No oil brand showcase on homepage.
+14. No best-sellers section.
+15. Vehicle catalog page (`/vehicle`) has no browse/discover mode.
+
+---
+
+## 5. Vehicle Catalog Comparison
+
+| Dimension | Otoparcasan | OnlineYedekParca | Akinel (current) |
 |---|---|---|---|
-| Online Yedek Parça | https://www.onlineyedekparca.com/ | OBSERVED — fully accessible | Direct Turkish competitor. Large catalog, OEM-original focus, VIN/chassis lookup, B2B program, mobile app |
-| Yedek Parça (.com.tr) | https://www.yedekparca.com.tr/ | OBSERVED — fully accessible | Largest Turkish auto-parts e-commerce. 300,000+ products. TecDoc integration inferred |
-| Parça Max | https://www.parcamax.com/ | OBSERVED — login-walled | B2B platform powered by CatalogiX.be with TecDoc Inside. Not a consumer site |
-| Online Yedek Parça — product detail | https://www.onlineyedekparca.com/urun/opel-astra-h-1-3-dizel-6-ileri-volant-debriyaj-set-gm-bilya-seti-komple | OBSERVED | Key product detail features: delivery estimate, location selector, VIN verification widget, installment, related products, review tab, Q&A tab |
-| Online Yedek Parça — brand page | https://www.onlineyedekparca.com/kategori/opel-yedek-parca | OBSERVED | Brand-as-category page: logo, 38,957 products, model sub-navigation, in-page search |
-| Yedek Parça — category | https://www.yedekparca.com.tr/fren | OBSERVED | 6-step vehicle finder embedded; category sidebar with sub-categories |
-| Yedek Parça — search result | https://www.yedekparca.com.tr/arama?q=fren+balata | OBSERVED | 7-tab sort bar; left sidebar filters; vehicle-brand sub-filter |
-| Yedek Parça — search OEM | https://www.yedekparca.com.tr/arama?q=1605869 | OBSERVED | Returned matching product results (confirms OEM search functionality) |
-| Online Yedek Parça — guest order tracking | https://www.onlineyedekparca.com/misafir-siparis-takip | OBSERVED | Email + order number → OTP code verification; no login needed |
-
-Sites attempted but **unavailable** (DNS/timeout): otoyedekparca.com, automaks.com.tr, otomax.com.tr, motofix.com.tr, partsmart.com.tr, ucuzparca.com, eksenotor.com.tr, ototrend.com.tr, megatek.com.tr (503)
-
-Sites attempted but **not relevant**: arabam.com (no parts section), tofas.com.tr (manufacturer, not retailer), partslink24.com (international B2B portal), orijinalparca.com (domain for sale)
+| Selection steps | 7 (Make → Series → Year → Model → Transmission → Engine → Extra) | 3 (Make → Model → Engine) | 4 (Make → Model → Generation → Engine) |
+| Step counter | Yes ("1/7") | No | No |
+| Series level | Yes (BMW "3 Serisi" is a separate step) | No | No (generation groups models) |
+| Year as explicit step | Yes | Implicit via Model | Via Generation (year range) |
+| Transmission step | Yes | No | No |
+| Browse all makes page | Yes (`/arac`) | Not observed | Limited (`/vehicle` selection-only) |
+| Make count | 50+ | ~13 in top nav (focused) | Seeded: not published |
+| Saved vehicles (Garaj) | Yes (tab in widget) | Yes ("Garaja Kaydet" CTA) | Yes (Zustand + localStorage) |
+| VIN in selector | Yes (separate tab) | Yes (primary hero panel) | Yes but NHTSA only |
+| Alphabetical index | Yes (A-Z tabs on `/arac`) | Not observed | No |
 
 ---
 
-## 4. Competitor Feature Matrix
+## 6. Category Architecture Comparison
 
-| Feature | Akinel | onlineyedekparca.com | yedekparca.com.tr | parcamax.com |
+| Level | Otoparcasan | OnlineYedekParca | Akinel (current) |
+|---|---|---|---|
+| Top-level count | 9 | Not fully mapped | 6 |
+| Has Oto Bakım? | Yes (50+ subcategories) | Yes (YAĞ in nav) | No |
+| Has Yağlar? | Yes (5 types) | Yes (YAĞ as top-nav) | No |
+| Has Aksesuar? | Yes | Not observed | No |
+| Has Kaporta? | Yes | Not observed | No |
+| Subcategory depth | 3 (Category / Subcategory / Sub-subcategory) | 2 | 2 |
+| URL depth | `/yedek-parcalar/{cat}/{subcat}` | Not observed | `/kategori/{slug}` (flat) |
+| Category in footer | Yes (12 popular categories) | Partial | No |
+
+---
+
+## 7. Oil & Maintenance Category Proposal
+
+This is the highest-priority missing category for Akinel. The following structure should be added to the database seed and category tree.
+
+**Proposed top-level category:**
+- **Slug:** `oto-bakim-ve-yagllar`
+- **Display name:** "Oto Bakım ve Yağlar"
+- **Description:** "Motor yağları, bakım ürünleri ve araç temizlik malzemeleri"
+
+**Proposed subcategories (minimum viable set for launch):**
+
+| Slug | Display Name | Notes |
+|---|---|---|
+| `motor-yagi` | Motor Yağı | Castrol, Opel, Motul, Elf, Total |
+| `antifriz` | Antifriz | Seasonal + year-round |
+| `fren-hidrolik-yagi` | Fren Hidrolik Yağı | DOT 4 / DOT 5 |
+| `sanziman-yagi` | Şanzıman Yağı | Manual + automatic |
+| `direksiyon-yagi` | Direksiyon Yağı | |
+| `cam-yikama-suyu` | Cam Yıkama Suyu | |
+| `yakut-katkisi` | Yakıt Katkısı | |
+| `yag-katkisi` | Yağ Katkısı | |
+| `oto-yikama-sampuani` | Oto Yıkama Şampuanı | |
+| `pasta-cila` | Pasta Cila | |
+| `ad-blue` | Ad Blue | Diesel vehicles |
+
+**Key characteristic of this category:** Products do NOT need `ProductVehicleCompatibility` entries. Motor oil, car shampoo, and fuel additive are universal. This means they can be listed without a vehicle context, reducing friction significantly.
+
+**Database impact:**
+- Add `Category` records in `apps/api/Akinel.Infrastructure/Data/DatabaseSeeder.cs` for the above slugs.
+- Products in this category: set `IsVehicleSpecific = false` (requires new field on `Product` entity, or simply leave `ProductVehicleCompatibility` empty and show them on all vehicle pages).
+- Homepage oil section: no vehicle context required — show these products unconditionally.
+
+**Brands to seed (parts brands for this category):**
+- Castrol, Opel (branded oil), Motul, Elf, Total, Mobil, Shell, BP, Bosch (wiper fluid + additives).
+
+---
+
+## 8. VIN / Chassis Search Comparison
+
+| Dimension | Otoparcasan | OnlineYedekParca | Akinel (current) |
+|---|---|---|---|
+| Placement | Tab in homepage widget | Panel 1 hero (primary) | Separate page `/vin` |
+| Data source | Internal Turkish vehicle DB | Internal Turkish vehicle DB | NHTSA vPIC (US only) |
+| Usefulness for TR | High | High | Very low — US data does not cover Turkish market vehicles |
+| Navigation required | Zero (on homepage) | Zero (on homepage) | Must navigate to `/vin` |
+| Label used | "Şasi No ile Ara" | "Şasi numarası ile ara" | "VIN ile Ara" |
+
+**Critical issue:** The NHTSA vPIC API used by Akinel (`apps/web/src/app/(shop)/vin/page.tsx`) is the US National Highway Traffic Safety Administration's database. VINs for vehicles registered and sold in Turkey (Turkish-assembled or European-import vehicles) are often not in the NHTSA database, or return incomplete data. This makes the current VIN feature effectively non-functional for the target market.
+
+**Recommended fix:** Replace NHTSA with one of:
+1. A Turkish-specific VIN decoder (TecDoc, Eurotax/Schwacke, or TÜVTÜRK if an API is available).
+2. A partial VIN prefix lookup against the internal `VehicleEngine` / `VehicleGeneration` catalog (the first 9–11 characters of a VIN encode make, model, year, and engine).
+3. An internal VIN→vehicle mapping table populated from Turkish vehicle registration data.
+
+Until a Turkish data source is available, the VIN tab should be hidden or labelled "Yakında" (Coming Soon) rather than surfacing broken results.
+
+---
+
+## 9. Brand & Model SEO Architecture
+
+### Current Akinel URL structure
+
+| Page type | URL | Example |
+|---|---|---|
+| Parts brand | `/marka/{slug}` | `/marka/bosch` |
+| Category | `/kategori/{slug}` | `/kategori/fren-sistemi` |
+| Product | `/products/{slug}` | `/products/bosch-fren-balatasi-abc123` |
+| Vehicle selection | `/vehicle` | `/vehicle` |
+| VIN | `/vin` | `/vin` |
+| Brands list | `/brands` | `/brands` |
+
+**Problems:**
+1. `/products/{slug}` and `/vehicle` and `/brands` are English URLs — inconsistent with Turkish `/marka` and `/kategori`. Suggest renaming to `/urunler/{slug}`, `/arac`, `/markalar`.
+2. Brand pages (`/marka/bosch`) list parts-manufacturer brands, not vehicle makes. There are no vehicle-make pages (e.g., no `/arac/bmw` equivalent).
+3. No model-level pages at all.
+
+### Proposed URL structure (competitor-aligned)
+
+| Page type | Proposed URL | Example | Target keyword |
+|---|---|---|---|
+| Vehicle makes list | `/arac` | `/arac` | "oto yedek parça araç seç" |
+| Vehicle make page | `/arac/{make-slug}-yedek-parca` | `/arac/bmw-yedek-parca` | "BMW yedek parça" |
+| Vehicle model page | `/arac/{make-slug}/{model-slug}` | `/arac/bmw/3-serisi` | "BMW 3 Serisi yedek parça" |
+| Parts brand | `/marka/{slug}` | `/marka/bosch` | "Bosch yedek parça" (keep) |
+| Category | `/kategori/{slug}` | `/kategori/fren-sistemi` | "fren sistemi parça" (keep) |
+| Product | `/urun/{slug}` | `/urun/bosch-fren-balatasi` | product name query |
+
+**SEO value of vehicle model pages:** A Turkish automotive e-commerce site with 50 vehicle makes × average 15 models = 750 model-level pages. Each page targets a specific "[Make] [Model] yedek parça" keyword. These are high-commercial-intent queries with clear buyer intent. The homepage and footer link to the top 12 models, passing PageRank to the most important ones.
+
+---
+
+## 10. Homepage UX Comparison (section by section)
+
+| Position | Otoparcasan | OnlineYedekParca | Akinel (current) | Akinel (proposed) |
 |---|---|---|---|---|
-| Vehicle finder (cascading) | 4-step (Make/Model/Gen/Engine) | 3-step (Make/Model/Engine) | 6-step (Make/Model/Body/Year/Engine/Power) | N/A (B2B) |
-| OEM number search | Yes (auto-detect) | Unknown | Yes (search bar accepts OEM) | Yes (TecDoc) |
-| VIN/chassis search | UI only (not wired) | Yes — live on product detail widget | Mentioned as staff-assisted | Unknown |
-| Garage (save vehicles) | Yes (login) | Yes ("Garajım") | Not observed | Unknown |
-| B2B program | No | Yes (B2B banner + separate pricing) | Not observed | Yes (primary model) |
-| Guest order tracking | No | Yes (email + order no. + OTP) | Yes (via Sipariş Takip link) | N/A |
-| Product reviews | No | Yes (tab, count shown) | Yes (star rating on cards) | Unknown |
-| Installment / taksit | No | Yes (EFT discount + taksit tab) | Not observed | Unknown |
-| Back-in-stock alert | No | Unknown | Not observed | Unknown |
-| Favorites / wishlist | No | Yes (heart icon on cards) | Yes (heart icon) | Unknown |
-| Mobile app | No | Yes (Online Express) | Yes (App Store + Google Play) | Unknown |
-| Category SEO URLs | Partial (query param) | Yes (/kategori/[slug]) | Yes (/fren, /balata) | N/A |
-| Brand SEO URLs | Partial (query param) | Yes (/kategori/opel-yedek-parca) | Yes (/volkswagen-yedek-parca) | N/A |
-| Delivery estimate on product | No | Yes (same-day if ordered by 14:00) | Not observed | N/A |
-| Location selector for delivery | No | Yes (city picker affects delivery time) | No | N/A |
-| Dark mode | No | Yes (moon icon in header) | No | N/A |
-| Trust signals bar | Partial (footer strip) | Yes (100% Güvenli, Online Express, Ücretsiz Kargo) | Yes (Kredi Kartı, Hızlı Teslimat, Güvenli, Müşteri) | N/A |
-| Payment gateway (card) | No (label only) | Yes | Yes (Bonus, Axess, CarFnans logos visible) | N/A |
-| Related products | No | Yes (carousel below product tabs) | Not observed | N/A |
-| Product comparison | No | Not observed | Not observed | N/A |
-| Maintenance kit builder | No | Not observed | Yes (Periyodik Bakım Robotu) | Unknown |
-| Social media links | Yes (via BusinessSettings) | Yes (Instagram, YouTube, Facebook, Twitter) | Yes | N/A |
-| WhatsApp contact | Yes | Yes (multiple numbers) | Yes (floating) | N/A |
-| Announcement banner | Yes | Yes (B2B ticker at top) | Not observed | N/A |
+| 1 | Sticky free-shipping bar | B2B announcement bar | (none) | Sticky announcement bar (free shipping threshold + phone + WhatsApp) |
+| 2 | Header: Logo + search + Garajım + Sepet | Header: Logo + search + location + Sepet | Header: Logo + search + Garaj + Sepet | No change needed |
+| 3 | Brand logo nav bar (13 logos) | Brand tab nav (13 brands) | (none) | Brand logo strip in header/sub-header |
+| 4 | Vehicle selector widget (4 tabs) | Hero: VIN widget + dropdown (3 panels) | Hero carousel with search | Hero carousel + vehicle selector card (tabs: Araç Kataloğu | Şasi No) |
+| 5 | Popular brands carousel (cards + model lists) | Öne Çıkan Ürünler grid | BusinessStrip (trust) | Popular brand cards carousel with model links |
+| 6 | Promotional tool tiles | Haftanın Fırsatları | CategoryStrip | CategoryStrip (keep) |
+| 7 | Installment/taksit banner | Brand promotional banners | Akinel Introduction text | Taksit/shipping info banner |
+| 8 | Oil & Maintenance tabbed section | İndirime Göre products | Popular Brands (pills) | Oil & Maintenance section (Motor Yağı | Antifriz tabs) |
+| 9 | Best Sellers grid | Trust section | Vehicle Finder | Best Sellers / Featured Products |
+| 10 | Social proof stats + reviews | Footer | Featured Products | Social proof bar |
+| 11 | SEO text + FAQ accordion | — | — | SEO text block + FAQ accordion |
+| 12 | Trust badges | — | — | Trust badges row |
+| 13 | Footer (6 columns) | — | Footer (minimal) | Footer (6 columns with SEO links) |
 
 ---
 
-## 5. Homepage Comparison
+## 11. Mobile UX Comparison
 
-**onlineyedekparca.com** — OBSERVED:
-- Top bar: B2B program CTA (very prominent orange ticker). This signals that B2B is a primary revenue focus.
-- Header: Logo (left) + freetext search (center, "Yedek parça ara") + location picker (city) + dark mode toggle + login + cart. No phone number visible in header (desktop).
-- Navigation: Vehicle-make mega-nav (OPEL, CHEVROLET, BMW, MERCEDES, VOLKSWAGEN, AUDI, SEAT, SKODA, RENAULT, PEUGEOT, CITROEN, FORD, FORDTICARI, VW TICARI, YAĞ, ...). Make-based primary nav is a strong differentiator.
-- Hero (left): Chassis/VIN search field + 3-step vehicle finder (Make/Model/Engine). Two entry points side by side.
-- Hero (center): Promotional carousel (app promotion, outlet sale).
-- Hero (right): MOPAR/Stellantis brand spotlight with 12 sub-brand logos — shows depth of original-parts catalog.
-- Below: "Öne Çıkan Ürünler" (Featured products) carousel, "Haftanın Fırsatları" (Weekly deals) carousel, brand spotlights (Opel, Renault), "İndirime Göre" (By discount) carousel.
-- Trust bar (above footer): 100% Güvenli Alışveriş, Online Express, Ücretsiz Kargo
-- Footer: Social links, city-specific phone numbers, WhatsApp numbers, physical store addresses.
-
-**yedekparca.com.tr** — OBSERVED:
-- Top bar: Phone (0850 532 1935), email, Türkçe selector, TRY selector, Sipariş Takip, Yardım, İletişim.
-- Header: Logo (left) + full-width search bar ("Parça adı, oem numara veya parça referansı ara") + Ürün Ara button + icon strip (wishlist, cart with badge, account).
-- Navigation: Category-based nav (Fren, Debriyaj, Yakıt, Süspansiyon, Direksiyon, Elektrik, Soğutma).
-- Hero (left): Full 6-step vehicle finder embedded in hero panel. Steps numbered 1–6 (Marka, Model, Kasa, Yıl, Motor, Güç). "Parça Ara" button.
-- Hero (right): Large promotional banner carousel.
-- Below: Popular category icon strip (Balata, Fren Diski, Debriyaj Seti, etc.), vehicle brand banner grid (VW, BMW, Opel, Mercedes, Peugeot, Ford, Citroen, Honda, Hyundai, Renault, Skoda, Toyota), category banner grid with product thumbnails, "10,000 Bakımı" maintenance tool promo, supplier brand carousel (Aisin, ART, Behr, Bosch, etc.).
-- Trust bar: Kredi Kartı ile Alışveriş, Hızlı Teslimat, Güvenli Alışveriş, Müşteri Hizmetleri.
-- Footer: App download links (App Store, Google Play), social (Facebook, Instagram, YouTube), payment logos (Bonus, Maximum, Axess, World, etc.), ETBIS badge.
-
-**Akinel** — ASSESSED:
-- Top bar (utility): Phone, Sipariş Takip (links to /search — confusing), Yardım, İletişim, TR. Correct structure.
-- Header: Dark navy bar. Logo + search bar (center) + mobile icons (search, cart, garage, account) + admin badge. Clean.
-- Navigation (secondary dark bar): Ana Sayfa, Ürünler, Markalar, Aracımı Seç, OEM Ara, Garajım, Hakkımızda, İletişim.
-- Hero: Admin-managed carousel OR static hero fallback.
-- Below: Business strip, category strip, company intro, popular brands, vehicle finder section, featured products.
-- Missing vs competitors: No make-based nav (huge for automotive UX), no promotional deal sections ("haftanın fırsatları"), no maintenance tool CTA, no app download CTA.
-
-**Key finding (OBSERVED):** Both major competitors lead with a vehicle selector in the hero. Akinel also does this correctly. However, competitors pair the vehicle selector with the free-text/OEM search as a secondary option in the same hero zone. Akinel's OEM search is separated into "OEM Ara" in the nav. This extra click creates friction for the significant user segment that searches by part number.
-
----
-
-## 6. Navigation Comparison
-
-**onlineyedekparca.com — OBSERVED:**
-- Primary navigation is vehicle-make based (horizontal make bar, ~14 visible makes + "...").
-- Clicking a make (e.g., OPEL) goes to `/kategori/opel-yedek-parca` — a make-as-category page with 38,957 products, model sub-navigation in the left sidebar (Antara, Astra F, Astra G, Astra H, etc.), and an in-page search bar. This is a full catalog browsing path without touching the vehicle finder.
-- Oil ("YAĞ") is surfaced as a top-level nav item alongside makes — smart for high-frequency purchases.
-
-**yedekparca.com.tr — OBSERVED:**
-- Primary navigation is part-category based (Fren, Debriyaj, Yakıt, Süspansiyon, Direksiyon, Elektrik, Soğutma).
-- These are the functional part categories a mechanic or DIY buyer thinks in. Clicking "Fren" navigates to `/fren` with a left sidebar sub-category tree (Balata, Fren Diski, Fren Ana Merkezi, etc.) and in-line sort tabs.
-- The 6-step vehicle finder is on the homepage but does NOT persist as a nav filter — once on `/fren` the user sees all brands/vehicles mixed.
-
-**Akinel — ASSESSED:**
-- Navigation: Ana Sayfa, Ürünler, Markalar, Aracımı Seç, OEM Ara, Garajım, Hakkımızda, İletişim.
-- "Ürünler" is the generic product listing — no split by part-category or vehicle make.
-- No mega-menu or fly-out exists.
-- Missing: Make-based quick-nav, Part-category quick-nav.
-- The nav correctly includes "OEM Ara" and "Garajım" which neither competitor exposes so prominently. This is good.
-
-**Gap (INFERRED):** A user landing on Akinel who knows they need "fren balatası" has to go to "Ürünler" and then apply a category filter in a sidebar. Competitor yedekparca.com.tr puts "Fren" directly in the nav and immediately exposes the sub-category tree. One click vs two clicks plus sidebar interaction.
-
----
-
-## 7. Search Comparison
-
-### 7a. Free-text Search
-
-**onlineyedekparca.com — OBSERVED:**
-- Header search: "Yedek parça ara" placeholder. Large round input, prominent.
-- Tested `fren+balata` via URL `/arama?q=fren+balata` — returned 404. Search URL pattern is unknown (site may use JS-driven search without URL params, or different route).
-- The chassis number search is a separate prominent input above the vehicle finder on the homepage.
-
-**yedekparca.com.tr — OBSERVED:**
-- Header search: "Parça adı, oem numara veya parça referansı ara" — explicitly tells the user all three modes in the placeholder.
-- Tested: `/arama?q=fren+balata` — returned a listing page of parts related to brake pads with a 7-tab sort bar (En yeniler, En çok satanlar, A-Z, Z-A, Fiyata göre artan/azalan, En çok oylananlar).
-- Tested OEM: `/arama?q=1605869` — returned matching products. Confirms OEM lookup works through the standard search bar.
-- The search bar explicitly promises OEM lookup — users do not need a separate "OEM Ara" page.
-
-**Akinel — ASSESSED:**
-- Header search with placeholder "OEM numarası, parça adı veya parça kodu…". Very clear.
-- Cmd+K keyboard shortcut — advanced but unused by the target demographic (mechanics).
-- Auto-detects OEM queries using heuristic: 5+ chars, alphanumeric with at least one digit. Works.
-- Navigates to `/search?q=...` which then shows both vehicle suggestions and product results.
-- No instant autocomplete/suggestions dropdown (no typeahead). Both competitors appear to show suggestions (onlineyedekparca.com has an apparent suggestions UI visible on the header input).
-
-**Gap (INFERRED):** Akinel lacks search autocomplete/typeahead. When a user starts typing "fren b..." they get no inline suggestions. This is a significant UX gap vs competitors.
-
-### 7b. OEM Number Search
-
-**onlineyedekparca.com — OBSERVED on product detail:**
-- VIN/chassis compatibility widget visible on the product detail page right sidebar: "Bu parça aracına uyar mı? Şasi (VIN) numaranızı yazın ya da ruhsatınızın fotoğrafını ekleyin — ekibimiz baksın." This is a hybrid approach: the user can either type 17 characters or upload a photo of their registration document. The caption notes "Şu anda kapalıyız. Sorunuzu şimdi bırakın, bugün 10:00'da ekibimize alır ve gün içinde dönüş yapılır." — staff-assisted, not automated.
-- The product detail also shows brand logo (LUK), compatibility note ("Tüm LUK marka ürünleri inceleyin"), price with EFT discount, installment teaser ("Aylık ₺7,950.20'den başlayan taksitlerle"), delivery estimate ("14:00'a kadar sipariş verin, bugün kargoda"), and a city/location selector for delivery calculation.
-
-**yedekparca.com.tr — OBSERVED:**
-- Product detail URL at `/arama?q=1605869` returned results, confirming OEM pass-through search.
-
-**Akinel — ASSESSED:**
-- `/search?q=1605869` with auto-detected `queryType=1` (OEM). Returns OEM-matched products. Works.
-- The OEM numbers stored on products (indexed `NormalizedNumber`) make this fast.
-- **Gap:** No cross-reference display — if user searches for OEM 1605869, they see matching products but do not see "this OEM is also sold as TRW123, Bosch456" cross-reference numbers. Competitors with TecDoc integration provide this automatically.
-
----
-
-## 8. Vehicle Finder Comparison
-
-**onlineyedekparca.com — OBSERVED:**
-- 3-step: Marka → Model → Motor (engine). Note: no body type, no year, no power — simpler than yedekparca.com.tr.
-- Also offers chassis (VIN) search as a separate prominent field above the 3-step selector.
-- Saved vehicles ("Garajım") visible in footer navigation.
-
-**yedekparca.com.tr — OBSERVED:**
-- 6-step: Marka (1) → Model (2) → Kasa (3) → Yıl (4) → Motor (5) → Güç/KW (6).
-- Each step is a numbered circle with a dropdown. "Parça Ara" button at bottom.
-- This requires 6 selections to identify a vehicle uniquely. More granular but more friction.
-
-**Akinel — ASSESSED:**
-- 4-step: Make → Model → Generation → Engine.
-- "Generation" (e.g., "Golf IV 1997–2004 Hatchback") bundles body-type, year-range in a human-readable label. Smarter than 6 separate dropdowns for the same information.
-- Vehicle finder is accessible from: homepage, /vehicle page, header (OEM Ara → /search has vehicle suggestions), and VehicleContextChip in header.
-- After selection: `vehicleEngineId` persisted in localStorage and shown as a chip in the header.
-- **Strength (OBSERVED):** Akinel's Generation concept is architecturally cleaner than competitors' approach of separate Kasa + Yıl dropdowns. It reduces clicks for the common case while maintaining the same precision.
-- **Gap:** No year-level disambiguation. If a customer says "2002 Golf IV", they select the generation covering 1997–2004. For compatibility this is usually fine but some parts differ by production year within a generation.
-
----
-
-## 9. OEM/VIN Search Comparison
-
-This section distinguishes between four related but distinct capabilities:
-
-**(a) VIN Decoding** — Given a 17-character VIN, decode make/model/year/engine from the VIN structure itself (no database needed, just format parsing). This is achievable without commercial data.
-
-**(b) Vehicle Identification from VIN** — Given a VIN, look up the exact vehicle specification (precise engine code, production date, factory options). Requires a commercial VIN decode service (NHTSA API for US vehicles; in Turkey, e-devlet ruhsat API or commercial providers like InfoTrack or Habermas).
-
-**(c) OEM Catalog Lookup from VIN** — Given a VIN, look up which specific OEM part numbers are compatible. Requires TecDoc, DAT, or manufacturer-specific catalog access. Expensive licensing.
-
-**(d) Fitment from VIN to Catalog** — Given a VIN, map to Akinel's own product compatibility table. Only requires VIN-to-vehicleEngine mapping, which IS achievable if VIN prefixes are mapped to vehicle engine IDs.
-
-**onlineyedekparca.com — OBSERVED:**
-- Offers VIN widget on product detail: "Şasi numaranızı yazın ya da ruhsat fotoğrafını yükleyin, ekibimiz baksın."
-- **This is staff-assisted, not automated (b or c)**. The widget submits to a support queue. Currently shows "Şu anda kapalıyız" (we're closed).
-- Practical classification: This is customer service theater. Looks like VIN lookup, is actually a human review request.
-
-**yedekparca.com.tr — OBSERVED:**
-- From the existing project analysis: "Chassis number query is a staff-assisted offline/phone process."
-- No automated VIN decode visible.
-
-**Akinel — ASSESSED:**
-- `/vin` page has a UI shell. Input validates 17-char format. On submit: shows "Sorgunuz alındı. VIN sorgulama servisi henüz aktif değil."
-- `POST /api/vehicles/vin-decode` endpoint exists in the API.
-- The `IPartsCatalogProvider` interface is designed to abstract external VIN/catalog services.
-- **Current state:** Better than competitors in terms of intent and architecture. The backend hook exists. The gap is the actual external service integration.
-- **Realistic path to (a):** Parse VIN position 1–3 (WMI: World Manufacturer Identifier) + position 10 (model year) to give a best-guess vehicle family. Free, requires a WMI lookup table.
-- **Realistic path to (d):** Build a VIN-prefix-to-vehicleEngine mapping table. For Turkish market (TRHMZZ = Renault Turkey, WF0 = Ford Germany, etc.) a 9-character WMI+VDS prefix often uniquely maps to a generation. Medium effort, no licensing.
-- **Paths (b) and (c) require commercial licensing** — TecDoc API costs thousands of euros per year; realistic only after catalog reaches meaningful scale.
-
-**Recommendation:** Implement (a) + (d) without external services. Parse WMI from VIN + match to vehicle generations in the database. This covers the majority of cases for commonly-stocked vehicles.
-
----
-
-## 10. Product Listing Comparison
-
-**onlineyedekparca.com — OBSERVED (brand/make listing page):**
-- Brand page `/kategori/opel-yedek-parca`: Brand logo + name, product count (38,957), left sidebar with model sub-navigation, in-page search bar, grid/list toggle, sort dropdown ("En Alakalı"). Heart icon (favorites) on each card.
-- Product cards: Image, name (with vehicle context in name — the pattern Akinel deliberately avoids), star rating, price in ₺ with strikethrough original price. Clean.
-- Cards have a "New" badge for new products.
-
-**yedekparca.com.tr — OBSERVED (search listing):**
-- Sort bar at top: 7 tabs (En yeniler, En çok satanlar, Ürün adı A-Z, Z-A, Fiyata göre artan/azalan, En çok oylananlar).
-- Left sidebar: full category tree with expand/collapse, brand checkboxes, Araç Markaları, Markalar, stock filter.
-- Product cards: Image, product name (contains vehicle info in title — e.g., "Cupra Formentor 2023-2025 Ön Fren Balatası Bosch..."), Kategori tag + Marka tag, original price + sale price, "Sepete Ekle" button OR "Stokta Yok" button, "Kargo Bedava" badge.
-- Reviews: Rating stars on cards (but many products show zero ratings).
-
-**Akinel — ASSESSED:**
-- Sidebar filters: Brand (select), Category (grouped select with sub-categories), In-stock checkbox, Price range (min/max inputs), Sort (select).
-- Mobile: Sheet drawer with "Filtrele" button + sort select in sticky toolbar.
-- Active chips: Brand, Category, stock, sort, price range, search query — all removable individually or in bulk.
-- Sort: Default, Newest, Price ↑↓, Name A-Z / Z-A.
-- Page size: 20 products per page with full pagination controls (ellipsis for large page counts).
-- **Gaps vs competitors:**
-  - No star rating/review count on listing cards (competitors show this).
-  - No "En çok satanlar" (best sellers) sort option.
-  - No "Kargo Bedava" (free shipping) filter.
-  - No brand checkboxes (multiple brand selection — currently single brand dropdown).
-  - Filters require a "Filtrele" button click (not instant-apply on desktop). Competitors apply instantly on check.
-  - No grid/list view toggle.
-
----
-
-## 11. Product Detail Comparison
-
-**onlineyedekparca.com — OBSERVED (product detail page):**
-- Breadcrumb: Anasayfa > OPEL > ASTRA H > Debriyaj ve Şanzıman Parçaları > [Product name]
-- Left panel: Product image (large), thumbnail strip.
-- Center panel: Product name, 4.6★ (10 değerlendirme), VIN uygunluk kontrolü, share/favorites/price-alert icons, delivery estimate ("14:00'a kadar sipariş verin, bugün kargoda"), delivery date estimate, location selector (city), seller info ("Mağazadan Teslim — Hangi Mağazada Var?"), brand logo.
-- Right panel: Brand logo, price with EFT/bank transfer discount, taksit info, quantity +/-, "Sepete Ekle" (orange CTA), VIN compatibility widget, "Bu üründe Kargo Bedava", "Bu parça hangi araçlara uyumlu?", "Orijinal ambalajıyla, sıfır gönderilir — İade koşulları".
-- Below: Tab bar (Ürün içeriği, Ürün Açıklaması, Uyumlu Araçlar, Teknik Özellikler, Değerlendirmeler — 10 reviews).
-- Related products carousel (3 products shown).
-
-**Akinel — ASSESSED:**
-- Breadcrumb: Ana Sayfa > Ürünler > [Product name]. Category not in breadcrumb.
-- Left: Image gallery (square, white bg), thumbnail strip for multiple images.
-- Right: Brand badge, product name, category, OEM number chips, part number, price with discount badge + stock status, stock quantity, quantity stepper, AddToCart button, vehicle context box (shows compatibility check vs selected vehicle).
-- Tabs: Ürün Bilgileri, OEM Numaraları, Uyumlu Araçlar, Stok Bilgisi.
-- **Strengths vs competitor:** Compatibility check against selected vehicle is shown inline on right panel (green "uyumludur" / amber "doğrulanamadı"). onlineyedekparca.com only offers this via a widget with staff review.
-- **Gaps vs competitor:**
-  - No delivery estimate.
-  - No EFT/bank transfer discount display.
-  - No installment (taksit) tab.
-  - No review/rating tab.
-  - No Q&A tab.
-  - No price alert/favorites icon.
-  - No related products section.
-  - Breadcrumb does not include category hierarchy.
-  - No "Kargo Bedava" badge.
-
----
-
-## 12. Cart & Checkout Comparison
-
-**onlineyedekparca.com — OBSERVED (inferred from product detail):**
-- "Sepete Ekle" button. Cart in header with badge.
-- Guest checkout available (inferred from guest order tracking page existing).
-- Payment options include credit card, bank transfer (with EFT discount).
-
-**yedekparca.com.tr — OBSERVED (inferred from footer):**
-- Multiple bank partner logos (Bonus, Maximum, Axess, CARFİNANS, BankkART, World) — suggests installment plans from all major Turkish banks.
-- Cart page at `/sepet`.
-- Guest order tracking at `/siparis-takip`.
-
-**Akinel — ASSESSED:**
-- Cart drawer: Side panel with item controls (qty +/-, remove, line totals). Clean.
-- Checkout: React Hook Form with Zod validation. 3 sections: Customer info, Shipping address, Payment method.
-- Payment methods: Cash on delivery, Bank transfer, Credit card (label only — not wired).
-- Legal: All 3 required KVKK/legal checkboxes implemented with links to actual documents. Correct.
-- Post-checkout: Order confirmation page with order number.
-- **Gaps:**
-  - No actual payment gateway (iyzico / PayTR / Param). Credit card is a placeholder.
-  - No installment display.
-  - No address book (user re-enters address every order).
-  - No EFT discount display at payment selection.
-  - No guest-accessible order tracking post-purchase (user sees confirmation page but can't re-look up without logging in).
-  - No shipping cost calculation (always shows "Ücretsiz" — free shipping hardcoded to 0).
-
----
-
-## 13. Mobile UX Comparison
-
-**onlineyedekparca.com — OBSERVED (from full-page screenshot, mobile inferred):**
-- Has a dedicated mobile app ("Online Express" — same-day Istanbul delivery via app).
-- Header: Logo + compact search + location + dark mode + account + cart. Tight layout.
-- Navigation appears to collapse the make-bar (too many items for mobile).
-
-**yedekparca.com.tr — OBSERVED:**
-- Has iOS and Android apps (App Store + Google Play links in footer).
-- Mobile website: WhatsApp floating button.
-
-**Akinel — ASSESSED:**
-- Mobile navigation: Hamburger menu (MobileNav component) with full nav links in a sheet.
-- Mobile product listing: Sticky toolbar (filter count badge + sort select).
-- Mobile filters: Sheet drawer from left.
-- Cart: Full-screen side sheet.
-- Touch targets: 44px minimum height enforced on buttons/links (CLAUDE.md commit history confirms mobile touch target audit).
-- Vehicle context chip: Shown below main header, links to products or vehicle change.
-- **Gaps:**
-  - No bottom tab bar (competitors' apps have this).
-  - No PWA manifest or service worker for offline/installable capability.
-  - Mobile search icon links to `/search` page (not inline search). This is correct but adds a page load.
-
----
-
-## 14. Trust & Conversion Comparison
-
-**onlineyedekparca.com — OBSERVED:**
-- Trust signals: "100% Güvenli Alışveriş (Kredi kartı bilgileri 256bit SSL sertifikas ile korunmaktadır)", "Online Express (İstanbul içi Pilot bölgelerde online express hizmetimizle aynı gün teslimat)", "Ücretsiz Kargo (2.500 TL ve üzeri mekanik siparişlerde kargo ücreti bizden)".
-- B2B banner: persistent top bar with "Başvuru yap" CTA.
-- Phone numbers in footer (multiple city numbers).
-- WhatsApp numbers in footer.
-- Physical store addresses in footer.
-- Brand partner logos (LUK, MOPAR/Stellantis, etc.) on product detail — manufacturer endorsement signals.
-
-**yedekparca.com.tr — OBSERVED:**
-- Trust bar above footer: Kredi Kartı, Hızlı Teslimat, Güvenli Alışveriş, Müşteri Hizmetleri (0850 532 1935).
-- Payment logos: Bonus, Maximum, Axess, CarFinas, BankkART, World — signals installment availability.
-- ETBIS badge in footer.
-- App store badges (shows the business invests in digital).
-
-**Akinel — ASSESSED:**
-- Header: Phone number in utility bar (shown in desktop header from BusinessSettings). WhatsApp floating button.
-- No trust signals bar below header.
-- No payment partner logos at checkout or anywhere.
-- Footer has social media links (if configured in BusinessSettings).
-- Legal pages fully implemented (KVKK, Mesafeli Satış, Ön Bilgilendirme) — correct.
-- No ETBIS badge.
-- **Gap:** Akinel has no trust signals bar. The 3-item strip (Secure Shopping / Fast Delivery / Free Shipping) that both competitors show prominently on the homepage is missing. This is a low-effort, high-impact trust conversion element.
-
----
-
-## 15. SEO Comparison
-
-**onlineyedekparca.com — OBSERVED:**
-- URL pattern: `/kategori/opel-yedek-parca` → SEO target: "Opel yedek parça". 38,957 products behind one indexable URL.
-- Product URLs: `/urun/[product-slug]` — clean, no query params.
-- Category title: "Opel Yedek Parça Fiyatları ve Modelleri 2026" — year-updated title tag.
-
-**yedekparca.com.tr — OBSERVED:**
-- Category URLs: `/fren`, `/debriyaj`, `/yakit` — short, clean.
-- Sub-category: `/fren/balata` (OBSERVED as 410 Gone — suggests URL was restructured; product URLs may have changed).
-- Product URLs: `/fren/balata/[slug]` — category hierarchy in URL.
-- Search: `/arama?q=...` — standard.
-- Long SEO text blocks at bottom of homepage.
-- Blog link in footer.
-
-**Akinel — ASSESSED:**
-- Product URLs: `/products/[slug]` — not automotive-specific. Should be `/urun/[slug]` or `/parca/[slug]` for Turkish SEO.
-- Category URLs: `/products?categoryId=X` — query parameter, not indexable as a canonical category URL.
-- Brand URLs: `/products?brandId=X` — same issue.
-- Category page: `/category/[slug]` exists but renders the same content as `/products?categoryId=X`.
-- Sitemap: `sitemap.ts` exists — needs to be verified it lists category and product URLs.
-- Robots: `robots.ts` exists.
-- OG image: `opengraph-image.tsx` exists.
-- **Critical SEO gap:** `/products?categoryId=X` receives no SEO equity. The correct structure is dedicated category pages at `/kategori/fren`, `/kategori/fren/balata` etc. with category-specific H1, description, and product grid. These become long-tail SEO landing pages. Competitors rank on "Opel Astra H fren balatası" because they have dedicated vehicle+category landing pages.
-- **Missing:** Blog, FAQ, product schema markup (structured data for rich snippets — price, availability, ratings).
-
----
-
-## 16. Admin/Operations Opportunities
-
-**Current admin strengths:**
-- Full product CRUD with image upload, OEM number management, vehicle compatibility linking.
-- Hero slide management (full CMS for homepage carousel).
-- Vehicle catalog management (Make/Model/Generation/Engine tree with full CRUD).
-- Order management with status transitions.
-- Stock management (quantity update per product).
-- BusinessSettings (logo, phone, WhatsApp, social, address, working hours, announcement banner) — this is more than competitors offer internally.
-
-**Admin gaps:**
-- No bulk product import (CSV/Excel upload for adding many products at once).
-- No order export (PDF invoice, CSV export for accounting).
-- No low-stock alert/notification (admin has to check dashboard to discover low stock).
-- No sales analytics (revenue charts, best-selling products, order volume over time).
-- No customer management detail view (list exists, but no edit/ban/contact).
-- No discount/coupon code system.
-- No homepage section CMS beyond hero slides (featured products are pulled automatically, not curated by admin).
-- No email template management.
-
----
-
-## 17. Automotive-Specific Opportunities
-
-**Maintenance kit builder (Periyodik Bakım Robotu):**
-- yedekparca.com.tr has this: select vehicle → see all maintenance items for the next service (air filter, oil filter, pollen filter, fuel filter, brake pads, spark plugs for petrol).
-- This is one of the highest-conversion features in auto parts e-commerce. It converts a "I need an oil filter" visit into a full kit purchase.
-- Akinel architecture already supports this: a vehicle + multiple category queries. Implementation is a new page that runs multiple API calls for the selected vehicle engine.
-
-**Fitment guarantee / compatibility badge:**
-- Akinel already shows "Bu ürün aracınızla uyumludur" on product detail when the vehicle is selected. This is more reliable than competitors' title-embedding approach.
-- Opportunity: Surface this on the listing card too — a green "Uyumlu" badge on cards when vehicle context is active. This would be the strongest differentiator on the listing page.
-
-**B2B / mechanic tier:**
-- Both observed competitors have B2B programs. Mechanics buy in volume, weekly, and on credit. A "Servis Hesabı" tier with bulk pricing or net-30 payment terms is a significant revenue opportunity.
-- Requires: account type field on user, tiered pricing on products, potentially a different checkout flow (invoice-based).
-
-**Seasonal/maintenance bundles:**
-- "Kış bakım seti" (Winter maintenance kit), "Yaz seti" (Summer set), "Motor değişim seti" (Oil change kit).
-- These bundle multiple products under one SKU or as a curated collection. Increases AOV.
-
----
-
-## 18. Missing Akinel Features
-
-Ranked by impact on revenue and conversion:
-
-| # | Feature | Impact | Effort |
+| Feature | Otoparcasan | OnlineYedekParca | Akinel (current) |
 |---|---|---|---|
-| 1 | Guest order tracking (email + order number) | High — reduces support calls, increases trust | Low (1–2 days) |
-| 2 | Category SEO URLs (/kategori/[slug]) | High — long-term organic traffic | Medium (3–5 days) |
-| 3 | Real payment gateway (iyzico or PayTR) | High — currently no card payments | Medium (3–5 days + merchant account) |
-| 4 | "Notify when in stock" (back-in-stock alert) | Medium-High — captures demand for OOS products | Low-Medium (2–3 days) |
-| 5 | Delivery estimate on product page | Medium — conversion signal | Low (1 day if shipping logic is defined) |
-| 6 | Trust signals bar (3-item strip) | Medium — conversion | Low (< 1 day) |
-| 7 | Installment/taksit display | Medium (Turkish market expectation) | Low-Medium (depends on payment gateway) |
-| 8 | Search autocomplete/typeahead | Medium — reduces zero-results searches | Medium (2–3 days) |
-| 9 | Reviews/ratings system | Medium — social proof | High (4–7 days) |
-| 10 | Favorites / wishlist | Low-Medium | Medium (2–3 days) |
-| 11 | Related products on detail page | Medium — increases AOV | Low (1 day API + UI) |
-| 12 | Compatibility badge on listing cards | High UX differentiator | Low (1 day — data already available) |
-| 13 | VIN basic decode (WMI parsing) | Medium — completes the VIN page | Low (1 day — no external service) |
-| 14 | Maintenance kit tool | High — increases AOV, differentiator | Medium (3–5 days) |
-| 15 | Bulk product import (CSV) | High operational efficiency | Medium-High (3–5 days) |
-| 16 | Password reset flow | Critical UX gap | Low (1–2 days) |
-| 17 | Address book | Medium — reduces checkout friction | Medium (2–3 days) |
-| 18 | ETBIS badge | Medium — Turkish e-commerce trust | Low (register at etbis.eticaret.gov.tr) |
-| 19 | Order export / invoicing | Admin operational need | Medium (2–3 days) |
-| 20 | B2B tier | High long-term revenue | High (1–2 weeks) |
+| Brand nav bar mobile | Horizontal scroll | Horizontal scroll tabs | Not present |
+| Vehicle selector mobile | Stacked dropdowns, full-width | Stacked, Panel 1 only shown | Modal/sheet drawer |
+| Product grid mobile | 2 columns | 2 columns | 2 columns |
+| Header search mobile | Full-width with vehicle context | Full-width | Full-width |
+| Popular brands carousel mobile | Swipeable | Not observed | Horizontal pill scroll |
+| Footer mobile | Collapsed accordions | Not observed | Likely collapsed |
+| CTA button size | 48px+ tap targets (orange) | 48px+ tap targets | Verify tap targets meet 44px minimum |
+| WhatsApp button | Present (sticky) | Not observed | Present (`WhatsAppButton.tsx`) |
+
+`apps/web/src/components/layout/WhatsAppButton.tsx` — already exists, good.
+`apps/web/src/components/layout/MobileNav.tsx` — already exists; ensure it surfaces Brand logos and vehicle selector prominently.
 
 ---
 
-## 19. Features NOT Worth Implementing Yet
+## 12. Feature Gap Matrix
 
-| Feature | Reason to defer |
-|---|---|
-| Full TecDoc integration | Costs thousands EUR/year in licensing; requires a catalog of 10,000+ products before ROI. The current `NullPartsCatalogProvider` stub is the right decision. |
-| VIN decode via Turkish government API (e-Devlet) | Requires official partnership/accreditation. Not self-serviceable. |
-| Product comparison tool | Low usage on most auto parts sites; catalog must be large and structured first. |
-| 360-degree product images | Requires special photography setup; the catalog is too small to justify now. |
-| Mobile app (iOS/Android) | Build PWA first (service worker + manifest). Only worthwhile when monthly active users exceed ~1,000. |
-| Multi-language (EN/DE/AR) | Turkish market focus; premature at current scale. |
-| AI-powered part recommendation | Requires user behavior data that doesn't exist yet. Implement after 6+ months of traffic. |
-| Installment plan integration (separate from payment gateway) | Usually comes free with iyzico/PayTR integration. Don't build separately. |
-| Blog/content marketing platform | Valuable long-term but needs a content team. Not a developer task. |
-| Social login (Google/Apple OAuth) | Low priority — checkout is the bigger friction point. Fix password reset first. |
-| Multi-vendor marketplace | Out of scope for a single-store operation. |
-| Live chat beyond WhatsApp | WhatsApp is the dominant channel in Turkey. |
-| Product video embed | No photography pipeline for video; premature. |
-
----
-
-## 20. P0/P1/P2/P3 Priority List
-
-### P0 — Blocking (must exist before serious marketing/launch)
-
-1. **Real payment gateway** — iyzico or PayTR integration. Credit card label without processing blocks all card revenue.
-2. **Password reset flow** — Users who forget their password are permanently locked out. Basic but critical.
-3. **ETBIS registration + badge** — Legal requirement for Turkish e-commerce.
-
-### P1 — High Priority (within next 4 weeks)
-
-4. Guest order tracking (email + order number lookup)
-5. Trust signals bar (3 icons: Güvenli, Hızlı Teslimat, Ücretsiz Kargo)
-6. Compatibility badge on listing cards when vehicle context is active
-7. Category SEO URL restructure (/kategori/[slug] with canonical, proper sitemap)
-8. Related products on product detail (simple: same category, in stock)
-9. "Notify when in stock" (email capture for OOS products)
-10. VIN basic decode (WMI parsing → vehicle family match → show products)
-
-### P2 — Important (next 6–8 weeks)
-
-11. Search autocomplete/typeahead dropdown
-12. Delivery estimate on product detail (configurable cut-off time + shipping days)
-13. Maintenance kit tool (select vehicle → show filters/oil/pads bundle)
-14. Bulk CSV product import for admin
-15. Address book (saved shipping addresses in account)
-16. Installment/taksit display at checkout (after payment gateway)
-17. Admin analytics (revenue chart, top products, order volume)
-18. Order PDF export / invoice
-19. Product schema markup (structured data for rich snippets)
-20. Password reset email
-
-### P3 — Nice to Have (after core is solid)
-
-21. Reviews/ratings system
-22. Wishlist/favorites
-23. B2B/mechanic tier (account type + pricing tier)
-24. SEO blog posts
-25. Dark mode (as observed on onlineyedekparca.com — low business value)
-26. Admin low-stock email alerts
-27. Admin discount/coupon code system
+| Feature | Otoparcasan | OnlineYedekParca | Akinel | Priority |
+|---|---|---|---|---|
+| Oto Bakım & Yağlar category | Yes | Yes (YAĞ nav) | **No** | P0 |
+| Vehicle model pages (SEO) | Yes | Partial | **No** | P0 |
+| Footer SEO link columns | Yes | Partial | **No** | P0 |
+| Announcement bar (shipping/phone) | Yes | Yes | **No** | P0 |
+| Brand logo navigation strip | Yes (13 logos) | Yes (tab nav) | **No** | P1 |
+| Popular brand cards with model links | Yes (carousel) | No | **No** | P1 |
+| VIN search — Turkish data | Yes | Yes | **Broken (NHTSA)** | P1 |
+| Installment/taksit information | Yes | Partial | **No** | P1 |
+| Maintenance robot (Bakım Robotu) | Yes | No | **No** | P1 |
+| Best sellers section | Yes | Yes | **No** | P1 |
+| Homepage SEO text + FAQ accordion | Yes | No | **No** | P1 |
+| Oil brand showcase section | Yes | No | **No** | P1 |
+| Vehicle make browse page (/arac) | Yes | Limited | **Limited** | P1 |
+| Product star ratings | No | Yes | **No** | P2 |
+| Wiper finder (Silecek Bulucu) | Yes | No | **No** | P2 |
+| Authorised service centers | Yes | No | **No** | P2 |
+| B2B portal | No | Yes | **No** | P2 |
+| Mobile app | Yes | Yes | **No** | P2 |
+| Dark/light mode | No | Yes | **No** | P2 |
+| Outlet/clearance section | No | Yes | **No** | P2 |
+| Social proof stats display | Yes | No | **No** | P1 |
 
 ---
 
-## 21. Recommended Akinel Roadmap (Phase 1–4)
+## 13. Recommended Akinel Changes
 
-### Phase 1 — Foundation (Weeks 1–2)
-**Goal: Remove blockers that prevent a real launch**
-
-- Integrate iyzico or PayTR for credit card payments
-- Implement password reset (forgot password → email link → reset form)
-- Register ETBIS, add badge to footer
-- Add 3-item trust signals strip below hero (Güvenli Alışveriş / Hızlı Teslimat / Ücretsiz Kargo)
-- Add "Notify when in stock" email capture field on product detail for OutOfStock products
-
-**Deliverables:** Site can accept real card payments. All users can recover accounts. Legal compliance complete.
-
-### Phase 2 — Conversion (Weeks 3–5)
-**Goal: Improve conversion rate and reduce friction**
-
-- Guest order tracking (/siparis-takip): email + order number → show order status
-- Compatibility badge on product listing cards (green chip when vehicle context active + product is compatible)
-- Related products carousel on product detail (same category, in-stock, up to 6)
-- Basic VIN decode (WMI table → vehicle family → product listing)
-- Delivery estimate on product detail (configurable cut-off time from BusinessSettings)
-- Auto-complete search dropdown (debounced API call for product names/OEM numbers as user types)
-
-**Deliverables:** Users who receive order can track without logging in. Vehicle-aware browsing becomes even more useful. Search is faster.
-
-### Phase 3 — SEO & Scale (Weeks 6–9)
-**Goal: Build organic traffic**
-
-- Category SEO pages at `/kategori/[parent]` and `/kategori/[parent]/[child]`
-- Brand pages at `/marka/[slug]` (e.g., `/marka/volkswagen`, `/marka/bmw`)
-- Add JSON-LD structured data (Product schema: name, price, availability, brand) to product pages
-- Sitemap update (category pages, brand pages, all products)
-- Maintenance kit builder tool (`/bakim-robotu`): vehicle select → filter/oil/pad bundle → add all to cart
-- Admin bulk CSV import for products
-- Address book in account (saved shipping addresses)
-
-**Deliverables:** Category and brand pages start ranking for "[Marka] yedek parça" queries. Bundle tool increases AOV.
-
-### Phase 4 — Growth (Weeks 10–16)
-**Goal: B2B revenue, analytics, loyalty**
-
-- Admin analytics dashboard (revenue chart, top-selling products, order volume over time)
-- B2B/mechanic account tier (apply form, separate pricing, invoice payment)
-- Reviews/ratings system (with moderation in admin)
-- Favorites/wishlist with account persistence
-- Order PDF invoice download (for admin + customer)
-- Admin coupon/discount code system
-- Admin low-stock email alerts (when quantity drops below MinimumStockLevel)
+### P0 — Must Have (Critical)
 
 ---
 
-## 22. External Services / Data Dependencies
+#### P0-1: Add "Oto Bakım ve Yağlar" Category Tree
 
-| Need | Service Options | Notes |
+**Current Akinel state:** The seeded category tree in `apps/api/Akinel.Infrastructure/Data/DatabaseSeeder.cs` contains 6 top-level categories (Fren Sistemi, Debriyaj, Filtreler, Süspansiyon, Elektrik Sistemi, Soğutma Sistemi). There is no maintenance or oil category.
+
+**Competitor reference:** Otoparcasan `/yedek-parcalar/oto-bakim-ve-yaglar` — 50+ subcategories. OnlineYedekParca — "YAĞ" as top-nav item.
+
+**Why it matters:** Oil and maintenance products are the highest-frequency purchase category in automotive. They drive repeat visits and repeat orders. They also do not require vehicle-compatibility matching, reducing the purchase path friction.
+
+**Exact proposed change:**
+1. In `DatabaseSeeder.cs`, add a new top-level `Category` with:
+   - `Name = "Oto Bakım ve Yağlar"`
+   - `Slug = "oto-bakim-ve-yagllar"` (note: match Turkish orthography carefully)
+   - `Description = "Motor yağları, antifriz, cam yıkama suyu ve araç bakım ürünleri"`
+2. Add child categories: Motor Yağı, Antifriz, Fren Hidrolik Yağı, Şanzıman Yağı, Direksiyon Yağı, Cam Yıkama Suyu, Yakıt Katkısı, Yağ Katkısı, Oto Yıkama Şampuanı, Pasta Cila, Ad Blue.
+3. Add brands: Castrol, Motul, Elf, Total, Mobil, Shell (if not already seeded).
+4. On `Product` entity (`apps/api/Akinel.Domain/Entities/Product.cs`), consider adding `bool IsVehicleSpecific = true` as a flag. Products in Oto Bakım category set this to false. This flag controls whether the product appears in vehicle-specific filtered results vs universal results.
+5. On the category landing page (`/kategori/oto-bakim-ve-yagllar`), do NOT require vehicle context — show all products in this category unconditionally.
+
+**Frontend impact:**
+- `apps/web/src/components/home/CategoryStrip.tsx` — ensure the new category appears in the horizontal chip strip.
+- Add an "Oil & Maintenance" tabbed section to the homepage (see P1-5 below).
+- Category page `apps/web/src/app/(shop)/kategori/[slug]/page.tsx` — handle `IsVehicleSpecific = false` case to suppress vehicle context requirement.
+
+**Backend/database impact:**
+- `DatabaseSeeder.cs` — add seed data.
+- New migration for `IsVehicleSpecific` flag on `Product` if using that approach.
+- Product API endpoint `GET /api/products` — when `categorySlug` is an oil/maintenance slug, bypass vehicle-filter requirement.
+
+**Admin panel impact:**
+- Admin can create products in these categories without requiring vehicle compatibility entries.
+- Admin product form `apps/web/src/app/admin/` should show/hide the vehicle compatibility section based on `IsVehicleSpecific`.
+
+**SEO impact:**
+- New indexable URL: `/kategori/oto-bakim-ve-yagllar` — targets "motor yağı", "antifriz" queries.
+- 11 new subcategory URLs each targeting a specific product type keyword.
+- Homepage section linking to these subcategories adds PageRank flow.
+
+**Complexity estimate:** Medium. Database schema change (optional `IsVehicleSpecific` field) + seeder update + category page conditional logic. No new pages needed — existing `/kategori/[slug]` handles it.
+
+**Dependencies:** None. Can be implemented independently.
+
+---
+
+#### P0-2: Add Vehicle Model Pages with Correct SEO URLs
+
+**Current Akinel state:** No vehicle make or model pages exist. The only vehicle-adjacent page is `/vehicle` (selection-only, not a browseable catalog page). Brand pages (`/marka/[slug]`) list parts brands (Bosch, Valeo), not vehicle makes.
+
+**Competitor reference:** Otoparcasan `/oto-yedek-parca/bmw-yedek-parca` (make) and `/oto-yedek-parca/bmw_3-serisi` (model). Every model has its own indexed URL.
+
+**Why it matters:** "BMW 3 Serisi yedek parça" is a high-volume, high-intent search query. Without a page targeting this keyword, Akinel cannot rank for it. With model pages for 50 makes × 15 models = 750 pages, Akinel captures a large segment of long-tail organic traffic.
+
+**Exact proposed change:**
+
+Create two new Next.js route segments:
+
+1. **Vehicle make page:** `apps/web/src/app/(shop)/arac/[makeSlug]/page.tsx`
+   - URL: `/arac/{make-slug}-yedek-parca` (e.g., `/arac/bmw-yedek-parca`)
+   - Alternatively, keep the path segment clean: `/arac/[makeSlug]` resolves to slug "bmw", but `generateMetadata` generates title "BMW Yedek Parça".
+   - Content: make logo + product count + series filter tabs + product grid (products compatible with any vehicle of this make) + left sidebar filters (Kategori, Fiyat, Marka).
+   - `generateMetadata`: `title: "${make.name} Yedek Parça | Akinel"`, `description: "${make.name} araçlarına uyumlu yedek parçalar..."`
+   - JSON-LD: BreadcrumbList (Anasayfa > Araçlar > BMW).
+
+2. **Vehicle model page:** `apps/web/src/app/(shop)/arac/[makeSlug]/[modelSlug]/page.tsx`
+   - URL: `/arac/bmw/3-serisi` (e.g.)
+   - Content: make logo + model name + product count + engine variant filter + product grid (products compatible with this model) + sidebar filters.
+   - `generateMetadata`: `title: "BMW 3 Serisi Yedek Parça | Akinel"`.
+   - JSON-LD: BreadcrumbList (Anasayfa > Araçlar > BMW > BMW 3 Serisi).
+
+3. **Vehicle makes list page:** `apps/web/src/app/(shop)/arac/page.tsx`
+   - URL: `/arac`
+   - Content: A-Z indexed grid of all vehicle makes with logos and names as links to make pages.
+
+**API changes required:**
+- New endpoint: `GET /api/vehicles/makes/{makeSlug}/products?page=&pageSize=&categorySlug=&brandSlug=` — returns products compatible with any engine of this make.
+- New endpoint: `GET /api/vehicles/models/{modelSlug}/products?page=&pageSize=` — returns products compatible with any engine of this model.
+- These can be implemented in `apps/api/Akinel.Api/Controllers/VehiclesController.cs`.
+
+**Frontend impact:**
+- New route group at `apps/web/src/app/(shop)/arac/`.
+- `generateStaticParams` for make pages from API.
+- `generateStaticParams` for model pages from API.
+- Add to sitemap in `apps/web/src/app/sitemap.ts`.
+
+**Backend/database impact:**
+- New query in vehicle service: fetch all products where `ProductVehicleCompatibility.VehicleEngine.VehicleGeneration.VehicleModel.VehicleMake.Slug = makeSlug`.
+- No schema change needed — data already exists.
+
+**Admin panel impact:** None — make/model pages are auto-generated from the vehicle catalog.
+
+**SEO impact:** High. 750+ new indexed pages, each targeting a specific "[Make] [Model] yedek parça" keyword. These pages are also linked from the homepage brand cards and footer SEO columns.
+
+**Complexity estimate:** Medium-High. New API endpoints + new page components + sitemap update + SEO metadata generation.
+
+**Dependencies:** P0-3 (footer links) and P1-2 (brand cards) both link to these pages — implement P0-2 first.
+
+---
+
+#### P0-3: Add SEO Footer Link Columns
+
+**Current Akinel state:** `apps/web/src/components/layout/Footer.tsx` exists but does not contain Popüler Markalar / Popüler Araçlar / Popüler Modeller / Popüler Kategoriler columns.
+
+**Competitor reference:** Otoparcasan footer — 6 columns. Columns 3–6 contain exactly: Popüler Markalar (12 parts brands), Popüler Araçlar (12 vehicle makes), Popüler Modeller (12 models), Popüler Kategoriler (12 categories).
+
+**Why it matters:** The footer appears on every page of the site. Links in the footer pass PageRank from every page to the linked pages. 12 popular model links in the footer mean those 12 model pages receive homepage-level link equity from every product page, category page, and brand page on the site. This is one of the highest-ROI SEO changes possible.
+
+**Exact proposed change:**
+Edit `apps/web/src/components/layout/Footer.tsx`. Add 4 new link-column sections:
+
+```
+Column: Popüler Araçlar
+Links (12 vehicle makes → /arac/{slug}-yedek-parca):
+BMW, Mercedes-Benz, Volkswagen, Audi, Toyota, Hyundai, Ford, Fiat, Opel, Renault, Peugeot, Citroën
++ "Tüm Araçlar" → /arac
+
+Column: Popüler Modeller
+Links (12 vehicle models → /arac/{make-slug}/{model-slug}):
+BMW 3 Serisi, Fiat Egea, Ford Focus, Honda Civic, Hyundai i20,
+Mercedes C Serisi, Opel Astra, Peugeot 2008, Renault Clio, Toyota Corolla, VW Passat, Audi A3
+
+Column: Popüler Markalar (parts brands)
+Links (12 parts brands → /marka/{slug}):
+Bosch, Valeo, SKF, Delphi, TRW, Febi Bilstein, Gates, Hella, Sachs, Filtron, Magneti Marelli, NGK
+
+Column: Popüler Kategoriler
+Links (12 categories → /kategori/{slug}):
+Fren Balatası, Fren Diski, ABS Sensörü, Amortisör, Hava Filtresi, Yağ Filtresi,
+Motor Yağı, Debriyaj Seti, Far Lambası, Ateşleme Bujisi, Polen Filtresi, Akü
+```
+
+**Frontend impact:** `apps/web/src/components/layout/Footer.tsx` — add 4 columns. Data should be hardcoded (static links, not API-fetched) to avoid slowing down page render. Use `next/link` for all links.
+
+**Backend/database impact:** None.
+
+**Admin panel impact:** None initially. Optionally add an admin UI to manage footer links later.
+
+**SEO impact:** Very high. Every page now links to 12 vehicle make pages, 12 model pages, 12 parts brand pages, and 12 category pages. This dramatically improves crawl coverage and PageRank distribution.
+
+**Complexity estimate:** Low. Static HTML/TSX changes to Footer.tsx. No API calls.
+
+**Dependencies:** P0-2 (vehicle model pages must exist before linking to them).
+
+---
+
+#### P0-4: Add Sticky Announcement Bar
+
+**Current Akinel state:** No announcement bar exists. The free-shipping threshold and phone number are not surface-level visible.
+
+**Competitor reference:** Otoparcasan — full-width orange sticky bar: free shipping threshold + phone + WhatsApp.
+
+**Why it matters:** The free shipping threshold is one of the most powerful average-order-value levers in e-commerce. If the threshold is 500 TL and a user's cart is at 350 TL, surfacing "150 TL daha ekleyin, kargo bedava!" increases AOV measurably. The bar must be sticky (scroll-persistent) to remain visible throughout browsing.
+
+**Exact proposed change:**
+Create `apps/web/src/components/layout/AnnouncementBar.tsx` (note: this file already exists as listed — verify its current content and extend it if needed). The bar should:
+- Span 100% width.
+- Background: brand primary colour (orange or Akinel's primary).
+- Content: free shipping threshold message (e.g., "500 TL üzeri siparişlerde KARGO BEDAVA") + phone number + WhatsApp icon linking to `https://wa.me/{number}`.
+- Position: `sticky top-0 z-50` (above the header).
+- Dismissible: optional close button that sets a session cookie/localStorage flag.
+- Admin-managed: the message text and threshold should be editable from the admin panel.
+
+**Frontend impact:**
+- Add `<AnnouncementBar />` to `apps/web/src/app/layout.tsx` (root layout) above the `<Header />`.
+- If admin-managed: fetch announcement bar content from API or from admin-managed `BusinessStrip` settings.
+
+**Backend/database impact:** Optional. If admin-managed, add an `AnnouncementBar` settings object to the site settings table. Otherwise, hardcode the threshold.
+
+**Admin panel impact:** Add an "Announcement Bar" settings section in the admin dashboard.
+
+**SEO impact:** Minimal (bar content is not crawled as page content).
+
+**Complexity estimate:** Low. Primarily a UI component.
+
+**Dependencies:** None.
+
+---
+
+### P1 — Strongly Recommended
+
+---
+
+#### P1-1: Add Brand Logo Navigation Strip
+
+**Current Akinel state:** No brand logo strip in header. The header (`apps/web/src/components/layout/Header.tsx`) has navigation links but no visual brand-logo one-click navigation.
+
+**Competitor reference:** Otoparcasan — horizontal strip immediately below header with "TÜM ARAÇLAR" button + 13 brand logos (clickable, each → brand page).
+
+**Why it matters:** Brand logos provide visual recognition shortcuts that text links do not. A user looking for BMW parts will see the BMW roundel and click immediately — no reading required. This reduces the average number of taps/clicks to reach vehicle-filtered products from homepage.
+
+**Exact proposed change:**
+Create `apps/web/src/components/layout/VehicleBrandStrip.tsx`:
+- Full-width horizontal strip.
+- First item: "TÜM ARAÇLAR" pill button → `/arac`.
+- Followed by: 12–13 vehicle make logos (BMW, Mercedes-Benz, VW, Audi, Toyota, Hyundai, Ford, Fiat, Opel, Renault, Peugeot, Citroën) with clickable logo images → `/arac/{make-slug}-yedek-parca`.
+- On mobile: horizontally scrollable (overflow-x: auto, no scrollbar visible).
+- Brand logos: SVG files (serve from `/public/brand-logos/{make-slug}.svg`).
+
+**Frontend impact:**
+- Add `<VehicleBrandStrip />` to `apps/web/src/app/layout.tsx` (site-wide) below `<Header />`.
+- Or add it only to the shop layout if admin pages should not show it.
+
+**Backend/database impact:** None. Logo assets are static files.
+
+**Admin panel impact:** Optionally allow admin to configure which makes appear in the strip.
+
+**SEO impact:** The strip adds 12+ internal links to make pages on every page of the site, reinforcing crawlability and PageRank flow.
+
+**Complexity estimate:** Low.
+
+**Dependencies:** P0-2 (vehicle make pages must exist).
+
+---
+
+#### P1-2: Add Popular Brand Cards with Model Links (Homepage)
+
+**Current Akinel state:** `apps/web/src/app/page.tsx` — Popular Brands section shows pill-style text buttons only. No cards, no model links.
+
+**Competitor reference:** Otoparcasan homepage Section 5 — horizontally scrolling carousel of brand cards. Each card: large brand logo + 6–8 model names as links + "BMW ÜRÜNLERINI LİSTELE" CTA.
+
+**Why it matters:** A user who owns a BMW 3 Serisi can click directly to that model's page from the homepage without going through the 4-step vehicle selector. This is a significant reduction in friction. The model links also serve as internal links passing homepage PageRank to model pages.
+
+**Exact proposed change:**
+Replace the pill-button Popular Brands section in `apps/web/src/app/page.tsx` with a `<PopularBrandCards />` component (create `apps/web/src/components/home/PopularBrandCards.tsx`):
+
+Component structure:
+```
+<PopularBrandCards>
+  <BrandCard make="BMW" logo="/brand-logos/bmw.svg" href="/arac/bmw-yedek-parca">
+    models={["3 Serisi", "1 Serisi", "5 Serisi", "X3", "X5", "X6"]}
+    modelsBaseHref="/arac/bmw"
+    ctaLabel="BMW Ürünlerini Listele"
+  />
+  <BrandCard make="Mercedes-Benz" ... />
+  ... (8–10 brands)
+</PopularBrandCards>
+```
+
+Carousel behaviour: horizontal auto-advancing carousel on desktop (shows 4 cards), swipeable on mobile (shows 1.5 cards to hint scroll).
+
+**Frontend impact:** New `PopularBrandCards.tsx` component + update `page.tsx` to use it.
+
+**Backend/database impact:** Model list data can be hardcoded (static, updated via seeder or admin) or fetched from `GET /api/vehicles/makes?popular=true` + `GET /api/vehicles/makes/{id}/models?popular=true`. Start hardcoded to reduce complexity.
+
+**Admin panel impact:** Optionally allow admin to configure which models appear per brand.
+
+**SEO impact:** 60–80 new internal links from homepage to model pages. High PageRank value for targeted model pages.
+
+**Complexity estimate:** Low-Medium.
+
+**Dependencies:** P0-2 (vehicle model pages).
+
+---
+
+#### P1-3: Fix VIN Search for Turkish Market
+
+**Current Akinel state:** `apps/web/src/app/(shop)/vin/page.tsx` uses the NHTSA vPIC API. This is a US government database that does not reliably contain Turkish market VINs.
+
+**Competitor reference:** Otoparcasan and OnlineYedekParca both use internal Turkish vehicle databases for VIN resolution.
+
+**Why it matters:** A VIN feature that returns no results (or wrong results) for Turkish vehicles damages trust and is worse than no feature at all. Users who try it once and get no results will not try again.
+
+**Exact proposed change — Phase 1 (immediate):**
+- Add a banner/notice on the `/vin` page: "VIN ile araç sorgulama özelliğimiz yakında Türkiye araç veritabanı ile güncellenecektir."
+- If no result is found from NHTSA, do not show an error — show: "Aracınızı bulamadık. Lütfen araç seçim aracını kullanın." with a link to `/vehicle`.
+- Consider hiding the VIN tab from the homepage widget until the data source is fixed.
+
+**Exact proposed change — Phase 2 (proper fix):**
+- In `apps/api/Akinel.Api/Controllers/VehiclesController.cs`, add `POST /api/vehicles/vin-decode` endpoint (already exists per CLAUDE.md — verify implementation).
+- Replace the NHTSA call with a lookup against the internal `VehicleGeneration` table using VIN World Manufacturer Identifier (WMI — first 3 chars) and Vehicle Descriptor Section (VDS — chars 4–9).
+- Maintain a `VinWmiMapping` table: `WMI VARCHAR(3)` → `VehicleMakeId`. Seed with common Turkish-market WMIs (BMW: WBA/WBS, Mercedes: WDB/WDD, Toyota: SB1/NMT, Ford: WF0, VW: WVW, Audi: WAU, Fiat: ZFA, Renault: VF1, Opel: W0L, Hyundai: KMHC, Kia: KNAGC).
+- VDS decode: chars 4–6 typically identify model line. Maintain `VinVdsMapping` table: `VDS CHAR(3)` → `VehicleModelId`. This requires manual curation but covers the most common 100–200 model/year combinations.
+- Model year from VIN position 10: standard VIN year code table (A=1980, B=1981... K=2019, L=2020, M=2021, N=2022, P=2023, R=2024, S=2025, T=2026).
+
+**Backend/database impact:**
+- New entity `VinWmiMapping` in `apps/api/Akinel.Domain/Entities/`.
+- EF Core configuration + migration.
+- Seed data for 15–20 WMIs covering Turkish market top makes.
+
+**Admin panel impact:** Add a "VIN WMI Mappings" admin page to manage make-level WMI codes.
+
+**SEO impact:** The `/vin` page gains value and can be indexed as a useful tool.
+
+**Complexity estimate:** Medium (Phase 1: Low; Phase 2: Medium-High).
+
+**Dependencies:** None for Phase 1. Vehicle make/model data quality for Phase 2.
+
+---
+
+#### P1-4: Add Installment / Taksit Information
+
+**Current Akinel state:** No installment information anywhere on the site.
+
+**Competitor reference:** Otoparcasan homepage Section 7 — "7500TL+ siparişlerde 2 taksit %0 komisyon" / "10000TL+ siparişlerde 3 taksit %0 komisyon".
+
+**Why it matters:** In Turkey, installment payment (taksit) is a critical purchase decision factor for items over ~1,500 TL. A compressor kit at 8,000 TL becomes much more accessible framed as "4 x 2,000 TL". Without surfacing this, Akinel loses conversions on high-value orders.
+
+**Exact proposed change:**
+1. Add a taksit banner component (`apps/web/src/components/home/TaksitBanner.tsx`) between the CategoryStrip and the Akinel Introduction section in `page.tsx`.
+2. Content: full-width gradient banner with 2 columns — "X TL üzeri 2 taksit %0 komisyon" + "Y TL üzeri 3 taksit %0 komisyon". Use the actual thresholds supported by the payment provider.
+3. On product pages (`apps/web/src/app/(shop)/products/[slug]/page.tsx`): show inline taksit breakdown below the price — "veya 3 x {price/3} TL" when price exceeds the threshold.
+4. Admin-managed: add installment threshold settings to admin panel.
+
+**Frontend impact:** New `TaksitBanner.tsx` component + product page price section update.
+
+**Backend/database impact:** Minimal. Store installment thresholds as site settings.
+
+**Admin panel impact:** Add installment threshold settings in admin → Settings.
+
+**SEO impact:** None directly. Improves conversion rate.
+
+**Complexity estimate:** Low.
+
+**Dependencies:** None.
+
+---
+
+#### P1-5: Add Oil & Maintenance Homepage Section
+
+**Current Akinel state:** No oil or maintenance section on homepage.
+
+**Competitor reference:** Otoparcasan homepage Section 8 — tabbed section: Motor Yağı | Ampul | Oto Bakım | Aksesuar | Akü. Active tab shows grid of oil brand logos.
+
+**Why it matters:** Surfacing oil products on the homepage immediately communicates that Akinel is a full-service automotive store, not just a parts-on-demand site. It also generates cross-sell revenue from users who came for a specific part and also need an oil change.
+
+**Exact proposed change:**
+Create `apps/web/src/components/home/OilMaintenanceSection.tsx`:
+- Tabs: Motor Yağı | Antifriz | Oto Bakım | Aksesuar
+- Active tab (Motor Yağı) shows: brand logo grid (Castrol, Motul, Elf, Total, Mobil, Shell) — each logo links to `/marka/{brand-slug}?category=motor-yagi`.
+- Other tabs show relevant product grids or subcategory cards.
+- Place in homepage between the CategoryStrip and Featured Products sections.
+
+**Frontend impact:** New component + update `page.tsx`.
+
+**Backend/database impact:** Requires P0-1 (oil categories and products seeded).
+
+**Admin panel impact:** None initially.
+
+**SEO impact:** Adds keyword-rich content area for oil-related terms on the homepage.
+
+**Complexity estimate:** Low (once P0-1 is done).
+
+**Dependencies:** P0-1 (oil category).
+
+---
+
+#### P1-6: Add Best Sellers / Popular Products Section
+
+**Current Akinel state:** Homepage shows "Featured Products" (admin-selected). No algorithmically-ranked popular/best-seller section.
+
+**Competitor reference:** Otoparcasan Section 9 "En Çok Satılanlar", OnlineYedekParca "Öne Çıkan Ürünler" and "Haftanın Fırsatları".
+
+**Why it matters:** Best-seller rankings serve as social proof ("other people buy this") and reduce decision fatigue. They also surface the highest-conversion-rate products prominently.
+
+**Exact proposed change:**
+1. Add `PopularScore INT` or use `OrderCount INT` on the `Product` entity, updated by a background job (or simply updated when orders are placed).
+2. New API endpoint: `GET /api/products/popular?count=8` — returns products ordered by `OrderCount DESC` (or a composite score).
+3. Add `<BestSellersSection />` component to homepage in `apps/web/src/app/page.tsx`.
+
+**Frontend impact:** New component + homepage update.
+
+**Backend/database impact:** `OrderCount` tracking on Product (increment via order-placed event). New API endpoint in `ProductsController.cs`.
+
+**Admin panel impact:** Optionally allow admin to override best-seller ranking for merchandising purposes.
+
+**SEO impact:** None directly. Improves engagement metrics (time on site, pages per session).
+
+**Complexity estimate:** Medium (order count tracking + new endpoint + component).
+
+**Dependencies:** None.
+
+---
+
+#### P1-7: Add Homepage SEO Text Block + FAQ Accordion
+
+**Current Akinel state:** No SEO text block or FAQ on homepage.
+
+**Competitor reference:** Otoparcasan homepage Section 11 — H1 "Oto Yedek Parça" + multiple H2 keyword-rich paragraphs + FAQ accordion (8 Q&As). The H1 is the generic primary keyword, not the brand name.
+
+**Why it matters:** Generic keyword queries ("oto yedek parça", "online yedek parça") are the highest-volume queries in this sector. Without an H1 targeting these keywords on the homepage, Akinel cannot rank for them. The FAQ accordion targets Featured Snippet positions for "question-based" queries.
+
+**Exact proposed change:**
+1. Add an SEO text section at the bottom of `apps/web/src/app/page.tsx` (below all product/conversion sections, above the footer).
+2. Structure:
+   ```html
+   <h1>Oto Yedek Parça</h1>
+   <h2>Online Araç Yedek Parça Alışverişi</h2>
+   <p>Aracınıza uyumlu yedek parçaları Akinel'de bulun...</p>
+   <h2>Güvenli ve Hızlı Teslimat</h2>
+   <p>...</p>
+   <h2>Sık Sorulan Sorular</h2>
+   <FAQ items={faqItems} />
+   ```
+3. FAQ items (seed with 8 Q&As): "Siparişim ne zaman kargoya verilir?", "Parçam araçıma uyumlu mu?", "İade koşulları nelerdir?", "Kredi kartıyla taksit yapabilir miyim?", etc.
+4. Add `FAQPage` JSON-LD schema for the FAQ items.
+
+**Frontend impact:** New `SeoTextBlock.tsx` and `FaqAccordion.tsx` components + page.tsx update.
+
+**Backend/database impact:** None if hardcoded. Optionally admin-managed via a CMS-style text block.
+
+**Admin panel impact:** Optionally add "Homepage SEO Content" text editor in admin panel.
+
+**SEO impact:** High. Enables ranking for generic head terms. FAQ schema targets rich result/Featured Snippet positions.
+
+**Complexity estimate:** Low (if hardcoded). Medium (if admin-managed).
+
+**Dependencies:** None.
+
+---
+
+#### P1-8: Add Vehicle Makes Browse Page (/arac)
+
+**Current Akinel state:** `/vehicle` page exists but only shows the selection widget — no browseable catalog of all makes.
+
+**Competitor reference:** Otoparcasan `/arac` — full A-Z indexed grid of 50+ makes with logos.
+
+**Why it matters:** Users who are browsing (not ready to commit to a specific vehicle) need a discovery page. "/arac" also becomes an indexed page that can rank for "araç yedek parça" queries and serves as the top of the vehicle-based navigation hierarchy.
+
+**Exact proposed change:**
+Create `apps/web/src/app/(shop)/arac/page.tsx` (this is also the parent directory for P0-2 make/model pages):
+- Title: "Araçlar — Akinel Oto Yedek Parça"
+- Content: A-Z tab navigation + make logo grid. Each make logo links to `/arac/{make-slug}-yedek-parca`.
+- Fetch makes from `GET /api/vehicles/makes` (already exists).
+- Add alphabetical index tabs (A, B, C… Z) that scroll to the corresponding section.
+- Add a search input that filters makes client-side.
+
+**Frontend impact:** New `apps/web/src/app/(shop)/arac/page.tsx`.
+
+**Backend/database impact:** None — existing `GET /api/vehicles/makes` endpoint serves the data.
+
+**Admin panel impact:** None.
+
+**SEO impact:** New indexable page targeting "araç yedek parça" + all make names. Each make name on this page is an anchor text internal link.
+
+**Complexity estimate:** Low.
+
+**Dependencies:** P0-2 (make pages for links to point to).
+
+---
+
+#### P1-9: Add Social Proof Stats Bar
+
+**Current Akinel state:** No social proof numbers on the site.
+
+**Competitor reference:** Otoparcasan Section 10 — "159+ Bin Mutlu Müşteri, 276+ Bin Sipariş" with a review carousel.
+
+**Why it matters:** Social proof reduces purchase hesitation, especially for first-time customers evaluating an unknown brand. Concrete numbers ("276,000 orders") are more persuasive than generic trust statements.
+
+**Exact proposed change:**
+Create `apps/web/src/components/home/SocialProofBar.tsx`:
+- 3 stat tiles: "X+ Mutlu Müşteri" | "Y+ Sipariş Tamamlandı" | "Z+ Ürün Çeşidi"
+- Pull actual counts from API: `GET /api/stats/social-proof` → `{ customerCount, orderCount, productCount }`.
+- If counts are low (early stage), show category/brand counts instead ("500+ Ürün, 5 Popüler Marka, Türkiye Geneli Kargo").
+- Animated number counter on scroll-into-view.
+
+**Frontend impact:** New component + page.tsx update.
+
+**Backend/database impact:** New `GET /api/stats/social-proof` endpoint in `StatsController.cs` — simple `COUNT` queries on customers, orders, products.
+
+**Admin panel impact:** None.
+
+**SEO impact:** None directly.
+
+**Complexity estimate:** Low-Medium.
+
+**Dependencies:** None.
+
+---
+
+### P2 — Nice to Have
+
+---
+
+#### P2-1: Product Star Ratings
+
+**Current Akinel state:** No rating system.
+
+**Competitor reference:** OnlineYedekParca — star ratings on product cards and product pages.
+
+**Exact proposed change:**
+Add `ProductReview` entity: `ProductId`, `CustomerId`, `Rating (1-5)`, `Comment TEXT`, `CreatedAt`, `IsApproved BOOL`. Add `AverageRating DECIMAL` and `ReviewCount INT` as computed/cached fields on `Product`. Display stars on product cards and product pages. Admin approval queue for reviews.
+
+**Complexity estimate:** High. Requires new entity, migration, API endpoints (submit review, list reviews, admin approve), frontend components.
+
+**Dependencies:** Order system (only allow reviews from users who purchased the product).
+
+---
+
+#### P2-2: Wiper Finder Tool (Silecek Bulucu)
+
+**Current Akinel state:** Not present.
+
+**Competitor reference:** Otoparcasan — "Silecek Bulucu" promo tile on homepage, links to a tool that finds correct wiper blade sizes for a selected vehicle.
+
+**Exact proposed change:**
+Add a `WiperSize` table: `VehicleEngineId`, `DriverSideMm INT`, `PassengerSideMm INT`, `RearMm INT?`. Create a tool page at `/silecek-bulucu` that uses the standard vehicle selector (Make → Model → Generation → Engine) and outputs the correct wiper sizes, with links to matching wiper products.
+
+**Complexity estimate:** Medium. Requires data entry (wiper sizes per vehicle).
+
+**Dependencies:** P0-2 (vehicle catalog pages).
+
+---
+
+#### P2-3: Maintenance Schedule Tool (Bakım Robotu)
+
+**Current Akinel state:** Not present.
+
+**Competitor reference:** Otoparcasan `/periyodik-bakim-robotu` — "1,124,712 parts checked, 7/24". Select vehicle → robot finds all periodic maintenance parts → add to cart.
+
+**Exact proposed change:**
+Add a `MaintenanceSchedule` entity: `VehicleEngineId`, `Interval (km or months)`, `CategoryId` (e.g., oil filter every 15,000 km), `Notes`. Create a tool page at `/bakim-robotu`. Vehicle selection → query maintenance schedules → display list of recommended parts → bulk "add all to cart" CTA.
+
+This is a major AOV driver — a single maintenance session could add 5–10 SKUs to cart simultaneously.
+
+**Complexity estimate:** High. Requires extensive data entry for maintenance schedules per vehicle + cart integration.
+
+**Dependencies:** P0-1 (oil/filter categories), vehicle catalog completeness.
+
+---
+
+#### P2-4: Authorised Service Centers (Anlaşmalı Servisler)
+
+**Current Akinel state:** Not present.
+
+**Competitor reference:** Otoparcasan — "Anlaşmalı Servisler" tab in vehicle selector and link in footer.
+
+**Exact proposed change:**
+Add a `ServiceCenter` entity: `Name`, `Address`, `City`, `Phone`, `Lat`, `Lng`, `MakeSpecializations[]`. Create a `/anlasmali-servisler` page with a map and list. Admin can add/edit service centers.
+
+**Complexity estimate:** Medium. Requires Google Maps API or Mapbox integration.
+
+**Dependencies:** None.
+
+---
+
+#### P2-5: Fix English URLs
+
+**Current Akinel state:** Product URLs use `/products/{slug}` (English). Vehicle selection page is `/vehicle`. Brands list is `/brands`.
+
+**Proposed change:**
+- Rename `/products/{slug}` → `/urun/{slug}` (Turkish: ürün = product).
+- Rename `/vehicle` → `/arac` (already proposed as P1-8 browse page; the selection widget can live at `/arac` too).
+- Rename `/brands` → `/markalar`.
+- Add 301 redirects from old URLs (important: do not break existing indexed URLs).
+
+**Complexity estimate:** Low (rename routes + add redirects in `next.config.js`).
+
+**Dependencies:** P0-2 and P1-8 create the new `/arac` route structure.
+
+---
+
+## 14. Recommended Akinel Homepage & Vehicle Discovery Structure
+
+This section specifies the exact proposed homepage layout and vehicle discovery architecture as a developer-ready specification.
+
+### 14.1 Homepage — Proposed Section Order
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ 1. AnnouncementBar (sticky, z-50)                           │
+│    "500 TL üzeri siparişlerde KARGO BEDAVA | ☎ 0850 XXX XX │
+│     XX | WhatsApp"                                          │
+│    File: apps/web/src/components/layout/AnnouncementBar.tsx │
+├─────────────────────────────────────────────────────────────┤
+│ 2. Header                                                   │
+│    Logo | Search (vehicle + part) | Garajım | Sepet | Giriş│
+│    File: apps/web/src/components/layout/Header.tsx          │
+├─────────────────────────────────────────────────────────────┤
+│ 3. VehicleBrandStrip                                        │
+│    [TÜM ARAÇLAR] [BMW] [Mercedes] [VW] [Audi] [Toyota] ... │
+│    File: NEW apps/web/src/components/layout/               │
+│         VehicleBrandStrip.tsx                               │
+├─────────────────────────────────────────────────────────────┤
+│ 4. Hero Section                                             │
+│    Left: HeroCarousel (existing, keep)                      │
+│    Right: Vehicle Selector Card (tabs)                      │
+│      Tab 1: Araç Kataloğu (Make→Model→Gen→Engine dropdown) │
+│      Tab 2: Şasi No ile Ara (VIN input — Phase 1: disabled) │
+│      Tab 3: Garajımdan Seç                                  │
+│    Files: existing HeroCarousel.tsx + vehicle selector      │
+├─────────────────────────────────────────────────────────────┤
+│ 5. BusinessStrip (existing — keep)                          │
+│    4 trust signals                                          │
+│    File: apps/web/src/components/home/BusinessStrip.tsx     │
+├─────────────────────────────────────────────────────────────┤
+│ 6. PopularBrandCards carousel (NEW)                         │
+│    [BMW card: logo + 3 Serisi, 1 Serisi, X3...] [Fiat...]  │
+│    File: NEW apps/web/src/components/home/                  │
+│         PopularBrandCards.tsx                               │
+├─────────────────────────────────────────────────────────────┤
+│ 7. CategoryStrip (existing — keep, add Oto Bakım chip)      │
+│    File: apps/web/src/components/home/CategoryStrip.tsx     │
+├─────────────────────────────────────────────────────────────┤
+│ 8. TaksitBanner (NEW)                                       │
+│    "X TL üzeri 2 taksit %0 | Y TL üzeri 3 taksit %0"      │
+│    File: NEW apps/web/src/components/home/TaksitBanner.tsx  │
+├─────────────────────────────────────────────────────────────┤
+│ 9. OilMaintenanceSection (NEW)                              │
+│    Tabs: Motor Yağı | Antifriz | Oto Bakım | Aksesuar       │
+│    Active: brand logo grid (Castrol, Motul, Elf, Total...)  │
+│    File: NEW apps/web/src/components/home/                  │
+│         OilMaintenanceSection.tsx                           │
+├─────────────────────────────────────────────────────────────┤
+│ 10. BestSellersSection (NEW)                                │
+│     "En Çok Satılanlar" — product grid (8 items)            │
+│     File: NEW apps/web/src/components/home/                 │
+│          BestSellersSection.tsx                             │
+├─────────────────────────────────────────────────────────────┤
+│ 11. FeaturedProducts (existing — keep)                      │
+│     Admin-curated products                                  │
+├─────────────────────────────────────────────────────────────┤
+│ 12. SocialProofBar (NEW)                                    │
+│     "X+ Mutlu Müşteri | Y+ Sipariş | Z+ Ürün"              │
+│     File: NEW apps/web/src/components/home/                 │
+│          SocialProofBar.tsx                                 │
+├─────────────────────────────────────────────────────────────┤
+│ 13. SeoTextBlock + FaqAccordion (NEW)                       │
+│     H1: "Oto Yedek Parça"                                   │
+│     H2s: keyword-rich copy + FAQ (8 Q&As)                   │
+│     FAQPage JSON-LD                                         │
+│     File: NEW apps/web/src/components/home/SeoTextBlock.tsx │
+├─────────────────────────────────────────────────────────────┤
+│ 14. Footer (EXTEND existing)                                │
+│     Add 4 SEO columns (see P0-3)                           │
+│     File: apps/web/src/components/layout/Footer.tsx         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 14.2 Vehicle Discovery Architecture — URL Tree
+
+```
+/arac                                    → Makes browse page (A-Z, logos)
+  /arac/bmw-yedek-parca                  → BMW make page (products + series filter)
+    /arac/bmw/3-serisi                   → BMW 3 Serisi model page
+    /arac/bmw/1-serisi                   → BMW 1 Serisi model page
+    /arac/bmw/5-serisi                   → BMW 5 Serisi model page
+    /arac/bmw/x3                         → BMW X3 model page
+  /arac/mercedes-benz-yedek-parca        → Mercedes-Benz make page
+    /arac/mercedes-benz/c-serisi         → Mercedes C Serisi model page
+    /arac/mercedes-benz/e-serisi         → Mercedes E Serisi model page
+  /arac/volkswagen-yedek-parca           → VW make page
+  /arac/toyota-yedek-parca              → Toyota make page
+  ... (all makes)
+```
+
+Each make page and model page is statically generated at build time via `generateStaticParams`.
+
+### 14.3 Category Architecture — Proposed Full Tree
+
+```
+/kategori
+  /kategori/fren-sistemi                 → (existing) Fren Sistemi
+    /kategori/fren-balatasi              → (existing)
+    /kategori/fren-diski                 → (existing)
+    /kategori/abs-sensorleri             → (existing)
+  /kategori/debriyaj                     → (existing)
+  /kategori/filtreler                    → (existing)
+    /kategori/yag-filtresi               → (existing)
+    /kategori/hava-filtresi              → (existing)
+  /kategori/suspansiyon                  → (existing)
+  /kategori/elektrik-sistemi             → (existing)
+  /kategori/sogutma-sistemi              → (existing)
+  /kategori/oto-bakim-ve-yagllar         → (NEW — P0-1)
+    /kategori/motor-yagi                 → (NEW)
+    /kategori/antifriz                   → (NEW)
+    /kategori/fren-hidrolik-yagi         → (NEW)
+    /kategori/sanziman-yagi              → (NEW)
+    /kategori/cam-yikama-suyu            → (NEW)
+    /kategori/yakut-katkisi              → (NEW)
+    /kategori/oto-yikama-sampuani        → (NEW)
+    /kategori/pasta-cila                 → (NEW)
+    /kategori/ad-blue                    → (NEW)
+```
+
+Note: The current URL scheme uses flat slugs (`/kategori/fren-balatasi`) rather than nested (`/kategori/fren-sistemi/fren-balatasi`). This is acceptable for SEO as long as the parent-child relationship is expressed via breadcrumbs and JSON-LD BreadcrumbList.
+
+### 14.4 Footer — Proposed Column Structure
+
+```
+Column 1: Kurumsal          Column 2: Hızlı Erişim
+  Hakkımızda                  Araç Kataloğu (/arac)
+  İletişim                    Tüm Kategoriler (/kategori)
+  Gizlilik Politikası         Garaja Ekle (/garage)
+  Kullanım Şartları           VIN Sorgulama (/vin)
+  İptal ve İade               Bakım Robotu (/bakim-robotu)*
+  Kargo Bilgisi               Silecek Bulucu (/silecek-bulucu)*
+  SSS                         Blog (/blog)*
+
+Column 3: Popüler Araçlar   Column 4: Popüler Modeller
+  BMW                         BMW 3 Serisi
+  Mercedes-Benz               Fiat Egea
+  Volkswagen                  Ford Focus
+  Audi                        Honda Civic
+  Toyota                      Hyundai i20
+  Hyundai                     Mercedes C Serisi
+  Ford                        Opel Astra
+  Fiat                        Peugeot 2008
+  Opel                        Renault Clio
+  Renault                     Toyota Corolla
+  Peugeot                     VW Passat
+  Citroën                     Audi A3
+  Tüm Araçlar →
+
+Column 5: Popüler Markalar  Column 6: Popüler Kategoriler
+  Bosch                       Fren Balatası
+  Valeo                       Fren Diski
+  SKF                         ABS Sensörü
+  Delphi                      Amortisör
+  TRW                         Hava Filtresi
+  Febi Bilstein               Yağ Filtresi
+  Gates                       Motor Yağı
+  Hella                       Debriyaj Seti
+  Sachs                       Far Lambası
+  Filtron                     Ateşleme Bujisi
+  Magneti Marelli             Polen Filtresi
+  NGK                         Akü
+
+* = Future features; link to "Yakında" page until implemented
+```
+
+### 14.5 New API Endpoints Required
+
+| Endpoint | Purpose | Priority |
 |---|---|---|
-| Payment gateway | iyzico (most common Turkish SME), PayTR, Param | iyzico has a Next.js SDK. PayTR is simpler API. Merchant account takes 3–10 business days to approve. |
-| Installment plans | Comes with iyzico / PayTR (all major Turkish banks) | No separate integration if using iyzico. |
-| Email (transactional) | Resend, Mailgun, Amazon SES, SendGrid | Pick one. Order confirmation, password reset, back-in-stock. ~$0–15/month at small scale. |
-| VIN decode (basic WMI) | No external service needed — WMI is a public standard (ISO 3779) | Build a lookup table of Turkish/European WMI codes. |
-| VIN decode (full vehicle spec) | NHTSA API (free, US vehicles only), InfoTrack/Habermas (Turkey, paid), EuroVIN (EU) | Turkish market vehicles: significant portion are EU-spec. NHTSA won't help. Commercial service required for production use. |
-| TecDoc / parts catalog | TecDoc (TecAlliance) — B2B licensing, €1,000+ setup + per-query fees | Only justified when catalog > 10,000+ products and monthly searches > 5,000. |
-| Vehicle data | ManualAuto, auto-data.net, or self-built | The existing admin vehicle CRUD is the right approach — self-managed. |
-| Image CDN | Cloudflare Images, AWS S3 + CloudFront, Bunny.net | Currently storing images locally (FilesController). Move to CDN before public traffic. |
-| SMS (for OTP/order updates) | Netgsm, İleti Merkezi (Turkish SMS gate) | Optional; WhatsApp is cheaper in Turkey. |
-| ETBIS registration | etbis.eticaret.gov.tr | Government registration for Turkish e-commerce. One-time setup. |
+| `GET /api/vehicles/makes/{makeSlug}/products` | Products for all engines of a make | P0-2 |
+| `GET /api/vehicles/models/{modelSlug}/products` | Products for all engines of a model | P0-2 |
+| `GET /api/vehicles/makes/{makeSlug}/models` | Models for a make (already exists as `makes/{id}/models` — add slug variant) | P0-2 |
+| `GET /api/products/popular` | Best-selling products | P1-6 |
+| `GET /api/stats/social-proof` | Customer/order/product counts | P1-9 |
+| `POST /api/vehicles/vin-decode` | VIN → vehicle (already exists — fix data source) | P1-3 |
 
----
+### 14.6 New Database Entities Required
 
-## 23. Technical Risks
-
-| Risk | Severity | Mitigation |
+| Entity | Purpose | Priority |
 |---|---|---|
-| Local file storage for images | High — images lost if server moves or disk fails | Move to object storage (S3/Backblaze/Cloudflare R2) before launch |
-| No transactional emails | High — users can't reset passwords, don't receive order confirmation | Integrate Resend or Mailgun in Phase 1 |
-| Cart is session-based (cookie) | Medium — basket lost when session expires; no guest-to-user basket merge | Acceptable for now; revisit when user acquisition grows |
-| No payment gateway | Critical — credit card payments are a placeholder | Phase 1 blocker |
-| Single admin role | Low for now — only one admin is assumed | Sufficient for single-owner operation |
-| No rate limiting / abuse protection | Medium — search and OEM lookup endpoints could be scraped | Add basic rate limiting middleware in ASP.NET Core |
-| VehicleEngine ID as filter | Low — if vehicle catalog grows, users need a better way to select than ID | Current 4-step UI handles this well |
-| NullPartsCatalogProvider | Intentional, not a risk — designed for future swap | Well-documented in CLAUDE.md |
+| `Category.IsVehicleSpecific` (new field) | Flag maintenance/oil categories as not requiring vehicle context | P0-1 |
+| `VinWmiMapping` | WMI prefix → VehicleMakeId for VIN decode | P1-3 |
+| `Product.OrderCount` (new field) | Track popularity for best-sellers endpoint | P1-6 |
+| `ProductReview` | Customer ratings and reviews | P2-1 |
+| `WiperSize` | Wiper blade sizes per vehicle | P2-2 |
+| `MaintenanceSchedule` | Periodic maintenance items per vehicle | P2-3 |
+| `ServiceCenter` | Authorised repair centers | P2-4 |
+
+### 14.7 Implementation Order
+
+Given the dependencies between features, the recommended implementation sequence is:
+
+**Sprint 1 (P0 — can be parallelised across developers):**
+- P0-4: Announcement bar (1 day, no dependencies)
+- P0-3: Footer SEO columns (1 day, can stub /arac links with coming-soon redirect)
+- P0-1: Oto Bakım ve Yağlar category + seeder (2 days)
+
+**Sprint 2:**
+- P0-2: Vehicle make + model pages (3–4 days, unblocks P1-1, P1-2)
+- P1-4: Taksit banner (0.5 days)
+- P1-7: SEO text + FAQ accordion (1 day)
+
+**Sprint 3:**
+- P1-1: VehicleBrandStrip (1 day, needs P0-2)
+- P1-2: PopularBrandCards (2 days, needs P0-2)
+- P1-8: /arac browse page (1 day, needs P0-2)
+- P1-3 Phase 1: VIN fix (disable broken feature, 0.5 days)
+
+**Sprint 4:**
+- P1-5: Oil & Maintenance homepage section (1 day, needs P0-1)
+- P1-6: Best sellers (2 days)
+- P1-9: Social proof bar (1 day)
+- P2-5: Fix English URLs with redirects (1 day)
+
+**Sprint 5 (P2):**
+- P2-1: Product ratings
+- P2-2: Wiper finder
+- P2-3: Maintenance robot
+- P2-4: Service centers
 
 ---
 
-## 24. Business/Legal Dependencies
-
-| Item | Status | Notes |
-|---|---|---|
-| ETBIS registration | Missing | Required by Turkish law for e-commerce. Register at etbis.eticaret.gov.tr |
-| Merchant account (payment gateway) | Missing | Required for card processing. iyzico requires tax ID, business registration. |
-| KVKK compliance | Partial — policies exist, cookie consent missing | Cookie consent banner not implemented. Under KVKK, consent is required before analytics/marketing cookies. |
-| Invoice issuing | Not observed | Turkish tax law requires official e-fatura or kağıt fatura for each sale. The order model needs an invoice number + VAT calculation. |
-| Consumer protection law (Mesafeli Satış) | Implemented in forms | Legal documents exist. Return policy page may need a dedicated URL. |
-| Cargo/shipping agreements | Unknown | Shipping cost is hardcoded to 0. A real shipping agreement with Yurtiçi/MNG/Aras etc. is needed with tracking number integration. |
-| Supplier pricing & authenticity | Business risk | Ensure product sourcing is documented. Automotive parts counterfeiting is a legal liability. |
-
----
-
-## 25. Final Recommendations — If We Had 2–4 Weeks
-
-**Week 1: Make the site transactionally complete**
-
-1. Integrate iyzico payment (or at minimum accept bank transfer orders and mark credit card as "contact us"). The site must be able to take real payments. Everything else is secondary.
-2. Add password reset via email (Resend.com integration — 15 minutes to set up the client, 1 hour to build the reset flow). Without this, any registered user who forgets their password is gone forever.
-3. Register ETBIS (admin task, 1 hour). Add badge to footer.
-4. Add 3-item trust strip between hero and category section ("100% Güvenli Ödeme / Hızlı Teslimat / Geniş Stok").
-
-**Week 2: Close the biggest UX gaps**
-
-5. Guest order tracking at `/siparis-takip` (email + order number → status). Currently there is a misleading "Sipariş Takip" link in the header that goes to `/search`. Fix this to a real page. Reduces support WhatsApp messages significantly.
-6. Add compatibility badge to product listing cards. When a vehicle is selected (`vehicleEngineId` in URL), show a green "Uyumlu" chip on cards that are compatible. The backend already knows compatibility; the listing API can be extended to return a `isCompatible` flag per product when `vehicleEngineId` is provided. This is Akinel's strongest differentiator and should be visible.
-7. Add "Stok girince haber ver" email capture. A simple form on OOS products: email field + submit. Store in DB, email when admin marks back in stock. The capture form alone is 1 day of work; the fulfillment email is another half day.
-
-**Week 3: SEO foundations**
-
-8. Create proper category pages at `/kategori/[slug]` with canonical URLs, category-specific H1 and description. Wire the existing `/category/[slug]` page to use the slug from the API and make it indexable. Update sitemap to include these pages.
-9. Add product JSON-LD structured data (Product, Offer, Organization schema). This costs one afternoon and enables Google rich snippets (price, availability) in search results. Immediate SEO impact.
-10. Add related products to product detail (same category, in stock, limit 4–6). One API call + a simple grid. This reduces bounce and increases pages per session.
-
-**Week 4: The automotive-specific win**
-
-11. Build the Maintenance Kit tool (`/bakim-robotu`). It uses existing vehicle finder + multiple product API calls. The page shows: "For your [vehicle], your next service kit should include: [Oil filter] [Air filter] [Pollen filter] [Brake pads]." Each item links to compatible products. "Add all to cart" button. This single feature can double Average Order Value for service-related buyers. It is a 3-5 day feature that competitors already have and buyers actively look for.
-
-**What NOT to do in 2–4 weeks:**
-- Do not start TecDoc integration.
-- Do not build a reviews system from scratch (takes 2 weeks for a correct implementation including moderation).
-- Do not build a B2B tier yet (needs proper pricing architecture discussion first).
-- Do not redesign the UI — current design is clean and functional.
-
----
-
-## Appendix: Observed Page URLs
-
-| Site | URL | What Was Observed |
-|---|---|---|
-| onlineyedekparca.com | https://www.onlineyedekparca.com/ | Homepage: B2B bar, chassis search, make nav, vehicle finder, promo carousel, MOPAR/Stellantis spotlight, product carousels, trust bar, footer |
-| onlineyedekparca.com | https://www.onlineyedekparca.com/kategori/opel-yedek-parca | Make-based listing: 38,957 products, model sub-nav, in-page search, sort, grid/list toggle |
-| onlineyedekparca.com | https://www.onlineyedekparca.com/urun/opel-astra-h-1-3-dizel-6-ileri-volant-debriyaj-set-gm-bilya-seti-komple | Product detail: delivery estimate, location selector, VIN widget, brand logo, installment teaser, review count (10), related products |
-| onlineyedekparca.com | https://www.onlineyedekparca.com/misafir-siparis-takip | Guest order tracking: email + order number → OTP verification |
-| yedekparca.com.tr | https://www.yedekparca.com.tr/ | Homepage: 6-step finder, category icons, vehicle brand grid, category banner grid, maintenance robot promo, supplier brand carousel, app badges, payment logos |
-| yedekparca.com.tr | https://www.yedekparca.com.tr/fren | Category page: left sidebar with 14 sub-categories, 7-tab sort bar, product grid |
-| yedekparca.com.tr | https://www.yedekparca.com.tr/arama?q=fren+balata | Search: results for "fren balata" with sidebar brand/category filters |
-| yedekparca.com.tr | https://www.yedekparca.com.tr/arama?q=1605869 | OEM search: returned products matching the OEM number |
-| parcamax.com | https://www.parcamax.com/ | Login-walled B2B platform; powered by CatalogiX.be + TecDoc Inside badge visible |
-
----
-
-*Report generated: 2026-10-01*  
-*Codebase reviewed: apps/web/src, apps/api/Akinel.*  
-*Browser inspection: Playwright-based live browsing of competitor sites*  
-*Confidence levels: OBSERVED = directly seen in browser; INFERRED = reasonable deduction from visible evidence; RECOMMENDED = author judgment*
+*Report generated: 2026-10-05. Based on codebase analysis of `/Users/sercanfurunci/Desktop/akinel-yedekparca` and competitor research on otoparcasan.com and onlineyedekparca.com.*

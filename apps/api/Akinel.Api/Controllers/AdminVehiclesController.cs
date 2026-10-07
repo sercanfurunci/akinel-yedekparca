@@ -211,6 +211,22 @@ public class AdminVehiclesController : ControllerBase
         return Ok(new { imageUrl = model.ImageUrl });
     }
 
+    [HttpPost("generations/{id:guid}/image")]
+    public async Task<IActionResult> UploadGenerationImage(Guid id, IFormFile file, CancellationToken ct)
+    {
+        var generation = await _db.VehicleGenerations.FindAsync(new object[] { id }, ct);
+        if (generation == null) return NotFound();
+
+        if (file == null || file.Length == 0) return BadRequest(new { message = "Dosya gerekli." });
+        if (file.Length > MaxImageBytes) return BadRequest(new { message = "Dosya 5MB'dan büyük olamaz." });
+        if (!IsAllowedImageMagic(file)) return BadRequest(new { message = "Desteklenmeyen dosya türü." });
+
+        await _storage.DeleteAsync(generation.ImageUrl, ct);
+        generation.ImageUrl = await _storage.UploadAsync(file, "vehicle-generations", ct);
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { imageUrl = generation.ImageUrl });
+    }
+
     [HttpPost("makes/{makeId:guid}/models")]
     public async Task<IActionResult> CreateModel(
         Guid makeId,

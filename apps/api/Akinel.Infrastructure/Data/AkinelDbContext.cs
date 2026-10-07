@@ -30,6 +30,7 @@ public class AkinelDbContext : DbContext, IDataProtectionKeyContext
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<HomepageHeroSlide> HomepageHeroSlides => Set<HomepageHeroSlide>();
+    public DbSet<HomepageBanner> HomepageBanners => Set<HomepageBanner>();
     public DbSet<StockNotification> StockNotifications => Set<StockNotification>();
     public DbSet<DataProtectionKey> DataProtectionKeys => Set<DataProtectionKey>();
     public DbSet<ImportLog> ImportLogs => Set<ImportLog>();
@@ -51,6 +52,9 @@ public class AkinelDbContext : DbContext, IDataProtectionKeyContext
         modelBuilder.Entity<Order>()
             .Property(o => o.PaymentMethod)
             .HasConversion<int>();
+
+        modelBuilder.Entity<HomepageBanner>()
+            .HasIndex(b => b.SectionKey).IsUnique();
 
         // Basket session lookups — index prevents full table scans on every basket request
         modelBuilder.Entity<BasketItem>()
