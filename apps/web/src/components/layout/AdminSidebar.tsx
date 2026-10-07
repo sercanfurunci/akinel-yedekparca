@@ -22,7 +22,7 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="shrink-0 w-14 md:w-60 min-h-screen bg-[#111827] text-white flex flex-col border-r border-black/40">
+    <aside className="shrink-0 w-14 md:w-60 h-screen sticky top-0 bg-[#111827] text-white flex flex-col border-r border-black/40 overflow-y-auto">
       <div className="p-3 md:p-5 border-b border-white/10 flex items-center justify-center md:justify-start gap-2.5">
         <div className="h-8 w-8 rounded-lg bg-brand flex items-center justify-center shrink-0">
           <span className="font-bold text-white text-sm">A</span>

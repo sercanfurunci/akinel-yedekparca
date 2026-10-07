@@ -20,9 +20,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <Toaster>
-      <div className="flex min-h-screen">
+      <div className="flex h-screen overflow-hidden">
         <AdminSidebar />
-        <main className="flex-1 min-w-0 p-4 md:p-6 bg-muted/30 overflow-x-auto">{children}</main>
+        <main className="flex-1 min-w-0 p-4 md:p-6 bg-muted/30 overflow-y-auto overflow-x-auto">{children}</main>
       </div>
     </Toaster>
   );
