@@ -7,6 +7,7 @@ import { ChevronRight, Search, Car } from 'lucide-react';
 import { api } from '@/lib/api';
 import type { VehicleMake, VehicleModel, VehicleGeneration } from '@/lib/types';
 import { useVehicleStore } from '@/store/vehicleStore';
+import { VehicleFinder } from '@/components/search/VehicleFinder';
 
 function MakeInitial({ name }: { name: string }) {
   return (
@@ -29,6 +30,10 @@ function VehiclePageInner() {
   const [selectedModel, setSelectedModel] = useState<VehicleModel | null>(null);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // VehicleFinder modal state
+  const [finderOpen, setFinderOpen] = useState(false);
+  const [finderMake, setFinderMake] = useState<VehicleMake | null>(null);
 
   const { setSelectedVehicle } = useVehicleStore();
 
@@ -283,7 +288,6 @@ function VehiclePageInner() {
         <div className="space-y-8">
           {letters.map((letter) => (
             <div key={letter}>
-              {/* Letter anchor */}
               <div className="flex items-center gap-3 mb-3">
                 <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand text-white text-sm font-bold shrink-0">
                   {letter}
@@ -293,10 +297,10 @@ function VehiclePageInner() {
 
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 {groupedMakes[letter].map((make) => (
-                  <Link
+                  <button
                     key={make.id}
-                    href={`/vehicle?makeId=${make.id}`}
-                    className="flex items-center gap-3 p-3 rounded-xl border border-border bg-white hover:border-brand hover:shadow-md hover:bg-brand/5 transition-all group"
+                    onClick={() => { setFinderMake(make); setFinderOpen(true); }}
+                    className="flex items-center gap-3 p-3 rounded-xl border border-border bg-white hover:border-brand hover:shadow-md hover:bg-brand/5 transition-all group text-left w-full"
                   >
                     {make.logoUrl ? (
                       <img src={make.logoUrl} alt="" className="w-10 h-10 object-contain shrink-0" />
@@ -306,13 +310,20 @@ function VehiclePageInner() {
                     <span className="text-sm font-medium text-gray-700 group-hover:text-brand transition-colors leading-tight">
                       {make.name}
                     </span>
-                  </Link>
+                  </button>
                 ))}
               </div>
             </div>
           ))}
         </div>
       )}
+
+      {/* VehicleFinder modal — controlled, opens with pre-selected make */}
+      <VehicleFinder
+        open={finderOpen}
+        onOpenChange={setFinderOpen}
+        initialMake={finderMake ?? undefined}
+      />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Car, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GlobalSearch } from '@/components/search/GlobalSearch';
+import { VehicleFinder } from '@/components/search/VehicleFinder';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { getImageUrl } from '@/lib/utils';
@@ -19,6 +20,7 @@ const INTERVAL_MS = 5500;
 export function HeroCarousel({ slides }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [finderOpen, setFinderOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const total = slides.length;
 
@@ -46,6 +48,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
   }, [prev, next]);
 
   return (
+    <>
     <section
       className="relative overflow-hidden bg-[#111827]"
       style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}
@@ -114,9 +117,12 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
             </div>
 
             <div className="flex flex-wrap justify-center gap-3">
-              <Link href="/vehicle" className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-6 shadow-lg')}>
-                <Car size={16} className="mr-2" /> Aracımı Seç
-              </Link>
+              <button
+                onClick={() => setFinderOpen(true)}
+                className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-6 shadow-lg gap-2')}
+              >
+                <Car size={16} /> Aracımı Seç
+              </button>
               <Link href="/search" className={cn(buttonVariants({ size: 'lg' }), 'h-11 px-6 bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-sm shadow-lg')}>
                 <Search size={16} className="mr-2" /> OEM ile Ara
               </Link>
@@ -161,12 +167,18 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
         )}
       </div>
     </section>
+
+    <VehicleFinder open={finderOpen} onOpenChange={setFinderOpen} />
+    </>
   );
 }
 
 /** Static hero — fallback when no active slides */
 export function StaticHero() {
+  const [finderOpen, setFinderOpen] = useState(false);
+
   return (
+    <>
     <section className="relative overflow-hidden bg-[#111827]" style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}>
       <div className="absolute inset-0 bg-gradient-to-br from-brand/15 via-[#111827] to-[#111827]" />
       <div className="absolute inset-0 z-10 flex flex-col justify-end">
@@ -187,9 +199,12 @@ export function StaticHero() {
               <GlobalSearch size="lg" />
             </div>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link href="/vehicle" className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-6')}>
-                <Car size={16} className="mr-2" /> Aracımı Seç
-              </Link>
+              <button
+                onClick={() => setFinderOpen(true)}
+                className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-11 px-6 gap-2')}
+              >
+                <Car size={16} /> Aracımı Seç
+              </button>
               <Link href="/search" className={cn(buttonVariants({ size: 'lg' }), 'h-11 px-6 bg-white/15 hover:bg-white/25 text-white border border-white/30')}>
                 <Search size={16} className="mr-2" /> OEM ile Ara
               </Link>
@@ -198,5 +213,8 @@ export function StaticHero() {
         </div>
       </div>
     </section>
+
+    <VehicleFinder open={finderOpen} onOpenChange={setFinderOpen} />
+    </>
   );
 }

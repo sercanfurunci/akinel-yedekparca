@@ -48,7 +48,7 @@ public class VehicleService : IVehicleService
             .AsNoTracking()
             .Where(e => e.VehicleGenerationId == generationId)
             .OrderBy(e => e.Name)
-            .Select(e => new VehicleEngineDto(e.Id, e.Name, e.VehicleGenerationId, e.Displacement, e.FuelType, e.PowerKw, e.PowerHp, e.YearFrom, e.YearTo, e.EngineCode))
+            .Select(e => new VehicleEngineDto(e.Id, e.Name, e.VehicleGenerationId, e.Displacement, e.FuelType, e.PowerKw, e.PowerHp, e.YearFrom, e.YearTo, e.EngineCode, e.Gearbox))
             .ToListAsync(ct);
 
     public async Task<VehicleContextDto?> GetVehicleContextAsync(Guid engineId, CancellationToken ct = default)
