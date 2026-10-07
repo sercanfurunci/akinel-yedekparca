@@ -469,6 +469,19 @@ public class AdminVehiclesController : ControllerBase
         return NoContent();
     }
 
+    // ── Reset ─────────────────────────────────────────────────────────
+
+    [HttpDelete("reset-all")]
+    public async Task<IActionResult> ResetAll(CancellationToken ct)
+    {
+        await _db.Database.ExecuteSqlRawAsync("DELETE FROM \"ProductVehicleCompatibilities\"", ct);
+        await _db.Database.ExecuteSqlRawAsync("DELETE FROM \"VehicleEngines\"", ct);
+        await _db.Database.ExecuteSqlRawAsync("DELETE FROM \"VehicleGenerations\"", ct);
+        await _db.Database.ExecuteSqlRawAsync("DELETE FROM \"VehicleModels\"", ct);
+        await _db.Database.ExecuteSqlRawAsync("DELETE FROM \"VehicleMakes\"", ct);
+        return Ok(new { message = "All vehicle data deleted." });
+    }
+
     // ── Search ────────────────────────────────────────────────────────
 
     [HttpGet("search")]
