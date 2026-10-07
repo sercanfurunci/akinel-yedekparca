@@ -366,18 +366,18 @@ export function VehicleFinder({
               return (
                 <button key={engine.id} onClick={() => pickEngine(engine)}
                   className={cn(
-                    'flex items-center justify-between px-4 py-3 rounded-xl border transition-colors text-left group',
+                    'flex items-start justify-between px-4 py-3 rounded-xl border transition-colors text-left group',
                     selectedEngine?.id === engine.id
                       ? 'border-brand bg-brand/5'
                       : 'border-border hover:border-brand hover:bg-brand/5'
                   )}>
-                  <div>
+                  <div className="flex-1 min-w-0 pr-2">
                     <p className="text-sm font-medium group-hover:text-brand transition-colors">{engine.name}</p>
                     {parts.length > 0 && (
                       <p className="text-xs text-muted-foreground mt-0.5">{parts.join(' · ')}</p>
                     )}
                   </div>
-                  {selectedEngine?.id === engine.id && <Check size={15} className="text-brand shrink-0" />}
+                  <Check size={15} className={cn('shrink-0 mt-0.5', selectedEngine?.id === engine.id ? 'text-brand' : 'invisible')} />
                 </button>
               );
             })}
