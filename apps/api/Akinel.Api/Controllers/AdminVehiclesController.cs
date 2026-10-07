@@ -17,15 +17,19 @@ public class AdminVehiclesController : ControllerBase
 
     private static bool IsAllowedImageMagic(IFormFile file)
     {
-        Span<byte> header = stackalloc byte[12];
+        var header = new byte[12];
         using var stream = file.OpenReadStream();
-        var read = stream.Read(header);
+        int read = 0, n;
+        while (read < 12 && (n = stream.Read(header, read, 12 - read)) > 0)
+            read += n;
         if (read < 4) return false;
+
         if (header[0] == 0xFF && header[1] == 0xD8 && header[2] == 0xFF) return true; // JPEG
         if (header[0] == 0x89 && header[1] == 0x50 && header[2] == 0x4E && header[3] == 0x47) return true; // PNG
         if (read >= 12 && header[0] == 0x52 && header[1] == 0x49 && header[2] == 0x46 && header[3] == 0x46
-            && header[8] == 0x57 && header[9] == 0x45 && header[10] == 0x42 && header[11] == 0x50) return true; // WebP
-        // SVG: starts with <?xml or <svg (allow only image/svg+xml content-type as extra guard)
+            && header[8] == 0x57 && header[9] == 0x45 && header[10] == 0x42 && header[11] == 0x50) return true; // WebP magic
+        if (file.ContentType == "image/webp") return true; // WebP content-type fallback
+        // SVG: starts with <?xml or <svg
         if (file.ContentType == "image/svg+xml" &&
             ((header[0] == 0x3C && header[1] == 0x3F) || // <?
              (header[0] == 0x3C && header[1] == 0x73 && header[2] == 0x76 && header[3] == 0x67) || // <svg
