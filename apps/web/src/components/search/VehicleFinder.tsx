@@ -6,7 +6,7 @@ import { api } from '@/lib/api';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { useAuthStore } from '@/store/authStore';
 import type { VehicleMake, VehicleModel, VehicleGeneration, VehicleEngine, VehicleContext } from '@/lib/types';
-import { Car, Check, X, ChevronRight, Search, Loader2 } from 'lucide-react';
+import { Car, Check, X, Search, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { analytics } from '@/lib/analytics';
@@ -289,15 +289,14 @@ export function VehicleFinder({
 
       case 'seri':
         return (
-          <div className="grid grid-cols-1 gap-1.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {models.filter(m => m.name.toLowerCase().includes(q)).map(model => (
               <button key={model.id} onClick={() => pickModel(model)}
-                className="flex items-center justify-between px-4 py-3 rounded-xl border border-border hover:border-brand hover:bg-brand/5 transition-colors text-left group">
+                className="px-3 py-3 rounded-xl border border-border hover:border-brand hover:bg-brand/5 transition-colors text-left group">
                 <span className="text-sm font-medium group-hover:text-brand transition-colors">{model.name}</span>
-                <ChevronRight size={15} className="text-muted-foreground shrink-0" />
               </button>
             ))}
-            {models.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8">Model bulunamadı.</p>}
+            {models.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8 col-span-3">Model bulunamadı.</p>}
           </div>
         );
 
@@ -316,52 +315,48 @@ export function VehicleFinder({
 
       case 'kasa':
         return (
-          <div className="grid grid-cols-1 gap-1.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {filteredGenerations.filter(g => g.name.toLowerCase().includes(q)).map(gen => (
               <button key={gen.id} onClick={() => pickGeneration(gen)}
                 className={cn(
-                  'flex items-center gap-4 px-4 py-3 rounded-xl border transition-colors text-left group',
+                  'px-3 py-3 rounded-xl border transition-colors text-left group',
                   selectedGeneration?.id === gen.id
                     ? 'border-brand bg-brand/5'
                     : 'border-border hover:border-brand hover:bg-brand/5'
                 )}>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium group-hover:text-brand transition-colors">{gen.name}</p>
-                  {gen.bodyType && <p className="text-xs text-muted-foreground mt-0.5">{gen.bodyType}</p>}
-                </div>
-                {selectedGeneration?.id === gen.id && <Check size={15} className="text-brand shrink-0" />}
+                <p className="text-sm font-medium group-hover:text-brand transition-colors leading-snug">{gen.name}</p>
+                {gen.bodyType && <p className="text-xs text-muted-foreground mt-0.5">{gen.bodyType}</p>}
               </button>
             ))}
             {filteredGenerations.length === 0 && !loading && (
-              <p className="text-sm text-muted-foreground text-center py-8">Bu yıl için kasa bilgisi bulunamadı.</p>
+              <p className="text-sm text-muted-foreground text-center py-8 col-span-3">Bu yıl için kasa bilgisi bulunamadı.</p>
             )}
           </div>
         );
 
       case 'sanziman':
         return (
-          <div className="grid grid-cols-1 gap-1.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {availableGearboxes.filter(gb => gb.toLowerCase().includes(q)).map(gb => (
               <button key={gb} onClick={() => pickGearbox(gb)}
                 className={cn(
-                  'flex items-center justify-between px-4 py-3 rounded-xl border transition-colors text-left group',
+                  'px-3 py-3 rounded-xl border transition-colors text-left group',
                   selectedGearbox === gb
                     ? 'border-brand bg-brand/5'
                     : 'border-border hover:border-brand hover:bg-brand/5'
                 )}>
                 <span className="text-sm font-medium group-hover:text-brand transition-colors">{gb}</span>
-                {selectedGearbox === gb && <Check size={15} className="text-brand shrink-0" />}
               </button>
             ))}
             {availableGearboxes.length === 0 && !loading && (
-              <p className="text-sm text-muted-foreground text-center py-8">Şanzıman bilgisi bulunamadı.</p>
+              <p className="text-sm text-muted-foreground text-center py-8 col-span-3">Şanzıman bilgisi bulunamadı.</p>
             )}
           </div>
         );
 
       case 'motor':
         return (
-          <div className="grid grid-cols-1 gap-1.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {filteredEngines.filter(e => e.name.toLowerCase().includes(q)).map(engine => {
               const parts = [
                 engine.fuelType,
@@ -386,7 +381,7 @@ export function VehicleFinder({
                 </button>
               );
             })}
-            {filteredEngines.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8">Motor bilgisi bulunamadı.</p>}
+            {filteredEngines.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8 col-span-2">Motor bilgisi bulunamadı.</p>}
           </div>
         );
     }
