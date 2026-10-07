@@ -11,13 +11,14 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { analytics } from '@/lib/analytics';
 
-type StepId = 'marka' | 'seri' | 'yil' | 'kasa' | 'motor';
+type StepId = 'marka' | 'seri' | 'yil' | 'kasa' | 'sanziman' | 'motor';
 const STEPS: { id: StepId; label: string; title: string }[] = [
-  { id: 'marka', label: 'Marka',      title: 'Marka Seçiniz' },
-  { id: 'seri',  label: 'Seri',       title: 'Seri Seçiniz' },
-  { id: 'yil',   label: 'Yıl',        title: 'Yıl Seçiniz' },
-  { id: 'kasa',  label: 'Kasa / Model', title: 'Model Seçiniz' },
-  { id: 'motor', label: 'Motor',      title: 'Motor Seçiniz' },
+  { id: 'marka',    label: 'Marka',    title: 'Marka Seçiniz' },
+  { id: 'seri',     label: 'Seri',     title: 'Seri Seçiniz' },
+  { id: 'yil',      label: 'Yıl',      title: 'Yıl Seçiniz' },
+  { id: 'kasa',     label: 'Model',    title: 'Model Seçiniz' },
+  { id: 'sanziman', label: 'Şanzıman', title: 'Şanzıman Seçiniz' },
+  { id: 'motor',    label: 'Motor',    title: 'Motor Seçiniz' },
 ];
 
 interface VehicleFinderProps {
@@ -64,6 +65,7 @@ export function VehicleFinder({
   const [selectedModel, setSelectedModel] = useState<VehicleModel | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedGeneration, setSelectedGeneration] = useState<VehicleGeneration | null>(null);
+  const [selectedGearbox, setSelectedGearbox] = useState<string | null>(null);
   const [selectedEngine, setSelectedEngine] = useState<VehicleEngine | null>(null);
 
   const [loading, setLoading] = useState(false);
@@ -81,7 +83,8 @@ export function VehicleFinder({
   useEffect(() => {
     if (open && initialMake) {
       setSelectedMake(initialMake);
-      setSelectedModel(null); setSelectedYear(null); setSelectedGeneration(null); setSelectedEngine(null);
+      setSelectedModel(null); setSelectedYear(null); setSelectedGeneration(null);
+      setSelectedGearbox(null); setSelectedEngine(null);
       setModels([]); setAllGenerations([]); setEngines([]);
       setFilter(''); setCurrentStep('seri');
     }
@@ -115,6 +118,23 @@ export function VehicleFinder({
       .finally(() => setLoading(false));
   }, [selectedGeneration]);
 
+  // Derive unique gearboxes from engines for the selected generation
+  const availableGearboxes = useMemo(() => {
+    const seen = new Set<string>();
+    const result: string[] = [];
+    for (const e of engines) {
+      const gb = e.gearbox?.trim();
+      if (gb && !seen.has(gb)) { seen.add(gb); result.push(gb); }
+    }
+    return result;
+  }, [engines]);
+
+  // Filter engines by selected gearbox
+  const filteredEngines = useMemo(() => {
+    if (!selectedGearbox) return engines;
+    return engines.filter(e => e.gearbox?.trim() === selectedGearbox);
+  }, [engines, selectedGearbox]);
+
   // Derive available years from generations
   const availableYears = useMemo(() => {
     const now = new Date().getFullYear();
@@ -142,44 +162,52 @@ export function VehicleFinder({
 
   const getStepValue = (stepId: StepId): string => {
     switch (stepId) {
-      case 'marka': return selectedMake?.name ?? '';
-      case 'seri':  return selectedModel?.name ?? '';
-      case 'yil':   return selectedYear ? String(selectedYear) : '';
-      case 'kasa':  return selectedGeneration?.name ?? '';
-      case 'motor': return selectedEngine?.name ?? '';
+      case 'marka':    return selectedMake?.name ?? '';
+      case 'seri':     return selectedModel?.name ?? '';
+      case 'yil':      return selectedYear ? String(selectedYear) : '';
+      case 'kasa':     return selectedGeneration?.name ?? '';
+      case 'sanziman': return selectedGearbox ?? '';
+      case 'motor':    return selectedEngine?.name ?? '';
     }
   };
 
   const reset = () => {
     setSelectedMake(null); setSelectedModel(null); setSelectedYear(null);
-    setSelectedGeneration(null); setSelectedEngine(null);
+    setSelectedGeneration(null); setSelectedGearbox(null); setSelectedEngine(null);
     setModels([]); setAllGenerations([]); setEngines([]);
     setCurrentStep('marka'); setFilter('');
   };
 
   const pickMake = (make: VehicleMake) => {
     setSelectedMake(make);
-    setSelectedModel(null); setSelectedYear(null); setSelectedGeneration(null); setSelectedEngine(null);
+    setSelectedModel(null); setSelectedYear(null); setSelectedGeneration(null);
+    setSelectedGearbox(null); setSelectedEngine(null);
     setModels([]); setAllGenerations([]); setEngines([]);
     setFilter(''); setCurrentStep('seri');
   };
 
   const pickModel = (model: VehicleModel) => {
     setSelectedModel(model);
-    setSelectedYear(null); setSelectedGeneration(null); setSelectedEngine(null);
+    setSelectedYear(null); setSelectedGeneration(null); setSelectedGearbox(null); setSelectedEngine(null);
     setAllGenerations([]); setEngines([]);
     setFilter(''); setCurrentStep('yil');
   };
 
   const pickYear = (year: number) => {
     setSelectedYear(year);
-    setSelectedGeneration(null); setSelectedEngine(null); setEngines([]);
+    setSelectedGeneration(null); setSelectedGearbox(null); setSelectedEngine(null); setEngines([]);
     setFilter(''); setCurrentStep('kasa');
   };
 
   const pickGeneration = (gen: VehicleGeneration) => {
     setSelectedGeneration(gen);
-    setSelectedEngine(null); setEngines([]);
+    setSelectedGearbox(null); setSelectedEngine(null); setEngines([]);
+    setFilter(''); setCurrentStep('sanziman');
+  };
+
+  const pickGearbox = (gb: string) => {
+    setSelectedGearbox(gb);
+    setSelectedEngine(null);
     setFilter(''); setCurrentStep('motor');
   };
 
@@ -310,10 +338,31 @@ export function VehicleFinder({
           </div>
         );
 
+      case 'sanziman':
+        return (
+          <div className="grid grid-cols-1 gap-1.5">
+            {availableGearboxes.filter(gb => gb.toLowerCase().includes(q)).map(gb => (
+              <button key={gb} onClick={() => pickGearbox(gb)}
+                className={cn(
+                  'flex items-center justify-between px-4 py-3 rounded-xl border transition-colors text-left group',
+                  selectedGearbox === gb
+                    ? 'border-brand bg-brand/5'
+                    : 'border-border hover:border-brand hover:bg-brand/5'
+                )}>
+                <span className="text-sm font-medium group-hover:text-brand transition-colors">{gb}</span>
+                {selectedGearbox === gb && <Check size={15} className="text-brand shrink-0" />}
+              </button>
+            ))}
+            {availableGearboxes.length === 0 && !loading && (
+              <p className="text-sm text-muted-foreground text-center py-8">Şanzıman bilgisi bulunamadı.</p>
+            )}
+          </div>
+        );
+
       case 'motor':
         return (
           <div className="grid grid-cols-1 gap-1.5">
-            {engines.filter(e => e.name.toLowerCase().includes(q)).map(engine => {
+            {filteredEngines.filter(e => e.name.toLowerCase().includes(q)).map(engine => {
               const parts = [
                 engine.fuelType,
                 engine.displacement,
@@ -337,7 +386,7 @@ export function VehicleFinder({
                 </button>
               );
             })}
-            {engines.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8">Motor bilgisi bulunamadı.</p>}
+            {filteredEngines.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8">Motor bilgisi bulunamadı.</p>}
           </div>
         );
     }
