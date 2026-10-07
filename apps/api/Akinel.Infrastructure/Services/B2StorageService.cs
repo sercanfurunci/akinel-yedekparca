@@ -33,9 +33,9 @@ public class B2StorageService : IStorageService
     {
         _keyId = configuration["B2:KeyId"] ?? "";
         _applicationKey = configuration["B2:ApplicationKey"] ?? "";
-        _bucketName = configuration["B2:BucketName"] ?? "akinel-uploads";
-        _bucketId = configuration["B2:BucketId"];
-        _cdnUrl = configuration["B2:CdnUrl"];
+        _bucketName = (configuration["B2:BucketName"] ?? "akinel-uploads").Trim();
+        _bucketId = configuration["B2:BucketId"]?.Trim();
+        _cdnUrl = configuration["B2:CdnUrl"]?.Trim().TrimEnd('/');
         _logger = logger;
     }
 

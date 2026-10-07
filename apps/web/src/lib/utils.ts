@@ -28,8 +28,9 @@ export function stockStatusLabel(status: string | number): string {
 
 export function getImageUrl(url?: string | null): string | null {
   if (!url) return null;
-  if (url.startsWith('http')) return url;
-  return `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5100'}${url}`;
+  const trimmed = url.trim();
+  if (trimmed.startsWith('http')) return trimmed;
+  return `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5100'}${trimmed}`;
 }
 
 export function stockStatusColor(status: string | number): string {
