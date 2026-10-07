@@ -898,7 +898,7 @@ export default function AdminVehiclesPage() {
                 <input
                   ref={makeLogoFileRef}
                   type="file"
-                  accept=".jpg,.jpeg,.png,.webp"
+                  accept=".jpg,.jpeg,.png,.webp,.svg"
                   style={{ display: 'none' }}
                   disabled={makeLogoUploading}
                   onChange={(e) => {
@@ -952,7 +952,7 @@ export default function AdminVehiclesPage() {
                 <input
                   ref={modelFileRef}
                   type="file"
-                  accept=".jpg,.jpeg,.png,.webp"
+                  accept=".jpg,.jpeg,.png,.webp,.svg"
                   style={{ display: 'none' }}
                   disabled={modelUploading}
                   onChange={(e) => {
