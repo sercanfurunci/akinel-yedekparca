@@ -300,7 +300,7 @@ function VehiclePageInner() {
                   <button
                     key={make.id}
                     onClick={() => { setFinderMake(make); setFinderOpen(true); }}
-                    className="flex items-center gap-3 p-3 rounded-xl border border-border bg-white hover:border-brand hover:shadow-md hover:bg-brand/5 transition-all group text-left w-full"
+                    className="flex items-center gap-3 p-3 h-16 rounded-xl border border-border bg-white hover:border-brand hover:shadow-md hover:bg-brand/5 transition-all group text-left w-full"
                   >
                     {make.logoUrl ? (
                       <img src={make.logoUrl} alt="" className="w-10 h-10 object-contain shrink-0" />
