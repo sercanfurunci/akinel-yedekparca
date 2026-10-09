@@ -11,11 +11,10 @@ import { BusinessStrip } from '@/components/home/BusinessStrip';
 import { HeroCarousel, StaticHero } from '@/components/home/HeroCarousel';
 import { PopularVehicleMakes } from '@/components/home/PopularVehicleMakes';
 import { OilBrandsSection } from '@/components/home/OilBrandsSection';
-import { FeaturedCategoryCards } from '@/components/home/FeaturedCategoryCards';
 import { BrandLogoStrip } from '@/components/layout/BrandLogoStrip';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { api } from '@/lib/api';
-import type { ProductListItem, PaginatedResult, Brand, Category, HeroSlide } from '@/lib/types';
+import type { ProductListItem, PaginatedResult, Brand, HeroSlide } from '@/lib/types';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -32,7 +31,6 @@ export default function HomePage() {
   const [mounted, setMounted] = useState(false);
   const [products, setProducts] = useState<ProductListItem[]>([]);
   const [brands, setBrands] = useState<Brand[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [heroSlides, setHeroSlides] = useState<HeroSlide[] | null>(null);
 
@@ -49,10 +47,6 @@ export default function HomePage() {
 
     api.brands.list()
       .then((data) => setBrands(data as Brand[]))
-      .catch(() => {});
-
-    api.categories.list()
-      .then((data) => setCategories(data as Category[]))
       .catch(() => {});
 
     api.hero.slides()
@@ -130,10 +124,7 @@ export default function HomePage() {
       {/* ── 4. BUSINESS STRIP ───────────────────────── */}
       <BusinessStrip />
 
-      {/* ── 5. FEATURED CATEGORIES ──────────────────── */}
-      <FeaturedCategoryCards categories={categories} />
-
-      {/* ── 6. POPULAR VEHICLE MAKES ─────────────────── */}
+      {/* ── 5. POPULAR VEHICLE MAKES ─────────────────── */}
       <PopularVehicleMakes />
 
       {/* ── 7. PART BRANDS ──────────────────────────── */}
