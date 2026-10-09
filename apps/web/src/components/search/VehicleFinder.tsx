@@ -317,21 +317,30 @@ export function VehicleFinder({
 
       case 'kasa':
         return (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {filteredGenerations.filter(g => g.name.toLowerCase().includes(q)).map(gen => (
               <button key={gen.id} onClick={() => pickGeneration(gen)}
                 className={cn(
-                  'px-3 py-3 rounded-xl border transition-colors text-left group',
+                  'flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-colors text-left group',
                   selectedGeneration?.id === gen.id
                     ? 'border-brand bg-brand/5'
                     : 'border-border hover:border-brand hover:bg-brand/5'
                 )}>
-                <p className="text-sm font-medium group-hover:text-brand transition-colors leading-snug">{gen.name}</p>
-                {gen.bodyType && <p className="text-xs text-muted-foreground mt-0.5">{gen.bodyType}</p>}
+                <div className="relative h-14 w-20 shrink-0 rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
+                  {gen.imageUrl ? (
+                    <img src={gen.imageUrl} alt={gen.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <Car size={18} className="text-gray-300 group-hover:text-brand/40 transition-colors" />
+                  )}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-medium group-hover:text-brand transition-colors leading-snug">{gen.name}</p>
+                  {gen.bodyType && <p className="text-xs text-muted-foreground mt-0.5">{gen.bodyType}</p>}
+                </div>
               </button>
             ))}
             {filteredGenerations.length === 0 && !loading && (
-              <p className="text-sm text-muted-foreground text-center py-8 col-span-3">Bu yıl için kasa bilgisi bulunamadı.</p>
+              <p className="text-sm text-muted-foreground text-center py-8 col-span-2">Bu yıl için kasa bilgisi bulunamadı.</p>
             )}
           </div>
         );
