@@ -64,6 +64,16 @@ function ProductCardBase({ product, isCompatible }: Props) {
               STOKTA YOK
             </span>
           )}
+          {product.brandLogoUrl && getImageUrl(product.brandLogoUrl) && (
+            <div className="absolute bottom-2 left-2 h-7 w-12 bg-white/90 rounded border border-border/50 flex items-center justify-center p-1 shadow-sm overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={getImageUrl(product.brandLogoUrl)!}
+                alt={product.brandName}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+          )}
         </div>
 
         <div className="p-4 pb-2">

@@ -39,6 +39,7 @@ public record ProductListItemDto(
     string Slug,
     Guid BrandId,
     string BrandName,
+    string? BrandLogoUrl,
     Guid CategoryId,
     string CategoryName,
     decimal Price,

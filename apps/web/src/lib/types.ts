@@ -6,6 +6,7 @@ export interface ProductListItem {
   slug: string;
   brandId: string;
   brandName: string;
+  brandLogoUrl?: string;
   categoryId: string;
   categoryName: string;
   price: number;
@@ -139,6 +140,7 @@ export interface Brand {
   name: string;
   slug: string;
   logoUrl?: string;
+  productCount?: number;
 }
 
 export interface Category {

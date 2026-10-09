@@ -20,7 +20,10 @@ public class BrandsController : ControllerBase
             .AsNoTracking()
             .Where(b => b.IsActive)
             .OrderBy(b => b.Name)
-            .Select(b => new { b.Id, b.Name, b.Slug, b.LogoUrl })
+            .Select(b => new {
+                b.Id, b.Name, b.Slug, b.LogoUrl,
+                ProductCount = b.Products.Count(p => p.IsActive)
+            })
             .ToListAsync(ct);
 
         return Ok(brands);
