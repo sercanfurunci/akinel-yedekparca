@@ -190,7 +190,7 @@ export function BrandLogoStrip() {
                   >
                     <div className="relative h-12 w-16 shrink-0 rounded overflow-hidden bg-gray-50 flex items-center justify-center">
                       {gen.imageUrl ? (
-                        <img src={gen.imageUrl} alt={gen.name} className="w-full h-full object-cover" />
+                        <img src={getImageUrl(gen.imageUrl)!} alt={gen.name} className="w-full h-full object-cover" />
                       ) : (
                         <Car size={16} className="text-gray-300 group-hover:text-brand/50 transition-colors" />
                       )}

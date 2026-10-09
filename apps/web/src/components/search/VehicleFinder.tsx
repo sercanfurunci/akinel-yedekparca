@@ -8,7 +8,7 @@ import { useAuthStore } from '@/store/authStore';
 import type { VehicleMake, VehicleModel, VehicleGeneration, VehicleEngine, VehicleContext } from '@/lib/types';
 import { Car, Check, X, Search, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { cn, getImageUrl } from '@/lib/utils';
 import { analytics } from '@/lib/analytics';
 
 type StepId = 'marka' | 'seri' | 'yil' | 'kasa' | 'sanziman' | 'motor';
@@ -328,7 +328,7 @@ export function VehicleFinder({
                 )}>
                 <div className="relative h-14 w-20 shrink-0 rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
                   {gen.imageUrl ? (
-                    <img src={gen.imageUrl} alt={gen.name} className="w-full h-full object-cover" />
+                    <img src={getImageUrl(gen.imageUrl)!} alt={gen.name} className="w-full h-full object-cover" />
                   ) : (
                     <Car size={18} className="text-gray-300 group-hover:text-brand/40 transition-colors" />
                   )}
@@ -598,7 +598,7 @@ function SummaryScreen({ make, model, generation, engine, onBack, onSave, onConf
         <div className="relative w-full max-w-sm aspect-[4/3] flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden">
           {generation?.imageUrl ? (
             <img
-              src={generation.imageUrl}
+              src={getImageUrl(generation.imageUrl)!}
               alt={generation.name}
               className="w-full h-full object-cover"
             />
