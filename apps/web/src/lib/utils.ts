@@ -26,9 +26,17 @@ export function stockStatusLabel(status: string | number): string {
   }
 }
 
+const CDN = 'https://cdn.akinelotoyedekparca.com.tr/file/akinel-uploads';
+const OLD_S3 = 'https://akinel-uploads.s3.eu-central-003.backblazeb2.com';
+const OLD_CDN = 'https://cdn.akinelotoyedekparca.com.tr/uploads/';
+
 export function getImageUrl(url?: string | null): string | null {
   if (!url) return null;
   const trimmed = url.trim();
+  // Normalize old S3 URLs to CDN
+  if (trimmed.startsWith(OLD_S3)) return CDN + trimmed.slice(OLD_S3.length);
+  // Fix broken CDN URLs missing /file/akinel-uploads prefix
+  if (trimmed.startsWith(OLD_CDN)) return CDN + '/uploads/' + trimmed.slice(OLD_CDN.length);
   if (trimmed.startsWith('http')) return trimmed;
   return `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5100'}${trimmed}`;
 }
