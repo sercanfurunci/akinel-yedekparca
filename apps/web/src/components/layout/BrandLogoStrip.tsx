@@ -43,7 +43,7 @@ export function BrandLogoStrip() {
       return;
     }
     setLoadingGens(true);
-    api.vehicles.generationsByMake(make.id)
+    api.vehicles.generationsByMake(make.id, 24)
       .then((data) => {
         const list = data as VehicleGenerationWithModel[];
         gensCache.set(make.id, list);

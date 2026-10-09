@@ -43,17 +43,19 @@ public class VehiclesController : ControllerBase
 
     [HttpGet("makes/{makeId:guid}/generations")]
     [ResponseCache(Duration = 1800, Location = ResponseCacheLocation.Client, VaryByHeader = "Origin")]
-    public async Task<IActionResult> GetGenerationsByMake(Guid makeId, CancellationToken ct)
+    public async Task<IActionResult> GetGenerationsByMake(Guid makeId, [FromQuery] int limit = 0, CancellationToken ct = default)
     {
-        var gens = await _db.VehicleGenerations
+        var query = _db.VehicleGenerations
             .AsNoTracking()
             .Where(g => g.VehicleModel.VehicleMakeId == makeId)
-            .OrderBy(g => g.VehicleModel.Name).ThenBy(g => g.YearFrom)
+            .OrderBy(g => g.ImageUrl == null ? 1 : 0).ThenBy(g => g.VehicleModel.Name).ThenBy(g => g.YearFrom)
             .Select(g => new {
                 g.Id, g.Name, g.Slug, g.YearFrom, g.YearTo, g.BodyType, g.ImageUrl,
                 modelId = g.VehicleModelId, modelName = g.VehicleModel.Name
-            })
-            .ToListAsync(ct);
+            });
+        var gens = limit > 0
+            ? await query.Take(limit).ToListAsync(ct)
+            : await query.ToListAsync(ct);
         return Ok(gens);
     }
 
