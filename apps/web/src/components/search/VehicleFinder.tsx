@@ -6,7 +6,7 @@ import { api } from '@/lib/api';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { useAuthStore } from '@/store/authStore';
 import type { VehicleMake, VehicleModel, VehicleGeneration, VehicleEngine, VehicleContext } from '@/lib/types';
-import { Car, Check, X, Search, Loader2 } from 'lucide-react';
+import { Car, Check, X, Search, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { analytics } from '@/lib/analytics';
@@ -71,6 +71,7 @@ export function VehicleFinder({
   const [loading, setLoading] = useState(false);
   const [confirming, setConfirming] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
 
   // Load makes once on first open
   useEffect(() => {
@@ -175,7 +176,7 @@ export function VehicleFinder({
     setSelectedMake(null); setSelectedModel(null); setSelectedYear(null);
     setSelectedGeneration(null); setSelectedGearbox(null); setSelectedEngine(null);
     setModels([]); setAllGenerations([]); setEngines([]);
-    setCurrentStep('marka'); setFilter('');
+    setCurrentStep('marka'); setFilter(''); setShowSummary(false);
   };
 
   const pickMake = (make: VehicleMake) => {
@@ -213,6 +214,7 @@ export function VehicleFinder({
 
   const pickEngine = (engine: VehicleEngine) => {
     setSelectedEngine(engine);
+    setShowSummary(true);
   };
 
   const handleConfirm = async () => {
@@ -437,100 +439,235 @@ export function VehicleFinder({
             </div>
 
             {/* Body */}
-            <div className="flex flex-1 min-h-0 overflow-hidden">
-              {/* Left sidebar — steps */}
-              <div className="hidden sm:flex w-48 shrink-0 border-r flex-col py-3 px-2 gap-0.5 overflow-y-auto">
-                {STEPS.map((step, i) => {
-                  const val = getStepValue(step.id);
-                  const done = i < stepIndex;
-                  const active = step.id === currentStep;
-                  const reachable = i <= stepIndex;
-                  return (
-                    <button
-                      key={step.id}
-                      disabled={!reachable}
-                      onClick={() => { if (reachable) { setCurrentStep(step.id); setFilter(''); } }}
-                      className={cn(
-                        'flex items-start gap-2.5 p-2.5 rounded-lg text-left transition-colors w-full',
-                        active ? 'bg-brand/10' : reachable ? 'hover:bg-muted/60 cursor-pointer' : 'opacity-40 cursor-not-allowed'
-                      )}
-                    >
-                      <span className={cn(
-                        'flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5',
-                        done ? 'bg-brand text-white' : active ? 'bg-brand text-white' : 'bg-muted text-muted-foreground'
-                      )}>
-                        {done ? <Check size={11} strokeWidth={3} /> : i + 1}
-                      </span>
-                      <div className="min-w-0">
-                        <p className={cn('text-xs font-semibold leading-tight', active ? 'text-brand' : 'text-foreground')}>
-                          {step.label}
-                        </p>
-                        <p className="text-[11px] text-muted-foreground truncate mt-0.5">
-                          {val || (active ? 'Seçiliyor' : 'Seçilmedi')}
-                        </p>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
+            {showSummary && selectedEngine ? (
+              <SummaryScreen
+                make={selectedMake}
+                model={selectedModel}
+                generation={selectedGeneration}
+                engine={selectedEngine}
+                onBack={() => { setShowSummary(false); setCurrentStep('motor'); }}
+                onSave={accessToken ? handleSave : undefined}
+                onConfirm={handleConfirm}
+                saving={saving}
+                confirming={confirming}
+                onReset={reset}
+              />
+            ) : (
+              <>
+                <div className="flex flex-1 min-h-0 overflow-hidden">
+                  {/* Left sidebar — steps */}
+                  <div className="hidden sm:flex w-48 shrink-0 border-r flex-col py-3 px-2 gap-0.5 overflow-y-auto">
+                    {STEPS.map((step, i) => {
+                      const val = getStepValue(step.id);
+                      const done = i < stepIndex;
+                      const active = step.id === currentStep;
+                      const reachable = i <= stepIndex;
+                      return (
+                        <button
+                          key={step.id}
+                          disabled={!reachable}
+                          onClick={() => { if (reachable) { setCurrentStep(step.id); setFilter(''); } }}
+                          className={cn(
+                            'flex items-start gap-2.5 p-2.5 rounded-lg text-left transition-colors w-full',
+                            active ? 'bg-brand/10' : reachable ? 'hover:bg-muted/60 cursor-pointer' : 'opacity-40 cursor-not-allowed'
+                          )}
+                        >
+                          <span className={cn(
+                            'flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5',
+                            done ? 'bg-brand text-white' : active ? 'bg-brand text-white' : 'bg-muted text-muted-foreground'
+                          )}>
+                            {done ? <Check size={11} strokeWidth={3} /> : i + 1}
+                          </span>
+                          <div className="min-w-0">
+                            <p className={cn('text-xs font-semibold leading-tight', active ? 'text-brand' : 'text-foreground')}>
+                              {step.label}
+                            </p>
+                            <p className="text-[11px] text-muted-foreground truncate mt-0.5">
+                              {val || (active ? 'Seçiliyor' : 'Seçilmedi')}
+                            </p>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
 
-              {/* Right content area */}
-              <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-                {/* Content header */}
-                <div className="flex items-center justify-between px-4 py-3 border-b gap-3 shrink-0">
-                  <h3 className="font-semibold text-sm">{currentStepMeta.title}</h3>
-                  <div className="relative">
-                    <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
-                    <input
-                      value={filter}
-                      onChange={e => setFilter(e.target.value)}
-                      placeholder="Filtrele"
-                      className="pl-7 pr-3 py-1.5 text-xs rounded-lg border bg-background focus:outline-none focus:ring-1 focus:ring-brand/40 w-32 sm:w-40"
-                    />
+                  {/* Right content area */}
+                  <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+                    {/* Content header */}
+                    <div className="flex items-center justify-between px-4 py-3 border-b gap-3 shrink-0">
+                      <h3 className="font-semibold text-sm">{currentStepMeta.title}</h3>
+                      <div className="relative">
+                        <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                        <input
+                          value={filter}
+                          onChange={e => setFilter(e.target.value)}
+                          placeholder="Filtrele"
+                          className="pl-7 pr-3 py-1.5 text-xs rounded-lg border bg-background focus:outline-none focus:ring-1 focus:ring-brand/40 w-32 sm:w-40"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Scrollable content */}
+                    <div className="flex-1 overflow-y-auto p-4">
+                      {loading ? (
+                        <div className="flex justify-center py-10">
+                          <Loader2 size={22} className="animate-spin text-brand" />
+                        </div>
+                      ) : (
+                        renderContent()
+                      )}
+                    </div>
                   </div>
                 </div>
 
-                {/* Scrollable content */}
-                <div className="flex-1 overflow-y-auto p-4">
-                  {loading ? (
-                    <div className="flex justify-center py-10">
-                      <Loader2 size={22} className="animate-spin text-brand" />
-                    </div>
-                  ) : (
-                    renderContent()
-                  )}
+                {/* Footer */}
+                <div className="flex items-center justify-between px-5 py-3.5 border-t bg-muted/20 shrink-0">
+                  <button
+                    onClick={reset}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-muted/60"
+                  >
+                    Sıfırla
+                  </button>
+                  <div className="flex items-center gap-2">
+                    {showSaveButton && selectedEngine && accessToken && (
+                      <Button variant="outline" size="sm" onClick={handleSave} disabled={saving}>
+                        {saving ? 'Kaydediliyor...' : 'Garaja Kaydet'}
+                      </Button>
+                    )}
+                    <Button
+                      size="sm"
+                      onClick={handleConfirm}
+                      disabled={!selectedEngine || confirming}
+                      className="bg-brand text-white hover:bg-brand/90 px-5"
+                    >
+                      {confirming ? <Loader2 size={14} className="animate-spin mr-1.5" /> : null}
+                      Aracı Seç
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div className="flex items-center justify-between px-5 py-3.5 border-t bg-muted/20 shrink-0">
-              <button
-                onClick={reset}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-muted/60"
-              >
-                Sıfırla
-              </button>
-              <div className="flex items-center gap-2">
-                {showSaveButton && selectedEngine && accessToken && (
-                  <Button variant="outline" size="sm" onClick={handleSave} disabled={saving}>
-                    {saving ? 'Kaydediliyor...' : 'Garaja Kaydet'}
-                  </Button>
-                )}
-                <Button
-                  size="sm"
-                  onClick={handleConfirm}
-                  disabled={!selectedEngine || confirming}
-                  className="bg-brand text-white hover:bg-brand/90 px-5"
-                >
-                  {confirming ? <Loader2 size={14} className="animate-spin mr-1.5" /> : null}
-                  Aracı Seç
-                </Button>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </div>
       )}
+    </>
+  );
+}
+
+interface SummaryScreenProps {
+  make: VehicleMake | null;
+  model: VehicleModel | null;
+  generation: VehicleGeneration | null;
+  engine: VehicleEngine;
+  onBack: () => void;
+  onSave?: () => void;
+  onConfirm: () => void;
+  onReset: () => void;
+  saving: boolean;
+  confirming: boolean;
+}
+
+function SummaryScreen({ make, model, generation, engine, onBack, onSave, onConfirm, onReset, saving, confirming }: SummaryScreenProps) {
+  const engineParts = [
+    engine.fuelType,
+    engine.displacement,
+    engine.powerKw ? `${engine.powerKw} Kw` : null,
+    engine.powerHp ? `${engine.powerHp} Hp` : null,
+  ].filter(Boolean).join(' - ');
+
+  const yearLabel = generation?.yearFrom
+    ? `${generation.yearFrom}${generation.yearTo ? ` - ${generation.yearTo}` : ''} Model`
+    : null;
+
+  return (
+    <>
+      {/* Summary body */}
+      <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center px-6 py-8 text-center gap-6">
+        <h2 className="text-2xl font-bold tracking-wide text-brand uppercase">Aracınız Hazır !</h2>
+
+        {/* Vehicle image */}
+        <div className="relative w-full max-w-sm aspect-[4/3] flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden">
+          {generation?.imageUrl ? (
+            <img
+              src={generation.imageUrl}
+              alt={generation.name}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <Car size={80} className="text-gray-200" />
+          )}
+          {/* decorative arrows — only shown when image exists */}
+          {generation?.imageUrl && (
+            <>
+              <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow flex items-center justify-center hover:bg-white transition-colors" aria-hidden>
+                <ChevronLeft size={16} />
+              </button>
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow flex items-center justify-center hover:bg-white transition-colors" aria-hidden>
+                <ChevronRight size={16} />
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Vehicle name */}
+        <div>
+          <p className="text-lg font-bold text-foreground">
+            <span className="text-brand">{make?.name}</span> {model?.name}{generation ? ` ${generation.name}` : ''}
+          </p>
+          {yearLabel && <p className="text-sm text-muted-foreground mt-0.5">{yearLabel}</p>}
+        </div>
+
+        {/* Specs */}
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-sm">
+          {engine.gearbox && (
+            <span>
+              <span className="text-muted-foreground">Şanzıman: </span>
+              <span className="font-semibold">{engine.gearbox}</span>
+            </span>
+          )}
+          {engineParts && (
+            <span>
+              <span className="text-muted-foreground">Motor: </span>
+              <span className="font-semibold">{engineParts}</span>
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between px-5 py-3.5 border-t bg-muted/20 shrink-0">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onBack}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-muted/60 flex items-center gap-1"
+          >
+            <ChevronLeft size={14} />
+            Geri
+          </button>
+          <button
+            onClick={onReset}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-muted/60"
+          >
+            Sıfırla
+          </button>
+        </div>
+        <div className="flex items-center gap-2">
+          {onSave && (
+            <Button variant="outline" size="sm" onClick={onSave} disabled={saving}>
+              {saving ? 'Kaydediliyor...' : 'Garaja Ekle'}
+            </Button>
+          )}
+          <Button
+            size="sm"
+            onClick={onConfirm}
+            disabled={confirming}
+            className="bg-brand text-white hover:bg-brand/90 px-5"
+          >
+            {confirming ? <Loader2 size={14} className="animate-spin mr-1.5" /> : null}
+            Aracı Seç
+          </Button>
+        </div>
+      </div>
     </>
   );
 }

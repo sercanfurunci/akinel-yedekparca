@@ -190,6 +190,7 @@ export const api = {
   vehicles: {
     makes: () => _makesCache.get(),
     models: (makeId: string) => request(`/api/vehicles/makes/${makeId}/models`),
+    generationsByMake: (makeId: string) => request(`/api/vehicles/makes/${makeId}/generations`),
     generations: (modelId: string) => request(`/api/vehicles/models/${modelId}/generations`),
     engines: (generationId: string) => request(`/api/vehicles/generations/${generationId}/engines`),
     context: (engineId: string) => request(`/api/vehicles/context/${engineId}`),

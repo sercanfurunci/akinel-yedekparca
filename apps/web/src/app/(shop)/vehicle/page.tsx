@@ -170,19 +170,36 @@ function VehiclePageInner() {
               <button
                 key={gen.id}
                 onClick={() => handleGenerationSelect(gen)}
-                className="flex flex-col gap-1 p-4 rounded-xl border border-border bg-white hover:border-brand hover:shadow-md hover:bg-brand/5 transition-all text-left cursor-pointer group"
+                className="flex flex-col rounded-xl border border-border bg-white hover:border-brand hover:shadow-md hover:bg-brand/5 transition-all text-left cursor-pointer group overflow-hidden"
               >
-                <span className="font-semibold text-sm text-foreground group-hover:text-brand transition-colors">
-                  {gen.name}
-                </span>
-                {(gen.yearFrom || gen.yearTo) && (
-                  <span className="text-xs text-muted-foreground">
-                    {gen.yearFrom ?? '?'} – {gen.yearTo ?? 'günümüz'}
+                <div className="w-full aspect-[4/3] bg-gray-50 flex items-center justify-center overflow-hidden">
+                  {gen.imageUrl ? (
+                    <img
+                      src={gen.imageUrl}
+                      alt={gen.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <Car size={28} className="text-gray-200 group-hover:text-brand/30 transition-colors" />
+                  )}
+                </div>
+                <div className="p-3 flex flex-col gap-0.5">
+                  <span className="font-semibold text-sm text-foreground group-hover:text-brand transition-colors leading-snug">
+                    {gen.name}
                   </span>
-                )}
-                {gen.bodyType && (
-                  <span className="text-xs text-muted-foreground">{gen.bodyType}</span>
-                )}
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {(gen.yearFrom || gen.yearTo) && (
+                      <span className="text-xs text-muted-foreground">
+                        {gen.yearFrom ?? '?'} – {gen.yearTo ?? 'günümüz'}
+                      </span>
+                    )}
+                    {gen.bodyType && (
+                      <span className="text-xs bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-md">
+                        {gen.bodyType}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </button>
             ))}
           </div>

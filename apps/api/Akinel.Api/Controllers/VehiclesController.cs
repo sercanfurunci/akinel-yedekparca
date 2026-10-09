@@ -41,6 +41,22 @@ public class VehiclesController : ControllerBase
     public async Task<IActionResult> GetModels(Guid makeId, CancellationToken ct)
         => Ok(await _vehicleService.GetModelsByMakeAsync(makeId, ct));
 
+    [HttpGet("makes/{makeId:guid}/generations")]
+    [ResponseCache(Duration = 1800, Location = ResponseCacheLocation.Client, VaryByHeader = "Origin")]
+    public async Task<IActionResult> GetGenerationsByMake(Guid makeId, CancellationToken ct)
+    {
+        var gens = await _db.VehicleGenerations
+            .AsNoTracking()
+            .Where(g => g.VehicleModel.VehicleMakeId == makeId)
+            .OrderBy(g => g.VehicleModel.Name).ThenBy(g => g.YearFrom)
+            .Select(g => new {
+                g.Id, g.Name, g.Slug, g.YearFrom, g.YearTo, g.BodyType, g.ImageUrl,
+                modelId = g.VehicleModelId, modelName = g.VehicleModel.Name
+            })
+            .ToListAsync(ct);
+        return Ok(gens);
+    }
+
     [HttpGet("models/{modelId:guid}/generations")]
     [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client, VaryByHeader = "Origin")]
     public async Task<IActionResult> GetGenerations(Guid modelId, CancellationToken ct)

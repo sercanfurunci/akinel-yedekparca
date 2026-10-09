@@ -126,7 +126,8 @@ export interface PaginatedResult<T> {
 
 export interface VehicleMake { id: string; name: string; slug: string; logoUrl?: string; isPopular?: boolean; }
 export interface VehicleModel { id: string; name: string; slug: string; vehicleMakeId: string; imageUrl?: string; }
-export interface VehicleGeneration { id: string; name: string; slug: string; vehicleModelId: string; yearFrom?: number; yearTo?: number; bodyType?: string; }
+export interface VehicleGeneration { id: string; name: string; slug: string; vehicleModelId: string; yearFrom?: number; yearTo?: number; bodyType?: string; imageUrl?: string; }
+export interface VehicleGenerationWithModel extends VehicleGeneration { modelId: string; modelName: string; }
 export interface VehicleEngine { id: string; name: string; vehicleGenerationId: string; displacement?: string; fuelType?: string; powerKw?: number; powerHp?: number; yearFrom?: number; yearTo?: number; engineCode?: string; gearbox?: string; }
 export interface VehicleContext { engineId: string; makeName: string; modelName: string; generationName: string; engineName: string; displayLabel: string; }
 
