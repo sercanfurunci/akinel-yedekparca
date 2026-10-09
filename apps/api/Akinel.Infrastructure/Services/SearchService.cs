@@ -84,7 +84,7 @@ public class SearchService : ISearchService
     {
         var dp = EffectiveDiscount(p);
         return new(
-            p.Id, p.Name, p.Slug, p.BrandId, p.Brand.Name, p.CategoryId, p.Category.Name,
+            p.Id, p.Name, p.Slug, p.BrandId, p.Brand.Name, p.Brand.LogoUrl, p.CategoryId, p.Category.Name,
             p.Price, dp, CalcSalePrice(p.Price, dp), p.Currency,
             p.Stock?.Status ?? Domain.Enums.StockStatus.OutOfStock,
             p.Stock?.AvailableQuantity ?? 0,
