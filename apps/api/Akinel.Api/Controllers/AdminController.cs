@@ -344,8 +344,11 @@ public class AdminController : ControllerBase
     {
         var brand = await _db.Brands.FirstOrDefaultAsync(b => b.Id == id, ct);
         if (brand == null) return NotFound();
+        var newSlug = GenerateSlug(request.Name);
+        var slugConflict = await _db.Brands.AnyAsync(b => b.Slug == newSlug && b.Id != id, ct);
+        if (slugConflict) return Conflict(new { error = "Bu isimde bir marka zaten mevcut." });
         brand.Name = request.Name;
-        brand.Slug = GenerateSlug(request.Name);
+        brand.Slug = newSlug;
         brand.LogoUrl = string.IsNullOrWhiteSpace(request.LogoUrl) ? null : request.LogoUrl;
         brand.IsActive = request.IsActive;
         await _db.SaveChangesAsync(ct);

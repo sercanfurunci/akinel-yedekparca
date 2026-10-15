@@ -106,8 +106,28 @@ export function PopularVehicleMakes() {
   const [offset, setOffset] = useState(0);
   const [animated, setAnimated] = useState(true);
   const paused = useRef(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const loaded = useRef(false);
 
   useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !loaded.current) {
+          loaded.current = true;
+          observer.disconnect();
+          doLoad();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function doLoad() {
     api.vehicles.makes().then(async (data) => {
       const all = data as VehicleMake[];
       const ordered = STRIP_SLUGS.map(s => all.find(m => m.slug === s)).filter(Boolean) as VehicleMake[];
@@ -123,7 +143,7 @@ export function PopularVehicleMakes() {
       }));
       setCards(built);
     }).catch(() => {}).finally(() => setLoading(false));
-  }, []);
+  }
 
   const totalItems = cards.length + 1; // cards + AllBrands = 14
 
@@ -175,7 +195,7 @@ export function PopularVehicleMakes() {
 
   if (loading) {
     return (
-      <section className="bg-white border-b border-border py-10">
+      <section ref={sectionRef} className="bg-white border-b border-border py-10">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="h-6 w-72 bg-gray-200 rounded animate-pulse mb-6" />
           <div className="grid grid-cols-4 gap-4">
@@ -186,14 +206,14 @@ export function PopularVehicleMakes() {
     );
   }
 
-  if (cards.length === 0) return null;
+  if (cards.length === 0) return <div ref={sectionRef} />;
 
   // Render 2 copies for seamless forward loop; backward edge handled by jump trick
   const allItems: (MakeCard | null)[] = [...cards, null];
   const doubled = [...allItems, ...allItems];
 
   return (
-    <section className="bg-white border-b border-border py-10">
+    <section ref={sectionRef} className="bg-white border-b border-border py-10">
       {/* Title + arrows */}
       <div className="container mx-auto px-4 max-w-7xl mb-6">
         <div className="flex items-end justify-between">

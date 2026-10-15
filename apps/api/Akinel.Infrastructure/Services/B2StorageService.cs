@@ -154,6 +154,7 @@ public class B2StorageService : IStorageService
         uploadReq.Headers.TryAddWithoutValidation("Authorization", uploadToken);
         uploadReq.Headers.TryAddWithoutValidation("X-Bz-File-Name", Uri.EscapeDataString(key));
         uploadReq.Headers.TryAddWithoutValidation("X-Bz-Content-Sha1", sha1);
+        uploadReq.Headers.TryAddWithoutValidation("X-Bz-Info-b2-cache-control", "public%2C%20max-age%3D31536000%2C%20immutable");
         uploadReq.Content = new ByteArrayContent(bytes);
         uploadReq.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
 

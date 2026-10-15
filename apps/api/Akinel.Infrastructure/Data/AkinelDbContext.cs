@@ -20,6 +20,7 @@ public class AkinelDbContext : DbContext, IDataProtectionKeyContext
     public DbSet<VehicleModel> VehicleModels => Set<VehicleModel>();
     public DbSet<VehicleGeneration> VehicleGenerations => Set<VehicleGeneration>();
     public DbSet<VehicleEngine> VehicleEngines => Set<VehicleEngine>();
+    public DbSet<VehicleEngineVariant> VehicleEngineVariants => Set<VehicleEngineVariant>();
     public DbSet<ProductVehicleCompatibility> ProductVehicleCompatibilities => Set<ProductVehicleCompatibility>();
     public DbSet<User> Users => Set<User>();
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();

@@ -33,6 +33,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: false,
     ...(isDev && { dangerouslyAllowLocalIP: true } as object),
     remotePatterns: [

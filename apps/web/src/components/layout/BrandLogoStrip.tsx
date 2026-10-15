@@ -94,7 +94,7 @@ export function BrandLogoStrip() {
 
             <div className="hidden md:block w-px h-5 bg-border/60 shrink-0 mr-3" />
 
-            {makes.map((make) => {
+            {makes.map((make, idx) => {
               const isActive = activeMake?.id === make.id;
               return (
                 <button
@@ -112,6 +112,7 @@ export function BrandLogoStrip() {
                         fill
                         className="object-contain"
                         sizes="56px"
+                        priority={idx < 6}
                       />
                     </div>
                   ) : (

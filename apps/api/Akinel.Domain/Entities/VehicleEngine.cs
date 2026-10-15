@@ -20,4 +20,5 @@ public class VehicleEngine : BaseEntity
     public string? Drivetrain { get; set; }
     public ICollection<ProductVehicleCompatibility> ProductCompatibilities { get; set; } = new List<ProductVehicleCompatibility>();
     public ICollection<UserVehicle> UserVehicles { get; set; } = new List<UserVehicle>();
+    public ICollection<VehicleEngineVariant> Variants { get; set; } = new List<VehicleEngineVariant>();
 }

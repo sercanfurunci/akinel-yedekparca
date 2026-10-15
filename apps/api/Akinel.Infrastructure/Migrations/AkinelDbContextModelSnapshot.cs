@@ -1035,6 +1035,38 @@ namespace Akinel.Infrastructure.Migrations
                     b.ToTable("VehicleEngines");
                 });
 
+            modelBuilder.Entity("Akinel.Domain.Entities.VehicleEngineVariant", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DatECode")
+                        .HasColumnType("text");
+
+                    b.Property<string>("OpsCarId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SubModelName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("VehicleEngineId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VehicleEngineId");
+
+                    b.ToTable("VehicleEngineVariants");
+                });
+
             modelBuilder.Entity("Akinel.Domain.Entities.VehicleGeneration", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1346,6 +1378,17 @@ namespace Akinel.Infrastructure.Migrations
                     b.Navigation("VehicleGeneration");
                 });
 
+            modelBuilder.Entity("Akinel.Domain.Entities.VehicleEngineVariant", b =>
+                {
+                    b.HasOne("Akinel.Domain.Entities.VehicleEngine", "VehicleEngine")
+                        .WithMany("Variants")
+                        .HasForeignKey("VehicleEngineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("VehicleEngine");
+                });
+
             modelBuilder.Entity("Akinel.Domain.Entities.VehicleGeneration", b =>
                 {
                     b.HasOne("Akinel.Domain.Entities.VehicleModel", "VehicleModel")
@@ -1418,6 +1461,8 @@ namespace Akinel.Infrastructure.Migrations
                     b.Navigation("ProductCompatibilities");
 
                     b.Navigation("UserVehicles");
+
+                    b.Navigation("Variants");
                 });
 
             modelBuilder.Entity("Akinel.Domain.Entities.VehicleGeneration", b =>
