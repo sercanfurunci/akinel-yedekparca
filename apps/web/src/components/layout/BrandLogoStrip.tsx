@@ -81,18 +81,18 @@ export function BrandLogoStrip() {
       onMouseEnter={cancelClose}
     >
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="flex items-center gap-3 md:gap-4 h-10 md:h-12">
-          <div className="flex items-center gap-4 md:gap-0 overflow-x-auto flex-1 md:justify-between [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex items-center h-14 md:h-16">
+          <div className="flex items-center gap-2 md:gap-0 overflow-x-auto flex-1 md:justify-between [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {/* TÜM ARAÇLAR — desktop only */}
             <Link
               href="/vehicle"
-              className="hidden md:flex shrink-0 items-center gap-1.5 bg-brand hover:bg-brand/90 text-white text-xs font-bold px-3 h-8 rounded-md transition-colors whitespace-nowrap mr-3"
+              className="hidden md:flex shrink-0 items-center gap-1.5 bg-brand hover:bg-brand/90 text-white text-xs font-bold px-3 h-9 rounded-md transition-colors whitespace-nowrap mr-4"
             >
               <LayoutGrid size={13} />
               TÜM ARAÇLAR
             </Link>
 
-            <div className="hidden md:block w-px h-5 bg-border/60 shrink-0 mr-3" />
+            <div className="hidden md:block w-px h-6 bg-border/60 shrink-0 mr-4" />
 
             {makes.map((make, idx) => {
               const isActive = activeMake?.id === make.id;
@@ -102,21 +102,21 @@ export function BrandLogoStrip() {
                   type="button"
                   onMouseEnter={() => openMake(make)}
                   onClick={() => openMake(make)}
-                  className="flex flex-col items-center justify-center gap-0.5 shrink-0 px-1 cursor-pointer group"
+                  className="flex flex-col items-center justify-center gap-1 shrink-0 px-2 md:px-1 cursor-pointer group"
                 >
                   {make.logoUrl ? (
-                    <div className="relative h-5 w-12 md:h-6 md:w-14">
+                    <div className="relative h-7 w-14 md:h-8 md:w-16">
                       <Image
                         src={getImageUrl(make.logoUrl)!}
                         alt={make.name}
                         fill
                         className="object-contain"
-                        sizes="56px"
+                        sizes="64px"
                         priority={idx < 6}
                       />
                     </div>
                   ) : (
-                    <span className={`text-xs font-semibold whitespace-nowrap ${isActive ? 'text-[#111827]' : 'text-gray-400 group-hover:text-[#111827]'}`}>
+                    <span className={`text-xs font-semibold whitespace-nowrap ${isActive ? 'text-[#111827]' : 'text-gray-500 group-hover:text-[#111827]'}`}>
                       {make.name}
                     </span>
                   )}
