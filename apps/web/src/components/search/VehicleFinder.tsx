@@ -53,6 +53,16 @@ export function VehicleFinder({
     else setInternalOpen(val);
   };
 
+  // Body scroll lock when modal is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
   const [currentStep, setCurrentStep] = useState<StepId>('marka');
   const [filter, setFilter] = useState('');
 
@@ -534,43 +544,62 @@ export function VehicleFinder({
               <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
 
                 {/* Sidebar — desktop only */}
-                <div className="hidden md:flex flex-col w-52 border-r shrink-0 overflow-y-auto py-2 bg-muted/20">
-                  {STEPS.map((step, i) => {
-                    const done = i < stepIndex;
-                    const active = step.id === currentStep;
-                    const reachable = i <= stepIndex;
-                    const val = getStepValue(step.id);
-                    return (
-                      <button
-                        key={step.id}
-                        disabled={!reachable}
-                        onClick={() => { if (reachable) { setCurrentStep(step.id); setFilter(''); } }}
-                        className={cn(
-                          'flex items-center gap-3 px-4 py-3 text-left transition-colors w-full',
-                          active ? 'bg-brand/5' : reachable ? 'hover:bg-muted/60' : '',
-                          !reachable && 'opacity-40 cursor-not-allowed'
-                        )}
-                      >
-                        <div className={cn(
-                          'w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 border-2',
-                          done ? 'bg-brand border-brand text-white'
-                            : active ? 'bg-white border-brand text-brand'
-                            : 'bg-white border-border text-muted-foreground'
-                        )}>
-                          {done ? <Check size={11} strokeWidth={3} /> : i + 1}
+                <div className="hidden md:flex flex-col w-52 border-r shrink-0 bg-muted/20">
+                  {/* Brand logo area */}
+                  {selectedMake && (
+                    <div className="flex items-center gap-2.5 px-4 py-3 border-b">
+                      {selectedMake.logoUrl ? (
+                        <img
+                          src={getImageUrl(selectedMake.logoUrl)!}
+                          alt={selectedMake.name}
+                          className="h-7 w-14 object-contain shrink-0"
+                        />
+                      ) : (
+                        <div className="h-7 w-7 rounded-full bg-brand/10 flex items-center justify-center text-brand font-bold text-xs shrink-0">
+                          {selectedMake.name[0]}
                         </div>
-                        <div className="min-w-0">
-                          <p className={cn('text-sm font-semibold leading-tight', active ? 'text-brand' : 'text-foreground')}>
-                            {step.label}
-                          </p>
-                          <p className="text-xs text-muted-foreground truncate">
-                            {val || 'Seçilmedi'}
-                          </p>
-                        </div>
-                      </button>
-                    );
-                  })}
-                  <div className="mt-auto px-4 py-3 border-t">
+                      )}
+                      <span className="text-sm font-bold text-foreground truncate">{selectedMake.name}</span>
+                    </div>
+                  )}
+                  <div className="flex-1 overflow-y-auto py-2">
+                    {STEPS.map((step, i) => {
+                      const done = i < stepIndex;
+                      const active = step.id === currentStep;
+                      const reachable = i <= stepIndex;
+                      const val = getStepValue(step.id);
+                      return (
+                        <button
+                          key={step.id}
+                          disabled={!reachable}
+                          onClick={() => { if (reachable) { setCurrentStep(step.id); setFilter(''); } }}
+                          className={cn(
+                            'flex items-center gap-3 px-4 py-3 text-left transition-colors w-full',
+                            active ? 'bg-brand/5' : reachable ? 'hover:bg-muted/60' : '',
+                            !reachable && 'opacity-40 cursor-not-allowed'
+                          )}
+                        >
+                          <div className={cn(
+                            'w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 border-2',
+                            done ? 'bg-brand border-brand text-white'
+                              : active ? 'bg-white border-brand text-brand'
+                              : 'bg-white border-border text-muted-foreground'
+                          )}>
+                            {done ? <Check size={11} strokeWidth={3} /> : i + 1}
+                          </div>
+                          <div className="min-w-0">
+                            <p className={cn('text-sm font-semibold leading-tight', active ? 'text-brand' : 'text-foreground')}>
+                              {step.label}
+                            </p>
+                            <p className="text-xs text-muted-foreground truncate">
+                              {val || 'Seçilmedi'}
+                            </p>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div className="px-4 py-3 border-t">
                     <button
                       onClick={reset}
                       className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
