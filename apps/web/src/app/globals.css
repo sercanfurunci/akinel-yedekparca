@@ -216,4 +216,18 @@ button { font-family: inherit; }
       min-width: 44px;
     }
   }
+
+  /* iOS: prevent auto-zoom on input focus (font-size must be >= 16px) */
+  @media screen and (max-width: 768px) {
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+
+  /* iOS safe area for fixed bottom elements */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
 }

@@ -211,7 +211,7 @@ export function GlobalSearch({ defaultValue = '', className, size = 'default', a
         <div
           role="listbox"
           aria-label="Arama önerileri"
-          className="absolute top-full left-0 right-0 z-50 mt-1 rounded-xl border border-border bg-white shadow-xl overflow-hidden max-h-[80vh] overflow-y-auto"
+          className="absolute top-full left-0 right-0 z-50 mt-1 rounded-xl border border-border bg-white shadow-xl overflow-hidden max-h-[min(80svh,420px)] overflow-y-auto"
         >
           {suggestions.products.length > 0 && (
             <div>

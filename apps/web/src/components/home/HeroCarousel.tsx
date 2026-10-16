@@ -51,7 +51,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
     <>
     <section
       className="relative overflow-hidden bg-[#111827]"
-      style={{ minHeight: 'clamp(520px, 80vh, 820px)' }}
+      style={{ minHeight: 'clamp(520px, 80svh, 820px)' }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-label="Ana sayfa hero bölümü"

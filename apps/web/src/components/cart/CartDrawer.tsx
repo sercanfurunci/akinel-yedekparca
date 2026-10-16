@@ -138,7 +138,7 @@ export function CartDrawer() {
             </div>
 
             {/* Footer */}
-            <div className="border-t p-4 space-y-4">
+            <div className="border-t p-4 space-y-4 safe-bottom">
               <Separator />
               <div className="flex items-center justify-between">
                 <span className="font-medium">Ara Toplam</span>

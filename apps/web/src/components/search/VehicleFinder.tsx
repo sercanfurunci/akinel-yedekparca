@@ -446,7 +446,7 @@ export function VehicleFinder({
           className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-6 bg-black/60 backdrop-blur-sm"
           onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
         >
-          <div className="bg-background rounded-t-3xl sm:rounded-2xl shadow-2xl w-full sm:max-w-3xl h-[94vh] sm:h-[85vh] sm:max-h-[680px] flex flex-col overflow-hidden">
+          <div className="bg-background rounded-t-3xl sm:rounded-2xl shadow-2xl w-full sm:max-w-3xl h-[82svh] sm:h-[85vh] sm:max-h-[680px] flex flex-col overflow-hidden">
 
             {/* Drag handle — mobile only */}
             <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
@@ -552,7 +552,7 @@ export function VehicleFinder({
                 </div>
 
                 {/* Bottom bar */}
-                <div className="flex items-center justify-between px-4 py-3 border-t bg-muted/20 shrink-0">
+                <div className="flex items-center justify-between px-4 py-3 border-t bg-muted/20 shrink-0 safe-bottom">
                   <div className="min-w-0 flex-1 mr-3">
                     {breadcrumb ? (
                       <p className="text-xs font-semibold text-foreground truncate">{breadcrumb}</p>
@@ -672,7 +672,7 @@ function SummaryScreen({ make, model, generation, engine, onBack, onSave, onConf
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between px-5 py-3.5 border-t bg-muted/20 shrink-0">
+      <div className="flex items-center justify-between px-5 py-3.5 border-t bg-muted/20 shrink-0 safe-bottom">
         <div className="flex items-center gap-2">
           <button
             onClick={onBack}
