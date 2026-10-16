@@ -135,7 +135,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="font-sans min-h-screen flex flex-col">
+      <body className="font-sans min-h-screen flex flex-col overflow-x-hidden">
         <SentryProvider>
           <PostHogProvider>
             <PublicShell>{children}</PublicShell>
