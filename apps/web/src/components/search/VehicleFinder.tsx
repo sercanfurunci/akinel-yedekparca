@@ -545,29 +545,13 @@ export function VehicleFinder({
 
                 {/* Sidebar — desktop only */}
                 <div className="hidden md:flex flex-col w-52 border-r shrink-0 bg-muted/20">
-                  {/* Brand logo area */}
-                  {selectedMake && (
-                    <div className="flex items-center gap-2.5 px-4 py-3 border-b">
-                      {selectedMake.logoUrl ? (
-                        <img
-                          src={getImageUrl(selectedMake.logoUrl)!}
-                          alt={selectedMake.name}
-                          className="h-7 w-14 object-contain shrink-0"
-                        />
-                      ) : (
-                        <div className="h-7 w-7 rounded-full bg-brand/10 flex items-center justify-center text-brand font-bold text-xs shrink-0">
-                          {selectedMake.name[0]}
-                        </div>
-                      )}
-                      <span className="text-sm font-bold text-foreground truncate">{selectedMake.name}</span>
-                    </div>
-                  )}
                   <div className="flex-1 overflow-y-auto py-2">
                     {STEPS.map((step, i) => {
                       const done = i < stepIndex;
                       const active = step.id === currentStep;
                       const reachable = i <= stepIndex;
                       const val = getStepValue(step.id);
+                      const showLogo = step.id === 'marka' && selectedMake?.logoUrl && (done || active);
                       return (
                         <button
                           key={step.id}
@@ -587,13 +571,24 @@ export function VehicleFinder({
                           )}>
                             {done ? <Check size={11} strokeWidth={3} /> : i + 1}
                           </div>
-                          <div className="min-w-0">
+                          <div className="min-w-0 flex-1">
                             <p className={cn('text-sm font-semibold leading-tight', active ? 'text-brand' : 'text-foreground')}>
                               {step.label}
                             </p>
-                            <p className="text-xs text-muted-foreground truncate">
-                              {val || 'Seçilmedi'}
-                            </p>
+                            {showLogo ? (
+                              <div className="flex items-center gap-1.5 mt-0.5">
+                                <img
+                                  src={getImageUrl(selectedMake!.logoUrl)!}
+                                  alt={selectedMake!.name}
+                                  className="h-4 w-8 object-contain shrink-0"
+                                />
+                                <span className="text-xs text-muted-foreground truncate">{val}</span>
+                              </div>
+                            ) : (
+                              <p className="text-xs text-muted-foreground truncate">
+                                {val || 'Seçilmedi'}
+                              </p>
+                            )}
                           </div>
                         </button>
                       );
