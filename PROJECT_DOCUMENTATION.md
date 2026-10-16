@@ -2,7 +2,7 @@
 
 > **Maintenance Rule:** Whenever a major architectural, deployment, storage, database, authentication, external-service, or folder-structure change is made, update this document in the same change. This is the single source of truth for the project.
 
-**Last verified:** 2026-10-01  
+**Last verified:** 2026-10-16  
 **Canonical documentation:** This file (`PROJECT_DOCUMENTATION.md`) supersedes `docs/ARCHITECTURE.md` and `docs/DATABASE.md`.
 
 ---
@@ -90,7 +90,7 @@ ASP.NET Core 10 API  (port 5100 local / Railway backend)
 | Database | PostgreSQL | 16 (Alpine) | Primary data store |
 | Authentication | JWT Bearer | 10.0.12 | Stateless token auth |
 | Password hashing | BCrypt.Net-Next | 4.2.0 | User password storage |
-| Image processing | SixLabors.ImageSharp | 3.1.7 | Server-side image optimization on upload |
+| Image processing | SixLabors.ImageSharp | 2.1.9 | Server-side image optimization on upload (3.x Railway'de lisans hatası veriyordu, 2.1.9'a düşürüldü) |
 | File storage | AWSSDK.S3 | 3.7.414.1 | S3-compatible client for Backblaze B2 |
 | Logging | Serilog | 10.0.0 | Structured logging (console sink) |
 | API docs | Swashbuckle | 10.2.3 | Swagger UI at /swagger |
@@ -232,8 +232,12 @@ npm run dev
 | `/(shop)/belgeler/on-bilgilendirme-formu` | Pre-information form |
 | `/(shop)/belgeler/kullanim-kosullari` | Terms of use |
 | `/(auth)/login` | Login page |
-| `/(auth)/register` | Registration page |
+| `/(auth)/register` | Registration page — includes password strength meter + KVKK onay checkbox |
+| `/(auth)/verify-email` | E-posta doğrulama sayfası (token URL parametresiyle) |
+| `/(auth)/forgot-password` | Şifremi unuttum |
+| `/(auth)/reset-password` | Yeni şifre belirleme (token URL parametresiyle) |
 | `/account` | Customer account dashboard |
+| `/account/settings` | Profil, adres ve şifre güncelleme |
 | `/account/orders` | Customer order history |
 | `/account/orders/[id]` | Customer order detail |
 | `/garage` | Saved vehicles (requires login) |
@@ -269,6 +273,10 @@ npm run dev
 | `CartDrawer` | `components/cart/CartDrawer.tsx` | Slide-out cart panel |
 | `GlobalSearch` | `components/search/GlobalSearch.tsx` | Search bar |
 | `ProductCard` | `components/products/ProductCard.tsx` | Product grid card |
+| `BrandLogoStrip` | `components/layout/BrandLogoStrip.tsx` | Marka logoları şeridi (hover → dropdown generation listesi) |
+| `PopularVehicleMakes` | `components/home/PopularVehicleMakes.tsx` | Ana sayfada popüler marka kartları carousel (IntersectionObserver ile lazy load) |
+| `PasswordStrengthMeter` | `components/auth/PasswordStrength.tsx` | Şifre güç göstergesi + kurallar — kayıt, reset ve hesap ayarlarında kullanılır |
+| `ConfirmMatchHint` | `components/auth/PasswordStrength.tsx` | Şifre tekrar eşleşme kontrolü |
 
 ### State management (Zustand stores)
 
@@ -333,7 +341,8 @@ Mapped to DTO → JSON response
 
 | Controller | Route prefix | Auth required | Responsibility |
 |---|---|---|---|
-| `AuthController` | `/api/auth` | No | Login, register, refresh, revoke |
+| `AuthController` | `/api/auth` | No | Login, register, verify-email, forgot-password, reset-password, refresh, revoke |
+| `AccountController` | `/api/account` | Yes (Customer/Admin) | Profil okuma/güncelleme, şifre değiştirme |
 | `ProductsController` | `/api/products` | No | Public product listing, detail, search |
 | `VehiclesController` | `/api/vehicles` | No | Make/model/generation/engine hierarchy, VIN decode |
 | `BrandsController` | `/api/brands` | No | Public brand list |
@@ -366,7 +375,8 @@ Mapped to DTO → JSON response
 
 | Service | Implementation file | Purpose |
 |---|---|---|
-| `IAuthService` | `AuthService.cs` | Login, register, JWT generation, refresh token rotation |
+| `IAuthService` | `AuthService.cs` | Login, register (e-posta doğrulama ile), email verify, forgot/reset password, refresh token rotation |
+| `IEmailService` | `EmailService.cs` | Resend API ile doğrulama maili, şifre sıfırlama maili, sipariş onay maili |
 | `IProductService` | `ProductService.cs` | Product CRUD, vehicle-based lookup |
 | `IVehicleService` | `VehicleService.cs` | Vehicle hierarchy queries, VIN decode |
 | `IOrderService` | `OrderService.cs` | Checkout, order history, status transitions |
@@ -434,7 +444,7 @@ DataProtectionKeys (ASP.NET Core internal)
 | `OemNumber` | `Number`, `NormalizedNumber` (indexed) | Normalized for case/space-insensitive search |
 | `ProductVehicleCompatibility` | `ProductId`, `VehicleEngineId` | M:M junction |
 | `VehicleEngine` | `Name`, `EngineCode`, `DisplacementCc`, `PowerKw`, `FuelType` | Leaf of vehicle hierarchy |
-| `User` | `Email`, `NormalizedEmail` (unique), `PasswordHash` (BCrypt), `Role` | Roles: Customer=0, Admin=1 |
+| `User` | `Email`, `NormalizedEmail` (unique), `PasswordHash` (BCrypt), `Role`, `IsEmailVerified`, `EmailVerificationToken?`, `EmailVerificationTokenExpiry?`, `PasswordResetToken?`, `PasswordResetTokenExpiry?`, `AddressLine?`, `District?`, `City?`, `PostalCode?` | Roles: Customer=0, Admin=1. Kayıt sonrası `IsEmailVerified=false` — token ile doğrulanana kadar login yapılamaz. |
 | `RefreshToken` | `Token`, `ExpiresAt`, `AbsoluteExpiresAt`, `IsRevoked` | Rotation on every refresh |
 | `Order` | `OrderNumber` (unique), `Status`, `TotalAmount`, `TermsAccepted`, `ConsentTimestamp` | Legal consent fields required |
 | `OrderItem` | `ProductName`, `UnitPrice` (snapshot), `LineTotal` | Snapshots product data at order time |
@@ -489,6 +499,9 @@ apps/api/Akinel.Infrastructure/Migrations/
 | `20260930100000_AddBusinessSettingsPhone2` | Second phone field on BusinessSettings |
 | `20260930110000_AddAnnouncementAndCategoryImage` | AnnouncementBanner + Category.ImageUrl |
 | `20260930141704_AddDataProtectionKeys` | ASP.NET Core data protection key storage |
+| `20261005152522_AddVehicleModelImageAndCategoryFeatured` | VehicleModel.ImageUrl + Category.IsFeatured alanları |
+| `20261016004435_AddEmailVerification` | User: IsEmailVerified, EmailVerificationToken/Expiry, PasswordResetToken/Expiry. Mevcut kullanıcılar `IsEmailVerified=true` yapıldı. |
+| `20261016010022_AddUserAddressFields` | User: AddressLine, District, City, PostalCode |
 
 ### Commands
 
@@ -700,6 +713,9 @@ Railway detects push
 | `B2__BucketName` | B2 bucket name (`akinel-uploads`) | Yes | No |
 | `B2__BucketId` | B2 bucket ID | Yes | No |
 | `B2__CdnUrl` | Optional CDN URL for public file access | No | No |
+| `Resend__ApiKey` | Resend e-posta API anahtarı | Yes (email gönderimi için) | Yes |
+| `Resend__FromEmail` | Gönderen e-posta adresi (default: noreply@akinelotoyedekparca.com.tr) | No | No |
+| `Resend__WebsiteUrl` | Doğrulama linklerinde kullanılan site URL (default: https://akinelotoyedekparca.com.tr) | No | No |
 | `ASPNETCORE_ENVIRONMENT` | `Development` or `Production` | Yes | No |
 | `SessionSettings__AccessTokenMinutes` | Access token lifetime (default: 15) | No | No |
 | `SessionSettings__RefreshTokenDays` | Refresh token lifetime (default: 7) | No | No |
@@ -739,7 +755,7 @@ Railway detects push
 | Error tracking | Sentry | Frontend + backend exception capture | `Sentry__Dsn` (backend), `NEXT_PUBLIC_SENTRY_DSN` (frontend) | No (optional) |
 | Product analytics | PostHog (EU) | Funnel events, user behaviour | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | No (optional) |
 | VIN decode / parts catalog | `NullPartsCatalogProvider` | **Not yet integrated** — placeholder | `IPartsCatalogProvider` interface | No |
-| Email | Not implemented | Order confirmations, notifications | — | Not yet |
+| Email | Resend (resend.com) | Kayıt doğrulama, şifre sıfırlama, sipariş onayı | `Resend:*` in appsettings / Railway env vars | **Yes** — domain `akinelotoyedekparca.com.tr` Cloudflare DNS ile doğrulandı |
 | Payment gateway | Not implemented | Online payment processing | — | Not yet |
 | SMS / cargo tracking | Not implemented | — | — | Not yet |
 
@@ -796,21 +812,62 @@ Railway detects push
                         └── Invalid → clearAuth() + redirect /login?session=expired
 ```
 
-### Registration
+### Registration & Email Verification
 
 ```
 POST /api/auth/register {email, password, firstName, lastName}
   └── Rate limit: 5 attempts/hour/IP
   └── Password hashed with BCrypt
   └── Default role: Customer
-  └── Returns: same AuthResponse as login
+  └── IsEmailVerified = false
+  └── EmailVerificationToken üretilir (64-byte URL-safe base64, 24s geçerli)
+  └── Resend ile doğrulama maili gönderilir: /verify-email?token=...
+  └── Returns: { message: "..." } — login yapılmaz, doğrulama beklenir
+
+GET /api/auth/verify-email?token=...
+  └── Token bulunur, süresi kontrol edilir
+  └── IsEmailVerified = true yapılır, token silinir
+  └── Kullanıcı artık login yapabilir
+
+POST /api/auth/forgot-password {email}
+  └── Email bulunamazsa yine OK döner (kullanıcı varlığı gizlenir)
+  └── PasswordResetToken üretilir (1 saat geçerli)
+  └── Resend ile reset maili gönderilir: /reset-password?token=...
+
+POST /api/auth/reset-password {token, newPassword}
+  └── Token doğrulanır, şifre güncellenir
+  └── Tüm refresh token'lar iptal edilir (güvenlik)
 ```
+
+**Login'de email doğrulama kontrolü:**
+- `IsEmailVerified = false` ise `403` döner, frontend "e-postanızı doğrulayın" mesajı gösterir.
+
+**Kayıt formunda UX:**
+- Şifre güç göstergesi (5 bar + 4 kural anlık kontrol)
+- Şifre tekrar eşleşme anlık göstergesi
+- Kullanım Koşulları + KVKK onay checkbox (zorunlu)
 
 ### Protected routes (frontend)
 
 - Admin pages (`/admin/*`) check `authStore.user?.role === 'Admin'`
 - Account/garage pages check authentication state
 - Unauthenticated access redirects to `/login`
+
+### Account settings (müşteri)
+
+```
+GET  /api/account/profile   → Profil bilgilerini getirir (ad, soyad, telefon, adres)
+PUT  /api/account/profile   → Profil ve adres bilgilerini günceller
+PUT  /api/account/password  → Şifre değiştirme (mevcut şifre doğrulaması + tüm refresh token iptali)
+```
+
+### Login UX notları
+
+- API hata mesajları `STATUS:mesaj` formatında atılır → catch bloklarında `msg.startsWith('403:')` gibi güvenli tespit
+- `handleSessionExpired` zaten `/login` sayfasındayken redirect yapmaz (sayfa reload sorunu çözüldü)
+- Login başarısız olunca sayfa yenilenmez, inline hata mesajı gösterilir
+- Korumalı sayfalar `/login?returnUrl=/hedef-sayfa` ile yönlendirir, giriş sonrası doğru sayfaya döner
+- Giriş yapılıysa `/login` sayfası direkt `/account`'a yönlendirir
 
 ### Admin vs customer sessions
 
