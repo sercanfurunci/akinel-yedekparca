@@ -271,44 +271,46 @@ export function PopularVehicleMakes() {
       </div>
 
       {/* ── DESKTOP: JS auto-carousel with side arrows ── */}
-      <div className="hidden md:block relative">
-        {/* Left arrow */}
-        <button
-          type="button"
-          onClick={slidePrev}
-          aria-label="Önceki"
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white border border-border shadow flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
-        >
-          <ChevronLeft size={18} />
-        </button>
-
-        {/* Right arrow */}
-        <button
-          type="button"
-          onClick={slideNext}
-          aria-label="Sonraki"
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white border border-border shadow flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
-        >
-          <ChevronRight size={18} />
-        </button>
-
-        <div className="container mx-auto px-10 max-w-7xl">
-          <div style={{ overflow: 'hidden' }}>
-            <div
-              style={{
-                display: 'flex',
-                gap: GAP,
-                transform: `translateX(-${offset * (CARD_W + GAP)}px)`,
-                transition: animated ? `transform ${TRANSITION_MS}ms ease` : 'none',
-              }}
-              onMouseEnter={() => { paused.current = true; }}
-              onMouseLeave={() => { paused.current = false; }}
+      <div className="hidden md:block">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="relative">
+            {/* Left arrow */}
+            <button
+              type="button"
+              onClick={slidePrev}
+              aria-label="Önceki"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white border border-border shadow flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
             >
-              {doubled.map((card, i) =>
-                card === null
-                  ? <AllBrandsCard key={`ab-${i}`} />
-                  : <Card key={`${card.make.id}-${i}`} {...card} />
-              )}
+              <ChevronLeft size={18} />
+            </button>
+
+            {/* Right arrow */}
+            <button
+              type="button"
+              onClick={slideNext}
+              aria-label="Sonraki"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white border border-border shadow flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
+            >
+              <ChevronRight size={18} />
+            </button>
+
+            <div className="px-10" style={{ overflow: 'hidden' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: GAP,
+                  transform: `translateX(-${offset * (CARD_W + GAP)}px)`,
+                  transition: animated ? `transform ${TRANSITION_MS}ms ease` : 'none',
+                }}
+                onMouseEnter={() => { paused.current = true; }}
+                onMouseLeave={() => { paused.current = false; }}
+              >
+                {doubled.map((card, i) =>
+                  card === null
+                    ? <AllBrandsCard key={`ab-${i}`} />
+                    : <Card key={`${card.make.id}-${i}`} {...card} />
+                )}
+              </div>
             </div>
           </div>
         </div>

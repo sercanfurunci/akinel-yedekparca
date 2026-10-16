@@ -275,18 +275,18 @@ export function VehicleFinder({
               <>
                 <div>
                   <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2">Popüler Markalar</p>
-                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">{renderMakeGrid(popularMakes)}</div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{renderMakeGrid(popularMakes)}</div>
                 </div>
                 {otherMakes.length > 0 && (
                   <div>
                     <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2">Diğer Markalar</p>
-                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">{renderMakeGrid(otherMakes)}</div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{renderMakeGrid(otherMakes)}</div>
                   </div>
                 )}
               </>
             )}
             {(q || popularMakes.length === 0) && (
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">{renderMakeGrid(makes)}</div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{renderMakeGrid(makes)}</div>
             )}
           </div>
         );
