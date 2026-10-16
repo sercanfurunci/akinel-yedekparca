@@ -26,3 +26,7 @@ public record UserDto(
 );
 
 public record RefreshTokenRequest(string RefreshToken);
+
+public record ForgotPasswordRequest(string Email);
+
+public record ResetPasswordRequest(string Token, string NewPassword);

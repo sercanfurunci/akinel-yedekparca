@@ -13,6 +13,11 @@ public class User : BaseEntity
     public string? PhoneNumber { get; set; }
     public UserRole Role { get; set; } = UserRole.Customer;
     public bool IsActive { get; set; } = true;
+    public bool IsEmailVerified { get; set; } = false;
+    public string? EmailVerificationToken { get; set; }
+    public DateTime? EmailVerificationTokenExpiry { get; set; }
+    public string? PasswordResetToken { get; set; }
+    public DateTime? PasswordResetTokenExpiry { get; set; }
     public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
     public ICollection<UserVehicle> Vehicles { get; set; } = new List<UserVehicle>();
 }

@@ -41,19 +41,26 @@ function LoginForm() {
   const { setAuth } = useAuthStore();
   const router = useRouter();
   const [error, setError] = useState('');
+  const [emailNotVerified, setEmailNotVerified] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data: FormValues) => {
     setError('');
+    setEmailNotVerified(false);
     try {
       const res = await api.auth.login({ email: data.email, password: data.password }) as AuthResponse;
       setAuth(res.user, res.accessToken, res.refreshToken);
       analytics.loginCompleted();
       posthogLogs.loginCompleted(res.user.role);
       router.push(res.user.role === 'Admin' ? '/admin' : '/account');
-    } catch {
+    } catch (err: unknown) {
       posthogLogs.loginFailed();
-      setError('E-posta veya şifre hatalı. Lütfen tekrar deneyin.');
+      const msg = err instanceof Error ? err.message : '';
+      if (msg.includes('403') || msg.includes('EMAIL_NOT_VERIFIED')) {
+        setEmailNotVerified(true);
+      } else {
+        setError('E-posta veya şifre hatalı. Lütfen tekrar deneyin.');
+      }
     }
   };
 
@@ -62,6 +69,14 @@ function LoginForm() {
       <Suspense fallback={null}>
         <SessionExpiredBanner />
       </Suspense>
+
+      {emailNotVerified && (
+        <div className="rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-3">
+          <p className="font-semibold mb-1">E-posta adresiniz doğrulanmamış</p>
+          <p>Lütfen kayıt sırasında gönderilen doğrulama mailini kontrol edin. Spam klasörüne düşmüş olabilir.</p>
+        </div>
+      )}
+
       {error && (
         <div className="rounded-lg bg-brand-muted border border-brand/20 text-brand text-sm px-4 py-3">
           {error}
@@ -113,7 +128,7 @@ function LoginForm() {
           />
           Beni Hatırla
         </label>
-        <Link href="/contact" className="text-xs text-brand font-semibold hover:underline">
+        <Link href="/forgot-password" className="text-xs text-brand font-semibold hover:underline">
           Şifremi Unuttum
         </Link>
       </div>

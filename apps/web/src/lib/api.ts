@@ -203,6 +203,12 @@ export const api = {
       request('/api/auth/login', { method: 'POST', body: JSON.stringify(data) }),
     register: (data: unknown) =>
       request('/api/auth/register', { method: 'POST', body: JSON.stringify(data) }),
+    verifyEmail: (token: string) =>
+      request(`/api/auth/verify-email?token=${encodeURIComponent(token)}`),
+    forgotPassword: (email: string) =>
+      request('/api/auth/forgot-password', { method: 'POST', body: JSON.stringify({ email }) }),
+    resetPassword: (token: string, newPassword: string) =>
+      request('/api/auth/reset-password', { method: 'POST', body: JSON.stringify({ token, newPassword }) }),
     refresh: (refreshToken: string) =>
       request('/api/auth/refresh', { method: 'POST', body: JSON.stringify({ refreshToken }) }),
   },

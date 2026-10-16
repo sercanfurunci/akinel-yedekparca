@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Resend;
 
 namespace Akinel.Infrastructure;
 
@@ -19,7 +20,17 @@ public static class DependencyInjection
         services.Configure<SessionSettings>(configuration.GetSection("SessionSettings"));
         services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
         services.Configure<FeatureFlags>(configuration.GetSection("Features"));
+        services.Configure<ResendSettings>(configuration.GetSection("Resend"));
         services.AddSingleton<IFeatureFlagService, FeatureFlagService>();
+
+        // Resend email
+        services.AddOptions<ResendClientOptions>().Configure(o =>
+        {
+            o.ApiToken = configuration["Resend:ApiKey"] ?? string.Empty;
+        });
+        services.AddHttpClient<ResendClient>();
+        services.AddTransient<IResend, ResendClient>();
+        services.AddScoped<IEmailService, EmailService>();
 
         var connStr = configuration.GetConnectionString("DefaultConnection")
             ?? Environment.GetEnvironmentVariable("DATABASE_URL");

@@ -5,15 +5,12 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, MailCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { api } from '@/lib/api';
-import { useAuthStore } from '@/store/authStore';
 import { analytics } from '@/lib/analytics';
-import type { AuthResponse } from '@/lib/types';
 
 const schema = z.object({
   firstName: z.string().min(2, 'Ad en az 2 karakter olmalı'),
@@ -35,29 +32,64 @@ export default function RegisterPage() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
-  const { setAuth } = useAuthStore();
-  const router = useRouter();
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState('');
 
   const onSubmit = async (data: FormValues) => {
     setError('');
     analytics.signupStarted();
     try {
-      const res = await api.auth.register({
+      await api.auth.register({
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
         password: data.password,
-      }) as AuthResponse;
-      setAuth(res.user, res.accessToken, res.refreshToken);
+      });
       analytics.signupCompleted();
-      router.push('/account');
-    } catch {
-      setError('Kayıt sırasında bir hata oluştu. E-posta adresi zaten kullanılıyor olabilir.');
+      setRegisteredEmail(data.email);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : '';
+      if (msg.includes('409') || msg.toLowerCase().includes('conflict')) {
+        setError('Bu e-posta adresiyle zaten bir hesap mevcut.');
+      } else {
+        setError('Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.');
+      }
     }
   };
+
+  if (registeredEmail) {
+    return (
+      <div className="min-h-[calc(100vh-4rem)] bg-[#F3F4F6] flex items-center justify-center px-4 py-12">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-6">
+            <Link href="/" className="inline-block">
+              <img src="/logo-light.webp" alt="AKINEL OTO YEDEK PARÇA" className="h-14 w-auto mx-auto" />
+            </Link>
+          </div>
+          <div className="bg-white rounded-2xl shadow-sm border border-border p-8 text-center">
+            <div className="flex items-center justify-center w-16 h-16 bg-green-50 rounded-full mx-auto mb-5">
+              <MailCheck size={32} className="text-green-600" />
+            </div>
+            <h1 className="text-xl font-bold text-[#111827] mb-2">E-postanızı Doğrulayın</h1>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+              <strong className="text-[#111827]">{registeredEmail}</strong> adresine bir doğrulama bağlantısı gönderdik.
+              Hesabınızı aktifleştirmek için e-postanızdaki bağlantıya tıklayın.
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Mail gelmediyse spam/gereksiz klasörünü kontrol edin.
+            </p>
+            <div className="mt-6 pt-6 border-t border-border">
+              <Link href="/login" className="text-sm text-brand font-semibold hover:underline">
+                Giriş sayfasına dön
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[#F3F4F6] flex items-center justify-center px-4 py-12">
@@ -80,7 +112,6 @@ export default function RegisterPage() {
               </div>
             )}
 
-            {/* Name row */}
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <Label htmlFor="firstName" className="text-xs font-semibold text-[#111827] uppercase tracking-wide">Ad</Label>

@@ -25,9 +25,13 @@ public class AuthController : ControllerBase
             var result = await _authService.LoginAsync(request, ct);
             return Ok(result);
         }
+        catch (InvalidOperationException ex) when (ex.Message == "EMAIL_NOT_VERIFIED")
+        {
+            return StatusCode(403, new { message = "E-posta adresiniz henüz doğrulanmamış. Lütfen gelen kutunuzu kontrol edin.", code = "EMAIL_NOT_VERIFIED" });
+        }
         catch (UnauthorizedAccessException)
         {
-            return Unauthorized(new { message = "Invalid credentials." });
+            return Unauthorized(new { message = "E-posta veya şifre hatalı." });
         }
     }
 
@@ -37,14 +41,42 @@ public class AuthController : ControllerBase
     {
         try
         {
-            var result = await _authService.RegisterAsync(request, ct);
-            return Ok(result);
+            await _authService.RegisterAsync(request, ct);
+            return Ok(new { message = "Kayıt başarılı. Hesabınızı aktifleştirmek için e-posta adresinizi kontrol edin." });
         }
         catch (InvalidOperationException)
         {
-            // Return same shape as success to prevent email enumeration
             return Conflict(new { message = "Bu e-posta adresiyle zaten bir hesap mevcut." });
         }
+    }
+
+    [HttpGet("verify-email")]
+    public async Task<IActionResult> VerifyEmail([FromQuery] string token, CancellationToken ct)
+    {
+        var success = await _authService.VerifyEmailAsync(token, ct);
+        if (!success)
+            return BadRequest(new { message = "Doğrulama bağlantısı geçersiz veya süresi dolmuş." });
+
+        return Ok(new { message = "E-posta adresiniz başarıyla doğrulandı. Giriş yapabilirsiniz." });
+    }
+
+    [HttpPost("forgot-password")]
+    [EnableRateLimiting("register")]
+    public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request, CancellationToken ct)
+    {
+        await _authService.ForgotPasswordAsync(request.Email, ct);
+        // Always return OK to prevent email enumeration
+        return Ok(new { message = "Şifre sıfırlama bağlantısı e-posta adresinize gönderildi." });
+    }
+
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request, CancellationToken ct)
+    {
+        var success = await _authService.ResetPasswordAsync(request.Token, request.NewPassword, ct);
+        if (!success)
+            return BadRequest(new { message = "Bağlantı geçersiz veya süresi dolmuş." });
+
+        return Ok(new { message = "Şifreniz başarıyla güncellendi." });
     }
 
     [HttpPost("refresh")]

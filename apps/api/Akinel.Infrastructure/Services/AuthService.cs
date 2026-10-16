@@ -17,14 +17,20 @@ namespace Akinel.Infrastructure.Services;
 public class AuthService : IAuthService
 {
     private readonly AkinelDbContext _context;
+    private readonly IEmailService _email;
     private readonly SessionSettings _session;
     private readonly string _jwtSecret;
     private readonly string _jwtIssuer;
     private readonly string _jwtAudience;
 
-    public AuthService(AkinelDbContext context, IOptions<SessionSettings> sessionOptions, IOptions<JwtSettings> jwtOptions)
+    public AuthService(
+        AkinelDbContext context,
+        IEmailService email,
+        IOptions<SessionSettings> sessionOptions,
+        IOptions<JwtSettings> jwtOptions)
     {
         _context = context;
+        _email = email;
         _session = sessionOptions.Value;
         _jwtSecret = jwtOptions.Value.Secret;
         _jwtIssuer = jwtOptions.Value.Issuer;
@@ -34,21 +40,28 @@ public class AuthService : IAuthService
     public async Task<AuthResponse> LoginAsync(LoginRequest request, CancellationToken ct = default)
     {
         var normalized = request.Email.ToUpperInvariant();
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == normalized && u.IsActive, ct)
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == normalized, ct)
             ?? throw new UnauthorizedAccessException("Invalid credentials.");
 
         if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
             throw new UnauthorizedAccessException("Invalid credentials.");
 
+        if (!user.IsEmailVerified)
+            throw new InvalidOperationException("EMAIL_NOT_VERIFIED");
+
+        if (!user.IsActive)
+            throw new UnauthorizedAccessException("Invalid credentials.");
+
         return await GenerateAuthResponseAsync(user, ct);
     }
 
-    public async Task<AuthResponse> RegisterAsync(RegisterRequest request, CancellationToken ct = default)
+    public async Task RegisterAsync(RegisterRequest request, CancellationToken ct = default)
     {
         var normalized = request.Email.ToUpperInvariant();
         if (await _context.Users.AnyAsync(u => u.NormalizedEmail == normalized, ct))
             throw new InvalidOperationException("Email already registered.");
 
+        var token = GenerateSecureToken();
         var user = new User
         {
             Email = request.Email,
@@ -57,12 +70,67 @@ public class AuthService : IAuthService
             FirstName = request.FirstName,
             LastName = request.LastName,
             PhoneNumber = request.PhoneNumber,
-            Role = UserRole.Customer
+            Role = UserRole.Customer,
+            IsActive = true,
+            IsEmailVerified = false,
+            EmailVerificationToken = token,
+            EmailVerificationTokenExpiry = DateTime.UtcNow.AddHours(24),
         };
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync(ct);
-        return await GenerateAuthResponseAsync(user, ct);
+
+        await _email.SendVerificationEmailAsync(user.Email, user.FirstName, token, ct);
+    }
+
+    public async Task<bool> VerifyEmailAsync(string token, CancellationToken ct = default)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(
+            u => u.EmailVerificationToken == token && !u.IsEmailVerified, ct);
+
+        if (user == null) return false;
+        if (user.EmailVerificationTokenExpiry < DateTime.UtcNow) return false;
+
+        user.IsEmailVerified = true;
+        user.EmailVerificationToken = null;
+        user.EmailVerificationTokenExpiry = null;
+        await _context.SaveChangesAsync(ct);
+        return true;
+    }
+
+    public async Task<bool> ForgotPasswordAsync(string email, CancellationToken ct = default)
+    {
+        var normalized = email.ToUpperInvariant();
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == normalized && u.IsEmailVerified, ct);
+        if (user == null) return true; // don't reveal existence
+
+        var token = GenerateSecureToken();
+        user.PasswordResetToken = token;
+        user.PasswordResetTokenExpiry = DateTime.UtcNow.AddHours(1);
+        await _context.SaveChangesAsync(ct);
+
+        await _email.SendPasswordResetEmailAsync(user.Email, user.FirstName, token, ct);
+        return true;
+    }
+
+    public async Task<bool> ResetPasswordAsync(string token, string newPassword, CancellationToken ct = default)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.PasswordResetToken == token, ct);
+        if (user == null) return false;
+        if (user.PasswordResetTokenExpiry < DateTime.UtcNow) return false;
+
+        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
+        user.PasswordResetToken = null;
+        user.PasswordResetTokenExpiry = null;
+
+        // revoke all refresh tokens for security
+        var tokens = await _context.RefreshTokens
+            .Where(t => t.UserId == user.Id && !t.IsRevoked)
+            .ToListAsync(ct);
+        foreach (var t in tokens) { t.IsRevoked = true; t.RevokedAt = DateTime.UtcNow; }
+
+        await _context.SaveChangesAsync(ct);
+        return true;
     }
 
     public async Task<AuthResponse?> RefreshTokenAsync(string refreshToken, CancellationToken ct = default)
@@ -75,10 +143,8 @@ public class AuthService : IAuthService
 
         if (token == null) return null;
 
-        // Absolute session timeout (applies to all roles)
         if (token.AbsoluteExpiresAt < now) return null;
 
-        // Idle timeout — applies to admins only
         if (token.User.Role == UserRole.Admin)
         {
             var lastActivity = token.LastUsedAt ?? token.CreatedAt;
@@ -90,7 +156,6 @@ public class AuthService : IAuthService
         token.RevokedAt = now;
         await _context.SaveChangesAsync(ct);
 
-        // Pass the original absolute expiry so repeated refreshes cannot extend the session beyond it
         return await GenerateAuthResponseAsync(token.User, ct, token.AbsoluteExpiresAt);
     }
 
@@ -107,11 +172,10 @@ public class AuthService : IAuthService
     {
         var now = DateTime.UtcNow;
         var accessToken = GenerateJwt(user, now);
-        var refreshTokenValue = GenerateRefreshToken();
+        var refreshTokenValue = GenerateSecureToken();
 
         var idleMinutes = user.Role == UserRole.Admin ? _session.AdminIdleTimeoutMinutes : _session.RefreshTokenDays * 24 * 60;
         var refreshExpiry = now.AddMinutes(idleMinutes);
-        // On first login, set the absolute expiry. On refresh, inherit it — never extend it.
         var absoluteExpiry = inheritedAbsoluteExpiry ?? (user.Role == UserRole.Admin
             ? now.AddHours(_session.AdminAbsoluteTimeoutHours)
             : now.AddDays(_session.RefreshTokenDays));
@@ -151,11 +215,11 @@ public class AuthService : IAuthService
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
-    private static string GenerateRefreshToken()
+    private static string GenerateSecureToken()
     {
         var bytes = new byte[64];
         using var rng = RandomNumberGenerator.Create();
         rng.GetBytes(bytes);
-        return Convert.ToBase64String(bytes);
+        return Convert.ToBase64String(bytes).Replace("+", "-").Replace("/", "_").TrimEnd('=');
     }
 }
