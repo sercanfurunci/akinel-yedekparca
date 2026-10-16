@@ -544,57 +544,74 @@ export function VehicleFinder({
               <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
 
                 {/* Sidebar — desktop only */}
-                <div className="hidden md:flex flex-col w-52 border-r shrink-0 bg-muted/20">
-                  <div className="flex-1 overflow-y-auto py-2">
+                <div className="hidden md:flex flex-col w-56 border-r shrink-0 bg-muted/20">
+                  <div className="flex-1 overflow-y-auto py-4 px-5">
                     {STEPS.map((step, i) => {
                       const done = i < stepIndex;
                       const active = step.id === currentStep;
                       const reachable = i <= stepIndex;
                       const val = getStepValue(step.id);
-                      const showLogo = step.id === 'marka' && selectedMake?.logoUrl && (done || active);
+                      const isLast = i === STEPS.length - 1;
                       return (
-                        <button
-                          key={step.id}
-                          disabled={!reachable}
-                          onClick={() => { if (reachable) { setCurrentStep(step.id); setFilter(''); } }}
-                          className={cn(
-                            'flex items-center gap-3 px-4 py-3 text-left transition-colors w-full',
-                            active ? 'bg-brand/5' : reachable ? 'hover:bg-muted/60' : '',
-                            !reachable && 'opacity-40 cursor-not-allowed'
-                          )}
-                        >
-                          <div className={cn(
-                            'w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 border-2',
-                            done ? 'bg-brand border-brand text-white'
-                              : active ? 'bg-white border-brand text-brand'
-                              : 'bg-white border-border text-muted-foreground'
-                          )}>
-                            {done ? <Check size={11} strokeWidth={3} /> : i + 1}
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <p className={cn('text-sm font-semibold leading-tight', active ? 'text-brand' : 'text-foreground')}>
-                              {step.label}
-                            </p>
-                            {showLogo ? (
-                              <div className="flex items-center gap-1.5 mt-0.5">
-                                <img
-                                  src={getImageUrl(selectedMake!.logoUrl)!}
-                                  alt={selectedMake!.name}
-                                  className="h-4 w-8 object-contain shrink-0"
-                                />
-                                <span className="text-xs text-muted-foreground truncate">{val}</span>
-                              </div>
-                            ) : (
-                              <p className="text-xs text-muted-foreground truncate">
-                                {val || 'Seçilmedi'}
-                              </p>
+                        <div key={step.id} className="flex gap-3">
+                          {/* Circle + connecting line */}
+                          <div className="flex flex-col items-center">
+                            <button
+                              disabled={!reachable}
+                              onClick={() => {
+                                if (!reachable) return;
+                                setCurrentStep(step.id); setFilter('');
+                              }}
+                              className={cn(
+                                'w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 shrink-0 transition-all',
+                                done ? 'bg-brand border-brand text-white'
+                                  : active ? 'border-brand text-brand bg-white'
+                                  : 'border-border text-muted-foreground bg-white',
+                                !reachable && 'opacity-40 cursor-not-allowed',
+                                reachable && 'cursor-pointer'
+                              )}
+                            >
+                              {done ? <Check size={12} strokeWidth={3} /> : i + 1}
+                            </button>
+                            {!isLast && (
+                              <div className="w-px flex-1 mt-1 mb-1 border-l-2 border-dashed border-border/60" />
                             )}
                           </div>
-                        </button>
+                          {/* Text */}
+                          <button
+                            disabled={!reachable}
+                            onClick={() => {
+                              if (!reachable) return;
+                              if (step.id === 'marka') { reset(); return; }
+                              setCurrentStep(step.id); setFilter('');
+                            }}
+                            className={cn(
+                              'flex-1 text-left pb-4 min-w-0',
+                              !reachable && 'opacity-40 cursor-not-allowed',
+                              reachable && 'cursor-pointer'
+                            )}
+                          >
+                            <p className={cn('text-sm font-semibold leading-tight', active ? 'text-brand' : done ? 'text-foreground' : 'text-muted-foreground')}>
+                              {step.label}
+                            </p>
+                            {step.id === 'marka' && selectedMake && (done || active) ? (
+                              <div className="flex items-center gap-1.5 mt-0.5">
+                                {selectedMake.logoUrl && (
+                                  <img src={getImageUrl(selectedMake.logoUrl)!} alt={selectedMake.name} className="h-4 w-7 object-contain shrink-0" />
+                                )}
+                                <span className={cn('text-xs truncate', active ? 'text-brand' : 'text-muted-foreground')}>{selectedMake.name}</span>
+                              </div>
+                            ) : (
+                              <p className={cn('text-xs truncate mt-0.5', active ? 'text-brand' : 'text-muted-foreground')}>
+                                {active ? 'Seçiliyor' : val || 'Seçilmedi'}
+                              </p>
+                            )}
+                          </button>
+                        </div>
                       );
                     })}
                   </div>
-                  <div className="px-4 py-3 border-t">
+                  <div className="px-5 py-3 border-t">
                     <button
                       onClick={reset}
                       className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
