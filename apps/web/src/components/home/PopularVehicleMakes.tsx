@@ -29,8 +29,6 @@ const STRIP_SLUGS = [
   'mercedes', 'opel', 'peugeot', 'renault', 'toyota', 'volkswagen', 'honda',
 ];
 
-// max-w-7xl = 1280px, px-4 padding = 32px total → 1248px usable
-// 4 cards × 300px + 3 gaps × 16px = 1200 + 48 = 1248px ✓
 const CARD_W = 300;
 const GAP = 16;
 const SLIDE_INTERVAL = 2000;
@@ -48,14 +46,26 @@ function findModel(all: VehicleModel[], kw: string) {
 function Card({ make, models }: MakeCard) {
   return (
     <div
-      className="border border-border rounded-xl p-5 flex flex-col bg-white hover:border-brand/40 hover:shadow-md transition-all shrink-0"
+      className="border border-border rounded-xl p-5 flex flex-col bg-white hover:border-brand/40 hover:shadow-md transition-all shrink-0 snap-start"
       style={{ width: CARD_W, minHeight: 320 }}
     >
-      <div className="flex justify-center mb-3">
-        {make.logoUrl
-          ? <div className="relative h-12 w-24"><Image src={getImageUrl(make.logoUrl)!} alt={make.name} fill className="object-contain" sizes="96px" /></div>
-          : <div className="h-12 w-12 rounded-full bg-brand/10 flex items-center justify-center text-brand font-bold text-lg">{make.name[0]}</div>
-        }
+      {/* Fixed-height logo area so all cards align regardless of logo shape */}
+      <div className="flex items-center justify-center h-16 mb-3">
+        {make.logoUrl ? (
+          <div className="relative h-14 w-28">
+            <Image
+              src={getImageUrl(make.logoUrl)!}
+              alt={make.name}
+              fill
+              className="object-contain"
+              sizes="112px"
+            />
+          </div>
+        ) : (
+          <div className="h-12 w-12 rounded-full bg-brand/10 flex items-center justify-center text-brand font-bold text-lg">
+            {make.name[0]}
+          </div>
+        )}
       </div>
       <p className="text-center text-sm font-bold text-[#111827] mb-3 leading-snug">
         {make.name} Oto Yedek Parçaları
@@ -85,7 +95,7 @@ function Card({ make, models }: MakeCard) {
 function AllBrandsCard() {
   return (
     <div
-      className="border border-dashed border-border rounded-xl p-5 flex flex-col items-center justify-center bg-[#F9FAFB] shrink-0 gap-3"
+      className="border border-dashed border-border rounded-xl p-5 flex flex-col items-center justify-center bg-[#F9FAFB] shrink-0 snap-start gap-3"
       style={{ width: CARD_W, minHeight: 320 }}
     >
       <LayoutGrid size={36} className="text-gray-300" />
@@ -107,6 +117,7 @@ export function PopularVehicleMakes() {
   const [animated, setAnimated] = useState(true);
   const paused = useRef(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
   const loaded = useRef(false);
 
   useEffect(() => {
@@ -145,9 +156,8 @@ export function PopularVehicleMakes() {
     }).catch(() => {}).finally(() => setLoading(false));
   }
 
-  const totalItems = cards.length + 1; // cards + AllBrands = 14
+  const totalItems = cards.length + 1;
 
-  // Forward snap: when offset reaches totalItems, instantly reset to 0 (set2 start = set1 start)
   useEffect(() => {
     if (offset < totalItems || cards.length === 0) return;
     const t = setTimeout(() => {
@@ -157,14 +167,12 @@ export function PopularVehicleMakes() {
     return () => clearTimeout(t);
   }, [offset, totalItems, cards.length]);
 
-  // Re-enable animation after snap
   useEffect(() => {
     if (!animated) {
       requestAnimationFrame(() => requestAnimationFrame(() => setAnimated(true)));
     }
   }, [animated]);
 
-  // Auto-advance
   useEffect(() => {
     if (cards.length === 0) return;
     const id = setInterval(() => {
@@ -180,7 +188,6 @@ export function PopularVehicleMakes() {
 
   const slidePrev = useCallback(() => {
     if (offset === 0) {
-      // Jump to cloned end (invisible), then animate back
       setAnimated(false);
       setOffset(totalItems);
       requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -193,12 +200,17 @@ export function PopularVehicleMakes() {
     }
   }, [offset, totalItems]);
 
+  // Mobile scroll helpers
+  const scrollMobileBy = (dir: 1 | -1) => {
+    mobileScrollRef.current?.scrollBy({ left: dir * (CARD_W + GAP), behavior: 'smooth' });
+  };
+
   if (loading) {
     return (
       <section ref={sectionRef} className="bg-white border-b border-border py-10">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="h-6 w-72 bg-gray-200 rounded animate-pulse mb-6" />
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-72 bg-gray-100 rounded-xl animate-pulse" />)}
           </div>
         </div>
@@ -208,13 +220,12 @@ export function PopularVehicleMakes() {
 
   if (cards.length === 0) return <div ref={sectionRef} />;
 
-  // Render 2 copies for seamless forward loop; backward edge handled by jump trick
   const allItems: (MakeCard | null)[] = [...cards, null];
   const doubled = [...allItems, ...allItems];
 
   return (
     <section ref={sectionRef} className="bg-white border-b border-border py-10">
-      {/* Title + arrows */}
+      {/* Title */}
       <div className="container mx-auto px-4 max-w-7xl mb-6">
         <div className="flex items-end justify-between">
           <div>
@@ -222,48 +233,83 @@ export function PopularVehicleMakes() {
             <h2 className="text-xl md:text-2xl font-bold text-[#111827]">Popüler Oto Yedek Parça Fiyatları</h2>
             <p className="text-sm text-muted-foreground mt-1">Marka ve modele göre yedek parça bulun</p>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={slidePrev}
-              className="h-9 w-9 rounded-full border border-border flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
-              aria-label="Önceki"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              type="button"
-              onClick={slideNext}
-              className="h-9 w-9 rounded-full border border-border flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
-              aria-label="Sonraki"
-            >
-              <ChevronRight size={18} />
-            </button>
-            <Link href="/vehicle" className="ml-2 text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors">
-              Tüm Markalar <ChevronRight size={14} />
-            </Link>
-          </div>
+          <Link href="/vehicle" className="text-sm text-brand hover:text-brand/80 font-semibold flex items-center gap-1 transition-colors">
+            Tüm Markalar <ChevronRight size={14} />
+          </Link>
         </div>
       </div>
 
-      {/* Carousel — overflow-hidden clips to container width (1248px = 4 × 300 + 3 × 16) */}
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div style={{ overflow: 'hidden' }}>
-          <div
-            style={{
-              display: 'flex',
-              gap: GAP,
-              transform: `translateX(-${offset * (CARD_W + GAP)}px)`,
-              transition: animated ? `transform ${TRANSITION_MS}ms ease` : 'none',
-            }}
-            onMouseEnter={() => { paused.current = true; }}
-            onMouseLeave={() => { paused.current = false; }}
-          >
-            {doubled.map((card, i) =>
-              card === null
-                ? <AllBrandsCard key={`ab-${i}`} />
-                : <Card key={`${card.make.id}-${i}`} {...card} />
-            )}
+      {/* ── MOBILE: native horizontal scroll ── */}
+      <div className="md:hidden relative">
+        <div
+          ref={mobileScrollRef}
+          className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory px-4 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        >
+          {allItems.map((card, i) =>
+            card === null
+              ? <AllBrandsCard key={`ab-m-${i}`} />
+              : <Card key={`${card.make.id}-m`} {...card} />
+          )}
+        </div>
+        {/* Mobile side arrows */}
+        <button
+          type="button"
+          onClick={() => scrollMobileBy(-1)}
+          aria-label="Önceki"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white border border-border shadow flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
+        >
+          <ChevronLeft size={18} />
+        </button>
+        <button
+          type="button"
+          onClick={() => scrollMobileBy(1)}
+          aria-label="Sonraki"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white border border-border shadow flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
+        >
+          <ChevronRight size={18} />
+        </button>
+      </div>
+
+      {/* ── DESKTOP: JS auto-carousel with side arrows ── */}
+      <div className="hidden md:block relative">
+        {/* Left arrow */}
+        <button
+          type="button"
+          onClick={slidePrev}
+          aria-label="Önceki"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white border border-border shadow flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
+        >
+          <ChevronLeft size={18} />
+        </button>
+
+        {/* Right arrow */}
+        <button
+          type="button"
+          onClick={slideNext}
+          aria-label="Sonraki"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white border border-border shadow flex items-center justify-center text-[#374151] hover:border-brand hover:text-brand transition-colors"
+        >
+          <ChevronRight size={18} />
+        </button>
+
+        <div className="container mx-auto px-10 max-w-7xl">
+          <div style={{ overflow: 'hidden' }}>
+            <div
+              style={{
+                display: 'flex',
+                gap: GAP,
+                transform: `translateX(-${offset * (CARD_W + GAP)}px)`,
+                transition: animated ? `transform ${TRANSITION_MS}ms ease` : 'none',
+              }}
+              onMouseEnter={() => { paused.current = true; }}
+              onMouseLeave={() => { paused.current = false; }}
+            >
+              {doubled.map((card, i) =>
+                card === null
+                  ? <AllBrandsCard key={`ab-${i}`} />
+                  : <Card key={`${card.make.id}-${i}`} {...card} />
+              )}
+            </div>
           </div>
         </div>
       </div>

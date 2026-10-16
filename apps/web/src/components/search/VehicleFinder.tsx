@@ -255,11 +255,13 @@ export function VehicleFinder({
   const renderMakeGrid = (list: VehicleMake[]) =>
     list.filter(m => m.name.toLowerCase().includes(q)).map(make => (
       <button key={make.id} onClick={() => pickMake(make)}
-        className="flex items-center gap-2.5 p-3 rounded-xl border border-border hover:border-brand hover:bg-brand/5 transition-colors text-left group">
-        {make.logoUrl
-          ? <img src={make.logoUrl} alt={make.name} className="w-8 h-8 object-contain shrink-0" />
-          : <Car size={20} className="text-muted-foreground shrink-0" />}
-        <span className="text-sm font-medium truncate group-hover:text-brand transition-colors">{make.name}</span>
+        className="flex items-center gap-3 p-3 rounded-xl border border-border hover:border-brand hover:bg-brand/5 active:scale-[0.97] transition-all text-left group min-h-[56px]">
+        <div className="w-10 h-10 flex items-center justify-center shrink-0">
+          {make.logoUrl
+            ? <img src={make.logoUrl} alt={make.name} className="w-10 h-10 object-contain" />
+            : <Car size={22} className="text-muted-foreground" />}
+        </div>
+        <span className="text-sm font-semibold truncate group-hover:text-brand transition-colors">{make.name}</span>
       </button>
     ));
 
@@ -291,51 +293,51 @@ export function VehicleFinder({
 
       case 'seri':
         return (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             {models.filter(m => m.name.toLowerCase().includes(q)).map(model => (
               <button key={model.id} onClick={() => pickModel(model)}
-                className="px-3 py-3 rounded-xl border border-border hover:border-brand hover:bg-brand/5 transition-colors text-left group">
-                <span className="text-sm font-medium group-hover:text-brand transition-colors">{model.name}</span>
+                className="px-4 py-3.5 rounded-xl border border-border hover:border-brand hover:bg-brand/5 active:scale-[0.97] transition-all text-left group min-h-[52px]">
+                <span className="text-sm font-semibold group-hover:text-brand transition-colors">{model.name}</span>
               </button>
             ))}
-            {models.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8 col-span-3">Model bulunamadı.</p>}
+            {models.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8 col-span-2">Model bulunamadı.</p>}
           </div>
         );
 
       case 'yil':
         return (
-          <div className="grid grid-cols-5 sm:grid-cols-6 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {availableYears.filter(y => String(y).includes(q)).map(year => (
               <button key={year} onClick={() => pickYear(year)}
-                className="py-3 rounded-xl border border-border text-sm font-semibold hover:border-brand hover:bg-brand/5 hover:text-brand transition-colors text-center">
+                className="py-3.5 rounded-xl border border-border text-sm font-bold hover:border-brand hover:bg-brand/5 hover:text-brand active:scale-[0.97] transition-all text-center min-h-[52px]">
                 {year}
               </button>
             ))}
-            {availableYears.length === 0 && !loading && <p className="text-sm text-muted-foreground col-span-6 text-center py-8">Yıl bilgisi bulunamadı.</p>}
+            {availableYears.length === 0 && !loading && <p className="text-sm text-muted-foreground col-span-2 text-center py-8">Yıl bilgisi bulunamadı.</p>}
           </div>
         );
 
       case 'kasa':
         return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-3">
             {filteredGenerations.filter(g => g.name.toLowerCase().includes(q)).map(gen => (
               <button key={gen.id} onClick={() => pickGeneration(gen)}
                 className={cn(
-                  'flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-colors text-left group',
+                  'flex flex-col rounded-xl border transition-all text-left group overflow-hidden active:scale-[0.97]',
                   selectedGeneration?.id === gen.id
                     ? 'border-brand bg-brand/5'
                     : 'border-border hover:border-brand hover:bg-brand/5'
                 )}>
-                <div className="relative h-14 w-20 shrink-0 rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
+                <div className="relative w-full aspect-[4/3] bg-gray-50 flex items-center justify-center overflow-hidden">
                   {gen.imageUrl ? (
-                    <img src={getImageUrl(gen.imageUrl)!} alt={gen.name} className="w-full h-full object-cover" />
+                    <img src={getImageUrl(gen.imageUrl)!} alt={gen.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                   ) : (
-                    <Car size={18} className="text-gray-300 group-hover:text-brand/40 transition-colors" />
+                    <Car size={28} className="text-gray-200 group-hover:text-brand/30 transition-colors" />
                   )}
                 </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-medium group-hover:text-brand transition-colors leading-snug">{gen.name}</p>
-                  {gen.bodyType && <p className="text-xs text-muted-foreground mt-0.5">{gen.bodyType}</p>}
+                <div className="px-3 py-2.5">
+                  <p className="text-xs font-semibold group-hover:text-brand transition-colors leading-snug">{gen.name}</p>
+                  {gen.bodyType && <p className="text-[11px] text-muted-foreground mt-0.5">{gen.bodyType}</p>}
                 </div>
               </button>
             ))}
@@ -347,20 +349,20 @@ export function VehicleFinder({
 
       case 'sanziman':
         return (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             {availableGearboxes.filter(gb => gb.toLowerCase().includes(q)).map(gb => (
               <button key={gb} onClick={() => pickGearbox(gb)}
                 className={cn(
-                  'px-3 py-3 rounded-xl border transition-colors text-left group',
+                  'px-4 py-4 rounded-xl border transition-all text-left group active:scale-[0.97] min-h-[56px]',
                   selectedGearbox === gb
                     ? 'border-brand bg-brand/5'
                     : 'border-border hover:border-brand hover:bg-brand/5'
                 )}>
-                <span className="text-sm font-medium group-hover:text-brand transition-colors">{gb}</span>
+                <span className="text-sm font-semibold group-hover:text-brand transition-colors">{gb}</span>
               </button>
             ))}
             {availableGearboxes.length === 0 && !loading && (
-              <p className="text-sm text-muted-foreground text-center py-8 col-span-3">Şanzıman bilgisi bulunamadı.</p>
+              <p className="text-sm text-muted-foreground text-center py-8 col-span-2">Şanzıman bilgisi bulunamadı.</p>
             )}
           </div>
         );
@@ -400,6 +402,20 @@ export function VehicleFinder({
 
   const currentStepMeta = STEPS.find(s => s.id === currentStep)!;
 
+  // Build breadcrumb label for bottom bar
+  const breadcrumb = [
+    selectedMake?.name,
+    selectedModel?.name,
+    selectedYear ? String(selectedYear) : null,
+    selectedGeneration?.name,
+  ].filter(Boolean).join(' · ');
+
+  const canGoBack = stepIndex > 0;
+  const goBack = () => {
+    const prev = STEPS[stepIndex - 1];
+    if (prev) { setCurrentStep(prev.id); setFilter(''); }
+  };
+
   return (
     <>
       {/* Trigger button — hidden in controlled mode */}
@@ -424,28 +440,76 @@ export function VehicleFinder({
         </div>
       )}
 
-      {/* Modal */}
+      {/* Modal — bottom sheet on mobile, centered on desktop */}
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-6 bg-black/60 backdrop-blur-sm"
           onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
         >
-          <div className="bg-background rounded-2xl shadow-2xl w-full max-w-3xl h-[85vh] max-h-[680px] flex flex-col overflow-hidden">
+          <div className="bg-background rounded-t-3xl sm:rounded-2xl shadow-2xl w-full sm:max-w-3xl h-[94vh] sm:h-[85vh] sm:max-h-[680px] flex flex-col overflow-hidden">
+
+            {/* Drag handle — mobile only */}
+            <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
+              <div className="w-10 h-1 bg-muted-foreground/30 rounded-full" />
+            </div>
+
             {/* Header */}
-            <div className="flex items-start justify-between px-5 py-4 border-b shrink-0">
-              <div>
-                <h2 className="font-bold text-base">Aracınıza Uyumlu Parçaları Seçin</h2>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  Aracınıza ait marka, model gibi detayları girerek araç seçin ve uyumlu parçaları bulun.
-                </p>
+            <div className="flex items-center justify-between px-5 pt-3 pb-3 shrink-0">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-brand/10 flex items-center justify-center shrink-0">
+                  <Car size={18} className="text-brand" />
+                </div>
+                <div>
+                  <h2 className="font-bold text-sm leading-tight">{currentStepMeta.title}</h2>
+                  <p className="text-xs text-muted-foreground">
+                    <span className="text-brand font-bold">{String(stepIndex + 1).padStart(2, '0')}</span>
+                    <span className="text-muted-foreground/60"> / {STEPS.length}</span>
+                  </p>
+                </div>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="ml-4 p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors shrink-0"
+                className="p-2 rounded-xl hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X size={18} />
               </button>
             </div>
+
+            {/* Step dots */}
+            {!showSummary && (
+              <div className="px-5 pb-3 shrink-0">
+                <div className="flex items-center gap-0">
+                  {STEPS.map((step, i) => {
+                    const done = i < stepIndex;
+                    const active = step.id === currentStep;
+                    const reachable = i <= stepIndex;
+                    return (
+                      <div key={step.id} className="flex items-center flex-1 last:flex-none">
+                        <button
+                          disabled={!reachable}
+                          onClick={() => { if (reachable) { setCurrentStep(step.id); setFilter(''); } }}
+                          className={cn(
+                            'w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-all border-2',
+                            done
+                              ? 'bg-brand border-brand text-white'
+                              : active
+                              ? 'bg-white border-brand text-brand'
+                              : 'bg-white border-border text-muted-foreground opacity-50'
+                          )}
+                        >
+                          {done ? <Check size={12} strokeWidth={3} /> : i + 1}
+                        </button>
+                        {i < STEPS.length - 1 && (
+                          <div className={cn('flex-1 h-0.5 mx-0.5', i < stepIndex ? 'bg-brand' : 'bg-border')} />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            <div className="border-t shrink-0" />
 
             {/* Body */}
             {showSummary && selectedEngine ? (
@@ -463,95 +527,59 @@ export function VehicleFinder({
               />
             ) : (
               <>
-                <div className="flex flex-1 min-h-0 overflow-hidden">
-                  {/* Left sidebar — steps */}
-                  <div className="hidden sm:flex w-48 shrink-0 border-r flex-col py-3 px-2 gap-0.5 overflow-y-auto">
-                    {STEPS.map((step, i) => {
-                      const val = getStepValue(step.id);
-                      const done = i < stepIndex;
-                      const active = step.id === currentStep;
-                      const reachable = i <= stepIndex;
-                      return (
-                        <button
-                          key={step.id}
-                          disabled={!reachable}
-                          onClick={() => { if (reachable) { setCurrentStep(step.id); setFilter(''); } }}
-                          className={cn(
-                            'flex items-start gap-2.5 p-2.5 rounded-lg text-left transition-colors w-full',
-                            active ? 'bg-brand/10' : reachable ? 'hover:bg-muted/60 cursor-pointer' : 'opacity-40 cursor-not-allowed'
-                          )}
-                        >
-                          <span className={cn(
-                            'flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5',
-                            done ? 'bg-brand text-white' : active ? 'bg-brand text-white' : 'bg-muted text-muted-foreground'
-                          )}>
-                            {done ? <Check size={11} strokeWidth={3} /> : i + 1}
-                          </span>
-                          <div className="min-w-0">
-                            <p className={cn('text-xs font-semibold leading-tight', active ? 'text-brand' : 'text-foreground')}>
-                              {step.label}
-                            </p>
-                            <p className="text-[11px] text-muted-foreground truncate mt-0.5">
-                              {val || (active ? 'Seçiliyor' : 'Seçilmedi')}
-                            </p>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {/* Right content area */}
-                  <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-                    {/* Content header */}
-                    <div className="flex items-center justify-between px-4 py-3 border-b gap-3 shrink-0">
-                      <h3 className="font-semibold text-sm">{currentStepMeta.title}</h3>
-                      <div className="relative">
-                        <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
-                        <input
-                          value={filter}
-                          onChange={e => setFilter(e.target.value)}
-                          placeholder="Filtrele"
-                          className="pl-7 pr-3 py-1.5 text-xs rounded-lg border bg-background focus:outline-none focus:ring-1 focus:ring-brand/40 w-32 sm:w-40"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Scrollable content */}
-                    <div className="flex-1 overflow-y-auto p-4">
-                      {loading ? (
-                        <div className="flex justify-center py-10">
-                          <Loader2 size={22} className="animate-spin text-brand" />
-                        </div>
-                      ) : (
-                        renderContent()
-                      )}
-                    </div>
+                {/* Search bar */}
+                <div className="px-4 py-2.5 shrink-0">
+                  <div className="relative">
+                    <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                    <input
+                      value={filter}
+                      onChange={e => setFilter(e.target.value)}
+                      placeholder="Ara..."
+                      className="w-full pl-9 pr-4 py-2.5 text-sm rounded-xl border bg-muted/40 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand focus:bg-background transition-colors"
+                    />
                   </div>
                 </div>
 
-                {/* Footer */}
-                <div className="flex items-center justify-between px-5 py-3.5 border-t bg-muted/20 shrink-0">
-                  <button
-                    onClick={reset}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-muted/60"
-                  >
-                    Sıfırla
-                  </button>
-                  <div className="flex items-center gap-2">
-                    {showSaveButton && selectedEngine && accessToken && (
-                      <Button variant="outline" size="sm" onClick={handleSave} disabled={saving}>
-                        {saving ? 'Kaydediliyor...' : 'Garaja Kaydet'}
-                      </Button>
+                {/* Scrollable content */}
+                <div className="flex-1 overflow-y-auto px-4 pb-4">
+                  {loading ? (
+                    <div className="flex justify-center py-12">
+                      <Loader2 size={24} className="animate-spin text-brand" />
+                    </div>
+                  ) : (
+                    renderContent()
+                  )}
+                </div>
+
+                {/* Bottom bar */}
+                <div className="flex items-center justify-between px-4 py-3 border-t bg-muted/20 shrink-0">
+                  <div className="min-w-0 flex-1 mr-3">
+                    {breadcrumb ? (
+                      <p className="text-xs font-semibold text-foreground truncate">{breadcrumb}</p>
+                    ) : (
+                      <p className="text-xs text-muted-foreground">Henüz seçim yok</p>
                     )}
-                    <Button
-                      size="sm"
-                      onClick={handleConfirm}
-                      disabled={!selectedEngine || confirming}
-                      className="bg-brand text-white hover:bg-brand/90 px-5"
+                    <p className="text-[11px] text-muted-foreground">{stepIndex}/{STEPS.length} adım tamamlandı</p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      onClick={reset}
+                      className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                      title="Sıfırla"
                     >
-                      {confirming ? <Loader2 size={14} className="animate-spin mr-1.5" /> : null}
-                      Aracı Seç
-                    </Button>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
+                      </svg>
+                    </button>
+                    {canGoBack && (
+                      <button
+                        onClick={goBack}
+                        className="flex items-center gap-1.5 px-4 h-9 rounded-xl border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors"
+                      >
+                        <ChevronLeft size={15} />
+                        Geri
+                      </button>
+                    )}
                   </div>
                 </div>
               </>

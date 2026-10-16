@@ -152,7 +152,7 @@ export function BrandLogoStrip() {
               <div className="flex flex-wrap gap-1.5 mb-3">
                 <button
                   onClick={() => setBodyFilter(null)}
-                  className={`px-3 py-1 text-xs rounded-full border transition-colors ${
+                  className={`px-3 py-1.5 text-xs rounded-full border transition-colors min-h-[32px] ${
                     bodyFilter === null ? 'bg-brand text-white border-brand' : 'border-border text-muted-foreground hover:border-brand hover:text-brand bg-white'
                   }`}
                 >
@@ -162,7 +162,7 @@ export function BrandLogoStrip() {
                   <button
                     key={bt}
                     onClick={() => setBodyFilter(bodyFilter === bt ? null : bt)}
-                    className={`px-3 py-1 text-xs rounded-full border transition-colors ${
+                    className={`px-3 py-1.5 text-xs rounded-full border transition-colors min-h-[32px] ${
                       bodyFilter === bt ? 'bg-brand text-white border-brand' : 'border-border text-muted-foreground hover:border-brand hover:text-brand bg-white'
                     }`}
                   >
@@ -174,7 +174,7 @@ export function BrandLogoStrip() {
 
             {/* Kasas grid */}
             {loadingGens ? (
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                 {Array.from({ length: 8 }).map((_, i) => (
                   <div key={i} className="h-16 bg-gray-100 rounded-lg animate-pulse" />
                 ))}
@@ -182,7 +182,7 @@ export function BrandLogoStrip() {
             ) : filtered.length === 0 ? (
               <p className="text-sm text-muted-foreground">Kasa bulunamadı.</p>
             ) : (
-              <div className="grid grid-cols-4 md:grid-cols-5 gap-2 max-h-80 overflow-y-auto pr-1">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 max-h-80 overflow-y-auto pr-1">
                 {filtered.map((gen) => (
                   <Link
                     key={gen.id}
