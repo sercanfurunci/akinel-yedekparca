@@ -9,7 +9,7 @@ import { getImageUrl } from '@/lib/utils';
 import type { VehicleMake, VehicleGenerationWithModel } from '@/lib/types';
 
 const STRIP_SLUGS = [
-  'audi', 'mercedes-benz', 'volkswagen', 'bmw', 'toyota',
+  'audi', 'mercedes', 'volkswagen', 'bmw', 'toyota',
   'hyundai', 'ford', 'citroen', 'opel', 'honda',
   'renault', 'fiat', 'peugeot',
 ];
@@ -43,7 +43,7 @@ export function BrandLogoStrip() {
       return;
     }
     setLoadingGens(true);
-    api.vehicles.generationsByMake(make.id, 24)
+    api.vehicles.generationsByMake(make.id)
       .then((data) => {
         const list = data as VehicleGenerationWithModel[];
         gensCache.set(make.id, list);

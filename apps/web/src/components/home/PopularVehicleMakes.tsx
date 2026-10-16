@@ -15,7 +15,7 @@ const POPULAR_MODELS: Record<string, string[]> = {
   'fiat':          ['Linea', 'Albea', 'Doblo', 'Egea', 'Uno', '500L'],
   'ford':          ['Fiesta', 'Focus', 'Transit', 'Mondeo', 'Courier', 'Fusion'],
   'hyundai':       ['Accent', 'Getz', 'i20', 'i30', 'Tucson', 'Santa Fe'],
-  'mercedes-benz': ['A Serisi', 'B Serisi', 'C Serisi', 'E Serisi', 'CLA', 'S Serisi'],
+  'mercedes': ['A Serisi', 'B Serisi', 'C Serisi', 'E Serisi', 'CLA', 'S Serisi'],
   'opel':          ['Corsa', 'Astra', 'Vectra', 'Insignia', 'Mokka', 'Grandland'],
   'peugeot':       ['206', '301', '307', '308', '2008', '3008'],
   'renault':       ['Clio', 'Laguna', 'Megane', 'Symbol', 'Master', 'Kangoo'],
@@ -26,7 +26,7 @@ const POPULAR_MODELS: Record<string, string[]> = {
 
 const STRIP_SLUGS = [
   'audi', 'bmw', 'citroen', 'fiat', 'ford', 'hyundai',
-  'mercedes-benz', 'opel', 'peugeot', 'renault', 'toyota', 'volkswagen', 'honda',
+  'mercedes', 'opel', 'peugeot', 'renault', 'toyota', 'volkswagen', 'honda',
 ];
 
 // max-w-7xl = 1280px, px-4 padding = 32px total → 1248px usable

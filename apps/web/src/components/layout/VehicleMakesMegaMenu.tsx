@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import type { VehicleMake } from '@/lib/types';
 
 const POPULAR_SLUGS = [
-  'audi', 'mercedes-benz', 'volkswagen', 'bmw', 'toyota',
+  'audi', 'mercedes', 'volkswagen', 'bmw', 'toyota',
   'hyundai', 'ford', 'citroen', 'opel', 'honda',
   'renault', 'fiat', 'peugeot',
 ];
