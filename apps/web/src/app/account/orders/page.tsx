@@ -36,7 +36,7 @@ export default function OrdersPage() {
   useEffect(() => {
     if (!_hasHydrated) return;
     if (!accessToken) {
-      router.push('/login?redirect=/account/orders');
+      router.push('/login?returnUrl=/account/orders');
       return;
     }
     api.orders.list(accessToken)

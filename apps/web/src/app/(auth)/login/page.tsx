@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -16,10 +16,10 @@ import { analytics } from '@/lib/analytics';
 import { posthogLogs } from '@/lib/posthogLogs';
 import type { AuthResponse } from '@/lib/types';
 
+// min(1) — server validates, not the client
 const schema = z.object({
   email: z.string().email('Geçerli bir e-posta adresi girin'),
-  password: z.string().min(8, 'Şifre en az 8 karakter olmalı'),
-  rememberMe: z.boolean().optional(),
+  password: z.string().min(1, 'Şifrenizi girin'),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -38,11 +38,20 @@ function LoginForm() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
-  const { setAuth } = useAuthStore();
+  const { setAuth, accessToken, user } = useAuthStore();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const returnUrl = searchParams.get('returnUrl') ?? '';
   const [error, setError] = useState('');
   const [emailNotVerified, setEmailNotVerified] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (accessToken && user) {
+      router.replace(returnUrl || (user.role === 'Admin' ? '/admin' : '/account'));
+    }
+  }, [accessToken, user, router, returnUrl]);
 
   const onSubmit = async (data: FormValues) => {
     setError('');
@@ -52,11 +61,12 @@ function LoginForm() {
       setAuth(res.user, res.accessToken, res.refreshToken);
       analytics.loginCompleted();
       posthogLogs.loginCompleted(res.user.role);
-      router.push(res.user.role === 'Admin' ? '/admin' : '/account');
+      router.push(returnUrl || (res.user.role === 'Admin' ? '/admin' : '/account'));
     } catch (err: unknown) {
       posthogLogs.loginFailed();
       const msg = err instanceof Error ? err.message : '';
-      if (msg.includes('403') || msg.includes('EMAIL_NOT_VERIFIED')) {
+      // msg format: "STATUS:message text"
+      if (msg.startsWith('403:')) {
         setEmailNotVerified(true);
       } else {
         setError('E-posta veya şifre hatalı. Lütfen tekrar deneyin.');
@@ -73,7 +83,7 @@ function LoginForm() {
       {emailNotVerified && (
         <div className="rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-3">
           <p className="font-semibold mb-1">E-posta adresiniz doğrulanmamış</p>
-          <p>Lütfen kayıt sırasında gönderilen doğrulama mailini kontrol edin. Spam klasörüne düşmüş olabilir.</p>
+          <p>Kayıt sırasında gönderilen doğrulama mailini kontrol edin. Spam klasörüne düşmüş olabilir.</p>
         </div>
       )}
 
@@ -119,15 +129,7 @@ function LoginForm() {
         {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
       </div>
 
-      <div className="flex items-center justify-between">
-        <label className="flex items-center gap-2 text-sm cursor-pointer text-[#111827]">
-          <input
-            type="checkbox"
-            {...register('rememberMe')}
-            className="rounded border-input accent-brand"
-          />
-          Beni Hatırla
-        </label>
+      <div className="flex items-center justify-end">
         <Link href="/forgot-password" className="text-xs text-brand font-semibold hover:underline">
           Şifremi Unuttum
         </Link>
@@ -159,7 +161,9 @@ export default function LoginPage() {
             <h1 className="text-2xl font-bold text-[#111827]">Giriş Yap</h1>
             <p className="text-sm text-muted-foreground mt-1">Hesabınıza erişmek için giriş yapın.</p>
           </div>
-          <LoginForm />
+          <Suspense fallback={null}>
+            <LoginForm />
+          </Suspense>
           <p className="text-sm text-center mt-6 text-muted-foreground">
             Hesabınız yok mu?{' '}
             <Link href="/register" className="text-brand font-semibold hover:underline">

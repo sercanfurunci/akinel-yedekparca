@@ -33,7 +33,7 @@ async function tryRefresh(): Promise<string | null> {
 
 function handleSessionExpired(): void {
   useAuthStore.getState().clearAuth();
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/login')) {
     window.location.href = '/login?session=expired';
   }
 }
@@ -88,13 +88,9 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
     const promise = fetch(`${API_BASE}${path}`, { headers, ...restOptions })
       .then(async (res) => {
         _inflight.delete(key);
-        if (res.status === 401) {
-          const body = await res.json().catch(() => null) as { message?: string } | null;
-          throw new Error(body?.message ?? `API error: ${res.status}`);
-        }
         if (!res.ok) {
           const body = await res.json().catch(() => null) as { message?: string } | null;
-          throw new Error(body?.message ?? `API error: ${res.status} ${res.statusText}`);
+          throw new Error(`${res.status}:${body?.message ?? `API error: ${res.status}`}`);
         }
         if (res.status === 204) return undefined;
         return res.json();
@@ -117,21 +113,21 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
         });
         if (!retryRes.ok) {
           const body = await retryRes.json().catch(() => null) as { message?: string } | null;
-          throw new Error(body?.message ?? `API error: ${retryRes.status} ${retryRes.statusText}`);
+          throw new Error(`${retryRes.status}:${body?.message ?? `API error: ${retryRes.status}`}`);
         }
         if (retryRes.status === 204) return undefined as unknown as T;
         return retryRes.json();
       }
     } else {
       const body = await res.json().catch(() => null) as { message?: string } | null;
-      throw new Error(body?.message ?? `API error: ${res.status} ${res.statusText}`);
+      throw new Error(`${res.status}:${body?.message ?? `API error: ${res.status}`}`);
     }
-    throw new Error('Oturumunuz sona erdi.');
+    throw new Error('401:Oturumunuz sona erdi.');
   }
 
   if (!res.ok) {
     const body = await res.json().catch(() => null) as { message?: string } | null;
-    throw new Error(body?.message ?? `API error: ${res.status} ${res.statusText}`);
+    throw new Error(`${res.status}:${body?.message ?? `API error: ${res.status}`}`);
   }
   if (res.status === 204) return undefined as unknown as T;
   return res.json();

@@ -44,7 +44,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
   useEffect(() => {
     if (!_hasHydrated) return;
     if (!accessToken) {
-      router.push('/login?redirect=/account/orders');
+      router.push('/login?returnUrl=/account/orders');
       return;
     }
     api.orders.get(id, accessToken)

@@ -17,7 +17,7 @@ export default function AccountPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) router.push('/login');
+    if (!isAuthenticated) router.push('/login?returnUrl=/account');
   }, [isAuthenticated, router]);
 
   if (!isAuthenticated || !user) return null;

@@ -63,7 +63,7 @@ export const useAuthStore = create<AuthStore>()(
               if (payload.exp && Date.now() / 1000 > payload.exp) {
                 // Token expired and no refreshToken in memory — force logout
                 state.clearAuth();
-                if (typeof window !== 'undefined') {
+                if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/login')) {
                   window.location.href = '/login?session=expired';
                 }
               } else {

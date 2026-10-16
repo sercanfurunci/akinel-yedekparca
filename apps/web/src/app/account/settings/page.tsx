@@ -72,7 +72,7 @@ export default function AccountSettingsPage() {
   const confirmPassword = useWatch({ control: passwordForm.control, name: 'confirmPassword', defaultValue: '' });
 
   useEffect(() => {
-    if (!accessToken) { router.push('/login'); return; }
+    if (!accessToken) { router.push('/login?returnUrl=/account/settings'); return; }
     api.account.getProfile(accessToken).then((data) => {
       const p = data as UserProfile;
       setProfile(p);
@@ -85,7 +85,7 @@ export default function AccountSettingsPage() {
         city: p.city ?? '',
         postalCode: p.postalCode ?? '',
       });
-    }).catch(() => router.push('/login'));
+    }).catch(() => router.push('/login?returnUrl=/account/settings'));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken]);
 
