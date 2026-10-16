@@ -18,7 +18,7 @@ public class EmailService : IEmailService
 
     public async Task SendVerificationEmailAsync(string toEmail, string firstName, string token, CancellationToken ct = default)
     {
-        var link = $"{_cfg.WebsiteUrl}/auth/verify-email?token={Uri.EscapeDataString(token)}";
+        var link = $"{_cfg.WebsiteUrl}/verify-email?token={Uri.EscapeDataString(token)}";
         var html = VerificationEmailHtml(firstName, link);
 
         var msg = new EmailMessage
@@ -33,7 +33,7 @@ public class EmailService : IEmailService
 
     public async Task SendPasswordResetEmailAsync(string toEmail, string firstName, string token, CancellationToken ct = default)
     {
-        var link = $"{_cfg.WebsiteUrl}/auth/reset-password?token={Uri.EscapeDataString(token)}";
+        var link = $"{_cfg.WebsiteUrl}/reset-password?token={Uri.EscapeDataString(token)}";
         var html = PasswordResetEmailHtml(firstName, link);
 
         var msg = new EmailMessage
