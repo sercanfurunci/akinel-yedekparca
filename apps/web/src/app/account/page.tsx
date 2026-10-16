@@ -111,7 +111,12 @@ export default function AccountPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">Hesap ayarları yakında kullanıma açılacaktır.</p>
+            <p className="text-sm text-muted-foreground mb-3">
+              Profil bilgilerinizi, adresinizi ve şifrenizi güncelleyin.
+            </p>
+            <Link href="/account/settings" className={cn(buttonVariants({ variant: 'outline' }), 'text-sm')}>
+              Ayarlara Git
+            </Link>
           </CardContent>
         </Card>
 

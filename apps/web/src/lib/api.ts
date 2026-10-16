@@ -212,6 +212,14 @@ export const api = {
     refresh: (refreshToken: string) =>
       request('/api/auth/refresh', { method: 'POST', body: JSON.stringify({ refreshToken }) }),
   },
+  account: {
+    getProfile: (token: string) =>
+      request('/api/account/profile', { headers: { Authorization: `Bearer ${token}` } }),
+    updateProfile: (data: unknown, token: string) =>
+      request('/api/account/profile', { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
+    changePassword: (data: { currentPassword: string; newPassword: string }, token: string) =>
+      request('/api/account/password', { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
+  },
   garage: {
     list: (token: string) =>
       request('/api/garage', { headers: { Authorization: `Bearer ${token}` } }),

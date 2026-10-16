@@ -135,6 +135,19 @@ export interface VehicleContext { engineId: string; makeName: string; modelName:
 export interface User { id: string; email: string; firstName: string; lastName: string; role: string; }
 export interface AuthResponse { accessToken: string; refreshToken: string; expiresAt: string; user: User; }
 
+export interface UserProfile {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber?: string;
+  addressLine?: string;
+  district?: string;
+  city?: string;
+  postalCode?: string;
+  role: string;
+}
+
 export interface Brand {
   id: string;
   name: string;

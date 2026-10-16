@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, Suspense } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
@@ -10,6 +10,7 @@ import { CheckCircle, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { PasswordStrengthMeter, ConfirmMatchHint } from '@/components/auth/PasswordStrength';
 import { api } from '@/lib/api';
 
 const schema = z.object({
@@ -28,13 +29,15 @@ type FormValues = z.infer<typeof schema>;
 function ResetForm() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token') ?? '';
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormValues>({
+  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
   const [done, setDone] = useState(false);
   const [error, setError] = useState('');
   const [showPwd, setShowPwd] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const newPassword = useWatch({ control, name: 'newPassword', defaultValue: '' });
+  const confirmPassword = useWatch({ control, name: 'confirmPassword', defaultValue: '' });
 
   const onSubmit = async (data: FormValues) => {
     setError('');
@@ -89,7 +92,7 @@ function ResetForm() {
               {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
           </div>
-          {errors.newPassword && <p className="text-xs text-destructive">{errors.newPassword.message}</p>}
+          <PasswordStrengthMeter password={newPassword} />
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="confirmPassword" className="text-xs font-semibold text-[#111827] uppercase tracking-wide">Şifre Tekrar</Label>
@@ -106,6 +109,7 @@ function ResetForm() {
               {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
           </div>
+          <ConfirmMatchHint password={newPassword} confirm={confirmPassword} />
           {errors.confirmPassword && <p className="text-xs text-destructive">{errors.confirmPassword.message}</p>}
         </div>
         <Button type="submit" className="w-full h-11 text-sm font-semibold" disabled={isSubmitting || !token}>

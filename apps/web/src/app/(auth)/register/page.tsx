@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
@@ -9,6 +9,7 @@ import { Eye, EyeOff, MailCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { PasswordStrengthMeter, ConfirmMatchHint } from '@/components/auth/PasswordStrength';
 import { api } from '@/lib/api';
 import { analytics } from '@/lib/analytics';
 
@@ -21,6 +22,8 @@ const schema = z.object({
     .regex(/[A-Z]/, 'Şifre en az bir büyük harf içermeli')
     .regex(/[0-9]/, 'Şifre en az bir rakam içermeli'),
   confirmPassword: z.string(),
+  termsAccepted: z.boolean().refine(v => v === true, 'Kullanım koşullarını kabul etmeniz gerekiyor'),
+  kvkkAccepted: z.boolean().refine(v => v === true, 'KVKK metnini onaylamanız gerekiyor'),
 }).refine((data) => data.password === data.confirmPassword, {
   message: 'Şifreler eşleşmiyor',
   path: ['confirmPassword'],
@@ -28,14 +31,18 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
+
 export default function RegisterPage() {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormValues>({
+  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [registeredEmail, setRegisteredEmail] = useState('');
+
+  const password = useWatch({ control, name: 'password', defaultValue: '' });
+  const confirmPassword = useWatch({ control, name: 'confirmPassword', defaultValue: '' });
 
   const onSubmit = async (data: FormValues) => {
     setError('');
@@ -77,9 +84,7 @@ export default function RegisterPage() {
               <strong className="text-[#111827]">{registeredEmail}</strong> adresine bir doğrulama bağlantısı gönderdik.
               Hesabınızı aktifleştirmek için e-postanızdaki bağlantıya tıklayın.
             </p>
-            <p className="text-xs text-muted-foreground">
-              Mail gelmediyse spam/gereksiz klasörünü kontrol edin.
-            </p>
+            <p className="text-xs text-muted-foreground">Mail gelmediyse spam/gereksiz klasörünü kontrol edin.</p>
             <div className="mt-6 pt-6 border-t border-border">
               <Link href="/login" className="text-sm text-brand font-semibold hover:underline">
                 Giriş sayfasına dön
@@ -144,7 +149,7 @@ export default function RegisterPage() {
                 <Input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
-                  placeholder="En az 8 karakter, büyük harf ve rakam"
+                  placeholder="Şifrenizi oluşturun"
                   autoComplete="new-password"
                   className="pr-10 h-11 focus-visible:border-brand focus-visible:ring-brand/30"
                   {...register('password')}
@@ -157,7 +162,10 @@ export default function RegisterPage() {
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
-              {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
+              <PasswordStrengthMeter password={password} />
+              {errors.password && !password && (
+                <p className="text-xs text-destructive">{errors.password.message}</p>
+              )}
             </div>
 
             <div className="space-y-1.5">
@@ -179,7 +187,38 @@ export default function RegisterPage() {
                   {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
-              {errors.confirmPassword && <p className="text-xs text-destructive">{errors.confirmPassword.message}</p>}
+              <ConfirmMatchHint password={password} confirm={confirmPassword} />
+            </div>
+
+            {/* Terms & KVKK */}
+            <div className="space-y-2 pt-1">
+              <label className="flex items-start gap-2.5 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  className="mt-0.5 accent-brand shrink-0"
+                  {...register('termsAccepted')}
+                />
+                <span className="text-xs text-muted-foreground leading-relaxed">
+                  <Link href="/kullanim-kosullari" target="_blank" className="text-brand font-semibold hover:underline">Kullanım Koşulları</Link>
+                  {' '}ve{' '}
+                  <Link href="/gizlilik-politikasi" target="_blank" className="text-brand font-semibold hover:underline">Gizlilik Politikası</Link>
+                  &apos;nı okudum ve kabul ediyorum.
+                </span>
+              </label>
+              {errors.termsAccepted && <p className="text-xs text-destructive pl-5">{errors.termsAccepted.message}</p>}
+
+              <label className="flex items-start gap-2.5 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  className="mt-0.5 accent-brand shrink-0"
+                  {...register('kvkkAccepted')}
+                />
+                <span className="text-xs text-muted-foreground leading-relaxed">
+                  <Link href="/kvkk" target="_blank" className="text-brand font-semibold hover:underline">KVKK Aydınlatma Metni</Link>
+                  &apos;ni okudum, kişisel verilerimin işlenmesine onay veriyorum.
+                </span>
+              </label>
+              {errors.kvkkAccepted && <p className="text-xs text-destructive pl-5">{errors.kvkkAccepted.message}</p>}
             </div>
 
             <Button
