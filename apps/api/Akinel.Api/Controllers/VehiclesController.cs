@@ -77,6 +77,19 @@ public class VehiclesController : ControllerBase
         return ctx == null ? NotFound() : Ok(ctx);
     }
 
+    [HttpGet("engines/{engineId:guid}/variants")]
+    [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+    public async Task<IActionResult> GetVariants(Guid engineId, CancellationToken ct)
+    {
+        var variants = await _db.VehicleEngineVariants
+            .AsNoTracking()
+            .Where(v => v.VehicleEngineId == engineId)
+            .OrderBy(v => v.SubModelName)
+            .Select(v => new Akinel.Application.DTOs.VehicleEngineVariantDto(v.Id, v.SubModelName, v.OpsCarId, v.DatECode))
+            .ToListAsync(ct);
+        return Ok(variants);
+    }
+
     [HttpGet("{engineId:guid}/products")]
     public async Task<IActionResult> GetProducts(Guid engineId, [FromQuery] int page = 1, [FromQuery] int pageSize = 24, CancellationToken ct = default)
         => Ok(await _productService.GetByVehicleAsync(engineId, page, pageSize, ct));

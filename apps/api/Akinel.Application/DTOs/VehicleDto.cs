@@ -5,6 +5,8 @@ public record VehicleModelDto(Guid Id, string Name, string Slug, Guid VehicleMak
 public record VehicleGenerationDto(Guid Id, string Name, string Slug, Guid VehicleModelId, int? YearFrom, int? YearTo, string? BodyType, string? ImageUrl = null);
 public record VehicleEngineDto(Guid Id, string Name, Guid VehicleGenerationId, string? Displacement, string? FuelType, int? PowerKw, int? PowerHp, int? YearFrom, int? YearTo, string? EngineCode, string? Gearbox);
 
+public record VehicleEngineVariantDto(Guid Id, string SubModelName, string? OpsCarId, string? DatECode);
+
 public record VehicleContextDto(
     Guid EngineId,
     string MakeName,

@@ -189,6 +189,7 @@ export const api = {
     generationsByMake: (makeId: string, limit?: number) => request(`/api/vehicles/makes/${makeId}/generations${limit ? `?limit=${limit}` : ''}`),
     generations: (modelId: string) => request(`/api/vehicles/models/${modelId}/generations`),
     engines: (generationId: string) => request(`/api/vehicles/generations/${generationId}/engines`),
+    variants: (engineId: string) => request(`/api/vehicles/engines/${engineId}/variants`, { cache: 'no-store' }),
     context: (engineId: string) => request(`/api/vehicles/context/${engineId}`),
     products: (engineId: string, page = 1) => request(`/api/vehicles/${engineId}/products?page=${page}`),
     decodeVin: (vin: string) => request('/api/vehicles/vin-decode', { method: 'POST', body: JSON.stringify({ vin }) }),

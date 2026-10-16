@@ -5,20 +5,21 @@ import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { useVehicleStore } from '@/store/vehicleStore';
 import { useAuthStore } from '@/store/authStore';
-import type { VehicleMake, VehicleModel, VehicleGeneration, VehicleEngine, VehicleContext } from '@/lib/types';
+import type { VehicleMake, VehicleModel, VehicleGeneration, VehicleEngine, VehicleEngineVariant, VehicleContext } from '@/lib/types';
 import { Car, Check, X, Search, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn, getImageUrl } from '@/lib/utils';
 import { analytics } from '@/lib/analytics';
 
-type StepId = 'marka' | 'seri' | 'yil' | 'kasa' | 'sanziman' | 'motor';
+type StepId = 'marka' | 'seri' | 'yil' | 'kasa' | 'sanziman' | 'motor' | 'ek-ozellik';
 const STEPS: { id: StepId; label: string; title: string }[] = [
-  { id: 'marka',    label: 'Marka',    title: 'Marka Seçiniz' },
-  { id: 'seri',     label: 'Seri',     title: 'Seri Seçiniz' },
-  { id: 'yil',      label: 'Yıl',      title: 'Yıl Seçiniz' },
-  { id: 'kasa',     label: 'Model',    title: 'Model Seçiniz' },
-  { id: 'sanziman', label: 'Şanzıman', title: 'Şanzıman Seçiniz' },
-  { id: 'motor',    label: 'Motor',    title: 'Motor Seçiniz' },
+  { id: 'marka',      label: 'Marka',       title: 'Marka Seçiniz' },
+  { id: 'seri',       label: 'Seri',        title: 'Seri Seçiniz' },
+  { id: 'yil',        label: 'Yıl',         title: 'Yıl Seçiniz' },
+  { id: 'kasa',       label: 'Model',       title: 'Model Seçiniz' },
+  { id: 'sanziman',   label: 'Şanzıman',    title: 'Şanzıman Seçiniz' },
+  { id: 'motor',      label: 'Motor',       title: 'Motor Seçiniz' },
+  { id: 'ek-ozellik', label: 'Ek Özellik',  title: 'Alt Tip Seçiniz' },
 ];
 
 interface VehicleFinderProps {
@@ -77,6 +78,8 @@ export function VehicleFinder({
   const [selectedGeneration, setSelectedGeneration] = useState<VehicleGeneration | null>(null);
   const [selectedGearbox, setSelectedGearbox] = useState<string | null>(null);
   const [selectedEngine, setSelectedEngine] = useState<VehicleEngine | null>(null);
+  const [variants, setVariants] = useState<VehicleEngineVariant[]>([]);
+  const [selectedVariant, setSelectedVariant] = useState<VehicleEngineVariant | null>(null);
 
   const [loading, setLoading] = useState(false);
   const [confirming, setConfirming] = useState(false);
@@ -178,13 +181,15 @@ export function VehicleFinder({
       case 'yil':      return selectedYear ? String(selectedYear) : '';
       case 'kasa':     return selectedGeneration?.name ?? '';
       case 'sanziman': return selectedGearbox ?? '';
-      case 'motor':    return selectedEngine?.name ?? '';
+      case 'motor':      return selectedEngine?.name ?? '';
+      case 'ek-ozellik': return selectedVariant?.subModelName ?? '';
     }
   };
 
   const reset = () => {
     setSelectedMake(null); setSelectedModel(null); setSelectedYear(null);
     setSelectedGeneration(null); setSelectedGearbox(null); setSelectedEngine(null);
+    setVariants([]); setSelectedVariant(null);
     setModels([]); setAllGenerations([]); setEngines([]);
     setCurrentStep('marka'); setFilter(''); setShowSummary(false);
   };
@@ -215,18 +220,40 @@ export function VehicleFinder({
   const pickGeneration = (gen: VehicleGeneration) => {
     setSelectedGeneration(gen);
     setSelectedGearbox(null); setSelectedEngine(null); setEngines([]);
+    setVariants([]); setSelectedVariant(null);
     setLoading(true);
     setFilter(''); setCurrentStep('sanziman');
   };
 
   const pickGearbox = (gb: string) => {
     setSelectedGearbox(gb);
-    setSelectedEngine(null);
+    setSelectedEngine(null); setVariants([]); setSelectedVariant(null);
     setFilter(''); setCurrentStep('motor');
   };
 
-  const pickEngine = (engine: VehicleEngine) => {
+  const pickEngine = async (engine: VehicleEngine) => {
     setSelectedEngine(engine);
+    setSelectedVariant(null);
+    setVariants([]);
+    setFilter('');
+    setLoading(true);
+    try {
+      const v = await api.vehicles.variants(engine.id) as VehicleEngineVariant[];
+      if (v.length > 0) {
+        setVariants(v);
+        setCurrentStep('ek-ozellik');
+      } else {
+        setShowSummary(true);
+      }
+    } catch {
+      setShowSummary(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const pickVariant = (variant: VehicleEngineVariant) => {
+    setSelectedVariant(variant);
     setShowSummary(true);
   };
 
@@ -410,6 +437,30 @@ export function VehicleFinder({
             {filteredEngines.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8 col-span-2">Motor bilgisi bulunamadı.</p>}
           </div>
         );
+
+      case 'ek-ozellik':
+        return (
+          <div className="flex flex-col gap-2">
+            {variants.filter(v => v.subModelName.toLowerCase().includes(q)).map(variant => (
+              <button key={variant.id} onClick={() => pickVariant(variant)}
+                className={cn(
+                  'flex items-center justify-between px-4 py-3.5 rounded-xl border transition-colors text-left group',
+                  selectedVariant?.id === variant.id
+                    ? 'border-brand bg-brand/5'
+                    : 'border-border hover:border-brand hover:bg-brand/5'
+                )}>
+                <div>
+                  <p className="text-sm font-semibold text-brand leading-tight">{selectedModel?.name}</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">
+                    <span className="mr-1">•</span>Alt Tip: <span className="font-medium text-foreground">{variant.subModelName}</span>
+                  </p>
+                </div>
+                <ChevronRight size={16} className="shrink-0 text-muted-foreground group-hover:text-brand transition-colors" />
+              </button>
+            ))}
+            {variants.length === 0 && !loading && <p className="text-sm text-muted-foreground text-center py-8">Alt tip bilgisi bulunamadı.</p>}
+          </div>
+        );
     }
   };
 
@@ -459,7 +510,7 @@ export function VehicleFinder({
           className="fixed inset-0 z-50 flex items-end md:items-center justify-center md:p-6 bg-black/60 backdrop-blur-sm"
           onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
         >
-          <div className="bg-background rounded-t-3xl md:rounded-2xl shadow-2xl w-full md:max-w-3xl h-[82svh] md:h-[85vh] md:max-h-[680px] flex flex-col overflow-hidden">
+          <div className="bg-background rounded-t-3xl md:rounded-2xl shadow-2xl w-full md:max-w-[860px] h-[82svh] md:h-[85vh] md:max-h-[700px] flex flex-col overflow-hidden">
 
             {/* Drag handle — mobile only */}
             <div className="md:hidden flex justify-center pt-3 pb-1 shrink-0">
@@ -533,7 +584,11 @@ export function VehicleFinder({
                 model={selectedModel}
                 generation={selectedGeneration}
                 engine={selectedEngine}
-                onBack={() => { setShowSummary(false); setCurrentStep('motor'); }}
+                variant={selectedVariant}
+                onBack={() => {
+                  setShowSummary(false);
+                  setCurrentStep(variants.length > 0 ? 'ek-ozellik' : 'motor');
+                }}
                 onSave={accessToken ? handleSave : undefined}
                 onConfirm={handleConfirm}
                 saving={saving}
@@ -544,7 +599,7 @@ export function VehicleFinder({
               <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
 
                 {/* Sidebar — desktop only */}
-                <div className="hidden md:flex flex-col w-56 border-r shrink-0 bg-muted/20">
+                <div className="hidden md:flex flex-col w-72 border-r shrink-0 bg-muted/20">
                   <div className="flex-1 overflow-y-auto py-4 px-5">
                     {STEPS.map((step, i) => {
                       const done = i < stepIndex;
@@ -599,10 +654,10 @@ export function VehicleFinder({
                                 {selectedMake.logoUrl && (
                                   <img src={getImageUrl(selectedMake.logoUrl)!} alt={selectedMake.name} className="h-4 w-7 object-contain shrink-0" />
                                 )}
-                                <span className={cn('text-xs truncate', active ? 'text-brand' : 'text-muted-foreground')}>{selectedMake.name}</span>
+                                <span className={cn('text-xs line-clamp-2', active ? 'text-brand' : 'text-muted-foreground')}>{selectedMake.name}</span>
                               </div>
                             ) : (
-                              <p className={cn('text-xs truncate mt-0.5', active ? 'text-brand' : 'text-muted-foreground')}>
+                              <p className={cn('text-xs line-clamp-2 mt-0.5', active ? 'text-brand' : 'text-muted-foreground')}>
                                 {active ? 'Seçiliyor' : val || 'Seçilmedi'}
                               </p>
                             )}
@@ -703,6 +758,7 @@ interface SummaryScreenProps {
   model: VehicleModel | null;
   generation: VehicleGeneration | null;
   engine: VehicleEngine;
+  variant: VehicleEngineVariant | null;
   onBack: () => void;
   onSave?: () => void;
   onConfirm: () => void;
@@ -711,7 +767,7 @@ interface SummaryScreenProps {
   confirming: boolean;
 }
 
-function SummaryScreen({ make, model, generation, engine, onBack, onSave, onConfirm, onReset, saving, confirming }: SummaryScreenProps) {
+function SummaryScreen({ make, model, generation, engine, variant, onBack, onSave, onConfirm, onReset, saving, confirming }: SummaryScreenProps) {
   const engineParts = [
     engine.fuelType,
     engine.displacement,
@@ -722,6 +778,12 @@ function SummaryScreen({ make, model, generation, engine, onBack, onSave, onConf
   const yearLabel = generation?.yearFrom
     ? `${generation.yearFrom}${generation.yearTo ? ` - ${generation.yearTo}` : ''} Model`
     : null;
+
+  const specItems = [
+    variant ? { label: 'Alt Tip', value: variant.subModelName } : null,
+    engineParts ? { label: 'Motor', value: engineParts } : null,
+    engine.gearbox ? { label: 'Şanzıman', value: engine.gearbox } : null,
+  ].filter(Boolean) as { label: string; value: string }[];
 
   return (
     <>
@@ -740,7 +802,6 @@ function SummaryScreen({ make, model, generation, engine, onBack, onSave, onConf
           ) : (
             <Car size={80} className="text-gray-200" />
           )}
-          {/* decorative arrows — only shown when image exists */}
           {generation?.imageUrl && (
             <>
               <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow flex items-center justify-center hover:bg-white transition-colors" aria-hidden>
@@ -756,26 +817,27 @@ function SummaryScreen({ make, model, generation, engine, onBack, onSave, onConf
         {/* Vehicle name */}
         <div>
           <p className="text-lg font-bold text-foreground">
-            <span className="text-brand">{make?.name}</span> {model?.name}{generation ? ` ${generation.name}` : ''}
+            <span className="text-brand">{make?.name}</span>{generation ? ` ${generation.name}` : ''}
           </p>
-          {yearLabel && <p className="text-sm text-muted-foreground mt-0.5">{yearLabel}</p>}
+          {(generation || yearLabel) && (
+            <p className="text-sm text-muted-foreground mt-0.5">
+              {generation?.name}{yearLabel ? ` - ${yearLabel}` : ''}
+            </p>
+          )}
         </div>
 
-        {/* Specs */}
-        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-sm">
-          {engine.gearbox && (
-            <span>
-              <span className="text-muted-foreground">Şanzıman: </span>
-              <span className="font-semibold">{engine.gearbox}</span>
-            </span>
-          )}
-          {engineParts && (
-            <span>
-              <span className="text-muted-foreground">Motor: </span>
-              <span className="font-semibold">{engineParts}</span>
-            </span>
-          )}
-        </div>
+        {/* Specs — bullet list */}
+        {specItems.length > 0 && (
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm">
+            {specItems.map((s, i) => (
+              <span key={i} className="flex items-center gap-1">
+                <span className="text-brand">•</span>
+                <span className="text-muted-foreground">{s.label}:</span>
+                <span className="font-semibold">{s.value}</span>
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Footer */}
