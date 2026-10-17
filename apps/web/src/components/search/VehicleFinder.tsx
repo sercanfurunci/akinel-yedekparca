@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { useVehicleStore } from '@/store/vehicleStore';
@@ -86,6 +86,11 @@ export function VehicleFinder({
   const [saving, setSaving] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
 
+  // In-memory caches so going back/forward doesn't re-hit the API
+  const modelsCache    = useRef<Record<string, VehicleModel[]>>({});
+  const gensCache      = useRef<Record<string, VehicleGeneration[]>>({});
+  const enginesCache   = useRef<Record<string, VehicleEngine[]>>({});
+
   // Load makes once on first open
   useEffect(() => {
     if (open && makes.length === 0) {
@@ -107,27 +112,33 @@ export function VehicleFinder({
 
   useEffect(() => {
     if (!selectedMake) return;
+    const cached = modelsCache.current[selectedMake.id];
+    if (cached) { setModels(cached); return; }
     setLoading(true);
     api.vehicles.models(selectedMake.id)
-      .then(d => setModels(d as VehicleModel[]))
+      .then(d => { const data = d as VehicleModel[]; modelsCache.current[selectedMake.id] = data; setModels(data); })
       .catch(() => setModels([]))
       .finally(() => setLoading(false));
   }, [selectedMake]);
 
   useEffect(() => {
     if (!selectedModel) return;
+    const cached = gensCache.current[selectedModel.id];
+    if (cached) { setAllGenerations(cached); return; }
     setLoading(true);
     api.vehicles.generations(selectedModel.id)
-      .then(d => setAllGenerations(d as VehicleGeneration[]))
+      .then(d => { const data = d as VehicleGeneration[]; gensCache.current[selectedModel.id] = data; setAllGenerations(data); })
       .catch(() => setAllGenerations([]))
       .finally(() => setLoading(false));
   }, [selectedModel]);
 
   useEffect(() => {
     if (!selectedGeneration) return;
+    const cached = enginesCache.current[selectedGeneration.id];
+    if (cached) { setEngines(cached); return; }
     setLoading(true);
     api.vehicles.engines(selectedGeneration.id)
-      .then(d => setEngines(d as VehicleEngine[]))
+      .then(d => { const data = d as VehicleEngine[]; enginesCache.current[selectedGeneration.id] = data; setEngines(data); })
       .catch(() => setEngines([]))
       .finally(() => setLoading(false));
   }, [selectedGeneration]);
@@ -155,7 +166,8 @@ export function VehicleFinder({
     const yearSet = new Set<number>();
     for (const gen of allGenerations) {
       const from = gen.yearFrom ?? 1980;
-      const to = gen.yearTo ?? now;
+      // yearTo null: active models (yearFrom recent) use now; old models cap at yearFrom+10
+      const to = gen.yearTo ?? (from >= now - 15 ? now : from + 10);
       for (let y = from; y <= to; y++) yearSet.add(y);
     }
     return Array.from(yearSet).sort((a, b) => b - a);
@@ -167,7 +179,7 @@ export function VehicleFinder({
     const now = new Date().getFullYear();
     return allGenerations.filter(g => {
       const from = g.yearFrom ?? 0;
-      const to = g.yearTo ?? now;
+      const to = g.yearTo ?? (from >= now - 15 ? now : from + 10);
       return from <= selectedYear && selectedYear <= to;
     });
   }, [allGenerations, selectedYear]);
@@ -191,6 +203,7 @@ export function VehicleFinder({
     setSelectedGeneration(null); setSelectedGearbox(null); setSelectedEngine(null);
     setVariants([]); setSelectedVariant(null);
     setModels([]); setAllGenerations([]); setEngines([]);
+    setLoading(false);
     setCurrentStep('marka'); setFilter(''); setShowSummary(false);
   };
 
@@ -792,25 +805,15 @@ function SummaryScreen({ make, model, generation, engine, variant, onBack, onSav
         <h2 className="text-2xl font-bold tracking-wide text-brand uppercase">Aracınız Hazır !</h2>
 
         {/* Vehicle image */}
-        <div className="relative w-full max-w-sm aspect-[4/3] flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden">
+        <div className="w-full max-w-sm aspect-[4/3] flex items-center justify-center bg-white rounded-xl overflow-hidden">
           {generation?.imageUrl ? (
             <img
               src={getImageUrl(generation.imageUrl)!}
               alt={generation.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain p-2"
             />
           ) : (
             <Car size={80} className="text-gray-200" />
-          )}
-          {generation?.imageUrl && (
-            <>
-              <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow flex items-center justify-center hover:bg-white transition-colors" aria-hidden>
-                <ChevronLeft size={16} />
-              </button>
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow flex items-center justify-center hover:bg-white transition-colors" aria-hidden>
-                <ChevronRight size={16} />
-              </button>
-            </>
           )}
         </div>
 
