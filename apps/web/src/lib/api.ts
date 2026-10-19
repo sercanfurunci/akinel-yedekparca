@@ -136,28 +136,31 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 // Generic session-scoped cache + inflight dedup for stable, read-only endpoints.
 // Prevents duplicate network requests when the same endpoint is called by multiple
 // components on mount (e.g. Zustand hydration triggering extra renders).
-function makeSessionCache<T>(fetcher: () => Promise<T>): { get: () => Promise<T>; invalidate: () => void } {
+function makeSessionCache<T>(fetcher: () => Promise<T>, ttlMs = 0): { get: () => Promise<T>; invalidate: () => void } {
   let cache: T | null = null;
+  let cachedAt = 0;
   let inflight: Promise<T> | null = null;
   return {
     get(): Promise<T> {
-      if (cache !== null) return Promise.resolve(cache);
+      const expired = ttlMs > 0 && Date.now() - cachedAt > ttlMs;
+      if (cache !== null && !expired) return Promise.resolve(cache);
       if (inflight) return inflight;
+      cache = null;
       inflight = fetcher()
-        .then((d) => { cache = d; inflight = null; return d; })
+        .then((d) => { cache = d; cachedAt = Date.now(); inflight = null; return d; })
         .catch((e) => { inflight = null; throw e; });
       return inflight;
     },
-    invalidate() { cache = null; inflight = null; },
+    invalidate() { cache = null; cachedAt = 0; inflight = null; },
   };
 }
 
 const _brandCache    = makeSessionCache<unknown>(() => request('/api/brands'));
-const _categoryCache = makeSessionCache<unknown>(() => request('/api/categories'));
-const _heroCache     = makeSessionCache<unknown>(() => request('/api/hero/slides'));
-const _bannersCache  = makeSessionCache<unknown>(() => request('/api/home/banners'));
+const _categoryCache = makeSessionCache<unknown>(() => request('/api/categories'), 30_000);
+const _heroCache     = makeSessionCache<unknown>(() => request('/api/hero/slides'), 30_000);
+const _bannersCache  = makeSessionCache<unknown>(() => request('/api/home/banners'), 30_000);
 const _makesCache    = makeSessionCache<unknown>(() => request('/api/vehicles/makes'));
-const _bizCache      = makeSessionCache<unknown>(() => request('/api/business/settings'));
+const _bizCache      = makeSessionCache<unknown>(() => request('/api/business/settings'), 30_000);
 
 export const api = {
   products: {
