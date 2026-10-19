@@ -57,6 +57,9 @@ public class AuthService : IAuthService
 
     public async Task RegisterAsync(RegisterRequest request, CancellationToken ct = default)
     {
+        if (request.Password.Length < 8)
+            throw new ArgumentException("Password too short.");
+
         var normalized = request.Email.ToUpperInvariant();
         if (await _context.Users.AnyAsync(u => u.NormalizedEmail == normalized, ct))
             throw new InvalidOperationException("Email already registered.");

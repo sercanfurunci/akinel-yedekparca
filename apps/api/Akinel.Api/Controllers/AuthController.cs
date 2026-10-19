@@ -44,6 +44,10 @@ public class AuthController : ControllerBase
             await _authService.RegisterAsync(request, ct);
             return Ok(new { message = "Kayıt başarılı. Hesabınızı aktifleştirmek için e-posta adresinizi kontrol edin." });
         }
+        catch (ArgumentException)
+        {
+            return BadRequest(new { message = "Şifre en az 8 karakter olmalıdır." });
+        }
         catch (InvalidOperationException)
         {
             return Conflict(new { message = "Bu e-posta adresiyle zaten bir hesap mevcut." });
@@ -70,6 +74,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("reset-password")]
+    [EnableRateLimiting("register")]
     public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request, CancellationToken ct)
     {
         var success = await _authService.ResetPasswordAsync(request.Token, request.NewPassword, ct);
