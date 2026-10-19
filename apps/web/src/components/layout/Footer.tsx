@@ -49,7 +49,7 @@ export function Footer() {
               <li><Link href="/" className="hover:text-brand transition-colors">Ana Sayfa</Link></li>
               <li><Link href="/products" className="hover:text-brand transition-colors">Ürünler</Link></li>
               <li><Link href="/vehicle" className="hover:text-brand transition-colors">Aracımı Seç</Link></li>
-              <li><Link href="/vin" className="hover:text-brand transition-colors">OEM Ara</Link></li>
+              <li><Link href="/search" className="hover:text-brand transition-colors">OEM Ara</Link></li>
               <li><Link href="/garage" className="hover:text-brand transition-colors">Garajım</Link></li>
               <li><Link href="/about" className="hover:text-brand transition-colors">Hakkımızda</Link></li>
             </ul>
