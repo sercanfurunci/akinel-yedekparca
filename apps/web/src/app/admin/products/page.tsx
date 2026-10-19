@@ -35,6 +35,12 @@ const stockFilterOptions = [
   { value: 'OutOfStock', label: 'Tükendi' },
 ];
 
+const activeFilterOptions = [
+  { value: '', label: 'Tüm Durum' },
+  { value: 'true', label: 'Aktif' },
+  { value: 'false', label: 'İnaktif' },
+];
+
 const selectClass = 'flex h-9 rounded-lg border border-input bg-background px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors';
 
 export default function AdminProductsPage() {
@@ -45,6 +51,7 @@ export default function AdminProductsPage() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [stockFilter, setStockFilter] = useState('');
+  const [activeFilter, setActiveFilter] = useState('');
   const [brandFilter, setBrandFilter] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [page, setPage] = useState(1);
@@ -92,6 +99,7 @@ export default function AdminProductsPage() {
     if (brandFilter) params.brandId = brandFilter;
     if (categoryFilter) params.categoryId = categoryFilter;
     if (stockFilter) params.stockStatusFilter = stockFilter;
+    if (activeFilter) params.isActive = activeFilter;
     api.admin.products.list(params, accessToken)
       .then((data) => {
         const result = data as PaginatedResult<ProductListItem>;
@@ -102,7 +110,7 @@ export default function AdminProductsPage() {
       .finally(() => setLoading(false));
   }, [searchQuery, brandFilter, categoryFilter, stockFilter, accessToken, page, pageSize]);
 
-  useEffect(() => { setPage(1); }, [searchQuery, brandFilter, categoryFilter, stockFilter, pageSize]);
+  useEffect(() => { setPage(1); }, [searchQuery, brandFilter, categoryFilter, stockFilter, activeFilter, pageSize]);
   useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
   const filteredProducts = products;
@@ -240,12 +248,15 @@ export default function AdminProductsPage() {
         <select value={stockFilter} onChange={(e) => setStockFilter(e.target.value)} className={selectClass}>
           {stockFilterOptions.map((opt) => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
         </select>
+        <select value={activeFilter} onChange={(e) => setActiveFilter(e.target.value)} className={selectClass}>
+          {activeFilterOptions.map((opt) => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+        </select>
       </div>
 
       {/* Table */}
       <div className="bg-white rounded-xl border overflow-hidden">
         {loading ? (
-          <div className="p-6"><TableSkeleton rows={8} cols={5} /></div>
+          <div className="p-6"><TableSkeleton rows={8} cols={6} /></div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -264,13 +275,14 @@ export default function AdminProductsPage() {
                   <th className="text-left py-3 px-4 font-medium text-muted-foreground hidden lg:table-cell">Kategori</th>
                   <th className="text-right py-3 px-4 font-medium text-muted-foreground">Fiyat</th>
                   <th className="text-center py-3 px-4 font-medium text-muted-foreground">Stok</th>
+                  <th className="text-center py-3 px-4 font-medium text-muted-foreground">Durum</th>
                   <th className="text-right py-3 px-4 font-medium text-muted-foreground">İşlem</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredProducts.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="py-12 text-center text-muted-foreground">Ürün bulunamadı</td>
+                    <td colSpan={8} className="py-12 text-center text-muted-foreground">Ürün bulunamadı</td>
                   </tr>
                 ) : (
                   filteredProducts.map((p) => (
@@ -305,6 +317,11 @@ export default function AdminProductsPage() {
                           </span>
                           <span className="text-xs text-muted-foreground">{p.stockQuantity} adet</span>
                         </div>
+                      </td>
+                      <td className="py-3 px-4 text-center">
+                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${p.isActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+                          {p.isActive ? 'Aktif' : 'İnaktif'}
+                        </span>
                       </td>
                       <td className="py-3 px-4">
                         <div className="flex items-center justify-end gap-2">

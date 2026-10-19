@@ -48,7 +48,8 @@ public record ProductListItemDto(
     string Currency,
     StockStatus StockStatus,
     int StockQuantity,
-    string? PrimaryImageUrl
+    string? PrimaryImageUrl,
+    bool IsActive = true
 );
 
 public record CreateProductRequest(
