@@ -39,6 +39,7 @@ public class ProductsController : ControllerBase
         => Ok(await _searchService.SearchAsync(filter, ct));
 
     [HttpPost("{id:guid}/notify-stock")]
+    [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting("register")]
     public async Task<IActionResult> NotifyStock(Guid id, [FromBody] NotifyStockRequest request, CancellationToken ct)
     {
         if (string.IsNullOrWhiteSpace(request.Email) || !request.Email.Contains('@'))

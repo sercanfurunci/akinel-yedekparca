@@ -20,7 +20,15 @@ public class FilesController : ControllerBase
     public async Task<IActionResult> Get(string key, CancellationToken ct)
     {
         if (string.IsNullOrWhiteSpace(key)) return NotFound();
-        if (key.Contains("..") || key.Contains('\0')) return NotFound();
+
+        // Only allow safe path characters — reject anything outside alphanumeric, dash, underscore, dot, slash
+        if (!System.Text.RegularExpressions.Regex.IsMatch(key, @"^[a-zA-Z0-9\-_./]+$"))
+            return NotFound();
+
+        // Reject path traversal regardless of encoding
+        var normalized = key.Replace('\\', '/');
+        if (normalized.Contains("..") || normalized.Contains('\0'))
+            return NotFound();
 
         var b2Url = await _storage.GetPresignedUrlAsync(key, ct);
         return Redirect(b2Url);
