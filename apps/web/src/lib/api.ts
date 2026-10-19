@@ -426,6 +426,15 @@ export const api = {
       deleteEngine: (id: string, token: string) =>
         request(`/api/admin/vehicles/engines/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
 
+      getVariants: (engineId: string, token: string) =>
+        request(`/api/admin/vehicles/engines/${engineId}/variants`, { headers: { Authorization: `Bearer ${token}` } }),
+      createVariant: (engineId: string, data: unknown, token: string) =>
+        request(`/api/admin/vehicles/engines/${engineId}/variants`, { method: 'POST', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
+      updateVariant: (id: string, data: unknown, token: string) =>
+        request(`/api/admin/vehicles/variants/${id}`, { method: 'PUT', body: JSON.stringify(data), headers: { Authorization: `Bearer ${token}` } }),
+      deleteVariant: (id: string, token: string) =>
+        request(`/api/admin/vehicles/variants/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
+
       uploadMakeLogo: async (id: string, file: File) => {
         const formData = new FormData();
         formData.append('file', file);
@@ -436,6 +445,12 @@ export const api = {
         const formData = new FormData();
         formData.append('file', file);
         return uploadFile<{ imageUrl: string }>(`/api/admin/vehicles/models/${id}/image`, formData);
+      },
+
+      uploadGenerationImage: async (id: string, file: File) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        return uploadFile<{ imageUrl: string }>(`/api/admin/vehicles/generations/${id}/image`, formData);
       },
 
       search: (q: string, token: string) =>

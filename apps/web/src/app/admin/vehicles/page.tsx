@@ -11,7 +11,7 @@ import { api } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import type {
   VehicleMakeAdmin, VehicleModelAdmin, VehicleGenerationAdmin,
-  VehicleEngineAdmin, AdminVehicleMakesResult, VehicleSearchResult,
+  VehicleEngineAdmin, VehicleEngineVariantAdmin, AdminVehicleMakesResult, VehicleSearchResult,
   CreateGenerationData, CreateEngineData
 } from '@/lib/types';
 import { Button } from '@/components/ui/button';
@@ -20,7 +20,7 @@ import { Label } from '@/components/ui/label';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
-type Level = 'makes' | 'models' | 'generations' | 'engines';
+type Level = 'makes' | 'models' | 'generations' | 'engines' | 'variants';
 
 interface Breadcrumb {
   label: string;
@@ -132,6 +132,7 @@ export default function AdminVehiclesPage() {
   const [selectedMake, setSelectedMake] = useState<VehicleMakeAdmin | null>(null);
   const [selectedModel, setSelectedModel] = useState<VehicleModelAdmin | null>(null);
   const [selectedGeneration, setSelectedGeneration] = useState<VehicleGenerationAdmin | null>(null);
+  const [selectedEngine, setSelectedEngine] = useState<VehicleEngineAdmin | null>(null);
 
   // Data
   const [makes, setMakes] = useState<VehicleMakeAdmin[]>([]);
@@ -140,6 +141,7 @@ export default function AdminVehiclesPage() {
   const [models, setModels] = useState<VehicleModelAdmin[]>([]);
   const [generations, setGenerations] = useState<VehicleGenerationAdmin[]>([]);
   const [engines, setEngines] = useState<VehicleEngineAdmin[]>([]);
+  const [variants, setVariants] = useState<VehicleEngineVariantAdmin[]>([]);
 
   // Loading
   const [loading, setLoading] = useState(false);
@@ -158,10 +160,11 @@ export default function AdminVehiclesPage() {
     | 'createModel' | 'editModel'
     | 'createGen' | 'editGen'
     | 'createEngine' | 'editEngine'
+    | 'createVariant' | 'editVariant'
     | null;
 
   const [modal, setModal] = useState<ModalType>(null);
-  const [editingItem, setEditingItem] = useState<VehicleMakeAdmin | VehicleModelAdmin | VehicleGenerationAdmin | VehicleEngineAdmin | null>(null);
+  const [editingItem, setEditingItem] = useState<VehicleMakeAdmin | VehicleModelAdmin | VehicleGenerationAdmin | VehicleEngineAdmin | VehicleEngineVariantAdmin | null>(null);
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState('');
 
@@ -178,6 +181,11 @@ export default function AdminVehiclesPage() {
   const [fDrivetrain, setFDrivetrain] = useState('');
   const [fEngineCode, setFEngineCode] = useState('');
 
+  // Variant form fields
+  const [fSubModelName, setFSubModelName] = useState('');
+  const [fOpsCarId, setFOpsCarId] = useState('');
+  const [fDatECode, setFDatECode] = useState('');
+
   // Make logo upload
   const [makeLogoUrl, setMakeLogoUrl] = useState('');
   const [makeLogoUploading, setMakeLogoUploading] = useState(false);
@@ -187,6 +195,11 @@ export default function AdminVehiclesPage() {
   const [modelImageUrl, setModelImageUrl] = useState('');
   const [modelUploading, setModelUploading] = useState(false);
   const modelFileRef = useRef<HTMLInputElement>(null);
+
+  // Generation image upload
+  const [genImageUrl, setGenImageUrl] = useState('');
+  const [genImageUploading, setGenImageUploading] = useState(false);
+  const genImageFileRef = useRef<HTMLInputElement>(null);
 
   // Delete
   const [deleteTarget, setDeleteTarget] = useState<{ id: string; label: string; type: Level } | null>(null);
@@ -250,6 +263,19 @@ export default function AdminVehiclesPage() {
     }
   }, [accessToken]);
 
+  const fetchVariants = useCallback(async (engineId: string) => {
+    if (!accessToken) return;
+    setLoading(true);
+    try {
+      const res = await api.admin.vehicles.getVariants(engineId, accessToken) as VehicleEngineVariantAdmin[];
+      setVariants(res);
+    } catch {
+      setVariants([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [accessToken]);
+
   // Initial load — wait for auth hydration
   useEffect(() => { if (_hasHydrated && accessToken) fetchMakes(1, ''); }, [_hasHydrated, accessToken, fetchMakes]);
 
@@ -299,12 +325,20 @@ export default function AdminVehiclesPage() {
 
   const navToGeneration = (gen: VehicleGenerationAdmin) => {
     setSelectedGeneration(gen);
+    setSelectedEngine(null);
     setLevel('engines');
     fetchEngines(gen.id);
   };
 
+  const navToEngine = (engine: VehicleEngineAdmin) => {
+    setSelectedEngine(engine);
+    setLevel('variants');
+    fetchVariants(engine.id);
+  };
+
   const navBack = () => {
-    if (level === 'engines') { setLevel('generations'); setSelectedGeneration(null); }
+    if (level === 'variants') { setLevel('engines'); setSelectedEngine(null); }
+    else if (level === 'engines') { setLevel('generations'); setSelectedGeneration(null); }
     else if (level === 'generations') { setLevel('models'); setSelectedModel(null); }
     else if (level === 'models') { setLevel('makes'); setSelectedMake(null); }
   };
@@ -350,6 +384,7 @@ export default function AdminVehiclesPage() {
     setFBodyType(g.bodyType ?? '');
     setFYearFrom(g.yearFrom?.toString() ?? '');
     setFYearTo(g.yearTo?.toString() ?? '');
+    setGenImageUrl(g.imageUrl ?? '');
     setFormError('');
     setModal('editGen');
   };
@@ -374,6 +409,16 @@ export default function AdminVehiclesPage() {
     setFYearTo(e.yearTo?.toString() ?? '');
     setFormError('');
     setModal('editEngine');
+  };
+
+  const openCreateVariant = () => { setFSubModelName(''); setFOpsCarId(''); setFDatECode(''); setFormError(''); setModal('createVariant'); };
+  const openEditVariant = (v: VehicleEngineVariantAdmin) => {
+    setEditingItem(v);
+    setFSubModelName(v.subModelName);
+    setFOpsCarId(v.opsCarId ?? '');
+    setFDatECode(v.datECode ?? '');
+    setFormError('');
+    setModal('editVariant');
   };
 
   // ── Save handlers ─────────────────────────────────────────────────────────
@@ -442,6 +487,14 @@ export default function AdminVehiclesPage() {
         };
         await api.admin.vehicles.updateEngine(editingItem.id, data, accessToken);
         closeModal(); fetchEngines(selectedGeneration.id);
+      } else if (modal === 'createVariant' && selectedEngine) {
+        if (!fSubModelName.trim()) { setFormError('Alt varyant adı zorunludur.'); setSaving(false); return; }
+        await api.admin.vehicles.createVariant(selectedEngine.id, { subModelName: fSubModelName.trim(), opsCarId: fOpsCarId.trim() || undefined, datECode: fDatECode.trim() || undefined }, accessToken);
+        closeModal(); fetchVariants(selectedEngine.id);
+      } else if (modal === 'editVariant' && editingItem && selectedEngine) {
+        if (!fSubModelName.trim()) { setFormError('Alt varyant adı zorunludur.'); setSaving(false); return; }
+        await api.admin.vehicles.updateVariant(editingItem.id, { subModelName: fSubModelName.trim(), opsCarId: fOpsCarId.trim() || undefined, datECode: fDatECode.trim() || undefined }, accessToken);
+        closeModal(); fetchVariants(selectedEngine.id);
       }
     } catch (err) {
       setFormError(err instanceof Error ? err.message : 'Kaydedilemedi.');
@@ -472,6 +525,10 @@ export default function AdminVehiclesPage() {
         await api.admin.vehicles.deleteEngine(deleteTarget.id, accessToken);
         setDeleteTarget(null);
         if (selectedGeneration) fetchEngines(selectedGeneration.id);
+      } else if (deleteTarget.type === 'variants') {
+        await api.admin.vehicles.deleteVariant(deleteTarget.id, accessToken);
+        setDeleteTarget(null);
+        if (selectedEngine) fetchVariants(selectedEngine.id);
       }
     } catch (err) {
       setDeleteError(err instanceof Error ? err.message : 'Silinemedi.');
@@ -522,12 +579,27 @@ export default function AdminVehiclesPage() {
     }
   };
 
+  const handleGenImageUpload = async (file: File) => {
+    if (!editingItem) return;
+    setGenImageUploading(true);
+    try {
+      const res = await api.admin.vehicles.uploadGenerationImage(editingItem.id, file);
+      setGenImageUrl(res.imageUrl);
+      if (selectedModel) fetchGenerations(selectedModel.id);
+    } catch {
+      setFormError('Fotoğraf yüklenemedi.');
+    } finally {
+      setGenImageUploading(false);
+    }
+  };
+
   // ── Breadcrumbs ───────────────────────────────────────────────────────────
 
   const breadcrumbs: Breadcrumb[] = [{ label: 'Markalar', level: 'makes' }];
   if (selectedMake) breadcrumbs.push({ label: selectedMake.name, level: 'models', id: selectedMake.id });
   if (selectedModel) breadcrumbs.push({ label: selectedModel.name, level: 'generations', id: selectedModel.id });
   if (selectedGeneration) breadcrumbs.push({ label: selectedGeneration.name, level: 'engines', id: selectedGeneration.id });
+  if (selectedEngine) breadcrumbs.push({ label: selectedEngine.name, level: 'variants', id: selectedEngine.id });
 
   // ── Render helpers ────────────────────────────────────────────────────────
 
@@ -537,7 +609,8 @@ export default function AdminVehiclesPage() {
     if (level === 'makes') return 'Araç Markaları';
     if (level === 'models') return `${selectedMake?.name} — Modeller`;
     if (level === 'generations') return `${selectedModel?.name} — Kasa / Nesiller`;
-    return `${selectedGeneration?.name} — Motorlar`;
+    if (level === 'engines') return `${selectedGeneration?.name} — Motorlar`;
+    return `${selectedEngine?.name} — Alt Varyantlar`;
   };
 
   // ── JSX ───────────────────────────────────────────────────────────────────
@@ -576,9 +649,10 @@ export default function AdminVehiclesPage() {
             {i > 0 && <ChevronRight size={12} />}
             <button
               onClick={() => {
-                if (bc.level === 'makes') { setLevel('makes'); setSelectedMake(null); setSelectedModel(null); setSelectedGeneration(null); }
-                else if (bc.level === 'models' && selectedMake) { setLevel('models'); setSelectedModel(null); setSelectedGeneration(null); fetchModels(selectedMake.id); }
-                else if (bc.level === 'generations' && selectedModel) { setLevel('generations'); setSelectedGeneration(null); fetchGenerations(selectedModel.id); }
+                if (bc.level === 'makes') { setLevel('makes'); setSelectedMake(null); setSelectedModel(null); setSelectedGeneration(null); setSelectedEngine(null); }
+                else if (bc.level === 'models' && selectedMake) { setLevel('models'); setSelectedModel(null); setSelectedGeneration(null); setSelectedEngine(null); fetchModels(selectedMake.id); }
+                else if (bc.level === 'generations' && selectedModel) { setLevel('generations'); setSelectedGeneration(null); setSelectedEngine(null); fetchGenerations(selectedModel.id); }
+                else if (bc.level === 'engines' && selectedGeneration) { setLevel('engines'); setSelectedEngine(null); fetchEngines(selectedGeneration.id); }
               }}
               className={i === breadcrumbs.length - 1 ? 'font-medium text-foreground' : 'hover:text-foreground transition-colors'}
             >
@@ -634,6 +708,11 @@ export default function AdminVehiclesPage() {
             {level === 'engines' && (
               <Button onClick={openCreateEngine} size="sm" className="h-8 text-xs bg-brand text-brand-foreground hover:bg-brand/90">
                 <Plus size={12} className="mr-1" /> Motor Ekle
+              </Button>
+            )}
+            {level === 'variants' && (
+              <Button onClick={openCreateVariant} size="sm" className="h-8 text-xs bg-brand text-brand-foreground hover:bg-brand/90">
+                <Plus size={12} className="mr-1" /> Varyant Ekle
               </Button>
             )}
           </div>
@@ -769,6 +848,7 @@ export default function AdminVehiclesPage() {
                   <thead className="bg-muted/20 text-muted-foreground">
                     <tr>
                       <th className="text-left py-2.5 px-4 font-medium">Nesil / Kasa</th>
+                      <th className="text-left py-2.5 px-4 font-medium hidden sm:table-cell">Fotoğraf</th>
                       <th className="text-left py-2.5 px-4 font-medium hidden sm:table-cell">Kasa Tipi</th>
                       <th className="text-left py-2.5 px-4 font-medium hidden sm:table-cell">Yıllar</th>
                       <th className="text-center py-2.5 px-4 font-medium hidden md:table-cell">Motor Sayısı</th>
@@ -777,7 +857,7 @@ export default function AdminVehiclesPage() {
                   </thead>
                   <tbody className="divide-y">
                     {generations.length === 0 ? (
-                      <tr><td colSpan={5} className="py-10 text-center text-muted-foreground text-sm">Nesil bulunamadı.</td></tr>
+                      <tr><td colSpan={6} className="py-10 text-center text-muted-foreground text-sm">Nesil bulunamadı.</td></tr>
                     ) : generations.map((g) => (
                       <tr key={g.id} className="hover:bg-muted/10 transition-colors">
                         <td className="py-2.5 px-4">
@@ -785,6 +865,17 @@ export default function AdminVehiclesPage() {
                             <ChevronRight size={13} className="text-muted-foreground" />
                             {g.name}
                           </button>
+                        </td>
+                        <td className="py-2.5 px-4 hidden sm:table-cell">
+                          {g.imageUrl ? (
+                            <div className="relative h-8 w-12 rounded overflow-hidden bg-muted">
+                              <Image src={getImageUrl(g.imageUrl)!} alt={g.name} fill className="object-cover" sizes="48px" />
+                            </div>
+                          ) : (
+                            <div className="h-8 w-12 rounded bg-muted flex items-center justify-center">
+                              <Car size={12} className="text-muted-foreground" />
+                            </div>
+                          )}
                         </td>
                         <td className="py-2.5 px-4 text-muted-foreground hidden sm:table-cell">{g.bodyType || '—'}</td>
                         <td className="py-2.5 px-4 text-muted-foreground hidden sm:table-cell text-xs">
@@ -829,7 +920,12 @@ export default function AdminVehiclesPage() {
                       <tr><td colSpan={6} className="py-10 text-center text-muted-foreground text-sm">Motor bulunamadı.</td></tr>
                     ) : engines.map((e) => (
                       <tr key={e.id} className="hover:bg-muted/10 transition-colors">
-                        <td className="py-2.5 px-4 font-medium">{e.name}</td>
+                        <td className="py-2.5 px-4">
+                          <button onClick={() => navToEngine(e)} className="font-medium hover:text-brand transition-colors flex items-center gap-1.5">
+                            <ChevronRight size={13} className="text-muted-foreground" />
+                            {e.name}
+                          </button>
+                        </td>
                         <td className="py-2.5 px-4 text-muted-foreground hidden sm:table-cell">{e.fuelType || '—'}</td>
                         <td className="py-2.5 px-4 text-muted-foreground hidden sm:table-cell">{e.powerHp ?? '—'}</td>
                         <td className="py-2.5 px-4 text-muted-foreground text-xs hidden md:table-cell">{e.engineCode || '—'}</td>
@@ -845,6 +941,45 @@ export default function AdminVehiclesPage() {
                               <Pencil size={13} />
                             </button>
                             <button onClick={() => { setDeleteError(''); setDeleteTarget({ id: e.id, label: e.name, type: 'engines' }); }}
+                              className="h-7 w-7 inline-flex items-center justify-center rounded hover:bg-destructive/10 text-destructive transition-colors" title="Sil">
+                              <Trash2 size={13} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Variants */}
+            {level === 'variants' && (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-muted/20 text-muted-foreground">
+                    <tr>
+                      <th className="text-left py-2.5 px-4 font-medium">Alt Varyant</th>
+                      <th className="text-left py-2.5 px-4 font-medium hidden sm:table-cell">OpsCarId</th>
+                      <th className="text-left py-2.5 px-4 font-medium hidden md:table-cell">DAT E-Code</th>
+                      <th className="text-right py-2.5 px-4 font-medium">İşlem</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y">
+                    {variants.length === 0 ? (
+                      <tr><td colSpan={4} className="py-10 text-center text-muted-foreground text-sm">Alt varyant bulunamadı.</td></tr>
+                    ) : variants.map((v) => (
+                      <tr key={v.id} className="hover:bg-muted/10 transition-colors">
+                        <td className="py-2.5 px-4 font-medium">{v.subModelName}</td>
+                        <td className="py-2.5 px-4 text-muted-foreground text-xs hidden sm:table-cell">{v.opsCarId || '—'}</td>
+                        <td className="py-2.5 px-4 text-muted-foreground text-xs hidden md:table-cell">{v.datECode || '—'}</td>
+                        <td className="py-2.5 px-4">
+                          <div className="flex items-center justify-end gap-1">
+                            <button onClick={() => openEditVariant(v)}
+                              className="h-7 w-7 inline-flex items-center justify-center rounded hover:bg-muted transition-colors" title="Düzenle">
+                              <Pencil size={13} />
+                            </button>
+                            <button onClick={() => { setDeleteError(''); setDeleteTarget({ id: v.id, label: v.subModelName, type: 'variants' }); }}
                               className="h-7 w-7 inline-flex items-center justify-center rounded hover:bg-destructive/10 text-destructive transition-colors" title="Sil">
                               <Trash2 size={13} />
                             </button>
@@ -1008,6 +1143,36 @@ export default function AdminVehiclesPage() {
                 <Input id="genYearTo" type="number" value={fYearTo} onChange={(e) => setFYearTo(e.target.value)} placeholder="2016" />
               </div>
             </div>
+
+            {modal === 'editGen' && (
+              <div className="space-y-2">
+                <Label>Kasa Fotoğrafı</Label>
+                {genImageUrl && (
+                  <div className="relative h-24 w-full rounded-lg overflow-hidden border bg-muted">
+                    <Image src={getImageUrl(genImageUrl)!} alt="kasa" fill className="object-contain p-2" sizes="320px" />
+                  </div>
+                )}
+                <input
+                  ref={genImageFileRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => { const f = e.target.files?.[0]; if (f) handleGenImageUpload(f); e.target.value = ''; }}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="w-full h-8 text-xs"
+                  disabled={genImageUploading}
+                  onClick={() => genImageFileRef.current?.click()}
+                >
+                  {genImageUploading ? <Loader2 size={12} className="mr-1 animate-spin" /> : <ImagePlus size={12} className="mr-1" />}
+                  {genImageUrl ? 'Fotoğrafı Değiştir' : 'Fotoğraf Yükle'}
+                </Button>
+              </div>
+            )}
+
             {formError && <p className="text-sm text-destructive">{formError}</p>}
             <div className="flex gap-2 pt-1">
               <Button onClick={handleSave} className="flex-1 bg-brand text-brand-foreground hover:bg-brand/90" disabled={saving}>
@@ -1070,6 +1235,33 @@ export default function AdminVehiclesPage() {
                 <Label htmlFor="engYT">Bitiş Yılı</Label>
                 <Input id="engYT" type="number" value={fYearTo} onChange={(e) => setFYearTo(e.target.value)} placeholder="2018" />
               </div>
+            </div>
+            {formError && <p className="text-sm text-destructive">{formError}</p>}
+            <div className="flex gap-2 pt-1">
+              <Button onClick={handleSave} className="flex-1 bg-brand text-brand-foreground hover:bg-brand/90" disabled={saving}>
+                {saving ? 'Kaydediliyor...' : 'Kaydet'}
+              </Button>
+              <Button variant="outline" onClick={closeModal}>İptal</Button>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {/* Variant modals */}
+      {(modal === 'createVariant' || modal === 'editVariant') && (
+        <Modal title={modal === 'createVariant' ? 'Yeni Alt Varyant Ekle' : 'Alt Varyantı Düzenle'} onClose={closeModal}>
+          <div className="space-y-3">
+            <div className="space-y-1">
+              <Label htmlFor="varName">Alt Model Adı</Label>
+              <Input id="varName" value={fSubModelName} onChange={(e) => setFSubModelName(e.target.value)} placeholder="ör: 320i" autoFocus />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="varOps">OpsCarId</Label>
+              <Input id="varOps" value={fOpsCarId} onChange={(e) => setFOpsCarId(e.target.value)} placeholder="ör: 12345" />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="varDat">DAT E-Code</Label>
+              <Input id="varDat" value={fDatECode} onChange={(e) => setFDatECode(e.target.value)} placeholder="ör: EUR123" />
             </div>
             {formError && <p className="text-sm text-destructive">{formError}</p>}
             <div className="flex gap-2 pt-1">

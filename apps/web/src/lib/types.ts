@@ -16,6 +16,7 @@ export interface ProductListItem {
   stockStatus: StockStatus;
   stockQuantity: number;
   primaryImageUrl?: string;
+  isActive: boolean;
 }
 
 export interface Product extends ProductListItem {
@@ -240,6 +241,7 @@ export interface VehicleGenerationAdmin {
   yearFrom?: number;
   yearTo?: number;
   bodyType?: string;
+  imageUrl?: string;
   engineCount: number;
 }
 
@@ -257,6 +259,13 @@ export interface VehicleEngineAdmin {
   yearFrom?: number;
   yearTo?: number;
   compatCount: number;
+}
+
+export interface VehicleEngineVariantAdmin {
+  id: string;
+  subModelName: string;
+  opsCarId?: string;
+  datECode?: string;
 }
 
 export interface AdminVehicleMakesResult {

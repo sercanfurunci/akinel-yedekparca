@@ -305,6 +305,7 @@ public class AdminVehiclesController : ControllerBase
                 g.YearFrom,
                 g.YearTo,
                 bodyType = g.BodyType,
+                imageUrl = g.ImageUrl,
                 engineCount = _db.VehicleEngines.Count(e => e.VehicleGenerationId == g.Id)
             })
             .ToListAsync(ct);
@@ -481,6 +482,74 @@ public class AdminVehiclesController : ControllerBase
             return Conflict(new { message = $"Bu motor {compatCount} ürün uyumluluk kaydında kullanılmaktadır. Silmek için önce ürün uyumluluk kayıtlarını kaldırın." });
 
         _db.VehicleEngines.Remove(engine);
+        await _db.SaveChangesAsync(ct);
+        return NoContent();
+    }
+
+    // ── Variants ──────────────────────────────────────────────────────
+
+    [HttpGet("engines/{engineId:guid}/variants")]
+    public async Task<IActionResult> GetVariants(Guid engineId, CancellationToken ct)
+    {
+        var engine = await _db.VehicleEngines.FindAsync(new object[] { engineId }, ct);
+        if (engine == null) return NotFound();
+
+        var variants = await _db.VehicleEngineVariants
+            .Where(v => v.VehicleEngineId == engineId)
+            .OrderBy(v => v.SubModelName)
+            .Select(v => new { v.Id, v.SubModelName, v.OpsCarId, v.DatECode })
+            .ToListAsync(ct);
+
+        return Ok(variants);
+    }
+
+    public record CreateVariantRequest(string SubModelName, string? OpsCarId, string? DatECode);
+
+    [HttpPost("engines/{engineId:guid}/variants")]
+    public async Task<IActionResult> CreateVariant(Guid engineId, [FromBody] CreateVariantRequest req, CancellationToken ct)
+    {
+        if (string.IsNullOrWhiteSpace(req.SubModelName))
+            return BadRequest(new { message = "Alt varyant adı zorunludur." });
+
+        var engine = await _db.VehicleEngines.FindAsync(new object[] { engineId }, ct);
+        if (engine == null) return NotFound();
+
+        var variant = new VehicleEngineVariant
+        {
+            VehicleEngineId = engineId,
+            SubModelName = req.SubModelName.Trim(),
+            OpsCarId = req.OpsCarId?.Trim(),
+            DatECode = req.DatECode?.Trim(),
+        };
+        _db.VehicleEngineVariants.Add(variant);
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { variant.Id, variant.SubModelName, variant.OpsCarId, variant.DatECode });
+    }
+
+    public record UpdateVariantRequest(string SubModelName, string? OpsCarId, string? DatECode);
+
+    [HttpPut("variants/{id:guid}")]
+    public async Task<IActionResult> UpdateVariant(Guid id, [FromBody] UpdateVariantRequest req, CancellationToken ct)
+    {
+        if (string.IsNullOrWhiteSpace(req.SubModelName))
+            return BadRequest(new { message = "Alt varyant adı zorunludur." });
+
+        var variant = await _db.VehicleEngineVariants.FindAsync(new object[] { id }, ct);
+        if (variant == null) return NotFound();
+
+        variant.SubModelName = req.SubModelName.Trim();
+        variant.OpsCarId = req.OpsCarId?.Trim();
+        variant.DatECode = req.DatECode?.Trim();
+        await _db.SaveChangesAsync(ct);
+        return Ok(new { variant.Id, variant.SubModelName, variant.OpsCarId, variant.DatECode });
+    }
+
+    [HttpDelete("variants/{id:guid}")]
+    public async Task<IActionResult> DeleteVariant(Guid id, CancellationToken ct)
+    {
+        var variant = await _db.VehicleEngineVariants.FindAsync(new object[] { id }, ct);
+        if (variant == null) return NotFound();
+        _db.VehicleEngineVariants.Remove(variant);
         await _db.SaveChangesAsync(ct);
         return NoContent();
     }
