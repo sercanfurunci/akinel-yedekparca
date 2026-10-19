@@ -87,10 +87,12 @@ public class AdminController : ControllerBase
     // ── Products ────────────────────────────────────────────────────
 
     [HttpGet("products")]
-    public async Task<IActionResult> GetProducts([FromQuery] ProductSearchQuery filter, CancellationToken ct)
+    public async Task<IActionResult> GetProducts([FromQuery] ProductSearchQuery filter, [FromQuery] string? isActive, CancellationToken ct)
     {
         filter.InStockOnly = false;
-        filter.IncludeInactive = true;
+        if (isActive == "true")       { filter.IncludeInactive = false; filter.InactiveOnly = false; }
+        else if (isActive == "false") { filter.IncludeInactive = true;  filter.InactiveOnly = true;  }
+        else                          { filter.IncludeInactive = true;  filter.InactiveOnly = false; }
         return Ok(await _productService.GetProductsAsync(filter, ct));
     }
 

@@ -24,7 +24,7 @@ public class ProductService : IProductService
             .Include(p => p.Category)
             .Include(p => p.Images)
             .Include(p => p.Stock)
-            .Where(p => query.IncludeInactive || p.IsActive)
+            .Where(p => query.InactiveOnly ? !p.IsActive : (query.IncludeInactive || p.IsActive))
             .AsQueryable();
 
         if (query.InStockOnly)

@@ -23,6 +23,7 @@ public class ProductSearchQuery
     public decimal? MaxPrice { get; set; }
     public bool InStockOnly { get; set; } = true;
     public bool IncludeInactive { get; set; } = false;
+    public bool InactiveOnly { get; set; } = false;
     /// <summary>Admin stock filter: InStock | LowStock | OutOfStock | null (all)</summary>
     public string? StockStatusFilter { get; set; }
     public string SortBy { get; set; } = "relevance";
