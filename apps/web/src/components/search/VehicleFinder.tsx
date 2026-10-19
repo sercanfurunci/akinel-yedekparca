@@ -805,12 +805,12 @@ function SummaryScreen({ make, model, generation, engine, variant, onBack, onSav
         <h2 className="text-2xl font-bold tracking-wide text-brand uppercase">Aracınız Hazır !</h2>
 
         {/* Vehicle image */}
-        <div className="w-full max-w-sm aspect-[4/3] flex items-center justify-center bg-white rounded-xl overflow-hidden">
+        <div className="w-full max-w-sm h-44 flex items-center justify-center bg-white rounded-xl overflow-hidden shrink-0">
           {generation?.imageUrl ? (
             <img
               src={getImageUrl(generation.imageUrl)!}
               alt={generation.name}
-              className="w-full h-full object-contain p-2"
+              className="max-w-full max-h-full object-contain p-2"
             />
           ) : (
             <Car size={80} className="text-gray-200" />
