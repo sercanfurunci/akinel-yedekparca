@@ -532,9 +532,7 @@ function CategoryContent({ slug }: { slug: string }) {
                   <h2 className="text-lg font-bold text-[#111827] mb-3">
                     {categoryName} | Orijinal &amp; Uygun Fiyatlı Yedek Parçalar
                   </h2>
-                  <p className="prose prose-sm max-w-none text-muted-foreground leading-relaxed">
-                    {category.description}
-                  </p>
+                  <div className="prose prose-sm max-w-none text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: category.description }} />
                 </div>
               )}
             </div>
