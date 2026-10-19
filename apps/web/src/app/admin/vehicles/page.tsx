@@ -794,14 +794,13 @@ export default function AdminVehiclesPage() {
                   <thead className="bg-muted/20 text-muted-foreground">
                     <tr>
                       <th className="text-left py-2.5 px-4 font-medium">Model</th>
-                      <th className="text-left py-2.5 px-4 font-medium hidden sm:table-cell">Fotoğraf</th>
                       <th className="text-center py-2.5 px-4 font-medium hidden sm:table-cell">Nesil Sayısı</th>
                       <th className="text-right py-2.5 px-4 font-medium">İşlem</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
                     {models.length === 0 ? (
-                      <tr><td colSpan={4} className="py-10 text-center text-muted-foreground text-sm">Model bulunamadı.</td></tr>
+                      <tr><td colSpan={3} className="py-10 text-center text-muted-foreground text-sm">Model bulunamadı.</td></tr>
                     ) : models.map((m) => (
                       <tr key={m.id} className="hover:bg-muted/10 transition-colors">
                         <td className="py-2.5 px-4">
@@ -809,17 +808,6 @@ export default function AdminVehiclesPage() {
                             <ChevronRight size={13} className="text-muted-foreground" />
                             {m.name}
                           </button>
-                        </td>
-                        <td className="py-2.5 px-4 hidden sm:table-cell">
-                          {m.imageUrl ? (
-                            <div className="relative h-8 w-12 rounded overflow-hidden bg-muted">
-                              <Image src={getImageUrl(m.imageUrl)!} alt={m.name} fill className="object-cover" sizes="48px" />
-                            </div>
-                          ) : (
-                            <div className="h-8 w-12 rounded bg-muted flex items-center justify-center">
-                              <Car size={12} className="text-muted-foreground" />
-                            </div>
-                          )}
                         </td>
                         <td className="py-2.5 px-4 text-center text-muted-foreground hidden sm:table-cell">{m.generationCount}</td>
                         <td className="py-2.5 px-4">
