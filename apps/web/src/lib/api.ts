@@ -177,7 +177,7 @@ export const api = {
       }),
   },
   categories: {
-    list: () => _categoryCache.get(),
+    list: (fresh = false) => fresh ? request('/api/categories') : _categoryCache.get(),
   },
   search: {
     suggest: (q: string) =>

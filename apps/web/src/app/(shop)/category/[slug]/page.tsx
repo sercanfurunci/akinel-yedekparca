@@ -74,7 +74,7 @@ function CategoryContent({ slug }: { slug: string }) {
   }, []);
 
   useEffect(() => {
-    api.categories.list()
+    api.categories.list(true)
       .then((cats) => {
         const all = cats as Category[];
         const found = all.find((c) => c.slug === slug) ?? null;
