@@ -6,6 +6,9 @@ const SITE_URL = 'https://akinelotoyedekparca.com.tr';
 
 function absoluteImageUrl(path: string | undefined): string | null {
   if (!path) return null;
+  // Already a full URL (CDN or external)
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  // Relative path — prepend API base (skip in local dev)
   if (API_BASE.startsWith('http://localhost')) return null;
   return `${API_BASE}${path}`;
 }

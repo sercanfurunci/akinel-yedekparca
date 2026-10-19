@@ -7,13 +7,14 @@ const PAGE_SIZE = 100;
 
 type ProductSlugItem = { slug: string; updatedAt?: string };
 type CategorySlugItem = { slug: string; updatedAt?: string };
+type BrandSlugItem = { slug: string; updatedAt?: string };
 
 async function fetchAllProductSlugs(base: string): Promise<ProductSlugItem[]> {
   const items: ProductSlugItem[] = [];
   let page = 1;
   while (true) {
     const res = await fetch(
-      `${base}/api/products?pageSize=${PAGE_SIZE}&pageNumber=${page}`,
+      `${base}/api/products?pageSize=${PAGE_SIZE}&page=${page}`,
       { cache: 'no-store' },
     );
     if (!res.ok) break;
@@ -41,9 +42,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const base = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5100';
 
-    const [productSlugs, categoriesRes] = await Promise.all([
+    const [productSlugs, categoriesRes, brandsRes] = await Promise.all([
       fetchAllProductSlugs(base),
       fetch(`${base}/api/categories`, { cache: 'no-store' }),
+      fetch(`${base}/api/brands`, { cache: 'no-store' }),
     ]);
 
     const productPages: MetadataRoute.Sitemap = productSlugs.map((p) => ({
@@ -62,8 +64,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }))
       : [];
 
-    if (productPages.length > 0 || categoryPages.length > 0) {
-      return [...staticPages, ...categoryPages, ...productPages];
+    const brandPages: MetadataRoute.Sitemap = brandsRes.ok
+      ? ((await brandsRes.json()) as BrandSlugItem[]).map((b) => ({
+          url: `${SITE_URL}/marka/${b.slug}`,
+          lastModified: b.updatedAt ? new Date(b.updatedAt) : new Date(),
+          changeFrequency: 'monthly' as const,
+          priority: 0.65,
+        }))
+      : [];
+
+    if (productPages.length > 0 || categoryPages.length > 0 || brandPages.length > 0) {
+      return [...staticPages, ...categoryPages, ...brandPages, ...productPages];
     }
   } catch {
     // return static pages only if API is unavailable
