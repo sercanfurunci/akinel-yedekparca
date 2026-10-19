@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -43,6 +43,66 @@ const activeFilterOptions = [
 
 const selectClass = 'flex h-9 rounded-lg border border-input bg-background px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors';
 
+function SearchableSelect({ options, value, onChange, placeholder }: {
+  options: { id: string; name: string }[];
+  value: string;
+  onChange: (id: string) => void;
+  placeholder: string;
+}) {
+  const [query, setQuery] = useState('');
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const selected = options.find((o) => o.id === value);
+  const filtered = query ? options.filter((o) => o.name.toLowerCase().includes(query.toLowerCase())) : options;
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => { setOpen((o) => !o); setQuery(''); }}
+        className={`${selectClass} w-full text-left flex items-center justify-between gap-2 ${!selected ? 'text-muted-foreground' : ''}`}
+      >
+        <span className="truncate">{selected?.name ?? placeholder}</span>
+        <span className="text-muted-foreground text-xs shrink-0">▾</span>
+      </button>
+      {open && (
+        <div className="absolute z-50 mt-1 w-full bg-white border rounded-lg shadow-lg overflow-hidden">
+          <div className="p-2 border-b">
+            <input
+              autoFocus
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Ara..."
+              className="w-full text-sm px-2 py-1 rounded border border-input focus:outline-none focus:ring-2 focus:ring-ring/50"
+            />
+          </div>
+          <ul className="max-h-52 overflow-y-auto py-1">
+            {filtered.length === 0 && <li className="px-3 py-2 text-sm text-muted-foreground">Sonuç yok</li>}
+            {filtered.map((o) => (
+              <li key={o.id}>
+                <button
+                  type="button"
+                  onClick={() => { onChange(o.id); setOpen(false); setQuery(''); }}
+                  className={`w-full text-left px-3 py-1.5 text-sm hover:bg-muted/50 transition-colors ${o.id === value ? 'font-medium text-brand' : ''}`}
+                >
+                  {o.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AdminProductsPage() {
   const { accessToken } = useAuthStore();
   const [products, setProducts] = useState<ProductListItem[]>([]);
@@ -64,7 +124,7 @@ export default function AdminProductsPage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
-  const { register, handleSubmit, reset, control, formState: { errors } } = useForm<ProductForm>({
+  const { register, handleSubmit, reset, control, setValue, watch, formState: { errors } } = useForm<ProductForm>({
     resolver: zodResolver(productSchema) as never,
     defaultValues: { name: '', brandId: '', categoryId: '', price: 0, discountPercentage: undefined, description: '', partNumber: '', sku: '' },
   });
@@ -395,19 +455,23 @@ export default function AdminProductsPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="brandId">Marka</Label>
-                  <select id="brandId" {...register('brandId')} className={`${selectClass} w-full`}>
-                    <option value="">Marka seçin</option>
-                    {brands.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}
-                  </select>
+                  <Label>Marka</Label>
+                  <SearchableSelect
+                    options={brands}
+                    value={watch('brandId')}
+                    onChange={(id) => setValue('brandId', id, { shouldValidate: true })}
+                    placeholder="Marka seçin"
+                  />
                   {errors.brandId && <p className="text-xs text-destructive">{errors.brandId.message}</p>}
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="categoryId">Kategori</Label>
-                  <select id="categoryId" {...register('categoryId')} className={`${selectClass} w-full`}>
-                    <option value="">Kategori seçin</option>
-                    {categories.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
-                  </select>
+                  <Label>Kategori</Label>
+                  <SearchableSelect
+                    options={categories}
+                    value={watch('categoryId')}
+                    onChange={(id) => setValue('categoryId', id, { shouldValidate: true })}
+                    placeholder="Kategori seçin"
+                  />
                   {errors.categoryId && <p className="text-xs text-destructive">{errors.categoryId.message}</p>}
                 </div>
               </div>
