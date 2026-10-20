@@ -43,3 +43,10 @@ apps/api/Akinel.Api/wwwroot/uploads/
 # Python
 **/__pycache__/
 *.pyc
+
+# Graphify (generated — large binary outputs; only GRAPH_REPORT.md is tracked)
+graphify-out/graph.html
+graphify-out/graph.json
+graphify-out/manifest.json
+graphify-out/cache/
+graphify-out/converted/
