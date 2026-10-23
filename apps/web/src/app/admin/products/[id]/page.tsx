@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { VehicleFinder } from '@/components/search/VehicleFinder';
+import { BulkCompatibilitySelector } from '@/components/admin/BulkCompatibilitySelector';
 import { toast } from '@/components/ui/toast';
 
 const selectClass = 'flex h-9 w-full rounded-lg border border-input bg-background px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors';
@@ -63,7 +64,6 @@ export default function AdminProductEditPage() {
 
   // Compatibility state
   const [compat, setCompat] = useState<VehicleCompatibilityEntry[]>([]);
-  const [showVehicleFinder, setShowVehicleFinder] = useState(false);
 
   // VIN helper state
   const [vinInput, setVinInput] = useState('');
@@ -219,8 +219,19 @@ export default function AdminProductEditPage() {
     try {
       const entry = await api.admin.products.addCompatibility(id, { vehicleEngineId: engineId }, accessToken) as VehicleCompatibilityEntry;
       setCompat(prev => [...prev, entry]);
-      setShowVehicleFinder(false);
     } catch { /* ignore */ }
+  };
+
+  const addBulkCompatibility = async (engineIds: string[]) => {
+    if (!accessToken) return;
+    const results = await Promise.allSettled(
+      engineIds.map(eid => api.admin.products.addCompatibility(id, { vehicleEngineId: eid }, accessToken))
+    );
+    const added = results
+      .filter((r): r is PromiseFulfilledResult<unknown> => r.status === 'fulfilled')
+      .map(r => r.value as VehicleCompatibilityEntry);
+    if (added.length > 0) setCompat(prev => [...prev, ...added]);
+    toast.add({ title: `${added.length} motor eklendi`, type: added.length > 0 ? 'success' : 'error' });
   };
 
   const removeCompatibility = async (engineId: string) => {
@@ -541,19 +552,19 @@ export default function AdminProductEditPage() {
       {/* ── TAB: Araç Uyumluluğu ───────────────────── */}
       {tab === 'compat' && (
         <div className="max-w-2xl space-y-4">
-          <div className="flex gap-2 flex-wrap">
-            <Button
-              onClick={() => setShowVehicleFinder(v => !v)}
-              variant="outline"
-              className="gap-2"
-            >
-              <Car size={15} />
-              {showVehicleFinder ? 'Listeden Gizle' : 'Listeden Araç Ekle'}
-            </Button>
-          </div>
+          {/* Bulk selector */}
+          <BulkCompatibilitySelector
+            existingEngineIds={compat.map(c => c.engineId)}
+            onAdd={addBulkCompatibility}
+          />
 
-          {showVehicleFinder && (
-            <div className="border rounded-xl p-4 bg-muted/20 space-y-4">
+          {/* VehicleFinder fallback */}
+          <details className="border rounded-xl overflow-hidden">
+            <summary className="px-4 py-3 text-sm font-medium cursor-pointer select-none hover:bg-muted/40 transition-colors flex items-center gap-2">
+              <Car size={14} className="text-brand" />
+              Gelişmiş Araç Seçici (VehicleFinder / VIN)
+            </summary>
+            <div className="p-4 border-t bg-muted/20 space-y-4">
               {/* VIN helper */}
               <details className="border rounded-lg bg-background">
                 <summary className="px-4 py-2.5 text-sm font-medium cursor-pointer select-none hover:bg-muted/40 transition-colors flex items-center gap-2">
@@ -626,7 +637,7 @@ export default function AdminProductEditPage() {
                 onVehicleSelected={(ctx) => addCompatibility(ctx.engineId)}
               />
             </div>
-          )}
+          </details>
 
           {compat.length === 0 ? (
             <p className="text-sm text-muted-foreground py-6 text-center">Henüz araç uyumluluğu eklenmemiş.</p>
