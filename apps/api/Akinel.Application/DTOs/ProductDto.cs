@@ -61,7 +61,16 @@ public record CreateProductRequest(
     string? SKU,
     decimal Price,
     decimal? DiscountPercentage = null,
-    string Currency = "TRY"
+    string Currency = "TRY",
+    int InitialQuantity = 0,
+    int MinimumStockLevel = 5,
+    bool IsActive = true,
+    string? Barcode = null,
+    decimal? WeightKg = null,
+    decimal? WidthCm = null,
+    decimal? LengthCm = null,
+    decimal? HeightCm = null,
+    string? WarrantyInfo = null
 );
 
 public record UpdateProductRequest(

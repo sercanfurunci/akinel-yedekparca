@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -24,6 +25,8 @@ const productSchema = z.object({
   description: z.string().optional(),
   partNumber: z.string().optional(),
   sku: z.string().optional(),
+  initialQuantity: z.number().int().min(0, 'Negatif olamaz').default(0),
+  minimumStockLevel: z.number().int().min(0, 'Negatif olamaz').default(5),
 });
 
 type ProductForm = z.infer<typeof productSchema>;
@@ -105,6 +108,7 @@ function SearchableSelect({ options, value, onChange, placeholder }: {
 
 export default function AdminProductsPage() {
   const { accessToken } = useAuthStore();
+  const router = useRouter();
   const [products, setProducts] = useState<ProductListItem[]>([]);
   const [brands, setBrands] = useState<AdminBrand[]>([]);
   const [categories, setCategories] = useState<AdminCategory[]>([]);
@@ -126,7 +130,7 @@ export default function AdminProductsPage() {
 
   const { register, handleSubmit, reset, control, setValue, watch, formState: { errors } } = useForm<ProductForm>({
     resolver: zodResolver(productSchema) as never,
-    defaultValues: { name: '', brandId: '', categoryId: '', price: 0, discountPercentage: undefined, description: '', partNumber: '', sku: '' },
+    defaultValues: { name: '', brandId: '', categoryId: '', price: 0, discountPercentage: undefined, description: '', partNumber: '', sku: '', initialQuantity: 0, minimumStockLevel: 5 },
   });
 
   const watchPrice = useWatch({ control, name: 'price' });
@@ -177,7 +181,7 @@ export default function AdminProductsPage() {
 
   const openAddForm = () => {
     setError('');
-    reset({ name: '', brandId: '', categoryId: '', price: 0, discountPercentage: undefined, description: '', partNumber: '', sku: '' });
+    reset({ name: '', brandId: '', categoryId: '', price: 0, discountPercentage: undefined, description: '', partNumber: '', sku: '', initialQuantity: 0, minimumStockLevel: 5 });
     setFormOpen(true);
   };
 
@@ -187,7 +191,7 @@ export default function AdminProductsPage() {
     setError('');
     try {
       const dp = data.discountPercentage && data.discountPercentage > 0 ? data.discountPercentage : null;
-      await api.admin.products.create({
+      const created = await api.admin.products.create({
         name: data.name,
         description: data.description || null,
         brandId: data.brandId,
@@ -197,9 +201,12 @@ export default function AdminProductsPage() {
         price: data.price,
         discountPercentage: dp,
         currency: 'TRY',
+        initialQuantity: data.initialQuantity ?? 0,
+        minimumStockLevel: data.minimumStockLevel ?? 5,
       }, accessToken);
       setFormOpen(false);
-      fetchProducts();
+      // OEM, fotoğraf ve uyumluluk için edit sayfasına yönlendir
+      router.push(`/admin/products/${(created as { id: string }).id}`);
     } catch {
       setError('Ürün kaydedilemedi. Lütfen tekrar deneyin.');
     } finally {
@@ -514,6 +521,27 @@ export default function AdminProductsPage() {
                   <Label htmlFor="sku">SKU</Label>
                   <Input id="sku" {...register('sku')} placeholder="Opsiyonel" />
                 </div>
+              </div>
+
+              <div className="rounded-lg border border-input p-3 space-y-3">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Stok Bilgisi</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <Label htmlFor="initialQuantity">Başlangıç Stoku (adet)</Label>
+                    <Input id="initialQuantity" type="number" min="0" step="1"
+                      {...register('initialQuantity', { valueAsNumber: true })}
+                      placeholder="0" />
+                    {errors.initialQuantity && <p className="text-xs text-destructive">{errors.initialQuantity.message}</p>}
+                  </div>
+                  <div className="space-y-1">
+                    <Label htmlFor="minimumStockLevel">Min. Stok Seviyesi</Label>
+                    <Input id="minimumStockLevel" type="number" min="0" step="1"
+                      {...register('minimumStockLevel', { valueAsNumber: true })}
+                      placeholder="5" />
+                    {errors.minimumStockLevel && <p className="text-xs text-destructive">{errors.minimumStockLevel.message}</p>}
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground">Min. seviyenin altına düştüğünde "Az Stok" uyarısı gösterilir.</p>
               </div>
 
               <div className="space-y-1">

@@ -130,9 +130,21 @@ public class ProductService : IProductService
             Price = request.Price,
             DiscountPercentage = NormalizeDiscount(request.DiscountPercentage),
             Currency = request.Currency,
+            IsActive = request.IsActive,
+            Barcode = request.Barcode,
+            WeightKg = request.WeightKg,
+            WidthCm = request.WidthCm,
+            LengthCm = request.LengthCm,
+            HeightCm = request.HeightCm,
+            WarrantyInfo = request.WarrantyInfo,
         };
 
-        product.Stock = new Stock { ProductId = product.Id, Quantity = 0 };
+        product.Stock = new Stock
+        {
+            ProductId = product.Id,
+            Quantity = request.InitialQuantity,
+            MinimumStockLevel = request.MinimumStockLevel,
+        };
 
         _context.Products.Add(product);
         await _context.SaveChangesAsync(ct);
