@@ -22,7 +22,7 @@ const selectClass = 'flex h-9 w-full rounded-lg border border-input bg-backgroun
 
 const productSchema = z.object({
   name: z.string().min(1, 'Ürün adı gerekli'),
-  brandId: z.string().min(1, 'Marka seçin'),
+  brandId: z.string().optional(),
   categoryId: z.string().min(1, 'Kategori seçin'),
   price: z.number().min(0.01, 'Geçerli fiyat girin'),
   discountPercentage: z.number().min(0).max(99.99).nullable().optional(),
@@ -40,7 +40,7 @@ const productSchema = z.object({
 });
 type ProductForm = z.infer<typeof productSchema>;
 
-type Tab = 'info' | 'oem' | 'compat' | 'images';
+type Tab = 'info' | 'stock' | 'oem' | 'compat' | 'images';
 
 export default function AdminProductEditPage() {
   const { id } = useParams<{ id: string }>();
@@ -70,6 +70,12 @@ export default function AdminProductEditPage() {
   const [vinLoading, setVinLoading] = useState(false);
   const [vinResult, setVinResult] = useState<VinDecodeResult | null>(null);
   const [vinError, setVinError] = useState('');
+
+  // Stock edit state
+  const [stockQty, setStockQty] = useState('');
+  const [stockMinLevel, setStockMinLevel] = useState('');
+  const [stockSaving, setStockSaving] = useState(false);
+  const [stockSaved, setStockSaved] = useState(false);
 
   // Images state
   const [images, setImages] = useState<ProductImage[]>([]);
@@ -112,6 +118,8 @@ export default function AdminProductEditPage() {
         heightCm: data.heightCm ?? null,
         warrantyInfo: data.warrantyInfo ?? '',
       });
+      setStockQty(String(data.quantity ?? 0));
+      setStockMinLevel(String(data.minimumStockLevel ?? 5));
     } catch {
       // product not found
     } finally {
@@ -154,7 +162,7 @@ export default function AdminProductEditPage() {
       await api.admin.products.update(id, {
         name: data.name,
         description: data.description || null,
-        brandId: data.brandId,
+        brandId: data.brandId || '00000000-0000-0000-0000-000000000001',
         categoryId: data.categoryId,
         partNumber: data.partNumber || null,
         sku: data.sku || null,
@@ -234,6 +242,24 @@ export default function AdminProductEditPage() {
     toast.add({ title: `${added.length} motor eklendi`, type: added.length > 0 ? 'success' : 'error' });
   };
 
+  const saveStock = async () => {
+    if (!accessToken) return;
+    setStockSaving(true);
+    setStockSaved(false);
+    try {
+      await api.admin.stock.update(
+        id,
+        parseInt(stockQty) || 0,
+        stockMinLevel ? parseInt(stockMinLevel) : null,
+        accessToken
+      );
+      setStockSaved(true);
+      setTimeout(() => setStockSaved(false), 2500);
+    } catch { /* ignore */ } finally {
+      setStockSaving(false);
+    }
+  };
+
   const removeCompatibility = async (engineId: string) => {
     if (!accessToken) return;
     try {
@@ -293,6 +319,7 @@ export default function AdminProductEditPage() {
 
   const tabs: { key: Tab; label: string }[] = [
     { key: 'info', label: 'Temel Bilgiler' },
+    { key: 'stock', label: 'Stok' },
     { key: 'oem', label: 'OEM Numaraları' },
     { key: 'compat', label: 'Araç Uyumluluğu' },
     { key: 'images', label: 'Görseller' },
@@ -340,9 +367,9 @@ export default function AdminProductEditPage() {
           {/* Marka & Kategori */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
-              <Label htmlFor="brandId">Marka</Label>
+              <Label htmlFor="brandId">Marka <span className="text-muted-foreground font-normal text-xs">(İsteğe bağlı)</span></Label>
               <select id="brandId" {...register('brandId')} className={selectClass}>
-                <option value="">Marka seçin</option>
+                <option value="">— Bilinmiyor / Genel —</option>
                 {brands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
               </select>
               {errors.brandId && <p className="text-xs text-destructive">{errors.brandId.message}</p>}
@@ -399,12 +426,14 @@ export default function AdminProductEditPage() {
           {/* Parça No, SKU */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
-              <Label htmlFor="partNumber">Parça No</Label>
-              <Input id="partNumber" {...register('partNumber')} placeholder="Opsiyonel" />
+              <Label htmlFor="partNumber">Parça No <span className="text-muted-foreground font-normal text-xs">(İsteğe bağlı)</span></Label>
+              <Input id="partNumber" {...register('partNumber')} placeholder="ör: 1354881" />
+              <p className="text-xs text-muted-foreground">Üreticinin kendi katalog/parça numarası. OEM cross-reference değil.</p>
             </div>
             <div className="space-y-1">
-              <Label htmlFor="sku">SKU</Label>
-              <Input id="sku" {...register('sku')} placeholder="Opsiyonel" />
+              <Label htmlFor="sku">SKU <span className="text-muted-foreground font-normal text-xs">(İsteğe bağlı)</span></Label>
+              <Input id="sku" {...register('sku')} placeholder="ör: AKN-0042" />
+              <p className="text-xs text-muted-foreground">Kendi iç stok kodun. Barkod (EAN) ile karıştırma.</p>
             </div>
           </div>
 
@@ -506,6 +535,68 @@ export default function AdminProductEditPage() {
             </div>
           </div>
         </form>
+      )}
+
+      {/* ── TAB: Stok ──────────────────────────────── */}
+      {tab === 'stock' && (
+        <div className="max-w-sm space-y-5">
+          {/* Status badge */}
+          {product && (
+            <div className="flex items-center gap-3 rounded-xl border px-4 py-3">
+              <div>
+                <p className="text-xs text-muted-foreground mb-0.5">Stok Durumu</p>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                  product.stockStatus === 'InStock' ? 'bg-green-100 text-green-700' :
+                  product.stockStatus === 'LowStock' ? 'bg-amber-100 text-amber-700' :
+                  'bg-red-100 text-red-700'
+                }`}>
+                  {product.stockStatus === 'InStock' ? 'Stokta' : product.stockStatus === 'LowStock' ? 'Az Stok' : 'Tükendi'}
+                </span>
+              </div>
+              <div className="ml-auto text-right">
+                <p className="text-xs text-muted-foreground">Mevcut</p>
+                <p className="text-2xl font-bold font-mono">{product.availableQuantity}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Miktar */}
+          <div className="space-y-1">
+            <Label htmlFor="stockQty">Toplam Stok Miktarı</Label>
+            <Input
+              id="stockQty"
+              type="number"
+              min="0"
+              value={stockQty}
+              onChange={e => setStockQty(e.target.value)}
+            />
+            <p className="text-xs text-muted-foreground">Depodaki toplam adet. Sipariş rezervleri otomatik düşülür.</p>
+          </div>
+
+          {/* Kritik stok */}
+          <div className="space-y-1">
+            <Label htmlFor="stockMin">Kritik Stok Seviyesi</Label>
+            <Input
+              id="stockMin"
+              type="number"
+              min="0"
+              value={stockMinLevel}
+              onChange={e => setStockMinLevel(e.target.value)}
+            />
+            <p className="text-xs text-muted-foreground">Bu seviyenin altına düştüğünde stok durumu &quot;Az Stok&quot; olarak işaretlenir. Önerilen: 5.</p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Button
+              onClick={saveStock}
+              disabled={stockSaving}
+              className="bg-brand text-brand-foreground hover:bg-brand/90"
+            >
+              {stockSaving ? 'Kaydediliyor...' : 'Stok Kaydet'}
+            </Button>
+            {stockSaved && <p className="text-sm text-green-600">Kaydedildi.</p>}
+          </div>
+        </div>
       )}
 
       {/* ── TAB: OEM Numaraları ─────────────────────── */}

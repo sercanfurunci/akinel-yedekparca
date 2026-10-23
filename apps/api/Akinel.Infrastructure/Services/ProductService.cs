@@ -253,7 +253,10 @@ public class ProductService : IProductService
             sortedImages.FirstOrDefault(i => i.IsPrimary)?.Url ?? sortedImages.FirstOrDefault()?.Url,
             p.OemNumbers.Select(po => po.OemNumber.Number),
             p.Barcode, p.WeightKg, p.WidthCm, p.LengthCm, p.HeightCm, p.WarrantyInfo,
-            sortedImages.Select(i => new ProductImageDto(i.Id, i.Url, i.AltText, i.SortOrder, i.IsPrimary))
+            sortedImages.Select(i => new ProductImageDto(i.Id, i.Url, i.AltText, i.SortOrder, i.IsPrimary)),
+            p.Stock?.Quantity ?? 0,
+            p.Stock?.ReservedQuantity ?? 0,
+            p.Stock?.MinimumStockLevel ?? 5
         );
     }
 

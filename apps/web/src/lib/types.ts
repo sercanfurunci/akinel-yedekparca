@@ -25,6 +25,9 @@ export interface Product extends ProductListItem {
   sku?: string;
   isActive: boolean;
   availableQuantity: number;
+  quantity: number;
+  reservedQuantity: number;
+  minimumStockLevel: number;
   oemNumbers: string[];
   barcode?: string;
   weightKg?: number;

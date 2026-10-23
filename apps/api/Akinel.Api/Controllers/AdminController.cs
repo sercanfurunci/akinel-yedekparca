@@ -483,9 +483,11 @@ public class AdminController : ControllerBase
         var stock = await _db.Stocks.FirstOrDefaultAsync(s => s.ProductId == productId, ct);
         if (stock == null) return NotFound();
         stock.Quantity = request.Quantity;
+        if (request.MinimumStockLevel.HasValue)
+            stock.MinimumStockLevel = request.MinimumStockLevel.Value;
         stock.UpdatedAt = DateTime.UtcNow;
         await _db.SaveChangesAsync(ct);
-        return Ok(new { stock.ProductId, stock.Quantity, stock.AvailableQuantity, Status = stock.Status.ToString() });
+        return Ok(new { stock.ProductId, stock.Quantity, stock.ReservedQuantity, stock.AvailableQuantity, stock.MinimumStockLevel, Status = stock.Status.ToString() });
     }
 
     // ── Homepage Hero Slides ─────────────────────────────────────────
@@ -656,7 +658,7 @@ public record CreateBrandRequest(string Name, string? LogoUrl);
 public record UpdateBrandRequest(string Name, string? LogoUrl, bool IsActive);
 public record CreateCategoryRequest(string Name, Guid? ParentCategoryId, int SortOrder = 0, string? ImageUrl = null, bool IsHomepageFeatured = false, string? Description = null);
 public record UpdateCategoryRequest(string Name, Guid? ParentCategoryId, bool IsActive, int SortOrder = 0, string? ImageUrl = null, bool IsHomepageFeatured = false, string? Description = null);
-public record UpdateStockRequest(int Quantity);
+public record UpdateStockRequest(int Quantity, int? MinimumStockLevel = null);
 public record AddOemRequest(string Number, string? Manufacturer);
 public record AddCompatibilityRequest(Guid VehicleEngineId, string? Notes);
 public record CreateHeroSlideRequest(string? Title, string? Subtitle, string? CtaText, string? CtaUrl, int DisplayOrder = 0, bool IsActive = true);

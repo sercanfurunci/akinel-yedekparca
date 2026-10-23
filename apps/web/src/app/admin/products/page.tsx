@@ -18,7 +18,7 @@ import { TableSkeleton } from '@/components/shared/Skeletons';
 
 const productSchema = z.object({
   name: z.string().min(1, 'Ürün adı gerekli'),
-  brandId: z.string().min(1, 'Marka seçin'),
+  brandId: z.string().optional(),
   categoryId: z.string().min(1, 'Kategori seçin'),
   price: z.number().min(0.01, 'Geçerli fiyat girin'),
   discountPercentage: z.number().min(0, 'Negatif olamaz').max(99.99, '%100 veya üzeri geçersiz').optional(),
@@ -194,7 +194,7 @@ export default function AdminProductsPage() {
       const created = await api.admin.products.create({
         name: data.name,
         description: data.description || null,
-        brandId: data.brandId,
+        brandId: data.brandId || '00000000-0000-0000-0000-000000000001',
         categoryId: data.categoryId,
         partNumber: data.partNumber || null,
         sku: data.sku || null,
@@ -462,14 +462,13 @@ export default function AdminProductsPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label>Marka</Label>
+                  <Label>Marka <span className="text-muted-foreground font-normal text-xs">(İsteğe bağlı)</span></Label>
                   <SearchableSelect
                     options={brands}
-                    value={watch('brandId')}
+                    value={watch('brandId') ?? ''}
                     onChange={(id) => setValue('brandId', id, { shouldValidate: true })}
-                    placeholder="Marka seçin"
+                    placeholder="— Bilinmiyor / Genel —"
                   />
-                  {errors.brandId && <p className="text-xs text-destructive">{errors.brandId.message}</p>}
                 </div>
                 <div className="space-y-1">
                   <Label>Kategori</Label>

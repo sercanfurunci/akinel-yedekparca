@@ -30,7 +30,10 @@ public record ProductDto(
     decimal? LengthCm = null,
     decimal? HeightCm = null,
     string? WarrantyInfo = null,
-    IEnumerable<ProductImageDto>? Images = null
+    IEnumerable<ProductImageDto>? Images = null,
+    int Quantity = 0,
+    int ReservedQuantity = 0,
+    int MinimumStockLevel = 5
 );
 
 public record ProductListItemDto(

@@ -299,8 +299,8 @@ export const api = {
         request(`/api/admin/products/${id}/images/${imageId}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }),
     },
     stock: {
-      update: (productId: string, quantity: number, token: string) =>
-        request(`/api/admin/stock/${productId}`, { method: 'PUT', body: JSON.stringify({ quantity }), headers: { Authorization: `Bearer ${token}` } }),
+      update: (productId: string, quantity: number, minimumStockLevel: number | null, token: string) =>
+        request(`/api/admin/stock/${productId}`, { method: 'PUT', body: JSON.stringify({ quantity, minimumStockLevel }), headers: { Authorization: `Bearer ${token}` } }),
     },
     brands: {
       list: (token: string) =>
