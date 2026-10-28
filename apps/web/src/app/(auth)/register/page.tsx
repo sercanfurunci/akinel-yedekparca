@@ -222,9 +222,9 @@ export default function RegisterPage() {
                   {...register('termsAccepted')}
                 />
                 <span className="text-xs text-muted-foreground leading-relaxed">
-                  <Link href="/kullanim-kosullari" target="_blank" className="text-brand font-semibold hover:underline">Kullanım Koşulları</Link>
+                  <Link href="/belgeler/kullanim-kosullari" target="_blank" className="text-brand font-semibold hover:underline">Kullanım Koşulları</Link>
                   {' '}ve{' '}
-                  <Link href="/gizlilik-politikasi" target="_blank" className="text-brand font-semibold hover:underline">Gizlilik Politikası</Link>
+                  <Link href="/belgeler/gizlilik-politikasi" target="_blank" className="text-brand font-semibold hover:underline">Gizlilik Politikası</Link>
                   &apos;nı okudum ve kabul ediyorum.
                 </span>
               </label>
@@ -237,7 +237,7 @@ export default function RegisterPage() {
                   {...register('kvkkAccepted')}
                 />
                 <span className="text-xs text-muted-foreground leading-relaxed">
-                  <Link href="/kvkk" target="_blank" className="text-brand font-semibold hover:underline">KVKK Aydınlatma Metni</Link>
+                  <Link href="/belgeler/kvkk-aydinlatma-metni" target="_blank" className="text-brand font-semibold hover:underline">KVKK Aydınlatma Metni</Link>
                   &apos;ni okudum, kişisel verilerimin işlenmesine onay veriyorum.
                 </span>
               </label>
