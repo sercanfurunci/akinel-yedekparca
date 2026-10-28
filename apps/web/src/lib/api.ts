@@ -211,6 +211,8 @@ export const api = {
       request('/api/auth/reset-password', { method: 'POST', body: JSON.stringify({ token, newPassword }) }),
     refresh: (refreshToken: string) =>
       request('/api/auth/refresh', { method: 'POST', body: JSON.stringify({ refreshToken }) }),
+    googleLogin: (idToken: string) =>
+      request('/api/auth/google', { method: 'POST', body: JSON.stringify({ idToken }) }),
   },
   account: {
     getProfile: (token: string) =>

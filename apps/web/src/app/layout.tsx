@@ -4,6 +4,7 @@ import { PublicShell } from '@/components/layout/PublicShell';
 import { CookieConsent } from '@/components/layout/CookieConsent';
 import { PostHogProvider } from '@/components/analytics/PostHogProvider';
 import { SentryProvider } from '@/components/SentryProvider';
+import { GoogleAuthProvider } from '@/components/GoogleAuthProvider';
 import type { BusinessSettings } from '@/lib/types';
 
 const SITE_URL = 'https://akinelotoyedekparca.com.tr';
@@ -137,10 +138,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body className="font-sans min-h-screen flex flex-col overflow-x-hidden">
         <SentryProvider>
-          <PostHogProvider>
-            <PublicShell>{children}</PublicShell>
-            <CookieConsent />
-          </PostHogProvider>
+          <GoogleAuthProvider>
+            <PostHogProvider>
+              <PublicShell>{children}</PublicShell>
+              <CookieConsent />
+            </PostHogProvider>
+          </GoogleAuthProvider>
         </SentryProvider>
       </body>
     </html>

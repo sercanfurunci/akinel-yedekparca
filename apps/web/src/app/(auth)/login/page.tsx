@@ -7,6 +7,7 @@ import { z } from 'zod';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
+import { GoogleLogin } from '@react-oauth/google';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -45,6 +46,7 @@ function LoginForm() {
   const [error, setError] = useState('');
   const [emailNotVerified, setEmailNotVerified] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -52,6 +54,22 @@ function LoginForm() {
       router.replace(returnUrl || (user.role === 'Admin' ? '/admin' : '/account'));
     }
   }, [accessToken, user, router, returnUrl]);
+
+  const handleGoogleSuccess = async (credential: string) => {
+    setGoogleLoading(true);
+    setError('');
+    try {
+      const res = await api.auth.googleLogin(credential) as AuthResponse;
+      setAuth(res.user, res.accessToken, res.refreshToken);
+      analytics.loginCompleted();
+      posthogLogs.loginCompleted(res.user.role);
+      router.push(returnUrl || (res.user.role === 'Admin' ? '/admin' : '/account'));
+    } catch {
+      setError('Google ile giriş yapılamadı. Lütfen tekrar deneyin.');
+    } finally {
+      setGoogleLoading(false);
+    }
+  };
 
   const onSubmit = async (data: FormValues) => {
     setError('');

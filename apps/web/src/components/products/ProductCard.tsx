@@ -91,7 +91,7 @@ function ProductCardBase({ product, isCompatible }: Props) {
           <p className="text-xs text-muted-foreground mb-3 truncate">{product.categoryName}</p>
 
           {/* Price */}
-          <div className="flex items-baseline gap-1.5 mb-1.5">
+          <div className="flex items-baseline gap-1.5 mb-0.5">
             <span className="font-bold text-lg text-brand tracking-tight">
               {formatPrice(product.salePrice ?? product.price, product.currency)}
             </span>
@@ -101,6 +101,7 @@ function ProductCardBase({ product, isCompatible }: Props) {
               </span>
             )}
           </div>
+          <p className="text-[10px] text-muted-foreground mb-1">KDV dahil</p>
           {/* Stock badge */}
           <div className="mb-1 flex flex-wrap items-center gap-1.5">
             <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wide ${statusColor}`}>

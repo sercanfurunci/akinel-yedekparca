@@ -19,6 +19,7 @@ function SearchResults() {
 
   const [products, setProducts] = useState<ProductListItem[]>([]);
   const [totalCount, setTotalCount] = useState(0);
+  const [vehicleCount, setVehicleCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [vehicleSuggestions, setVehicleSuggestions] = useState<VehicleSearchResult | null>(null);
   const [useVehicleFilter, setUseVehicleFilter] = useState(false);
@@ -46,19 +47,30 @@ function SearchResults() {
   }, [query, searchVehicles]);
 
   useEffect(() => {
-    if (!query) { setProducts([]); setTotalCount(0); return; }
+    if (!query) { setProducts([]); setTotalCount(0); setVehicleCount(null); return; }
     setLoading(true);
+
     const params: Record<string, string> = { query, pageSize: '40' };
     if (isOemQuery) params.queryType = '1';
     if (useVehicleFilter && selectedVehicle) params.vehicleEngineId = selectedVehicle.engineId;
-    api.products.search(params)
+
+    const mainSearch = api.products.search(params)
       .then((data) => {
         const result = data as PaginatedResult<ProductListItem>;
         setProducts(result.items ?? []);
         setTotalCount(result.totalCount ?? 0);
       })
-      .catch(() => { setProducts([]); setTotalCount(0); })
-      .finally(() => setLoading(false));
+      .catch(() => { setProducts([]); setTotalCount(0); });
+
+    // When vehicle is selected but filter is OFF, fetch vehicle-specific count in parallel
+    const vehicleCountFetch =
+      selectedVehicle && !useVehicleFilter && !isOemQuery
+        ? api.products.search({ query, pageSize: '1', vehicleEngineId: selectedVehicle.engineId })
+            .then((data) => setVehicleCount((data as PaginatedResult<ProductListItem>).totalCount ?? 0))
+            .catch(() => setVehicleCount(null))
+        : Promise.resolve(useVehicleFilter ? null : setVehicleCount(null));
+
+    Promise.all([mainSearch, vehicleCountFetch]).finally(() => setLoading(false));
   }, [query, isOemQuery, useVehicleFilter, selectedVehicle]);
 
   return (
@@ -147,8 +159,12 @@ function SearchResults() {
             </h1>
             {!loading && (
               <p className="text-sm text-muted-foreground mt-1">
-                &quot;{query}&quot; için {totalCount} ürün bulundu
-                {useVehicleFilter && selectedVehicle && ` (${selectedVehicle.displayLabel} için)`}
+                {useVehicleFilter && selectedVehicle
+                  ? <>&quot;{query}&quot; için <strong className="text-foreground">{totalCount} ürün</strong> — {selectedVehicle.displayLabel}</>
+                  : vehicleCount != null && selectedVehicle
+                  ? <>&quot;{query}&quot; için <strong className="text-green-700">{vehicleCount} aracınıza uyuyor</strong> <span className="text-muted-foreground/60">/ {totalCount} toplam</span></>
+                  : <>&quot;{query}&quot; için {totalCount} ürün bulundu</>
+                }
               </p>
             )}
           </div>

@@ -11,4 +11,5 @@ public interface IAuthService
     Task<bool> ResetPasswordAsync(string token, string newPassword, CancellationToken ct = default);
     Task<AuthResponse?> RefreshTokenAsync(string refreshToken, CancellationToken ct = default);
     Task RevokeTokenAsync(string refreshToken, CancellationToken ct = default);
+    Task<AuthResponse> GoogleOAuthLoginAsync(string idToken, CancellationToken ct = default);
 }

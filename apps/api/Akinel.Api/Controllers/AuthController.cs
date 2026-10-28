@@ -16,6 +16,21 @@ public class AuthController : ControllerBase
         _authService = authService;
     }
 
+    [HttpPost("google")]
+    [EnableRateLimiting("login")]
+    public async Task<IActionResult> GoogleLogin([FromBody] GoogleOAuthRequest request, CancellationToken ct)
+    {
+        try
+        {
+            var result = await _authService.GoogleOAuthLoginAsync(request.IdToken, ct);
+            return Ok(result);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Unauthorized(new { message = "Google kimlik doğrulaması başarısız." });
+        }
+    }
+
     [HttpPost("login")]
     [EnableRateLimiting("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken ct)

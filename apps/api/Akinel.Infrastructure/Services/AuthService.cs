@@ -8,7 +8,9 @@ using Akinel.Application.Services;
 using Akinel.Domain.Entities;
 using Akinel.Domain.Enums;
 using Akinel.Infrastructure.Data;
+using Google.Apis.Auth;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -22,12 +24,14 @@ public class AuthService : IAuthService
     private readonly string _jwtSecret;
     private readonly string _jwtIssuer;
     private readonly string _jwtAudience;
+    private readonly string? _googleClientId;
 
     public AuthService(
         AkinelDbContext context,
         IEmailService email,
         IOptions<SessionSettings> sessionOptions,
-        IOptions<JwtSettings> jwtOptions)
+        IOptions<JwtSettings> jwtOptions,
+        IConfiguration config)
     {
         _context = context;
         _email = email;
@@ -35,6 +39,7 @@ public class AuthService : IAuthService
         _jwtSecret = jwtOptions.Value.Secret;
         _jwtIssuer = jwtOptions.Value.Issuer;
         _jwtAudience = jwtOptions.Value.Audience;
+        _googleClientId = config["Authentication:Google:ClientId"];
     }
 
     public async Task<AuthResponse> LoginAsync(LoginRequest request, CancellationToken ct = default)
@@ -169,6 +174,51 @@ public class AuthService : IAuthService
         token.IsRevoked = true;
         token.RevokedAt = DateTime.UtcNow;
         await _context.SaveChangesAsync(ct);
+    }
+
+    public async Task<AuthResponse> GoogleOAuthLoginAsync(string idToken, CancellationToken ct = default)
+    {
+        GoogleJsonWebSignature.Payload payload;
+        try
+        {
+            var validationSettings = new GoogleJsonWebSignature.ValidationSettings();
+            if (!string.IsNullOrWhiteSpace(_googleClientId))
+                validationSettings.Audience = new[] { _googleClientId };
+
+            payload = await GoogleJsonWebSignature.ValidateAsync(idToken, validationSettings);
+        }
+        catch (InvalidJwtException)
+        {
+            throw new UnauthorizedAccessException("Google token validation failed.");
+        }
+
+        var email = payload.Email;
+        var normalized = email.ToUpperInvariant();
+
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == normalized, ct);
+
+        if (user is null)
+        {
+            user = new User
+            {
+                Email = email,
+                NormalizedEmail = normalized,
+                FirstName = payload.GivenName ?? "",
+                LastName = payload.FamilyName ?? "",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(Guid.NewGuid().ToString()),
+                Role = UserRole.Customer,
+                IsActive = true,
+                IsEmailVerified = true,
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync(ct);
+        }
+
+        if (!user.IsActive)
+            throw new UnauthorizedAccessException("Account is inactive.");
+
+        return await GenerateAuthResponseAsync(user, ct);
     }
 
     private async Task<AuthResponse> GenerateAuthResponseAsync(User user, CancellationToken ct, DateTime? inheritedAbsoluteExpiry = null)

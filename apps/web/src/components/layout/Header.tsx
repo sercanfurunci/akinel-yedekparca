@@ -20,7 +20,7 @@ const navLinks = [
   { href: '/yedek-parcalar', label: 'Yedek Parçalar' },
   { href: '/products', label: 'Ürünler' },
   { href: '/brands', label: 'Markalar' },
-  { href: '/search', label: 'OEM Ara' },
+  { href: '/oem', label: 'OEM Ara' },
   { href: '/garage', label: 'Garajım' },
   { href: '/about', label: 'Hakkımızda' },
   { href: '/contact', label: 'İletişim' },
