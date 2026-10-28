@@ -266,7 +266,6 @@ export default function RegisterPage() {
                 onError={() => setError('Google ile kayıt yapılamadı.')}
                 width="368"
                 text="signup_with"
-                locale="tr"
               />
             </div>
             {googleLoading && <p className="text-xs text-center text-muted-foreground">İşleniyor...</p>}

@@ -176,7 +176,6 @@ function LoginForm() {
           onError={() => setError('Google ile giriş yapılamadı.')}
           width="368"
           text="continue_with"
-          locale="tr"
         />
       </div>
       {googleLoading && <p className="text-xs text-center text-muted-foreground">Giriş yapılıyor...</p>}
