@@ -160,6 +160,26 @@ function LoginForm() {
       >
         {isSubmitting ? 'Giriş yapılıyor...' : 'Giriş Yap'}
       </Button>
+
+      <div className="relative my-4">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t border-border" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-white px-2 text-muted-foreground">veya</span>
+        </div>
+      </div>
+
+      <div className="flex justify-center">
+        <GoogleLogin
+          onSuccess={(res) => { if (res.credential) handleGoogleSuccess(res.credential); }}
+          onError={() => setError('Google ile giriş yapılamadı.')}
+          width="368"
+          text="continue_with"
+          locale="tr"
+        />
+      </div>
+      {googleLoading && <p className="text-xs text-center text-muted-foreground">Giriş yapılıyor...</p>}
     </form>
   );
 }

@@ -1,6 +1,17 @@
 import { create } from 'zustand';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5100';
+const SESSION_KEY = 'basket_session';
+
+function getSessionId(): string {
+  if (typeof window === 'undefined') return '';
+  let id = localStorage.getItem(SESSION_KEY);
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem(SESSION_KEY, id);
+  }
+  return id;
+}
 
 export interface CartItem {
   productId: string;
@@ -36,8 +47,12 @@ interface CartStore {
 }
 
 async function basketRequest(path: string, options?: RequestInit): Promise<BasketResponse> {
+  const sessionId = getSessionId();
   const res = await fetch(`${API_BASE}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(sessionId ? { 'X-Basket-Session': sessionId } : {}),
+    },
     credentials: 'include',
     ...options,
   });
@@ -46,8 +61,7 @@ async function basketRequest(path: string, options?: RequestInit): Promise<Baske
   return res.json();
 }
 
-// Deduplicate concurrent fetchCart() calls — e.g. Header mounts and other
-// components may trigger a refresh at the same time. Only one network hop.
+// Deduplicate concurrent fetchCart() calls
 let fetchCartInflight: Promise<void> | null = null;
 
 export const useCartStore = create<CartStore>((set) => ({

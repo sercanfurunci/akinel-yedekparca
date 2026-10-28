@@ -21,6 +21,10 @@ public class BasketController : ControllerBase
 
     private string GetOrCreateSessionId()
     {
+        // Prefer header (reliable cross-origin) over cookie
+        if (Request.Headers.TryGetValue("X-Basket-Session", out var headerVal) && !string.IsNullOrWhiteSpace(headerVal))
+            return headerVal.ToString();
+
         if (Request.Cookies.TryGetValue(SessionCookieName, out var existing) && !string.IsNullOrWhiteSpace(existing))
             return existing;
 
@@ -28,7 +32,6 @@ public class BasketController : ControllerBase
         Response.Cookies.Append(SessionCookieName, newId, new CookieOptions
         {
             HttpOnly = true,
-            // SameSite=None required for cross-origin requests (frontend on different domain than API)
             SameSite = _env.IsDevelopment() ? SameSiteMode.Lax : SameSiteMode.None,
             Secure = !_env.IsDevelopment(),
             Expires = DateTimeOffset.UtcNow.AddDays(30),

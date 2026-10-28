@@ -6,12 +6,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
 import { Eye, EyeOff, MailCheck } from 'lucide-react';
+import { GoogleLogin } from '@react-oauth/google';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { PasswordStrengthMeter, ConfirmMatchHint } from '@/components/auth/PasswordStrength';
 import { api } from '@/lib/api';
+import { useAuthStore } from '@/store/authStore';
 import { analytics } from '@/lib/analytics';
+import type { AuthResponse } from '@/lib/types';
 
 const schema = z.object({
   firstName: z.string().min(2, 'Ad en az 2 karakter olmalı'),
@@ -36,10 +40,28 @@ export default function RegisterPage() {
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
+  const { setAuth } = useAuthStore();
+  const router = useRouter();
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [registeredEmail, setRegisteredEmail] = useState('');
+  const [googleLoading, setGoogleLoading] = useState(false);
+
+  const handleGoogleSuccess = async (credential: string) => {
+    setGoogleLoading(true);
+    setError('');
+    try {
+      const res = await api.auth.googleLogin(credential) as AuthResponse;
+      setAuth(res.user, res.accessToken, res.refreshToken);
+      analytics.signupCompleted();
+      router.push('/account');
+    } catch {
+      setError('Google ile kayıt yapılamadı. Lütfen tekrar deneyin.');
+    } finally {
+      setGoogleLoading(false);
+    }
+  };
 
   const password = useWatch({ control, name: 'password', defaultValue: '' });
   const confirmPassword = useWatch({ control, name: 'confirmPassword', defaultValue: '' });
@@ -228,6 +250,26 @@ export default function RegisterPage() {
             >
               {isSubmitting ? 'Kayıt olunuyor...' : 'Kayıt Ol'}
             </Button>
+
+            <div className="relative my-4">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-border" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-white px-2 text-muted-foreground">veya</span>
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <GoogleLogin
+                onSuccess={(res) => { if (res.credential) handleGoogleSuccess(res.credential); }}
+                onError={() => setError('Google ile kayıt yapılamadı.')}
+                width="368"
+                text="signup_with"
+                locale="tr"
+              />
+            </div>
+            {googleLoading && <p className="text-xs text-center text-muted-foreground">İşleniyor...</p>}
           </form>
 
           <p className="text-sm text-center mt-6 text-muted-foreground">
