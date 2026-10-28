@@ -12,15 +12,15 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.posthog.com",
-      "style-src 'self' 'unsafe-inline'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.posthog.com https://accounts.google.com/gsi/client",
+      "style-src 'self' 'unsafe-inline' https://accounts.google.com",
       isDev ? "img-src 'self' data: blob: https: http://localhost:5100" : "img-src 'self' data: blob: https:",
       "font-src 'self'",
       isDev
-        ? "connect-src 'self' http://localhost:5100 ws://localhost:3000 https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://*.posthog.com"
-        : "connect-src 'self' https://akinelotoyedekparca-api.railway.app https://*.railway.app https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://*.posthog.com",
+        ? "connect-src 'self' https://accounts.google.com https://oauth2.googleapis.com http://localhost:5100 ws://localhost:3000 https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://*.posthog.com"
+        : "connect-src 'self' https://accounts.google.com https://oauth2.googleapis.com https://akinelotoyedekparca-api.railway.app https://*.railway.app https://*.sentry.io https://*.ingest.sentry.io https://*.ingest.de.sentry.io https://*.posthog.com",
       "worker-src 'self' blob: data:",
-      "frame-src https://www.google.com https://maps.google.com",
+      "frame-src https://www.google.com https://maps.google.com https://accounts.google.com",
       "frame-ancestors 'none'",
     ].join("; "),
   },
