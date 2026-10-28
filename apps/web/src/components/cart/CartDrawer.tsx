@@ -1,8 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { Minus, Plus, Trash2, ShoppingCart, Package } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Minus, Plus, Trash2, ShoppingCart, Package, LogIn, UserPlus, ArrowRight } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
+import { useAuthStore } from '@/store/authStore';
 import { formatPrice, getImageUrl } from '@/lib/utils';
 import {
   Sheet,
@@ -10,11 +13,30 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
 export function CartDrawer() {
   const { items, subTotal, totalItems, isOpen, closeCart, updateItem, removeItem, isLoading } = useCartStore();
+  const { accessToken } = useAuthStore();
+  const router = useRouter();
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
+
+  const handleCheckout = () => {
+    if (accessToken) {
+      closeCart();
+      router.push('/checkout');
+    } else {
+      setShowAuthPrompt(true);
+    }
+  };
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => { if (!open) closeCart(); }}>
@@ -149,15 +171,50 @@ export function CartDrawer() {
                   {formatPrice(subTotal, 'TRY')}
                 </span>
               </div>
-              <Link href="/checkout" onClick={closeCart} className="block cursor-pointer">
-                <Button
-                  className="w-full bg-brand text-brand-foreground hover:bg-brand/90 active:scale-[0.99] h-11 cursor-pointer disabled:cursor-not-allowed"
-                  disabled={isLoading}
-                  aria-label="Ödeme sayfasına geç"
-                >
-                  Ödemeye Geç
-                </Button>
-              </Link>
+              <Button
+                onClick={handleCheckout}
+                className="w-full bg-brand text-brand-foreground hover:bg-brand/90 active:scale-[0.99] h-11 cursor-pointer disabled:cursor-not-allowed"
+                disabled={isLoading}
+                aria-label="Ödeme sayfasına geç"
+              >
+                Ödemeye Geç
+              </Button>
+
+              <Dialog open={showAuthPrompt} onOpenChange={setShowAuthPrompt}>
+                <DialogContent className="sm:max-w-sm">
+                  <DialogHeader>
+                    <DialogTitle className="text-center text-lg">Nasıl devam etmek istersiniz?</DialogTitle>
+                    <DialogDescription className="text-center text-sm">
+                      Hesabınızla giriş yapın veya üye olmadan sipariş verin.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="flex flex-col gap-3 mt-2">
+                    <Button
+                      className="w-full h-11 gap-2"
+                      onClick={() => { setShowAuthPrompt(false); closeCart(); router.push('/login?returnUrl=/checkout'); }}
+                    >
+                      <LogIn size={16} />
+                      Giriş Yap
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="w-full h-11 gap-2"
+                      onClick={() => { setShowAuthPrompt(false); closeCart(); router.push('/register'); }}
+                    >
+                      <UserPlus size={16} />
+                      Üye Ol
+                    </Button>
+                    <button
+                      type="button"
+                      onClick={() => { setShowAuthPrompt(false); closeCart(); router.push('/checkout'); }}
+                      className="flex items-center justify-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors py-1"
+                    >
+                      <ArrowRight size={14} />
+                      Üye Olmadan Devam Et
+                    </button>
+                  </div>
+                </DialogContent>
+              </Dialog>
               <button
                 type="button"
                 onClick={closeCart}
